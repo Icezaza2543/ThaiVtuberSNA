@@ -1,0 +1,109 @@
+FFFFFFFFFFFFFF                                                           [100%]
+================================== FAILURES ===================================
+_________________ test_review_completed_job_becomes_due_again _________________
+tests\test_original_review_cases.py:37: in test_review_completed_job_becomes_due_again
+    assert journal.claim_next_job('next') is not None
+E   AssertionError: assert None is not None
+E    +  where None = claim_next_job('next')
+E    +    where claim_next_job = <core.job_journal.JobJournal object at 0x00000243A0FD3770>.claim_next_job
+_______________ test_review_real_extractor_exception_is_failure _______________
+tests\test_original_review_cases.py:47: in test_review_real_extractor_exception_is_failure
+    assert result['status'] == 'EXTRACTION_FAILURE'
+E   AssertionError: assert 'EMPTY_RESULT' == 'EXTRACTION_FAILURE'
+E
+E     - EXTRACTION_FAILURE
+E     + EMPTY_RESULT
+------------------------------ Captured log call ------------------------------
+ERROR    collector.youtube_collector:youtube_collector.py:179 Error in yt-dlp extraction for video VID: synthetic extraction failure
+__________________ test_review_stale_worker_rejected[commit] __________________
+tests\test_original_review_cases.py:62: in test_review_stale_worker_rejected
+    assert result is False
+E   assert True is False
+------------------------------ Captured log call ------------------------------
+WARNING  core.job_journal:job_journal.py:217 Recovered 1 abandoned claimed jobs.
+___________________ test_review_stale_worker_rejected[fail] ___________________
+tests\test_original_review_cases.py:62: in test_review_stale_worker_rejected
+    assert result is False
+E   assert True is False
+------------------------------ Captured log call ------------------------------
+WARNING  core.job_journal:job_journal.py:217 Recovered 1 abandoned claimed jobs.
+______________ test_review_timeout_does_not_wait_for_extraction _______________
+tests\test_original_review_cases.py:78: in test_review_timeout_does_not_wait_for_extraction
+    assert time.monotonic()-start < 0.20
+E   assert (37596.456483 - 37596.1931226) < 0.2
+E    +  where 37596.456483 = <built-in function monotonic>()
+E    +    where <built-in function monotonic> = time.monotonic
+___________ test_review_wrong_dataset_manifest_prevents_collection ____________
+tests\test_original_review_cases.py:84: in test_review_wrong_dataset_manifest_prevents_collection
+    with pytest.raises(RuntimeError): make_collector(tmp_path)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE RuntimeError
+_____________ test_mixed_sources_survive_repeated_batches[False] ______________
+tests\test_collection_correctness.py:64: in test_mixed_sources_survive_repeated_batches
+    assert len(decoded(tmp_path/'events')) == 2
+E   AssertionError: assert 1 == 2
+E    +  where 1 = len([{'viewer_hash': 'b7455162589adb0da6bc8f9c7202311b6673e44acba2d25e9a9420f7db8276b6', 'vtuber_channel_id': 'CH', 'video_id': 'VID', 'first_seen': '2026-09-01T00:00:00Z', ...}])
+E    +    where [{'viewer_hash': 'b7455162589adb0da6bc8f9c7202311b6673e44acba2d25e9a9420f7db8276b6', 'vtuber_channel_id': 'CH', 'video_id': 'VID', 'first_seen': '2026-09-01T00:00:00Z', ...}] = decoded((WindowsPath('C:/Users/Icezaza/AppData/Local/Temp/pytest-of-Icezaza/pytest-88/test_mixed_sources_survive_rep0') / 'events'))
+______________ test_mixed_sources_survive_repeated_batches[True] ______________
+tests\test_collection_correctness.py:64: in test_mixed_sources_survive_repeated_batches
+    assert len(decoded(tmp_path/'events')) == 2
+E   AssertionError: assert 1 == 2
+E    +  where 1 = len([{'viewer_hash': 'b7455162589adb0da6bc8f9c7202311b6673e44acba2d25e9a9420f7db8276b6', 'vtuber_channel_id': 'CH', 'video_id': 'VID', 'first_seen': '2026-09-01T00:00:00Z', ...}])
+E    +    where [{'viewer_hash': 'b7455162589adb0da6bc8f9c7202311b6673e44acba2d25e9a9420f7db8276b6', 'vtuber_channel_id': 'CH', 'video_id': 'VID', 'first_seen': '2026-09-01T00:00:00Z', ...}] = decoded((WindowsPath('C:/Users/Icezaza/AppData/Local/Temp/pytest-of-Icezaza/pytest-88/test_mixed_sources_survive_rep1') / 'events'))
+____________ test_month_order_and_restart_do_not_create_partitions ____________
+tests\test_collection_correctness.py:84: in test_month_order_and_restart_do_not_create_partitions
+    assert mgr.write_events([event(month='10')]) == first
+E   AssertionError: assert WindowsPath('C:/Users/Icezaza/AppData/Local/Temp/pytest-of-Icezaza/pytest-88/test_month_order_and_restart_d0/2026/10/VID_comment.parquet') == WindowsPath('C:/Users/Icezaza/AppData/Local/Temp/pytest-of-Icezaza/pytest-88/test_month_order_and_restart_d0/2026/09/VID_comment.parquet')
+E    +  where WindowsPath('C:/Users/Icezaza/AppData/Local/Temp/pytest-of-Icezaza/pytest-88/test_month_order_and_restart_d0/2026/10/VID_comment.parquet') = write_events([{'viewer_hash': 'b7455162589adb0da6bc8f9c7202311b6673e44acba2d25e9a9420f7db8276b6', 'vtuber_channel_id': 'CH', 'video_id': 'VID', 'source_type': 'comment', ...}])
+E    +    where write_events = <storage.parquet_manager.ParquetStorageManager object at 0x00000243A49EBAD0>.write_events
+_____________ test_corrupt_existing_partition_is_not_overwritten ______________
+tests\test_collection_correctness.py:97: in test_corrupt_existing_partition_is_not_overwritten
+    with pytest.raises(Exception): mgr.write_events([event('new')])
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: DID NOT RAISE Exception
+------------------------------ Captured log call ------------------------------
+WARNING  storage.parquet_manager:parquet_manager.py:178 Could not reconcile existing partition C:\Users\Icezaza\AppData\Local\Temp\pytest-of-Icezaza\pytest-88\test_corrupt_existing_partitio0\2026\09\VID_comment.parquet: Could not open Parquet input source 'C:/Users/Icezaza/AppData/Local/Temp/pytest-of-Icezaza/pytest-88/test_corrupt_existing_partitio0/2026/09/VID_comment.parquet': Parquet magic bytes not found in footer. Either the file is corrupted or this is not a parquet file.; overwriting atomically
+_________ test_sqlite_audit_includes_wal_and_nested_checkpoint[safe] __________
+tests\test_collection_correctness.py:268: in test_sqlite_audit_includes_wal_and_nested_checkpoint
+    assert result['status'] == ('PASS' if kind == 'safe' else 'FAIL')
+E   AssertionError: assert 'UNSUPPORTED' == 'PASS'
+E
+E     - PASS
+E     + UNSUPPORTED
+________ test_sqlite_audit_includes_wal_and_nested_checkpoint[column] _________
+tests\test_collection_correctness.py:268: in test_sqlite_audit_includes_wal_and_nested_checkpoint
+    assert result['status'] == ('PASS' if kind == 'safe' else 'FAIL')
+E   AssertionError: assert 'UNSUPPORTED' == 'FAIL'
+E
+E     - FAIL
+E     + UNSUPPORTED
+________ test_sqlite_audit_includes_wal_and_nested_checkpoint[nested] _________
+tests\test_collection_correctness.py:268: in test_sqlite_audit_includes_wal_and_nested_checkpoint
+    assert result['status'] == ('PASS' if kind == 'safe' else 'FAIL')
+E   AssertionError: assert 'UNSUPPORTED' == 'FAIL'
+E
+E     - FAIL
+E     + UNSUPPORTED
+________ test_sqlite_audit_includes_wal_and_nested_checkpoint[canary] _________
+tests\test_collection_correctness.py:268: in test_sqlite_audit_includes_wal_and_nested_checkpoint
+    assert result['status'] == ('PASS' if kind == 'safe' else 'FAIL')
+E   AssertionError: assert 'UNSUPPORTED' == 'FAIL'
+E
+E     - FAIL
+E     + UNSUPPORTED
+=========================== short test summary info ===========================
+FAILED tests/test_original_review_cases.py::test_review_completed_job_becomes_due_again
+FAILED tests/test_original_review_cases.py::test_review_real_extractor_exception_is_failure
+FAILED tests/test_original_review_cases.py::test_review_stale_worker_rejected[commit]
+FAILED tests/test_original_review_cases.py::test_review_stale_worker_rejected[fail]
+FAILED tests/test_original_review_cases.py::test_review_timeout_does_not_wait_for_extraction
+FAILED tests/test_original_review_cases.py::test_review_wrong_dataset_manifest_prevents_collection
+FAILED tests/test_collection_correctness.py::test_mixed_sources_survive_repeated_batches[False]
+FAILED tests/test_collection_correctness.py::test_mixed_sources_survive_repeated_batches[True]
+FAILED tests/test_collection_correctness.py::test_month_order_and_restart_do_not_create_partitions
+FAILED tests/test_collection_correctness.py::test_corrupt_existing_partition_is_not_overwritten
+FAILED tests/test_collection_correctness.py::test_sqlite_audit_includes_wal_and_nested_checkpoint[safe]
+FAILED tests/test_collection_correctness.py::test_sqlite_audit_includes_wal_and_nested_checkpoint[column]
+FAILED tests/test_collection_correctness.py::test_sqlite_audit_includes_wal_and_nested_checkpoint[nested]
+FAILED tests/test_collection_correctness.py::test_sqlite_audit_includes_wal_and_nested_checkpoint[canary]
+14 failed, 25 deselected in 2.13s

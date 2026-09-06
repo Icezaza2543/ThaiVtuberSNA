@@ -1,0 +1,231 @@
+{
+  "evidence_type": "real_network",
+  "started_at": "2026-09-06T14:51:32.257281+00:00",
+  "channels": [
+    {
+      "channel_id": "UCqhhWjpw23dWhJ5rRwCCrMA",
+      "video_id": "G1LXXzZx48c"
+    },
+    {
+      "channel_id": "UCuZ1ajvlGFUMCHZAPdetKHw",
+      "video_id": "5o4H5e3QLk0"
+    }
+  ],
+  "api_configured": true,
+  "cycles": [
+    {
+      "cycle": 1,
+      "summary": {
+        "elapsed_seconds": 2.290011,
+        "jobs_processed": 4,
+        "total_records_persisted": 57,
+        "status_breakdown": {
+          "LIVE_CHAT_UNAVAILABLE": 2,
+          "PARTIAL_CAPTURE": 2
+        },
+        "journal_summary": {
+          "states": {
+            "COMPLETED": 2,
+            "FAILED": 2
+          },
+          "total_records_committed": 57
+        }
+      },
+      "presence_rows": 57,
+      "unique_presence_rows": 57,
+      "sum_max_batch_appearances": 60,
+      "partition_count": 2,
+      "job_states": [
+        {
+          "job_id": "UCqhhWjpw23dWhJ5rRwCCrMA:G1LXXzZx48c:comment",
+          "state": "COMPLETED",
+          "last_outcome": "PARTIAL_CAPTURE",
+          "attempts": 1,
+          "poll_generation": 0,
+          "last_success_at": "2026-09-06T14:51:33.329953+00:00",
+          "next_collection_at": "2026-09-06T14:51:43.329953+00:00"
+        },
+        {
+          "job_id": "UCqhhWjpw23dWhJ5rRwCCrMA:G1LXXzZx48c:live_chat",
+          "state": "FAILED",
+          "last_outcome": "LIVE_CHAT_UNAVAILABLE",
+          "attempts": 1,
+          "poll_generation": 0,
+          "last_success_at": null,
+          "next_collection_at": null
+        },
+        {
+          "job_id": "UCuZ1ajvlGFUMCHZAPdetKHw:5o4H5e3QLk0:comment",
+          "state": "COMPLETED",
+          "last_outcome": "PARTIAL_CAPTURE",
+          "attempts": 1,
+          "poll_generation": 0,
+          "last_success_at": "2026-09-06T14:51:33.912039+00:00",
+          "next_collection_at": "2026-09-06T14:51:43.912039+00:00"
+        },
+        {
+          "job_id": "UCuZ1ajvlGFUMCHZAPdetKHw:5o4H5e3QLk0:live_chat",
+          "state": "FAILED",
+          "last_outcome": "LIVE_CHAT_UNAVAILABLE",
+          "attempts": 1,
+          "poll_generation": 0,
+          "last_success_at": null,
+          "next_collection_at": null
+        }
+      ]
+    },
+    {
+      "cycle": 2,
+      "summary": {
+        "elapsed_seconds": 0.946056,
+        "jobs_processed": 2,
+        "total_records_persisted": 57,
+        "status_breakdown": {
+          "PARTIAL_CAPTURE": 2
+        },
+        "journal_summary": {
+          "states": {
+            "COMPLETED": 2,
+            "FAILED": 2
+          },
+          "total_records_committed": 57
+        }
+      },
+      "presence_rows": 57,
+      "unique_presence_rows": 57,
+      "sum_max_batch_appearances": 60,
+      "partition_count": 2,
+      "job_states": [
+        {
+          "job_id": "UCqhhWjpw23dWhJ5rRwCCrMA:G1LXXzZx48c:comment",
+          "state": "COMPLETED",
+          "last_outcome": "PARTIAL_CAPTURE",
+          "attempts": 1,
+          "poll_generation": 1,
+          "last_success_at": "2026-09-06T14:51:46.563587+00:00",
+          "next_collection_at": "2026-09-06T14:51:56.563587+00:00"
+        },
+        {
+          "job_id": "UCqhhWjpw23dWhJ5rRwCCrMA:G1LXXzZx48c:live_chat",
+          "state": "FAILED",
+          "last_outcome": "LIVE_CHAT_UNAVAILABLE",
+          "attempts": 1,
+          "poll_generation": 0,
+          "last_success_at": null,
+          "next_collection_at": null
+        },
+        {
+          "job_id": "UCuZ1ajvlGFUMCHZAPdetKHw:5o4H5e3QLk0:comment",
+          "state": "COMPLETED",
+          "last_outcome": "PARTIAL_CAPTURE",
+          "attempts": 1,
+          "poll_generation": 1,
+          "last_success_at": "2026-09-06T14:51:46.596920+00:00",
+          "next_collection_at": "2026-09-06T14:51:56.596920+00:00"
+        },
+        {
+          "job_id": "UCuZ1ajvlGFUMCHZAPdetKHw:5o4H5e3QLk0:live_chat",
+          "state": "FAILED",
+          "last_outcome": "LIVE_CHAT_UNAVAILABLE",
+          "attempts": 1,
+          "poll_generation": 0,
+          "last_success_at": null,
+          "next_collection_at": null
+        }
+      ]
+    }
+  ],
+  "runtime_versions": {
+    "google-api-python-client": "2.169.0",
+    "google-api-core": "2.36.0",
+    "requests": "2.34.2",
+    "pyarrow": "25.0.1",
+    "duckdb": "1.5.5"
+  },
+  "previous_presence_preserved": true,
+  "new_presence_in_second_poll": 0,
+  "comment_recurrence_verified": true,
+  "audit": [
+    {
+      "file": ".identity.lock",
+      "status": "LOCK_FILE",
+      "type": ".lock"
+    },
+    {
+      "file": "events\\.storage.lock",
+      "status": "LOCK_FILE",
+      "type": ".lock"
+    },
+    {
+      "file": "events\\canonical\\UCqhhWjpw23dWhJ5rRwCCrMA\\G1LXXzZx48c_comment.parquet",
+      "status": "PASS",
+      "type": ".parquet",
+      "rows": 27,
+      "schema": "viewer_hash: string\nvtuber_channel_id: string\nvideo_id: string\nfirst_seen: string\nlast_seen: string\nappearances: int64\nsource_type: string"
+    },
+    {
+      "file": "events\\canonical\\UCuZ1ajvlGFUMCHZAPdetKHw\\5o4H5e3QLk0_comment.parquet",
+      "status": "PASS",
+      "type": ".parquet",
+      "rows": 30,
+      "schema": "viewer_hash: string\nvtuber_channel_id: string\nvideo_id: string\nfirst_seen: string\nlast_seen: string\nappearances: int64\nsource_type: string"
+    },
+    {
+      "file": "identity_manifest.json",
+      "status": "PASS",
+      "type": ".json"
+    },
+    {
+      "file": "jobs.sqlite3",
+      "status": "PASS",
+      "type": ".sqlite3",
+      "tables": [
+        {
+          "name": "collection_jobs",
+          "columns": [
+            "job_id",
+            "vtuber_channel_id",
+            "video_id",
+            "source_type",
+            "state",
+            "worker_id",
+            "attempts",
+            "max_attempts",
+            "priority",
+            "checkpoint",
+            "error_reason",
+            "records_committed",
+            "last_attempt_at",
+            "last_success_at",
+            "next_retry_at",
+            "created_at",
+            "updated_at",
+            "claim_token",
+            "lease_until",
+            "next_collection_at",
+            "last_outcome",
+            "poll_generation"
+          ],
+          "rows": 4
+        },
+        {
+          "name": "journal_identity",
+          "columns": [
+            "singleton",
+            "dataset",
+            "key_fingerprint"
+          ],
+          "rows": 1
+        }
+      ],
+      "scope": "Decoded committed SQLite snapshot including WAL-visible rows; excludes deleted pages and uncommitted WAL frames"
+    },
+    {
+      "file": "report.json",
+      "status": "PASS",
+      "type": ".json"
+    }
+  ],
+  "audit_passed": true,
+  "finished_at": "2026-09-06T14:51:46.669237+00:00"
+}

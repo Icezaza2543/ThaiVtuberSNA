@@ -4,6 +4,7 @@ import json
 import re
 import sys
 import tempfile
+import sqlite3
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -68,6 +69,36 @@ def audit_file(path, canaries=()):
                     result['tables'].append({'name': name, 'columns': columns, 'rows': count})
             finally:
                 con.close()
+        elif suffix in {'.sqlite', '.sqlite3', '.db'}:
+            con = sqlite3.connect(path.resolve().as_uri() + '?mode=ro', uri=True)
+            try:
+                con.execute('PRAGMA query_only=ON')
+                con.execute('BEGIN')
+                names = [row[0] for row in con.execute(
+                    "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'")]
+                result['tables'] = []
+                for name in names:
+                    quoted = '"' + name.replace('"', '""') + '"'
+                    cursor = con.execute(f'SELECT * FROM {quoted}')
+                    columns = [d[0] for d in cursor.description]
+                    if set(columns) & FORBIDDEN_PERSISTED_COLUMNS:
+                        raise ValueError('Forbidden SQLite column')
+                    count = 0
+                    while rows := cursor.fetchmany(4096):
+                        for row in rows:
+                            record = dict(zip(columns, row))
+                            for key, value in record.items():
+                                if isinstance(value, bytes):
+                                    record[key] = value.decode('utf-8', errors='replace')
+                            inspect_value(record, canaries)
+                            for value in record.values():
+                                if isinstance(value, str) and value.lstrip().startswith(('{', '[')):
+                                    inspect_value(json.loads(value), canaries)
+                        count += len(rows)
+                    result['tables'].append({'name': name, 'columns': columns, 'rows': count})
+                result['scope'] = 'Decoded committed SQLite snapshot including WAL-visible rows; excludes deleted pages and uncommitted WAL frames'
+            finally:
+                con.close()
         elif suffix == '.json':
             inspect_value(json.loads(path.read_text(encoding='utf-8')), canaries)
         elif suffix == '.csv':
@@ -83,7 +114,13 @@ def audit_file(path, canaries=()):
             if any(re.search(r'["\']?' + re.escape(key) + r'["\']?\s*[:=]', content) for key in FORBIDDEN_PERSISTED_COLUMNS):
                 raise ValueError('Forbidden field marker in text output')
         else:
-            result['status'] = 'UNSUPPORTED'
+            if path.name.endswith(('-wal', '-shm')):
+                result['status'] = 'SIDECAR'
+                result['scope'] = 'Committed WAL records checked through parent DB; physical sidecar bytes not audited'
+            elif path.name.endswith('.lock'):
+                result['status'] = 'LOCK_FILE'
+            else:
+                result['status'] = 'UNSUPPORTED'
     except Exception as error:
         result.update(status='ERROR' if not isinstance(error, ValueError) else 'FAIL', reason=type(error).__name__)
     return result
@@ -120,17 +157,23 @@ def run_canary_leakage_test():
         assert engine.get_viewer_presence_summary()[0]['viewer_hash'] == hasher.hash_viewer_id(raw_id)
         engine.close()
         (root / 'presence.json').write_text(json.dumps(events))
-        return all(r['status'] == 'PASS' for r in audit_directory(root, (raw_id, raw_text)))
+        return all(r['status'] in {'PASS', 'LOCK_FILE'} for r in audit_directory(root, (raw_id, raw_text)))
 
 
-def run_full_privacy_audit():
-    roots = [BASE_DIR / 'data', BASE_DIR / 'web', BASE_DIR / 'logs']
-    supported = {'.parquet', '.duckdb', '.json', '.csv', '.log', '.txt', '.jsonl'}
+def run_full_privacy_audit(roots=None):
+    roots = roots if roots is not None else [BASE_DIR / 'data', BASE_DIR / 'web', BASE_DIR / 'logs']
+    supported = {'.parquet', '.duckdb', '.json', '.csv', '.log', '.txt', '.jsonl', '.sqlite', '.sqlite3', '.db'}
     results = [audit_file(p) for root in roots if root.exists() for p in sorted(root.rglob('*')) if p.is_file() and p.suffix.lower() in supported]
+    sidecars = [audit_file(p) for root in roots if root.exists() for p in sorted(root.rglob('*'))
+                if p.is_file() and p.name.endswith(('-wal', '-shm'))]
+    for sidecar in sidecars:
+        parent = Path(sidecar['file'][:-4])
+        if not parent.exists():
+            sidecar.update(status='ERROR', scope='Orphan SQLite sidecar; parent database missing')
     canary = run_canary_leakage_test()
-    failures = [r for r in results if r['status'] != 'PASS']
-    print(json.dumps({'checked_files': len(results), 'failures': failures, 'canary_passed': canary,
-        'scope': 'Decoded Parquet/DuckDB/JSON/CSV and field-marker scans in text/log outputs under data, web, logs',
+    failures = [r for r in results if r['status'] != 'PASS'] + [r for r in sidecars if r['status'] == 'ERROR']
+    print(json.dumps({'checked_files': len(results), 'failures': failures, 'canary_passed': canary, 'sidecars': sidecars,
+        'scope': 'Decoded Parquet/DuckDB/SQLite (including committed WAL rows)/JSON/CSV and field-marker scans in text/log outputs under data, web, logs',
         'limitations': 'Does not prove absence of arbitrary unlabelled personal text, inspect OS swap/backups, or cryptographically verify hash origin; no historical real Parquet available in a fresh clone.'}, indent=2))
     return not failures and canary
 

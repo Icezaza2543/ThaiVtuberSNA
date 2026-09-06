@@ -23,6 +23,7 @@ sys.path.insert(0, str(BASE_DIR))
 
 from config.settings import BASE_DIR
 from core.hasher import load_persistent_secret_key, compute_key_fingerprint
+from core.dataset_identity import bind_dataset
 from core.filter_engine import FirstFilterEngine
 from collector.youtube_collector import YouTubeCollector
 from storage.parquet_manager import ParquetStorageManager
@@ -53,10 +54,6 @@ REAL_DATA_DIR = BASE_DIR / "data" / "real"
 REAL_EVENTS_DIR = REAL_DATA_DIR / "events"
 REAL_ANALYTICS_DIR = REAL_DATA_DIR / "analytics"
 
-for d in [REAL_DATA_DIR, REAL_EVENTS_DIR, REAL_ANALYTICS_DIR]:
-    d.mkdir(parents=True, exist_ok=True)
-
-
 def run_real_pilot(target_channel_count: int = 6, force_refresh: bool = False):
     logger.info("==================================================")
     logger.info("   Starting Thai VTuber SNA Real Pilot Pipeline   ")
@@ -64,6 +61,8 @@ def run_real_pilot(target_channel_count: int = 6, force_refresh: bool = False):
 
     key_fingerprint = compute_key_fingerprint(load_persistent_secret_key())
     collector = YouTubeCollector()
+    bind_dataset(REAL_EVENTS_DIR, collector.hasher)
+    REAL_ANALYTICS_DIR.mkdir(parents=True, exist_ok=True)
     parquet_mgr = ParquetStorageManager(base_dir=REAL_EVENTS_DIR)
     filter_engine = FirstFilterEngine()
 
@@ -72,17 +71,6 @@ def run_real_pilot(target_channel_count: int = 6, force_refresh: bool = False):
     total_aggregated_records = 0
 
     existing_parquet = list(REAL_EVENTS_DIR.glob("**/*.parquet"))
-    # Refuse to attribute an unbound historical dataset to a newly supplied key.
-    manifest_path = REAL_DATA_DIR / "identity_manifest.json"
-    if manifest_path.exists():
-        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        if manifest.get("key_fingerprint") != key_fingerprint:
-            raise RuntimeError("Dataset key continuity mismatch; restore the original key")
-    elif existing_parquet:
-        raise RuntimeError("Historical Parquet lacks an identity manifest; verify original run provenance before migration")
-    else:
-        manifest_path.write_text(json.dumps({"key_fingerprint": key_fingerprint,
-            "purpose": "Continuity check only; not integrity or authenticity proof"}, indent=2))
     use_existing = bool(existing_parquet) and not force_refresh
 
     if use_existing:

@@ -1,58 +1,182 @@
-# Continuous Lightweight Collection — prepared, not started
+# Continuous collection: correctness repair
 
-Prerequisite: close the evidence/continuity milestone with owner-side real validation.
-No UI work. Greedy remains default; PSO stays optional.
+The implementation at `a825cf0287741611090cd24c9731d9d56317abf8` was not ready
+for continuous collection. Its reported 40/40 result is superseded: the original
+suite reproduced **39 passed / 1 failed** in a checkout without a production key.
+Historical real-pilot and throughput files are prior observations, not validation
+of the repaired implementation.
 
-## Gate before starting collection
+The repair was first validated offline, then exercised in the bounded real check
+below at the owner's request. Historical data was not migrated and credentials
+were not changed. No claim of exhaustive live coverage or unattended production
+readiness follows from these checks.
 
-- Restore the original `config/secret.key` locally from encrypted offline backup;
-  verify it against the existing fingerprint. Never send the key to GitHub or chat.
-- Historical datasets must have independently verified original-run provenance.
-  The new pilot refuses historical Parquet without `data/real/identity_manifest.json`.
-  Only after verifying the original key and original collection records should the
-  owner create a manifest with `key_fingerprint` matching that verified identity.
-  Do not infer historical identity from matching hash length or set overlap.
-- Re-run full tests, audit decoded historical Parquet/DuckDB, and the real pilot.
-- Implement and validate a bounded in-memory live-chat adapter. The former replay
-  probe wrote raw chat to disk and is disabled. Public video comments cannot
-  substitute for live-chat observations.
-- Sample at least two distinct live video IDs per channel on at least two channels.
-  Report zero overlap honestly. Positive overlap is an observation, not a success
-  criterion to optimize by replacing channels. Record sampling coverage and gaps.
+## Real check: 2026-09-06
 
-## Implementation sequence
+The owner's original key matched its original fingerprint and the reviewed dataset
+manifest. Since the main checkout's old dataset lacked its manifest, collection
+used a new isolated dataset with that verified identity.
 
-1. Google Sheets registry/control plane: channel ID, enabled, priority, consent or
-   registry review status as applicable, collection policy, budget, and pause flag.
-   Keep viewer-level pseudonyms and event payloads out of Sheets. Cache a validated
-   registry locally so a Sheets outage does not corrupt collection state.
-2. Local durable job journal: `(channel_id, video_id, source_type)`, attempt ID,
-   state, retry time, last success, extractor version, and continuation checkpoint.
-   Never put raw author IDs or chat/comment text in checkpoints or failure logs.
-3. Bounded collectors: separate comment and live-chat adapters, capped pages/time,
-   timeouts, backoff, rate budgets, explicit empty/unavailable/failed outcomes.
-4. Idempotence before repeated polling: replace/reconcile snapshots per source or
-   deduplicate with privacy-preserving event IDs. Current append-only batches keep
-   sources intact and distinct-video metrics correct, but repeated polls can inflate
-   `appearances`; do not use their sum as unique engagement or billable activity.
-5. Crash recovery: atomic batch commit plus journal checkpoint, recover incomplete
-   writes, and prevent two workers from claiming the same source/video job.
-6. Longitudinal snapshots: window boundaries, observed videos by source, missing
-   intervals, key fingerprint, schema version, collection provenance, and six
-   source-separated overlap metrics. Unknown/uncollected is not observed zero.
-7. Resource measurement: extraction rate distinct from local processing throughput;
-   measure process RSS separately from Python allocation tracking. Fixed job count
-   across worker comparisons; no scaling claims from a single synthetic run.
+An initial run exposed missing Google client dependencies (`google.api_core`).
+The jobs correctly entered RETRY rather than completing as empty. Installing the
+declared requirements into a separate `.venv` fixed the environment; no fallback
+backend or substituted channel was used.
 
-## Acceptance evidence
+Two actual Google API polls sampled the configured Aisha and Dacapo videos, capped
+at 30 comments each. The collector was reconstructed between polls, with an
+11-second pause and a 10-second poll interval. Both comment jobs reached poll
+generation 1 on the second run. Each run retained 57 distinct presence rows in
+two partitions; the sum of maximum batch appearances remained 60. The second
+poll preserved all first-poll evidence and observed zero new presence rows.
 
-- Restart and retry without duplicated evidence; same key preserves viewer hashes.
-- Wrong/missing key fails before network or data mutation.
-- Crash between write and checkpoint is recovered once; disk-full fails visibly.
-- Sheets unavailable, rate limit, comments disabled, live chat unavailable, and
-  partial capture are distinguishable and do not silently replace the sample.
-- Two-or-more-video live-chat test with both positive and negative fixtures,
-  followed by an actual source-separated longitudinal pilot with recorded coverage.
-- Decoded output and log audit plus canaries through both real adapter code paths.
-- Tests, exact versions, schemas, graph metadata, measured costs, and remaining
-  limitations accompany the milestone report. No UI additions.
+Both comment jobs reported PARTIAL_CAPTURE because this is a capped sample.
+Live-chat jobs reported LIVE_CHAT_UNAVAILABLE; no real live-chat validation was
+achieved. The completed dataset/report audit passed and the full regression suite
+also passed in the real-run environment (79 tests, 7.69 seconds).
+
+Aggregate evidence and runtime versions: `docs/evidence/continuous-real-check.json`.
+Local pseudonymous Parquet, journal and report remain under the gitignored
+`data/validation/real-continuity-20260906-02/`. The bounded run has finished; no
+background collector is left running.
+
+Repeat with a new output directory:
+
+```powershell
+./.venv/Scripts/python.exe scripts/run_real_continuity_check.py --identity-root <original-checkout> --output data/validation/<new-run> --timeout 45
+```
+
+## What changed
+
+- Canonical files are `events/canonical/{channel_id}/{video_id}_{source}.parquet`.
+  Dates, batch order and polling month do not change the path. Mixed inputs split
+  by channel/video/source; reconciliation includes viewer identity. Single-group
+  writes return a Path; multi-group writes return a list of Paths.
+- Raw observations aggregate within a batch. Between batches, presence is unioned,
+  first/last timestamps widen, and appearances takes the maximum observed batch
+  count. **Appearances is not a lifetime unique message count.** Different live
+  pages can undercount total messages; event-level cumulative counting is not
+  implemented. Distinct-video/source overlap remains the evidence contract.
+- Existing unreadable Parquet fails closed. A cross-process dataset lock
+  serializes read/merge/replace; temporary filenames are unique and files are
+  flushed before atomic replacement. Multi-source batches are atomic per file,
+  not an all-files transaction.
+- The actual injected/default hasher binds to the dataset manifest before network
+  or journal/storage initialization. Existing data without a valid matching
+  manifest fails closed. The same validator is used by the pilot. Identity is
+  checked again before publishing. A journal is bound to one dataset/fingerprint.
+- Successful and successful-empty jobs get a durable next collection time.
+  Re-registration preserves active claims and retry backoff. Due completed jobs
+  begin a new poll generation and reset that poll's attempt budget. Retry delays
+  double per attempt, capped at one hour; exhausted retries stop visibly.
+- Both comment backends raise sanitized, explicit failures. API failure/empty
+  responses no longer silently fall back to yt-dlp. Newest comments are requested.
+  A detected cap/incomplete page reports PARTIAL_CAPTURE, preserves observed
+  evidence and schedules another poll. It does not claim a complete archive.
+- Each claim has a unique token and lease. Commit/fail/checkpoint require that
+  token. Publication holds the journal write transaction so recovery cannot
+  transfer ownership between validation and publication. Old/expired claims
+  cannot publish. Recovery respects retry budgets.
+- Extraction runs in spawn-based processes with no storage/journal references.
+  The coordinator stops them on deadline; no extraction result publishes later.
+  At most the worker limit is in flight. `process_single_job` is a synchronous
+  test/helper API; use `run_bounded_cycle` for deadline enforcement.
+- SQLite auditing decodes all user tables, structured JSON values and committed
+  WAL-visible rows through a read-only snapshot. Corrupt DBs are errors.
+  Sidecars are reported separately and orphan sidecars fail the full audit.
+- Live-chat page tokens are decoded from checkpoint JSON. Entire API pages are
+  consumed before advancing tokens, including empty pages. YouTube requires at
+  least 200 messages per request, so a requested cap below 200 uses one bounded
+  page of up to 200 messages. No replay download is used.
+
+## Crash and deadline semantics
+
+Parquet replacement and SQLite commit are not a distributed transaction. A crash
+after a replacement but before journal commit can leave data ahead of the
+checkpoint. Recovery replays the old checkpoint and idempotently reconciles the
+same evidence. A failed journal update must never be represented as success.
+
+The deadline bounds extraction and starts process termination. Small OS teardown
+overhead is expected. Already-started synchronous local publication, fsync and
+journal lock acquisition can add latency; this is not a hard real-time guarantee
+under a stalled disk/OS. Tests cover a 0.01-second budget versus a 0.25-second
+blocking extraction, and termination after a 10-second extractor actually starts.
+No background extraction is allowed to write data.
+
+Advisory locks coordinate this application's writers on a local filesystem;
+external manual edits, network filesystem semantics and power-loss durability
+of directory entries are outside the guarantee.
+
+## Offline migration
+
+Stop collection and analytical readers before migration. Verify the original
+dataset/key provenance first. Do not create a manifest to re-label unverified
+historical data.
+
+```bash
+python scripts/run_continuous_collection.py --dataset data/real/events --migrate
+```
+
+Migration reads and validates old files before publication, groups sources and
+reconciles monthly duplicates. It removes legacy files only after canonical writes
+succeed. If interrupted, rerun it before analytics: readers refuse mixed legacy
+and canonical layouts so transient duplicate files do not inflate results.
+
+Old journals under `data/journal/` are left intact. The default journal now lives
+beside the dataset at `data/real/job_journal.sqlite3`; use `--journal` explicitly
+for another journal. A new journal re-registers jobs and safely re-polls snapshots.
+It does not claim to recover unavailable historical live-chat messages.
+
+## Running
+
+Restore the original production key and verify dataset identity first. Commands
+below use the configured explicit video pool; automatic discovery of new videos,
+Sheets-driven pause/budgets and channel replacement are not implemented here.
+
+```bash
+python scripts/run_continuous_collection.py --status
+python scripts/run_continuous_collection.py --recover
+python scripts/run_continuous_collection.py --channels 2 --workers 2 --timeout 60
+python scripts/run_continuous_collection.py --continuous --poll-interval 300 --sources comment live_chat
+```
+
+The continuous loop repeatedly checks due work until Ctrl+C. Missing credentials,
+disabled comments and unavailable live chat are reported explicitly; terminal
+jobs require an explicit policy/operator decision rather than hidden retries or
+substituted channels. Active live chat requires YouTube API credentials; replay
+and exhaustive missed-interval backfill remain unsupported.
+
+## Reproducible verification
+
+Recorded on Windows 11 / Python 3.13.2: **79 passed in 7.66 seconds**.
+All 14 selected behavioral regression cases fail on the original reviewed commit
+and pass in the repaired suite. The synthetic two-poll run retains two distinct
+presence rows after restart; a 0.01-second extraction budget returned TIMEOUT in
+0.014673 seconds. The checkout audit checked seven available files with no
+failures; the separate synthetic run explicitly audits Parquet, DuckDB and SQLite.
+These counts and timings describe the saved run, not a performance guarantee.
+
+```bash
+python -m pytest -v
+python scripts/verify_continuous_collection.py --output docs/evidence/continuous-correctness.json
+python scripts/privacy_audit.py
+```
+
+The suite uses synthetic identities, temporary paths and mocked network boundaries.
+No production key, .env or existing data is required. Evidence files:
+
+- `docs/evidence/continuous-tests.txt`: complete repaired-suite output.
+- `docs/evidence/continuous-baseline-regressions.txt`: selected unchanged public-API
+  regressions run against the original reviewed commit.
+- `docs/evidence/continuous-correctness.json`: two process-based polls across
+  restart, deadline measurement, decoded synthetic audit and runtime versions.
+- `docs/evidence/continuous-privacy-audit.json`: full audit of the isolated checkout.
+
+Privacy auditing checks explicit schemas/fields and supplied canaries; it cannot
+prove arbitrary unlabelled personal text is absent, inspect deleted SQLite pages,
+uncommitted WAL frames, OS swap/backups, or authenticate historical hash origins.
+Live-chat and comment canary regression tests cover persisted Parquet and journal
+outputs, including extraction failures.
+
+`strong_shared_comments = 1` remains a prior sample observation. It does not
+validate recurrence, deadlines, recovery or live-chat coverage. A real longitudinal
+pilot with documented coverage is still required before operational sign-off.

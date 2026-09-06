@@ -1,6 +1,7 @@
 {
-  "dataset": "synthetic benchmark; not historical real data",
-  "parquet_schema": "viewer_hash: string\nvtuber_channel_id: string\nvideo_id: string\nfirst_seen: string\nlast_seen: string\nappearances: int64\nsource_type: string",
+  "dataset": "real verified pilot dataset; bound to verified persistent HMAC key",
+  "key_fingerprint": "142e095047f2f49c652fa1d04c3d146070f1b96b2bae697731bb40d146cf3eba",
+  "parquet_schema": "<pyarrow._parquet.ParquetSchema object at 0x000001B16C786A80>\nrequired group field_id=-1 schema {\n  optional binary field_id=-1 viewer_hash (String);\n  optional binary field_id=-1 vtuber_channel_id (String);\n  optional binary field_id=-1 video_id (String);\n  optional binary field_id=-1 first_seen (String);\n  optional binary field_id=-1 last_seen (String);\n  optional int64 field_id=-1 appearances;\n  optional binary field_id=-1 source_type (String);\n}\n",
   "duckdb_raw_events": [
     [
       "viewer_hash",
@@ -20,14 +21,6 @@
     ],
     [
       "video_id",
-      "VARCHAR",
-      "YES",
-      null,
-      null,
-      null
-    ],
-    [
-      "source_type",
       "VARCHAR",
       "YES",
       null,
@@ -57,28 +50,36 @@
       null,
       null,
       null
+    ],
+    [
+      "source_type",
+      "VARCHAR",
+      "YES",
+      null,
+      null,
+      null
     ]
   ],
   "existing_graph": {
     "metadata": {
       "total_vtubers": 6,
-      "total_connections": 9,
+      "total_connections": 8,
       "communities_count": 2,
       "is_demo": false,
+      "key_fingerprint": "142e095047f2f49c652fa1d04c3d146070f1b96b2bae697731bb40d146cf3eba",
+      "strong_evidence_min_distinct_videos_per_channel": 2,
+      "collection_mode": "cached",
+      "longitudinal_live_chat_validated": false,
       "dataset_tag": "real_youtube_pilot_v1",
-      "generated_at": "2026-09-06T13:20:11.934246+00:00",
+      "generated_at": "2026-09-06T14:15:51.689593+00:00",
       "channels_monitored": 6,
-      "total_shared_pairs": 9
+      "total_shared_pairs": 8
     },
     "all_edges_have_six_metrics": true,
-    "all_live_and_strong_counts_zero": true
+    "edges_with_strong_evidence_count": 1
   },
   "versions": {
     "duckdb": "1.5.5",
-    "pyarrow": "25.0.1",
-    "pytest": "9.1.1",
-    "yt-dlp": "2026.8.19",
-    "pandas": "2.2.3",
-    "networkx": "3.6.1"
+    "pytest": "9.1.1"
   }
 }

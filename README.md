@@ -69,10 +69,13 @@ replay probe persisted raw chat to temporary files and is disabled. No raw
 chat/comment text is deliberately persisted by the supported collector.
 Pseudonymous viewer data remains linkable; HMAC is not an anonymity guarantee.
 
-Storage appends atomic batches so one source cannot overwrite another. Repeated
-polls can inflate `appearances` until collection idempotence is implemented;
-distinct-video overlap is unaffected by duplicate rows. The pilot still samples
-one configured video per channel and cannot establish longitudinal live evidence.
+Continuous collection now uses stable source-separated partitions, identity-bound
+datasets, scheduled re-polling, claim fencing and killable extraction processes.
+The repair passed offline tests and a bounded two-poll real comment check on two
+videos. Real live-chat collection and unattended operation remain unvalidated.
+`appearances` is the maximum observed batch count, not a lifetime message count.
+Existing monthly partitions require explicit offline migration before new writes.
+See the correctness document for migration, timeout semantics and CLI usage.
 
 - [Milestone findings and test evidence](docs/evidence-milestone.md)
 - [Continuous Lightweight Collection plan](docs/continuous-lightweight-collection.md)
