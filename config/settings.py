@@ -7,6 +7,23 @@ from pathlib import Path
 
 # Base Paths
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Automatically load environment variables from .env if present
+env_file = BASE_DIR / ".env"
+if env_file.exists():
+    try:
+        with open(env_file, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, v = line.split("=", 1)
+                    k = k.strip()
+                    v = v.strip().strip("'\"")
+                    if k and k not in os.environ:
+                        os.environ[k] = v
+    except Exception:
+        pass
+
 DATA_DIR = BASE_DIR / "data"
 EVENTS_DIR = DATA_DIR / "events"
 ANALYTICS_DIR = DATA_DIR / "analytics"
@@ -65,3 +82,4 @@ YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY", "")
 
 # Worker Configuration
 DEFAULT_WORKERS = int(os.getenv("MAX_COLLECTOR_WORKERS", 3))
+MAX_COLLECTOR_WORKERS = DEFAULT_WORKERS
