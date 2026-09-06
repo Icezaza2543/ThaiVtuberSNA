@@ -1,6 +1,6 @@
 """
 Thai VTuber Audience Network (SNA)
-Generate web/app.js with embedded data, 3D sphere shading, and Agency Swarm Orbit Dynamics.
+Generate web/app.js - Obsidian-style 2D Graph View with Calm, Stable Physics
 """
 import json
 from pathlib import Path
@@ -13,47 +13,47 @@ json_str = json.dumps(web_data, ensure_ascii=False)
 
 app_js_code = f"""/**
  * Thai VTuber Audience Network (SNA)
- * Interactive Force-Directed Swarm Visualizer
+ * Obsidian-Style 2D Graph View Visualizer
  *
- * Feature Highlights:
- * 1. Sphere Sizing: More Subscribers = Bigger Glowing 3D Spheres (ซับเยอะ = ลูกใหญ่)
- * 2. Agency Swarms: Matching Color Clusters Orbiting Closely Together (ค่ายเดียวกัน = swarm สีเดียวกัน โคจรติดๆ กัน)
- * 3. 3D Specular Shading: Glossy, tactile marble/orb rendering with inner rim lighting and outer neon aura
- * 4. Orbital Physics: Centripetal attraction + tangential velocity around celestial agency anchors
- * 5. Full Offline Support: Embedded dataset for instant file:/// browser launch
+ * Designed for stability, clarity, and zero physics explosion:
+ * 1. Clean 2D Flat Circles (Obsidian Graph View style)
+ * 2. Scale by Subscribers: Small nano VTubers (3.5px) to Major VTubers (15px)
+ * 3. Agency Swarms: Matching solid colors, clustered peacefully into cohesive groups
+ * 4. Ultra-Stable Force Simulation with Alpha Cooling: Graph settles and sleeps smoothly
+ * 5. Full Offline & file:/// Support with Embedded Dataset
  */
 
-// Embedded full dataset for 100% offline & file:/// execution
+// Embedded full dataset for 100% offline & file:/// browser launch
 const EMBEDDED_DATA = {json_str};
 
-// Agency Theme Palette
+// Agency Theme Palette (Obsidian-style vibrant flat tones)
 const AGENCY_COLORS = {{
-  "Algorhythm Project": "#ec4899",
-  "Pixela Project": "#10b981",
-  "Virtual Zeven (VZ)": "#06b6d4",
-  "Lumina Live": "#f59e0b",
-  "Euphora Project": "#8b5cf6",
-  "AStars Production": "#f43f5e",
-  "Polygon Official": "#38bdf8",
-  "Autumnia": "#ea580c",
-  "DPX": "#eab308",
-  "ALF": "#14b8a6",
-  "Flora Project": "#84cc16",
-  "OAL": "#2dd4bf",
-  "V.W.Y": "#a855f7",
-  "RPG": "#f97316",
-  "Ti19t": "#6366f1",
-  "HZ": "#d946ef",
-  "Genesis Project": "#3b82f6",
-  "EXia": "#0284c7",
-  "WACTOR": "#fb923c",
+  "Algorhythm Project": "#ec4899", // Neon Hot Pink
+  "Pixela Project": "#10b981",     // Emerald Jade
+  "Virtual Zeven (VZ)": "#06b6d4", // Electric Cyan
+  "Lumina Live": "#f59e0b",        // Radiant Amber
+  "Euphora Project": "#8b5cf6",    // Vivid Violet
+  "AStars Production": "#f43f5e",  // Rose Crimson
+  "Polygon Official": "#38bdf8",   // Sky Cerulean
+  "Autumnia": "#ea580c",           // Autumn Flame
+  "DPX": "#eab308",                // Cyber Yellow
+  "ALF": "#14b8a6",                // Teal Mint
+  "Flora Project": "#84cc16",      // Flora Lime
+  "OAL": "#2dd4bf",                // Aquamarine
+  "V.W.Y": "#a855f7",              // Lilac Purple
+  "RPG": "#f97316",                // Tangerine Flame
+  "Ti19t": "#6366f1",              // Indigo Neon
+  "HZ": "#d946ef",                 // Fuchsia Pink
+  "Genesis Project": "#3b82f6",    // Sapphire Blue
+  "EXia": "#0284c7",               // Cobalt Blue
+  "WACTOR": "#fb923c",             // Warm Amber
   "EYLZ": "#ec4899",
   "Pandora": "#c084fc",
   "Vtopia": "#22d3ee",
   "Paralist": "#f472b6",
   "Loveland Project": "#fb7185",
   "STP": "#a3e635",
-  "Independent": "#94a3b8"
+  "Independent": "#64748b"         // Obsidian Calm Slate
 }};
 
 // State Variables
@@ -63,10 +63,10 @@ let graphEdges = [];
 let nodeMap = new Map();
 let agencySwarmAnchors = new Map();
 
-// Camera & Pan/Zoom Transform
+// Camera & Pan/Zoom
 let panX = 0;
 let panY = 0;
-let zoom = 0.85;
+let zoom = 0.95;
 let isPanning = false;
 let startPanX = 0;
 let startPanY = 0;
@@ -76,14 +76,17 @@ let hoveredNode = null;
 let selectedNode = null;
 let draggedNode = null;
 let spotlightBridges = false;
-let swarmModeActive = true;
-let swarmSpeedMultiplier = 1.0;
 let currentMetric = "shared_viewers";
 let minThreshold = 1;
 let selectedAgency = "ALL";
 let selectedTier = "ALL";
 let searchQuery = "";
-let pulseTime = 0;
+
+// Physics Settings (Obsidian-Style Gentle Simulation)
+let alpha = 1.0;                  // Cooling simulation factor
+let isSleeping = false;           // When settled, physics pauses to save CPU & avoid jitter
+let repulsionStrength = 260;      // Node spacing
+let linkDistance = 65;            // Desired spring length
 
 // Canvas Elements
 const canvas = document.getElementById("networkCanvas");
@@ -103,9 +106,11 @@ const metricSelect = document.getElementById("metricSelect");
 const thresholdSlider = document.getElementById("thresholdSlider");
 const sliderValue = document.getElementById("sliderValue");
 const btnToggleBridges = document.getElementById("btnToggleBridges");
-const btnToggleSwarm = document.getElementById("btnToggleSwarm");
-const swarmSpeedSlider = document.getElementById("swarmSpeedSlider");
-const speedValue = document.getElementById("speedValue");
+const repulsionSlider = document.getElementById("repulsionSlider");
+const repulsionValue = document.getElementById("repulsionValue");
+const linkDistSlider = document.getElementById("linkDistSlider");
+const linkDistValue = document.getElementById("linkDistValue");
+const btnReheatSim = document.getElementById("btnReheatSim");
 const dynamicLegendList = document.getElementById("dynamicLegendList");
 const legendSwarmCount = document.getElementById("legendSwarmCount");
 const inspectorPanel = document.getElementById("inspectorPanel");
@@ -126,7 +131,7 @@ const inspPageRank = document.getElementById("inspPageRank");
 const inspConnectionsList = document.getElementById("inspConnectionsList");
 
 // ==========================================================
-// 1. Initialization & Setup
+// 1. Initialization
 // ==========================================================
 async function initApp() {{
   resizeCanvas();
@@ -138,7 +143,7 @@ async function initApp() {{
       rawData = await res.json();
     }}
   }} catch (e) {{
-    console.log("Using embedded dataset (direct file:/// mode)");
+    console.log("Using embedded dataset (offline mode)");
     rawData = EMBEDDED_DATA;
   }}
 
@@ -160,86 +165,73 @@ function resizeCanvas() {{
 }}
 
 // ==========================================================
-// 2. Swarm Celestial Anchors & Geometry
+// 2. Swarm Anchors Setup (Stationary Constellation Anchors)
 // ==========================================================
 function setupAgencyAnchors() {{
   agencySwarmAnchors.clear();
   const agencies = (rawData.agencies || []).filter(a => a.name !== "Independent");
   const count = agencies.length;
 
-  // Arrange agency swarms in a cosmic constellation ellipse
-  const baseRadiusX = 580;
-  const baseRadiusY = 440;
-
+  // Distribute agency clusters gently in a circle
+  const radius = 340;
   agencies.forEach((ag, idx) => {{
     const angle = (idx / count) * 2 * Math.PI - Math.PI / 2;
-    // Slight jitter to feel like natural galaxy arm
-    const rVar = 1.0 + (idx % 3 === 0 ? 0.12 : (idx % 3 === 1 ? -0.08 : 0.02));
-    const ax = Math.cos(angle) * (baseRadiusX * rVar);
-    const ay = Math.sin(angle) * (baseRadiusY * rVar);
+    const ax = Math.cos(angle) * radius;
+    const ay = Math.sin(angle) * (radius * 0.85);
 
     agencySwarmAnchors.set(ag.name, {{
       x: ax,
       y: ay,
-      baseX: ax,
-      baseY: ay,
       name: ag.name,
       color: AGENCY_COLORS[ag.name] || "#38bdf8",
-      memberCount: ag.member_count,
-      // Alternating orbit directions for rich kinetic feeling
-      orbitSpeed: (idx % 2 === 0 ? 0.006 : -0.006),
-      spreadRadius: Math.max(75, Math.min(190, 50 + Math.sqrt(ag.member_count) * 28))
+      memberCount: ag.member_count
     }});
   }});
 
-  // Center anchor for independent galaxy
+  // Center anchor for independent VTubers
   agencySwarmAnchors.set("Independent", {{
     x: 0,
     y: 0,
-    baseX: 0,
-    baseY: 0,
     name: "Independent",
     color: AGENCY_COLORS["Independent"],
-    memberCount: 0,
-    orbitSpeed: 0.001,
-    spreadRadius: 360
+    memberCount: 0
   }});
 }}
 
 // ==========================================================
-// 3. Data Processing & Sphere Sizing ("ซับเยอะ = ลูกใหญ่")
+// 3. 2D Node Sizing & Processing ("2 มิติ ไม่ระเบิด")
 // ==========================================================
-function calculateSphereRadius(subs) {{
-  if (!subs || subs <= 0) return 7.5;
-  // Power-law scaling: nano (~7-9px) to mega 500k+ (~44-46px)
-  const k = Math.pow(subs / 1000, 0.42);
-  return Math.max(7.5, Math.min(46, 7.5 + k * 3.6));
+function calculate2DRadius(subs) {{
+  if (!subs || subs <= 0) return 3.5;
+  // Obsidian scale: 3.5px for small nano to 14.5px for mega channels
+  const logSubs = Math.log10(Math.max(10, subs));
+  return Math.max(3.5, Math.min(14.5, 3.5 + (logSubs - 1) * 2.2));
 }}
 
 function processGraphData() {{
   panX = container.clientWidth / 2;
   panY = container.clientHeight / 2;
 
-  // Initialize node physics around agency anchors
+  // Initialize nodes clustered near their respective agency anchors
   graphNodes = rawData.nodes.map((n, i) => {{
     const ag = n.agency || "Independent";
     const anchor = agencySwarmAnchors.get(ag) || agencySwarmAnchors.get("Independent");
     
-    // Position initially around their agency anchor
-    const localAngle = Math.random() * 2 * Math.PI;
-    const localDist = Math.random() * (anchor.spreadRadius * 0.75);
-    const initialX = anchor.x + Math.cos(localAngle) * localDist;
-    const initialY = anchor.y + Math.sin(localAngle) * localDist;
+    // Controlled initial scatter (compact radius <= 60px)
+    const angle = Math.random() * 2 * Math.PI;
+    const dist = 10 + Math.random() * 55;
+    const initialX = anchor.x + Math.cos(angle) * dist;
+    const initialY = anchor.y + Math.sin(angle) * dist;
 
-    const r = calculateSphereRadius(n.subscribers);
-    const nodeColor = AGENCY_COLORS[ag] || "#38bdf8";
+    const r = calculate2DRadius(n.subscribers);
+    const nodeColor = AGENCY_COLORS[ag] || "#64748b";
 
     return {{
       ...n,
       x: initialX,
       y: initialY,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
+      vx: 0,
+      vy: 0,
       radius: r,
       color: nodeColor,
       visible: true
@@ -260,6 +252,7 @@ function processGraphData() {{
   }}).filter(e => e.sourceNode && e.targetNode);
 
   applyFilters();
+  reheatSimulation(1.0);
 }}
 
 function populateAgencyFilter() {{
@@ -283,7 +276,7 @@ function populateDynamicLegend() {{
     item.className = "legend-item";
     item.innerHTML = `
       <div class="legend-left">
-        <span class="legend-color" style="background-color: ${{ag.color}}; box-shadow: 0 0 8px ${{ag.color}};"></span>
+        <span class="legend-color" style="background-color: ${{ag.color}};"></span>
         <span title="${{ag.name}}">${{ag.name}}</span>
       </div>
       <span class="legend-count">${{ag.member_count}}</span>
@@ -295,7 +288,6 @@ function populateDynamicLegend() {{
       if (selectedAgency !== "ALL") item.classList.add("active-filter");
       applyFilters();
 
-      // Pan to agency swarm
       if (selectedAgency !== "ALL" && agencySwarmAnchors.has(selectedAgency)) {{
         const anc = agencySwarmAnchors.get(selectedAgency);
         panX = container.clientWidth / 2 - anc.x * zoom;
@@ -347,80 +339,58 @@ function applyFilters() {{
   }});
 
   activeCount.textContent = `${{activeNodesCount}}/${{graphNodes.length}} Active`;
+  reheatSimulation(0.3);
+}}
+
+function reheatSimulation(heat = 0.5) {{
+  alpha = Math.max(alpha, heat);
+  isSleeping = false;
 }}
 
 // ==========================================================
-// 5. Physics Engine & Agency Swarm Orbit Dynamics
+// 5. Obsidian Gentle Physics Simulation (Zero Explosion)
 // ==========================================================
 function simulationLoop() {{
-  pulseTime += 0.035;
-  updatePhysics();
+  if (!isSleeping) {{
+    updatePhysics();
+  }}
   renderCanvas();
   requestAnimationFrame(simulationLoop);
 }}
 
 function updatePhysics() {{
+  // Simulation cools down smoothly like Obsidian
+  alpha *= 0.985;
+  if (alpha < 0.005) {{
+    alpha = 0.0;
+    isSleeping = true; // Physics fully settles and stops!
+    return;
+  }}
+
   const visibleNodes = graphNodes.filter(n => n.visible);
   const visibleEdges = graphEdges.filter(e => e.visible);
 
-  // 1. Swarm Attraction & Orbital Tangential Motion (โคจรติดๆ กัน)
-  if (swarmModeActive) {{
-    for (const node of visibleNodes) {{
-      if (node === draggedNode) continue;
-      const ag = node.agency || "Independent";
-      const anchor = agencySwarmAnchors.get(ag);
-      if (!anchor) continue;
-
-      const dx = anchor.x - node.x;
-      const dy = anchor.y - node.y;
-      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-
-      // Centripetal spring pull towards agency anchor
-      const springK = (ag === "Independent") ? 0.0003 : 0.0016;
-      node.vx += dx * springK;
-      node.vy += dy * springK;
-
-      // Orbital tangential velocity around swarm center
-      if (ag !== "Independent" && dist > 15) {{
-        const tangentX = -dy / dist;
-        const tangentY = dx / dist;
-        const speed = anchor.orbitSpeed * swarmSpeedMultiplier * 1.6;
-        node.vx += tangentX * speed;
-        node.vy += tangentY * speed;
-      }}
-    }}
-  }}
-
-  // 2. Intra-Swarm & Inter-Node Repulsion (ป้องกันการชนซ้อนทับกัน)
+  // 1. Soft, Capped Repulsion (Epsilon + 400 prevents division by zero singularity!)
   for (let i = 0; i < visibleNodes.length; i++) {{
     const na = visibleNodes[i];
     for (let j = i + 1; j < visibleNodes.length; j++) {{
       const nb = visibleNodes[j];
       const dx = nb.x - na.x;
       const dy = nb.y - na.y;
-      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-      const minDist = na.radius + nb.radius + 8;
+      const distSq = dx * dx + dy * dy + 400; // Epsilon damping
+      const dist = Math.sqrt(distSq);
 
-      // Strong repulsive cushion if spheres touch
-      if (dist < minDist) {{
-        const overlap = minDist - dist;
-        const force = overlap * 0.12;
-        const fx = (dx / dist) * force;
-        const fy = (dy / dist) * force;
-        if (na !== draggedNode) {{ na.vx -= fx; na.vy -= fy; }}
-        if (nb !== draggedNode) {{ nb.vx += fx; nb.vy += fy; }}
-      }} else if (dist < 180 && na.agency === nb.agency && na.agency !== "Independent") {{
-        // Soft intra-swarm spacing
-        const force = 40 / (dist * dist);
-        const fx = (dx / dist) * force;
-        const fy = (dy / dist) * force;
-        if (na !== draggedNode) {{ na.vx -= fx; na.vy -= fy; }}
-        if (nb !== draggedNode) {{ nb.vx += fx; nb.vy += fy; }}
-      }}
+      // Controlled repulsion force
+      const force = Math.min(1.8, (repulsionStrength / distSq) * alpha);
+      const fx = (dx / dist) * force;
+      const fy = (dy / dist) * force;
+
+      if (na !== draggedNode) {{ na.vx -= fx; na.vy -= fy; }}
+      if (nb !== draggedNode) {{ nb.vx += fx; nb.vy += fy; }}
     }}
   }}
 
-  // 3. Edge Attraction (Audience Overlap Connection Springs)
+  // 2. Link Attraction Springs (Keeps connected nodes together)
   for (const edge of visibleEdges) {{
     const na = edge.sourceNode;
     const nb = edge.targetNode;
@@ -428,10 +398,8 @@ function updatePhysics() {{
     const dy = nb.y - na.y;
     const dist = Math.sqrt(dx * dx + dy * dy) || 1;
 
-    // Cross-agency colab springs
-    const desiredDist = Math.max(60, 200 - Math.min(140, (edge.shared_viewers || 10) * 1.2));
-    const delta = dist - desiredDist;
-    const springForce = delta * 0.002;
+    const delta = dist - linkDistance;
+    const springForce = delta * 0.04 * alpha;
     const fx = (dx / dist) * springForce;
     const fy = (dy / dist) * springForce;
 
@@ -439,14 +407,34 @@ function updatePhysics() {{
     if (nb !== draggedNode) {{ nb.vx += fx; nb.vy += fy; }}
   }}
 
-  // 4. Center Galaxy Damping
+  // 3. Agency Swarm Cohesion (Pull members of same agency close together)
   for (const node of visibleNodes) {{
     if (node === draggedNode) continue;
-    node.vx -= node.x * 0.0002;
-    node.vy -= node.y * 0.0002;
+    const ag = node.agency || "Independent";
+    const anchor = agencySwarmAnchors.get(ag);
+    if (!anchor) continue;
 
-    node.vx *= 0.88; // Damping
-    node.vy *= 0.88;
+    if (ag !== "Independent") {{
+      // Gentle cluster pull towards agency anchor
+      node.vx += (anchor.x - node.x) * 0.012 * alpha;
+      node.vy += (anchor.y - node.y) * 0.012 * alpha;
+    }} else {{
+      // Mild center pull for indies
+      node.vx += (0 - node.x) * 0.003 * alpha;
+      node.vy += (0 - node.y) * 0.003 * alpha;
+    }}
+  }}
+
+  // 4. Heavy Damping & Strict Velocity Clamping (Nodes can NEVER shoot off)
+  for (const node of visibleNodes) {{
+    if (node === draggedNode) continue;
+
+    node.vx *= 0.82; // Strong damping
+    node.vy *= 0.82;
+
+    // Strict speed limit: max 4.0 px per frame!
+    node.vx = Math.max(-4.0, Math.min(4.0, node.vx));
+    node.vy = Math.max(-4.0, Math.min(4.0, node.vy));
 
     node.x += node.vx;
     node.y += node.vy;
@@ -454,7 +442,7 @@ function updatePhysics() {{
 }}
 
 // ==========================================================
-// 6. Canvas Renderer & 3D Glossy Spheres ("ลูกกลมๆ 3 มิติ")
+// 6. Obsidian 2D Canvas Renderer ("แบบ 2 มิติ สะอาดตา")
 // ==========================================================
 function renderCanvas() {{
   const width = container.clientWidth;
@@ -478,53 +466,36 @@ function renderCanvas() {{
     }});
   }}
 
-  // 1. Draw Swarm Orbital Rings & Nebula Boundaries
-  if (swarmModeActive) {{
+  // 1. Draw Agency Cluster Labels (Clean minimal floating text)
+  if (selectedAgency === "ALL") {{
     for (const [agName, anchor] of agencySwarmAnchors.entries()) {{
       if (agName === "Independent") continue;
-      if (selectedAgency !== "ALL" && selectedAgency !== agName) continue;
-
-      const r = anchor.spreadRadius;
-
-      // Faint orbital ellipse
-      ctx.beginPath();
-      ctx.arc(anchor.x, anchor.y, r, 0, 2 * Math.PI);
-      ctx.strokeStyle = anchor.color;
-      ctx.globalAlpha = 0.12;
-      ctx.lineWidth = 1.5;
-      ctx.setLineDash([4, 6]);
-      ctx.stroke();
-      ctx.setLineDash([]);
-
-      // Glowing swarm center badge
-      ctx.globalAlpha = 0.75;
-      ctx.font = "700 12px 'Outfit', sans-serif";
-      ctx.fillStyle = anchor.color;
+      ctx.font = "600 11px 'Outfit', sans-serif";
+      ctx.fillStyle = `${{anchor.color}}88`;
       ctx.textAlign = "center";
-      ctx.fillText(`✨ ${{anchor.name}} (${{anchor.memberCount}})`, anchor.x, anchor.y - r - 8);
-      ctx.globalAlpha = 1.0;
+      ctx.fillText(anchor.name, anchor.x, anchor.y - 45);
     }}
   }}
 
-  // 2. Draw Edges
+  // 2. Draw 2D Edges (Thin, clean lines)
   for (const edge of visibleEdges) {{
     const isHovered = hoveredNode && (
       edge.sourceNode.id === hoveredNode.id || edge.targetNode.id === hoveredNode.id
     );
     const isDimmed = hoveredNode && !isHovered;
 
-    let baseWidth = Math.max(1, Math.min(5, (edge.shared_viewers || 10) / 30));
-    let alpha = isHovered ? 0.9 : (isDimmed ? 0.04 : 0.22);
+    let baseWidth = Math.max(0.8, Math.min(2.5, (edge.shared_viewers || 10) / 45));
+    let alphaVal = isHovered ? 0.9 : (isDimmed ? 0.02 : 0.15);
 
     ctx.beginPath();
     ctx.moveTo(edge.sourceNode.x, edge.sourceNode.y);
     ctx.lineTo(edge.targetNode.x, edge.targetNode.y);
-    ctx.lineWidth = isHovered ? baseWidth + 2.5 : baseWidth;
-    ctx.strokeStyle = isHovered ? "#38bdf8" : `rgba(148, 163, 184, ${{alpha}})`;
+    ctx.lineWidth = isHovered ? baseWidth + 1.5 : baseWidth;
+    ctx.strokeStyle = isHovered ? "#38bdf8" : `rgba(200, 210, 230, ${{alphaVal}})`;
     ctx.stroke();
   }}
 
-  // 3. Draw 3D Spheres ("ลูกกลมๆ")
+  // 3. Draw 2D Flat Circles ("แบบ Obsidian ไม่ต้อง 3 มิติ")
   for (const node of visibleNodes) {{
     const isHovered = (hoveredNode && hoveredNode.id === node.id);
     const isNeighbor = (hoveredNode && neighborIds.has(node.id));
@@ -536,80 +507,43 @@ function renderCanvas() {{
     ctx.translate(node.x, node.y);
 
     if (isDimmed) {{
-      ctx.globalAlpha = 0.2;
+      ctx.globalAlpha = 0.15;
     }}
 
-    // Pulsing Outer Halo for Bridges or Tier S
-    if (isBridgeSpotlight || node.priority === "S") {{
-      const haloSize = r + 8 + Math.sin(pulseTime * 1.5) * 3;
+    // Subtle bridge halo
+    if (isBridgeSpotlight) {{
       ctx.beginPath();
-      ctx.arc(0, 0, haloSize, 0, 2 * Math.PI);
-      ctx.strokeStyle = isBridgeSpotlight ? "rgba(245, 158, 11, 0.65)" : `${{node.color}}55`;
-      ctx.lineWidth = 2;
-      ctx.setLineDash([4, 4]);
+      ctx.arc(0, 0, r + 4, 0, 2 * Math.PI);
+      ctx.strokeStyle = "rgba(245, 158, 11, 0.7)";
+      ctx.lineWidth = 1.5;
       ctx.stroke();
-      ctx.setLineDash([]);
     }}
 
-    // Outer Ambient Glow Aura
-    ctx.shadowBlur = isHovered ? 28 : (node.priority === "S" ? 18 : 10);
-    ctx.shadowColor = node.color;
-
-    // 3D Sphere Radial Gradient: Specular Highlight at top-left
-    const grad = ctx.createRadialGradient(
-      -r * 0.32, -r * 0.32, r * 0.05,  // Specular center
-      0, 0, r                          // Outer rim
-    );
-    grad.addColorStop(0, "#ffffff");            // Specular shine dot
-    grad.addColorStop(0.2, lighten(node.color, 45)); // Light zone
-    grad.addColorStop(0.65, node.color);        // True vibrant body
-    grad.addColorStop(1, darken(node.color, 40));   // Ambient occlusion rim
-
+    // Clean 2D Flat Circle
     ctx.beginPath();
     ctx.arc(0, 0, r, 0, 2 * Math.PI);
-    ctx.fillStyle = grad;
+    ctx.fillStyle = node.color;
     ctx.fill();
 
-    // Glossy Rim Lighting Ring
-    ctx.shadowBlur = 0;
-    ctx.lineWidth = isHovered ? 3 : 1.5;
-    ctx.strokeStyle = isHovered ? "#ffffff" : "rgba(255, 255, 255, 0.4)";
+    // Clean 2D Border
+    ctx.lineWidth = isHovered ? 2.5 : 1.0;
+    ctx.strokeStyle = isHovered ? "#ffffff" : "rgba(255, 255, 255, 0.3)";
     ctx.stroke();
 
-    // Node Label
-    if (isHovered || node.priority === "S" || node.priority === "A" || zoom > 1.2) {{
-      ctx.font = `600 ${{Math.max(10, Math.min(13, r * 0.72))}}px 'Outfit', sans-serif`;
-      ctx.fillStyle = isDimmed ? "rgba(148, 163, 184, 0.4)" : "#f8fafc";
+    // Node Label (Clean & legible for important nodes or on hover)
+    if (isHovered || node.priority === "S" || (node.priority === "A" && zoom > 1.1) || zoom > 1.6) {{
+      ctx.font = `500 ${{Math.max(9, Math.min(12, r * 0.85))}}px 'Outfit', sans-serif`;
+      ctx.fillStyle = isDimmed ? "rgba(148, 163, 184, 0.3)" : "#f1f5f9";
       ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
+      ctx.textBaseline = "top";
       const shortName = node.label.split(" ")[0] || node.label;
-      ctx.fillText(shortName, 0, r + 13);
+      ctx.fillText(shortName, 0, r + 4);
     }}
 
     ctx.restore();
   }}
 
   ctx.restore();
-}}
-
-// Color helpers for 3D sphere gradient
-function lighten(color, percent) {{
-  return adjustColor(color, percent);
-}}
-function darken(color, percent) {{
-  return adjustColor(color, -percent);
-}}
-function adjustColor(hex, percent) {{
-  hex = hex.replace("#", "");
-  if (hex.length === 3) hex = hex.split("").map(c => c + c).join("");
-  const num = parseInt(hex, 16);
-  let r = (num >> 16) + Math.round(255 * (percent / 100));
-  let g = ((num >> 8) & 0x00FF) + Math.round(255 * (percent / 100));
-  let b = (num & 0x0000FF) + Math.round(255 * (percent / 100));
-  r = Math.min(255, Math.max(0, r));
-  g = Math.min(255, Math.max(0, g));
-  b = Math.min(255, Math.max(0, b));
-  return `#${{(r << 16 | g << 8 | b).toString(16).padStart(6, '0')}}`;
 }}
 
 // ==========================================================
@@ -625,7 +559,6 @@ function setupEventListeners() {{
   searchInput.addEventListener("input", e => {{
     searchQuery = e.target.value.toLowerCase().trim();
     applyFilters();
-    // Auto-focus on search match
     if (searchQuery.length >= 2) {{
       const matched = graphNodes.find(n => n.visible);
       if (matched) {{
@@ -635,7 +568,7 @@ function setupEventListeners() {{
     }}
   }});
 
-  // Agency Dropdown
+  // Agency Filter
   agencyFilter.addEventListener("change", e => {{
     selectedAgency = e.target.value;
     applyFilters();
@@ -677,21 +610,30 @@ function setupEventListeners() {{
     applyFilters();
   }});
 
-  // Toggle Swarm Dynamics Button
-  btnToggleSwarm.addEventListener("click", () => {{
-    swarmModeActive = !swarmModeActive;
-    btnToggleSwarm.classList.toggle("active", swarmModeActive);
-    btnToggleSwarm.innerHTML = swarmModeActive 
-      ? "<span>🌀 Swarm Orbit Dynamics (Active)</span>"
-      : "<span>⏸ Swarm Orbit Dynamics (Paused)</span>";
-  }});
+  // Repulsion Slider
+  if (repulsionSlider) {{
+    repulsionSlider.addEventListener("input", e => {{
+      repulsionStrength = Number(e.target.value);
+      if (repulsionValue) repulsionValue.textContent = repulsionStrength;
+      reheatSimulation(0.4);
+    }});
+  }}
 
-  // Swarm Orbit Speed Slider
-  swarmSpeedSlider.addEventListener("input", e => {{
-    const val = Number(e.target.value);
-    swarmSpeedMultiplier = val / 10;
-    speedValue.textContent = `${{swarmSpeedMultiplier.toFixed(1)}}x`;
-  }});
+  // Link Distance Slider
+  if (linkDistSlider) {{
+    linkDistSlider.addEventListener("input", e => {{
+      linkDistance = Number(e.target.value);
+      if (linkDistValue) linkDistValue.textContent = linkDistance;
+      reheatSimulation(0.4);
+    }});
+  }}
+
+  // Reheat / Rearrange Button
+  if (btnReheatSim) {{
+    btnReheatSim.addEventListener("click", () => {{
+      reheatSimulation(0.8);
+    }});
+  }}
 
   // Bridge Spotlight Button
   btnToggleBridges.addEventListener("click", () => {{
@@ -729,7 +671,7 @@ function findNodeAt(x, y) {{
     const node = visible[i];
     const dx = node.x - x;
     const dy = node.y - y;
-    if (dx * dx + dy * dy <= (node.radius + 6) * (node.radius + 6)) {{
+    if (dx * dx + dy * dy <= (node.radius + 5) * (node.radius + 5)) {{
       return node;
     }}
   }}
@@ -742,6 +684,7 @@ function onMouseDown(e) {{
 
   if (clicked) {{
     draggedNode = clicked;
+    reheatSimulation(0.4);
     openInspector(clicked);
   }} else {{
     isPanning = true;
@@ -757,6 +700,7 @@ function onMouseMove(e) {{
     draggedNode.y = coords.y;
     draggedNode.vx = 0;
     draggedNode.vy = 0;
+    reheatSimulation(0.2);
     return;
   }}
 
@@ -779,7 +723,7 @@ function onMouseUp() {{
 
 function onWheel(e) {{
   e.preventDefault();
-  const zoomFactor = e.deltaY < 0 ? 1.1 : 0.9;
+  const zoomFactor = e.deltaY < 0 ? 1.08 : 0.92;
   const newZoom = Math.max(0.25, Math.min(3.5, zoom * zoomFactor));
 
   const rect = container.getBoundingClientRect();
@@ -855,4 +799,4 @@ window.addEventListener("DOMContentLoaded", initApp);
 with open(WEB_DIR / "app.js", "w", encoding="utf-8") as f:
     f.write(app_js_code)
 
-print(f"Generated web/app.js successfully ({len(app_js_code):,} bytes)!")
+print(f"Generated Obsidian-style web/app.js successfully ({len(app_js_code):,} bytes)!")
