@@ -1,5 +1,5 @@
 {
-  "checked_files": 18,
+  "checked_files": 48,
   "failures": [],
   "canary_passed": true,
   "scope": "Decoded Parquet/DuckDB/JSON/CSV and field-marker scans in text/log outputs under data, web, logs",

@@ -1,24 +1,45 @@
-Exit code: 1
-21:49:22 [INFO] RealPilotSNA: ==================================================
-21:49:22 [INFO] RealPilotSNA:    Starting Thai VTuber SNA Real Pilot Pipeline   
-21:49:22 [INFO] RealPilotSNA: ==================================================
-Traceback (most recent call last):
-  File "/workspace/scratch/c0223786a8a6/ThaiVtuberSNA/scripts/run_real_pilot.py", line 252, in <module>
-    run_real_pilot(target_channel_count=args.channels, force_refresh=args.refresh)
-  File "/workspace/scratch/c0223786a8a6/ThaiVtuberSNA/scripts/run_real_pilot.py", line 65, in run_real_pilot
-    key_fingerprint = compute_key_fingerprint(load_persistent_secret_key())
-                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/workspace/scratch/c0223786a8a6/ThaiVtuberSNA/core/hasher.py", line 81, in load_persistent_secret_key
-    raise RuntimeError(
-RuntimeError: 
-=================================================================
-FATAL ERROR: Persistent secret key missing!
-File not found: /workspace/scratch/c0223786a8a6/ThaiVtuberSNA/config/secret.key
-
-To prevent breaking longitudinal network continuity, the system
-refuses to auto-generate an ephemeral secret for real data runs.
-
-To initialize a permanent key for this environment, run:
-    python -m core.hasher --init-key
-For existing data, restore the ORIGINAL key from encrypted offline backup.
-=================================================================
+21:17:36 [INFO] RealPilotSNA: ==================================================
+21:17:36 [INFO] RealPilotSNA:    Starting Thai VTuber SNA Real Pilot Pipeline   
+21:17:36 [INFO] RealPilotSNA: ==================================================
+21:17:36 [WARNING] collector.youtube_collector: Failed to initialize YouTube API client: No module named 'google.api_core'
+21:17:36 [INFO] RealPilotSNA: Found 9 existing Parquet files. Loading existing pilot data...
+21:17:36 [INFO] RealPilotSNA: Pilot data loaded: 6 channels with 750 aggregated presence records.
+21:17:36 [INFO] RealPilotSNA: --- Demonstrating Cross-Channel HMAC-SHA256 Viewer Overlap ---
+21:17:36 [INFO] RealPilotSNA:  [EVIDENCE] Overlap between Aisha Channel and Minami Cera Polygon: 1 shared viewers!
+21:17:36 [INFO] RealPilotSNA:             Sample deterministic viewer_hash: 3cba3d4d0d4191fb... (Length: 64)
+21:17:36 [INFO] RealPilotSNA:  [EVIDENCE] Overlap between Aisha Channel and Tiara Rexa Polygon: 2 shared viewers!
+21:17:36 [INFO] RealPilotSNA:             Sample deterministic viewer_hash: e327065f0c76cf0f... (Length: 64)
+21:17:36 [INFO] RealPilotSNA:  [EVIDENCE] Overlap between Aisha Channel and Dacapo Ch.【ARP】: 1 shared viewers!
+21:17:36 [INFO] RealPilotSNA:             Sample deterministic viewer_hash: 4356de784d4571f3... (Length: 64)
+21:17:36 [INFO] RealPilotSNA:  [EVIDENCE] Overlap between Minami Cera Polygon and Tiara Rexa Polygon: 7 shared viewers!
+21:17:36 [INFO] RealPilotSNA:             Sample deterministic viewer_hash: e928f11794f20394... (Length: 64)
+21:17:36 [INFO] RealPilotSNA:  [EVIDENCE] Overlap between Minami Cera Polygon and Baabel Ch.【ARP】: 1 shared viewers!
+21:17:36 [INFO] RealPilotSNA:             Sample deterministic viewer_hash: 1600b72859a61d1b... (Length: 64)
+21:17:36 [INFO] RealPilotSNA:  [EVIDENCE] Overlap between Schneider Ch.【ARP】 and Dacapo Ch.【ARP】: 5 shared viewers!
+21:17:36 [INFO] RealPilotSNA:             Sample deterministic viewer_hash: 96ee9188bbe8f28d... (Length: 64)
+21:17:36 [INFO] RealPilotSNA:  [EVIDENCE] Overlap between Schneider Ch.【ARP】 and Baabel Ch.【ARP】: 2 shared viewers!
+21:17:36 [INFO] RealPilotSNA:             Sample deterministic viewer_hash: b76da5906df2fd4f... (Length: 64)
+21:17:36 [INFO] RealPilotSNA:  [EVIDENCE] Overlap between Dacapo Ch.【ARP】 and Baabel Ch.【ARP】: 7 shared viewers!
+21:17:36 [INFO] RealPilotSNA:             Sample deterministic viewer_hash: af62b2e866312150... (Length: 64)
+21:17:36 [INFO] RealPilotSNA: DuckDB computed 8 pairwise audience overlap links.
+21:17:36 [INFO] RealPilotSNA:  [PAIR] UCAr4U_HGM.. - UCuZ1ajvlG.. | shared_any: 7 | shared_comments: 7 | shared_live_chat: 0 | strong_shared_any: 1
+21:17:36 [INFO] RealPilotSNA:  [PAIR] UCEvyDOkcG.. - UCfcNIwkAh.. | shared_any: 7 | shared_comments: 7 | shared_live_chat: 0 | strong_shared_any: 0
+21:17:36 [INFO] RealPilotSNA:  [PAIR] UCNTEr2_96.. - UCuZ1ajvlG.. | shared_any: 5 | shared_comments: 5 | shared_live_chat: 0 | strong_shared_any: 0
+21:17:36 [INFO] RealPilotSNA:  [PAIR] UCfcNIwkAh.. - UCqhhWjpw2.. | shared_any: 2 | shared_comments: 2 | shared_live_chat: 0 | strong_shared_any: 0
+21:17:36 [INFO] RealPilotSNA:  [PAIR] UCAr4U_HGM.. - UCNTEr2_96.. | shared_any: 2 | shared_comments: 2 | shared_live_chat: 0 | strong_shared_any: 0
+21:17:36 [INFO] RealPilotSNA:  [PAIR] UCAr4U_HGM.. - UCEvyDOkcG.. | shared_any: 1 | shared_comments: 1 | shared_live_chat: 0 | strong_shared_any: 0
+21:17:36 [INFO] RealPilotSNA:  [PAIR] UCEvyDOkcG.. - UCqhhWjpw2.. | shared_any: 1 | shared_comments: 1 | shared_live_chat: 0 | strong_shared_any: 0
+21:17:36 [INFO] RealPilotSNA:  [PAIR] UCqhhWjpw2.. - UCuZ1ajvlG.. | shared_any: 1 | shared_comments: 1 | shared_live_chat: 0 | strong_shared_any: 0
+21:17:36 [INFO] analytics.network_graph: Built graph: 6 nodes, 8 edges.
+21:17:36 [INFO] analytics.network_graph: Detected 2 communities.
+21:17:36 [INFO] RealPilotSNA: --- Top Bridge VTubers in Real Pilot ---
+21:17:36 [INFO] RealPilotSNA:  #1: Aisha Channel (Betweenness Centrality: 0.6500)
+21:17:36 [INFO] RealPilotSNA:  #2: Minami Cera Polygon (Betweenness Centrality: 0.5500)
+21:17:36 [INFO] RealPilotSNA:  #3: Baabel Ch.【ARP】 (Betweenness Centrality: 0.3500)
+21:17:36 [INFO] analytics.exporter: Exported web graph JSON to C:\Users\Icezaza\Documents\GitHub\ThaiVtuberSNA\data\real\analytics\network_graph.json
+21:17:36 [INFO] RealPilotSNA: ==================================================
+21:17:36 [INFO] RealPilotSNA:  Real Pilot Successfully Completed!              
+21:17:36 [INFO] RealPilotSNA:  Channels Monitored:    6
+21:17:36 [INFO] RealPilotSNA:  Real Events Directory: C:\Users\Icezaza\Documents\GitHub\ThaiVtuberSNA\data\real\events
+21:17:36 [INFO] RealPilotSNA:  Real Network Graph:    C:\Users\Icezaza\Documents\GitHub\ThaiVtuberSNA\data\real\analytics\network_graph.json
+21:17:36 [INFO] RealPilotSNA: ==================================================

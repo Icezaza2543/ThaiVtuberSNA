@@ -20,8 +20,14 @@ temp_*
 # Local Databases & Raw Parquet Events
 *.duckdb
 *.duckdb.wal
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
 data/events/
 data/real/events/
+data/historical_unverified/events/
+data/historical_unverified/analytics/
+data/journal/
 data/benchmarks/
 
 credentials.json
