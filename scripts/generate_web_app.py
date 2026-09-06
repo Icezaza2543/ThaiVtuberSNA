@@ -1,6 +1,6 @@
 """
 Thai VTuber Audience Network (SNA)
-Generate web/app.js - True Obsidian Graph Archipelago Layout with Distance-Capped Stable Physics
+Generate web/app.js - True Obsidian Graph Archipelago with Central Clustered Independent Swarm
 """
 import json
 from pathlib import Path
@@ -17,11 +17,11 @@ app_js_code = f"""/**
  *
  * 1. 2D Flat Minimalist Circles (Obsidian Graph View style)
  * 2. Modest Sizing by Subscribers: 3.5px (nano) to 13.5px (top)
- * 3. Spatial Swarm Archipelago: Dedicated, spacious island coordinates for each agency
- * 4. Central Bridge Crossroads: Inter-agency bridge VTubers (Aisha, Hoku, Schneider, Baabel, etc.)
- * 5. Outer Starfield: Solo independent VTubers rest peacefully in wide, collision-free celestial orbits
- * 6. Distance-Capped Repulsion (<60px only): Zero cross-island repulsion, ZERO explosion!
- * 7. Strict Velocity Clamping (max 1.0 px/frame) & Heavy Damping (0.70): Mathematically cannot scatter!
+ * 3. Central Independent Cluster: All 140 Independent VTubers form a cohesive, clustered swarm in the center (0, 0)
+ * 4. Spatial Swarm Archipelago: Dedicated, spacious island coordinates for each agency surrounding the center
+ * 5. Distance-Capped Repulsion (<55px only): Zero cross-island repulsion, ZERO explosion!
+ * 6. Strict Velocity Clamping (max 1.0 px/frame) & Heavy Damping (0.70): Mathematically cannot scatter!
+ * 7. Click vs Drag Safety: Clicking or holding a node NEVER wakes up or moves other particles!
  * 8. 1-Second Sleep: Settles smoothly and freezes into a pristine Obsidian star map
  */
 
@@ -59,9 +59,11 @@ const AGENCY_COLORS = {{
   "Independent": "#64748b"         // Obsidian Calm Slate Gray
 }};
 
-// Pre-defined Archipelago Island Coordinates for Agency Swarms
-// Generously spaced so NO agency ever collides with or overlaps another
+// Pre-defined Archipelago Island Coordinates for Agency Swarms & Central Independent
 const AGENCY_ISLAND_COORDINATES = {{
+  // Central Independent Continent
+  "Independent": {{ x: 0, y: 0, r: 185 }},
+
   // 4 Major Cardinal Wings
   "Algorhythm Project": {{ x: -380, y: -240, r: 85 }},
   "Pixela Project": {{ x: 380, y: -240, r: 80 }},
@@ -115,7 +117,12 @@ let startPanY = 0;
 // Interaction & Simulation Controls
 let hoveredNode = null;
 let selectedNode = null;
+let potentialDragNode = null;
+let isDraggingNode = false;
 let draggedNode = null;
+let dragStartX = 0;
+let dragStartY = 0;
+
 let spotlightBridges = false;
 let currentMetric = "shared_viewers";
 let minThreshold = 1;
@@ -210,8 +217,18 @@ function resizeCanvas() {{
 // ==========================================================
 function setupAgencyAnchors() {{
   agencySwarmAnchors.clear();
-  const agencies = (rawData.agencies || []).filter(a => a.name !== "Independent");
 
+  // Central Independent Anchor
+  agencySwarmAnchors.set("Independent", {{
+    x: 0,
+    y: 0,
+    radius: 185,
+    name: "Independent",
+    color: AGENCY_COLORS["Independent"] || "#64748b",
+    memberCount: 140
+  }});
+
+  const agencies = (rawData.agencies || []).filter(a => a.name !== "Independent");
   agencies.forEach((ag, idx) => {{
     const coord = AGENCY_ISLAND_COORDINATES[ag.name] || {{
       x: Math.cos((idx / agencies.length) * 2 * Math.PI) * 440,
@@ -231,7 +248,7 @@ function setupAgencyAnchors() {{
 }}
 
 // ==========================================================
-// 3. Node Sizing & Collision-Free Pre-Placement
+// 3. Node Sizing & Sunflower Spiral Pre-Placement
 // ==========================================================
 function calculate2DRadius(subs) {{
   if (!subs || subs <= 0) return 3.5;
@@ -251,23 +268,25 @@ function processGraphData() {{
     connectedNodeIds.add(e.target);
   }});
 
-  // Count solo indies for smooth celestial distribution
-  const soloIndies = (rawData.nodes || []).filter(
-    n => (n.agency === "Independent" || !n.agency) && !connectedNodeIds.has(n.id)
-  );
-  const totalSolo = Math.max(1, soloIndies.length);
+  // Sort independent creators: connected creators first, then by subscribers
+  const indieNodes = (rawData.nodes || []).filter(n => (n.agency === "Independent" || !n.agency));
+  indieNodes.sort((a, b) => {{
+    const aConn = connectedNodeIds.has(a.id) ? 1 : 0;
+    const bConn = connectedNodeIds.has(b.id) ? 1 : 0;
+    if (bConn !== aConn) return bConn - aConn;
+    return (b.subscribers || 0) - (a.subscribers || 0);
+  }});
 
-  let bridgeIndieIndex = 0;
-  let soloIndieIndex = 0;
+  const indieRankMap = new Map();
+  indieNodes.forEach((n, idx) => indieRankMap.set(n.id, idx + 1));
+
   const agencyMemberCounters = {{}};
 
   // Place nodes on clean, non-overlapping coordinates from Frame 0
   graphNodes = rawData.nodes.map((n) => {{
     const ag = n.agency || "Independent";
-    const isConnected = connectedNodeIds.has(n.id);
     let initialX = 0;
     let initialY = 0;
-    let isBridge = false;
 
     if (ag !== "Independent" && agencySwarmAnchors.has(ag)) {{
       // Agency Swarm: Sunflower spiral inside the agency's island
@@ -284,28 +303,19 @@ function processGraphData() {{
         initialX = anchor.x + Math.cos(angle) * spread;
         initialY = anchor.y + Math.sin(angle) * spread;
       }}
-    }} else if (isConnected) {{
-      // Central Bridge Crossroads: Independent creators who connect agencies (Aisha, Hoku, etc.)
-      isBridge = true;
-      bridgeIndieIndex++;
-      if (bridgeIndieIndex === 1) {{
-        initialX = 0;
-        initialY = 0;
-      }} else {{
-        const angle = bridgeIndieIndex * 2.399963;
-        // Spacious dispersion: 40px to 170px so labels have plenty of room
-        const spread = 40 + Math.sqrt(bridgeIndieIndex) * 28;
-        initialX = Math.cos(angle) * spread;
-        initialY = Math.sin(angle) * (spread * 0.78);
-      }}
     }} else {{
-      // Outer Celestial Starfield: Solo independent VTubers orbiting serenely on the outer rim
-      soloIndieIndex++;
-      const starAngle = (soloIndieIndex / totalSolo) * 2 * Math.PI;
-      // Elliptical ring at 560px - 660px framing the archipelago like a starry night sky
-      const starRadius = 560 + (soloIndieIndex % 5) * 26 + Math.sin(soloIndieIndex * 3) * 18;
-      initialX = Math.cos(starAngle) * starRadius;
-      initialY = Math.sin(starAngle) * (starRadius * 0.76);
+      // Central Independent Cluster: All 140 creators clustered organically right at (0, 0)
+      const rank = indieRankMap.get(n.id) || 1;
+      if (rank === 1) {{
+        initialX = 0;
+        initialY = 0; // Aisha Channel right at the heart of the cluster
+      }} else {{
+        const angle = rank * 2.399963;
+        // Spacious non-overlapping sunflower spiral (spread up to ~185px)
+        const spread = 12 + Math.sqrt(rank) * 14.8;
+        initialX = Math.cos(angle) * spread;
+        initialY = Math.sin(angle) * (spread * 0.86);
+      }}
     }}
 
     const r = calculate2DRadius(n.subscribers);
@@ -321,7 +331,6 @@ function processGraphData() {{
       vy: 0,
       radius: r,
       color: nodeColor,
-      isBridgeIndie: isBridge,
       visible: true
     }};
   }});
@@ -461,10 +470,10 @@ function updatePhysics() {{
   const visibleNodes = graphNodes.filter(n => n.visible);
   const visibleEdges = graphEdges.filter(e => e.visible);
 
-  // 1. Soft Distance-Capped Repulsion (< 60px only!)
-  // Nodes farther than 60px exert ZERO force. Completely eliminates global scattering!
-  const MAX_REPULSION_DIST = 60;
-  const MAX_REP_DIST_SQ = MAX_REPULSION_DIST * MAX_REPULSION_DIST; // 3600
+  // 1. Soft Distance-Capped Repulsion (< 55px only!)
+  // Nodes farther than 55px exert ZERO force. Completely eliminates cross-island repulsion!
+  const MAX_REPULSION_DIST = 55;
+  const MAX_REP_DIST_SQ = MAX_REPULSION_DIST * MAX_REPULSION_DIST; // 3025
 
   for (let i = 0; i < visibleNodes.length; i++) {{
     const na = visibleNodes[i];
@@ -486,7 +495,7 @@ function updatePhysics() {{
         force = ((minDist - dist) / minDist) * 1.0 * alpha;
       }} else {{
         // Gentle local proximity buffer
-        force = Math.min(0.6, (repulsionStrength / (distSq + 200)) * alpha);
+        force = Math.min(0.5, (repulsionStrength / (distSq + 200)) * alpha);
       }}
 
       const fx = (dx / dist) * force;
@@ -506,34 +515,22 @@ function updatePhysics() {{
     const dist = Math.sqrt(dx * dx + dy * dy) || 1;
 
     const delta = dist - linkDistance;
-    // Strict clamp: max spring impulse 0.5px per frame
-    const springForce = Math.max(-0.5, Math.min(0.5, delta * 0.015 * alpha));
+    // Strict clamp: max spring impulse 0.4px per frame
+    const springForce = Math.max(-0.4, Math.min(0.4, delta * 0.01 * alpha));
     const fx = (dx / dist) * springForce;
     const fy = (dy / dist) * springForce;
 
-    if (na !== draggedNode) {{ na.vx -= fx; na.vy -= fy; }}
+    if (na !== draggedNode) {{ na.vx += fx; na.vy -= fy; }}
     if (nb !== draggedNode) {{ nb.vx += fx; nb.vy += fy; }}
   }}
 
-  // 3. Island & Home Coordinates Retention Springs
+  // 3. Swarm 2D Home Position Retention Springs
+  // Anchor each node to its own 2D sunflower coordinate!
+  // This preserves the organic 2D cluster shape and prevents 1D line collapse!
   for (const node of visibleNodes) {{
     if (node === draggedNode) continue;
-    const ag = node.agency || "Independent";
-
-    if (ag !== "Independent" && agencySwarmAnchors.has(ag)) {{
-      const anchor = agencySwarmAnchors.get(ag);
-      // Keeps node securely within its agency island
-      node.vx += (anchor.x - node.x) * 0.04 * alpha;
-      node.vy += (anchor.y - node.y) * 0.04 * alpha;
-    }} else if (node.isBridgeIndie) {{
-      // Bridge indies stay near the central nexus (homeX, homeY)
-      node.vx += (node.homeX - node.x) * 0.035 * alpha;
-      node.vy += (node.homeY - node.y) * 0.035 * alpha;
-    }} else {{
-      // Solo indies stay serene in their designated celestial starfield home
-      node.vx += (node.homeX - node.x) * 0.035 * alpha;
-      node.vy += (node.homeY - node.y) * 0.035 * alpha;
-    }}
+    node.vx += (node.homeX - node.x) * 0.05 * alpha;
+    node.vy += (node.homeY - node.y) * 0.05 * alpha;
   }}
 
   // 4. Heavy Damping (0.70) & Strict Velocity Clamp (1.0 px/frame)
@@ -578,10 +575,9 @@ function renderCanvas() {{
     }});
   }}
 
-  // 1. Draw Agency Island Labels (Clean minimal floating text)
+  // 1. Draw Agency Island & Central Swarm Labels (Clean minimal floating text)
   if (selectedAgency === "ALL") {{
     for (const [agName, anchor] of agencySwarmAnchors.entries()) {{
-      if (agName === "Independent") continue;
       ctx.font = "600 11px 'Outfit', sans-serif";
       ctx.fillStyle = `${{anchor.color}}99`;
       ctx.textAlign = "center";
@@ -643,12 +639,13 @@ function renderCanvas() {{
     ctx.stroke();
 
     // Node Label - Obsidian smart visibility logic
-    const isMajorHub = (node.priority === "S" && (node.degree > 0.3 || node.betweenness > 0.04 || node.subscribers >= 150000));
+    // Prominent network hubs shown at overview, other labels appear on hover or zoom
+    const isNetworkHub = (node.betweenness > 0.08 || (node.degree >= 0.4 && node.subscribers >= 100000));
     const shouldShowLabel = isHovered || isNeighbor || 
-      (isMajorHub && zoom >= 0.7) || 
-      (node.priority === "S" && zoom >= 1.0) || 
-      (node.priority === "A" && zoom >= 1.35) || 
-      (zoom >= 1.8);
+      (isNetworkHub && zoom >= 0.7) || 
+      (node.priority === "S" && zoom >= 1.15) || 
+      (node.priority === "A" && zoom >= 1.45) || 
+      (zoom >= 1.85);
 
     if (shouldShowLabel) {{
       const fontSize = isHovered ? 12 : Math.max(9, Math.min(12, r * 0.85));
@@ -667,7 +664,7 @@ function renderCanvas() {{
 }}
 
 // ==========================================================
-// 7. Mouse & Touch Event Listeners
+// 7. Mouse & Touch Event Listeners (Safe Click vs Drag)
 // ==========================================================
 function setupEventListeners() {{
   container.addEventListener("mousedown", onMouseDown);
@@ -684,6 +681,7 @@ function setupEventListeners() {{
       if (matched) {{
         panX = container.clientWidth / 2 - matched.x * zoom;
         panY = container.clientHeight / 2 - matched.y * zoom;
+        renderCanvas();
       }}
     }}
   }});
@@ -700,12 +698,14 @@ function setupEventListeners() {{
       panX = container.clientWidth / 2;
       panY = container.clientHeight / 2;
     }}
+    renderCanvas();
   }});
 
   // Tier Filter
   tierFilter.addEventListener("change", e => {{
     selectedTier = e.target.value;
     applyFilters();
+    renderCanvas();
   }});
 
   // Metric Select
@@ -722,6 +722,7 @@ function setupEventListeners() {{
     }}
     minThreshold = Number(thresholdSlider.value);
     applyFilters();
+    renderCanvas();
   }});
 
   // Threshold Slider
@@ -731,6 +732,7 @@ function setupEventListeners() {{
       ? minThreshold 
       : `${{minThreshold}}%`;
     applyFilters();
+    renderCanvas();
   }});
 
   // Repulsion Slider
@@ -762,12 +764,14 @@ function setupEventListeners() {{
   btnToggleBridges.addEventListener("click", () => {{
     spotlightBridges = !spotlightBridges;
     btnToggleBridges.classList.toggle("active", spotlightBridges);
+    renderCanvas();
   }});
 
   // Inspector Panel Close
   btnCloseInspector.addEventListener("click", () => {{
     inspectorPanel.classList.remove("open");
     selectedNode = null;
+    renderCanvas();
   }});
 
   // Info Modal
@@ -794,7 +798,7 @@ function findNodeAt(x, y) {{
     const node = visible[i];
     const dx = node.x - x;
     const dy = node.y - y;
-    if (dx * dx + dy * dy <= (node.radius + 5) * (node.radius + 5)) {{
+    if (dx * dx + dy * dy <= (node.radius + 6) * (node.radius + 6)) {{
       return node;
     }}
   }}
@@ -806,9 +810,13 @@ function onMouseDown(e) {{
   const clicked = findNodeAt(coords.x, coords.y);
 
   if (clicked) {{
-    draggedNode = clicked;
-    reheatSimulation(0.3);
+    // Mark as potentially dragged, but DO NOT wake up or move physics!
+    potentialDragNode = clicked;
+    isDraggingNode = false;
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
     openInspector(clicked);
+    renderCanvas();
   }} else {{
     isPanning = true;
     startPanX = e.clientX - panX;
@@ -817,30 +825,52 @@ function onMouseDown(e) {{
 }}
 
 function onMouseMove(e) {{
-  if (draggedNode) {{
-    const coords = getGraphCoordinates(e);
-    draggedNode.x = coords.x;
-    draggedNode.y = coords.y;
-    draggedNode.vx = 0;
-    draggedNode.vy = 0;
-    reheatSimulation(0.15);
+  // 1. Handling node click vs actual drag (> 4px movement)
+  if (potentialDragNode) {{
+    const distMoved = Math.hypot(e.clientX - dragStartX, e.clientY - dragStartY);
+    if (!isDraggingNode && distMoved > 4) {{
+      isDraggingNode = true;
+      draggedNode = potentialDragNode;
+    }}
+
+    if (isDraggingNode && draggedNode) {{
+      const coords = getGraphCoordinates(e);
+      // Move ONLY the dragged node to the cursor position
+      draggedNode.x = coords.x;
+      draggedNode.y = coords.y;
+      draggedNode.homeX = coords.x;
+      draggedNode.homeY = coords.y;
+      draggedNode.vx = 0;
+      draggedNode.vy = 0;
+      renderCanvas();
+      return;
+    }}
+    // User is just holding click without moving: DO NOT MOVE PARTICLES!
     return;
   }}
 
+  // 2. Handling canvas panning
   if (isPanning) {{
     panX = e.clientX - startPanX;
     panY = e.clientY - startPanY;
+    renderCanvas();
     return;
   }}
 
+  // 3. Hover detection
   const coords = getGraphCoordinates(e);
   const hovered = findNodeAt(coords.x, coords.y);
-  hoveredNode = hovered;
-  container.style.cursor = hovered ? "pointer" : (isPanning ? "grabbing" : "grab");
+  if (hovered !== hoveredNode) {{
+    hoveredNode = hovered;
+    container.style.cursor = hovered ? "pointer" : "grab";
+    renderCanvas();
+  }}
 }}
 
 function onMouseUp() {{
+  potentialDragNode = null;
   draggedNode = null;
+  isDraggingNode = false;
   isPanning = false;
 }}
 
@@ -856,6 +886,7 @@ function onWheel(e) {{
   panX = mouseX - (mouseX - panX) * (newZoom / zoom);
   panY = mouseY - (mouseY - panY) * (newZoom / zoom);
   zoom = newZoom;
+  renderCanvas();
 }}
 
 // ==========================================================
@@ -907,6 +938,7 @@ function openInspector(node) {{
         openInspector(c.partner);
         panX = container.clientWidth / 2 - c.partner.x * zoom;
         panY = container.clientHeight / 2 - c.partner.y * zoom;
+        renderCanvas();
       }});
       inspConnectionsList.appendChild(item);
     }});
@@ -922,4 +954,4 @@ window.addEventListener("DOMContentLoaded", initApp);
 with open(WEB_DIR / "app.js", "w", encoding="utf-8") as f:
     f.write(app_js_code)
 
-print(f"Generated Archipelago Obsidian web/app.js successfully ({len(app_js_code):,} bytes)!")
+print(f"Generated Stable Click/Drag web/app.js successfully ({len(app_js_code):,} bytes)!")
