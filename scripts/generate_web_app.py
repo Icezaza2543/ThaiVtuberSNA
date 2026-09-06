@@ -16,10 +16,10 @@ app_js_code = f"""/**
  * Obsidian-Style 2D Graph Archipelago Visualizer
  *
  * 1. 2D Flat Minimalist Circles (Obsidian Graph View style)
- * 2. Modest Sizing by Subscribers: 3.5px (nano) to 13.5px (top)
+ * 2. Dramatic Sizing by Subscribers: 2.5px (nano) to 45px (top mega-channels)
  * 3. Central Independent Cluster: All 140 Independent VTubers form a cohesive, clustered swarm in the center (0, 0)
  * 4. Spatial Swarm Archipelago: Dedicated, spacious island coordinates for each agency surrounding the center
- * 5. Distance-Capped Repulsion (<55px only): Zero cross-island repulsion, ZERO explosion!
+ * 5. Distance-Capped Repulsion (<100px only): Zero cross-island repulsion, ZERO explosion!
  * 6. Strict Velocity Clamping (max 1.0 px/frame) & Heavy Damping (0.70): Mathematically cannot scatter!
  * 7. Click vs Drag Safety: Clicking or holding a node NEVER wakes up or moves other particles!
  * 8. 1-Second Sleep: Settles smoothly and freezes into a pristine Obsidian star map
@@ -62,41 +62,41 @@ const AGENCY_COLORS = {{
 // Pre-defined Archipelago Island Coordinates for Agency Swarms & Central Independent
 const AGENCY_ISLAND_COORDINATES = {{
   // Central Independent Continent
-  "Independent": {{ x: 0, y: 0, r: 185 }},
+  "Independent": {{ x: 0, y: 0, r: 280 }},
 
-  // 4 Major Cardinal Wings
-  "Algorhythm Project": {{ x: -380, y: -240, r: 85 }},
-  "Pixela Project": {{ x: 380, y: -240, r: 80 }},
-  "Virtual Zeven (VZ)": {{ x: 380, y: 240, r: 75 }},
-  "Lumina Live": {{ x: -380, y: 240, r: 70 }},
+  // 4 Major Cardinal Wings (pushed out further for bigger nodes)
+  "Algorhythm Project": {{ x: -550, y: -360, r: 130 }},
+  "Pixela Project": {{ x: 550, y: -360, r: 120 }},
+  "Virtual Zeven (VZ)": {{ x: 550, y: 360, r: 115 }},
+  "Lumina Live": {{ x: -550, y: 360, r: 110 }},
 
   // North & South Flanks
-  "AStars Production": {{ x: -140, y: -380, r: 55 }},
-  "Polygon Official": {{ x: 140, y: -380, r: 50 }},
-  "Autumnia": {{ x: 140, y: 380, r: 50 }},
-  "Flora Project": {{ x: -140, y: 380, r: 45 }},
-  "Paralist": {{ x: 0, y: 380, r: 35 }},
+  "AStars Production": {{ x: -200, y: -560, r: 80 }},
+  "Polygon Official": {{ x: 200, y: -560, r: 75 }},
+  "Autumnia": {{ x: 200, y: 560, r: 75 }},
+  "Flora Project": {{ x: -200, y: 560, r: 70 }},
+  "Paralist": {{ x: 0, y: 560, r: 50 }},
 
   // East & West Outer Outposts
-  "Euphora Project": {{ x: 530, y: 0, r: 60 }},
-  "DPX": {{ x: 540, y: 160, r: 50 }},
-  "Ti19t": {{ x: 540, y: -160, r: 35 }},
-  "ALF": {{ x: -530, y: 0, r: 45 }},
-  "V.W.Y": {{ x: -540, y: 160, r: 40 }},
-  "OAL": {{ x: -540, y: -160, r: 40 }},
+  "Euphora Project": {{ x: 780, y: 0, r: 90 }},
+  "DPX": {{ x: 800, y: 240, r: 70 }},
+  "Ti19t": {{ x: 800, y: -240, r: 50 }},
+  "ALF": {{ x: -780, y: 0, r: 65 }},
+  "V.W.Y": {{ x: -800, y: 240, r: 60 }},
+  "OAL": {{ x: -800, y: -240, r: 60 }},
 
   // Mid-Range Satellites
-  "HZ": {{ x: 350, y: 0, r: 35 }},
-  "RPG": {{ x: -350, y: 0, r: 35 }},
-  "Genesis Project": {{ x: -250, y: -130, r: 30 }},
-  "EXia": {{ x: 250, y: -130, r: 30 }},
-  "WACTOR": {{ x: 250, y: 130, r: 30 }},
-  "STP": {{ x: -250, y: 130, r: 30 }},
-  "Loveland Project": {{ x: 130, y: 240, r: 30 }},
-  "ATX": {{ x: -130, y: 240, r: 30 }},
-  "EYLZ": {{ x: -130, y: -240, r: 30 }},
-  "Pandora": {{ x: 130, y: -240, r: 30 }},
-  "Vtopia": {{ x: 0, y: -380, r: 30 }}
+  "HZ": {{ x: 500, y: 0, r: 50 }},
+  "RPG": {{ x: -500, y: 0, r: 50 }},
+  "Genesis Project": {{ x: -370, y: -190, r: 45 }},
+  "EXia": {{ x: 370, y: -190, r: 45 }},
+  "WACTOR": {{ x: 370, y: 190, r: 45 }},
+  "STP": {{ x: -370, y: 190, r: 45 }},
+  "Loveland Project": {{ x: 190, y: 360, r: 45 }},
+  "ATX": {{ x: -190, y: 360, r: 45 }},
+  "EYLZ": {{ x: -190, y: -360, r: 45 }},
+  "Pandora": {{ x: 190, y: -360, r: 45 }},
+  "Vtopia": {{ x: 0, y: -560, r: 45 }}
 }};
 
 // State Variables
@@ -251,10 +251,13 @@ function setupAgencyAnchors() {{
 // 3. Node Sizing & Sunflower Spiral Pre-Placement
 // ==========================================================
 function calculate2DRadius(subs) {{
-  if (!subs || subs <= 0) return 3.5;
-  // Obsidian scale: 3.5px for small nano to 13.5px for top channels
-  const logSubs = Math.log10(Math.max(10, subs));
-  return Math.max(3.5, Math.min(13.5, 3.5 + (logSubs - 1) * 1.9));
+  if (!subs || subs <= 0) return 2.5;
+  // Dramatic scale: 2.5px (nano <100) to 45px (mega 2M+)
+  // Uses power-scaled log10 for maximum visual contrast between tiers
+  const logSubs = Math.log10(Math.max(10, subs));  // 1 (10 subs) → 6.4 (2.59M subs)
+  const normalized = (logSubs - 1) / 5.4;           // 0.0 → 1.0
+  const curved = Math.pow(normalized, 1.6);          // Power curve: emphasize big channels
+  return Math.max(2.5, Math.min(45, 2.5 + curved * 42.5));
 }}
 
 function processGraphData() {{
@@ -299,7 +302,7 @@ function processGraphData() {{
         initialY = anchor.y;
       }} else {{
         const angle = mIdx * 2.399963; // Golden angle
-        const spread = 12 + Math.sqrt(mIdx) * 13;
+        const spread = 20 + Math.sqrt(mIdx) * 22;
         initialX = anchor.x + Math.cos(angle) * spread;
         initialY = anchor.y + Math.sin(angle) * spread;
       }}
@@ -312,7 +315,7 @@ function processGraphData() {{
       }} else {{
         const angle = rank * 2.399963;
         // Spacious non-overlapping sunflower spiral (spread up to ~185px)
-        const spread = 12 + Math.sqrt(rank) * 14.8;
+        const spread = 20 + Math.sqrt(rank) * 20;
         initialX = Math.cos(angle) * spread;
         initialY = Math.sin(angle) * (spread * 0.86);
       }}
@@ -470,10 +473,10 @@ function updatePhysics() {{
   const visibleNodes = graphNodes.filter(n => n.visible);
   const visibleEdges = graphEdges.filter(e => e.visible);
 
-  // 1. Soft Distance-Capped Repulsion (< 55px only!)
-  // Nodes farther than 55px exert ZERO force. Completely eliminates cross-island repulsion!
-  const MAX_REPULSION_DIST = 55;
-  const MAX_REP_DIST_SQ = MAX_REPULSION_DIST * MAX_REPULSION_DIST; // 3025
+  // 1. Soft Distance-Capped Repulsion (< 100px only!)
+  // Nodes farther than 100px exert ZERO force. Completely eliminates cross-island repulsion!
+  const MAX_REPULSION_DIST = 100;
+  const MAX_REP_DIST_SQ = MAX_REPULSION_DIST * MAX_REPULSION_DIST; // 10000
 
   for (let i = 0; i < visibleNodes.length; i++) {{
     const na = visibleNodes[i];
@@ -648,13 +651,13 @@ function renderCanvas() {{
       (zoom >= 1.85);
 
     if (shouldShowLabel) {{
-      const fontSize = isHovered ? 12 : Math.max(9, Math.min(12, r * 0.85));
+      const fontSize = isHovered ? 13 : Math.max(9, Math.min(14, 8 + r * 0.15));
       ctx.font = `${{isHovered ? "600" : "500"}} ${{fontSize}}px 'Outfit', sans-serif`;
       ctx.fillStyle = isDimmed ? "rgba(148, 163, 184, 0.25)" : (isHovered ? "#ffffff" : "#f1f5f9");
       ctx.textAlign = "center";
       ctx.textBaseline = "top";
       const shortName = node.label.split(" ")[0] || node.label;
-      ctx.fillText(shortName, 0, r + 3);
+      ctx.fillText(shortName, 0, r + 4);
     }}
 
     ctx.restore();
