@@ -23,3 +23,7 @@ temp_*
 data/events/
 data/real/events/
 data/benchmarks/
+
+credentials.json
+service-account*.json
+data/validation/

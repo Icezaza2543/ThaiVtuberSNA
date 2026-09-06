@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
 from config.settings import BASE_DIR
-from core.hasher import hash_viewer
+from core.hasher import load_persistent_secret_key, compute_key_fingerprint
 from core.filter_engine import FirstFilterEngine
 from collector.youtube_collector import YouTubeCollector
 from storage.parquet_manager import ParquetStorageManager
@@ -62,6 +62,7 @@ def run_real_pilot(target_channel_count: int = 6, force_refresh: bool = False):
     logger.info("   Starting Thai VTuber SNA Real Pilot Pipeline   ")
     logger.info("==================================================")
 
+    key_fingerprint = compute_key_fingerprint(load_persistent_secret_key())
     collector = YouTubeCollector()
     parquet_mgr = ParquetStorageManager(base_dir=REAL_EVENTS_DIR)
     filter_engine = FirstFilterEngine()
@@ -71,7 +72,18 @@ def run_real_pilot(target_channel_count: int = 6, force_refresh: bool = False):
     total_aggregated_records = 0
 
     existing_parquet = list(REAL_EVENTS_DIR.glob("**/*.parquet"))
-    use_existing = len(existing_parquet) >= target_channel_count and not force_refresh
+    # Refuse to attribute an unbound historical dataset to a newly supplied key.
+    manifest_path = REAL_DATA_DIR / "identity_manifest.json"
+    if manifest_path.exists():
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if manifest.get("key_fingerprint") != key_fingerprint:
+            raise RuntimeError("Dataset key continuity mismatch; restore the original key")
+    elif existing_parquet:
+        raise RuntimeError("Historical Parquet lacks an identity manifest; verify original run provenance before migration")
+    else:
+        manifest_path.write_text(json.dumps({"key_fingerprint": key_fingerprint,
+            "purpose": "Continuity check only; not integrity or authenticity proof"}, indent=2))
+    use_existing = bool(existing_parquet) and not force_refresh
 
     if use_existing:
         logger.info(f"Found {len(existing_parquet)} existing Parquet files. Loading existing pilot data...")
@@ -80,7 +92,7 @@ def run_real_pilot(target_channel_count: int = 6, force_refresh: bool = False):
             tab = pq.read_table(p)
             cid = tab["vtuber_channel_id"][0].as_py()
             hashes = set(tab["viewer_hash"].to_pylist())
-            channel_viewers_map[cid] = hashes
+            channel_viewers_map.setdefault(cid, set()).update(hashes)
             total_aggregated_records += len(tab)
             cand = next((c for c in CANDIDATE_POOL if c["channel_id"] == cid), {"name": cid, "agency": "Independent"})
             cname = cand["name"]
@@ -137,6 +149,10 @@ def run_real_pilot(target_channel_count: int = 6, force_refresh: bool = False):
                 "priority": "S"
             })
             logger.info(f" -> Successfully recorded {len(agg_events)} early-aggregated viewer records for {cname}.")
+
+    active_vtubers = list({v["channel_id"]: v for v in active_vtubers}.values())
+    if len(active_vtubers) < target_channel_count:
+        raise RuntimeError("Pilot incomplete: insufficient usable channels; graph was not replaced")
 
     logger.info(f"Pilot data loaded: {len(active_vtubers)} channels with {total_aggregated_records} aggregated presence records.")
 
@@ -197,6 +213,10 @@ def run_real_pilot(target_channel_count: int = 6, force_refresh: bool = False):
         graph_data = json.load(f)
     
     graph_data["metadata"]["is_demo"] = False
+    graph_data["metadata"]["key_fingerprint"] = key_fingerprint
+    graph_data["metadata"]["strong_evidence_min_distinct_videos_per_channel"] = 2
+    graph_data["metadata"]["collection_mode"] = "cached" if use_existing else "network"
+    graph_data["metadata"]["longitudinal_live_chat_validated"] = any(p["strong_shared_live_chat"] > 0 for p in overlap_matrix)
     graph_data["metadata"]["dataset_tag"] = "real_youtube_pilot_v1"
     graph_data["metadata"]["generated_at"] = datetime.now(timezone.utc).isoformat()
     graph_data["metadata"]["channels_monitored"] = len(active_vtubers)
@@ -212,6 +232,7 @@ def run_real_pilot(target_channel_count: int = 6, force_refresh: bool = False):
     logger.info(f" Real Network Graph:    {real_graph_path}")
     logger.info("==================================================")
 
+    duckdb_engine.close()
     return {
         "channels_count": len(active_vtubers),
         "total_aggregated_records": total_aggregated_records,

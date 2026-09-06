@@ -7,6 +7,9 @@ into compressed Apache Parquet files.
 File layout: data/events/{year}/{month}/{video_id}.parquet
 """
 import logging
+import re
+import os
+import uuid
 from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Any
@@ -66,6 +69,13 @@ class ParquetStorageManager:
         if not events:
             raise ValueError("No events provided to write.")
 
+        for event in events:
+            if event.get("source_type") not in {"live_chat", "comment"}:
+                raise ValueError("Explicit source_type live_chat or comment required")
+            if not re.fullmatch(r"[A-Za-z0-9_-]+", event.get("video_id", "")):
+                raise ValueError("Invalid video_id")
+        if len({e["video_id"] for e in events}) != 1:
+            raise ValueError("A write must contain exactly one video")
         first_event = events[0]
         video_id = first_event["video_id"]
         timestamp = first_event.get("timestamp") or first_event.get("first_seen")
@@ -94,7 +104,14 @@ class ParquetStorageManager:
             }
             table = pa.Table.from_pydict(arrays, schema=EVENT_SCHEMA)
 
-        pq.write_table(table, target_path, compression="snappy")
+        # Separate collection batches cannot overwrite another evidence source.
+        target_path = target_path.with_name(f"{video_id}-{uuid.uuid4().hex}.parquet")
+        temporary = target_path.with_suffix(".tmp")
+        try:
+            pq.write_table(table, temporary, compression="snappy")
+            os.replace(temporary, target_path)
+        finally:
+            temporary.unlink(missing_ok=True)
         logger.info(f"Saved {len(events)} {'aggregated' if is_aggregated else 'raw'} records to {target_path}")
         return target_path
 

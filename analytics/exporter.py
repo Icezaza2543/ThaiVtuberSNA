@@ -55,6 +55,8 @@ class NetworkExporter:
                 "strong_shared_comments": data.get("strong_shared_comments", 0),
                 "shared_strong": data.get("shared_strong", 0),
                 "jaccard": data.get("jaccard", 0.0),
+                "jaccard_live_chat": data.get("jaccard_live_chat", 0.0),
+                "jaccard_comments": data.get("jaccard_comments", 0.0),
                 "overlap_coefficient": data.get("overlap_coefficient", 0.0),
                 "weight": data.get("weight", 1.0)
             })

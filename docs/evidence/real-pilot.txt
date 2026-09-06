@@ -1,0 +1,24 @@
+Exit code: 1
+21:49:22 [INFO] RealPilotSNA: ==================================================
+21:49:22 [INFO] RealPilotSNA:    Starting Thai VTuber SNA Real Pilot Pipeline   
+21:49:22 [INFO] RealPilotSNA: ==================================================
+Traceback (most recent call last):
+  File "/workspace/scratch/c0223786a8a6/ThaiVtuberSNA/scripts/run_real_pilot.py", line 252, in <module>
+    run_real_pilot(target_channel_count=args.channels, force_refresh=args.refresh)
+  File "/workspace/scratch/c0223786a8a6/ThaiVtuberSNA/scripts/run_real_pilot.py", line 65, in run_real_pilot
+    key_fingerprint = compute_key_fingerprint(load_persistent_secret_key())
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/c0223786a8a6/ThaiVtuberSNA/core/hasher.py", line 81, in load_persistent_secret_key
+    raise RuntimeError(
+RuntimeError: 
+=================================================================
+FATAL ERROR: Persistent secret key missing!
+File not found: /workspace/scratch/c0223786a8a6/ThaiVtuberSNA/config/secret.key
+
+To prevent breaking longitudinal network continuity, the system
+refuses to auto-generate an ephemeral secret for real data runs.
+
+To initialize a permanent key for this environment, run:
+    python -m core.hasher --init-key
+For existing data, restore the ORIGINAL key from encrypted offline backup.
+=================================================================

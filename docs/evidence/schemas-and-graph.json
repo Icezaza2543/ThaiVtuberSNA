@@ -1,0 +1,84 @@
+{
+  "dataset": "synthetic benchmark; not historical real data",
+  "parquet_schema": "viewer_hash: string\nvtuber_channel_id: string\nvideo_id: string\nfirst_seen: string\nlast_seen: string\nappearances: int64\nsource_type: string",
+  "duckdb_raw_events": [
+    [
+      "viewer_hash",
+      "VARCHAR",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "vtuber_channel_id",
+      "VARCHAR",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "video_id",
+      "VARCHAR",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "source_type",
+      "VARCHAR",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "first_seen",
+      "VARCHAR",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "last_seen",
+      "VARCHAR",
+      "YES",
+      null,
+      null,
+      null
+    ],
+    [
+      "appearances",
+      "BIGINT",
+      "YES",
+      null,
+      null,
+      null
+    ]
+  ],
+  "existing_graph": {
+    "metadata": {
+      "total_vtubers": 6,
+      "total_connections": 9,
+      "communities_count": 2,
+      "is_demo": false,
+      "dataset_tag": "real_youtube_pilot_v1",
+      "generated_at": "2026-09-06T13:20:11.934246+00:00",
+      "channels_monitored": 6,
+      "total_shared_pairs": 9
+    },
+    "all_edges_have_six_metrics": true,
+    "all_live_and_strong_counts_zero": true
+  },
+  "versions": {
+    "duckdb": "1.5.5",
+    "pyarrow": "25.0.1",
+    "pytest": "9.1.1",
+    "yt-dlp": "2026.8.19",
+    "pandas": "2.2.3",
+    "networkx": "3.6.1"
+  }
+}

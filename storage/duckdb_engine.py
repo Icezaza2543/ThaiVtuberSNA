@@ -28,30 +28,34 @@ class DuckDBAnalyticsEngine:
 
     def _init_views(self):
         """Creates views on top of the Parquet directory structure."""
-        glob_pattern = str(self.events_dir / "**" / "*.parquet").replace("\\", "/")
-        try:
-            # Check if any parquet files exist
-            files = list(self.events_dir.glob("*/*/*.parquet"))
-            if files:
-                self.con.execute(f"""
-                    CREATE OR REPLACE VIEW raw_events AS
-                    SELECT * FROM read_parquet('{glob_pattern}', union_by_name=True)
-                """)
-                logger.info(f"DuckDB view raw_events created from {len(files)} files.")
-            else:
-                # Create empty schema table if no files yet
-                self.con.execute("""
-                    CREATE OR REPLACE VIEW raw_events AS
-                    SELECT 
-                        '' AS viewer_hash,
-                        '' AS vtuber_channel_id,
-                        '' AS video_id,
-                        '' AS timestamp,
-                        '' AS source_type
-                    WHERE 1 = 0
-                """)
-        except Exception as e:
-            logger.warning(f"Could not initialize raw_events view: {e}")
+        files = sorted(self.events_dir.rglob("*.parquet"))
+        if not files:
+            self.con.execute("""CREATE OR REPLACE VIEW raw_events AS SELECT
+                ''::VARCHAR AS viewer_hash, ''::VARCHAR AS vtuber_channel_id,
+                ''::VARCHAR AS video_id, ''::VARCHAR AS source_type,
+                ''::VARCHAR AS first_seen, ''::VARCHAR AS last_seen,
+                0::BIGINT AS appearances WHERE FALSE""")
+            return
+        glob_pattern = str(self.events_dir / "**" / "*.parquet").replace("\\", "/").replace("'", "''")
+        source = f"read_parquet('{glob_pattern}', union_by_name=True)"
+        columns = {row[0] for row in self.con.execute(f"DESCRIBE SELECT * FROM {source}").fetchall()}
+        required = {"viewer_hash", "vtuber_channel_id", "video_id", "source_type"}
+        if not required <= columns:
+            raise ValueError("Presence schema missing identity or source columns")
+        def expr(name, fallback):
+            return f"COALESCE({name}, {fallback})" if name in columns else fallback
+        timestamp = "timestamp" if "timestamp" in columns else "NULL::VARCHAR"
+        self.con.execute(f"""CREATE OR REPLACE VIEW raw_events AS SELECT
+            viewer_hash, vtuber_channel_id, video_id, source_type,
+            {expr('first_seen', timestamp)} AS first_seen,
+            {expr('last_seen', timestamp)} AS last_seen,
+            {expr('appearances', '1::BIGINT')} AS appearances
+            FROM {source}""")
+        invalid = self.con.execute("""SELECT COUNT(*) FROM raw_events WHERE
+            source_type IS NULL OR source_type NOT IN ('live_chat', 'comment')
+            OR video_id IS NULL OR trim(video_id) = ''""").fetchone()[0]
+        if invalid:
+            raise ValueError("Invalid or missing source_type/video_id in presence data")
 
     def refresh_views(self):
         """Refreshes view after new Parquet files are written."""
@@ -72,8 +76,6 @@ class DuckDBAnalyticsEngine:
                 COUNT(DISTINCT video_id) AS videos_seen,
                 COUNT(DISTINCT CASE WHEN source_type = 'live_chat' THEN video_id END) AS live_streams_seen,
                 COUNT(DISTINCT CASE WHEN source_type = 'comment' THEN video_id END) AS comment_videos_seen,
-                -- Backward compatibility alias
-                COUNT(DISTINCT video_id) AS streams_seen,
                 SUM(COALESCE(appearances, 1)) AS appearances,
                 MIN(first_seen) AS first_seen,
                 MAX(last_seen) AS last_seen
@@ -100,8 +102,7 @@ class DuckDBAnalyticsEngine:
     def compute_pairwise_overlap(
         self,
         min_shared_viewers: int = 1,
-        min_evidence_threshold: int = 2,
-        min_streams_seen: int = None
+        min_evidence_threshold: int = 2
     ) -> List[Dict[str, Any]]:
         """
         Calculates VTuber Audience Overlap Matrix with evidence separation:
@@ -114,8 +115,11 @@ class DuckDBAnalyticsEngine:
         """
         self.refresh_views()
         
-        # Support legacy argument
-        threshold = min_streams_seen if min_streams_seen is not None else min_evidence_threshold
+        if type(min_evidence_threshold) is not int or min_evidence_threshold != 2:
+            raise ValueError("Strong evidence is defined as at least 2 distinct videos per channel")
+        if type(min_shared_viewers) is not int or min_shared_viewers < 1:
+            raise ValueError("min_shared_viewers must be a positive integer")
+        threshold = 2
 
         count = self.con.execute("SELECT COUNT(*) FROM raw_events").fetchone()[0]
         if count == 0:
