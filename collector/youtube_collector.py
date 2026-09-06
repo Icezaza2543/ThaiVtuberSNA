@@ -17,7 +17,7 @@ import re
 from datetime import datetime, timezone
 from typing import List, Dict, Any, Optional
 from collector.base_collector import BaseCollector
-from core.hasher import hash_viewer
+from core.hasher import PrivacyHasher
 from config.settings import YOUTUBE_API_KEY
 
 logger = logging.getLogger(__name__)
@@ -25,6 +25,7 @@ logger = logging.getLogger(__name__)
 
 class YouTubeCollector(BaseCollector):
     def __init__(self, api_key: Optional[str] = None):
+        self.hasher = PrivacyHasher()  # Validate continuity before any network I/O.
         self.api_key = api_key or YOUTUBE_API_KEY
         self._youtube = None
         if self.api_key:
@@ -72,11 +73,16 @@ class YouTubeCollector(BaseCollector):
         video_id = job_dict["video_id"]
         vtuber_id = job_dict["vtuber_channel_id"]
 
+        if job_dict.get("source_type", "comment") != "comment":
+            raise NotImplementedError("Live chat ingestion is not yet supported; comments cannot substitute for it")
+        if type(max_comments) is not int or max_comments < 1:
+            raise ValueError("max_comments must be positive")
+
         # 1. Try YouTube Data API v3 if client available
         if self._youtube:
             api_events = self._collect_via_api(video_id, vtuber_id)
             if api_events:
-                return api_events
+                return api_events[:max_comments]
 
         # 2. Extract via yt-dlp public comment/chat extractor
         return self._collect_via_ytdlp(video_id, vtuber_id, max_comments=max_comments)
@@ -96,11 +102,11 @@ class YouTubeCollector(BaseCollector):
         agg_map: Dict[str, Dict[str, Any]] = {}
 
         for ev in raw_events:
-            vh = ev["viewer_hash"]
+            vh = (ev["viewer_hash"], ev["vtuber_channel_id"], ev["video_id"], ev["source_type"])
             t = ev["timestamp"]
             if vh not in agg_map:
                 agg_map[vh] = {
-                    "viewer_hash": vh,
+                    "viewer_hash": ev["viewer_hash"],
                     "vtuber_channel_id": ev["vtuber_channel_id"],
                     "video_id": ev["video_id"],
                     "first_seen": t,
@@ -128,7 +134,10 @@ class YouTubeCollector(BaseCollector):
         ydl_opts = {
             "getcomments": True,
             "skip_download": True,
-            "max_comments": max_comments,
+            "extractor_args": {"youtube": {"max_comments": [str(max_comments)]}},
+            "cachedir": False,
+            "socket_timeout": 20,
+            "retries": 1,
             "quiet": True,
             "no_warnings": True
         }
@@ -140,13 +149,13 @@ class YouTubeCollector(BaseCollector):
                 info = ydl.extract_info(video_url, download=False)
                 comments = info.get("comments", [])
                 
-                for c in comments:
+                for c in comments[:max_comments]:
                     raw_author_id = c.get("author_id")
                     if not raw_author_id or not str(raw_author_id).startswith("UC"):
                         continue
 
                     # PRIVACY RULE: Immediate one-way salted hashing
-                    viewer_hash = hash_viewer(str(raw_author_id))
+                    viewer_hash = self.hasher.hash_viewer_id(str(raw_author_id))
                     
                     # Convert timestamp to ISO format
                     ts_raw = c.get("timestamp")
@@ -189,7 +198,7 @@ class YouTubeCollector(BaseCollector):
                 if not raw_id:
                     continue
 
-                v_hash = hash_viewer(raw_id)
+                v_hash = self.hasher.hash_viewer_id(raw_id)
                 ts = top.get("publishedAt") or datetime.now(timezone.utc).isoformat()
 
                 events.append({

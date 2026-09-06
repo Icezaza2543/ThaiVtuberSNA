@@ -1,0 +1,38 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.6.0 -- /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python
+cachedir: .pytest_cache
+rootdir: /workspace/scratch/c0223786a8a6/ThaiVtuberSNA
+collecting ... collected 30 items
+
+tests/test_evidence_separation.py::test_evidence_separation_and_strong_overlap PASSED [  3%]
+tests/test_evidence_separation.py::test_persistent_hmac_continuity_check PASSED [  6%]
+tests/test_milestone_regressions.py::test_environment_cannot_bypass_missing_key PASSED [ 10%]
+tests/test_milestone_regressions.py::test_restart_continuity_and_no_force_rotation PASSED [ 13%]
+tests/test_milestone_regressions.py::test_existing_fingerprint_prevents_reinitialization PASSED [ 16%]
+tests/test_milestone_regressions.py::test_missing_key_precedes_network PASSED [ 20%]
+tests/test_milestone_regressions.py::test_aggregation_separates_sources_and_counts_distinct_videos PASSED [ 23%]
+tests/test_milestone_regressions.py::test_raw_aggregated_mixed_schema_and_source_writes_survive PASSED [ 26%]
+tests/test_milestone_regressions.py::test_empty_database_summary PASSED  [ 30%]
+tests/test_milestone_regressions.py::test_strong_definition_cannot_be_weakened[0] PASSED [ 33%]
+tests/test_milestone_regressions.py::test_strong_definition_cannot_be_weakened[1] PASSED [ 36%]
+tests/test_milestone_regressions.py::test_strong_definition_cannot_be_weakened[3] PASSED [ 40%]
+tests/test_milestone_regressions.py::test_strong_definition_cannot_be_weakened[2 OR 1=1] PASSED [ 43%]
+tests/test_milestone_regressions.py::test_missing_source_is_never_inferred[None] PASSED [ 46%]
+tests/test_milestone_regressions.py::test_missing_source_is_never_inferred[] PASSED [ 50%]
+tests/test_milestone_regressions.py::test_missing_source_is_never_inferred[unknown] PASSED [ 53%]
+tests/test_milestone_regressions.py::test_corrupt_parquet_fails_closed PASSED [ 56%]
+tests/test_milestone_regressions.py::test_audit_decodes_compressed_values_and_duckdb PASSED [ 60%]
+tests/test_milestone_regressions.py::test_collector_to_disk_canary PASSED [ 63%]
+tests/test_milestone_regressions.py::test_no_raw_replay_download PASSED  [ 66%]
+tests/test_real_adapters.py::test_thai_vtuber_ranking_adapter PASSED     [ 70%]
+tests/test_real_adapters.py::test_discovery_adapter_deduplication_and_provenance PASSED [ 73%]
+tests/test_real_adapters.py::test_youtube_collector_output_schema_and_privacy PASSED [ 76%]
+tests/test_sna_pipeline.py::test_privacy_hasher_consistency PASSED       [ 80%]
+tests/test_sna_pipeline.py::test_privacy_hasher_different_salts PASSED   [ 83%]
+tests/test_sna_pipeline.py::test_first_filter_thai_vtuber PASSED         [ 86%]
+tests/test_sna_pipeline.py::test_subscriber_tiers_and_priority PASSED    [ 90%]
+tests/test_sna_pipeline.py::test_schedulers_baseline_and_pso PASSED      [ 93%]
+tests/test_sna_pipeline.py::test_overlap_mathematical_metrics PASSED     [ 96%]
+tests/test_sna_pipeline.py::test_network_graph_bridge_and_communities PASSED [100%]
+
+============================== 30 passed in 0.83s ==============================

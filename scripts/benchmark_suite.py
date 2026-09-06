@@ -42,7 +42,11 @@ def benchmark_youtube_extraction_rate() -> Dict[str, Any]:
     Network I/O throughput from real public YouTube video.
     """
     logger.info("--- 1. Benchmarking Real YouTube Extraction Throughput (Network I/O) ---")
-    collector = YouTubeCollector()
+    try:
+        collector = YouTubeCollector()
+    except RuntimeError:
+        return {"status": "blocked", "reason": "Persistent key unavailable or continuity check failed",
+                "youtube_extraction_events_per_minute": None, "elapsed_sec": None, "comments_extracted": None}
     job = {
         "vtuber_channel_id": "UCqhhWjpw23dWhJ5rRwCCrMA",
         "video_id": "G1LXXzZx48c"
@@ -59,6 +63,7 @@ def benchmark_youtube_extraction_rate() -> Dict[str, Any]:
     events_per_min = events_per_sec * 60.0
 
     return {
+        "status": "measured" if events_count else "no_evidence",
         "source": "Real YouTube Video (G1LXXzZx48c)",
         "comments_extracted": events_count,
         "elapsed_sec": round(elapsed, 3),
@@ -90,11 +95,17 @@ def benchmark_local_processing_throughput(event_count: int = 1000) -> Dict[str, 
         events.extend(collector.collect_events(job))
     events = events[:event_count]
 
+    # Aggregate the sanitized events by viewer/channel/video/source.
+    from collector.youtube_collector import YouTubeCollector
+    from types import SimpleNamespace
+    aggregated = YouTubeCollector.collect_aggregated_events(
+        SimpleNamespace(collect_events=lambda *a, **k: events), job)
+
     # Local write to Parquet
     bench_dir = BENCHMARK_OUTPUT_DIR / "events"
     bench_dir.mkdir(parents=True, exist_ok=True)
     parquet_mgr = ParquetStorageManager(base_dir=bench_dir)
-    parquet_path = parquet_mgr.write_events(events)
+    parquet_path = parquet_mgr.write_events(aggregated)
 
     end_wall = time.perf_counter()
     end_cpu = time.process_time()
@@ -109,13 +120,14 @@ def benchmark_local_processing_throughput(event_count: int = 1000) -> Dict[str, 
 
     return {
         "events_processed": event_count,
+        "aggregated_records": len(aggregated),
         "local_wall_time_sec": round(wall_duration, 4),
         "local_cpu_time_sec": round(cpu_duration, 4),
         "local_processing_events_per_minute": round(events_per_min, 1),
         "local_peak_ram_mb": round(peak_ram / (1024 * 1024), 2),
         "parquet_size_kb": round(file_size_kb, 2),
         "parquet_kb_per_1000_events": round(file_size_kb / (event_count / 1000.0), 2),
-        "note": "Pure in-memory CPU/RAM early aggregation and disk write throughput."
+        "note": "Synthetic generation, HMAC, source-separated aggregation and Parquet write; tracemalloc is Python allocations, not process RSS."
     }
 
 
@@ -137,6 +149,7 @@ def benchmark_duckdb_aggregation() -> Dict[str, Any]:
     _, peak_ram = tracemalloc.get_traced_memory()
     tracemalloc.stop()
 
+    engine.close()
     latency_ms = (t1 - t0) * 1000.0
     return {
         "pairwise_links_calculated": len(overlap_results),
@@ -229,9 +242,7 @@ def benchmark_scheduler_comparison() -> Dict[str, Any]:
     time_pso_ms = (t1_pso - t0_pso) * 1000.0
 
     recommendation = (
-        "Keep Greedy as default scheduler. At current scale (10-30 concurrent streams), "
-        "Greedy achieves near-identical selection with 30x lower latency (0.08ms vs 2.5ms). "
-        "Keep PSO as an optional advanced flag (--scheduler pso)."
+        "Greedy remains default; PSO optional. This single synthetic run is not a scaling study."
     )
 
     return {
@@ -254,7 +265,7 @@ def benchmark_scheduler_comparison() -> Dict[str, Any]:
 
 def run_full_benchmark():
     report = {
-        "youtube_extraction_throughput": benchmark_youtube_extraction_rate(),
+        "youtube_extraction_rate": benchmark_youtube_extraction_rate(),
         "local_processing_throughput": benchmark_local_processing_throughput(),
         "duckdb_aggregation": benchmark_duckdb_aggregation(),
         "concurrency_scaling": benchmark_concurrency(),
@@ -268,8 +279,12 @@ def run_full_benchmark():
     print("\n" + "=" * 65)
     print("           PERFORMANCE BENCHMARK REPORT SUMMARY          ")
     print("=" * 65)
-    print(f"1. YouTube Network Extraction Rate: {report['youtube_extraction_throughput']['youtube_extraction_events_per_minute']} comments/min")
-    print(f"   (Elapsed: {report['youtube_extraction_throughput']['elapsed_sec']}s for {report['youtube_extraction_throughput']['comments_extracted']} comments)")
+    extraction = report['youtube_extraction_rate']
+    if extraction.get('status') == 'blocked':
+        print(f"1. YouTube Extraction Rate: BLOCKED ({extraction['reason']})")
+    else:
+        print(f"1. YouTube Extraction Rate: {extraction['youtube_extraction_events_per_minute']} comments/min")
+        print(f"   Status: {extraction['status']}; elapsed: {extraction['elapsed_sec']}s")
     print(f"2. Local Processing Throughput: {report['local_processing_throughput']['local_processing_events_per_minute']} events/min")
     print(f"   Peak RAM: {report['local_processing_throughput']['local_peak_ram_mb']} MB")
     print(f"   Parquet Storage: {report['local_processing_throughput']['parquet_kb_per_1000_events']} KB / 1,000 events")

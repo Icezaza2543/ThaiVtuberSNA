@@ -1,0 +1,7 @@
+{
+  "checked_files": 18,
+  "failures": [],
+  "canary_passed": true,
+  "scope": "Decoded Parquet/DuckDB/JSON/CSV and field-marker scans in text/log outputs under data, web, logs",
+  "limitations": "Does not prove absence of arbitrary unlabelled personal text, inspect OS swap/backups, or cryptographically verify hash origin; no historical real Parquet available in a fresh clone."
+}

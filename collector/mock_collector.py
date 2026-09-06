@@ -10,12 +10,13 @@ import random
 from datetime import datetime, timezone, timedelta
 from typing import List, Dict, Any
 from collector.base_collector import BaseCollector
-from core.hasher import hash_viewer
+from core.hasher import PrivacyHasher
 
 
 class MockCollector(BaseCollector):
     def __init__(self, seed: int = 42):
-        random.seed(seed)
+        self.hasher = PrivacyHasher("demo-only-not-for-real-data")
+        self.random = random.Random(seed)
         # Predefined pools of simulated viewer raw IDs
         # Agency core pools
         self.arp_core_viewers = [f"viewer_arp_{i:04d}" for i in range(1, 300)]
@@ -30,26 +31,26 @@ class MockCollector(BaseCollector):
         """Creates a realistic set of viewer IDs active on this channel."""
         presence = []
         # Unique dedicated fans for this channel
-        unique_fans = [f"viewer_dedicated_{vtuber_id}_{i:03d}" for i in range(random.randint(40, 90))]
+        unique_fans = [f"viewer_dedicated_{vtuber_id}_{i:03d}" for i in range(self.random.randint(40, 90))]
         presence.extend(unique_fans)
 
         # Agency shared pool
         if "algorhythm" in agency.lower() or "arp" in agency.lower():
-            presence.extend(random.sample(self.arp_core_viewers, k=random.randint(60, 140)))
+            presence.extend(self.random.sample(self.arp_core_viewers, k=self.random.randint(60, 140)))
         elif "polygon" in agency.lower():
-            presence.extend(random.sample(self.polygon_core_viewers, k=random.randint(50, 120)))
+            presence.extend(self.random.sample(self.polygon_core_viewers, k=self.random.randint(50, 120)))
         elif "pixela" in agency.lower():
-            presence.extend(random.sample(self.pixela_core_viewers, k=random.randint(40, 100)))
+            presence.extend(self.random.sample(self.pixela_core_viewers, k=self.random.randint(40, 100)))
         else:
-            presence.extend(random.sample(self.indie_viewers, k=random.randint(30, 80)))
+            presence.extend(self.random.sample(self.indie_viewers, k=self.random.randint(30, 80)))
 
         # Bridge viewers (present across multiple communities)
-        bridge_sample_size = random.randint(25, 70)
-        presence.extend(random.sample(self.bridge_viewers, k=bridge_sample_size))
+        bridge_sample_size = self.random.randint(25, 70)
+        presence.extend(self.random.sample(self.bridge_viewers, k=bridge_sample_size))
 
         return presence
 
-    def collect_events(self, job_dict: Dict[str, Any]) -> List[Dict[str, Any]]:
+    def collect_events(self, job_dict: Dict[str, Any], max_comments: int = 150) -> List[Dict[str, Any]]:
         """
         Simulates gathering live chat/comment events.
         All raw IDs are hashed immediately. Zero message text stored.
@@ -59,14 +60,14 @@ class MockCollector(BaseCollector):
         agency = job_dict.get("metadata", {}).get("agency", "")
 
         raw_viewers = self.generate_presence_pool(vtuber_id, agency)
-        base_time = datetime.now(timezone.utc) - timedelta(hours=random.randint(1, 48))
+        base_time = datetime.now(timezone.utc) - timedelta(hours=self.random.randint(1, 48))
 
         events = []
         for raw_id in raw_viewers:
             # Privacy: Hasher transforms raw_id to HMAC-SHA256
-            v_hash = hash_viewer(raw_id)
-            source = "live_chat" if random.random() > 0.15 else "comment"
-            event_time = base_time + timedelta(minutes=random.randint(1, 120))
+            v_hash = self.hasher.hash_viewer_id(raw_id)
+            source = "live_chat" if self.random.random() > 0.15 else "comment"
+            event_time = base_time + timedelta(minutes=self.random.randint(1, 120))
 
             events.append({
                 "viewer_hash": v_hash,
@@ -83,23 +84,5 @@ class MockCollector(BaseCollector):
         Aggregated session schema alternative (Requirement 7):
         viewer_hash, vtuber_channel_id, video_id, first_seen, last_seen, appearances
         """
-        raw_events = self.collect_events(job_dict)
-        agg_map: Dict[str, Dict[str, Any]] = {}
-
-        for ev in raw_events:
-            vh = ev["viewer_hash"]
-            if vh not in agg_map:
-                agg_map[vh] = {
-                    "viewer_hash": vh,
-                    "vtuber_channel_id": ev["vtuber_channel_id"],
-                    "video_id": ev["video_id"],
-                    "first_seen": ev["timestamp"],
-                    "last_seen": ev["timestamp"],
-                    "appearances": 1
-                }
-            else:
-                agg_map[vh]["appearances"] += 1
-                if ev["timestamp"] > agg_map[vh]["last_seen"]:
-                    agg_map[vh]["last_seen"] = ev["timestamp"]
-
-        return list(agg_map.values())
+        from collector.youtube_collector import YouTubeCollector
+        return YouTubeCollector.collect_aggregated_events(self, job_dict)

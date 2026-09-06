@@ -1,252 +1,139 @@
-"""
-Thai VTuber Audience Network (SNA)
-Data-Level Privacy Audit & Canary Test Suite
-
-Strictly inspects PERSISTED DATA (Parquet, CSV, JSON, DuckDB, logs, cache).
-Verifies that:
-1. Persisted files do NOT contain message body, comment body, display name, avatar, or emoji.
-2. The ONLY persisted viewer identity is 'viewer_hash' (64-character HMAC-SHA256 hex).
-3. Legitimate schema terms like source_type ('comment' / 'live_chat') are permitted.
-4. Canary Test: A fake raw viewer ID (UC_CANARY_RAW_VIEWER_SECRET_9999) is ingested,
-   and recursively verified to NEVER appear anywhere in persisted outputs.
-"""
-import glob
+"""Bounded persisted-output audit. PASS means checked rules passed, not anonymity proof."""
+import csv
 import json
-import logging
-import os
 import re
 import sys
+import tempfile
 from pathlib import Path
-from typing import List, Dict, Any
-import pyarrow.parquet as pq
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
-
-from core.hasher import hash_viewer
+import duckdb
+import pyarrow.parquet as pq
+from core.hasher import PrivacyHasher
 from storage.parquet_manager import ParquetStorageManager
 
-logger = logging.getLogger("PrivacyAudit")
-
-# Persisted columns that are strictly forbidden in presence data
 FORBIDDEN_PERSISTED_COLUMNS = {
-    "message_body", "comment_body", "text", "comment_text", "chat_text", "body",
-    "display_name", "author_name", "author_thumbnail", "avatar",
-    "emoji", "sentiment", "author_url"
+    'message_body', 'comment_body', 'text', 'comment_text', 'chat_text', 'body',
+    'display_name', 'author_name', 'author_thumbnail', 'avatar', 'emoji',
+    'sentiment', 'author_url', 'author_id', 'raw_author_id', 'raw_channel_id',
+    'authorExternalChannelId', 'authorChannelId', 'message', 'author',
 }
-
-RAW_CHANNEL_PATTERN = re.compile(r"^UC[a-zA-Z0-9_-]{22}$")
-SHA256_HEX_PATTERN = re.compile(r"^[a-f0-9]{64}$")
+SHA256_HEX_PATTERN = re.compile(r'[a-f0-9]{64}')
 
 
-def audit_parquet_persisted_data(data_dir: Path) -> List[Dict[str, Any]]:
-    """Inspects all Parquet files for privacy compliance."""
-    results = []
-    parquet_files = list(data_dir.glob("**/*.parquet"))
-
-    for pf in parquet_files:
-        rel = str(pf.relative_to(BASE_DIR))
-        try:
-            table = pq.read_table(pf)
-            schema_cols = set(table.schema.names)
-
-            # 1. Check for forbidden column names
-            forbidden_cols = schema_cols.intersection(FORBIDDEN_PERSISTED_COLUMNS)
-            if forbidden_cols:
-                results.append({
-                    "file": rel,
-                    "type": "PARQUET",
-                    "status": "FAIL",
-                    "reason": f"Forbidden data columns present: {forbidden_cols}"
-                })
-                continue
-
-            # 2. Check viewer identity column
-            if "viewer_hash" in table.column_names:
-                hashes = table.column("viewer_hash").to_pylist()
-                
-                # Check for raw channel ID leakage in viewer column
-                raw_leaks = [vh for vh in hashes if RAW_CHANNEL_PATTERN.match(str(vh))]
-                if raw_leaks:
-                    results.append({
-                        "file": rel,
-                        "type": "PARQUET",
-                        "status": "FAIL",
-                        "reason": f"Raw viewer channel ID leaked in viewer_hash: {raw_leaks[:3]}"
-                    })
-                    continue
-
-                # Confirm all hashes are valid SHA-256 hex strings
-                invalid_hashes = [vh for vh in hashes if not SHA256_HEX_PATTERN.match(str(vh))]
-                if invalid_hashes:
-                    results.append({
-                        "file": rel,
-                        "type": "PARQUET",
-                        "status": "FAIL",
-                        "reason": f"Non-SHA256 viewer identity found: {invalid_hashes[:3]}"
-                    })
-                    continue
-
-            results.append({
-                "file": rel,
-                "type": "PARQUET",
-                "status": "PASS",
-                "rows": table.num_rows,
-                "columns": table.column_names
-            })
-        except Exception as e:
-            results.append({"file": rel, "type": "PARQUET", "status": "ERROR", "reason": str(e)})
-
-    return results
+def inspect_value(value, canaries=()):
+    """Check decoded values recursively, without echoing potentially private content."""
+    if isinstance(value, dict):
+        for key, item in value.items():
+            if key in FORBIDDEN_PERSISTED_COLUMNS:
+                raise ValueError('Forbidden persisted field')
+            if key == 'viewer_hash' and not SHA256_HEX_PATTERN.fullmatch(str(item)):
+                raise ValueError('Invalid viewer pseudonym')
+            inspect_value(item, canaries)
+    elif isinstance(value, (list, tuple)):
+        for item in value:
+            inspect_value(item, canaries)
+    elif isinstance(value, str):
+        if any(canary in value for canary in canaries):
+            raise ValueError('Raw canary found in decoded output')
 
 
-def audit_csv_and_json_persisted_data(data_dir: Path) -> List[Dict[str, Any]]:
-    """Inspects persisted CSV and JSON files."""
-    results = []
-    
-    # Audit CSVs
-    for cf in data_dir.glob("**/*.csv"):
-        rel = str(cf.relative_to(BASE_DIR))
-        try:
-            with open(cf, "r", encoding="utf-8") as f:
-                header = [h.strip() for h in f.readline().strip().split(",")]
-            forbidden = set(header).intersection(FORBIDDEN_PERSISTED_COLUMNS)
-            if forbidden:
-                results.append({
-                    "file": rel,
-                    "type": "CSV",
-                    "status": "FAIL",
-                    "reason": f"Forbidden column in CSV: {forbidden}"
-                })
-            else:
-                results.append({"file": rel, "type": "CSV", "status": "PASS", "headers": header})
-        except Exception as e:
-            results.append({"file": rel, "type": "CSV", "status": "ERROR", "reason": str(e)})
-
-    # Audit JSONs
-    for jf in data_dir.glob("**/*.json"):
-        rel = str(jf.relative_to(BASE_DIR))
-        try:
-            with open(jf, "r", encoding="utf-8") as f:
-                content = f.read()
-            
-            # Ensure no forbidden keys exist as JSON dictionary fields
-            forbidden_found = [k for k in FORBIDDEN_PERSISTED_COLUMNS if f'"{k}"' in content]
-            if forbidden_found:
-                results.append({
-                    "file": rel,
-                    "type": "JSON",
-                    "status": "FAIL",
-                    "reason": f"Forbidden keys present in JSON: {forbidden_found}"
-                })
-            else:
-                results.append({"file": rel, "type": "JSON", "status": "PASS"})
-        except Exception as e:
-            results.append({"file": rel, "type": "JSON", "status": "ERROR", "reason": str(e)})
-
-    return results
-
-
-def run_canary_leakage_test() -> bool:
-    """
-    Canary Test:
-    Ingests a known fake raw viewer Channel ID, processes it through early aggregation,
-    writes to Parquet, and recursively scans disk to assert the raw ID never appears anywhere.
-    """
-    print("\n--- Running Fake Raw Viewer ID Canary Test ---")
-    canary_raw_id = "UC_CANARY_RAW_VIEWER_SECRET_9999"
-    canary_hash = hash_viewer(canary_raw_id)
-    canary_video_id = "vid_canary_test_888"
-
-    test_dir = BASE_DIR / "data" / "canary_test"
-    test_dir.mkdir(parents=True, exist_ok=True)
-
-    # Ingest event through early aggregation
-    event = {
-        "viewer_hash": canary_hash,
-        "vtuber_channel_id": "UC_VTUBER_CANARY_TARGET",
-        "video_id": canary_video_id,
-        "first_seen": "2026-09-06T12:00:00Z",
-        "last_seen": "2026-09-06T12:30:00Z",
-        "appearances": 3,
-        "source_type": "comment"
-    }
-
-    mgr = ParquetStorageManager(base_dir=test_dir)
-    target_parquet = mgr.write_events([event])
-
-    # Search all files under test_dir for raw canary string
-    leak_found = False
-    for root, _, files in os.walk(test_dir):
-        for fname in files:
-            fpath = Path(root) / fname
+def audit_file(path, canaries=()):
+    suffix = path.suffix.lower()
+    result = {'file': str(path), 'status': 'PASS', 'type': suffix}
+    try:
+        if suffix == '.parquet':
+            table = pq.read_table(path)
+            if set(table.column_names) & FORBIDDEN_PERSISTED_COLUMNS:
+                raise ValueError('Forbidden persisted field')
+            for batch in table.to_batches(max_chunksize=4096):
+                inspect_value(batch.to_pylist(), canaries)
+            result.update(rows=table.num_rows, schema=str(table.schema))
+        elif suffix == '.duckdb':
+            con = duckdb.connect(str(path), read_only=True)
             try:
-                # Read as raw bytes to catch any binary or text leakage
-                with open(fpath, "rb") as fp:
-                    content = fp.read()
-                if canary_raw_id.encode("utf-8") in content:
-                    leak_found = True
-                    print(f" [!] CANARY LEAK DETECTED in {fpath}!")
-            except Exception:
-                pass
-
-    # Verify that the hashed ID is properly present
-    with open(target_parquet, "rb") as fp:
-        has_hash = canary_hash.encode("utf-8") in fp.read()
-
-    # Clean up canary test folder
-    for f in list(test_dir.glob("**/*")):
-        try:
-            if f.is_file(): f.unlink()
-        except Exception:
-            pass
-
-    if not leak_found and has_hash:
-        print(" [PASS] Canary raw ID NEVER appeared on disk.")
-        print(f" [PASS] Only HMAC-SHA256 ({canary_hash[:16]}...) was persisted.")
-        return True
-    else:
-        print(" [FAIL] Canary test failed.")
-        return False
-
-
-def run_full_privacy_audit() -> bool:
-    print("=" * 65)
-    print("      THAI VTUBER SNA - PERSISTED DATA PRIVACY AUDIT      ")
-    print("=" * 65)
-    
-    data_dir = BASE_DIR / "data"
-    parquet_results = audit_parquet_persisted_data(data_dir)
-    other_results = audit_csv_and_json_persisted_data(data_dir)
-    
-    all_results = parquet_results + other_results
-    passed = [r for r in all_results if r["status"] == "PASS"]
-    failed = [r for r in all_results if r["status"] == "FAIL"]
-
-    print(f"Audited {len(all_results)} persisted files in {data_dir}:")
-    print(f" - Parquet files checked: {len(parquet_results)} (PASS: {sum(1 for r in parquet_results if r['status']=='PASS')})")
-    print(f" - CSV / JSON files checked: {len(other_results)} (PASS: {sum(1 for r in other_results if r['status']=='PASS')})")
-
-    if failed:
-        print("\n[!] PRIVACY VIOLATIONS DETECTED:")
-        for f in failed:
-            print(f" - {f['file']}: {f['reason']}")
-        return False
-
-    canary_passed = run_canary_leakage_test()
-    if not canary_passed:
-        return False
-
-    print("\n" + "=" * 65)
-    print(" [VERIFIED] ZERO PRIVACY LEAKS IN REPOSITORY DATA:")
-    print(" - Zero comment or chat message body text persisted.")
-    print(" - Zero display names, avatars, or emojis stored.")
-    print(" - Exactly HMAC-SHA256 64-char hashes used for viewer presence.")
-    print(" - Canary raw viewer ID never persisted to disk.")
-    print("=" * 65)
-    return True
+                tables = con.execute("SELECT table_schema, table_name FROM information_schema.tables WHERE table_catalog = current_database()").fetchall()
+                result['tables'] = []
+                for schema, name in tables:
+                    qualified = '.'.join('"' + x.replace('"', '""') + '"' for x in (schema, name))
+                    cursor = con.execute(f'SELECT * FROM {qualified}')
+                    columns = [d[0] for d in cursor.description]
+                    if set(columns) & FORBIDDEN_PERSISTED_COLUMNS:
+                        raise ValueError('Forbidden DuckDB column')
+                    count = 0
+                    while rows := cursor.fetchmany(4096):
+                        inspect_value([dict(zip(columns, row)) for row in rows], canaries)
+                        count += len(rows)
+                    result['tables'].append({'name': name, 'columns': columns, 'rows': count})
+            finally:
+                con.close()
+        elif suffix == '.json':
+            inspect_value(json.loads(path.read_text(encoding='utf-8')), canaries)
+        elif suffix == '.csv':
+            with path.open(encoding='utf-8', newline='') as file:
+                reader = csv.DictReader(file)
+                if set(reader.fieldnames or []) & FORBIDDEN_PERSISTED_COLUMNS:
+                    raise ValueError('Forbidden CSV column')
+                for row in reader:
+                    inspect_value(row, canaries)
+        elif suffix in {'.log', '.txt', '.jsonl'}:
+            content = path.read_text(encoding='utf-8')
+            inspect_value(content, canaries)
+            if any(re.search(r'["\']?' + re.escape(key) + r'["\']?\s*[:=]', content) for key in FORBIDDEN_PERSISTED_COLUMNS):
+                raise ValueError('Forbidden field marker in text output')
+        else:
+            result['status'] = 'UNSUPPORTED'
+    except Exception as error:
+        result.update(status='ERROR' if not isinstance(error, ValueError) else 'FAIL', reason=type(error).__name__)
+    return result
 
 
-if __name__ == "__main__":
-    success = run_full_privacy_audit()
-    sys.exit(0 if success else 1)
+def audit_directory(root, canaries=()):
+    return [audit_file(path, canaries) for path in sorted(root.rglob('*')) if path.is_file()]
+
+
+def run_canary_leakage_test():
+    """Exercise the collector's actual in-memory extraction, aggregation and storage path."""
+    from unittest.mock import patch
+    from collector.youtube_collector import YouTubeCollector
+    from storage.duckdb_engine import DuckDBAnalyticsEngine
+    raw_id = 'UC_CANARY_RAW_VIEWER_SECRET_9999'
+    raw_text = 'CANARY_PRIVATE_MESSAGE_7394'
+    class FakeYDL:
+        def __init__(self, options):
+            assert not options.get('writeinfojson')
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
+        def extract_info(self, *args, **kwargs):
+            assert kwargs.get('download') is False
+            return {'comments': [{'author_id': raw_id, 'text': raw_text, 'timestamp': 1}]}
+    with tempfile.TemporaryDirectory() as directory:
+        root = Path(directory)
+        hasher = PrivacyHasher('audit-only-synthetic-key')
+        with patch('collector.youtube_collector.PrivacyHasher', return_value=hasher), patch('yt_dlp.YoutubeDL', FakeYDL), patch('collector.youtube_collector.YOUTUBE_API_KEY', ''):
+            collector = YouTubeCollector()
+            events = collector.collect_aggregated_events({'video_id': 'canary_video', 'vtuber_channel_id': 'target'})
+        ParquetStorageManager(root / 'events').write_events(events)
+        engine = DuckDBAnalyticsEngine(root / 'audit.duckdb', root / 'events')
+        engine.con.execute('CREATE TABLE persisted_presence AS SELECT * FROM raw_events')
+        assert engine.get_viewer_presence_summary()[0]['viewer_hash'] == hasher.hash_viewer_id(raw_id)
+        engine.close()
+        (root / 'presence.json').write_text(json.dumps(events))
+        return all(r['status'] == 'PASS' for r in audit_directory(root, (raw_id, raw_text)))
+
+
+def run_full_privacy_audit():
+    roots = [BASE_DIR / 'data', BASE_DIR / 'web', BASE_DIR / 'logs']
+    supported = {'.parquet', '.duckdb', '.json', '.csv', '.log', '.txt', '.jsonl'}
+    results = [audit_file(p) for root in roots if root.exists() for p in sorted(root.rglob('*')) if p.is_file() and p.suffix.lower() in supported]
+    canary = run_canary_leakage_test()
+    failures = [r for r in results if r['status'] != 'PASS']
+    print(json.dumps({'checked_files': len(results), 'failures': failures, 'canary_passed': canary,
+        'scope': 'Decoded Parquet/DuckDB/JSON/CSV and field-marker scans in text/log outputs under data, web, logs',
+        'limitations': 'Does not prove absence of arbitrary unlabelled personal text, inspect OS swap/backups, or cryptographically verify hash origin; no historical real Parquet available in a fresh clone.'}, indent=2))
+    return not failures and canary
+
+
+if __name__ == '__main__':
+    sys.exit(0 if run_full_privacy_audit() else 1)

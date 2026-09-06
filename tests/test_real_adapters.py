@@ -8,11 +8,15 @@ from collector.discovery_adapter import DiscoveryAdapter
 from collector.youtube_collector import YouTubeCollector
 
 
-def test_thai_vtuber_ranking_adapter():
+def test_thai_vtuber_ranking_adapter(monkeypatch):
+    from types import SimpleNamespace
+    monkeypatch.setattr("collector.thai_vtuber_ranking_adapter.requests.get",
+        lambda *a, **k: SimpleNamespace(raise_for_status=lambda: None, json=lambda: {"result": [
+            {"channel_id": "UC_TEST", "title": "Test ARP", "subscribers": 1000}]}))
     adapter = ThaiVtuberRankingAdapter()
     candidates = adapter.fetch_candidates()
     
-    assert len(candidates) > 500
+    assert len(candidates) == 1
     first = candidates[0]
     # Check normalized schema keys
     assert "channel_id" in first
@@ -46,10 +50,17 @@ def test_discovery_adapter_deduplication_and_provenance():
     assert c1["subscriber_count"] == 12000
 
 
-def test_youtube_collector_output_schema_and_privacy():
+def test_youtube_collector_output_schema_and_privacy(monkeypatch):
+    from core.hasher import PrivacyHasher
+    monkeypatch.setattr("collector.youtube_collector.PrivacyHasher", lambda: PrivacyHasher("test-only"))
+    monkeypatch.setattr(YouTubeCollector, "_collect_via_ytdlp", lambda self, vid, cid, **kw: [{
+        "viewer_hash": self.hasher.hash_viewer_id("UC_TEST_VIEWER"),
+        "vtuber_channel_id": cid, "video_id": vid,
+        "timestamp": "2026-09-01T00:00:00Z", "source_type": "comment"}])
     collector = YouTubeCollector()
     
-    # Test with real public video from Aisha Channel (G1LXXzZx48c)
+    # Fixture uses a public video identifier; no network request.
+    # Test video from Aisha Channel (G1LXXzZx48c)
     job = {
         "video_id": "G1LXXzZx48c",
         "vtuber_channel_id": "UCqhhWjpw23dWhJ5rRwCCrMA"

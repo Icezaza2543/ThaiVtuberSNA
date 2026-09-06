@@ -4,7 +4,7 @@ Privacy Hasher & Persistent Key Manager
 
 Implements HMAC-SHA256 pseudonymization for YouTube viewer channel IDs.
 Preserves longitudinal network continuity by enforcing a persistent, stable secret key:
-- Reads key from config/secret.key or VTUBER_SNA_SALT environment variable.
+- Reads key from config/secret.key (environment overrides are disabled).
 - Fails loudly if key is missing or unexpectedly changed (fingerprint continuity check).
 - NEVER auto-generates an ephemeral key on real data runs.
 
@@ -41,22 +41,22 @@ def compute_key_fingerprint(key_bytes: bytes) -> str:
 
 def init_persistent_secret_key(force: bool = False) -> str:
     """
-    Explicitly creates and locks a persistent secret key.
+    Explicitly initializes a NEW identity only; never overwrites existing identity records.
     Writes key to config/secret.key and fingerprint to config/secret.fingerprint.
     RECOMMENDATION: Keep an encrypted/offline backup of config/secret.key!
     """
-    if SECRET_KEY_PATH.exists() and not force:
+    if SECRET_KEY_PATH.exists() or SECRET_FINGERPRINT_PATH.exists():
         raise RuntimeError(
             f"FATAL: Key already exists at {SECRET_KEY_PATH}. "
             "Overwriting will permanently break longitudinal viewer identity compatibility! "
-            "Use force=True only if intentional."
+            "Restore the original key; initialization cannot overwrite an existing identity."
         )
 
     # Generate 256-bit cryptographically secure secret
     new_key = secrets.token_hex(32)
     SECRET_KEY_PATH.parent.mkdir(parents=True, exist_ok=True)
 
-    with open(SECRET_KEY_PATH, "w", encoding="utf-8") as f:
+    with open(os.open(SECRET_KEY_PATH, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), "w", encoding="utf-8") as f:
         f.write(new_key.strip())
 
     fingerprint = compute_key_fingerprint(new_key.strip().encode("utf-8"))
@@ -76,10 +76,6 @@ def load_persistent_secret_key() -> bytes:
     1. Key is missing
     2. Key fingerprint mismatch (continuity check failure - accidental key swap detected)
     """
-    # 1. Check environment variable first
-    if SALT_SECRET:
-        return SALT_SECRET.encode("utf-8")
-
     # 2. Check persistent key file
     if not SECRET_KEY_PATH.exists():
         raise RuntimeError(
@@ -90,7 +86,7 @@ def load_persistent_secret_key() -> bytes:
             "refuses to auto-generate an ephemeral secret for real data runs.\n\n"
             "To initialize a permanent key for this environment, run:\n"
             "    python -m core.hasher --init-key\n"
-            "Or set the VTUBER_SNA_SALT environment variable.\n"
+            "For existing data, restore the ORIGINAL key from encrypted offline backup.\n"
             + "=" * 65
         )
 
@@ -103,6 +99,8 @@ def load_persistent_secret_key() -> bytes:
     key_bytes = key_str.encode("utf-8")
 
     # 3. Continuity check: Verify fingerprint to catch accidental key swaps
+    if not SECRET_FINGERPRINT_PATH.exists():
+        raise RuntimeError("FATAL CONTINUITY CHECK ERROR: Missing key fingerprint; restore the continuity record.")
     if SECRET_FINGERPRINT_PATH.exists():
         with open(SECRET_FINGERPRINT_PATH, "r", encoding="utf-8") as f:
             expected_fp = f.read().strip()
@@ -137,6 +135,8 @@ class PrivacyHasher:
             raise ValueError("raw_channel_id must be a non-empty string")
 
         cleaned_id = raw_channel_id.strip()
+        if not cleaned_id:
+            raise ValueError("raw_channel_id must not be whitespace")
         h = hmac.new(self.secret_salt, cleaned_id.encode("utf-8"), hashlib.sha256)
         return h.hexdigest()
 
@@ -154,8 +154,8 @@ def hash_viewer(channel_id: str) -> str:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="HMAC Key Management Tool")
     parser.add_argument("--init-key", action="store_true", help="Initialize persistent secret key")
-    parser.add_argument("--verify-key", action="store_true", help="Verify persistent secret key integrity")
-    parser.add_argument("--force", action="store_true", help="Force overwrite existing key")
+    parser.add_argument("--verify-key", action="store_true", help="Verify persistent secret key continuity")
+    parser.add_argument("--force", action="store_true", help="Deprecated; existing identities are never overwritten")
 
     args = parser.parse_args()
 

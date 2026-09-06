@@ -1,0 +1,71 @@
+{
+  "youtube_extraction_rate": {
+    "status": "blocked",
+    "reason": "Persistent key unavailable or continuity check failed",
+    "youtube_extraction_events_per_minute": null,
+    "elapsed_sec": null,
+    "comments_extracted": null
+  },
+  "local_processing_throughput": {
+    "events_processed": 1000,
+    "aggregated_records": 545,
+    "local_wall_time_sec": 0.8189,
+    "local_cpu_time_sec": 0.8558,
+    "local_processing_events_per_minute": 73272.6,
+    "local_peak_ram_mb": 23.65,
+    "parquet_size_kb": 38.87,
+    "parquet_kb_per_1000_events": 38.87,
+    "note": "Synthetic generation, HMAC, source-separated aggregation and Parquet write; tracemalloc is Python allocations, not process RSS."
+  },
+  "duckdb_aggregation": {
+    "pairwise_links_calculated": 0,
+    "query_latency_ms": 21.38,
+    "duckdb_peak_ram_mb": 0.86
+  },
+  "concurrency_scaling": {
+    "1_workers": {
+      "total_events": 231,
+      "duration_sec": 0.0105,
+      "peak_ram_mb": 0.18,
+      "events_per_sec": 21916.9
+    },
+    "3_workers": {
+      "total_events": 549,
+      "duration_sec": 0.0499,
+      "peak_ram_mb": 0.48,
+      "events_per_sec": 11009.5
+    },
+    "5_workers": {
+      "total_events": 970,
+      "duration_sec": 0.0504,
+      "peak_ram_mb": 0.82,
+      "events_per_sec": 19245.8
+    }
+  },
+  "scheduler_comparison": {
+    "num_candidates": 10,
+    "num_workers": 4,
+    "greedy": {
+      "selected_channels": [
+        "UC_01_AISHA",
+        "UC_02_DACAPO",
+        "UC_03_BAABEL",
+        "UC_04_SCHNEIDER"
+      ],
+      "score_sum": 3.8995,
+      "execution_time_ms": 0.105
+    },
+    "pso": {
+      "selected_channels": [
+        "UC_01_AISHA",
+        "UC_02_DACAPO",
+        "UC_03_BAABEL",
+        "UC_04_SCHNEIDER"
+      ],
+      "score_sum": 3.8995,
+      "execution_time_ms": 3.234
+    },
+    "selection_agreement": "4/4 (100%)",
+    "recommendation": "Greedy remains default; PSO optional. This single synthetic run is not a scaling study."
+  }
+}
