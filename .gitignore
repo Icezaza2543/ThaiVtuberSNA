@@ -19,6 +19,7 @@ pytest-cache-files-*/
 temp_*
 *.part
 *.part*
+*.lock
 
 # Local Databases & Raw Parquet Events
 *.duckdb

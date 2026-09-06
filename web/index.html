@@ -107,6 +107,20 @@
         <input type="range" id="thresholdSlider" class="slider" min="1" max="150" value="1">
       </div>
 
+      <!-- Swarm Orbit Dynamics Control -->
+      <button id="btnToggleSwarm" class="btn-toggle-bridge active" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.25), rgba(236, 72, 153, 0.25)); border-color: var(--accent-cyan);">
+        <span>🌀 Swarm Orbit Dynamics (Active)</span>
+      </button>
+
+      <!-- Swarm Orbit Speed -->
+      <div class="slider-container">
+        <div class="filter-label">
+          <span>Swarm Orbit Speed</span>
+          <span id="speedValue" style="color: var(--accent-pink); font-family: var(--font-mono);">1.0x</span>
+        </div>
+        <input type="range" id="swarmSpeedSlider" class="slider" min="0" max="30" value="10">
+      </div>
+
       <!-- Bridge Spotlight Mode -->
       <button id="btnToggleBridges" class="btn-toggle-bridge">
         <span>🌟 Spotlight Bridge VTubers</span>
@@ -114,22 +128,12 @@
 
       <!-- Legend -->
       <div class="legend-container">
-        <div class="filter-label">Agencies & Clusters</div>
-        <div class="legend-item">
-          <span class="legend-color" style="background-color: var(--agency-arp); box-shadow: 0 0 8px var(--agency-arp);"></span>
-          <span>Algorhythm Project</span>
+        <div class="filter-label" style="display:flex; justify-content:space-between; align-items:center;">
+          <span>Agency Swarms</span>
+          <span id="legendSwarmCount" style="color: var(--accent-cyan); font-size:0.75rem;">-- Swarms</span>
         </div>
-        <div class="legend-item">
-          <span class="legend-color" style="background-color: var(--agency-poly); box-shadow: 0 0 8px var(--agency-poly);"></span>
-          <span>Polygon Official</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-color" style="background-color: var(--agency-pix); box-shadow: 0 0 8px var(--agency-pix);"></span>
-          <span>Pixela Project</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-color" style="background-color: var(--agency-indie); box-shadow: 0 0 8px var(--agency-indie);"></span>
-          <span>Independent / Other</span>
+        <div id="dynamicLegendList" class="dynamic-legend-list">
+          <!-- Populated dynamically by app.js -->
         </div>
       </div>
     </aside>

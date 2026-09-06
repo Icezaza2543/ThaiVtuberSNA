@@ -1,16 +1,1364 @@
 channel_id,handle,name,subscriber_count,agency,status,thai_confidence,priority,source_count,last_activity,last_collected,streams_collected,enabled
-UC_ARP001_SCHNEIDER,@SchneiderARP,Schneider ARP,185000,Algorhythm Project,ACCEPT,0.9,S,1,2026-09-01T12:00:00Z,,0,True
-UC_ARP002_BAABEL,@BaabelARP,Baabel ARP,142000,Algorhythm Project,ACCEPT,1.0,S,1,2026-09-02T15:00:00Z,2026-09-06T12:49:52.154826+00:00,1,True
-UC_ARP003_MAYLYN,@MaylynARP,Maylyn ARP,128000,Algorhythm Project,ACCEPT,0.9,S,1,2026-09-03T10:00:00Z,2026-09-06T12:49:52.154845+00:00,1,True
-UC_ARP004_ZENITH,@ZenithARP,Zenith ARP,96000,Algorhythm Project,ACCEPT,0.9,A,1,2026-09-04T18:00:00Z,,0,True
-UC_ARP005_DACAPO,@DacapoARP,Dacapo ARP,115000,Algorhythm Project,ACCEPT,0.9,S,1,2026-09-05T20:00:00Z,2026-09-06T12:49:52.154848+00:00,1,True
-UC_POLY001_HOKU,@HokuPolygon,Hoku Polygon,110000,Polygon Official,ACCEPT,1.0,S,1,2026-09-03T14:00:00Z,,0,True
-UC_POLY002_LUCINE,@LucinePolygon,Lucine Polygon,89000,Polygon Official,ACCEPT,0.9,A,1,2026-09-04T16:00:00Z,2026-09-06T12:49:52.154841+00:00,1,True
-UC_POLY003_ZONA,@ZonaPolygon,Zona Polygon,64000,Polygon Official,ACCEPT,0.9,A,1,2026-09-02T19:00:00Z,,0,True
-UC_PIX001_HINABE,@HinabePixela,Hinabe Pixela,78000,Pixela Project,ACCEPT,0.9,A,1,2026-09-01T11:00:00Z,2026-09-06T12:49:52.154851+00:00,1,True
-UC_PIX002_MASHIRO,@MashiroPixela,Mashiro Pixela,52000,Pixela Project,ACCEPT,0.9,A,1,2026-09-04T12:00:00Z,,0,True
-UC_INDIE001_AISHA,@AishaChannelTH,Aisha Channel,480000,Independent,ACCEPT,0.5,S,1,2026-09-05T17:00:00Z,2026-09-06T12:49:52.154837+00:00,1,True
-UC_INDIE002_MEW,@MewKittenTH,Mew Kitten,35000,Independent,ACCEPT,0.85,B,1,2026-09-02T21:00:00Z,,0,True
-UC_INDIE003_KORRA,@KorraStreamer,Korra VT,18000,Independent,ACCEPT,0.5,B,1,2026-09-05T19:00:00Z,,0,True
-UC_INDIE004_ZEPHYR,@ZephyrChTH,Zephyr Sky,7500,Independent,ACCEPT,0.9,C,1,2026-09-04T15:00:00Z,,0,True
-UC_FOREIGN_001_TEST,@ForeignGamer,Global Gamer JP,250000,Other,REJECT,0.15,S,1,2026-08-01T00:00:00Z,,0,False
+UC1s5T_9sfGrRxHJhjEceVSg,@kafunech,Kafune CH.,3340,Independent,ACCEPT,0.8,C,1,2024-05-11T01:02:42+00:00,,0,True
+UC2IZur8-GAsn7gHQNTNOOgQ,@potiaht,Potia PBT,1520,Independent,ACCEPT,0.45,C,1,2026-05-15T08:42:00+00:00,,0,True
+UC25e5qEqvVaG_VKrkTmJBmw,@luceneplg,Lucene Ch.,83200,Independent,ACCEPT,0.8,A,2,2026-09-05T17:08:55+00:00,,0,True
+UC2AmIPun8jDuz1ksnxQTtcw,@sunraindre,sunraindre,2860,Independent,ACCEPT,0.8,C,1,2026-09-05T20:12:14+00:00,,0,True
+UC2kjsGpKTwnFKZLLTUkK4Gw,@brrwynvibeent,BRRWYN Ch. / QURSE,4160,Independent,ACCEPT,0.2,C,1,2026-09-03T04:16:29+00:00,,0,True
+UC32lsx7u7vqy63SguuuzmVg,@narellech.fixixvt,Narelle ch. 【FIXIX VT】,2120,Independent,ACCEPT,0.45,C,1,2025-12-22T06:00:06+00:00,,0,True
+UC3gREX7tB8vEhPFgAOGr9xg,@arashifuu,1KFuu Ch.,23900,Independent,ACCEPT,0.8,B,1,2026-09-02T03:38:34+00:00,,0,True
+UC35EDRwjO07DpevXGxo3Y0g,@ikutoch,IKUTO ch.,3130,Independent,ACCEPT,0.8,C,1,2026-05-31T15:00:35+00:00,,0,True
+UC3ZglUA0HEUCuGbe5b8zXKw,@lupasch,The Lupas,1070,Independent,ACCEPT,0.45,C,1,2022-05-13T01:27:03+00:00,,0,True
+UC2uv9lpMiz72v_qPVFDSZmA,@tmr_suiren,Suiren Ch. ◣PLO◥,2780,Independent,ACCEPT,0.8,C,1,2026-09-05T10:00:39+00:00,,0,True
+UC3OnR-Tqd8dHmY-XNHO4iZw,@kukikohikaru4454,kukiko hikaru,1340,Independent,ACCEPT,0.55,C,1,2026-08-14T16:32:42+00:00,,0,True
+UC1pYd8HCTuc8Kdh_8m_znpA,@freyrinavtuber,Freyrina,10100,Independent,ACCEPT,0.45,B,1,2026-09-03T10:12:11+00:00,,0,True
+UC3H7_4Gz8PhHeMz0hHwuFTw,@morikareich,Morika Rei【ARRI】[Graduated],1200,Independent,ACCEPT,0.35,C,1,2025-12-28T16:17:43+00:00,,0,True
+UC1ypugJJiDakFeDlxQO2Tew,@smokeswordch.,Smokesword Channel,1690,Independent,ACCEPT,0.5,C,1,2026-09-05T10:00:28+00:00,,0,True
+UC3QTic1iBGQN_LzWo7JfDKQ,@callistosocool,CallistoSoCool Ch.,457,Independent,ACCEPT,0.65,D,1,2026-09-04T03:38:14+00:00,,0,True
+UC3aHMGHRuQAonBUpE2a94bA,@ryoukatsu_meow,Ryoukatsu Ch.,718,Independent,ACCEPT,1.0,D,1,2026-09-03T14:35:52+00:00,,0,True
+UC3TQ2myWZR8pZiUZ6Cs0-Sw,@bianca_arp,Bianca Ch. 【ARP】,26300,Algorhythm Project,ACCEPT,0.65,B,1,2024-04-13T13:38:54+00:00,,0,True
+UC1z-ybaAe5LYfcnDdzp9SGw,@ginkowzap,กินข้าวแซ่บ,6780,Independent,ACCEPT,0.8,C,1,,,0,False
+UC1o-4IZwxHOxGyUKN6xpNZA,@kimewa_yuki_soa,KIMEWA_YUKI 【SOA】,396,Independent,ACCEPT,0.8,D,1,2026-08-30T06:28:35+00:00,,0,True
+UC2z7pz25bgnqLHdTd7EvVoQ,@shishiouseito_as,Shishiou Seito Ch. / AStars,5130,AStars Production,ACCEPT,0.2,C,2,2026-09-05T19:22:10+00:00,,0,True
+UC3it6w4G8eUA98J2w60gBDQ,@kingorca,Orca-Okaru CH,1200,Independent,ACCEPT,0.8,C,1,2026-09-02T15:40:31+00:00,,0,True
+UC27OebwwE2AWaJF8fUSkDcA,@moocowitchie,Mooco Witchie,15000,Independent,ACCEPT,0.55,B,2,,,0,False
+UC2iD3jxz5srvHoV7gXtBYvQ,@davinav,Davina V.,2890,Independent,ACCEPT,0.55,C,1,2025-01-08T17:25:00+00:00,,0,True
+UC3JqFoY66A90sdqe46mvbTA,@eliaharon,Eli Aharon 「イーライ」,40900,Independent,ACCEPT,0.8,B,1,2026-09-05T11:30:29+00:00,,0,True
+UC2sAw3h-IzU3JOtvXVzTjxw,@yelong_vth,叶龙 Yelong CH.,230,Independent,ACCEPT,0.95,D,1,2026-08-29T21:08:46+00:00,,0,True
+UC2mSWpVqjjQ7G7gEIfQ7p9w,@zeraphinahn,Zeraphina Hana,1470,Independent,ACCEPT,0.55,C,1,2026-09-02T10:00:08+00:00,,0,True
+UC3D2LNEOdYQq5mu9hjoQTZQ,@rookcanch,ROOKCAN ch〖DPX〗,14200,DPX,ACCEPT,0.45,B,1,2026-08-20T14:51:20+00:00,,0,True
+UC2eai5waelgobAHgp20DEYg,@ardalitalilibelle,Ardalita Lilibelle Ch. Lumina-First-Myth,50800,Lumina Live,ACCEPT,0.8,A,2,2026-09-05T19:19:37+00:00,,0,True
+UC33VkaWtUAg84eE1BfScpZg,@panbibi,PanBiBi,4280,Independent,ACCEPT,0.8,C,1,2026-01-23T13:05:30+00:00,,0,True
+UC1miE8rA7u3-CVPpuZGUT7g,@frozyvtuber,Frozy Ch.,9810,Independent,ACCEPT,0.8,C,1,2025-02-22T13:36:46+00:00,,0,True
+UC31Hn_T44_qvI_yTY-BFbPw,@lindarlingch,LIN Darling Ch.,2970,Independent,ACCEPT,0.8,C,1,2026-07-12T10:28:45+00:00,,0,True
+UC2mkbeIUVeIZeV7E2_dNCSg,@cerseilezlie,Cersei Lezlie,1300,Independent,ACCEPT,0.8,C,1,2026-08-28T02:49:06+00:00,,0,True
+UC3ea-AGQlCDx_XOMO58C0Jg,@thedolltales,The Doll Tales,876,Independent,ACCEPT,0.45,D,1,2026-09-01T11:57:00+00:00,,0,True
+UC3DORp_0MHcP00w2JxQ88_Q,@shirokchannel,SHIRO K. Channel,4670,Independent,ACCEPT,0.45,C,1,2026-08-30T15:21:57+00:00,,0,True
+UC3cucsq4iSW-mU8-E18ESCQ,@cordeliamairich,Cordelia Mairi Ch.,1190,Independent,ACCEPT,0.45,C,1,2026-09-03T15:05:00+00:00,,0,True
+UC2109-BUhq7iEs9k9PlCzsw,@cheryuch.1657,Cheryu Ch.,603,Independent,ACCEPT,0.2,D,1,2026-08-29T17:00:32+00:00,,0,True
+UC3HM8L5j53x0WsliGNTXhbQ,@shanaruch,Shanaru Ch.,1050,Independent,ACCEPT,0.8,C,1,2025-10-08T02:55:03+00:00,,0,True
+UC2erQwP2foSQARjw5zUbrnQ,@sirrisgoddess,Sirris Goddess Ch.,2080,Independent,ACCEPT,0.45,C,1,2026-09-01T05:30:58+00:00,,0,True
+UC3O5wAgEVyNA1Jw3gyi-_jA,@mollyehe,MOLLY,80500,Independent,ACCEPT,0.35,A,1,2026-09-05T03:20:34+00:00,,0,True
+UC1pSe5kxpCK1BwA_bZQ97-g,@fancychnsk,Fancy Ch.,1360,Independent,ACCEPT,0.8,C,1,2024-07-31T17:09:26+00:00,,0,True
+UC3K3Crh966nzLx41obfJhaA,@drakonyamio,Drako Nya Mio,1620,Independent,ACCEPT,0.35,C,1,2026-08-26T00:00:57+00:00,,0,True
+UC3QIcnp1II_iCt-_JG8btKQ,@era_arp,Era Ch.【ARP】,23100,Algorhythm Project,ACCEPT,0.45,B,2,2026-09-05T05:21:44+00:00,,0,True
+UC3PeUyEXBffDBFpOiuk0odQ,@jisoomansololove1818,Jisooman Ch.,851,Independent,ACCEPT,0.8,D,1,2026-09-03T10:13:24+00:00,,0,True
+UC3lFI2WTG-d0KrTRwAbjAlw,@aidenleonheart_srv,Aiden Leonheart【SRV】,4820,Independent,ACCEPT,0.35,C,1,2026-02-04T15:30:47+00:00,,0,True
+UC238YXwPe4b4T57pFWioIfA,@arinevtuber,Arine Vtuber,11800,Independent,ACCEPT,0.2,B,1,2025-11-14T17:41:08+00:00,,0,True
+UC1xmO5jVjOCeo02XCpq4WFA,@erimach,Erima Channel,17400,Independent,ACCEPT,0.35,B,2,2026-07-04T16:43:27+00:00,,0,True
+UC1jZ0KuzFRgWD_s9E-KLcFQ,@yuemeilich,Yue Meili [ECR],1440,Independent,ACCEPT,0.45,C,1,2026-09-05T15:15:48+00:00,,0,True
+UCGAtHjeWWgyWboVQ33ZQX6Q,@zenith_arp,Zenith Ch.【ARP】,52100,Algorhythm Project,ACCEPT,0.8,A,1,2026-08-22T17:53:36+00:00,,0,True
+UCH9YSRP3hG56bs2lzmMoOVw,@kimhansummerec19projekt49,Kimhan Summer /คิมหันต์ [EC19 Projekt],5130,Independent,ACCEPT,0.8,C,1,2026-09-02T15:18:20+00:00,,0,True
+UCG04BGkyQFQPV3jl5ANHPZA,@kyokoi_vtuber,Kyo Koi ,3250,Independent,ACCEPT,0.45,C,1,2026-08-16T19:22:09+00:00,,0,True
+UCHCvUUDxEP1ve9Zg_tZP5ug,@luthia_ionix,Luthia IONIX,2470,Independent,ACCEPT,0.8,C,1,2026-07-13T01:07:54+00:00,,0,True
+UCHJyN2D9QrjAujzsrDkguRA,@yuinahoshich,Yuina Hoshi Ch.,1360,Independent,ACCEPT,0.8,C,1,2026-08-13T00:19:23+00:00,,0,True
+UCGFX2NZhsWp_hpZiYmyJnRQ,@eliciaa,Elice Ch.,5440,Independent,ACCEPT,0.8,C,1,2026-06-12T03:27:42+00:00,,0,True
+UCGmm95ZgqXrfS-0pu980_tA,@renaidivipj,Renai ai Ch.〖DPX〗,1190,DPX,ACCEPT,0.2,C,1,2026-08-12T20:36:47+00:00,,0,True
+UCGmvJX9TaHps4LB-J-cR6bQ,@sora_myojo,Sora Myojo《 EXia 》,605,EXia,ACCEPT,0.35,D,1,2026-08-31T16:10:13+00:00,,0,True
+UCGjZDsjGu_BzQ_hPKTRBLLw,@aidinstreamer,Aidin,7130,Independent,ACCEPT,0.35,C,1,2026-09-02T01:43:17+00:00,,0,True
+UCGOkjVQVJivJxDN7iSdQuLA,@moemiyabiv7,Moe Miyabi ⌜VZ⌟,12100,Virtual Zeven (VZ),ACCEPT,0.8,B,1,2026-08-31T20:06:25+00:00,,0,True
+UCGGJmwrqz9q6BAVK0VWYE8g,@kdemon114,KDemon,22500,Independent,ACCEPT,1.0,B,1,2026-08-29T10:15:19+00:00,,0,True
+UCFjBM9wvCqb5wBLpp_cHxfA,@jumpmy3,JumpMy Ch.【XIRCONIA】,7560,Independent,ACCEPT,0.8,C,1,2026-08-30T15:06:47+00:00,,0,True
+UCGMiAEmU8MB1-2abX_Tjkyw,@winevylalun,Wine Ch. ,880,Independent,ACCEPT,0.45,D,1,2026-06-12T05:30:56+00:00,,0,True
+UCGXguhCIYycPMOTZN9s4x6A,@regene_res,จู้จีนจุกจิก | Regene【RE:S】,4210,Independent,ACCEPT,0.45,C,1,2025-10-24T13:48:14+00:00,,0,True
+UCGWwz0WBEcGozJ6yZNGIsPw,@estxr_ch,Estxr Channel,1280,Independent,ACCEPT,0.35,C,1,2026-09-01T18:57:06+00:00,,0,True
+UCH7h3T7J1ck7YgjbI2YPR7g,@akinorieiji_trr,Akinori Eiji Ch.「TRR」 ,5030,Independent,ACCEPT,0.8,C,1,2026-08-27T02:42:36+00:00,,0,True
+UCH6Fib1kQUaR2qurlEXnZMA,@zenaidaxeta-102,Zenaida XETA-102 Channel,1580,Independent,ACCEPT,0.45,C,1,2023-02-15T12:00:08+00:00,,0,True
+UCGbMin84xisO1Yuq_guVlFA,@nutty.roze-wis,NUTTY ROZE ,53000,Independent,ACCEPT,0.8,A,1,2026-01-22T02:08:42+00:00,,0,True
+UCGofntRkNUAgXGqimLtLy4g,@reilimchannel,Reilim Channel,36100,Independent,ACCEPT,1.0,B,1,2026-09-02T15:21:51+00:00,,0,True
+UCGgUYt_n_Uzi5xYAS12XDww,@kahelkallasast,Kahel Kallas『AST』 ,1940,Independent,ACCEPT,0.45,C,1,2025-01-01T05:42:48+00:00,,0,True
+UCGIDvgCG2v47r33D14QlasA,@jusiaasmr,Jusia Ch. ASMR,28900,Independent,ACCEPT,0.8,B,1,2026-09-02T08:21:53+00:00,,0,True
+UCG-PEjbBmm82pBvWvJJfxgQ,@shinya_natonsai,Shinya Natonsai,6110,Independent,ACCEPT,0.8,C,1,2026-08-28T04:13:57+00:00,,0,True
+UCGhWfzi-1RoI9mJKzrCJGHQ,@sakamajimai,Sakamajimai / Sharky Ch.,5450,Independent,ACCEPT,1.0,C,1,2026-08-12T22:10:37+00:00,,0,True
+UCHBOkil-h2JiTQ2LEJtG7FA,@cerise_channel,Cerise Channel,4580,Independent,ACCEPT,0.8,C,1,2026-08-30T09:45:14+00:00,,0,True
+UCGc2qf0Pkl7RyvqTyyP_o9w,@miyuu43ch,MiYuu43 ch. みゆ,72200,Independent,ACCEPT,1.0,A,2,2026-09-03T10:30:33+00:00,,0,True
+UCG1UqDhwKiOIHHAhwZqJGQg,@lukamith,Lukami Ch. ルカミ [Lukami Stellaz],3970,Independent,ACCEPT,0.95,C,1,2026-09-03T10:15:05+00:00,,0,True
+UCFkljb428Byj00FxL_kwYyA,@ozik-the-goat,OZiK Ch.,4200,Independent,ACCEPT,0.2,C,1,2026-02-17T15:15:37+00:00,,0,True
+UCGi7W6vbEJjPi1nzJfW-zOQ,@felixia-zorei-aixela,Felixia-zorei-aixela Ch.,2430,Independent,ACCEPT,0.2,C,1,2024-07-31T04:26:41+00:00,,0,True
+UCGRF7CYtM2Qvevmach7enPA,@seabunnyily,Seabunnyi,11200,Independent,ACCEPT,0.45,B,1,2026-03-27T14:43:40+00:00,,0,True
+UCGMSJFuXdNmswEPX4X6NnLQ,@mycaramelony,Mycara Melony Ch. Pixela-Mystic,42300,Pixela Project,ACCEPT,0.8,B,1,2026-09-03T04:50:39+00:00,,0,True
+UCGwh4Fq6iBno7cSieXcgh0w,@saikoch.7416,Saiko Ch.,2320,Independent,ACCEPT,0.55,C,1,2022-09-01T04:45:09+00:00,,0,True
+UCFycFPpGcrne7rAp_Xa6tbg,@patchayvtuber,Patchay channel,1660,Independent,ACCEPT,1.0,C,1,,,0,False
+UCFuUpyt6u2UC90h1nAWuXkw,@trashythemeow,Trashythemeow,12,Independent,ACCEPT,0.8,D,1,2026-08-21T12:13:17+00:00,,0,True
+UCGSthfh4W439C_2cQloVocw,@valk5332,Val 5332,924,Independent,ACCEPT,0.45,D,1,2023-04-01T04:01:24+00:00,,0,True
+UCGFON7MMs-K2rmM_TjNG82A,@aifeivtuber,Aifei ch.,2190,Independent,ACCEPT,0.8,C,1,2026-05-27T15:36:41+00:00,,0,True
+UCHEnKuFdHAKL20IpCTi8l9Q,@sejichaki,SeJi Ch.,983,Independent,ACCEPT,0.45,D,1,2026-08-31T13:44:26+00:00,,0,True
+UCFd3ivp0P8uWR-SdnMLWDoQ,@jaoguinch,JaoGuin Ch.,1690,Independent,ACCEPT,0.45,C,1,2026-09-05T03:39:38+00:00,,0,True
+UCHGviQ_8o_ZLS_k1vpFOtmQ,@cobalthellhound,Cobalt HellHound Ch. (ฮาวนด์),1570,Independent,ACCEPT,1.0,C,1,2026-08-21T19:44:50+00:00,,0,True
+UCGo7fnmWfGQewxZVDmC3iJQ,@xonebuworldend,Xonebu X'thulhu Ch. Lumina-World-End,56500,Lumina Live,ACCEPT,0.8,A,1,2026-09-02T16:12:42+00:00,,0,True
+UCGkGWo40A2iZKQl9ug1oXoA,@loxifyr,Loxifyr,7860,Independent,ACCEPT,0.8,C,2,2026-09-03T04:11:03+00:00,,0,True
+UCGtHn0fmqCAp_8AzV_PWd6A,@eveshaiahmiraclover,Eveshaiah Miraclover Ch. Lumina-Mutelu,13600,Lumina Live,ACCEPT,0.8,B,1,2026-09-04T10:44:26+00:00,,0,True
+UCGAxNdaCC9RI6-u3QabJ8Fg,@momay.allegrala,MomaMae,18600,Independent,ACCEPT,0.8,B,1,2026-09-03T05:00:38+00:00,,0,True
+UCFr02a1OIuA1yrnJuB2dSpw,@shishiro_taiga,Shishiro Taiga Ch. (志白タイガ),3970,Independent,ACCEPT,0.45,C,1,2026-08-30T04:16:14+00:00,,0,True
+UCGBkYTR4tMKS38TQHGWWLjg,@aitolh,Aito LH,1900000,Independent,ACCEPT,0.8,S,1,2026-09-03T10:00:01+00:00,,0,True
+UCG1Dk3994tPaCIBJp8Cu2pg,@kamillalich,Kamilla Lich,3480,Independent,ACCEPT,0.55,C,1,2026-09-02T13:00:05+00:00,,0,True
+UCGIo_THCq5eGbEdb8f0z10Q,@shirowashivtuber,Shirowashi Ch.,670,Independent,ACCEPT,0.45,D,1,2026-08-28T06:54:20+00:00,,0,True
+UCGtjAVYcncs1AJ5hQY0gASQ,@kamaisanch,KAMAI,63200,Independent,ACCEPT,0.3,A,2,2026-08-30T15:35:02+00:00,,0,True
+UCU8-PjzR1iFtqdmATtRrYYQ,@tinsleythefox,Tinsley Alaappaat Ch.,1450,Independent,ACCEPT,0.35,C,1,2026-08-14T01:53:02+00:00,,0,True
+UCURO2Hz8CWn0knwFbNTo2ng,@raneetani,RaneeTani『VTG』,4180,Independent,ACCEPT,0.8,C,1,2026-08-31T12:24:24+00:00,,0,True
+UCUPi3XlTX0rLUWjFHifNl-Q,@bloodyflora,Bloodyflora,38200,Independent,ACCEPT,0.35,B,1,2026-08-30T02:42:22+00:00,,0,True
+UCUUvW_FwpvBRsubHH7loRFA,@krsk963,【黒崎】Asmodeus Ch.,2350,Independent,ACCEPT,0.8,C,1,2026-08-29T19:20:17+00:00,,0,True
+UCTc2h8nlS0U1LhCjMgHVFzw,@hasukiretsu,Retsu Hasuki,1870,Independent,ACCEPT,0.2,C,1,2026-08-10T16:08:52+00:00,,0,True
+UCTIi4NC8SvzUZDMExjCscVA,@uctii4nc8svzuzdmexjcscva,UCTIi4NC8SvzUZDMExjCscVA,30800,Independent,ACCEPT,0.35,B,1,2020-08-13T14:51:46+00:00,,0,True
+UCUR0HEtdHk4nx2WddW0Qthg,@verdelitepowerpay,Verdelite PowerPay,6480,Independent,ACCEPT,0.8,C,1,2023-09-27T14:56:07+00:00,,0,True
+UCTbgUT9_ipoQbiC7IxhJdoQ,@demon_maimon,Maimon CH,17300,Independent,ACCEPT,0.2,B,1,2026-06-07T15:29:03+00:00,,0,True
+UCTt2KsR8ZwnsTyoebl3eXsQ,@yvesmonet_21pm,Yves Monet Deirdre【21PM】,620,Independent,ACCEPT,0.2,D,1,2026-08-27T23:03:46+00:00,,0,True
+UCTtgiI6vO_zxlcOBLd3P7Jg,@xuri_xro,Xro Ch,1620,Independent,ACCEPT,0.2,C,1,2026-07-17T19:22:28+00:00,,0,True
+UCTE0_50-t5vJqrC832LV2eQ,@lavenchannel,Laven Ch. Genesis Project,4410,Genesis Project,ACCEPT,0.8,C,1,2025-12-13T05:58:56+00:00,,0,True
+UCUGwdp5xDeKhuhHBgZLX_ng,@popkorn163,PopKorn163 Vtuber Ch.,1500,Independent,ACCEPT,0.65,C,1,2026-08-31T13:53:43+00:00,,0,True
+UCUBooBbB6GNYvQJEna3eRBQ,@beatrix_monroe,Beatrix CH. - ビアトリクス,2260,Independent,ACCEPT,0.45,C,1,2026-05-29T12:39:36+00:00,,0,True
+UCUfM5IcATD5-AB1If9v7wTA,@den_oal,Den Trenton Ch. | OAL,948,OAL,ACCEPT,0.35,D,1,2026-06-21T01:59:59+00:00,,0,True
+UCUYOr3CaHR0XIv0FfM22CyA,@niewlocker,Niew Lock ,9310,Independent,ACCEPT,0.8,C,1,2026-08-31T09:29:23+00:00,,0,True
+UCU5Bt3GkZmiYkazw37gJqIw,@liselotte_ch,Lotte Ch.,2990,Independent,ACCEPT,0.8,C,2,2026-08-31T02:38:08+00:00,,0,True
+UCUHopfMWIslGzHiNMs-vtVw,@queenettaindigonight,Queenetta Indigo Night | ท่านควีน,10000,Independent,ACCEPT,0.45,B,1,2026-08-29T16:31:04+00:00,,0,True
+UCV3mg1zXhXfWHcL2iq3z-Aw,@laurie_blisse,Laurie Blisse Ch.,9790,Independent,ACCEPT,0.35,C,1,2026-08-31T12:55:51+00:00,,0,True
+UCULjjXc2IgdCBaEVD-Qgaqw,@adkhaow07,[ad] Khaow | ยุติบทบาท / ทอดทิ้งงาน,20100,Independent,ACCEPT,0.8,B,1,2023-01-30T11:45:54+00:00,,0,True
+UCTb15SroUenoP9Ckboz6s3g,@wahri_wahri,Wahri【WahrheitIVIX】,2530,Independent,ACCEPT,0.8,C,1,2026-09-03T16:19:37+00:00,,0,True
+UCUXyd8UJv3jOudmtabpsRfQ,@thinaborboletach,Thina Borboleta Ch.,6410,Independent,ACCEPT,0.8,C,1,2024-04-28T18:04:55+00:00,,0,True
+UCTJ1Zw4hW6L7iZ1i9aaIF7A,@esme_nightingale,Esme Nightingale,3130,Independent,ACCEPT,0.65,C,1,2026-08-22T04:00:33+00:00,,0,True
+UCTSWYTxXHbb_9sbz84xSR8Q,@limesaltz,LIMESALTZ Ch.,7240,Independent,ACCEPT,0.8,C,1,2026-08-29T15:17:46+00:00,,0,True
+UCUaWCz3UX9XNdA97qPHuAYg,@mamimumeich,MamiMumei,70200,Independent,ACCEPT,0.8,A,2,2026-09-02T15:18:12+00:00,,0,True
+UCTRQ7X-nxix3gjjXUb6ylvA,@ginnique_arp,Ginnique Ch.【ARP】,70500,Algorhythm Project,ACCEPT,0.0,A,1,2026-09-01T19:12:48+00:00,,0,True
+UCTuKqG6tWqVKKWMGO1Uhdsg,@zaabvibeent,ZAAB Ch. / QURSE,13000,Independent,ACCEPT,0.2,B,1,2026-08-19T03:23:49+00:00,,0,True
+UCU1t3KkZ6-ytH1stNylfv1Q,@rosann_myssiera,Rosánn Ch.,5630,Independent,ACCEPT,0.35,C,1,2026-08-31T04:15:33+00:00,,0,True
+UCUqKneO3jlE5_HS6leBiXOw,@porichan,Hope Popuri,2830,Independent,ACCEPT,0.8,C,1,2026-08-31T11:49:48+00:00,,0,True
+UCV7dVXp53A48-Iwqg5BezQA,@natchan4838,Dubbing for fun,7540,Independent,ACCEPT,0.45,C,1,2026-03-24T20:54:26+00:00,,0,True
+UCURSzDgzFhYWhKDySspPisA,@littlegwarin,LittleG ch. Euphora,17800,Euphora Project,ACCEPT,0.8,B,1,2026-08-30T13:47:43+00:00,,0,True
+UCU17NWo-I4dIYYbWBjU2cHg,@rlanz_tn,RLanz Ch.,2330,Independent,ACCEPT,0.55,C,1,2026-08-31T13:33:02+00:00,,0,True
+UCUajlJqlGrWNNdCUEwgvI0g,@violacae,Viola C. Ae,1440,Independent,ACCEPT,0.2,C,1,2022-04-28T10:28:23+00:00,,0,True
+UCUmR1YXqxbx1NXusY2ugj8A,@theardreamwhale,Thear DreamWhale° 10Hz,1760,Independent,ACCEPT,0.8,C,1,2026-08-30T19:41:26+00:00,,0,True
+UCUf34M2JBvh6JK-fNR34d6w,@ununthebat,UnUn the Bat Ch.,2540,Independent,ACCEPT,0.8,C,1,2026-04-05T18:40:02+00:00,,0,True
+UCUUiRsJXOGaGUMsgwX1h_5g,@mthicha,Thicha ch.,8170,Independent,ACCEPT,0.8,C,1,2026-08-28T13:53:31+00:00,,0,True
+UCTpRi8YKKMNfY_YviDeFNig,@uraincg,Urai [NecroMezza],12300,Independent,ACCEPT,0.8,B,1,2026-09-02T08:02:48+00:00,,0,True
+UCTPI0_Vjw_vnKlbHXN1H-Tw,@malaich.fixixtn,MALAI ch.【FIXIX TN】,6960,Independent,ACCEPT,0.8,C,1,2026-08-14T05:03:51+00:00,,0,True
+UCUTA8ZrTOZGUNezeAYWrajg,@serevtuber,QueenSere.Physia Ch,1650,Independent,ACCEPT,0.45,C,1,2025-10-10T00:07:39+00:00,,0,True
+UCTygto_BZDamXNv2YRqPNKg,@nor_noir, Nor_Noir [นน.],2610,Independent,ACCEPT,0.8,C,1,2025-09-09T12:07:05+00:00,,0,True
+UCTME5FbcsqcbWSZVIapkchA,@mesiareiach.7385,MesiaReia Ch.,1480,Independent,ACCEPT,0.35,C,1,,,0,False
+UCUH2P2QP0-0wbHJkOQbK5WQ,@seikovtuberx,Seiko Vtuber,1800,Independent,ACCEPT,0.8,C,1,2026-09-05T09:42:29+00:00,,0,True
+UCUz8QMqTQYtmKprSeGGKEkw,@kaylef,Kaylef Orion,2960,Independent,ACCEPT,1.0,C,1,2026-08-31T06:27:11+00:00,,0,True
+UCUlyl-zRpqE1Dm0GYoKFEJw,@varinchannel,เจ้าหญิงวารินทร์,15100,Independent,ACCEPT,0.8,B,2,2025-11-05T13:18:24+00:00,,0,True
+UCUec0cPy5IPOXNODqho9wNw,@taeoh,TAeOH,1760,Independent,ACCEPT,0.45,C,1,2026-08-22T16:50:25+00:00,,0,True
+UCU-O713Qgg5-OKKlt6nceiQ,@mixermaze,MixerMaze,1280,Independent,ACCEPT,0.8,C,1,2026-08-26T16:50:42+00:00,,0,True
+UCTxCJt6jtRKeLJys0AaSUew,@unclekanun_ssr,ลุงขนุน《 SSR 》,27900,Independent,ACCEPT,0.8,B,1,2026-08-31T11:47:53+00:00,,0,True
+UCU6UxFBQ19d2otSnCPeyykg,@mamunzaatv,MamunzaaTV,1750,Independent,ACCEPT,0.8,C,1,2026-08-30T13:53:31+00:00,,0,True
+UCUhJEHIfPOZorfvJmvgievA,@drewiskiy,Drewiskiy,307,Independent,ACCEPT,0.55,D,1,2026-08-29T22:34:48+00:00,,0,True
+UCa8ILv94qHT6oar_jVzg9sQ,@amiworldend,Beta AMI Ch. Lumina-World-End,30300,Lumina Live,ACCEPT,0.45,B,2,2026-09-03T12:30:28+00:00,,0,True
+UC_LTVw7bj_wFH4n8POeSNbw,@famine_arp,Faminé Ch.【ARP】,47400,Algorhythm Project,ACCEPT,0.8,B,1,2026-08-29T16:04:40+00:00,,0,True
+UCadBHNCSacgE3vePH8UtbMA,@chalongtheyam,Chalong Ch.,1680,Independent,ACCEPT,0.65,C,1,2026-08-01T18:21:53+00:00,,0,True
+UC_Wo8eYbNSxzzeIke7_ssSQ,@penelopepink,PENELOPE PINK,4450,Independent,ACCEPT,0.45,C,1,2026-09-02T17:56:16+00:00,,0,True
+UC_s_7eBay8mKkA8L7HBtzHQ,@anthia_vos,Anthia Ch.,2850,Independent,ACCEPT,0.45,C,1,2025-03-14T14:50:00+00:00,,0,True
+UCaO7dcbFuHSol9_4g1driVg,@yourdoghunter,Y' ม๋า Hunter,7900,Independent,ACCEPT,0.8,C,2,2026-08-27T03:44:34+00:00,,0,True
+UCa-n4r4lWEWFcAT95ptx44w,@kini_hayami,Kini キニ ch,1900,Independent,ACCEPT,0.55,C,1,2025-08-18T09:24:38+00:00,,0,True
+UCaNQI1xcU1ZC4W0guaIMgTg,@lnw_neuatong,ศาลเจ้ามังกรเนื้อทอง,209000,Independent,ACCEPT,0.8,S,2,2026-09-04T11:21:14+00:00,,0,True
+UCaGeOrKAIDWkmwp4MvPXVtg,@xanael-th,Xanael,229,Independent,ACCEPT,1.0,D,1,2026-08-24T18:03:12+00:00,,0,True
+UCbE22G3pUiL9j0mY0-XAl7w,@mixzy21pm,Mixzy Ch.【21PM】,584,Independent,ACCEPT,0.8,D,1,2026-08-29T18:31:34+00:00,,0,True
+UCaazykhRsTDHw7zxowhbpiw,@noakunrev,Noa / のあくん,943,Independent,ACCEPT,0.8,D,1,2026-06-23T11:06:55+00:00,,0,True
+UCaKlXG2ijXoovTEOlSBRTHA,@kobayashichouya,Chouya,863,Independent,ACCEPT,1.0,D,1,2026-08-30T03:29:37+00:00,,0,True
+UC_VUntI6UYF-qEB0k9VRWoQ,@masumikyou,Masumi Kyou Ch.,9830,Independent,ACCEPT,0.45,C,1,2026-09-03T16:53:57+00:00,,0,True
+UCa4xya8876A35_fQCrjO46g,@azenta_stp,Azenta Ch. [STP],834,STP,ACCEPT,0.8,D,1,2026-04-11T03:13:54+00:00,,0,True
+UC_f-4lGvlAXpBrN9vHertvA,@zqiurelife,Akiyama Zqiu Ch. | RPG 【GRADUATED】,1660,RPG,ACCEPT,0.55,C,1,,,0,False
+UCaK_8j3AfLucrbABPzoqG8w,@hwaruuuuuuu,Hwaru,3850,Independent,ACCEPT,0.35,C,1,2024-08-11T10:00:55+00:00,,0,True
+UC_yoxmr7vWS7wD_ashIMaWg,@akane1120vtuber,Akane1120 CH.,1470,Independent,ACCEPT,1.0,C,1,2024-12-31T16:01:00+00:00,,0,True
+UCbEkHjG43yPMGq5W08jq1TQ,@chaaymth,ChaAYM,56300,Independent,ACCEPT,0.5,A,2,2026-09-04T09:00:08+00:00,,0,True
+UCa-B3lVdQB9UOCAfVVoVcIA,@valakch.1435,Valak Ch.,6290,Independent,ACCEPT,0.45,C,1,2025-09-09T19:13:06+00:00,,0,True
+UC_XPgDT6i9evZc5uJF1tc8g,@enryuhorus,Enryu Horus Ch. 炎竜ホルス,3300,Independent,ACCEPT,0.35,C,1,2026-09-04T09:00:02+00:00,,0,True
+UCatSdbBdnsXgFpCyhJ7jYGg,@darinvmonster,Darin V,74900,Independent,ACCEPT,1.0,A,2,2026-08-15T15:45:13+00:00,,0,True
+UC_djfyZ7N_-hPSxtrSsBNfQ,@victorrrhn,Victor Hoshino【GRADUATED】,4310,Independent,ACCEPT,0.2,C,1,2025-09-20T16:59:00+00:00,,0,True
+UCaM7hDc5B6kte2T7P6_Fpnw,@tomo_corn,tomo_corn,241,Independent,ACCEPT,0.8,D,1,2026-09-02T12:00:37+00:00,,0,True
+UCa2Cm1mnIXZqcUkGBvOEAKw,@timetuba2002,Timetuba,625,Independent,ACCEPT,0.45,D,1,2026-09-04T14:40:23+00:00,,0,True
+UC_RrxXP6eSLxgYYmoV4QdmA,@keressazoulfia,Keressa Zoulfia Ch. Pixela-Mystic,20800,Pixela Project,ACCEPT,0.8,B,1,2025-02-03T14:39:16+00:00,,0,True
+UCa6vtZqjqy-qr4dOZty6xtQ,@theblackwolf3047,The Black Wolf (PoLin),236,Independent,ACCEPT,0.8,D,1,2026-08-29T10:41:48+00:00,,0,True
+UC_PZp8aADgJ9tiWMT44eUMg,@sirinvtg,Sirin 『VTG』,2280,Independent,ACCEPT,0.45,C,1,2026-08-13T10:40:46+00:00,,0,True
+UCbFDpdmVcTy1weHo1KDU9uQ,@lattemelo,Lattemelo,1420,Independent,ACCEPT,0.55,C,1,2026-06-14T16:56:20+00:00,,0,True
+UCantL0_E-ATsKZTmZmZ51tw,@millennia_arp,Millennia Ch.【ARP】,25900,Algorhythm Project,ACCEPT,0.8,B,1,2026-09-04T03:33:09+00:00,,0,True
+UCapmEuEA_aL81YaihYO27vQ,@tsukuch.2483,Tsuku CH.,52100,Independent,ACCEPT,0.55,A,1,2022-01-18T22:03:18+00:00,,0,True
+UC_Tz70m-NMqHHkblzKa9v6A,@wayusawan,วายุ สวรรค์,16100,Independent,ACCEPT,1.0,B,1,2026-08-29T10:45:32+00:00,,0,True
+UC_RvJQOjfm-vgtMRRXeq7mQ,@whitepgz,Whyte Ch.,14400,Independent,ACCEPT,0.65,B,1,2026-08-31T01:40:34+00:00,,0,True
+UCbD0eVN3O-T7iBszxoBYwdA,@aidach,Aida Ch.,4670,Independent,ACCEPT,0.8,C,1,2026-08-26T11:19:18+00:00,,0,True
+UCaq7JU0j74R0TsjlViB_-MA,@astianievestelarch,Astia Ch.,11600,Independent,ACCEPT,0.45,B,1,2026-09-04T09:04:40+00:00,,0,True
+UCafG1bj6Qtcbn4bozcicWfA,@zonaplg,ZONA Ch.,172000,Polygon Official,ACCEPT,0.8,S,2,2026-09-04T04:51:52+00:00,,0,True
+UCawpXTKN_jWyTXG97-DD1zQ,@uniff4,Bamboo Niffy,237,Independent,ACCEPT,0.8,D,1,2026-07-25T16:54:27+00:00,,0,True
+UCaCZ78DoDsPxejb_azg1hog,@itsmeyao,ITsMeYao,77600,Independent,ACCEPT,0.8,A,2,2026-05-23T05:00:33+00:00,,0,True
+UCb6cL1o1-78FjrUOR-AVqMw,@chloejparkvtuber,Chloe J. Park Ch. | VTUBER,702,Independent,ACCEPT,0.45,D,1,2026-09-03T02:58:32+00:00,,0,True
+UC_oH76DShLob3sbdod-RF6Q,@shuavibeent,SHUA Ch. / QURSE,6330,Independent,ACCEPT,0.2,C,1,2026-09-04T09:56:20+00:00,,0,True
+UCahw5ZcdjoFfS6WlfJButNg,@adrelis_alf,Adrelis Zinya「ALF」,2340,ALF,ACCEPT,0.45,C,1,2026-09-01T14:46:37+00:00,,0,True
+UC_qD5kQNDIWdfeAR5pH3bBA,@asheriabrumby,Asheria Ch.,1070,Independent,ACCEPT,0.2,C,1,2026-04-12T14:32:17+00:00,,0,True
+UCbE5PSt6dbI8_URxa7tl_TA,@carys_eylz,Carys Cordelia,1030,Independent,ACCEPT,0.45,C,1,2026-09-04T05:38:42+00:00,,0,True
+UC_QxfkQ4RrWkiQmGeyYa1tQ,@aelegossunofaemin,AelegosSunOfaeminch.,1090,Independent,ACCEPT,0.45,C,1,2026-09-03T07:54:20+00:00,,0,True
+UCaMhj4Q6-bx1IZE3izVtk6A,@sanekoepr,Saneko ch. Euphora,6350,Euphora Project,ACCEPT,0.45,C,1,2025-12-07T17:02:26+00:00,,0,True
+UCalvpWY2A2P4-h5UIs1jGgA,@yoinmori,yoinmori,89900,Independent,ACCEPT,0.8,A,1,2026-09-04T10:52:29+00:00,,0,True
+UC_hrRvjp0dzI0W6goBxRMPA,@xinpia,XINPIA ⌜VZ⌟,2560,Virtual Zeven (VZ),ACCEPT,1.0,C,1,2026-08-14T03:53:25+00:00,,0,True
+UCacSkKAhjz4pDmyee5IiL5A,@harumoonch,Harumoon Ch.,16700,Independent,ACCEPT,0.35,B,1,2026-08-31T17:11:03+00:00,,0,True
+UCriNq8O70ubJVbUtJ9yoGNw,@irissxofficer,IRISS Ch.,6010,Independent,ACCEPT,0.8,C,1,2026-05-31T09:46:35+00:00,,0,True
+UCtAwmDprhStjmfRwyF3znsQ,@warenech.2253,Warene Ch. [ヴァリーネー],2810,Independent,ACCEPT,0.65,C,1,2022-06-23T18:23:37+00:00,,0,True
+UCsZSZCsOh_00oTBLdk2w-GA,@hagurumavtuber,Haguruma,1230,Independent,ACCEPT,0.35,C,1,2026-08-31T11:24:00+00:00,,0,True
+UCrOhfmfkwCUS5ibUehZpJtA,@junevy888,JUNEVY Ch.,1570,Independent,ACCEPT,0.8,C,1,2024-06-04T17:06:08+00:00,,0,True
+UCsBCAX4sd9ro4MhqVTyfOwg,@am-lilden,Am,3700,Independent,ACCEPT,0.45,C,1,2026-07-15T06:12:58+00:00,,0,True
+UCtD7KwwGOSgFu4FEd46msMg,@mylah_ch,Mylah Ch.,3030,Independent,ACCEPT,0.2,C,1,2026-08-25T21:19:09+00:00,,0,True
+UCsPn9TRLJIGDWPnfa32EX7Q,@esteestella,Este Ch.,1380,Independent,ACCEPT,0.8,C,1,2026-09-05T05:57:30+00:00,,0,True
+UCtGhO6z6GxqtBZ4gP-3rUpA,@takumarei,TakumaRei「บ่นไปเรื่อย」,86300,Independent,ACCEPT,0.8,A,1,2026-09-05T13:02:22+00:00,,0,True
+UCt6FZvZeGX7_0dFT5bibXig,@banpratou,Banpratou,3610,Independent,ACCEPT,0.8,C,1,2025-10-24T14:50:42+00:00,,0,True
+UCrKgRzwdpFIyoYBvyuacmPg,@nogibynagi,Nogi Sensei,44400,Independent,ACCEPT,0.8,B,1,2025-11-26T12:02:48+00:00,,0,True
+UCrUmEIK7jOgqVw5BPEDfQdQ,@kirarinene,キラリKirari NeNe,25400,Independent,ACCEPT,0.8,B,1,2023-09-19T09:02:19+00:00,,0,True
+UCsO3bLRlRtET6FMH0KIWvYQ,@scsugarcute,SCSugarZ.,2680,Independent,ACCEPT,0.45,C,1,2022-02-27T03:00:15+00:00,,0,True
+UCrQORO4YG9kd7FXl9nB-_Bw,@meiaimuguri,Meiai ch.,1900,Independent,ACCEPT,0.55,C,1,2025-09-15T14:35:57+00:00,,0,True
+UCsvM-x2McjES-pJMGfq8PuA,@rafiniach.,Rafinia Ch.,13100,Independent,ACCEPT,0.8,B,1,2026-09-05T05:57:26+00:00,,0,True
+UCsopSzBjIt3naRqabJrXpRA,@praeam_slx,PRAEAM_SLX,101,Independent,ACCEPT,0.45,D,1,2026-08-17T02:00:35+00:00,,0,True
+UCrkmFl9WbotWvZMH8wQM2mw,@kisanemikoch,Kisane Miko Ch,10500,Independent,ACCEPT,0.8,B,1,2026-06-19T08:00:05+00:00,,0,True
+UCrv90qmK4-Yxj_QyNMqBVQA,@faethon_jantra,Faethon Uni. Jantra,1810,Independent,ACCEPT,0.35,C,1,2026-09-02T09:51:44+00:00,,0,True
+UCsQphFL62QU4XfvjN4B0kAQ,@rularalan,RuLaRaLan,447,Independent,ACCEPT,0.8,D,1,2026-09-02T19:01:19+00:00,,0,True
+UCroF8LjEdRGOerNXLR0ddLA,@sariachannal,Saria Ch.,1740,Independent,ACCEPT,0.55,C,2,2022-05-12T22:40:06+00:00,,0,True
+UCt483dpJFmpjRjADkNCWj1A,@bluweyvgamer,Bluwey Ch,3590,Independent,ACCEPT,0.8,C,1,2026-09-03T23:44:20+00:00,,0,True
+UCsg4TnP4vfR82IvQ5FKC9Cg,@yasouazrael_as,Yasou Azrael Ch. / AStars,1980,AStars Production,ACCEPT,1.0,C,2,2026-09-02T11:00:06+00:00,,0,True
+UCt-_7LOFGUhAQGzePZtbYZg,@renkon12,Renkon Ch.,41800,Independent,ACCEPT,0.45,B,1,2026-08-12T14:30:28+00:00,,0,True
+UCt8NgIONfmrNcyJt26ntJQg,@yoru-no-zora,Yozora /星屑 夜空 Ch.,1500,Independent,ACCEPT,0.8,C,1,2026-09-03T12:22:23+00:00,,0,True
+UCt2nUyG9wE579wkiik-bfHQ,@amychan_vtp,Amy Chan ◤VTP◢,628,Independent,ACCEPT,0.35,D,1,2026-08-23T09:48:23+00:00,,0,True
+UCrYkQnbL_OiYyGuiZyvcO7g,@heysolly,Hey Solly,230000,Independent,ACCEPT,1.0,S,2,2024-08-27T11:00:07+00:00,,0,True
+UCt3VBRNF3sR05y763RZx2xw,@aelachec19projekt,AELA CH. [EC19 Projekt],13600,Independent,ACCEPT,0.8,B,2,2026-09-04T17:01:34+00:00,,0,True
+UCsQqb5obLoEfcDoiaZFM7LA,@aimoumoujob,moujob,44800,Independent,ACCEPT,0.45,B,1,2026-07-20T20:38:10+00:00,,0,True
+UCtI52RQ3VagjRMERxov_OxA,@nyamaru_yui,Nyamaru Yui,6080,Independent,ACCEPT,0.55,C,1,2026-08-26T02:12:50+00:00,,0,True
+UCsqbAJWvp5DMgg69Clc81pA,@devtodemon,Devto Demon,2270,Independent,ACCEPT,0.45,C,1,2026-09-05T03:50:20+00:00,,0,True
+UCrrhPvH5ZB7UBcjCajs9OmQ,@valery3nake,Valery Ch.【Ti19t】,2040,Ti19t,ACCEPT,0.35,C,1,2026-08-28T03:45:44+00:00,,0,True
+UCrvgFjRmdALKWipRU1MQBsQ,@stormbullet,StormBullet,779,Independent,ACCEPT,0.8,D,1,2026-08-16T20:59:35+00:00,,0,True
+UCrKHJptt9n65z_2UFZc-aMg,@kombuchach,Kombucha Ch.,1060,Independent,ACCEPT,0.35,C,1,,,0,False
+UCrVrg-DbNYlz-1TMgthXWRA,@zebiousfrounce,Frounce Zebious,1540,Independent,ACCEPT,0.55,C,1,2026-08-23T00:00:30+00:00,,0,True
+UCt5N-YObN60x8TQTMh6mvbw,@chiiakijf,Chiiaki Jellyfishkun,14500,Independent,ACCEPT,1.0,B,1,2026-09-05T06:46:01+00:00,,0,True
+UCsrQN_xHHIOLkPfQ-uP1zag,@kuro_vtg,Kuro『VTG』,1000,Independent,ACCEPT,0.2,C,1,2026-07-18T04:26:08+00:00,,0,True
+UCsyvaOTDKdgG_iglzRnWzOQ,@mr.jameson9965,Mr. Jameson,1750,Independent,ACCEPT,0.55,C,1,2024-05-23T15:29:42+00:00,,0,True
+UCrsyP6H1Ftqt503xKE7_CUg,@akemiarlin,Akemi Arlin Ch. Pixela Legends,51000,Pixela Project,ACCEPT,0.8,A,2,2026-09-05T01:21:11+00:00,,0,True
+UCt27auVkfJgmTnKJI6UAZwg,@malislr,Mali_SLR,613,Independent,ACCEPT,0.45,D,1,2026-09-02T04:05:02+00:00,,0,True
+UCt1L2vxqFD0xZeYHeHPZQoQ,@cooga,CooGa,169000,Independent,ACCEPT,1.0,S,1,2026-09-05T07:43:09+00:00,,0,True
+UCrkWEJaRE2eCpEpGZbpNhIQ,@ryuseistarlightch,Ryusei Starlight Ch.,2250,Independent,ACCEPT,0.65,C,1,2026-08-30T06:49:29+00:00,,0,True
+UCrpZITOa4ElrYQ7bjSXn75w,@kealanhmm,Kealan Hmm [ECR],1630,Independent,ACCEPT,1.0,C,1,2026-09-03T15:24:13+00:00,,0,True
+UCrZZ55RSNNZvURxjffvIDng,@dieingamez,DieInGamez,5340,Independent,ACCEPT,0.8,C,1,2025-12-01T01:52:05+00:00,,0,True
+UCsMUB8xL0-TcsBxpfb7LA8w,@nepkonova,NepkoNova Ch.,5240,Independent,ACCEPT,0.8,C,1,2022-11-25T12:59:04+00:00,,0,True
+UCs3O6VR89_-NPCUSj29jY3Q,@ging3rbelle,gingerbelle,1750,Independent,ACCEPT,0.8,C,1,2025-12-15T18:42:02+00:00,,0,True
+UCsrs6PQ6BxBGZbDuuD8i6iA,@merrykomori,MerryKomori Lu.,14000,Independent,ACCEPT,0.8,B,1,2026-09-05T06:52:34+00:00,,0,True
+UCsI6assrGUpDX_TmSK4zehg,@layniazia,Layniazia Ch.,3750,Independent,ACCEPT,0.8,C,1,2026-09-05T06:49:25+00:00,,0,True
+UCO-cQ0fuaInGZHIxSn9iO3g,@peacech16,Peace Ch.,2540,Independent,ACCEPT,0.45,C,1,2026-09-03T14:15:22+00:00,,0,True
+UCMvIUZRjMYx-_U7_RRlQYqw,@zerindesu,Zerin Ch. - ゼリン -,5310,Independent,ACCEPT,0.8,C,1,2022-02-18T11:00:12+00:00,,0,True
+UCN3A90FXb4u4ZirE2LmB_9Q,@headlnwza,HEADCHEF,5180,Independent,ACCEPT,0.8,C,1,2026-04-30T03:50:13+00:00,,0,True
+UCN6506blTCjlsfwnRBMRB0Q,@norigoch,Norigo Ch.,4050,Independent,ACCEPT,1.0,C,1,2026-06-10T02:33:34+00:00,,0,True
+UCNbXahoA48lOdkSS9fAWmcQ,@gamerkaon,เกมส์เมอร์ขาอ่อน 【18 B 】,1160,Independent,ACCEPT,0.8,C,1,2026-09-02T20:51:38+00:00,,0,True
+UCNLRchQpCrJaUvYo731Y_vg,@callidorajanaiyo,Callidora Ch.【VJN】,1120,Independent,ACCEPT,0.45,C,1,2026-08-20T16:26:19+00:00,,0,True
+UCOWt5oD4DqoGowGNz0F6Gkw,@yumiiko,Yumiiko CH.,2340,Independent,ACCEPT,0.8,C,1,2026-09-03T06:27:12+00:00,,0,True
+UCN0m7R88NRnqBdjIPcloOnw,@natsumenex,Natsume [NEX],2630,Independent,ACCEPT,0.45,C,1,2026-06-17T05:34:50+00:00,,0,True
+UCMhUWTKBjrRSacizvjq3HLg,@l4zygone,L4zyGone,201000,Independent,ACCEPT,1.0,S,1,2026-08-22T22:13:50+00:00,,0,True
+UCMZkIRSYq4NX-rBGs7n-3-g,@yenahwangch,Yena Hwang ch. 황예나,1100,Independent,ACCEPT,0.8,C,1,2024-09-07T01:36:09+00:00,,0,True
+UCMh4voylnr9h_UVZWJI5Vew,@candycatdych,CandyCatdy CH.,23000,Independent,ACCEPT,0.8,B,1,2026-09-02T04:42:21+00:00,,0,True
+UCN2h2ov92AeTDv60a1mUr0g,@puffyvtuber,Puffy Fluffy Ch.,1120,Independent,ACCEPT,0.45,C,1,2026-08-28T04:29:48+00:00,,0,True
+UCOVpD7MesZKe44ZvLVuwXvA,@asteroth_arp,Asteroth Ch.【ARP】,49800,Algorhythm Project,ACCEPT,0.65,B,2,2025-09-12T02:11:32+00:00,,0,True
+UCNMSbSb456HB-QHasfl7dtg,@mewrcclub,MEWRCCLUB Ch.,441,Independent,ACCEPT,0.8,D,1,2026-09-02T17:07:15+00:00,,0,True
+UCN2uHnFKm8CTbjFQ9H7Uotg,@nonghongv,Nonghong,8310,Independent,ACCEPT,0.35,C,1,2026-08-31T19:22:04+00:00,,0,True
+UCNRhbYsDR35KlFvAeP_WmrA,@natchalatteofficial,NatchaLatte Official,5100,Independent,ACCEPT,1.0,C,1,2025-01-12T02:09:29+00:00,,0,True
+UCOHKuZWqnh7JOMMGn7tVlLw,@takamelonpan,Taka Melonpan,4050,Independent,ACCEPT,0.55,C,1,2026-09-02T11:30:39+00:00,,0,True
+UCNy9BIHfr9iuvGdeQ0jm1gA,@maddoxtheorder,MaddoxTheOrder,1780,Independent,ACCEPT,0.45,C,1,2026-09-03T08:30:07+00:00,,0,True
+UCO8YcEfbe_-_WlX9QTU6b0Q,@shuachannel,Shua Channel,1830,Independent,ACCEPT,0.8,C,1,2021-12-04T12:20:50+00:00,,0,True
+UCOMnre_EA7EoOVQEkBwWKRA,@mabelle.a,Mabelle.a,52900,Independent,ACCEPT,0.8,A,1,2026-09-03T10:02:11+00:00,,0,True
+UCN5KfrZRFVu6QbnPC3bl9qA,@mamushiene,Mamushi Ene Ch.,7510,Independent,ACCEPT,0.8,C,1,2026-05-17T17:09:39+00:00,,0,True
+UCMvc8BlQ7r5gRbz-D2EY0LA,@hori07,HØRI 07 ⌜VZ⌟,366000,Virtual Zeven (VZ),ACCEPT,1.0,S,2,2026-09-03T11:11:46+00:00,,0,True
+UCN9xSRO9lXdzO3mM3BCEt9w,@nnyatsume,Nyann Nyatsume,1670,Independent,ACCEPT,0.45,C,1,2026-09-02T16:07:00+00:00,,0,True
+UCNLd5kFDUcQyiiiV8f56Tlw,@hecatevtuber,Hecate Ch.,1110,Independent,ACCEPT,0.8,C,1,2026-09-03T10:26:37+00:00,,0,True
+UCMVdzsLwVWc241rrjK78aXA,@pak-light,Pak LIGHT,37300,Independent,ACCEPT,0.35,B,1,2026-02-08T09:53:29+00:00,,0,True
+UCMoP04hETQT8gYkfCI675EQ,@munia_momumupmip,Memories of Munia ,1190,Independent,ACCEPT,0.35,C,1,2026-03-25T15:24:08+00:00,,0,True
+UCNxjqm_u1zOpgisojN5WoSw,@zaczoatwinaliens,zaczoa Twin Aliens,2190,Independent,ACCEPT,0.45,C,1,2026-07-11T19:36:48+00:00,,0,True
+UCO6R8Pc5g2R7ObJQPBGppdg,@baku_arp,Baku Ch.【ARP】,60800,Algorhythm Project,ACCEPT,0.8,A,1,2026-08-09T18:39:37+00:00,,0,True
+UCNEjPeYZ1R9xQEjHFU__Nhw,@012cq,012CQ Ch. Ruka Inochizuna,3430,Independent,ACCEPT,0.8,C,2,2026-07-23T12:41:36+00:00,,0,True
+UCMrMIuX-WYd9Tpr8E1-ryKQ,@nerugemini,Neru - Gemini,1040,Independent,ACCEPT,1.0,C,1,2021-12-02T18:04:28+00:00,,0,True
+UCN3ujjUVCDcAjX-wfkU00SQ,@wormtomato,TomatoChan🍅,2790,Independent,ACCEPT,0.8,C,1,2026-08-18T03:03:06+00:00,,0,True
+UCO87oFEFK06LeevWL4WYEEA,@peeingch,Peeing Ch.,8730,Independent,ACCEPT,0.8,C,1,2026-08-23T04:54:01+00:00,,0,True
+UCOH1TjDVrc5Mds_Xv3J8RFg,@akarikanon,Akari Kanon,4480,Independent,ACCEPT,0.8,C,1,2026-08-20T09:01:48+00:00,,0,True
+UCMUtWzsjAQJgp6UlkbVSo1w,@lagunajuju,Laguna JuJu Ch. Pixela Project,75800,Pixela Project,ACCEPT,0.8,A,2,2023-11-29T16:11:45+00:00,,0,True
+UCOQXDZCXXd-05ikdDsNaPEQ,@aimt1964,aimtraps,9470,Independent,ACCEPT,0.35,C,1,2026-01-02T10:28:49+00:00,,0,True
+UCMdzC45Herdf2KXfEyhAjLg,@maewdamtmira,MaewDam T. Mira,913,Independent,ACCEPT,0.8,D,1,2026-09-03T13:26:29+00:00,,0,True
+UCO16Msf-IqFupuEiRYbmC7A,@kitsukaminijich-eastereggth,Niji Ch.,1410,Independent,ACCEPT,0.5,C,2,2021-04-20T13:32:28+00:00,,0,True
+UCNGyEYW2pFjhR_YqSuC4zjg,@sayuchannel14,SAYU Ch. 小百合さゆ  ,194000,Independent,ACCEPT,0.8,S,1,2026-08-26T06:38:11+00:00,,0,True
+UCNvLBLJ0HtlmeEKsGC5F4PQ,@okamibwt,OKAMI bwt,3350,Independent,ACCEPT,0.8,C,1,2025-02-16T03:00:38+00:00,,0,True
+UCNDYUXSVC7ffBAGEktilzUQ,@hanamilaych,Hanami Lay CH.,69200,Independent,ACCEPT,0.8,A,1,2026-09-02T22:07:14+00:00,,0,True
+UCMs5aPn2oecJGX0siIC3q0Q,@ayrisbelle,Ayris Belle Melleri Ch.,3840,Independent,ACCEPT,0.55,C,1,2026-09-01T04:12:49+00:00,,0,True
+UCOJiQA9afDpohgpxgKIKljA,@rinrexger,RinREXGer,1760,Independent,ACCEPT,1.0,C,1,2026-09-03T06:17:35+00:00,,0,True
+UCNmZMq-4asLHHd0WvdO2iRQ,@pheonyxthea,Pheonyx Thea Ch.,2290,Independent,ACCEPT,0.55,C,1,2026-08-27T15:41:21+00:00,,0,True
+UCNW0brB5G5GcBDXuJ1iDglw,@megzisln,Megzis Ch.,3480,Independent,ACCEPT,0.8,C,1,2026-07-14T12:00:06+00:00,,0,True
+UCNTEr2_96vJnXNazr5MwNLA,@schneider_arp,Schneider Ch.【ARP】,242000,Algorhythm Project,ACCEPT,0.35,S,1,2026-09-03T12:53:45+00:00,,0,True
+UCOGGZpm2i6PXFI9yBvEueRA,@ihatedoyle,ดอยล์,42300,Independent,ACCEPT,1.0,B,1,2026-08-09T06:08:14+00:00,,0,True
+UCNak-g6_mKH-UkDLnrvjyzw,@matsuriivt,MATSURII Ch.,784,Independent,ACCEPT,0.8,D,1,2026-08-23T11:54:39+00:00,,0,True
+UC8GsIgxeIHQMaTQgkEUXhMw,@arikatech,Ari Kate Ch.,3050,Independent,ACCEPT,0.8,C,1,2024-05-02T03:51:12+00:00,,0,True
+UC6V9R4VQTjewZj-xfnqrO_g,@xeranch,Xeran Ch,2860,Independent,ACCEPT,0.3,C,1,2026-08-31T12:55:42+00:00,,0,True
+UC8F193K1kmD8_MB2F3wLVXQ,@foodiefoch,FoodieFo ch ⌜VZ⌟,3730,Virtual Zeven (VZ),ACCEPT,0.8,C,1,2026-09-02T02:33:43+00:00,,0,True
+UC7_cZ5j3JJRERezE3YHnm5w,@avisalpz,Avisa Lopez Ch. [Autumnia],2260,Autumnia,ACCEPT,0.8,C,1,2025-08-01T17:33:22+00:00,,0,True
+UC6Zrmc0VG4gqQJ4jS58iKGw,@ezrach,Ezra Ch.,1820,Independent,ACCEPT,0.8,C,1,2022-02-16T18:00:58+00:00,,0,True
+UC7txsIaSjDTuvN7h9BzVAsw,@kiranregaliaast,Kiran Regalia『AST』 ,1870,Independent,ACCEPT,0.2,C,1,2026-09-04T02:45:49+00:00,,0,True
+UC8DTBPbQq0NZNo2RtCtTXuw,@floravtuberproject,Flora Vtuber Project,19100,Flora Project,ACCEPT,0.8,B,1,2025-01-06T12:00:06+00:00,,0,True
+UC7ks6YhbNxNIJzJUKRH0OQA,@in0suke,In0suke,8430,Independent,ACCEPT,0.35,C,1,2021-11-21T09:49:46+00:00,,0,True
+UC65MNFVWnrkOpg04LBHVvzw,@bishamonkuroneko_as,Bishamon Kuroneko Ch. / AStars Chrono prince,24600,AStars Production,ACCEPT,0.55,B,2,2026-09-02T10:00:02+00:00,,0,True
+UC6iflr_8DNUZl0hY0FUXWbQ,@xiaolivtofuth,XIAOLI《小莉》,1060,Independent,ACCEPT,0.6,C,1,2026-08-31T03:16:32+00:00,,0,True
+UC6Ea68DSHlXrcy9uIw4oUIg,@lanlongyingch.,Lanlongying Ch.,11400,Independent,ACCEPT,1.0,B,1,2026-09-02T12:08:19+00:00,,0,True
+UC7iCSRt7Jej2XE0MaM9gPgg,@yuchanvz,YuChan Channel ⌜VZ⌟,106000,Virtual Zeven (VZ),ACCEPT,0.55,S,1,2020-09-28T16:24:25+00:00,,0,True
+UC6Dl6t5ceRRpRx5VwkQWPTw,@lamppyz,Lamppy,9810,Independent,ACCEPT,0.45,C,1,2026-09-01T17:13:32+00:00,,0,True
+UC7rJN7zzIdUfNogj1RnTXDw,@saysheath,SaySheath,5130,Independent,ACCEPT,0.95,C,1,2026-08-15T15:08:57+00:00,,0,True
+UC7QHNjS_btGI8AhRkju_NxQ,@anotherbeariss,Another Beariss,9400,Independent,ACCEPT,0.2,C,1,2023-10-13T15:06:20+00:00,,0,True
+UC8Wd2kN3xc_c8ppnBON_luw,@pekorin_ssr,Pekorin SSR,21300,Independent,ACCEPT,0.8,B,1,2026-09-05T13:32:44+00:00,,0,True
+UC7TOQpHWGhZ_mJ_KkdUazFg,@nayutavw,Nayuta『VW』,4990,Independent,ACCEPT,0.8,C,1,2026-08-30T15:25:16+00:00,,0,True
+UC6KkQjryShrw6MRBPX6XMmw,@rahhatempsm,Rahhatem Ch.【PSM】,1070,Independent,ACCEPT,0.45,C,1,2026-08-20T16:27:28+00:00,,0,True
+UC68XQCQ4MOys5hfxi3jW34g,@nor1k,Norik Garcia Ch.,1020,Independent,ACCEPT,0.55,C,1,2026-07-17T19:34:07+00:00,,0,True
+UC7BTojsUPC4JhxDYRgmuz2Q,@jiruepr,Jiru ch. Euphora,47000,Euphora Project,ACCEPT,0.8,B,1,2026-01-31T22:33:26+00:00,,0,True
+UC8Qt3A_iRI_ShDDCtfHpZaA,@adamamise,Adama MiSE Ch.,14500,Independent,ACCEPT,0.45,B,1,2025-10-23T16:55:26+00:00,,0,True
+UC5zC3ZIFihxnJBNaJU9cZcQ,@elphylia_el,Elphylia CH.,2750,Independent,ACCEPT,1.0,C,1,2026-09-02T15:22:24+00:00,,0,True
+UC7uttDpQDJ3bdnU8u8gZzbQ,@junichichannel,Junichi Channel,12300,Independent,ACCEPT,0.8,B,2,2023-09-02T02:46:49+00:00,,0,True
+UC6KTB79XRwx_iwxnrIEvHQA,@seijisan,Seiji San,2440,Independent,ACCEPT,0.8,C,1,2021-03-02T16:00:16+00:00,,0,True
+UC7ZDXfdtafyoSwxXysGJU3A,@lumiel_dpx,Lumiel Ch. 【DPX】,397,DPX,ACCEPT,0.2,D,1,2026-08-07T06:41:10+00:00,,0,True
+UC6uFH49ET-CCA_a4rMdfBdA,@merryl_wayne,Merryl Wayne,279,Independent,ACCEPT,0.45,D,1,2026-08-25T20:07:29+00:00,,0,True
+UC8-JXAccuh7DvI_A_lObw-w,@uniinuepr,Uniinu ch. Euphora,87200,Euphora Project,ACCEPT,0.45,A,1,2026-09-06T04:01:00+00:00,,0,True
+UC64_YFnoPvaGUSv4fpozr1w,@monarica,MONARICA ,51000,Independent,ACCEPT,0.8,A,1,2026-08-31T10:10:12+00:00,,0,True
+UC6Q4UI5mEjeZOIRoTtRoFJA,@midnight_arp,Midnight Ch.【ARP】,26800,Algorhythm Project,ACCEPT,0.8,B,2,2026-08-29T18:35:14+00:00,,0,True
+UC6mMhtBN142AdbakQVDricQ,@ellevtuber,Elena Elle | AcastledProject,2330,Independent,ACCEPT,0.8,C,1,2026-04-04T21:13:49+00:00,,0,True
+UC6zUAJO-4874qj9agP7idbg,@hugovprolive,Hugo Ch. Vprolive,1350,Independent,ACCEPT,0.2,C,1,2024-06-30T12:44:33+00:00,,0,True
+UC8A9JEM4P4ywcQvqo2ZDX-A,@rin_rinz,RIN_RINZ Ch.,3450,Independent,ACCEPT,0.55,C,1,2026-04-23T14:26:11+00:00,,0,True
+UC61qTNWVk4mkDXe01xgudpA,@murkilycalhoun,MurkilyCH.,4360,Independent,ACCEPT,0.35,C,1,2026-03-17T21:35:51+00:00,,0,True
+UC6o7pFz9U9kcE9d8op_eUQQ,@delphyron,Delphyron,1500,Independent,ACCEPT,0.8,C,1,2026-08-31T16:59:57+00:00,,0,True
+UC60htQi5nenKGnv6lEdGF_g,@stx03r,Kamienø Stąr Ch.【PSM】,1640,Independent,ACCEPT,0.8,C,1,2024-06-23T18:02:37+00:00,,0,True
+UC72_UWR1CAQhC-Kg48e5mjA,@calista_arp,Calista Ch.【ARP】,19200,Algorhythm Project,ACCEPT,0.85,B,1,2026-07-03T14:46:28+00:00,,0,True
+UC6TOqqD-TLbPlnV5i3DiIrw,@nemi012,NEMI,2560,Independent,ACCEPT,0.8,C,1,2026-03-25T20:26:32+00:00,,0,True
+UC7BIFEORuYKNyE9d_Y2-sVw,@rielkurasaki,RieLKurasaki  ,4540,Independent,ACCEPT,0.65,C,1,2026-08-30T19:20:52+00:00,,0,True
+UC7kqvU3tDlBUJlkpcB7252A,@shiroyobi,Yobi Shiro Ch.,1260,Independent,ACCEPT,0.35,C,1,2026-01-26T04:54:06+00:00,,0,True
+UC89-GlmTgO8a9QyE0QL0q1w,@rikophokaia4134,Riko Phokaia,1480,Independent,ACCEPT,0.55,C,1,2024-11-01T08:38:50+00:00,,0,True
+UC6JIG9kjnF3ml6gLudTyzuA,@tatsugamizuiich-eastereggth,Zuii Ch.,1240,Independent,ACCEPT,0.5,C,2,2021-02-25T22:59:29+00:00,,0,True
+UC7mdtnzH9kw4sBoZvmfcI9Q,@suwapis,SUWAPIS,2090,Independent,ACCEPT,0.8,C,1,2021-12-24T03:00:38+00:00,,0,True
+UC7-ZM8Wi1U6yerqHSEq5tlA,@pleiades_frontier,Pleiades Frontier【21PM】,519,Independent,ACCEPT,0.8,D,1,2026-08-30T12:33:41+00:00,,0,True
+UC7FpwTuRGribXTefl5SMkAg,@aidenshia,AidenShia Ch.,3060,Independent,ACCEPT,0.65,C,1,2026-08-19T16:17:58+00:00,,0,True
+UC66RiI-qzUfCiZzcmjU8T3A,@snowfern_,Snowfern_,1430,Independent,ACCEPT,0.35,C,1,2026-08-04T05:31:31+00:00,,0,True
+UC8JQQZeNeEmiFbgtYmuFTVQ,@masatomz,Masato Ch.😈 | VtuberTH,2380,Independent,ACCEPT,0.0,C,1,2026-09-06T03:55:23+00:00,,0,True
+UC6kddWCoJL4IneTbHRFnViQ,@shininbox,Shin Inbox,64000,Independent,ACCEPT,0.35,A,1,2025-11-06T08:00:50+00:00,,0,True
+UCzyUybcviqNk9YXKuMhCXqQ,@greenth,Green TH นายเขียว,1630,Independent,ACCEPT,1.0,C,1,2026-09-05T11:01:25+00:00,,0,True
+UCzqqEpXJN-HMmFp-_hHyHGA,@ramoibonko,Ramoi Bonko,2080,Independent,ACCEPT,0.8,C,1,2025-10-08T05:09:12+00:00,,0,True
+UCziNHXJm0dWUHoi6d0lfGXQ,@monmonthedoggoch,Monmon Thedoggo Ch.,1860,Independent,ACCEPT,0.8,C,1,2026-09-01T03:00:37+00:00,,0,True
+UCzYQq6dHfzsNqBOwK1nw07A,@cincinvtu,CinCin Vtu,1730,Independent,ACCEPT,1.0,C,1,2022-08-18T11:00:20+00:00,,0,True
+UCzH5tEYALkblyTy99n3-YEA,@tsukikosui,Tsukiko かざん,5370,Independent,ACCEPT,0.8,C,1,2026-09-02T11:15:27+00:00,,0,True
+UCzpxNuttbdXvtmZH4w5kRnA,@jammychanch,JamMyChan ch.,5030,Independent,ACCEPT,0.55,C,1,2026-08-10T09:42:10+00:00,,0,True
+UCzgxF7sRv7n4V8l7uU-tdYQ,@azurebluebell,Azure Bluebell,2070,Independent,ACCEPT,0.2,C,1,2024-07-22T10:44:37+00:00,,0,True
+UCzM-6yhdmR4UGS_g_zzSf5Q,@sleepfii_zzz,Sleepfii. 💤,5060,Independent,ACCEPT,0.35,C,1,2026-09-02T13:10:49+00:00,,0,True
+UCzHbS7cXhke4di7y2RV8wyw,@inoriaijouch,Inori Aijou Ch.,5500,Independent,ACCEPT,0.45,C,2,2025-01-05T06:11:46+00:00,,0,True
+UCzXQmOiroz8RwldLOFiuVAw,@zerimch,Shiroyasha Zerim Ch.,1150,Independent,ACCEPT,0.8,C,1,2026-09-02T11:00:18+00:00,,0,True
+UCzfzVFRd81VcN7mseTpusIg,@sirenavtuberth,Sirena Ch.,4560,Independent,ACCEPT,1.0,C,1,2026-09-02T06:35:49+00:00,,0,True
+UCzYPCWp1tiIXgQ_aj39Oddw,@akirazakich.2883,Akira Zaki Ch.,1940,Independent,ACCEPT,1.0,C,1,,,0,False
+UCzc8C1vlN6t3ZfAkQLemjIg,@kurisumasu_tv,Kurisumasu_ Ch.,862,Independent,ACCEPT,0.2,D,1,2026-08-25T12:59:25+00:00,,0,True
+UCzVku8IXYwuk04hCXUh6nng,@anyaplg,Anya Marshall Ch. 【POLYGON】,19500,Polygon Official,ACCEPT,0.8,B,1,2026-09-01T13:58:52+00:00,,0,True
+UCzOlFrxT8PsxRRA5E4MiMUQ,@210rich,210Ri_CH,10800,Independent,ACCEPT,0.45,B,2,2021-07-28T17:00:21+00:00,,0,True
+UCnH5yoBy1jRySZ4uLcdX5Tw,@nakirikuch,NakiRiku Ch.,4590,Independent,ACCEPT,0.8,C,1,2026-08-30T17:08:34+00:00,,0,True
+UCnNZtWXxIpMK02DYkPMq8vA,@zhenzhen_ssr,Zhenzhen Ch. 【SSR】,4230,Independent,ACCEPT,0.45,C,1,2026-09-01T06:53:58+00:00,,0,True
+UCn1m7XGKGyJ1B1Y_SRkISRA,@momomoth.vtuber,MOMOMOTH,2490,Independent,ACCEPT,0.55,C,1,2026-08-26T05:55:45+00:00,,0,True
+UCoz4Uka8Yrr2SM8Ml_shIhg,@imsogracechu,ImsoGracechu!,16900,Independent,ACCEPT,0.55,B,1,2026-08-26T06:20:18+00:00,,0,True
+UCmWdh_wjFaSdX7sZUWGNuDQ,@fallyn_vtg,Fallyn『VTG』,724,Independent,ACCEPT,0.8,D,1,2026-08-04T20:55:09+00:00,,0,True
+UCnfKwU2JKvFnZzjQGmzM2Kw,@khaitunch.2617,KhaiTun Ch.,7020,Independent,ACCEPT,0.35,C,1,,,0,False
+UCn7M5AjjaC3Ajftlx9GMVLg,@faust_sinbiosis,FAUST The Corelector,1130,Independent,ACCEPT,0.65,C,1,2025-12-19T03:19:46+00:00,,0,True
+UCoWrleC-JaPnJLGU87F8OxQ,@riyavtuberth,RIYA【璃夜】,2110,Independent,ACCEPT,0.5,C,1,2026-09-01T11:40:05+00:00,,0,True
+UCot8DHNnZ2X0ARgaNYZopjw,@debirunworldend,Debirun Ch. Pixela-World-End,21600,Pixela Project,ACCEPT,0.8,B,1,2026-09-01T10:00:30+00:00,,0,True
+UCoBGfXR9OWCgLbsm01o55ZA,@1tsn4nami,N4NAMi,1210,Independent,ACCEPT,0.8,C,1,2026-08-28T08:47:32+00:00,,0,True
+UCmrnmSL4OHsw_i0a5d2RUpg,@atsukomeron_srv,Atsuko Meron【SRV】,2420,Independent,ACCEPT,0.8,C,1,2026-08-30T17:39:33+00:00,,0,True
+UCneBNeVOlRm-gHbSrqC9DYg,@timers_th,Timers TH,339,Independent,ACCEPT,0.35,D,1,2026-08-16T01:07:01+00:00,,0,True
+UCmo490psosEoBDv_hNHmmng,@lynze_vvn,Lynze,917,Independent,ACCEPT,0.35,D,1,2026-04-04T06:51:51+00:00,,0,True
+UCmi6wrDDb_2qXsMK4nyLgjA,@collierinitta,Collie rinitta,31,Independent,ACCEPT,0.2,D,1,2026-07-09T05:50:08+00:00,,0,True
+UCoWVH0zHK4XpY8oqEWZ1Thw,@salviavtuber,Salvia Ch.,4700,Independent,ACCEPT,0.65,C,1,2026-08-31T02:45:43+00:00,,0,True
+UCmmq-jL8gjo_J-KHYIXcLMQ,@123dp.ch.,【123DP】 Ting Ting ch.,1170,Independent,ACCEPT,0.8,C,1,2024-11-29T03:24:14+00:00,,0,True
+UCmn9plmPAP1BsFyLe-Ji13g,@micaelamichelleofficial,Micaela Michelle Ch.,3660,Independent,ACCEPT,0.35,C,1,2026-09-01T04:05:44+00:00,,0,True
+UCoTx4fCYIuOBrdK_rWGjqbA,@lanaaa89,Lana 89 ll Loveland Project,1880,Loveland Project,ACCEPT,0.45,C,1,2023-01-24T10:12:39+00:00,,0,True
+UCopYEIEfBeNiGMuDACD61xA,@aylinnd22,Ay1inND,3980,Independent,ACCEPT,0.8,C,1,2026-08-20T22:57:45+00:00,,0,True
+UCnvBsJQ0TztZ4Mq7qDaL_FA,@xaniel_vt,Xaniel Ch. Flora Project,34800,Flora Project,ACCEPT,0.8,B,1,,,0,False
+UCongbtOF4PDmJ-HOXx0jSIQ,@myxnyxx,MyxNyx I VtuberTH,6570,Independent,ACCEPT,0.8,C,1,2026-08-30T16:35:29+00:00,,0,True
+UCni4SBfvmKlD7bu_ZWDmKiQ,@coolrinch,CoolRin CH,126000,Independent,ACCEPT,0.55,S,1,2024-02-13T15:12:33+00:00,,0,True
+UCoR4fWv6I7yN9uVgSO1hc1w,@kzyureich8670,KZYU ReI『LIP』,2190,Independent,ACCEPT,0.45,C,1,2026-05-28T23:33:16+00:00,,0,True
+UCmuDlfckZosXYzs1B6Fyuyg,@alteriastareater,Alteria Channel,3640,Independent,ACCEPT,0.45,C,1,2026-08-30T03:00:31+00:00,,0,True
+UCoyNRGf27kjzfmJiuXNLwrQ,@dayeon,Dayeon,15700,Independent,ACCEPT,0.35,B,1,2026-09-01T07:22:35+00:00,,0,True
+UCompe4fS2oUss8CGTuhOSxA,@gibpurich,Gibpuri Ch,1900000,Independent,ACCEPT,1.0,S,1,2026-08-29T15:46:39+00:00,,0,True
+UCoVDjNrJWdIZ65qITyrseng,@monji_ultimate,MonJi,2160,Independent,ACCEPT,0.55,C,1,2026-08-25T08:32:49+00:00,,0,True
+UCnJIpwyhPbMxAw2qdaQ8a2g,@kashina_official,Kashina CH. ,960,Independent,ACCEPT,0.8,D,1,2024-01-22T04:32:36+00:00,,0,True
+UCnmykXkj5SVMQf75oyp7Lkg,@melodypj21,Melody Sparkle【PajamaJa】,3290,Independent,ACCEPT,0.35,C,1,2026-07-08T11:15:36+00:00,,0,True
+UCo6cNRSdO6tsZ4IW-aMmsZg,@yueqinvtuber,YueQin Vtuber 『Berlina•ECR』,11900,Independent,ACCEPT,0.8,B,1,2026-09-01T09:04:20+00:00,,0,True
+UCn7S0uvqI3_5NYli07qxZCA,@alyavestiny,Alya Vestiny,2710,Independent,ACCEPT,0.45,C,1,2024-04-04T16:12:09+00:00,,0,True
+UCmrINu03JIZLU04794Ril2w,@c1el_thecat,C1EL ,2470,Independent,ACCEPT,0.8,C,1,2026-08-29T02:48:19+00:00,,0,True
+UCmfo9Rqc55Hpb5x_Cu2FrFw,@scentharmony,Scentharmony,1520,Independent,ACCEPT,0.8,C,1,2026-08-31T03:13:15+00:00,,0,True
+UCmeYkTj7_pBYgWSJmM_eJPQ,@akimotoyuna,Akimoto Yuna Ch.,1280,Independent,ACCEPT,0.8,C,1,2026-08-28T03:39:08+00:00,,0,True
+UCmrTXPnIhAm-hosYsZ8rAHg,@yukitohoshitoki_as,Yukito Hoshitoki Ch. / AStars Chrono prince,23400,AStars Production,ACCEPT,0.55,B,2,2026-06-01T02:15:25+00:00,,0,True
+UCn1sslufP5oBkTGkIqL72ZQ,@lynna_vtuber,ลินน่าจะร้อง | Lynna Vsinger,1330,Independent,ACCEPT,0.45,C,1,2026-08-27T06:36:11+00:00,,0,True
+UCn9yL4ihVNU-IxPRmpXDivg,@acintunz,Acintunz,3220,Independent,ACCEPT,0.45,C,1,2026-07-21T14:34:04+00:00,,0,True
+UCnE5l4nDqoRA84HT5ZRXbig,@cylowless,Cylowless,1470,Independent,ACCEPT,0.45,C,1,2026-08-28T15:39:15+00:00,,0,True
+UCn3Svapu91rgZVUsBajKTuA,@khunchanii,khunCHANII,6030,Independent,ACCEPT,0.65,C,1,2026-08-26T11:00:10+00:00,,0,True
+UCp3WxJ4-xF8C9vJfvFs4ioQ,@silvervth153,Silver VTH,2010,Independent,ACCEPT,0.8,C,1,2026-08-23T16:29:53+00:00,,0,True
+UCoekpBaMC20hpELSXrqRTzg,@furydfrigid,Fury.D [FRG],11000,Independent,ACCEPT,0.8,B,1,2026-08-05T12:30:06+00:00,,0,True
+UCmnSx_jWSZKAlYUtutvY3dQ,@muendria_slr,Muendria_SLR,657,Independent,ACCEPT,0.45,D,1,2026-08-29T04:32:10+00:00,,0,True
+UCnPvPjGOanX6I3aqPNNJ-PA,@archbas_slt,Archbas Ch.,1050,Independent,ACCEPT,0.55,C,1,2026-08-24T17:03:05+00:00,,0,True
+UCoiKcLNgt7N9KIoBL-fx2YA,@alparuvtuberch,Alparu Vtuber ch.,19800,Independent,ACCEPT,0.8,B,1,2026-06-02T21:19:07+00:00,,0,True
+UCoVpEObbNlG_AVSz-K8yYTg,@koshumu,koshumu,5030,Independent,ACCEPT,0.35,C,1,2026-07-04T13:00:27+00:00,,0,True
+UCoOMJUZ5plQtVQDYbicD3dw,@mortiferbathorych,Mortifer Bathory Ch.,9350,Independent,ACCEPT,0.55,C,2,2025-06-22T03:31:44+00:00,,0,True
+UCoc4ArTO-yJUzpqufus_Pdg,@kokori_otl,Kokori 《 OTL 》,2140,Independent,ACCEPT,0.8,C,1,2026-08-22T11:00:35+00:00,,0,True
+UCmiO2DRc4e80eWfElzQfWyA,@sorasamavtuber,SORASAMA,646,Independent,ACCEPT,0.45,D,1,2026-08-30T11:27:42+00:00,,0,True
+UCmg0gZHGn-zuq1JnYPB_EjQ,@teenie-wis,TEENIE | WISLIVE,74000,Independent,ACCEPT,0.8,A,1,2024-11-03T14:24:47+00:00,,0,True
+UCnOY70F34J77m2YzkW7B5qw,@hamikochannel,Hamiko Channel,860,Independent,ACCEPT,0.65,D,1,2026-09-01T12:29:30+00:00,,0,True
+UCDki34ncCre0xPgf1JCkqCA,@shogoch,Shogo ⌜VZ⌟,20100,Virtual Zeven (VZ),ACCEPT,1.0,B,2,2026-08-28T19:27:35+00:00,,0,True
+UCEI_LsIHnvFh0dN8KmVy7hg,@winterapatitech,Winter Apatite Ch.,1840,Independent,ACCEPT,0.8,C,1,2025-11-13T16:33:39+00:00,,0,True
+UCDb3FYf93LJEcswNeZ05uag,@kampaiii_vtuber,Kampaiii 《Vtuber》,902,Independent,ACCEPT,0.8,D,1,2026-08-29T13:35:24+00:00,,0,True
+UCEuU0EQj7eWL2-vf5hGFwXg,@narinvtuberth,Narin  Vtuber TH,2530,Independent,ACCEPT,1.0,C,1,2026-08-30T14:33:23+00:00,,0,True
+UCEjF-FvkrvMhQ7b6KT5UCAw,@azar_otl,Azar《 OTL 》,1590,Independent,ACCEPT,0.8,C,1,2026-08-29T17:48:41+00:00,,0,True
+UCDmlKuJkE2tIR-Q8bSWPvDw,@hexovibeent,HEXO Ch. / QURSE,4360,Independent,ACCEPT,0.2,C,1,2026-08-21T04:58:33+00:00,,0,True
+UCFcV8AGufMRT7is-GX1Y9gQ,@puinoondesu,Puinoon プイヌン,6450,Independent,ACCEPT,0.0,C,1,2026-02-05T10:15:01+00:00,,0,True
+UCFLR42m7vGHPi3wSROWaepA,@gomu_channel,GoMu no Ch.,1290,Independent,ACCEPT,0.8,C,1,2026-08-30T14:47:16+00:00,,0,True
+UCDgD6lN0SQJTfiy0y-7oFzw,@ttangierch,the wanderer is not here anymore.,841,Independent,ACCEPT,0.35,D,1,2026-04-10T14:18:25+00:00,,0,True
+UCDx_VxFnDh_yxtff1akPpvg,@keelinperytonch,Keelin Peryton『VW』,11200,Independent,ACCEPT,1.0,B,2,2026-08-30T10:10:32+00:00,,0,True
+UCF_-M79ivR0lBcxI4VcYiWg,@masurulilia,Lilia,2150,Independent,ACCEPT,0.35,C,1,2025-03-01T03:00:23+00:00,,0,True
+UCEpxkPOevg0ItmSknvEcngg,@tamto,Tamto Ch.,9530,Independent,ACCEPT,0.8,C,1,2026-08-28T18:00:18+00:00,,0,True
+UCDrFZpqKkgV27Q1NcYYYU2w,@kiyomi_no_hikarijinja,Kiyomi Ch.,878,Independent,ACCEPT,1.0,D,1,2025-08-19T04:42:29+00:00,,0,True
+UCDgEY3e3hNge2XzFhFuYPYw,@maeminippych,Maemi Nippy ⨳ECR⨳,2590,Independent,ACCEPT,0.45,C,1,2026-08-30T07:08:38+00:00,,0,True
+UCF81ZEcn0aKct7TJPZVINAw,@boonlan_vtg,BoonLan『VTG』,3070,Independent,ACCEPT,0.8,C,1,2026-08-28T18:00:28+00:00,,0,True
+UCDwExMfrKLpB6j0vDUW-0WA,@minarinsarkany,Minarin Sárkányszél Ch.,2420,Independent,ACCEPT,0.65,C,1,2026-08-12T03:24:11+00:00,,0,True
+UCEMqL-RYgeAEhTMUJeHfkaw,@torukuma,Toru Kumaトルくま,75400,Independent,ACCEPT,0.8,A,1,2026-08-29T16:16:31+00:00,,0,True
+UCFRCQhHa_MUmmRaGUJVN8zA,@zenovazch,Zenovaz Ch.,597,Independent,ACCEPT,0.35,D,1,2026-07-17T15:50:12+00:00,,0,True
+UCDzIAHQJv3O2IN0u26bHlaw,@yukaimyoujou_ssr,Yukai Myoujou《 SSR 》,2920,Independent,ACCEPT,0.8,C,1,2026-07-12T03:34:46+00:00,,0,True
+UCDiyOEC0TGng4cudBJbMyWg,@celestevtuber,Celeste Ch.,14400,Independent,ACCEPT,1.0,B,1,2026-08-30T10:43:29+00:00,,0,True
+UCFBj6s8uT6nphkbV7UMVGsQ,@chukoliangch.fixixvt,CHUKOLIANG ch. 【FIXIX VT】,5960,Independent,ACCEPT,0.8,C,1,2026-08-28T10:37:07+00:00,,0,True
+UCEk6QSUJhVf56A_VznMpKpg,@peachiview249,PeachiView,55900,Independent,ACCEPT,1.0,A,1,2022-01-14T08:00:23+00:00,,0,True
+UCDuv12N1-maTw7eemVA2hgQ,@kaen_official,カエン KAEN Ch.,4430,Independent,ACCEPT,0.8,C,1,2026-08-29T09:14:06+00:00,,0,True
+UCFXP-2Bob2gW8rlEffW1hgA,@halonhashi,Halon Hashi Ch.,21100,Independent,ACCEPT,0.8,B,1,2025-12-31T17:54:18+00:00,,0,True
+UCEcSxWcQiyfpx7mRAdb_emg,@mynamehenry,Henry,443,Independent,ACCEPT,0.8,D,1,2026-08-30T07:37:35+00:00,,0,True
+UCDdYlO59uiphs8QUL7I88Rg,@kaneaki_arina,Kaneaki Arina Ch.,4290,Independent,ACCEPT,0.8,C,1,2026-08-28T18:49:24+00:00,,0,True
+UCFB-5_h8i1373WvI7ElG2FA,@vlazy2727,VLazy,2700,Independent,ACCEPT,0.55,C,1,2025-09-04T10:24:27+00:00,,0,True
+UCFN4mdxw4ss6DMB6ZYPXPuw,@amamiyanora,Nora,680,Independent,ACCEPT,0.8,D,1,2026-08-21T05:59:25+00:00,,0,True
+UCFKBoyzpTZdu20o-O5XUf8g,@minwa39,Minwa.39,10100,Independent,ACCEPT,0.8,B,1,2024-09-30T05:22:43+00:00,,0,True
+UCDwGQS9PGoUV-yMRsQ5pBxw,@vi_lieszen,Vi : Lieszen,854,Independent,ACCEPT,0.8,D,1,2026-09-05T05:43:59+00:00,,0,True
+UCE010cVAgWFD24wIJ95sDKw,@fumihausu,Fumi Hausu,88100,Independent,ACCEPT,0.8,A,2,2026-08-30T12:13:30+00:00,,0,True
+UCEAweQRj86ga-ymLA_L50BA,@tohukheowch,ToHu kheow Ch.,2060,Independent,ACCEPT,0.8,C,1,2022-09-01T06:19:21+00:00,,0,True
+UCFNsc_xre9fXD0-f8kyrUTQ,@sexysalsa,Sexy Salsa CH,2200,Independent,ACCEPT,0.8,C,1,2024-08-29T22:22:53+00:00,,0,True
+UCE46-Cb8vr2ra-YAJ7UoOcA,@benny7418ch,Benny Ch.,17600,Independent,ACCEPT,0.8,B,1,2026-08-30T16:47:24+00:00,,0,True
+UCEvyDOkcGkzCTo62d9BrhkA,@ceraplg,Minami Cera Ch. 【POLYGON】,29700,Polygon Official,ACCEPT,0.8,B,2,2026-03-31T12:00:00+00:00,,0,True
+UCEXxxuO6GnVJmwqIz9etkKA,@levianach.9171,Leviana Ch.,1060,Independent,ACCEPT,0.55,C,2,,,0,False
+UCEbwSVZLmNpdgZPbeFL7chg,@kevinth,kevin TH,2040,Independent,ACCEPT,0.8,C,1,2026-08-30T15:02:51+00:00,,0,True
+UCF19DHmsDiaB3P3Cbpdp14g,@chouxcreamii,ChouxCream シュークリーム,4810,Independent,ACCEPT,0.45,C,1,2026-08-29T10:00:17+00:00,,0,True
+UCDhUZlrVbcdvac4SRLi3tXA,@shiro11c,Shiro11,851,Independent,ACCEPT,1.0,D,1,2026-05-27T17:21:21+00:00,,0,True
+UCER-4jqj3kUgY36i3FPAtJA,@tanthetantaros,Tantaros,1180,Independent,ACCEPT,0.8,C,1,2026-08-29T17:24:54+00:00,,0,True
+UCDgptjggm1YvNSn7GQ19sEA,@zelechavtp,Lord Cha Zele Ch. ◤Graduation◢,1340,Independent,ACCEPT,0.8,C,1,2025-05-08T12:56:40+00:00,,0,True
+UCEZZl5ozactQATI4iIx2mOg,@maiyara_21pm,Maiyara 【21PM】,830,Independent,ACCEPT,0.8,D,1,2026-08-18T16:31:08+00:00,,0,True
+UCDcMQuBXmp3NByn3wD5lZog,@ywvynter,Yw Vynter,1850,Independent,ACCEPT,1.0,C,1,2023-03-16T14:43:33+00:00,,0,True
+UCEQ28ZgkC47h0jG8CWN_V2Q,@tanehasol,TANTAN,770,Independent,ACCEPT,0.8,D,1,2026-08-29T15:13:23+00:00,,0,True
+UCEZl6aWM_c93GHtB12UfxNA,@sicxerz,SICXERZ : CORE Ch.,48800,Independent,ACCEPT,0.35,B,1,2026-08-21T11:30:32+00:00,,0,True
+UCFVbcS05rXwR7iLPl2K82Kw,@nanatsukisolrun,SoLRuN Ch.,1280,Independent,ACCEPT,0.45,C,1,2026-08-30T12:05:20+00:00,,0,True
+UCyTfmwqdhzlv9YD6-vmz2tQ,@biru101,Biru [ビール],3820,Independent,ACCEPT,0.8,C,1,2026-09-03T17:27:27+00:00,,0,True
+UCxsyPoIG4fruqHyq91UwIMQ,@nicha_ssr,NICHA Ch. 【SSR】,6360,Independent,ACCEPT,0.45,C,1,2026-09-04T11:00:16+00:00,,0,True
+UCxk5wi2uWUh2hVlTuP7dW4A,@alacharmine,A la Charmine,15800,Independent,ACCEPT,0.35,B,1,2024-09-17T12:11:14+00:00,,0,True
+UCxLMvBlryxSsteqI9L8RmZg,@nebuel-v,NEBUEL | VTUBER,55300,Independent,ACCEPT,0.8,A,1,2026-02-03T22:19:51+00:00,,0,True
+UCxvd3oONCAAlvj5E6sbniuQ,@xelizia8050,xElizia,2410,Independent,ACCEPT,0.8,C,1,2026-03-28T08:15:12+00:00,,0,True
+UCyA1KEXjcq2za_bsJp9KmZQ,@raf4el,RAF4EL,381000,Independent,ACCEPT,0.35,S,1,2026-08-21T04:13:37+00:00,,0,True
+UCxcmm1lpyL1Z3o7SgPAM1nw,@haori_circinus,Haori Circinus Ch.,2120,Independent,ACCEPT,0.8,C,1,2026-08-29T17:52:25+00:00,,0,True
+UCyBovYeA-FnqRz8sigBql8w,@nomuvtuber,Nomu | Live2D,2470,Independent,ACCEPT,0.55,C,1,2024-04-20T17:31:17+00:00,,0,True
+UCwv0DTchQQhKo7-C0VPu9yA,@noravanadiz,Nora Vanadiz 「univirsual」,1400,Independent,ACCEPT,0.8,C,1,2026-09-03T00:49:37+00:00,,0,True
+UCyXcXkTe7XZYGvX7A3_f3Jw,@onomil,ONOMIL Ch.,16900,Independent,ACCEPT,1.0,B,1,2026-09-05T14:00:14+00:00,,0,True
+UCyJplWD3_LWpNMOOkiVVurg,@dev_arp,DEV Ch.【ARP】,30800,Algorhythm Project,ACCEPT,1.0,B,1,2026-09-03T02:24:40+00:00,,0,True
+UCwhHNYldCXfIX6UtRY0VTjw,@seren_yukihoshi,Seren Channel,4480,Independent,ACCEPT,0.65,C,1,2026-08-21T19:10:17+00:00,,0,True
+UCxMjBu1cPzJpPWmGd0UdUhA,@maylyn_arp,Maylyn Ch.【ARP】,22300,Algorhythm Project,ACCEPT,0.45,B,1,2026-09-05T19:50:34+00:00,,0,True
+UCx_2bHOqtU_pUtB62VDRF8Q,@g_roundv,G_round,4940,Independent,ACCEPT,0.45,C,1,2026-09-04T02:39:17+00:00,,0,True
+UCx0dAEK6I00_Q7l9HJN86bQ,@chikachfloraproject,Chika Ch. Flora Project,6190,Flora Project,ACCEPT,1.0,C,1,2022-10-30T15:10:20+00:00,,0,True
+UCxH2k-7jm1hMVcujrnMMj0A,@ryouta_vpj,Ryouta OrcusX Ch.,50200,Independent,ACCEPT,0.45,A,1,,,0,False
+UCwV_WXNH4iIvUJIVddjyhbg,@ra1ny_vz,RA1NY ⌜VZ⌟,3890,Virtual Zeven (VZ),ACCEPT,0.8,C,1,2026-09-01T03:31:00+00:00,,0,True
+UCxsvotVZGKCimeSlzK9bSzA,@deksammy,deksammy,73400,Independent,ACCEPT,0.8,A,1,2026-08-30T15:01:32+00:00,,0,True
+UCxvs-I90Ta71nqbT62ATU2A,@kuriimuch,Kuriimu Ch.,4230,Independent,ACCEPT,0.45,C,1,2026-09-05T12:44:48+00:00,,0,True
+UCx_E2v60IowRRNd5nb-4uBQ,@murkielch,Murkiel Ch.,5740,Independent,ACCEPT,0.8,C,1,2026-07-31T16:42:12+00:00,,0,True
+UCwUlSrFBV74QvDBE112cibw,@aii_mangapinkch,Aii MangaPink ch,6670,Independent,ACCEPT,0.45,C,1,2026-09-05T01:00:12+00:00,,0,True
+UCxIaiSqWfGmUoAkcT6A8LAA,@laniach,Lania Ch『VW』,6590,Independent,ACCEPT,0.8,C,1,2023-01-21T07:21:35+00:00,,0,True
+UCyVnAtNZMl0S4x6F3msaElg,@makarovch.40k,Makarov ch. 🐺,2730,Independent,ACCEPT,0.8,C,1,2026-09-05T14:45:36+00:00,,0,True
+UCxYJqN90g84gIwfCO2bUKLA,@nocturnaznaar,Nocturnaz Naar Ch. Pixela-Mystic,17400,Pixela Project,ACCEPT,0.8,B,1,2024-06-01T03:15:00+00:00,,0,True
+UCyHu19qHV0hFQyK3ZOhtcnA,@nuttiz,Nuttiz,11000,Independent,ACCEPT,0.8,B,1,2026-09-04T18:00:21+00:00,,0,True
+UCxLACuzMdL0qGzmXBu1VwJg,@yuusayorumo,Yuusa Ch. 優桜ヨルモ,9690,Independent,ACCEPT,0.8,C,1,,,0,False
+UCyPXMeC0RCQPGlImQXmN8xg,@onishinkim,Oni Shinkim Ch.【PSM】,2460,Independent,ACCEPT,0.45,C,1,2026-05-06T13:00:06+00:00,,0,True
+UCz-_0-a_GPsU1-lrJJfYz7w,@lonitach,Little Lonita ⌜VZ⌟,18700,Virtual Zeven (VZ),ACCEPT,0.35,B,2,2026-09-05T10:00:10+00:00,,0,True
+UCxWsr2bxzcNitGtnPk9hRbQ,@stellarparticle,StellarParticle,3870,Algorhythm Project,ACCEPT,0.2,C,1,2026-02-22T08:56:06+00:00,,0,True
+UCyZOcyIIrCmWMWlZCbPL9kw,@ravia_d_princisia,ไดได ⨳ECR⨳,2610,Independent,ACCEPT,0.8,C,1,2026-09-02T02:46:28+00:00,,0,True
+UCxaiTOKjBqy0b9am_EGvexA,@hoshinokuroi440,HoshinoKuroi Ch.,1030,Independent,ACCEPT,0.8,C,1,2026-09-05T01:35:39+00:00,,0,True
+UCz8nJz2tNY6dbNiQ0JlZnnw,@rayanch.fixixvt,Rayan ch.【FIXIX VT】,1360,Independent,ACCEPT,0.45,C,1,2025-03-09T18:06:56+00:00,,0,True
+UCyjuanhJSwS5h6edhGKmMbQ,@julius_kosmolatria,Julius Kosmolatria Ch.,1670,Independent,ACCEPT,0.8,C,2,2026-09-05T15:35:54+00:00,,0,True
+UCxI2vEES81ViqI4xs7dnsnA,@ishida7489,I'Shida,2390,Independent,ACCEPT,0.55,C,1,2020-08-29T04:16:29+00:00,,0,True
+UCwtyxO7B0xIv3XdtSvdnYgQ,@aoicrescent,Aoi Crescent Ch.,35600,Independent,ACCEPT,0.8,B,2,2026-09-04T17:25:54+00:00,,0,True
+UCx1g_QQFax29m6z1UXLTI3g,@fiatake1311,Fiatake,72700,Independent,ACCEPT,0.8,A,1,2026-09-05T10:58:39+00:00,,0,True
+UCysbx8fVJc92SL4KtsakA8Q,@chachachalice,CHACHACHALICE,3530,Independent,ACCEPT,0.45,C,1,2023-10-15T03:07:06+00:00,,0,True
+UCxnehbcB4sU8tjcfRsKxqGw,@lanach_lh,Lana Vtuber,1550,Independent,ACCEPT,0.8,C,1,2022-01-16T16:58:54+00:00,,0,True
+UCydCZ9HbM9TbvXwsoI8rSdQ,@qdmnora,QDM. Nora 『VW』,2120,Independent,ACCEPT,0.45,C,1,2026-09-05T18:15:56+00:00,,0,True
+UCxhTc8KCXqpWtvpBqx_Yi8g,@seijoch,Seijo Ch.,10400,Independent,ACCEPT,0.8,B,1,2026-09-05T16:21:11+00:00,,0,True
+UCyMsZpmjEnQxpem3QEJ1G4Q,@arisa6033,Arisa อาริสาและภาษาญี่ปุ่น,27600,Independent,ACCEPT,0.8,B,1,2022-03-27T13:08:46+00:00,,0,True
+UCxn_EkDl0yi45LN2H00ddiQ,@seoaxay,SEO A XAY,41600,Independent,ACCEPT,0.8,B,1,2026-09-05T02:36:01+00:00,,0,True
+UCyHbGgiIiuzrZUX-VKVsmcw,@miina_manii,MIINA Ch.,1980,Independent,ACCEPT,0.45,C,1,2026-09-02T14:18:54+00:00,,0,True
+UCxfx5BudsoFOV-TLl0RdFNw,@chaoplathong,ChaoPlaThong,65900,Independent,ACCEPT,0.8,A,1,2026-07-23T12:26:50+00:00,,0,True
+UCw_7F4A38u-T_craqX6_OpQ,@linckia_idyp,LINCKIA Ch.,1260,Independent,ACCEPT,0.45,C,1,2026-08-09T03:04:32+00:00,,0,True
+UCx4qz8NiVkQQj4x-7mhS9Dg,@eyezbenjaneth,Eyez Benjaneth Ch.,1930,Independent,ACCEPT,0.35,C,1,2026-09-02T15:44:24+00:00,,0,True
+UCySlA9Pv5IVXvkW_lN_NXRw,@tequila_arp,Tequila Ch.【ARP】,18000,Algorhythm Project,ACCEPT,0.0,B,1,2026-09-05T10:50:27+00:00,,0,True
+UCx5NsY_dUUU2NHK2P8u10xQ,@ngern_tong,Ngerntong-เงินทอง,69400,Independent,ACCEPT,1.0,A,1,2026-08-26T04:14:28+00:00,,0,True
+UCJ6HUQOWSjCHHdOgz13zFlA,@thequillmon,TheQuillmon ⌜VZ⌟,405000,Virtual Zeven (VZ),ACCEPT,0.35,S,1,2026-09-02T12:00:27+00:00,,0,True
+UCI1SAgyaSIwdGf2uVbcmuvQ,@realiablech,Realiable Ch.,4870,Independent,ACCEPT,1.0,C,1,2026-09-03T04:26:26+00:00,,0,True
+UCJ2Ahrr9QYJnrjYJkWccSzg,@kochikigram,Kochiki Gram Ch.,755,Independent,ACCEPT,0.45,D,1,2026-09-03T11:00:28+00:00,,0,True
+UCIgXtat0bKE5e8sXtUgutOw,@torakaze_13,Torakaze,1030,Independent,ACCEPT,0.8,C,1,2026-08-28T15:56:20+00:00,,0,True
+UCJH6IzDkIlz5Dw93LzEC_Nw,@cazziabakerianachparabellum,Cazzia Bakeriana Ch. - Parabellum,1240,Independent,ACCEPT,0.45,C,1,2022-04-23T15:22:32+00:00,,0,True
+UCJL3R_l2-sxDQelzyQ6fHug,@niru_ch, NiRu Channel ,423,Independent,ACCEPT,0.45,D,1,2026-08-31T17:05:24+00:00,,0,True
+UCIcJV6J1HFf0cHKeswvTyaw,@navii_whale,Navia Whale,980,Independent,ACCEPT,0.8,D,1,2026-08-05T11:31:47+00:00,,0,True
+UCHeMMokpj5MpPVZwS121gZw,@muzusa1234,ヤマキ君,1990,Independent,ACCEPT,0.55,C,1,2023-05-01T15:30:26+00:00,,0,True
+UCHUHJ0riRQWzPWdAchy6D4w,@besicka_alf,Besicka「ALF」,418,ALF,ACCEPT,0.45,D,1,2026-08-27T03:35:17+00:00,,0,True
+UCIc2CW34mQ6eAlJoPV2Un4Q,@sonnenblume_helianthus,Sonnenblume,2060,Independent,ACCEPT,0.8,C,1,2026-09-02T18:35:06+00:00,,0,True
+UCHL4mRfm4hZgmg4sPYRiYkg,@bombaybergamot8,Bombay Bergamot,3520,Independent,ACCEPT,0.55,C,1,2025-06-01T09:30:12+00:00,,0,True
+UCJCORIrObs3iTzSzCHHvlCA,@lyveaveve,Lyvea•Eve,6390,Independent,ACCEPT,0.3,C,1,2026-09-01T07:00:48+00:00,,0,True
+UCHomiuTL8mMUPtDIbJw_TFg,@remisde_vtuber,Remisde || Vtuber,141,Independent,ACCEPT,0.45,D,1,2026-08-13T19:29:03+00:00,,0,True
+UCHYMhyLCSsaZCRPzov6tHLg,@wilona.thegoat,Wilona Ch.,1580,Independent,ACCEPT,0.55,C,1,2026-08-28T10:59:59+00:00,,0,True
+UCI0fG0fCTx3iyzC6wv_hI3g,@hbnpoyo,Hibana Nekomata,2160,Independent,ACCEPT,0.8,C,1,2026-08-28T09:55:03+00:00,,0,True
+UCINPv9Ffoo7mgvEfKY8Ks2A,@pugko,Pugko Ch.,2890,Independent,ACCEPT,0.65,C,1,2026-09-03T10:28:53+00:00,,0,True
+UCJFoHpvvS4MLNsq0VeiEAyg,@yunesch,Yunes Ch ,5790,Independent,ACCEPT,0.45,C,1,2026-09-02T20:01:59+00:00,,0,True
+UCJEy_y-4fO4j2D6RLANc25Q,@zetsunach.7273,Zetsuna Ch.,1180,Independent,ACCEPT,0.8,C,1,2026-08-25T15:11:31+00:00,,0,True
+UCINz9FJcpcedlGsYKXQkopA,@himawariwhiteowl,Hoshimura Himawari,12700,Independent,ACCEPT,0.8,B,1,2026-09-01T12:00:01+00:00,,0,True
+UCHhj6UP01456AHTAZkrKDrg,@kirin_vexorcist,KIRIN,2230,Independent,ACCEPT,0.45,C,1,2026-09-03T04:50:19+00:00,,0,True
+UCJ8R9I1AWV94psG7gxLiU5Q,@marinenaja,MaRinENaJa,1830,Independent,ACCEPT,0.8,C,1,2026-06-09T05:06:24+00:00,,0,True
+UCI7HyoyonuN4gh_Mgu6Kzbg,@hydejung21pm,Hydejung 【21PM】,6110,Independent,ACCEPT,0.8,C,1,2026-09-02T16:32:14+00:00,,0,True
+UCIBdFlC2Fk3rID8CAETV35g,@kryspeiacosmelis,Kryspeia Cosmelis Ch. Lumina-Mutelu,13500,Lumina Live,ACCEPT,0.8,B,1,2026-09-04T11:00:33+00:00,,0,True
+UCIWrMTsjxdx_V1zlBkbCVCg,@marine_vtuber_,MaRinE Channel,2670,Independent,ACCEPT,0.45,C,1,2024-04-03T20:23:54+00:00,,0,True
+UCI-P6wAQOviwsqMuVTVYKPQ,@benibanashigento,Benibanashi Gento | 紅話玄踪-VTuber,2770,Independent,ACCEPT,1.0,C,1,2026-08-22T16:20:54+00:00,,0,True
+UCHONh9zedNOSdzUqUbSUQ-Q,@baruruchannel,baruru channel,19500,Independent,ACCEPT,0.45,B,1,2026-09-02T16:18:55+00:00,,0,True
+UCI38FHfSdCBRlD90Np1mGSQ,@catta4r,Catta.,18300,Independent,ACCEPT,0.3,B,1,2026-08-31T17:54:30+00:00,,0,True
+UCHRq9JfoPNIg5p1rMG02oqA,@zinnialy,Zinnia,719,Independent,ACCEPT,1.0,D,1,2026-07-27T04:18:31+00:00,,0,True
+UCJMSZ92fkCAzyWmkdpvCuQA,@szeroatsushi,SZeroCh,243,Independent,ACCEPT,0.8,D,1,2026-09-01T01:05:21+00:00,,0,True
+UCHa6wMUGqyur-ZWsUwDeQOg,@cliche_ssr, Cliche Ch.〖SSR〗,710,Independent,ACCEPT,0.45,D,1,2026-09-03T03:19:30+00:00,,0,True
+UCHzQgT7k-UHxSo8oLQlf6Qg,@voidcatfatbeans,VoidCat,5510,Independent,ACCEPT,0.45,C,1,2025-12-03T17:43:50+00:00,,0,True
+UCHlFbiJk0VWcT2dPwTqXcxw,@jaokat, JaoKat \ ジャオカットくん,225,Independent,ACCEPT,0.45,D,1,2026-07-28T05:32:17+00:00,,0,True
+UCJ9STJzDqEexCPnqAAHe5Cw,@rinnping8745,RINNPING,3080,Independent,ACCEPT,0.85,C,1,2023-01-18T16:12:33+00:00,,0,True
+UCHkNbiqY3dc4AcaiGxSq2_Q,@rosettawitch,Rosalyn Ch.,717,Independent,ACCEPT,0.8,D,1,2026-08-24T00:03:41+00:00,,0,True
+UCJ6kqLPI4aALUa0p3kJJUKQ,@mellowlop,Mellowlop「Paralist」,2540,Paralist,ACCEPT,1.0,C,1,2026-08-29T15:39:12+00:00,,0,True
+UCIh-YIiPfxN0qPWAvIpfBXQ,@himari_hana,Himari Hana Ch.,1060,Independent,ACCEPT,0.8,C,1,2025-08-26T12:59:40+00:00,,0,True
+UCIxWJ7k2MWKT6sIg3mLjkTg,@poko_vtuber,โป๊ะโกะ / PoKo ปลวกทูปเบ๋อ,90400,Independent,ACCEPT,0.8,A,1,2026-09-03T03:00:51+00:00,,0,True
+UCHhIQk2SuVBxR4H2PH_3j2Q,@nanahoshinana,นานาโฮชิ นานะ / 七星ナナ,177000,Independent,ACCEPT,0.8,S,2,2026-09-01T18:04:32+00:00,,0,True
+UCI9bNMcvSiuq-bfjsPNomTA,@kanaiberachannel,Kana Ibera Ch.,3560,Independent,ACCEPT,0.8,C,1,2026-09-02T18:32:55+00:00,,0,True
+UCJ8hefgtMDAtBo7NRSa90Zg,@owlmanch,OwlMan Ch.,361,Independent,ACCEPT,0.2,D,1,2026-08-19T17:11:55+00:00,,0,True
+UCIDkMzUr_JW5yoiq_Nx35_A,@maaethegreatest,MaaeTheGreatest,1020,Independent,ACCEPT,0.8,C,1,2026-03-06T10:45:00+00:00,,0,True
+UCHyAFq-CHcgrOte84Wvmorw,@ikkichannel_,IKKI CHANNEL,3380,Independent,ACCEPT,0.8,C,1,2026-06-20T10:03:32+00:00,,0,True
+UCIGChk_c7ZNdtpOrmbHr2NA,@mii__belle,Miibelle「ASMR VTUBER」,15800,Independent,ACCEPT,0.8,B,2,2026-04-15T10:00:06+00:00,,0,True
+UCJAI6tpsee_w0sMV7-NB_Tw,@suifong_ch,SUIFONG CH〖DPX〗,2210,DPX,ACCEPT,0.8,C,1,2026-08-15T10:37:17+00:00,,0,True
+UCHhUajhm4zRg-_Ubw11otfw,@naminerakko,NamiNe,9410,Independent,ACCEPT,0.35,C,1,2026-08-30T15:18:44+00:00,,0,True
+UCHudKjxLpwqHoqV-57uTRFw,@fuwafuwaseal,FuwaFuwaSeal,6480,Independent,ACCEPT,0.8,C,1,2026-08-14T02:00:15+00:00,,0,True
+UCIMFIkXOGA7dWA903WdRKKg,@nezumielze,Nezumi Elze Ch. Pixela Legends,58200,Pixela Project,ACCEPT,0.8,A,1,2026-09-03T04:13:56+00:00,,0,True
+UCIJlMF7bynSgi0G8Hy6j94g,@sodachanvtuber,SoDaChan | Vtuber,4630,Independent,ACCEPT,0.45,C,1,2026-08-12T18:26:21+00:00,,0,True
+UCHNUhekh0u_TuF6vZ5S5j8w,@mongon.af48dw.,MONGON. Association From 48 Dimension World (V.2),7670,Independent,ACCEPT,1.0,C,1,2026-08-31T02:15:55+00:00,,0,True
+UCpMuWBxMa6ttNgtylPTn3Hg,@nergalnearch,Nergal Near Ch.,53900,Independent,ACCEPT,0.8,A,1,2026-09-01T19:03:46+00:00,,0,True
+UCq0Nq6SwDplj3OcuvwkE1Mg,@kitsunefukadbt,Fuka CH.〔 DBT 〕,658,Independent,ACCEPT,0.8,D,1,2026-09-01T14:06:51+00:00,,0,True
+UCq1-zScAqUHmGQO9SYI5pIg,@jellmello_j,JellMellO,3160,Independent,ACCEPT,0.55,C,1,2026-08-16T12:29:43+00:00,,0,True
+UCqCv5pUmAMeoQMushiW3Csg,@lamuch,Lamu Ch.,19600,Independent,ACCEPT,1.0,B,1,2026-09-04T01:30:01+00:00,,0,True
+UCqu5twYqzKGrRyIrcvg4YXA,@rainniergradach,Rainnie Rgrada Ch.,6160,Independent,ACCEPT,0.8,C,1,2026-05-21T08:54:56+00:00,,0,True
+UCpWoDWpQSzhs3PMMU4WrfiQ,@zoespecter,Zoe Specter Ch.,13900,Independent,ACCEPT,0.45,B,1,2026-08-30T12:29:05+00:00,,0,True
+UCr0-V3nBW3klbNrklD_1TPg,@hiyoribouzu,Hiyoribouzu Ch.,2410,Independent,ACCEPT,0.55,C,1,2026-08-24T03:08:11+00:00,,0,True
+UCpaaIu52BVuInfJkO0-Ft3Q,@valentsoels,Valent Soel S,1520,Independent,ACCEPT,0.45,C,1,2026-08-31T15:44:28+00:00,,0,True
+UCrICh9KpS2QHVWOkfJ7GO1g,@aofedits,AofEdits | オッフ【716RM】,586,Independent,ACCEPT,0.2,D,1,2026-07-28T15:19:26+00:00,,0,True
+UCpNAFq_PANbmcdfhzfuiekA,@satachanneldayo,Sata Channel,1240,Independent,ACCEPT,0.8,C,1,2026-08-31T16:42:26+00:00,,0,True
+UCq97LOtWB1CgRVFzDF3FSSA,@langraych.2390,Langray Ch.,1240,Independent,ACCEPT,1.0,C,1,,,0,False
+UCpke74KAbZIIj7KrNdPgxow,@ayeletnocturnach.,Ayelet Nocturna ch.,441,Independent,ACCEPT,0.45,D,1,2026-08-23T01:57:23+00:00,,0,True
+UCpIlOwUGihEx-Qzie2JiMWw,@retsured,Retsu_Red,514,Independent,ACCEPT,0.45,D,1,2026-08-30T08:25:27+00:00,,0,True
+UCpXRdlZ-aGpd9s2gFVl63lg,@amethyst_ame,อเมะ,5530,Independent,ACCEPT,1.0,C,1,2026-09-01T03:59:37+00:00,,0,True
+UCpDj-ctDxLn5M5H5G_UxuRA,@deilliahgoodknight,Deilliah Goodknight ,3960,Independent,ACCEPT,0.8,C,1,2026-09-01T12:00:01+00:00,,0,True
+UCpwaMGj7IdlttM_bP2iKZmw,@nz_nezzch.8022,Nz_Nezz Ch.,898,Independent,ACCEPT,0.55,D,1,2021-04-07T11:47:58+00:00,,0,True
+UCr6JjOIjCAYFGJIW3_BznmA,@bigm4u,Big M 4U 『ECR』,20700,Independent,ACCEPT,0.8,B,1,2026-09-05T10:17:14+00:00,,0,True
+UCprsCfEbSQRzd-mK4Cgd1Rg,@rayxillia,RAY XILLIA,4850,Independent,ACCEPT,0.35,C,1,2025-06-07T10:00:36+00:00,,0,True
+UCqfR7Nkz-wkfQgcMDsU7HnA,@pimkishy,Pimkishy,1610,Independent,ACCEPT,0.8,C,1,2026-09-04T05:00:37+00:00,,0,True
+UCqMmxgXhKhZxIeIXSxho6mw,@luckytime-v1204,Lucky Vulpecula,499,Independent,ACCEPT,0.8,D,1,2026-08-31T22:31:10+00:00,,0,True
+UCpBjGiBLFJ8x-7kHDtPY74g,@seikich,SE1 Ch.,1120,Independent,ACCEPT,0.8,C,1,2022-12-28T07:12:04+00:00,,0,True
+UCq_POu51qgVp0O9EgcJgsDw,@asmodeusiablb,Sia Asmodeusia ch. ◈BLB◈,2800,Independent,ACCEPT,0.8,C,1,2026-08-22T21:37:32+00:00,,0,True
+UCqbax9GTF0U2i7Fzk7HjOyg,@lizt_hikake,Liztsu Hikake Ch.,360,Independent,ACCEPT,0.45,D,1,2026-09-02T10:10:24+00:00,,0,True
+UCqDHOqlcApniKvQAPW2LlMQ,@herahvtuber,Herah Castor | AcastledProject,992,Independent,ACCEPT,0.8,D,1,2024-06-27T01:00:07+00:00,,0,True
+UCqlIHZinRgdevuHuCILlgjA,@meowmikech,MeowMiKe CH. 《19'S》,373,Independent,ACCEPT,0.45,D,1,2026-09-01T12:20:33+00:00,,0,True
+UCpuk3ld3rGWSsLOhuVlOFBQ,@kuzunech.5390,Kuzune Ch.,4540,Independent,ACCEPT,0.35,C,2,2023-03-07T02:33:29+00:00,,0,True
+UCpSsKMbL7zvD87O8-57Mg7A,@shin_aikaze,Aikaze,884,Independent,ACCEPT,0.8,D,1,2026-07-12T03:24:53+00:00,,0,True
+UCqq085DI0tDBblF3Q1nsdcg,@thuayfuwolfcute,Thuay_Fu Wolfcute【Mystery】,8780,Independent,ACCEPT,0.8,C,1,2026-09-04T19:19:59+00:00,,0,True
+UCqhhWjpw23dWhJ5rRwCCrMA,@aishachannel,Aisha Channel,543000,Independent,ACCEPT,0.8,S,2,2026-06-12T11:00:15+00:00,,0,True
+UCqxS4qNzJUWdPgR2UdLpemA,@akitoqflame,Akito Q Flame『VW』,3590,Independent,ACCEPT,0.8,C,1,2026-08-30T22:42:31+00:00,,0,True
+UCph_3mJbLtVYMFr4-n_rRgw,@wint3r_vz,WINT3R ⌜VZ⌟,14900,Virtual Zeven (VZ),ACCEPT,0.8,B,1,2026-09-01T03:07:27+00:00,,0,True
+UCrDlc3CYB6TXFoU01jw0XPg,@yumemattych,YumeMaTTy Ch.,7410,Independent,ACCEPT,0.8,C,1,2026-09-05T05:40:20+00:00,,0,True
+UCqCI_qpXBTlVO0kZhB51I6w,@elleusia,Elleusia,1450,Independent,ACCEPT,0.45,C,1,2026-08-16T12:33:08+00:00,,0,True
+UCpWF1pMyJtMvlynspGnThdw,@mammamch.,MamMam Ch. 真夢マム,122000,Independent,ACCEPT,0.0,S,1,2022-06-18T02:18:46+00:00,,0,True
+UCqKKqKP-G8LYkWMQeJAc2vA,@noirvinterny,Noir Vinterny | V.W.Y,5210,V.W.Y,ACCEPT,0.2,C,1,2026-03-09T19:13:41+00:00,,0,True
+UCpGtwNmbOtgmcKIY81MIX_w,@nongwantv,Nongwan TV,606000,Independent,ACCEPT,0.8,S,1,2026-09-01T11:00:13+00:00,,0,True
+UCqUKFVHfbb0ujmoxNfGSu1w,@magcroravencroftch,Magcro Ravencroft Ch.,23100,Independent,ACCEPT,1.0,B,1,2026-08-27T07:58:42+00:00,,0,True
+UCqTbc_8tl7ZFcEEuZtzfr2w,@leinnch,Leinn Channel,27300,Independent,ACCEPT,0.8,B,1,2026-09-04T11:00:48+00:00,,0,True
+UCp6qRWhZi2nDUSWKwV_V08Q,@pafemilkvtuber,PaFeMiLK vtuber,6880,Independent,ACCEPT,0.8,C,1,2025-11-01T16:27:20+00:00,,0,True
+UCpNkVsMlsJRF792H-1_1vPA,@melitax-san,Melita X Ch. Pixela Project,75900,Pixela Project,ACCEPT,0.8,A,2,2023-11-30T16:58:02+00:00,,0,True
+UCqBG-DyjOA-llSpScSDOxqA,@apririru,ApriRiru,11000,Independent,ACCEPT,0.8,B,2,2026-08-24T14:09:07+00:00,,0,True
+UCqozdR0DYubMg22jJV2eThQ,@anastasia_trr,Anastasia Ch.「TRR」,278,Independent,ACCEPT,0.45,D,1,2026-07-30T02:45:59+00:00,,0,True
+UCqsUkQeicv0nEs5_d6DXYvQ,@shikar_dawg,Shikár Dawg,1230,Independent,ACCEPT,0.8,C,1,2026-09-01T03:32:43+00:00,,0,True
+UCqVbto9IH79DiJQab1nZ8CA,@dellonsch.,Dellons Ch.【𝐙𝐎𝐑𝐀】(REST),994,Independent,ACCEPT,0.65,D,1,2026-08-08T18:28:15+00:00,,0,True
+UCpZhmRU3HDKMau3Tv0_DsGg,@marintera_blb,[ 海姫 ]Marin Ch. ◈BLB◈,1960,Independent,ACCEPT,0.8,C,1,2026-08-30T09:25:48+00:00,,0,True
+UCpv77tyTG6nJlO9oBIFZ5xQ,@meteonamarsch,Meteona Mars Ch.,28300,Independent,ACCEPT,0.45,B,1,2026-08-31T15:14:31+00:00,,0,True
+UCSmwbpH_ZvRCn8-gbggGfTw,@nagaminekati,Kati Ch. กะทิ,14500,Independent,ACCEPT,0.8,B,1,2026-07-30T10:00:15+00:00,,0,True
+UCSqQDeXi3tLW_MyHnwTgvDA,@trustlnwvtuber,ช่องนี้ ซัน คุม อิอิ,4770,Independent,ACCEPT,0.8,C,1,2026-04-18T00:06:48+00:00,,0,True
+UCRpEzYWkJforn6YhvaSVXtA,@llewellaelias,Llewella Elias Ch.,3500,Independent,ACCEPT,1.0,C,1,2025-10-24T17:12:27+00:00,,0,True
+UCRpX7uvjkoy3-j_U_3atvog,@uraramomomi,Urara Momomi,2890,Independent,ACCEPT,0.8,C,1,2026-02-17T15:39:24+00:00,,0,True
+UCSZe92Gr5MIRyGSokkfOOzg,@lullalulllalull,lullalull,716,Independent,ACCEPT,0.35,D,1,2026-09-02T11:00:18+00:00,,0,True
+UCRZE5IMKRUpTgfjaniVKpbg,@chazuminxd,ChazuminXD Ch.,1210,Independent,ACCEPT,0.45,C,1,2026-08-29T20:03:01+00:00,,0,True
+UCS7BVBZ3itZ0wqlEX8a2UBA,@remielnoch492,Remiel noch,3390,Independent,ACCEPT,0.45,C,1,,,0,False
+UCRyGfYHjCHIeWZQRpdnDKMg,@katsuki_ch,Katsuki Ch.,3180,Independent,ACCEPT,0.8,C,1,2026-08-31T17:26:58+00:00,,0,True
+UCS2-t9SC5UZ9kS_bhbAxPaw,@notakich,Notaki Ch.,5350,Independent,ACCEPT,1.0,C,1,2026-09-01T06:30:50+00:00,,0,True
+UCRldXR7ASrCYYoxeqOU-_og,@varkinch,Varkin Ch,1100,Independent,ACCEPT,0.55,C,1,2026-03-15T03:31:38+00:00,,0,True
+UCTD-nm97tb5Sh7_ou7LFSUQ,@zephyreuthalia,Euthalia Zéphyr Ch. Pixela Destiny,64600,Pixela Project,ACCEPT,0.35,A,1,2025-04-11T11:00:07+00:00,,0,True
+UCS2xtM_DkvYKVxBEQxIf2-g,@mumindch,MuMind Ch.,1820,Independent,ACCEPT,0.35,C,1,2026-07-15T20:59:03+00:00,,0,True
+UCSoFIMz3y6jOVMg8nggpcMQ,@pixiangmeiyin,Pixiang Meiyin Ch. Lumina-Mutelu,6690,Lumina Live,ACCEPT,0.8,C,1,2026-09-04T14:37:54+00:00,,0,True
+UCSQCuMGGicyB_QqG_mApH7w,@kaedekh,Kaede Ch. [ Graduated],2630,Independent,ACCEPT,0.8,C,1,,,0,False
+UCSdtAY_t7uWTGhzka8QEO4Q,@arisuinjin,Arisu Jin Ch.【PSM】,835,Independent,ACCEPT,0.8,D,1,2026-08-22T17:32:34+00:00,,0,True
+UCSyG0x9lhNOi6hbyVy7hZ7g,@kumo_ma,Kumo Kuma ch.,2240,Independent,ACCEPT,0.45,C,1,2026-09-03T11:40:00+00:00,,0,True
+UCSOxauTBY7eKbUnQ86W708Q,@supeacha,Supeacha ⌜VZ⌟,47500,Virtual Zeven (VZ),ACCEPT,0.8,B,1,2026-08-30T15:53:34+00:00,,0,True
+UCRG5fX1v4b-3sUyKfAAtxxA,@luxiaplg,Luxia Ch.,57000,Independent,ACCEPT,0.8,A,2,2026-09-02T05:16:43+00:00,,0,True
+UCSG5e3zBiGSZRvD42HSnbxw,@pilap.crowen,PILA P.CROWEN Ch.【PSM】,2040,Independent,ACCEPT,0.8,C,1,2026-09-01T01:28:21+00:00,,0,True
+UCS1PrWcX95lKikSMIsm6eRg,@akithevalkyrie,Aki the Valkyrie Ch.,8470,Independent,ACCEPT,0.8,C,1,2026-09-03T14:21:37+00:00,,0,True
+UCS7XTVaCOg-rBOEM6Lyw5Jg,@myrrhaenchante,Myrrha Enchanté Ch. [Autumnia],2630,Autumnia,ACCEPT,0.8,C,1,2025-05-31T16:35:32+00:00,,0,True
+UCSus3TGWTuMjiQWycSI1CaA,@inukami_pugmaru,Pugmaru_VTube,102,Independent,ACCEPT,0.45,D,1,2026-07-12T11:00:30+00:00,,0,True
+UCRaAduo6w37DoPahoaiVbTg,@chanavtuber,Chana チャナ,12600,Independent,ACCEPT,0.8,B,2,2023-03-31T17:36:49+00:00,,0,True
+UCT6E1GD1uAXAG6fWQCGPVXA,@saranasapinach,Sarana Sapina Ch.,10200,Independent,ACCEPT,1.0,B,1,2026-09-01T17:44:36+00:00,,0,True
+UCSMH958kINERMdSx7u76Fmg,@nemuru_y,Nemuru 夜雲 ネムル,4720,Independent,ACCEPT,0.35,C,1,2026-09-03T19:27:40+00:00,,0,True
+UCTAEz5besWbmV4xp13zc0HA,@morinplanet,MoRin Ch.,2300,Independent,ACCEPT,0.45,C,1,2026-09-03T12:49:48+00:00,,0,True
+UCT6AsljeggMR6rqkQ5NSeRA,@josephinecres,JosephineCres,665,Independent,ACCEPT,0.45,D,1,2026-09-03T14:58:43+00:00,,0,True
+UCRGaEF2NMlp0n3gTlPFj27Q,@kaamoria,Kaamoria Ch.,1470,Independent,ACCEPT,0.3,C,1,2026-09-03T08:47:20+00:00,,0,True
+UCSPAN-WjdncItj4wMfi451g,@zaly-zalivia,Zalivia,2950,Independent,ACCEPT,0.0,C,1,2026-09-03T18:49:08+00:00,,0,True
+UCRNJOb6iROvOKqWiB9H1lBg,@jayvounter,JayVounter,61000,Independent,ACCEPT,0.35,A,1,2026-06-05T06:38:37+00:00,,0,True
+UCSR9HXXmM7Er6ebxyIoBgpw,@stamplmty,Stamp LMTY ⌜VZ⌟,156000,Virtual Zeven (VZ),ACCEPT,0.8,S,1,2026-09-03T11:00:18+00:00,,0,True
+UCSaQSMvF2aOoz6GTnrb6VXw,@koemieimii,Koemi Eimii Ch.,2970,Independent,ACCEPT,0.8,C,1,2026-09-02T03:41:13+00:00,,0,True
+UCS9vgAEQSQDhgTRIskKA2tA,@arkarproject,Ark Ch.【ARP】,59000,Algorhythm Project,ACCEPT,0.2,A,1,2026-09-01T13:00:06+00:00,,0,True
+UCRYa4rXZl4M4aXDVdRWamZA,@frayr_wav,Frayr《WAV》,4280,Independent,ACCEPT,0.8,C,1,2026-08-29T03:59:46+00:00,,0,True
+UCSjgfxkp4S7l1BrUObNUzzw,@madhattervz,MAD:HATTER ⌜VZ⌟,1090,Virtual Zeven (VZ),ACCEPT,0.35,C,1,2026-09-03T16:28:22+00:00,,0,True
+UCSy4T_D4xz0IcnrAoNKd8Sw,@dalinju,Dalinju モラー,4790,Independent,ACCEPT,0.55,C,1,2026-01-04T04:07:26+00:00,,0,True
+UCSB3FXovZ5GLLAIfYyuXYJg,@maprang_vtuber,Maprang 【Vtuber】,7400,Independent,ACCEPT,0.35,C,1,2026-08-28T05:11:14+00:00,,0,True
+UCT-XhKtg0Ld-uAjsdf-qFMA,@orinnia_vtuber,Orinnia ch.,1060,Independent,ACCEPT,0.8,C,1,2026-09-02T16:44:10+00:00,,0,True
+UCSFXk1n7GTDk6x_7HWlopjA,@nestorch,Nestor Ch.,2680,Independent,ACCEPT,0.0,C,1,2026-03-30T03:52:50+00:00,,0,True
+UCSviD27_MRT7oAdJUi0StPQ,@yoinobuten,Yoino Buten Ch.,23000,Independent,ACCEPT,0.8,B,1,2026-09-03T17:16:24+00:00,,0,True
+UCR4Vap93GIkE4zA4DrMW-Rw,@namwanvtuber,NamwanVchan,15600,Independent,ACCEPT,0.8,B,1,2026-09-03T12:18:42+00:00,,0,True
+UCSXwfOj8mTDxE1ZaIEHXN2w,@merakikeimii,Meraki Keimii Ch. Pixela Legends,32700,Pixela Project,ACCEPT,0.8,B,2,2023-08-01T08:00:01+00:00,,0,True
+UCSlT8Mc_dty5c_cFmi1zz4Q,@mikotomimaneneko,Mikotomi Maneneko Ch. Lumina-Mutelu,8710,Lumina Live,ACCEPT,0.8,C,1,2026-09-04T18:26:40+00:00,,0,True
+UCRq6GGcCP8sjIRfzIhfmv4w,@amanerei_vth,AmaneRei Ch.,1180,Independent,ACCEPT,0.95,C,1,2026-08-22T03:44:04+00:00,,0,True
+UCRiS4VWQedLfgE1g1AKD1DQ,@irynemau,Iryne Mau Ch. [Autumnia],2780,Autumnia,ACCEPT,1.0,C,1,2025-05-31T19:48:35+00:00,,0,True
+UCRk9GF8RknJ1tfcgP2Rr2Vw,@ranec19projekt,Ran [EC19 Projekt],6990,Independent,ACCEPT,0.55,C,1,2021-10-10T14:54:29Z,,0,True
+UCSxxTmjwf04nMcIALS1RyMQ,@akito_soa,Akito ch. アキト【SOA】,6260,Independent,ACCEPT,0.8,C,1,2026-09-02T22:25:11+00:00,,0,True
+UCJcfB-86rWM0NF2li1CqNNw,@nutsurusama,NutsuruSama ,79400,Independent,ACCEPT,0.8,A,1,2026-09-03T11:18:51+00:00,,0,True
+UCLWpw8jaGYOVXV8cIu1WMqw,@fukailorn,Fukai Lorn Ch.,1710,Independent,ACCEPT,0.35,C,1,2026-08-27T20:14:52+00:00,,0,True
+UCJcUPyHbfB_4evd9PhFyfXQ,@altairalal,AltairAlAl Ch.,75,Independent,ACCEPT,0.8,D,1,2026-09-03T14:19:26+00:00,,0,True
+UCLH2yQZY_yG165dVqtabtYw,@akimasamune_as,Aki Masamune Ch. / AStars Chrono prince,19600,AStars Production,ACCEPT,0.2,B,2,2026-09-03T04:50:28+00:00,,0,True
+UCJV_fi2dwgLJLLkIIzsT4hg,@stellachannel,StelLa Ch.【XEKIN】,24300,Independent,ACCEPT,0.8,B,2,,,0,False
+UCLEOU6NgYYoVmPV8MwbwOkg,@ratokungz,RatoMatsudaラト松田 Ch.,4690,Independent,ACCEPT,0.35,C,1,2026-09-02T22:42:48+00:00,,0,True
+UCLrFWzD0xA5nDt4ZYUnbGew,@jorirynnjo,Jorirynn 【PRIME】,2940,Independent,ACCEPT,0.35,C,1,2025-08-21T16:28:36+00:00,,0,True
+UCM7lej36ZymXK4KGygFQN8w,@minilorri,MINI_lorii,1750,Independent,ACCEPT,0.45,C,1,2026-08-29T17:27:17+00:00,,0,True
+UCLNBff3KDEUxdfH_lkvyOKQ,@kamiyureirin,Kamiyu Reirin Ch. Lumina-First-Myth,86100,Lumina Live,ACCEPT,0.8,A,2,2026-09-01T01:22:16+00:00,,0,True
+UCLEtK3UynAZPM7ODwPeveEw,@lirin0suke,LIRIN,32300,Independent,ACCEPT,0.35,B,1,2026-08-18T14:52:30+00:00,,0,True
+UCJVNjk7J4WxX4ccFl11SzDw,@moaโมอา,MOA - โมอา,7260,Independent,ACCEPT,0.45,C,1,2025-10-09T03:55:01+00:00,,0,True
+UCL9pGQHePabm2RkTgbFR7YQ,@taytungkeyvr,TayTungKeyVR,11900,Independent,ACCEPT,0.8,B,1,2026-08-29T20:16:47+00:00,,0,True
+UCLplEzbrp6AFeZIyVp9EnRA,@kksr_vt,แก้วกษิรา [KAEWKASIRA] 🐍🌸,2150,Independent,ACCEPT,0.45,C,1,2026-07-28T01:08:20+00:00,,0,True
+UCJZdSYHLTvG4d3yVd-NyasA,@ayane_shiwawa_,AYANE  SHIWAWA,797,Independent,ACCEPT,0.45,D,1,2026-08-16T05:08:37+00:00,,0,True
+UCL7lolCifod5V21pPzR3K-w,@magnum_arp,Magnum Ch.【ARP】,77500,Algorhythm Project,ACCEPT,0.65,A,1,2026-08-31T10:20:38+00:00,,0,True
+UCKlC3deRExVS_eCuFg2ec2g,@yama_vtg,Yama 『VTG』,254,Independent,ACCEPT,0.8,D,1,2026-08-25T02:59:14+00:00,,0,True
+UCK8GmjIUCbl_qlRCfAR3yaA,@projectrei,Project R.,8530,Independent,ACCEPT,0.35,C,2,2020-09-19T19:31:40+00:00,,0,True
+UCMQwItTmnjFp1VK-v6aR15g,@rendelldruid,Rendell Druid Ch.,3340,Independent,ACCEPT,0.45,C,1,2026-08-31T17:08:59+00:00,,0,True
+UCMQ21qN4qXA0sJf-kUK9ZjQ,@sixteen-c5l,SIXTEEN WATHATHAI ,4340,Independent,ACCEPT,1.0,C,1,2024-03-09T05:44:02+00:00,,0,True
+UCKKPleoe-EdGryxMCf0i9UA,@domino_non,DoMINO DDD.,1980,Independent,ACCEPT,0.8,C,1,2026-05-09T04:01:03+00:00,,0,True
+UCJdXesaZYrQVSjhlYhme8rQ,@ayna_arp,Ayna Ch.【ARP】,50400,Algorhythm Project,ACCEPT,0.35,A,2,2025-04-04T17:45:43+00:00,,0,True
+UCL1yaSZue9dW_zyvhdI8C3w,@friskfitz,Friskfitz,30600,Independent,ACCEPT,0.8,B,1,2026-09-03T15:34:39+00:00,,0,True
+UCMDaeugSCq7jNvWma9pa0ZQ,@reathchnsk,ReaTH Ch.,1880,Independent,ACCEPT,0.55,C,1,,,0,False
+UCL6YKqCxZoo1ecno9Zn6RDg,@lynisepr,Lynis ch. Euphora | Vtuber,6940,Euphora Project,ACCEPT,0.8,C,1,2026-09-03T11:47:41+00:00,,0,True
+UCKE7TdJhSFGM6eBxAOZrw8g,@uranach,Urana Ch.,7390,Independent,ACCEPT,0.55,C,1,2026-09-02T15:57:00+00:00,,0,True
+UCMBxPwSlBQz2TxRnA2ogq0w,@jayda_suaymak,Jayda,910,Independent,ACCEPT,0.65,D,1,2026-09-03T12:52:47+00:00,,0,True
+UCM69uU9b_raR3mcACHeivgg,@pyorkthepork,Pyork The Pork,224000,Independent,ACCEPT,0.8,S,1,2026-04-04T15:48:57+00:00,,0,True
+UCK0yR420GTebrHIJy1-ND2g,@zoeychanhz,Zoey Ch.【 HZ 】,776,HZ,ACCEPT,0.45,D,1,2026-08-26T06:27:01+00:00,,0,True
+UCL0LiR5zg3vRnIHp-CowVBg,@kamisaki_kuro,KamiSaki Kuro Ch.,966,Independent,ACCEPT,0.35,D,1,2026-08-29T16:52:14+00:00,,0,True
+UCKCL2NsTO_FOaWHEE6OiHoA,@kogawaakira,Akira Ch. 狐川アキラ,672,Independent,ACCEPT,0.8,D,1,2026-08-28T05:00:47+00:00,,0,True
+UCJu3OL7duainSbXcDvU-bUA,@kurosawasp,Kurosawa Karwara〖Autumnia〗,523,Autumnia,ACCEPT,0.8,D,1,2026-08-28T16:53:42+00:00,,0,True
+UCMJcr4CRojJ_0Qkyd1a5ULQ,@deathexch.,DeathEx Ch.,544,Independent,ACCEPT,0.8,D,1,2026-09-01T03:24:27+00:00,,0,True
+UCJMtmiajwsQXE4rpd2wuEyg,@chiharu_trr,Chiharu ch.「TRR」,266,Independent,ACCEPT,0.45,D,1,2026-07-28T23:44:35+00:00,,0,True
+UCJh1yHdhK6XA2brZ8EIuaaw,@demon_blxe,BlueMoon Ch. ,552,Independent,ACCEPT,0.35,D,1,2026-08-31T00:43:15+00:00,,0,True
+UCM96L0HabMkeIGyBViLZ4YQ,@cynthiarowena,Cynthia Rowena Ch.,35300,Independent,ACCEPT,0.8,B,1,2026-09-03T10:17:50+00:00,,0,True
+UCLWuDHSv5EWSQqAxar2YTlw,@akilah_mjnv,Akilah Ch.,7680,Independent,ACCEPT,0.35,C,1,2026-08-29T04:16:19+00:00,,0,True
+UCJxIZZSfV0u2b7p_bK7jOjw,@endoria_alf,Endoria Fia「ALF」,1120,ALF,ACCEPT,0.45,C,1,2026-09-03T06:45:39+00:00,,0,True
+UCL4nWmMsqtYKN6OvcmskNtg,@rubelliteeuphora,Rubellite ch. Euphora,7680,Euphora Project,ACCEPT,0.35,C,1,2026-07-13T09:00:29+00:00,,0,True
+UCL0sord1bwoWcg2M2WExpiA,@sullivanvprolive,Sullivan Ch. Vprolive,1400,Independent,ACCEPT,0.2,C,1,,,0,False
+UCL2geAXXebwlFLe-dokNCkw,@phelitaepr,Phelita ch. Euphora • [On Hold],8490,Euphora Project,ACCEPT,0.8,C,1,2023-08-02T18:51:39+00:00,,0,True
+UCKSfn-s6fgSVkkNGcPPUuBQ,@sua_vtuber,Sua Ch.,5540,Independent,ACCEPT,0.8,C,1,2026-08-24T00:20:17+00:00,,0,True
+UCKPcwla_mvpdBnyjHYTiwoQ,@puipuimemory,Puipui Memory,96400,Independent,ACCEPT,1.0,A,1,2026-02-20T07:53:35+00:00,,0,True
+UCMHyqlEwC-IdXCQZht8g44w,@rionaplg,Sigmunda Riona Ch. 【POLYGON】,16100,Polygon Official,ACCEPT,0.8,B,2,2026-09-03T15:26:26+00:00,,0,True
+UCKlrZ_Pp4UE8miUIbC3kFjg,@castesia,Castesia | Phoenix Vtuber of Noxus,33700,Independent,ACCEPT,0.8,B,1,2024-03-28T02:30:05+00:00,,0,True
+UCJNuYG7F5YzslTSYChWcKBw,@kouseich219,Kousei Ch.,5250,Independent,ACCEPT,0.45,C,2,2026-08-12T05:05:57+00:00,,0,True
+UCLUmZp46kwJs1YENDLsGV9A,@lyricursae,Lyric Ursae,1320,Independent,ACCEPT,0.8,C,1,2026-09-03T09:16:01+00:00,,0,True
+UC5RdVorohRmiGKHN4VHYZJg,@taiyobouken,TAIYO BOUKEN Ch.,26000,Independent,ACCEPT,0.8,B,1,2026-09-02T11:20:58+00:00,,0,True
+UC4kzIt5iyX7QC27TTKfUnXA,@witchy_rochelle,Witchy Rochelle,5640,Independent,ACCEPT,0.8,C,1,2026-09-01T10:07:44+00:00,,0,True
+UC42syJbZL4oBacK-QFTie6w,@astellariekach,Astella Rieka Ch.,25200,Independent,ACCEPT,1.0,B,2,2026-09-02T11:30:23+00:00,,0,True
+UC4zIwNmfURhIO5Pj-ccmKBA,@amuvch,Amu V Ch.,1260,Independent,ACCEPT,0.55,C,1,2024-11-01T22:53:06+00:00,,0,True
+UC5N4WI1wHPrffHY-r1FtnIw,@retsueiei,RESU,1480,Independent,ACCEPT,0.8,C,1,2024-11-20T03:24:51+00:00,,0,True
+UC4x2o7dyxOqFLoA9NKxf0Iw,@ivy_arp,Ivy Ch.【ARP】,50600,Algorhythm Project,ACCEPT,0.45,A,1,2026-08-10T12:00:06+00:00,,0,True
+UC3rL0_fwhvTx0zpFj4pn5Dw,@timothy_weii,Timothy Weii Ch.,3620,Independent,ACCEPT,0.45,C,1,2026-08-06T16:51:18+00:00,,0,True
+UC4Ceq8atGdQu58Dn3YKF1Ig,@tblueberry,T หมาป่าบลูเบอร์รี่ Wolfficial,5620,Independent,ACCEPT,0.8,C,1,2026-08-29T03:00:08+00:00,,0,True
+UC4g_aNYnbZ564FUrzHvoFQA,@moekaorivz,Moe Kaori  ⌜VZ⌟,13600,Virtual Zeven (VZ),ACCEPT,0.35,B,1,2025-09-12T07:20:57+00:00,,0,True
+UC52dzPlsz8jN2hIevufKCHA,@alhongvtg,ALhong 『VTG』,295,Independent,ACCEPT,0.45,D,1,2026-08-26T17:13:46+00:00,,0,True
+UC5x2tcpXNa1dZx035isZKWQ,@lunalumiina,LunaLumIIna 「 PRD 」,1900,Independent,ACCEPT,0.8,C,1,2026-08-30T11:23:17+00:00,,0,True
+UC4JQ9apR_7oHuqn05Zzy1KA,@tako_tk,Tako_TK Ch.,9980,Independent,ACCEPT,0.8,C,1,2026-09-01T05:52:12+00:00,,0,True
+UC5HQtSunzJjhS-XcBdbUC6Q,@wadogardenwoofna,Woofna ch. ,1530,Independent,ACCEPT,0.8,C,1,2026-08-30T14:35:06+00:00,,0,True
+UC4IVinDrDxJGqolrsYSwnnw,@thomashiproject1770,thomashi ch. 翔真志,918,Independent,ACCEPT,0.8,D,1,2026-09-02T13:29:01+00:00,,0,True
+UC4EiUVIMjw-SE6_6Kt0Mk-g,@luche_sinclair, เช่ค้าบ 𝗟𝗨𝗖𝗛𝗘,3240,Independent,ACCEPT,0.45,C,1,2026-09-02T11:00:16+00:00,,0,True
+UC3qnb4Sgo4QtiOi8iS7jOsQ,@tsururuworldend,Kumoku Tsururu Ch. Lumina-World-End,24900,Lumina Live,ACCEPT,0.8,B,1,2026-09-01T17:25:27+00:00,,0,True
+UC548-tLEd7-0kgzXGeSdUtw,@miemerr,MIEMER,2100,Independent,ACCEPT,0.35,C,1,,,0,False
+UC5TnSrUJmrC_KFW9VLi37lA,@ach_newsekai,ArrLost Ch.,949,Independent,ACCEPT,0.35,D,1,2023-08-22T12:29:54+00:00,,0,True
+UC4P6ez9eO2Lv8Jun5zXaVMg,@ssolarly,sSolarly Ch.,1380,Independent,ACCEPT,1.0,C,1,2026-08-25T07:30:21+00:00,,0,True
+UC5ZH6Ynk7iBN4wJBanvhXcg,@janus_trr,Janus ch.「TRR」,1130,Independent,ACCEPT,0.8,C,1,2026-09-02T14:37:46+00:00,,0,True
+UC4t1p_Eg0GcjdrdctUIAaug,@mayanut,MAYANuT,1310,Independent,ACCEPT,0.45,C,1,2026-09-02T16:36:15+00:00,,0,True
+UC5hOgx6yvYrY8Rn1zaxAY1A,@zelune_lunezero,Zelune Noctarielle 🌙,401,Independent,ACCEPT,0.45,D,1,2026-09-03T15:44:35+00:00,,0,True
+UC3sqLdjV0uxXfAzLE-fJeXw,@cresentansel,Cresent Ansel Ch.,1710,Independent,ACCEPT,0.65,C,1,2025-03-29T04:41:31+00:00,,0,True
+UC5NtCgUU-vQC_GrtzSUeSZA,@gloria21pm,Gloria ch.【21PM】,1270,Independent,ACCEPT,0.45,C,1,2026-08-23T20:17:16+00:00,,0,True
+UC4sCp51x2lBXf7x2Uy_fj_A,@sistralyrics_otl,Sistra Lyrics《 OTL 》,12400,Independent,ACCEPT,0.8,B,1,2026-09-01T14:03:12+00:00,,0,True
+UC5VPIoY1j_x9UZSqkpwg8jw,@mayaoboroch,Maya Oboro Ch.,17000,Independent,ACCEPT,0.8,B,1,2022-12-24T16:11:27+00:00,,0,True
+UC5iFCwUMeeZX9KLCTOIKItQ,@mirinku,Mirinku ,4430,Independent,ACCEPT,0.35,C,1,2025-12-11T16:53:22+00:00,,0,True
+UC51b_p9sAVzl9PIwnVe0Wnw,@kamphee,Kamphee soAlone Ch. [Autumnia],4800,Autumnia,ACCEPT,0.8,C,1,2026-09-02T12:02:55+00:00,,0,True
+UC5lHMQtDJF1h2-s0nCBQpoA,@somjeedbanrai,Somjeedbanrai【VJN】,420,Independent,ACCEPT,0.45,D,1,2026-08-26T12:41:22+00:00,,0,True
+UC5cOcO_LxT0ZQ7Q2qQEM4Og,@shibainuri,Shiba Inuri Ch.,356,Independent,ACCEPT,0.45,D,1,2026-08-29T16:57:28+00:00,,0,True
+UC5OXcxq6ab6RlhHqNyHws_w,@mallow_ham,M a l l o w  Ch.,1340,Independent,ACCEPT,0.0,C,1,2026-02-16T02:41:38+00:00,,0,True
+UC5kkY1f25n1e9KYxSKVtUpg,@xetsuvibeent,XETSU Ch. / QURSE,4730,Independent,ACCEPT,0.2,C,1,2026-09-02T04:07:58+00:00,,0,True
+UC5ZB56gBvLOM3e_eVioCrCQ,@betthach,Bettha Ch.,5410,Independent,ACCEPT,0.35,C,1,2026-09-02T16:08:08+00:00,,0,True
+UC5FZBzrjJ0DQwkP6D91M-0g,@zinniszier,ZINZIER Ch.,929,Independent,ACCEPT,0.45,D,1,2025-05-23T09:34:25+00:00,,0,True
+UC4fR2AniBIratHesKgQyHiw,@n0kk_tt,Nokk_tt Ch.,474,Independent,ACCEPT,0.55,D,1,2026-08-31T12:04:55+00:00,,0,True
+UC4CQvHd-rReEpxE43dluLYQ,@x-jevz,X-JEVZ,353,Independent,ACCEPT,0.45,D,1,2026-09-01T11:23:45+00:00,,0,True
+UC4kKR_Kstzo__dyqZa-95Ig,@kingslimevth,King Slime VTH ,1320,Independent,ACCEPT,0.95,C,1,2026-09-02T05:42:43+00:00,,0,True
+UC48D7EILUGrBeffDrXXJAIQ,@langlerobite,Langler Ch.,1150,Independent,ACCEPT,0.2,C,1,2025-09-21T01:46:56+00:00,,0,True
+UC4plXkAtJdWilZ7-YqWT7Zw,@ginyadom,GINYADOM,1580,Independent,ACCEPT,0.8,C,1,2025-05-14T09:01:33+00:00,,0,True
+UC5I-HucSFSRsYl3HYMxtgEA,@tiernsay,TiernSay,8300,Independent,ACCEPT,0.8,C,2,2026-08-12T03:02:03+00:00,,0,True
+UC4gflcsvblzsnCtNddgDSQA,@moia_lnwza55,Moia | โมเอีย 🪶,549,Independent,ACCEPT,0.45,D,1,2026-09-02T13:49:11+00:00,,0,True
+UC5JlD3YtvbCaAeU3TWSpW6A,@foxrabbitc4t,Kisa l FoxRabbitC4T,2320,Independent,ACCEPT,0.2,C,1,2026-08-14T06:31:26+00:00,,0,True
+UC5wA30Tc9ONbRjj6QNinH9w,@kayoch,Kayo Ch. 【かよCh.】◣PLO◥,2320,Independent,ACCEPT,0.45,C,1,2026-08-27T16:19:13+00:00,,0,True
+UC4nsIGJlPXdVHJ61TQdEzfQ,@mariabellrain,Mariabell Rain - 雨 ,2210,Independent,ACCEPT,0.8,C,1,2026-09-01T09:19:47+00:00,,0,True
+UC5NrMFPWAtcfNH8ibcBlWhQ,@kirishi_021,霧死 - Kirishi,3950,Independent,ACCEPT,0.35,C,1,2026-09-01T22:11:29+00:00,,0,True
+UC4QwUkFO1_JJe_TTN5jYoyA,@inumaru_atsuki,Atsuki丨アツキ,124,Independent,ACCEPT,0.35,D,1,2026-08-30T15:23:37+00:00,,0,True
+UC4QiJt8a2VjOnwI-0zzMsKA,@kanonharunaofficial,Kanon Official,2430,Independent,ACCEPT,0.8,C,1,2025-01-12T13:30:06+00:00,,0,True
+UC4194MxDKFwBEFtaFbwwM7g,@soursama_,Sour,699,Independent,ACCEPT,0.8,D,1,2026-07-30T14:26:03+00:00,,0,True
+UCc31qMp87wZnOpcxkQB7Prw,@belleec19projekt97,เบลล์ / Belle [EC19 Projekt],3970,Independent,ACCEPT,0.8,C,1,2026-08-27T15:50:19+00:00,,0,True
+UCcmmL4Bdgf1tvkAm8C57_rg,@umiuzagi_vth,Umi Uzagi Ch.,2000,Independent,ACCEPT,0.6,C,1,2026-09-02T14:11:24+00:00,,0,True
+UCbLBp0DgOr1ryQBdYp-AGcQ,@asaka_irin,Asaka Irin | Operation V Ch.,1300,Independent,ACCEPT,0.8,C,1,2026-07-25T14:40:54+00:00,,0,True
+UCctSbuyO_J73eUqGUesZotw,@dttosempire,dtto's Empire,6510,Independent,ACCEPT,0.55,C,1,2023-01-23T05:35:03+00:00,,0,True
+UCcfkeut6fAXSfuT1AmFi2cA,@cs_valkyrie,Valkyrie Ch.,1310,Independent,ACCEPT,1.0,C,1,2026-09-03T16:36:19+00:00,,0,True
+UCcjjQNj_XUhM1dH9TEXEpAg,@malaiec19projekt9,มาลัย / Malai [EC19 Projekt],2030,Independent,ACCEPT,1.0,C,1,2026-08-30T12:09:06+00:00,,0,True
+UCcKP-pSFONm5IMA-GdikUEQ,@salvatore_vnv,Salvatore Ch.『 VNV 』,944,Independent,ACCEPT,0.8,D,1,2026-06-04T05:00:16+00:00,,0,True
+UCbXO3ON6BR4-lhx5Yd4yzKA,@midorisuika,Midori Suika,3360,Independent,ACCEPT,0.8,C,1,2026-09-03T17:44:03+00:00,,0,True
+UCc6ilVu6_FK9y_9qMMh4WMQ,@platinumrankwrath,PlatinumRankWrath | V-Storyteller,2730,Independent,ACCEPT,0.95,C,1,2026-02-01T07:00:42+00:00,,0,True
+UCbd5WWyYS2WBMNNxfVEBQQg,@evatherhino,EVA THE RHINO Ch.,13900,Independent,ACCEPT,0.45,B,1,2026-09-04T09:30:17+00:00,,0,True
+UCcLO1hhvvD6AKtDayqDABpA,@mawmeowstudio,MawMeow Channel / แมวเหมียว~,19400,Independent,ACCEPT,0.8,B,1,2022-10-22T14:05:52+00:00,,0,True
+UCbbK8AskO_4tRrs0yc7bQXQ,@fouruaryth,FouruaryTH,2810,Independent,ACCEPT,0.95,C,1,2026-09-04T05:20:44+00:00,,0,True
+UCcKPhwmHkBGaYKBp50jPzzg,@venuslpr,Venus Lapirus Ch.,3760,Independent,ACCEPT,0.8,C,1,2026-09-04T13:17:22+00:00,,0,True
+UCbXZ2JNCFUc5cMWO0480grA,@majcha_ch,MAJCHA มัจฉา | DEBUT SOON,6260,Independent,ACCEPT,0.8,C,1,2026-08-12T21:01:26+00:00,,0,True
+UCcbMfHO8TX8mQ9LEi4zs5Zw,@grispantherach,Gris Panthera Ch. ,4070,Independent,ACCEPT,0.8,C,1,2026-09-04T16:04:32+00:00,,0,True
+UCcJnP0qoimAQg8L3sTJ1O_Q,@meidayv.5800,MeidayV.,340,Independent,ACCEPT,0.55,D,1,2026-08-31T15:12:41+00:00,,0,True
+UCbXXQtmpcBI8GtO2Xg5pYuw,@donovanch,Donovan Ch.,7490,Independent,ACCEPT,0.8,C,1,2026-09-04T09:22:27+00:00,,0,True
+UCdGC8XH74o6QTavyXw-5q2w,@hoshinach,HoshiNa Vtuber Ch.,596,Independent,ACCEPT,0.8,D,1,2026-09-03T16:54:07+00:00,,0,True
+UCbdwIhYMC977P-Fk6d0utoQ,@nneviris,Neoda Neviris,5980,Independent,ACCEPT,0.55,C,1,2026-06-16T15:13:29+00:00,,0,True
+UCdPOgLoE_grESHHrpHDNsEg,@idarytailor8462,Idary tailor,2190,Independent,ACCEPT,0.8,C,1,2026-09-04T16:32:00+00:00,,0,True
+UCcrJWJBgpZ1A-EoFKqRRzOg,@_airitk_,_AiRiTk_,3000,Independent,ACCEPT,0.8,C,1,2024-12-25T20:14:22+00:00,,0,True
+UCdF31qg1W2KsKxSuSFECflA,@copper_vtuber,Copper Vtuber,1330,Independent,ACCEPT,0.0,C,1,2026-09-04T12:21:53+00:00,,0,True
+UCbHVEzb9fr8DxWPUxCAEOVQ,@sebastos_vt,Sebastos | Vtuber,579,Independent,ACCEPT,0.65,D,1,2026-09-04T10:39:27+00:00,,0,True
+UCddeSRGyCRq2K8k_NPprI-g,@daichimerinor_blb,Daichi Merinor ch. ◈BLB◈,924,Independent,ACCEPT,0.8,D,1,2026-08-12T15:29:50+00:00,,0,True
+UCd6Tzh7ZpVnCysNMt4nPjAg,@sojuusmiley,Sojuu S.,2970,Independent,ACCEPT,0.45,C,1,2026-09-04T06:26:46+00:00,,0,True
+UCcG3H4vlPyThp_yQpySo0gw,@burukivgamer,Buruki Ch,5100,Independent,ACCEPT,0.8,C,1,2026-05-23T16:08:09+00:00,,0,True
+UCcEeR95bngZpdswBuEWJ0DQ,@queenskaich.9439,QueenSkaði Ch.スカディ,1430,Independent,ACCEPT,0.8,C,1,2022-05-08T02:02:04+00:00,,0,True
+UCcgDP2RmeCqW1GTms1mkUlQ,@karu_arp,Karu Ch.【ARP】,175000,Algorhythm Project,ACCEPT,0.45,S,2,2026-09-04T14:20:21+00:00,,0,True
+UCc9W8GnDEHPNgt6eshaAvQw,@nirvana_arp,Nirvana Ch.【ARP】,33000,Algorhythm Project,ACCEPT,0.3,B,1,2026-09-02T15:16:46+00:00,,0,True
+UCbzEo3V4jrYslgsDPXUV8-A,@j1nghaii,靖海 • J1ngHaii,1730,Independent,ACCEPT,0.55,C,1,2026-05-17T18:23:28+00:00,,0,True
+UCbypR_t0teWxIdrQ9i83XiQ,@lunessaflorynne,Lunessa Florynne Ch. Lumina-Muse,13600,Lumina Live,ACCEPT,0.8,B,1,2026-09-04T10:00:13+00:00,,0,True
+UCdgjIr2R7jAjCO-62Y4nMoQ,@cyntiavtuber,Cyntia Ch.,5680,Independent,ACCEPT,0.35,C,1,2026-08-23T16:06:18+00:00,,0,True
+UCcPlWQeuFutZ8VllrN_O2YA,@umepinko,Ume Ch. しのはな❀梅,2270,Independent,ACCEPT,1.0,C,1,2022-10-01T10:50:02+00:00,,0,True
+UCbfARUSxU4X2o5_PwjRXezw,@mirapilula8509,Mira Pilula,6260,Independent,ACCEPT,0.8,C,1,2022-06-30T02:08:11+00:00,,0,True
+UCcFIthTrwa6N-1ri9sQZstw,@poru_arp,Poru Ch.【ARP】,89500,Algorhythm Project,ACCEPT,0.45,A,1,2026-09-04T12:12:03+00:00,,0,True
+UCc3SW0RuO0pK4n1jYmDvGKw,@vthariel,Ariel | R.E.L's New Laboratory,263,Independent,ACCEPT,0.45,D,1,2026-09-02T15:17:03+00:00,,0,True
+UCchEIVkQk2tgdHiSc0LxGJQ,@darieladolly,Dariela,1280,Independent,ACCEPT,1.0,C,1,2026-08-23T03:30:24+00:00,,0,True
+UCbwvKxA5KSud4jcaD5g5ukQ,@oldmanazazel,Azazel the Wanderer Ch.,1250,Independent,ACCEPT,0.0,C,1,2025-08-09T03:14:16+00:00,,0,True
+UCcdu_2oQRES4yHL98BC4_fw,@soujiroy,Souji Roy,10400,Independent,ACCEPT,0.8,B,1,2026-08-24T05:13:50+00:00,,0,True
+UCdYlA3Qi1TnZwThS9Rb7dog,@jaylony,JayloNy,251000,Independent,ACCEPT,0.35,S,1,2026-04-23T07:00:22+00:00,,0,True
+UCbTN1R7AbdA1vICChlVDaYg,@serennokoriel,Serenno Koriel ,1040,Independent,ACCEPT,0.65,C,1,2026-09-04T06:23:31+00:00,,0,True
+UCdVlryCezLzVh74qwUfrL6Q,@fondawl_res,ฟ้อนดาวมาเล่า | Fondawl【RE:S】,14700,Independent,ACCEPT,0.8,B,1,2025-11-05T11:01:12+00:00,,0,True
+UCbS8T1ffrgNRkvRy11KbnHQ,@greymvitale,Grey Murasaki Vitale Ch.,10800,Independent,ACCEPT,0.45,B,1,2026-09-04T02:34:23+00:00,,0,True
+UCcTGGIt4hirVXIxUHPxIvXw,@ayaleveruch,Aya Leveru Ch.,17900,Independent,ACCEPT,1.0,B,1,2026-08-30T13:56:57+00:00,,0,True
+UCbZDGjLa_Rc3TfPVXMR1Tog,@blythebiscuit,Biscuit Blythe Ch. Pixela Destiny,27200,Pixela Project,ACCEPT,0.35,B,1,2026-09-03T14:21:19+00:00,,0,True
+UCbeaB9MoD9IyXqBshyQuNRQ,@nerumi-s,Nerumi-s,73800,Independent,ACCEPT,0.55,A,1,2026-09-04T11:00:38+00:00,,0,True
+UCcM1cUyEXYmm13DgfwXS-oQ,@mystich04,Mysti Ch.,3860,Independent,ACCEPT,0.8,C,1,2026-08-12T04:21:07+00:00,,0,True
+UCbfqosxk1LXHk3pW1p3G0GA,@issanumberone,Issa,11500,Independent,ACCEPT,0.8,B,1,2026-09-03T18:37:59+00:00,,0,True
+UC-FO1d6VYrHvbPjzr4Fuwgg,@kuronuriinurirainbowarc.2572,Kuronuri Inuri 【Rainbow Arc.】,952,Independent,ACCEPT,1.0,D,1,2022-05-12T10:16:35+00:00,,0,True
+UC16UwMg_siDFehWYFcjZhDQ,@kanasomsom,Kanako Ch. / 金狐カナ,10000,Independent,ACCEPT,1.0,B,1,2026-09-05T10:30:27+00:00,,0,True
+UC0cpWaYfZHppuIXGN6on59Q,@nisapoyo,Nisa Ch. นิสาปี้,5220,Independent,ACCEPT,0.8,C,2,2026-06-01T15:12:46+00:00,,0,True
+UC0C6NAfPq2HMMqxO4hXyG-g,@vanderlinde-1986,สุรกี้ | วีทูปเบอร์,1380,Independent,ACCEPT,0.8,C,1,2026-09-03T06:31:25+00:00,,0,True
+UC-4w5VWWZRCK_wg9EJ-lr1w,@haidanayso0,haidan Ayso0 Ch.,1150,Independent,ACCEPT,0.8,C,1,2023-08-31T10:00:01+00:00,,0,True
+UC-z7X8ICz1T-5gAJLgvYWCQ,@-hajitabi,【公式】HAJITABI ハジタビ,8640,Independent,ACCEPT,0.55,C,1,2023-03-08T15:52:29+00:00,,0,True
+UC-8ovOIio6IUT-2DFsZvnMw,@lunesolch,Lune&Sol Ch.,17500,Independent,ACCEPT,0.35,B,1,2024-01-21T09:25:28+00:00,,0,True
+UC05R2CcQn2TqvrgZRp-RF6w,@navyluciferv.w.y,Navy Lucifer | V.W.Y,1490,V.W.Y,ACCEPT,0.2,C,1,2026-03-06T04:30:43+00:00,,0,True
+UC0Zn4uhb90EBb5e3NlvuS1g,@nonokochika,chika🍀,883,Independent,ACCEPT,0.85,D,1,2026-09-04T13:40:28+00:00,,0,True
+UC-1J1TwDCLKe2p4HVchqGiw,@mosantxd,Mosant Ch.,59400,Independent,ACCEPT,0.45,A,2,2026-09-04T19:27:27+00:00,,0,True
+UC0HGT-zZVzNq5JGOJOGYfJA,@teddybel_official,TEDDYBEL 【Official】,2020,Independent,ACCEPT,0.65,C,1,2026-09-05T04:58:22+00:00,,0,True
+UC0C2fagfuiXuEgVCHEkJi4Q,@zenospdr,Zenos Ch.,6630,Independent,ACCEPT,0.45,C,1,2024-11-05T14:00:06+00:00,,0,True
+UC-uDG_nIZg8zySZPAJ1Ex2Q,@lunette_rabbit,Lunette CH.,646,Independent,ACCEPT,0.8,D,1,2026-07-25T14:45:48+00:00,,0,True
+UC0Ky1U__7T2Z5SOZCvNlJ-Q,@bearissbeam,Beariss Beam,108000,Independent,ACCEPT,0.55,S,1,2025-10-13T02:56:11+00:00,,0,True
+UC0nW1honcPC62DD5Qkv3NAw,@ngf_kb,NonGField,2430,Independent,ACCEPT,0.8,C,1,2026-09-04T17:00:07+00:00,,0,True
+UC1ibZkqGoK8pSctzOwXUcWA,@mizuharayami,Mizuhara Yami Ch.,23300,Independent,ACCEPT,0.8,B,1,2026-09-04T18:34:52+00:00,,0,True
+UC19G1A17yxePMyLJqcNBN7Q,@mikarichannel,Kuroda Mikari,984,Independent,ACCEPT,0.8,D,2,2023-01-06T19:21:06+00:00,,0,True
+UC-KEm4E7Yp_t0Gzix4SwkwA,@deaexdelta,Dëa Ex Δ Ch. Lumina-Muse,22400,Lumina Live,ACCEPT,0.8,B,1,2026-09-01T09:00:37+00:00,,0,True
+UC0OQFhAPY9bgfKqi6u8MI7Q,@ryoukuchach,Ryoukucha CH〖DPX〗,866,DPX,ACCEPT,0.55,D,1,2026-07-16T03:08:44+00:00,,0,True
+UC-7KSYyqZ5FthXGj4R1nVbw,@shianblueth,Shian Blueth,1050,Independent,ACCEPT,0.95,C,1,2026-07-11T18:23:45+00:00,,0,True
+UC0J6pp9DfQIKE0ZP7nHq7oA,@keilerwang,Keiler Ch.〖SSR〗,117,Independent,ACCEPT,0.2,D,1,2026-08-21T06:30:59+00:00,,0,True
+UC0XEfbSBJTqH5sH79R7ZXKw,@muay_barista001,Muay​ The Barista ,635,Independent,ACCEPT,0.45,D,1,2026-08-16T10:00:28+00:00,,0,True
+UC0j83REEO0vmUB6UOJpC5EA,@rieltabiji,Riel Tabiji,441,Independent,ACCEPT,0.8,D,1,2026-09-05T14:40:12+00:00,,0,True
+UC0WohB8vCmGDUn1q67z8kTA,@narufay,NaruFay,3370,Independent,ACCEPT,0.8,C,1,2026-09-05T09:24:53+00:00,,0,True
+UC-hRgpBR4P_7FAf_73rEfAA,@finaandtier,Fina and Tier,2690,Independent,ACCEPT,0.8,C,1,2025-02-21T14:00:35+00:00,,0,True
+UC0sN779hXum_LluFaWfJjcw,@hinareekannari,Hinaree Kannari Ch. Lumina-Muse,11300,Lumina Live,ACCEPT,0.8,B,1,2026-09-01T09:30:16+00:00,,0,True
+UC1Ow3RRt6TlD5__a3t-UYLQ,@kurosegawarenjimaruch.,Kurosegawa Renjimaru 黒瀬川 櫺子丸 Ch.,71,Independent,ACCEPT,0.8,D,1,2026-08-23T15:11:20+00:00,,0,True
+UC0bsrd1M3gCF6XqT_pBobjg,@p1achon,P1achon,16900,Independent,ACCEPT,0.35,B,1,2026-09-05T10:11:38+00:00,,0,True
+UC06ZTttwwgmmMdc6ZMkOOgg,@akimotoyumach,Akimoto Yuma Ch. [SOON],2000,Independent,ACCEPT,0.8,C,1,2024-06-08T17:30:07+00:00,,0,True
+UC-KdQvTPC9k3pLjy4Y1PBkg,@aventurinech,Aventurine Ch,1690,Independent,ACCEPT,0.2,C,1,2026-09-04T15:58:07+00:00,,0,True
+UC1FwYKHZnh2Qrj4GVbes9zQ,@stunkung,StunKung,10400,Independent,ACCEPT,0.8,B,1,2026-09-05T01:39:14+00:00,,0,True
+UC1W2400L97Bwe2leu7eXEzA,@khaojao,Khaojao,66800,Independent,ACCEPT,0.45,A,2,2026-09-04T16:34:17+00:00,,0,True
+UC1893R8hjcc2zIu1KPT4MGw,@waririnchannel,Waririn Channel ⌜VZ⌟,15200,Virtual Zeven (VZ),ACCEPT,0.35,B,1,2026-05-01T18:05:25+00:00,,0,True
+UC-Xb3VhAajR8bir4XpgtZNA,@caelithhoshizora,Caelith - ケイリス Keirisu -,1400,Independent,ACCEPT,0.8,C,1,2026-08-01T12:03:08+00:00,,0,True
+UC06xwFlEkBFdtxqV0WpVcqg,@kiarenuwu,Kiaren Ch.,5330,Independent,ACCEPT,0.55,C,1,2026-09-04T11:00:06+00:00,,0,True
+UC1_PguMZvyU9DhFVuwuUgTw,@lucala_apt,Lucala Ch.【APT】,1980,Independent,ACCEPT,0.45,C,1,2026-08-22T09:28:54+00:00,,0,True
+UC0CvHQnIDi7-Pk5nyc09EYw,@kyubi9,Kyubi Nine キュビ ナイン,16100,Independent,ACCEPT,1.0,B,1,2025-07-14T11:01:44+00:00,,0,True
+UC0_VlKMxJuvQm5lZnG5AT4g,@yuzeiakatsuki,Yuzei Akatsuki,2040,Independent,ACCEPT,0.8,C,1,2026-03-27T18:51:28+00:00,,0,True
+UC-FSZsfcwy_e-gRtYr8ns5A,@kurumi_maki,Kurumi Maki Ch.,406,Independent,ACCEPT,0.45,D,1,2026-08-06T03:41:31+00:00,,0,True
+UC-qpvnKJF0bd-r10dtgkXyg,@mayblissvt,Maybliss Blessyou Ch.,17000,Independent,ACCEPT,0.8,B,1,2026-09-04T06:00:07+00:00,,0,True
+UC-e-7z5tyBNm8M0XxySq0lg,@nihil_vtuber,Nihil Aeternum | VtuberTH 🔎,137,Independent,ACCEPT,0.0,D,1,2026-08-07T16:20:40+00:00,,0,True
+UC0C_CplF_fwd1hEZuIE6VIw,@izzygch,Rawley Izzy G. Ch. | Graduated,1940,Independent,ACCEPT,1.0,C,1,2024-03-15T15:59:21+00:00,,0,True
+UC0FTyntIoEvvpfQOe75zJXA,@marineojou-sama,Marine Ch. マリン • チャリオット,5920,Independent,ACCEPT,0.45,C,1,2026-09-05T06:17:28+00:00,,0,True
+UC-ZDJww4irljOotrkMG0FeA,@morosisch,˚｡ෆ Morosis ⤾,3250,Independent,ACCEPT,0.35,C,1,2026-05-27T03:54:28+00:00,,0,True
+UC-rl31Wigrn8iexKkpNl7jg,@dolcheb_ch,DolcheB,977,Independent,ACCEPT,0.35,D,1,2026-09-03T17:24:08+00:00,,0,True
+UC0XMhMMHSxNWG2wz38VRpiA,@asterkalimeris,Aster Kalimeris Ch.,11200,Independent,ACCEPT,0.45,B,1,2025-06-06T12:33:08+00:00,,0,True
+UC0D7SuIVLYoD1hU3dxNxdMg,@mu_ziika,Ziika ⌜VZ⌟,11200,Virtual Zeven (VZ),ACCEPT,1.0,B,1,2026-09-03T03:07:41+00:00,,0,True
+UC0fZ_5Kil9VctNzpYo4vpLg,@tenebrisrelife,Tenebris D. Armis Ch. | RPG 【GRADUATED】,1270,RPG,ACCEPT,0.35,C,1,,,0,False
+UC0ZulKukNQiTsA2r7dEL0OA,@kiwapawari,KiwaPawari Ch. | キワー,3010,Independent,ACCEPT,0.8,C,1,2026-08-30T03:13:49+00:00,,0,True
+UCklpP4KpgJdCfz4XVe0Nhvg,@peachvtbch,PeachVTB Ch.,11400,Independent,ACCEPT,1.0,B,2,2024-05-31T10:59:00+00:00,,0,True
+UClKKLcJYu3P7VdVVc4H8fUQ,@nicoleblank,Nicole BLANK,1560,Independent,ACCEPT,0.8,C,1,2026-08-30T15:12:15+00:00,,0,True
+UCkf9IC_RAo1SSj4BvR7ahOA,@emi_emilia24,Emiliaエミリア🌸🍡 ch.,2210,Independent,ACCEPT,1.0,C,1,2026-09-01T06:22:23+00:00,,0,True
+UCmAObfjMAwE-nqr9D0ISAFw,@fufu15vtuber44,Fufu15 Ch. 〖ST〗,976,Independent,ACCEPT,0.8,D,1,2026-09-01T13:57:18+00:00,,0,True
+UClOemvfyX_2oQPj-foZu5jw,@raito-kun11,RAITO-KUN,3640,Independent,ACCEPT,0.8,C,1,2026-07-29T03:38:10+00:00,,0,True
+UClBbcA64ikRSXTijItUQ-OA,@mizochann,Mizo Chan Ch.【PSM】,523,Independent,ACCEPT,0.3,D,1,2026-09-04T07:35:35+00:00,,0,True
+UCmR_ysVFhbwdrh080o1MuMQ,@momo_lh,Momo Vtuber,17700,Independent,ACCEPT,0.8,B,1,2026-08-29T02:38:02+00:00,,0,True
+UClIlMpdlevmQHyd7qQLLNWA,@ghostmaiky,ghostmaiky,155000,Independent,ACCEPT,0.35,S,1,2026-08-24T16:48:28+00:00,,0,True
+UCmBtZhaKjvZ6zotSOuOMnwQ,@fortunaleah,Fortuna Leah,1730,Independent,ACCEPT,0.8,C,1,2025-12-28T17:42:59+00:00,,0,True
+UClHAmzOCBWpIxaeLoB1C3WQ,@hottomaya559,HottoMaya,1130,Independent,ACCEPT,0.35,C,1,2026-08-29T08:56:08+00:00,,0,True
+UCkfMOc9cpO2jNCQcr_9nnKw,@ccretrain,CcretRain [ FLAW project ],794,Independent,ACCEPT,0.45,D,1,2026-09-03T13:00:33+00:00,,0,True
+UCkxYPkvxIhorqG9577J0KGg,@naikich54,N4iKI,1410,Independent,ACCEPT,0.8,C,1,2026-08-14T14:50:13+00:00,,0,True
+UCm7uL6HoDxrJ7aJm7HMacQA,@zgezzchannel,ZGezz Channel by พี่กอล์ฟ,12000,Independent,ACCEPT,0.8,B,1,2025-08-08T13:22:20+00:00,,0,True
+UCmU2ZpoUQNii8DSKuWR3qLQ,@kosaru_ch,KoSaru_Ch,1430,Independent,ACCEPT,0.45,C,1,2026-08-02T17:49:47+00:00,,0,True
+UCl-gN216hlPiOzGOm_Jkosg,@melrizch,Melriz,3490,Independent,ACCEPT,0.45,C,1,2026-05-03T09:24:43+00:00,,0,True
+UCmVx2k5Qcsmk8qGbZEBZGCw,@lucia_xavier,Lucia Xavier,3700,Independent,ACCEPT,0.8,C,1,2026-08-27T07:35:31+00:00,,0,True
+UClsrtReeDeC9WGR926fICZA,@kamashi_ch,Kamashi Ch.,847,Independent,ACCEPT,0.45,D,1,2026-08-23T18:30:25+00:00,,0,True
+UCktUGMC7AKl1e8n20Ys8w0Q,@takopero,Superpretty TAKOPERO Ch. Pixela Legends,36600,Pixela Project,ACCEPT,0.8,B,2,2026-09-03T05:18:19+00:00,,0,True
+UClFQeZMVqFVZonqSYk0l-Og,@kagemaru404,Kagemaru 404,237,Independent,ACCEPT,0.45,D,1,2026-09-02T17:21:51+00:00,,0,True
+UCmDDNnaWA_lEL4rpWqD4nSA,@jomjam_slx,JomJam_SLX,127,Independent,ACCEPT,0.2,D,1,2026-08-15T10:26:52+00:00,,0,True
+UCmEBfH-cA250fGCvUb9CIGA,@zerias_ch,Zerias Ch.,1530,Independent,ACCEPT,0.35,C,1,2026-04-09T14:31:49+00:00,,0,True
+UCkmdieFgz-8jWHBE1OlucAA,@klinthong_res,กลิ่นทอง | Klinthong 【RE:S】,952,Independent,ACCEPT,0.8,D,1,2026-04-02T16:17:01+00:00,,0,True
+UClENshywr_HiWzG7WHnBUDQ,@yuklear,Yuklear,10700,Independent,ACCEPT,0.8,B,1,2026-07-30T22:55:31+00:00,,0,True
+UCmTbPJp-N5R1KFvMO51giCg,@skarennin,SKarenNin,1990,Independent,ACCEPT,0.45,C,1,2025-11-04T13:42:39+00:00,,0,True
+UCldD-XczW0-Frlbo11CIqfg,@darchelle_vtuber,Darchelle ch.,3990,Independent,ACCEPT,0.8,C,1,2026-08-08T03:00:33+00:00,,0,True
+UClbr2Ml5EXjoAysIGi65z4w,@neshich,「ねし」Neshi CH,3100,Independent,ACCEPT,0.8,C,1,2026-08-27T04:13:34+00:00,,0,True
+UClCLRJrlg3F9FOPnUfItZSw,@tatsukich,Tatsuki Ch.,89700,Independent,ACCEPT,0.8,A,1,2022-11-06T10:53:34+00:00,,0,True
+UCmE_BKy2qSzjCC9HyRrxcqA,@ruby-ele,Rubyele Garnet Ch.,1080,Independent,ACCEPT,0.8,C,1,2026-08-25T16:33:17+00:00,,0,True
+UCknOyz3O0-G6w5SJNAgO7uQ,@mildrworldend,Mild-R Ch. Lumina-World-End,34300,Lumina Live,ACCEPT,0.45,B,1,2026-09-03T11:15:20+00:00,,0,True
+UClXPm_54oaVwVPKhewoDSQw,@shia_4a,SHiA_4a,495,Independent,ACCEPT,0.8,D,1,2026-08-29T01:50:16+00:00,,0,True
+UCkrja0w7A6MHJ5UAxjTgH7Q,@shaleep_uwu,shaleep.,6570,Independent,ACCEPT,0.8,C,1,2026-09-04T18:40:21+00:00,,0,True
+UCm5SLUk640GMLdp6ePCaXHQ,@alizabylethcutievtuber,Alizabyleth Ch.,11500,Independent,ACCEPT,1.0,B,1,2026-09-01T15:21:34+00:00,,0,True
+UCmKiQxuXbizCEo77GCBTOig,@lyneththerabbit,Lyneth Ch.,11700,Independent,ACCEPT,0.45,B,1,2026-08-29T05:20:04+00:00,,0,True
+UCm4MvNX1EORDR3dgOxLhcJQ,@eranthiaa,Eranthia ch.,2830,Independent,ACCEPT,0.2,C,1,2026-09-05T07:30:13+00:00,,0,True
+UCktowrrd3HTEugAQdKeuZOQ,@gntgxd,GNTGxd,13500,Independent,ACCEPT,0.8,B,1,2026-08-08T03:19:28+00:00,,0,True
+UClGxY7R31Snisoccta9uByg,@zanevtg,Zane『VTG』,1050,Independent,ACCEPT,0.8,C,1,2026-09-04T09:25:51+00:00,,0,True
+UClLePWOXDCn6ZxhcM3jjPBw,@euroxyz,EuRo,1520,Independent,ACCEPT,0.8,C,1,2026-08-31T22:13:13+00:00,,0,True
+UClkwdtOk6yQekM-UsoJNErg,@aelisseepr,Aelisse,6490,Independent,ACCEPT,0.35,C,1,2026-09-04T03:00:14+00:00,,0,True
+UCm0b6rM-6um9H8ZIiljKncg,@chloridefow,chloridefow,1820,Independent,ACCEPT,0.8,C,1,2026-09-01T12:07:53+00:00,,0,True
+UClKBrxMxPf1-104BQRNkDYw,@lyondegra,Lyon De Gladiolus,1800,Independent,ACCEPT,0.8,C,1,2026-09-04T10:07:13+00:00,,0,True
+UClsYXk5BW7YOdB9mnGzikyQ,@crrda_ch,Celestier Rolannda [crrda.ch],1070,Independent,ACCEPT,0.8,C,1,2026-09-04T15:55:20+00:00,,0,True
+UCmNHaTv_3klfUfaokHoXWJQ,@vivianv.,Vivian V. Wendell Ch.,4280,Independent,ACCEPT,0.8,C,1,2026-08-29T02:24:25+00:00,,0,True
+UCmN7K6QnC46aah-_69EGksw,@lawrenzeblessing,Lawrenze l Blessing,25600,Independent,ACCEPT,1.0,B,1,2026-08-03T03:08:21+00:00,,0,True
+UCkwcFk8UHZO0ANkB6aBCo2w,@breindeltheduck,Breindel the duck Ch.,3890,Independent,ACCEPT,0.35,C,1,2026-08-28T18:15:21+00:00,,0,True
+UClfz6OCQ6Lic7BGFsn1q0Ww,@yamisamadesu,Yamisamadesu,5260,Independent,ACCEPT,0.35,C,1,2026-07-25T12:53:00+00:00,,0,True
+UCVX1q9x58mqu12j94cAwr0w,@kirine,Kirine Ch.,10600,Independent,ACCEPT,1.0,B,2,2026-08-28T15:47:43+00:00,,0,True
+UCWLGTmRYmq283VD3QreyyLg,@alzena_slr,Alzena_SLR,348,Independent,ACCEPT,0.2,D,1,2026-08-27T04:27:10+00:00,,0,True
+UCXBd37-oAdMimpTzXN9WtVQ,@gutzch.4599,Gutz ch.,1740,Independent,ACCEPT,0.35,C,1,,,0,False
+UCWjaqaEssIOviThtKEtBvsw,@hibikidiva_ch,Hibiki Diva『DPX』,444,DPX,ACCEPT,0.45,D,1,2026-08-13T03:32:16+00:00,,0,True
+UCVjZjOsH1_hkjhOkYkylAmg,@odeletheswan,Odele Ch.,2120,Independent,ACCEPT,1.0,C,1,2026-08-21T02:34:34+00:00,,0,True
+UCWm99dEdWyZR-jWLyzzOIZA,@railoney_yt,RAILONEY,321,Independent,ACCEPT,0.45,D,1,2026-08-17T03:02:22+00:00,,0,True
+UCVjhbrfJG9GX2sXsl7B3AIg,@meivtuber,Mei Vtuber,4760,Independent,ACCEPT,0.45,C,1,2025-12-15T19:18:03+00:00,,0,True
+UCWa0z5W_t2B46XB3a5OKU0Q,@jao_kaojao,Jao_KaoJao,3350,Independent,ACCEPT,0.45,C,1,2026-08-21T10:37:06+00:00,,0,True
+UCVhMzJhna39ULdMowQAE-uQ,@hatsujihtj,Hatsuji ::H.T.J ,1890,Independent,ACCEPT,0.45,C,1,2026-08-28T11:00:28+00:00,,0,True
+UCWU7kvLd_JBaBqO_ilTYd_A,@zekai_arp,Zekai Ch.【ARP】,109000,Algorhythm Project,ACCEPT,0.35,S,2,2026-08-30T20:40:55+00:00,,0,True
+UCVfj4ZZ02FyqOracLd7r5oQ,@ta121n,TARIN,947,Independent,ACCEPT,1.0,D,1,2026-08-30T03:59:10+00:00,,0,True
+UCVBaM-3Ot6LmwX1cbhqQvVw,@ericmariner_vt,Eric'Mariner Ch.,2720,Independent,ACCEPT,0.8,C,1,2026-08-28T09:25:12+00:00,,0,True
+UCXIVuxD2sPqxESwVEUtGPuA,@leonetta_nvp,Leonetta Ch. 《NEOVISTA》,1780,Independent,ACCEPT,0.65,C,1,2023-05-27T17:32:13+00:00,,0,True
+UCX709cHEHWW3QU1qSA_dyVA,@housagiepr,Housagi ch. Euphora,2520,Euphora Project,ACCEPT,0.8,C,1,2026-08-31T20:56:15+00:00,,0,True
+UCWRc7m30K-4jNCyVnWh_a-w,@freidya-ch,Freidya Ch,3520,Independent,ACCEPT,0.85,C,1,2026-08-31T11:30:21+00:00,,0,True
+UCWGL-srZbmgncoJ9YKJrdAg,@oyazumi3,OYAZUMISAN,3080,Independent,ACCEPT,0.35,C,1,2023-05-09T07:34:45+00:00,,0,True
+UCVQrivN2wzHYLNrsAquYjhg,@jaowayde_vt,Jaowayde,1130,Independent,ACCEPT,0.8,C,1,2026-08-28T16:54:27+00:00,,0,True
+UCVmZ-RvoPuxk9siBRctLwsA,@nana_saurus,NaNA Ch.,285,Independent,ACCEPT,0.45,D,1,2026-08-26T04:24:58+00:00,,0,True
+UCVgbTA9qzHDr3nPsN3-Nsuw,@noranekogotty,NoranekoGotty,4210,Independent,ACCEPT,0.55,C,1,2026-08-31T14:08:57+00:00,,0,True
+UCXOGcY1DJ8uohGI3KTPue-g,@torasundaych,ToraSunday Ch.,15900,Independent,ACCEPT,0.8,B,1,2026-08-29T01:29:52+00:00,,0,True
+UCVlgCh9B_0PI7COJ2tJ7hIw,@heiman-hm,Heiman Ch.,4490,Independent,ACCEPT,0.2,C,1,2026-08-31T03:35:44+00:00,,0,True
+UCVY-v0sCwEjE3V7dUOqkFZg,@camelliam,Camellia Ch.,8410,Independent,ACCEPT,0.45,C,1,2026-08-25T23:31:34+00:00,,0,True
+UCVLZI8sZ1J1PDVHdPLgnChw,@freyraine,Freyraine Ch.,1860,Independent,ACCEPT,0.65,C,1,2026-08-28T15:02:40+00:00,,0,True
+UCVxPzerhZ7g_OL_5okEk08g,@nanako_slr,Nanako_SLR,428,Independent,ACCEPT,0.45,D,1,2026-08-26T03:29:23+00:00,,0,True
+UCXORtYHsd6uxJK15JvHzxvA,@aongreyfox,AonGreyFox,3000,Independent,ACCEPT,0.8,C,1,2026-08-27T18:37:48+00:00,,0,True
+UCVvTvmP37h2C2NuHqB_Uekg,@meropevch,Merope Ch.,8170,Independent,ACCEPT,0.8,C,1,2025-06-28T17:47:25+00:00,,0,True
+UCVgoTNEZIS4UVoe2M4CSc4w,@gs_golfpraplern,⚡GS_ก๊อปแก๊ป พาเพลิน⚡,5440,Pixela Project,ACCEPT,0.8,C,1,2026-08-30T02:26:08+00:00,,0,True
+UCVEL1jAgCQNQcRN9Ble6lMw,@chaosch.4876,Chaos Ch.,6820,Independent,ACCEPT,0.45,C,1,2026-08-31T03:39:11+00:00,,0,True
+UCVa_b2jriwKJLcS4CP9Pq3w,@rubellusremis,Rubellus Remis | VArtist,3090,Independent,ACCEPT,0.0,C,1,2026-08-29T16:20:01+00:00,,0,True
+UCWS53JU_S79XyN9KKOCOCHw,@kianae_ionix,Kianae IONIX,3260,Independent,ACCEPT,0.8,C,1,2026-07-10T17:10:01+00:00,,0,True
+UCVzwh-Nav8BxYbm-Vt6xQYg,@kamireiv,-Kami Rei- ,18000,Independent,ACCEPT,0.8,B,1,2026-08-28T17:18:40+00:00,,0,True
+UCWe8lxEFSt84vZ7srlHySVw,@sataru21pm,Sataru【21PM】,1890,Independent,ACCEPT,0.8,C,1,2026-08-29T11:05:13+00:00,,0,True
+UCWM76ZPAZqDNOAp5AKn9uIw,@juebighead,JueBigHead,84700,Independent,ACCEPT,0.45,A,1,2026-05-11T09:20:00+00:00,,0,True
+UCW0EhUBJrTtjSywG4-MGgrQ,@grimmgrimus,Grimus Grimm Ch. Pixela Destiny,28200,Pixela Project,ACCEPT,0.35,B,1,2026-05-11T14:12:28+00:00,,0,True
+UCVAsOHcLLGVQq6aOpesOwBQ,@hanabilafy,Hanabi Lafy Ch. Pixela-Isekai,60300,Pixela Project,ACCEPT,0.8,A,2,2026-08-30T08:19:38+00:00,,0,True
+UCX5Qv6nz_HUVKtaDiMEReyQ,@redfartearch,Red FarTear Ch.,7080,Independent,ACCEPT,0.8,C,1,2026-08-31T10:00:23+00:00,,0,True
+UCXG9ZvdggOsj5kb996vbYPg,@fl_firstslove,FL_FirstsLove ⌜VZ⌟,5970,Virtual Zeven (VZ),ACCEPT,0.8,C,1,2026-08-31T16:35:19+00:00,,0,True
+UCVjCtqjlMB3S0UpsJsC9_xA,@kalamangvt,กะละมัง วีทูปเบอร์,1670,Independent,ACCEPT,0.8,C,1,2026-08-29T02:18:18+00:00,,0,True
+UCVhHSmzes15AABN5pKcq7bQ,@omorothebunny,พรี่โอม Omoro & คุณนายกระต่าย BunBun,60800,Independent,ACCEPT,0.8,A,1,2026-08-28T19:00:35+00:00,,0,True
+UCWNVjAzZmYUni8YBXYiy01w,@dttodot,dtto.,222000,Independent,ACCEPT,0.55,S,1,2026-08-28T09:00:06+00:00,,0,True
+UCW5ZZhibxHgZ6wLzqXK97XQ,@p.aresspacedog,PAres Spacedog『Berlina•ECR』,14600,Independent,ACCEPT,0.8,B,2,2026-08-31T14:15:34+00:00,,0,True
+UCVKmkTCnz56PpKQFxYMuAHg,@flurfurrych,Flur Furry Ch.,737,Independent,ACCEPT,0.45,D,1,2026-08-28T15:46:49+00:00,,0,True
+UCVxEGzv2qEyFXQAsqgjuIog,@a1chandesu,Aika,3390,Independent,ACCEPT,0.55,C,1,2026-08-22T04:13:48+00:00,,0,True
+UCWw9JzEA7hdBnSFR-_Y0DlA,@seina_idyp,Seina Ch.,2050,Independent,ACCEPT,0.65,C,1,2026-08-30T11:00:44+00:00,,0,True
+UCWO1YqwwjkAk2aXp8y-Qo8g,@ekarosvprolive,Ekaros Ch. Vprolive,3540,Independent,ACCEPT,0.2,C,1,,,0,False
+UCBUEDay6omiIO9XebzcButg,@aru_hoshima,Aru Hoshima Ch. | 星間アル,6830,Independent,ACCEPT,0.45,C,1,2026-07-28T01:51:17+00:00,,0,True
+UCCDb84g4xtJYE0bOJ6BLwJg,@damonvilanishvtuberth,Damon Vilanish(VTuber),1260,Independent,ACCEPT,0.6,C,1,2026-09-01T05:33:18+00:00,,0,True
+UCBmXZKNg_Tsy-r5pZsBPVVA,@amn_mero,M3R0 ch.,1830,Independent,ACCEPT,0.45,C,1,2026-09-01T18:24:41+00:00,,0,True
+UCCTu-nYFSFerCTEAQLwyRgA,@fo_kuro,Fo_Kuro「フォー黒」,1390,Independent,ACCEPT,1.0,C,1,2025-09-24T06:05:23+00:00,,0,True
+UCDXW5zG-2aZXL9K1bkV3Ajw,@iv1386ch,IV_1386 ch.,3080,Independent,ACCEPT,0.65,C,1,2026-08-26T03:15:40+00:00,,0,True
+UCCa03c0JD-H5AoJ_a6PuQrA,@onnaritengu,Onnari Ch.,1790,Independent,ACCEPT,0.8,C,1,2026-08-21T20:26:04+00:00,,0,True
+UCDUFEQDrHUjO5vAVwPPiG3Q,@akakurai,Akakurai [明暗い],875,Independent,ACCEPT,0.55,D,1,2025-12-02T12:06:40+00:00,,0,True
+UCCo8rdZh_V_irwScgnHJb2Q,@artieepr,Artie ch. Euphora,23400,Euphora Project,ACCEPT,0.8,B,1,2026-09-06T11:09:00+00:00,,0,True
+UCD5-go4VNzPs044VuPf2-uA,@saamazusuwai,Saamazu Suwai,3220,Independent,ACCEPT,0.8,C,1,2026-08-09T12:35:00+00:00,,0,True
+UCCM6yLTh1Ep5rlwrapyyNOQ,@hajimerei_as,Hajime Rei Ch. / AStars,6810,AStars Production,ACCEPT,0.2,C,2,2026-09-05T15:14:53+00:00,,0,True
+UCDVOWB_Fi5jmi6o-x5_uV8g,@delivakagach,Deliva Kaga ch.,2070,Independent,ACCEPT,0.8,C,1,2026-07-16T15:46:59+00:00,,0,True
+UCD_aBWFE2nsQB0Pb6Hj8Ksg,@littlebunniech,LittleBunnie Ch.,927,Independent,ACCEPT,0.45,D,1,2025-04-12T04:08:10+00:00,,0,True
+UCDH0eXdMf-vFqvTtjADsOcw,@pondex219,_PONDEX,189,Independent,ACCEPT,0.45,D,1,2026-08-29T18:45:08+00:00,,0,True
+UCCKvp_oV10qcK5Abjaz4FrA,@tiggarch,Tiggar Ch.,1150,Independent,ACCEPT,0.35,C,1,2025-05-17T02:15:21+00:00,,0,True
+UCCQd9y8LSnnp09dF7Mrp5Jg,@leviazch,Leviaz Ch.,26900,Independent,ACCEPT,0.8,B,1,2026-09-02T16:59:14+00:00,,0,True
+UCBi2sDv2HYYnCtEqldp0RFA,@astreaastr,Astrea Ch. アストリア〖ECR〗,1840,Independent,ACCEPT,0.8,C,1,2026-09-05T06:00:02+00:00,,0,True
+UCDSn4Ql7fuyjxsSNOws81iQ,@borntodev,BorntoDev,392000,Independent,ACCEPT,0.8,S,1,2026-08-30T03:00:10+00:00,,0,True
+UCDUdT8_IEOY-Z9KfLiCOfuQ,@zinfandel_ztp,Zin'fandel「ZTP」,1360,Independent,ACCEPT,0.45,C,1,2026-08-29T16:36:25+00:00,,0,True
+UCCcZmve86N8WakyfYRqc0uA,@chatacloveron,Chata Cloveron ,408,Independent,ACCEPT,0.45,D,1,2026-08-09T00:57:07+00:00,,0,True
+UCC4Wb_x57Ks43GRJ6x_wT5Q,@choya.vtuber,Choya Ch.,488000,Independent,ACCEPT,0.8,S,1,2026-09-03T11:46:43+00:00,,0,True
+UCBq8wrxx6gPxxmZwDnZEEYA,@milynitivona_blp,Milyni Tivona【BLP】,1590,Independent,ACCEPT,0.2,C,1,2026-09-06T05:41:31+00:00,,0,True
+UCDWp89OUkBRM9cDmOXHT6bw,@momokachnjir,Momoka Ch.,8090,Independent,ACCEPT,0.45,C,1,2026-08-26T20:07:41+00:00,,0,True
+UCBXpnfoHqIZRqi3ex50bB4w,@badd30code,B-DY 【#BADD30】,1630,Independent,ACCEPT,0.35,C,1,2026-09-05T09:33:01+00:00,,0,True
+UCCjunxHiL2OHhNDl4sdD1bg,@sotareino,Murasako Reino,1970,Independent,ACCEPT,0.55,C,1,2026-06-13T12:15:16+00:00,,0,True
+UCC5q6CpuDflPvO7pNn52RGQ,@lapineplg,Lapine Ch.,69300,Independent,ACCEPT,0.8,A,2,2026-09-03T06:16:42+00:00,,0,True
+UCDCOWpzyBFsavT-K7AmN3MQ,@azatostacia,Azato Stacia Ch.,122000,Independent,ACCEPT,0.35,S,2,2026-08-26T17:00:29+00:00,,0,True
+UCC3IBnXJb8xYdg-_MMh1qNg,@pamberrych,Pamberry Ch,5490,Independent,ACCEPT,0.8,C,1,2026-09-05T05:47:59+00:00,,0,True
+UCCsgAS-uqrGRdmvJzvfAXsw,@hannach.2730,Hanna Ch. ハンナー,921,Independent,ACCEPT,0.65,D,1,2022-09-07T17:52:52+00:00,,0,True
+UCCCOpUUMaweGiTZ_vNSdh1w,@shirasagich,Shirasagi Ch.,2390,Independent,ACCEPT,0.2,C,1,2026-08-31T04:30:17+00:00,,0,True
+UCD_y0feXuBuX9z6RAxz4afg,@mikadzuki_nammy,Mikadzuki Nammy,3310,Independent,ACCEPT,0.45,C,1,2026-06-01T04:40:37+00:00,,0,True
+UCD67JYizIZGNc-1Dsn9eu3A,@sienna_res,เซียน่า | Sienna 【RE:S】,3630,Independent,ACCEPT,0.8,C,2,2026-08-29T20:05:42+00:00,,0,True
+UCCnI25SLttKYJdVgno6qkYg,@lvmp_channel,LVMP,9850,Independent,ACCEPT,0.8,C,1,2025-12-30T21:01:57+00:00,,0,True
+UCCXtKBc_KnKRtT-9qXu5Y7A,@kohakuch,KOHAKU Ch.,20600,Independent,ACCEPT,1.0,B,1,2023-04-26T07:09:52+00:00,,0,True
+UCBev9yAPNYhFM4ORPQb_LYQ,@rionchitose_as,Rion Chitose Ch. / AStars Chrono prince,19700,AStars Production,ACCEPT,0.55,B,2,2026-09-02T16:19:47+00:00,,0,True
+UCC_P34t35REbiPzbHO_bifA,@kaynavtuberth,Kayna,3400,Independent,ACCEPT,0.95,C,1,2026-01-07T00:00:39+00:00,,0,True
+UCBjUiJxMKaM2YTIo3r4KdHA,@fenixjairon,Fenix Jairon,241,Independent,ACCEPT,0.45,D,1,2026-09-05T09:52:07+00:00,,0,True
+UCCmBL9p7d1a0aBjZSPF8QpQ,@switchonvtuber,switch on vtuber,983,Independent,ACCEPT,0.8,D,1,2023-09-20T12:00:10+00:00,,0,True
+UCBsUODmi56ijq4o4imeZuwg,@norr.oneiros,Oneiros Norr Ch.,1040,Independent,ACCEPT,0.8,C,1,2026-08-30T22:46:50+00:00,,0,True
+UCBbXLmauGSmFdQakk2dS8Rw,@maikumira,Maikumira,2030,Independent,ACCEPT,0.8,C,1,2026-04-10T10:06:37+00:00,,0,True
+UCD0aj_PFkBK-LGaDIiXvBww,@reginavtuber,Regina Ch.,1700,Independent,ACCEPT,0.2,C,1,2026-09-01T01:30:32+00:00,,0,True
+UCC8N_hO-iyfkS2uaJqkxfMA,@korimisu,KoriMisu Ch.  ,1540,Independent,ACCEPT,0.8,C,1,2026-04-16T01:50:16+00:00,,0,True
+UCCEHpnzn37K8kQv2QtybE2w,@rayametier_yuan,Ray Ametier Yuan Ch.,621,Independent,ACCEPT,0.8,D,1,2026-09-05T14:43:26+00:00,,0,True
+UCDXhbquWzQvdwZC1yVUmxAA,@aliciavtuberch,Alicia Ch.,5330,Independent,ACCEPT,0.8,C,1,2025-05-13T03:26:01+00:00,,0,True
+UCB_Ooo_Eanv8LHYUGqMMDjg,@yuutanatsuki,Yuuta Natsuki,4110,Independent,ACCEPT,0.8,C,1,2026-09-06T10:00:06+00:00,,0,True
+UCDYy9EVjkBym7bUYwTKzugA,@aluchannel,ALU Channel,4560,Independent,ACCEPT,1.0,C,1,2021-09-02T10:56:54+00:00,,0,True
+UCCptqrhEdtJGBer1qWWRLnA,@lawizch,Lawiz Ch.,14300,Independent,ACCEPT,0.8,B,2,2023-08-12T03:22:14+00:00,,0,True
+UCfcNIwkAhHcDTP1rQg2n5nw,@rexaplg,Tiara Rexa Ch. 【POLYGON】,20100,Polygon Official,ACCEPT,0.8,B,2,2026-06-03T11:00:11+00:00,,0,True
+UCfaZG-sf7NrY3RBmoHBSOcg,@kurasetaoh,Oatsukaresan「ECR」,17500,Independent,ACCEPT,0.8,B,1,2026-09-04T14:29:07+00:00,,0,True
+UCeTNHgOSMMFQTlWbJwpex_g,@นองมะมวง_vtuber,น้องมะม่วง TV,2240,Independent,ACCEPT,0.8,C,1,2026-09-03T23:20:34+00:00,,0,True
+UCfI5PfgpNZ3a2p7MS-m5gPA,@ponpun,Ponpun.,39600,Independent,ACCEPT,0.8,B,1,2026-09-04T09:00:22+00:00,,0,True
+UCf-29F7w_0xRTXVDFol0spQ,@roxzyvtuber,Roxzy ロキジー,144000,Independent,ACCEPT,0.8,S,1,2026-08-28T11:30:02+00:00,,0,True
+UCf4ma6wZwlPor4Q9uvHUvDQ,@xenonphanejohn,Xenon PhaneJohn 🐊💧,1530,Independent,ACCEPT,0.8,C,1,2026-07-29T02:02:05+00:00,,0,True
+UCe7hiXgbk4K2XB677rqeOjA,@kikiitansama,Kikii_TanSama CH.,654,Independent,ACCEPT,0.8,D,1,2026-07-26T05:32:07+00:00,,0,True
+UCdlpXdGT3nGDTqIlxUcufCQ,@doyser,Doyser ,2590000,Independent,ACCEPT,0.45,S,1,2026-09-04T09:00:39+00:00,,0,True
+UCdoQwqmi-QKjHOJnvg0wm4Q,@xlazyyui,xLazyYui,46000,Independent,ACCEPT,0.65,B,1,2025-10-19T11:43:34+00:00,,0,True
+UCeZoMTRssGhbl9vS5lvYsQg,@rarin_ch,Rarin Ch.,3530,Independent,ACCEPT,0.8,C,1,2026-09-04T11:00:08+00:00,,0,True
+UCfEcgIyELdrDcSbH6frZslg,@krkeiji,Keiji,2020,Independent,ACCEPT,0.45,C,1,2026-08-19T16:08:26+00:00,,0,True
+UCeze7PeKkKYEkDmdPuNQOhQ,@underthe_seaucra,SeaU Ch.【CRA】,2040,Independent,ACCEPT,0.45,C,1,2026-09-05T15:19:33+00:00,,0,True
+UCeMd3ACzZD2sVn2fYYWcuMQ,@chermy_vtuber,Chermy Ch.,13900,Independent,ACCEPT,1.0,B,1,2026-09-03T12:18:54+00:00,,0,True
+UCeY7KQH92GvxRR4F0YWbknA,@viorises,Viorises,993,Independent,ACCEPT,0.35,D,1,2026-09-04T11:39:57+00:00,,0,True
+UCfx7DcAIytFlHnLK3riX7BQ,@sakaoofficelady,สกาว พี่สาวออฟฟิศ,2350,Independent,ACCEPT,0.8,C,1,2026-09-02T06:35:26+00:00,,0,True
+UCeLJ2rBYZwPrb5hbKY5X5eg,@latta_arp,Latta Ch.【ARP】,28600,Algorhythm Project,ACCEPT,0.2,B,1,2025-10-02T05:24:39+00:00,,0,True
+UCfiD6DpIwPP4lQ4NPqZNOHg,@solar_arp,Solar Ch.【ARP】,70400,Algorhythm Project,ACCEPT,0.35,A,1,2026-09-03T15:02:48+00:00,,0,True
+UCdr7zWq0TdPTK-kp2hxUIVg,@xzilva,X ZiLVA,3920,Independent,ACCEPT,0.5,C,1,2025-07-26T10:00:06+00:00,,0,True
+UCfpH7l2htEr8t_l6D3MbLpQ,@nokizen526,NokiZen,4830,Independent,ACCEPT,0.8,C,1,2026-08-26T18:14:58+00:00,,0,True
+UCfPtDFCs4PzDU_hy0usORnw,@revaregaliaast,Reva Regalia『AST』,5210,Independent,ACCEPT,0.45,C,1,2026-09-04T09:07:07+00:00,,0,True
+UCepQ5leDU2_KgTVOsD4so7A,@manapttttt,ManaPTマナーVtuber,249,Independent,ACCEPT,0.2,D,1,2026-09-01T11:21:35+00:00,,0,True
+UCdlJxYXr4eh44NeCSjOe_Fg,@rainremchvtuber,RainRem Ch. レーンレム,40500,Independent,ACCEPT,0.8,B,1,2026-09-04T06:52:36+00:00,,0,True
+UCf6P5ojQTWAgVNUvlu08DNw,@lukmaipukp,Lukmai_PP,1420,Independent,ACCEPT,0.45,C,1,2024-05-07T03:23:17+00:00,,0,True
+UCe9JOhIANHHvJovOdv-0r8A,@maelfritzchannel,MaëlFritz Channel ,1160,Independent,ACCEPT,0.8,C,1,2026-09-04T03:08:27+00:00,,0,True
+UCeKUKj8zu8QI_8Zidqgw1Kg,@byconnese,ConNeSe Plai,17000,Independent,ACCEPT,0.8,B,1,2026-09-01T20:04:24+00:00,,0,True
+UCei3lo9UhW4K9QE26iwuVjg,@runaluna,RUNA Ch.[Vtuber],2630,Independent,ACCEPT,1.0,C,1,2026-08-31T17:24:57+00:00,,0,True
+UCf-P7yTlHAJlVwxzwHu915Q,@nancygimme2000,NancyGimme2000,1570,Independent,ACCEPT,0.45,C,1,2026-09-03T17:00:34+00:00,,0,True
+UCg1lfyLDBsy0INi17egh6IA,@enri_vtuber,Enri Ch.,8930,Independent,ACCEPT,0.8,C,2,2026-09-04T10:00:12+00:00,,0,True
+UCeogDPUhePBegonMId-BM_Q,@holiech,Holie Ch.,15900,Independent,ACCEPT,0.45,B,1,2026-08-15T21:46:26+00:00,,0,True
+UCfDCemDzrBpQoZMIajLeI-w,@okami_hito_ch,Okami Hito CH【APD】,2140,Independent,ACCEPT,1.0,C,1,2026-09-04T12:32:45+00:00,,0,True
+UCe9-AfWL4jLg9CQC7QWa0_g,@mikamu3905,MIKA'mu,2800,Independent,ACCEPT,0.45,C,1,2026-08-29T23:08:06+00:00,,0,True
+UCepIXUC8KUvonowbahgMsQA,@thorokrok,Tho Rok Rok,2680,Independent,ACCEPT,0.8,C,2,2023-11-09T12:38:44+00:00,,0,True
+UCfw10eIAXlZOWbJAZBySdcA,@zenozeno_lulu,Zeno,6810,Independent,ACCEPT,0.35,C,1,2026-05-12T02:38:17+00:00,,0,True
+UCeijqgCP9z3zLJ-uwQzvFtQ,@soraacg,Sora A.C.G.,230000,Independent,ACCEPT,0.35,S,1,2026-04-13T04:30:00+00:00,,0,True
+UCfSvuVrYSKM3RgdEjl7iVxQ,@wornlity,Wornlity「 PRD 」,12600,Independent,ACCEPT,0.55,B,1,2026-04-06T13:22:47+00:00,,0,True
+UCfTaHjdctcy9veUwXK_GDBg,@takiya_koz,Takiya Ch.,3370,Independent,ACCEPT,0.2,C,1,2026-08-30T06:29:04+00:00,,0,True
+UCeoR2ozI_rHNtMZyWyYWI6Q,@masukaya_koruto,Koru Ch.,547,Independent,ACCEPT,0.45,D,1,2026-09-04T07:30:36+00:00,,0,True
+UCf1aJaf0L0SXieSscG0qA9A,@natsubimiyao,Miyao Ch. 夏日みやお,3040,Independent,ACCEPT,0.8,C,1,2026-09-04T14:41:04+00:00,,0,True
+UCeoHajHKBl5q-UvfIEeOm3g,@mizugracia,Mizu Gracia Ch.,1730,Independent,ACCEPT,0.8,C,1,2025-10-08T04:38:47+00:00,,0,True
+UCeC8cJfqtHYl7w-0AoLApHQ,@kathic_ch13,Kathic Ch.13 [Vtuber],596,Independent,ACCEPT,0.8,D,1,2026-09-01T04:02:11+00:00,,0,True
+UCfxVeSpEx_K1VwHIcdNX0rw,@bgrgamecaster,BOOKGAMER,3580,Independent,ACCEPT,1.0,C,1,2022-10-31T14:02:39+00:00,,0,True
+UCeI78GYlqHWzmWvjGmcjDsA,@m4yamarz,M4YA,2480,Independent,ACCEPT,0.35,C,1,2026-09-01T15:16:59+00:00,,0,True
+UCg--DR1FShlr9BKjJ9OQc5g,@vinavtuberth,Vina Olivia Ch.,5150,Independent,ACCEPT,0.8,C,1,2026-08-30T17:35:45+00:00,,0,True
+UCdxaZWWFBl3N7Ollc3EwZAw,@whiteskych.6,White Sky Ch.,47100,Independent,ACCEPT,1.0,B,1,2026-09-02T02:30:22+00:00,,0,True
+UCfuH_6QxAjJXM_9q8-iRqQQ,@ryuqv,ryuq,2250,Independent,ACCEPT,0.8,C,1,2026-05-11T01:55:30+00:00,,0,True
+UCfPOynlPffrryH8JAsHOmJA,@its_hi_arp,it’s hi Ch.【ARP】,41800,Algorhythm Project,ACCEPT,0.8,B,1,2026-09-03T09:36:06+00:00,,0,True
+UCe33CjMy_3DqvmKMMqEjWDQ,@azuko_98,- Azuko - あずこ - Ch.,2850,Independent,ACCEPT,0.45,C,1,2026-05-13T03:11:30+00:00,,0,True
+UCfe7Lxdn2PDp_xnnrC_RSzA,@amarissayo_as,【graduated】Amaris Sayo Ch. / AStars Amakara,10900,AStars Production,ACCEPT,0.2,B,1,2025-02-14T03:08:12+00:00,,0,True
+UCdlsSG0fa6l_BQ9otNkHjMg,@ainamch,Ainam ch.,1480,Independent,ACCEPT,0.2,C,1,2021-07-19T12:35:40+00:00,,0,True
+UCYXMY8jostUgR-jf0tJD5dQ,@nithralapis,Nithra Lapis Ch.,2320,Independent,ACCEPT,0.35,C,1,2025-12-26T03:58:14+00:00,,0,True
+UCZBylMHjwaeTNJTLPxl6VgA,@ainavtuber,Aina VTuber,1830,Independent,ACCEPT,0.45,C,1,2026-02-21T13:00:14+00:00,,0,True
+UCY3reV-jwagniwcghy1B4VA,@niccakun,Nicca Ch.,74100,Independent,ACCEPT,0.35,A,2,2025-03-26T10:08:26+00:00,,0,True
+UCYhbR4N_I_P5zMpK1rAR8Cw,@moracelvt,Moracel VT,2000,Independent,ACCEPT,0.8,C,1,2026-08-31T06:38:48+00:00,,0,True
+UCZHQ9zIKFuUEtoFd2c6yjwA,@pj_vjn,PJ_OWL OWL【VJN】,205,Independent,ACCEPT,0.2,D,1,2026-08-15T04:19:27+00:00,,0,True
+UCY5HIZ97IaqeUGCQCh5yDpA,@clairederier,Clairederier,4250,Independent,ACCEPT,0.35,C,1,2026-08-26T13:09:10+00:00,,0,True
+UCYo4x86C700J5ivxg98oOtw,@mosotaa_vtuber,G. Mosotaa,3890,Independent,ACCEPT,0.8,C,1,2026-08-30T16:34:48+00:00,,0,True
+UCY8j33h1epfkBEkIv_K5WKg,@lufine,Lufine Ch. ลูฟิเน่,5300,Independent,ACCEPT,1.0,C,1,2022-05-05T04:40:07+00:00,,0,True
+UCYJ82i8mzIoGAyzIY4gLZKA,@darkphoenix13fr,DarkPhoenix13Fr,1760,Independent,ACCEPT,0.8,C,1,2026-09-03T03:53:10+00:00,,0,True
+UCZilc7jP-X_92Fii1uTIs0Q,@hokuplg,Hoku Ch.,119000,Independent,ACCEPT,0.8,S,2,2026-09-04T07:21:37+00:00,,0,True
+UCYWG9ZKz94VcpEqvvhBXk0A,@toramochizuki,Tora Mochizuki ,1130,Independent,ACCEPT,0.8,C,1,2026-08-23T17:47:19+00:00,,0,True
+UCZ3R0yNb7ktPu1hdjbyQ2lg,@yuuch.4480,Yuu Ch.,1820,Independent,ACCEPT,0.8,C,1,2025-01-30T03:40:28+00:00,,0,True
+UCYtNZ8-aeaazi3ImKB6y8aQ,@jibara,Jibara​ Ch.,6700,Independent,ACCEPT,0.35,C,1,2026-09-02T21:20:25+00:00,,0,True
+UCXWwuHiYZepNhYk3lBrj2pg,@hyokihowatora,Hyoki Howatora Ch.,2110,Independent,ACCEPT,0.8,C,1,2026-08-31T16:59:48+00:00,,0,True
+UCZwx1KhdoiqQsoZAqCRbApw,@zenti_e_ra,Zentiera【VJN】,1140,Independent,ACCEPT,0.3,C,1,2026-07-16T22:55:38+00:00,,0,True
+UCXTC545Ye8-2RFdSZ4LXoSg,@xeres_vtuber,Xeres Artrophel Ch.,5970,Independent,ACCEPT,0.8,C,1,2026-08-15T08:49:28+00:00,,0,True
+UCYu6pahmFwIki35ru8s62pQ,@destinesiaproject6445,Destinesia Project,2850,Independent,ACCEPT,0.2,C,1,2021-02-07T08:10:30+00:00,,0,True
+UCXOcqHz5rj8NGhNvAQfManw,@unibunty,unibunty,1070,Independent,ACCEPT,0.8,C,1,2024-06-25T03:20:43+00:00,,0,True
+UCYknXN1ydnhJACllweXGd-w,@bitscuits_la_cielhare,Bitscuit La Cielhare,1430,Independent,ACCEPT,0.8,C,1,2026-08-30T16:44:08+00:00,,0,True
+UCZmw6cMeVaCMtL_NhybhWJw,@poppythepuppy,Poppy the Puppy,38000,Independent,ACCEPT,0.8,B,1,2026-09-04T11:30:05+00:00,,0,True
+UCZYLQLIIviw56yaDcA9-VwA,@azuri_prd,Azuri「 PRD 」,1100,Independent,ACCEPT,0.55,C,1,2026-09-02T15:34:42+00:00,,0,True
+UCZ-Vbihp3Y84EzwVVd2GjDQ,@kazumich.2503,Kazumi Ch.,9050,Independent,ACCEPT,0.55,C,1,2022-06-21T00:47:02+00:00,,0,True
+UCY2VnFiaqNirU_QKxqgR96w,@krisvprolive,Kris Ch. Vprolive,1330,Independent,ACCEPT,0.2,C,1,,,0,False
+UCZgkeKMeSJ5-ETLvt1KGgmg,@jaquach,Jaqua Ch.,1410,Independent,ACCEPT,0.2,C,2,2022-06-24T17:59:17+00:00,,0,True
+UCXwc3r1q3yyxugIq2KM9K7A,@plathongbigsis,Plathong Ch.,199000,Independent,ACCEPT,0.8,S,1,2026-09-03T09:08:41+00:00,,0,True
+UCY-5Lf7AJKFj4fudzFi1AZw,@teenwisu2,TeenWISU,207000,Independent,ACCEPT,0.8,S,1,2026-05-27T12:22:06+00:00,,0,True
+UCZYTMrnVmu1iUVyGeqB6zJQ,@ashyraworldend,T-Reina Ashyra Ch. Lumina-World-End,58700,Lumina Live,ACCEPT,0.45,A,1,2026-09-03T12:00:00+00:00,,0,True
+UCXyk13M_Y892ar9xTPNF75w,@helencandleby,Helen Candleby ,3900,Independent,ACCEPT,0.45,C,1,2026-05-23T16:43:29+00:00,,0,True
+UCYu6kxGsCK2-LcCmydfajgg,@kisscrossofficial,KissCross,13800,Independent,ACCEPT,0.8,B,1,2026-05-08T12:08:27+00:00,,0,True
+UCZSudswFZkaARozAZPFoC2Q,@azazelch.7842,Azazel  Ch.,1060,Independent,ACCEPT,0.8,C,1,2024-02-13T07:51:04+00:00,,0,True
+UCZmQjdEL_PAGWvFlAm4hQMg,@karintsutsuji,Karin Ch. 躑躅かりん,15800,Independent,ACCEPT,0.2,B,2,2026-07-20T16:38:18+00:00,,0,True
+UC_JCN1qZMnnFzgzD_iTqrsg,@edellaedward,Edella Edward Ch.,2210,Independent,ACCEPT,0.45,C,1,2026-09-03T16:40:15+00:00,,0,True
+UCXkoAHy8rg9tryYsD61IXOg,@morr_arp,Morr Ch.【ARP】,49800,Algorhythm Project,ACCEPT,0.0,B,1,2026-08-30T11:15:38+00:00,,0,True
+UCXuiHw-k05CnSu5_DjKUytw,@liviana_vwitch,LIVIANA Ch.,133000,Independent,ACCEPT,1.0,S,1,2026-08-31T13:48:58+00:00,,0,True
+UCXddo8vgPHBsEkDMqRwcYSQ,@peko-chth,"Peko the Witch ★ แม่มด""พีโกะ""",1250,Independent,ACCEPT,0.6,C,1,2025-06-01T13:49:43+00:00,,0,True
+UCXl3UWVn6XXFSNM5YNHlSCw,@kaiyovtb,Kaiyo Ch.,7000,Independent,ACCEPT,0.35,C,1,2021-08-31T11:59:04+00:00,,0,True
+UC_BZjak0ArVzJ-8yjUUaTqg,@saimaiz,SaiMaiZ さいまい ⌜VZ⌟,10000,Virtual Zeven (VZ),ACCEPT,0.8,B,1,2026-09-03T15:30:34+00:00,,0,True
+UC_4Kw9UFTDz_Hv7K_rH9DQg,@imapbear,I'm a Mee,815,Independent,ACCEPT,0.8,D,1,2022-07-07T21:51:13+00:00,,0,True
+UCZhewVQstdQB87rdWwIRHzg,@meilinvtuber,MEILIN CH.,2950,Independent,ACCEPT,0.45,C,1,2026-09-04T05:15:39+00:00,,0,True
+UCZ8gzZWoN9B6GhlVOwnj0aQ,@ririka_ssr,Ririka ch. / ริริกะ【SSR】,5180,Independent,ACCEPT,0.45,C,1,2026-09-03T16:06:42+00:00,,0,True
+UCZxNaWG_8Br9q1eTLSG5wPg,@bluchangmot,Blu-Chan GMOT ⌜VZ⌟,24900,Virtual Zeven (VZ),ACCEPT,0.35,B,2,2026-05-01T19:01:46+00:00,,0,True
+UCZrJx0Gxf_Vv2njDwnkaHIA,@reportwanissa,แม่นิศรายงาน,26800,Independent,ACCEPT,1.0,B,2,,,0,False
+UCYEWH_8lJYYxB_Ws5ee_ROw,@san1baebi1,Saniyah L. Ch.,2570,Independent,ACCEPT,0.45,C,1,2026-07-28T02:56:22+00:00,,0,True
+UCZ0NN8Yx0Iq6RG7-hORFNbA,@helirec,Heli Ch.【REC】,1070,Independent,ACCEPT,0.45,C,1,2026-03-14T15:08:39+00:00,,0,True
+UCYAKTFHayiQ-yvllmFmx5IA,@kratoi_26,KRATOI 《19'S》,365,Independent,ACCEPT,0.45,D,1,2026-08-30T14:03:34+00:00,,0,True
+UCX_lpBjVENv-6AmJmtGAuig,@aoinekomori,Aoi Nekomori,990,Independent,ACCEPT,0.8,D,1,2026-08-28T13:43:41+00:00,,0,True
+UCZLcxopXBfzR1Dsu8eC1DeQ,@amystl_official,Amy Stella Ch.,2410,Independent,ACCEPT,0.45,C,1,2026-08-29T03:41:28+00:00,,0,True
+UCvX83QsQu4NvT0pnEC6b9Hg,@daiji_otl,Daiji Inuyuki 《 OTL 》,2280,Independent,ACCEPT,0.45,C,1,2026-08-29T16:30:40+00:00,,0,True
+UCttMAJHfOEXryNHnnDNG53g,@mamori,MAMORI Ch.,12100,Independent,ACCEPT,0.65,B,1,2024-03-03T15:49:10+00:00,,0,True
+UCvk4wE32YLgO7MhSBNDx2Xw,@ripryofficial,RIPry - ริบหรี่,11000,Independent,ACCEPT,0.8,B,1,2026-09-05T04:49:21+00:00,,0,True
+UCu5HHrUzCcFmIgeIqImDUhQ,@rubiich,Rubii Ch.,1340,Independent,ACCEPT,0.45,C,1,2022-07-16T11:30:32+00:00,,0,True
+UCuMlvjC3BwkkmdLerrcFzrg,@nebulafaragonda,Nebula Faragonda 【 V-DragQueen 】,3300,Independent,ACCEPT,0.3,C,1,2026-09-05T04:07:34+00:00,,0,True
+UCvob8U-yjPS-fSf5bq7jvGw,@uminociala,Umino Ciala Ch. Pixela Legends,83900,Pixela Project,ACCEPT,0.8,A,1,2026-09-04T14:21:24+00:00,,0,True
+UCuwUVa1uz28eLDxeoe-CDCQ,@summ3r_vz,SUMM3R ⌜VZ⌟,10300,Virtual Zeven (VZ),ACCEPT,0.35,B,1,2026-02-23T04:41:51+00:00,,0,True
+UCwUOnMoqNijxs5e6GbfRJ3Q,@ant4zin,ANT4ZIN,1530,Independent,ACCEPT,0.45,C,1,2026-09-03T17:16:05+00:00,,0,True
+UCv6T5E7meuUtXHOAg_jQonQ,@leonachannel,Leona Channel『VW』,7720,Independent,ACCEPT,1.0,C,1,2026-09-04T16:45:07+00:00,,0,True
+UCvbHZ8Ye_C0BHMLVU9F9nuA,@nalika_vtuber,NALIKA Vtuber,9250,Independent,ACCEPT,0.2,C,1,2026-09-05T02:00:16+00:00,,0,True
+UCvAjpLYnhtnZn-6UDT4rraQ,@slushytoma,TOMA Ch.,2510,Independent,ACCEPT,0.45,C,1,2026-09-02T14:04:43+00:00,,0,True
+UCv8Jc5Icn5MIoBC1g-dXH8Q,@mintkungxd,- MINTKUNG XD -,6160,Independent,ACCEPT,0.65,C,1,2026-08-31T20:40:57+00:00,,0,True
+UCtqg53LG-0LfkUn5PssQr_g,@kitsunekumichan,Kumi Chan「クミちゃん」,3360,Independent,ACCEPT,0.45,C,1,2026-07-15T18:39:41+00:00,,0,True
+UCtwkgAaBfYn8dGavjDAITxg,@kitsuaiku_th,Kitsunebana Aiku Ch.,387,Independent,ACCEPT,0.5,D,1,2026-09-04T18:37:45+00:00,,0,True
+UCtzBNRsOnn_xYOmXm09YAMw,@aredhantanujo,Tanujo [ECR],7140,Independent,ACCEPT,0.8,C,1,2026-09-03T11:32:39+00:00,,0,True
+UCu5cg0PIbWKd3VuBgu6KDIA,@taka_natsu23,Natsu Ch.,229,Independent,ACCEPT,0.8,D,1,2026-08-31T16:07:37+00:00,,0,True
+UCvxN2R4-6hqHGYX-AL8Q7Qw,@owenzwei,Owen Zwei Ch.,2030,Independent,ACCEPT,0.45,C,1,2026-02-28T16:19:57+00:00,,0,True
+UCvHE7qpAydoWR1vhT2-ZHFg,@takifuguch,Taki Fugu Ch.,25800,Independent,ACCEPT,0.45,B,1,2026-09-05T14:47:58+00:00,,0,True
+UCuGrBxlTZGYY7dpx9eLFsZw,@bakland_der,Bak Land,2450,Independent,ACCEPT,0.45,C,1,2026-09-05T11:00:10+00:00,,0,True
+UCw5SDGBx4mHpBtBj_qfupWg,@bunana,Bunana (old channel),4930,Independent,ACCEPT,0.8,C,1,2024-05-02T01:44:05+00:00,,0,True
+UCwLCMt4wN6dTIWvxt0w95rQ,@alvina-ch,Alvina Ch,15200,Independent,ACCEPT,0.8,B,1,2026-09-04T15:57:47+00:00,,0,True
+UCw-oKO2PVt2CvgcEjuODDRw,@yukito-3595,Yukito - ユキト,1210,Independent,ACCEPT,0.8,C,1,2022-04-17T03:00:50+00:00,,0,True
+UCvWAlkD3Aguu5zAh7X3ZPPA,@miguelnoxz,Miguel Noxz,8390,Independent,ACCEPT,0.35,C,1,2026-08-16T14:37:41+00:00,,0,True
+UCtunm6uij5wVkzTAfcH0aig,@dalphonvtuber,Dalphon_Vtuber ,997,Independent,ACCEPT,0.45,D,1,2026-08-15T11:50:43+00:00,,0,True
+UCv4vY8ecIowhnHMvuNt7ywg,@evelyntreeswift,Evelyn Treeswift,11900,Independent,ACCEPT,0.45,B,1,2026-09-01T03:42:21+00:00,,0,True
+UCtXAgf3uaHnIZyLr3fF8Fnw,@faribellseireki,Faribell SEIREKI [ 西暦 ],6480,Independent,ACCEPT,0.55,C,1,2026-08-30T16:31:04+00:00,,0,True
+UCvJ9kX_3beaSWPPfHPBq8Uw,@rong_ferrettie,Rong da Ferret ,8190,Independent,ACCEPT,0.8,C,1,2026-06-06T11:00:21+00:00,,0,True
+UCuyrIzf_bCTnyJHktJVpe4g,@atlanteiasireen,Atlanteia Sireen Ch. Lumina-First-Myth,29200,Lumina Live,ACCEPT,0.8,B,1,2026-09-05T11:37:37+00:00,,0,True
+UCvTchQs3VuPF74Y3e6pPAMQ,@swordace,SwordAce,153000,Independent,ACCEPT,0.35,S,1,2026-09-05T14:46:30+00:00,,0,True
+UCvjP5hF6Z7o8C4HWEVZmVSQ,@amello_channel,Amello,928,Independent,ACCEPT,0.0,D,1,2026-09-04T15:53:27+00:00,,0,True
+UCwKydIfpAlllZap4K7dzJ4g,@hyougaalpha_arp,HyougaAlpha Ch.【ARP】,35200,Algorhythm Project,ACCEPT,0.8,B,1,2026-09-01T08:38:04+00:00,,0,True
+UCtiDekGvmiFPVU6hfUDprcw,@tiwasama,TIWa_SAMA Ch.,510,Independent,ACCEPT,0.45,D,1,2026-09-03T01:00:25+00:00,,0,True
+UCw64ItsCX0Cb4lCjb68oTpw,@eileennoir,Eileennoir Ch.,134000,Independent,ACCEPT,0.85,S,2,2026-09-04T17:08:04+00:00,,0,True
+UCuZ1ajvlGFUMCHZAPdetKHw,@dacapo_arp,Dacapo Ch.【ARP】,453000,Algorhythm Project,ACCEPT,0.35,S,2,2026-09-05T05:41:19+00:00,,0,True
+UCvOrkbDoUwKzbtODiiU8YXg,@miraesolstice,Mirae Solstice🌌VtuberTH🌅,1060,Independent,ACCEPT,1.0,C,1,2026-09-05T06:46:34+00:00,,0,True
+UCvZWxyOOheSuqwVVIT-lJjw,@itssouyuuvtuber,It's SouYuu vtb,2910,Independent,ACCEPT,0.35,C,1,2026-02-25T11:30:50+00:00,,0,True
+UCuSeRbNKfziUQdW6hZgiZjw,@luyaoch,Lu Yao Ch.,13400,Independent,ACCEPT,0.8,B,1,2026-08-17T14:49:51+00:00,,0,True
+UCw79Wj7JKNTtBiVqA8OJlSg,@geno_tst,Geno Ch.『TST』,2350,Independent,ACCEPT,0.35,C,1,2026-09-01T13:56:00+00:00,,0,True
+UCw7YDtEaJFn1cOoQdBx3lIA,@rainnimin,Rainnimin,3000,Independent,ACCEPT,1.0,C,1,2026-09-03T03:12:38+00:00,,0,True
+UCvQ3ivV2lcNxaSr66Xl_Kcw,@vampaowch,【แวมเป้า】- Vampaow,965,Independent,ACCEPT,0.45,D,1,2026-09-05T02:57:48+00:00,,0,True
+UCtPjQ122cAR7pcv0NiSPhyQ,@tharaoceanfae,Thara Ocean Fae ,2470,Independent,ACCEPT,0.5,C,1,2026-09-05T07:33:46+00:00,,0,True
+UCuknM_MfOGBZgedmcu8sf-w,@battosenpai,•Battosenpai•,943,Independent,ACCEPT,0.8,D,1,2026-07-18T15:21:19+00:00,,0,True
+UCvHE8ZCOcfZR_8HvmBA9JBw,@kapz_vvn,Kapz,2040,Independent,ACCEPT,0.35,C,1,2026-09-02T12:53:03+00:00,,0,True
+UCus7FjtV4qGWS1v1GIhfZaQ,@wallacevv3521,Wallace VV,2820,Independent,ACCEPT,0.55,C,1,2025-04-05T14:55:39+00:00,,0,True
+UCutz6S1DcEHPnEb_r9ztkzg,@hinabehongfei,Hinabe HongFei Ch. Pixela Project,127000,Pixela Project,ACCEPT,0.8,S,2,2023-12-10T11:00:10+00:00,,0,True
+UCOY60szLyP_E8RuT6jVAVHg,@shuunaruna,Aruna Shuun Ch. Pixela Destiny,43500,Pixela Project,ACCEPT,0.35,B,1,2025-06-08T13:13:45+00:00,,0,True
+UCP8f5nq2YdKUmHmLUCkroSw,@nxaji,Nx-Aji,11900,Independent,ACCEPT,0.8,B,2,,,0,False
+UCQGAawBLXuFEodAGOANkAdQ,@just_007,J U $ T - Virtual7『TH』,21500,Independent,ACCEPT,0.85,B,1,2025-09-09T08:14:08+00:00,,0,True
+UCPf8rkZeeiHlQUC0CMgxPQw,@mohomiz,MOHOMI,12400,Independent,ACCEPT,0.45,B,1,2026-08-25T18:48:20+00:00,,0,True
+UCQf7QAgBILAuLKG0Eg_WLBw,@jifuyuv,SayJifuyuV,2040,Independent,ACCEPT,0.8,C,1,2026-09-01T22:17:10+00:00,,0,True
+UCOuX_UFS7o1y-JJN7cmHl1A,@yotchich,YotChi,2090,Independent,ACCEPT,1.0,C,1,2026-09-03T10:43:37+00:00,,0,True
+UCQs4BC3S0KSw7i0ggHXn8TA,@quentin_arp,Quentin Ch.【ARP】,59700,Algorhythm Project,ACCEPT,0.0,A,1,2025-04-02T16:43:45+00:00,,0,True
+UCQClP6HJ_vecN7W2YmTnLmg,@ricotta_arp,Ricotta Ch.【ARP】,13300,Algorhythm Project,ACCEPT,0.35,B,1,2025-04-02T18:09:38+00:00,,0,True
+UCOv7oTy19P_uD5LmMFP9qUA,@rinnarinrn,Rinna Rin,3270,Independent,ACCEPT,0.8,C,1,2026-09-03T16:16:44+00:00,,0,True
+UCQSPYuDISdhcuvXsAhn3BTQ,@lunatrixch,Lunatrix Ch.,138000,Independent,ACCEPT,0.8,S,2,2026-09-03T17:24:08+00:00,,0,True
+UCQkOhOg9Q1uYjfHSvuHMX6w,@jiahepr,Jiah ch. Euphora,22700,Euphora Project,ACCEPT,0.8,B,1,2026-06-13T12:12:32+00:00,,0,True
+UCOuVBxzBW503oxpubfVEF3Q,@onell_oa,Just ONELL,513,Independent,ACCEPT,0.45,D,1,2026-09-04T09:00:05+00:00,,0,True
+UCPVWE9LAQH_Tttu3bHT8puQ,@fluffy_beary,ขนปุย,3600,Independent,ACCEPT,0.45,C,1,2026-07-26T18:33:54+00:00,,0,True
+UCPiTBgk5j5A8wDdoyJ-01iA,@tamamiplg,Hoshino Tamami Ch. 【POLYGON】,16600,Polygon Official,ACCEPT,0.8,B,2,2026-05-21T10:00:12+00:00,,0,True
+UCPdYJjRagj71zeEgh3v0R6Q,@alanchkurayami,KuraAlan,8420,Independent,ACCEPT,0.55,C,2,2026-05-31T16:43:18+00:00,,0,True
+UCPgZ3g9jYeuj5mLBJ5APp0A,@saluicx,Sasaささ-Lucix,8440,Independent,ACCEPT,0.8,C,2,2024-11-05T06:21:57+00:00,,0,True
+UCP1bDt91t4IsUJ4EgPBg1Og,@switchiz,SWITCHIZ,1780,Independent,ACCEPT,0.8,C,1,2026-08-20T10:57:45+00:00,,0,True
+UCR-zVE5eBtbAnTHlZFz5Pzg,@npc.artist,Npc•Artist ,4140,Independent,ACCEPT,0.55,C,1,2025-02-14T06:29:58+00:00,,0,True
+UCQV-OVdAFkMRyZyotBxX6TQ,@melanox_alf,Melanox Lunix「ALF」,2570,ALF,ACCEPT,0.45,C,1,2026-09-05T07:09:02+00:00,,0,True
+UCQMHAPgxhO634HZIJraHPTA,@lindenemilio4523,Linden Emilio,2860,Independent,ACCEPT,0.2,C,1,2022-05-16T16:14:04+00:00,,0,True
+UCQsrKHkR4lZpdKVL8QOgtgg,@akihira_ch,Akihira Ch.- あきひら -,9850,Independent,ACCEPT,0.45,C,1,2026-09-03T13:13:23+00:00,,0,True
+UCPtilLPQCGVrhxeuu7nbxRQ,@antiavtuber,Antia Ch. 【Mystery】,2370,Independent,ACCEPT,0.8,C,1,2026-09-03T14:32:46+00:00,,0,True
+UCQ6O2psxMSAQ5Tt2DUp3_Rg,@nightnightpngtuber,Night Nai ナイトナイ,3010,Independent,ACCEPT,0.8,C,1,2026-09-03T14:38:02+00:00,,0,True
+UCQMUyz21FbKDC_8o-5iQ7ZA,@zhenlinxing,ZhenLinxing ch. PowerPay,7790,Independent,ACCEPT,0.45,C,1,2022-12-15T01:30:34+00:00,,0,True
+UCPb2Vtt7YjjaNsqlk3Za9-A,@gojilagodji,Gojila Ch. ก็อตจิ,5080,Independent,ACCEPT,0.8,C,1,2026-08-13T03:55:42+00:00,,0,True
+UCP9x4Ib5jyCiZTjcRY8HTsg,@madokatonihongo1761,【Madoka to Nihongo!】まどかと にほんご!,1750,Independent,ACCEPT,0.65,C,1,2021-02-16T02:41:33+00:00,,0,True
+UCPMOk4hbIh5A-_6uNhzAvDg,@kitsunekomewten,Kitsuneko Mewten Ch. Pixela-Isekai,36300,Pixela Project,ACCEPT,0.8,B,2,2026-09-03T10:00:26+00:00,,0,True
+UCPHqJsNtOp94Vcol4DPKpSA,@siamneko_arp,SiamNeko Ch.【ARP】,47000,Algorhythm Project,ACCEPT,0.45,B,1,2026-05-28T15:09:52+00:00,,0,True
+UCPb3O6Vqyk7b5b1cpYXGxhQ,@mooniquevt,Moonique Ch.,14400,Independent,ACCEPT,0.55,B,1,2026-09-02T16:53:40+00:00,,0,True
+UCOX-wAA5Yzn1JPt6MsgO8VQ,@letiach.fixixvt,Letia ch.【FIXIX VT】,1570,Independent,ACCEPT,0.45,C,1,2026-09-03T12:58:22+00:00,,0,True
+UCQVYQZO7SBMPXHNvKxE16Gg,@fujinowizteria,Wizteria Ch.,2250,Independent,ACCEPT,0.55,C,1,2022-01-20T13:48:14+00:00,,0,True
+UCQGzkjj0cgwm5pOGVhzUs3A,@willowhz,Willow Ch.【 HZ 】,1670,HZ,ACCEPT,0.8,C,1,2026-08-29T11:46:24+00:00,,0,True
+UCR1Htb-H1-tus7UPotPh69A,@laibaht,Laibaht Ch. / หลายบาท,288000,Independent,ACCEPT,0.8,S,2,2026-09-03T19:24:44+00:00,,0,True
+UCQlpWpnmSm9wn3L1eTVWnbA,@amywitch,Amywitch,7230,Independent,ACCEPT,0.45,C,1,2025-09-05T03:08:24+00:00,,0,True
+UCQWJr6Du-UVmOwuEzDzfk_w,@junelyvtuberch,Junely Vtuber Ch.,1380,Independent,ACCEPT,0.8,C,1,2022-01-16T19:45:01+00:00,,0,True
+UCPtSgQ5-yCPl9wbo5w7tmWQ,@evalia_arp,Evalia Ch.【ARP】,308000,Algorhythm Project,ACCEPT,0.8,S,2,2026-08-29T10:32:28+00:00,,0,True
+UCQ71gJATjZSuE2-jCvBddog,@furorinlor,Furorin Ch. ,4290,Independent,ACCEPT,0.45,C,1,2026-07-16T05:40:24+00:00,,0,True
+UCPkvqo6J3A8Y2_mCQmUl-zA,@melinoir-ch,Melinoir Ch.,2420,Independent,ACCEPT,0.8,C,1,2026-08-09T16:39:12+00:00,,0,True
+UCPfqcgrqpaSMqxezIqf7DuQ,@lilinkalonewerewolf,LilInk【VJN】,415,Independent,ACCEPT,0.2,D,1,2026-08-20T16:27:38+00:00,,0,True
+UCQS3nybcx-p4g8oFidDRMXA,@xyne_ztp,Xyne Valdreth「ZTP」,869,Independent,ACCEPT,0.45,D,1,2026-09-03T16:48:42+00:00,,0,True
+UCQdJThdCgaDzgk0je69GfhQ,@gaogigyaruoji,Gaogi Gyaruoji,639,Independent,ACCEPT,0.2,D,1,2026-09-03T14:38:07+00:00,,0,True
+UCOzFeOVoXq-E_8ClgO16msg,@ryujich,Ryuji Ch.,1140,Independent,ACCEPT,0.8,C,1,2026-08-02T03:51:26+00:00,,0,True
+UCPKp1agiHSOwu9iPyb6WSNw,@toiivt,「トイイ」TOii,1760,Independent,ACCEPT,1.0,C,1,2026-08-18T10:42:50+00:00,,0,True
+UCPLU2nDo8FV9JAyXLAcTsCw,@risaaphiwat,Risa Ch.,1860,Independent,ACCEPT,0.8,C,1,2026-09-01T14:16:39+00:00,,0,True
+UCPtO4Ttn7kqIaxDHBr15fNQ,@zelycialechantel,Zelycia Le Chantel,1670,Independent,ACCEPT,0.8,C,1,2026-07-18T16:57:47+00:00,,0,True
+UCPuf-39u2U7T-5ClpMYQgWA,@fautierowiwi,Fautier Owiwi Ch.,3740,Independent,ACCEPT,0.8,C,1,2026-08-13T19:35:48+00:00,,0,True
+UCOaTgKPjI9cgXLoDW7XFDDw,@princesszelina,Princess Zelina Ch. Pixela Project,94800,Pixela Project,ACCEPT,0.8,A,2,2025-05-09T17:51:10+00:00,,0,True
+UCAOMy65Qod9DDOU40mWsXdA,@athruntytoalba,Athrun Ch. ,828,Independent,ACCEPT,0.45,D,1,2026-09-05T05:40:40+00:00,,0,True
+UC8xrzfcBL_42uWEf-8pO6og,@doyoubisekine,土曜日関根 Doyoubi Sekine [ECR],2250,Independent,ACCEPT,0.8,C,1,2026-09-04T15:47:57+00:00,,0,True
+UC9PtF5-uRTZEUuOS5tr1Gxg,@nagirin_res,นางิริน | Nagirin 【RE:S】,3900,Independent,ACCEPT,0.8,C,1,2026-08-26T15:17:57+00:00,,0,True
+UC9dolQobrGWzLP2UNrkUbEw,@lizs-wis,Liz's | WISLIVE,48800,Independent,ACCEPT,0.8,B,1,2026-09-05T09:18:06+00:00,,0,True
+UC9TMDpET50CJkgQnB56Xj5g,@s.k.tsuruko,Tsuruko ch.【SOA】,1880,Independent,ACCEPT,0.8,C,1,2026-08-05T03:58:56+00:00,,0,True
+UCAPbXyM7sw0_6VMcrWeX7Ug,@meiiyume,Meiiyume Ch.,2650,Independent,ACCEPT,0.8,C,1,2026-08-28T20:45:36+00:00,,0,True
+UCBTCAyvs7TAzghRqideHGzw,@anemizz,Anemizz,1410,Independent,ACCEPT,0.35,C,1,2026-03-22T17:39:17+00:00,,0,True
+UCArXPBCsEt2_rDC63tPLYmg,@gintheyuk,GIN,4630,Independent,ACCEPT,0.65,C,1,2026-09-04T19:04:11+00:00,,0,True
+UC9uFujZvbTm3PpTycIz5Z0w,@aeliosofficial,Aelios Ch.,4940,Independent,ACCEPT,0.35,C,1,2026-04-18T15:18:49+00:00,,0,True
+UC8lQ60XP8szvj0GHwxYUS2Q,@kyomuch,Kyomu Ch.,55200,Independent,ACCEPT,0.35,A,1,2026-09-06T04:57:03+00:00,,0,True
+UC90zZA9j8jdWVb5NNqddKQQ,@okitoy112,OkiChinaToy,1190,Independent,ACCEPT,0.8,C,1,2026-09-05T16:36:41+00:00,,0,True
+UCAj8NHkWEqbJ2er8Umbpoog,@boomvtubech,BoomVtube Ch.,832,Independent,ACCEPT,0.8,D,1,2026-09-03T05:17:16+00:00,,0,True
+UC8xAtvAk_HX1j3egTO7ylIQ,@roseliademagentia,Roselia de Magentia Ch. Pixela S,29300,Pixela Project,ACCEPT,0.8,B,1,2026-09-05T04:59:44+00:00,,0,True
+UCAV2_Jxxt-JJ08v77lNLBtg,@malai_deva,มาลัยเดวา,4580,Independent,ACCEPT,1.0,C,1,2026-09-06T04:05:07+00:00,,0,True
+UCApZxq6J3R2XNqhzKiBv5mg,@zandy31a,Zandy,28100,Independent,ACCEPT,1.0,B,1,2026-09-02T13:46:29+00:00,,0,True
+UCAO6vSguYeBGpQvn3D9fpdw,@lanka_lh,Lanka Vtuber,2730,Independent,ACCEPT,0.35,C,1,2026-09-03T19:43:27+00:00,,0,True
+UC8fneiVrSectPFlnumDMFaw,@fumoondayo,FuMoon Dayooo,2260,Independent,ACCEPT,0.35,C,1,2026-09-05T19:21:17+00:00,,0,True
+UC9b9Qttg1NHYSPmKu9mb3iw,@asherdawnbaker,Asher Dawnbaker,6510,Independent,ACCEPT,0.5,C,1,2026-09-04T10:45:16+00:00,,0,True
+UC8bJCt2cONnB9AooIC6fomw,@lucidvtuber,Lucid Ch.,12100,Independent,ACCEPT,0.35,B,1,2026-09-06T09:31:12+00:00,,0,True
+UCASVAAgvntOrwRgVeMAkIPg,@mmdtakumi,MMD Takumi Ch.,13700,Independent,ACCEPT,0.8,B,1,2024-08-04T01:55:09+00:00,,0,True
+UCA8IZ8dlQc70uzP8WYsFE-w,@fayuuchan,FAYUUCHAN CHANNEL,5880,Independent,ACCEPT,0.8,C,1,2026-09-04T21:18:08+00:00,,0,True
+UC9tPom2jf2B1qPCTOJ2o2uw,@sakimorimikannn,SakiMori Mikan,907,Independent,ACCEPT,1.0,D,1,2026-09-01T15:46:11+00:00,,0,True
+UCASukO4m2BR4uqZH0XlH1IA,@alalannika,AlpacaALAL Ch.,6910,Independent,ACCEPT,0.8,C,1,2026-09-05T22:28:10+00:00,,0,True
+UC8iTIbRueIONUDDgHN74JHw,@mikivtuber,MikiVtuber,11700,Independent,ACCEPT,0.55,B,2,2024-10-31T14:00:06+00:00,,0,True
+UCAvQO1F-w6NELewvcDFupmw,@maewuvchanchannel,MaewUVChan Channel,2920,Independent,ACCEPT,0.45,C,1,2026-09-06T08:16:47+00:00,,0,True
+UCAoZkJiB43mNUD6aadeozRw,@asatsuyuchannel,Asatsuyu Ch.,1250,Independent,ACCEPT,1.0,C,1,2023-10-03T15:31:25+00:00,,0,True
+UCB5KUWdc5ttyglIgCYLLOJg,@ziasylph_as,Zia Sylph Ch. / AStars Amakara,18000,AStars Production,ACCEPT,0.55,B,2,2026-09-04T16:42:19+00:00,,0,True
+UCAKxVqeGyZTrxYwg3p3xUAg,@tsontayaknox,Tsontaya Knox Ch.,2340,Independent,ACCEPT,0.8,C,2,2025-04-27T13:08:17+00:00,,0,True
+UC9CzeQQnApnpW8-KIsqKwWQ,@anya_smith,Anya Smith,3810,Independent,ACCEPT,0.6,C,1,2026-08-22T15:46:06+00:00,,0,True
+UCB2UBUgwjQ7y8k3JNEFEVaQ,@nagumoiscool,Nagumo ⛈️,14400,Independent,ACCEPT,0.8,B,1,2026-09-04T14:00:11+00:00,,0,True
+UCAQnqwL4eytWAamhZs18ovw,@rakumitsuraizuu,Raizuu,6800,Independent,ACCEPT,0.8,C,1,2026-08-26T12:14:31+00:00,,0,True
+UCAzfyfbQ7XHmznbOKinAunQ,@meltildavt,MeltildaVT Ch.,3190,Independent,ACCEPT,0.35,C,1,2026-09-02T17:12:59+00:00,,0,True
+UCAv_XjRwhU7sMl3YlM0WoJw,@kumatanch,ShiroiKumaTan Ch.,1260,Independent,ACCEPT,1.0,C,1,2026-01-02T11:00:06+00:00,,0,True
+UCASpA6_BQVi6LpuBRdSxfmw,@althima-night,ALThiMa-NigHT,27900,Independent,ACCEPT,0.45,B,1,2026-09-06T04:13:19+00:00,,0,True
+UC8hIV_IaH0IIObGBw0engEQ,@harurei_vtuber,Haru CH.,2280,Independent,ACCEPT,0.45,C,1,2026-09-05T16:50:40+00:00,,0,True
+UCBQi4hldyh7jrIU07hL_EbQ,@maewbaew,MaewBaew,3860,Independent,ACCEPT,0.8,C,1,2026-09-05T03:22:51+00:00,,0,True
+UCAnKhwx493i5myddnJFF_gg,@penguv,Pengu Ch.【Ti19t】,37200,Ti19t,ACCEPT,0.8,B,2,2026-06-17T14:21:11+00:00,,0,True
+UC9yPUw_aebcLI_oXNNh1wwQ,@ureinaz,Ureinaz,27800,Independent,ACCEPT,1.0,B,1,2026-07-29T10:30:06+00:00,,0,True
+UC8cpV2XY6w58Ftbx_yMBc6w,@soleildesu,Soleil Ch.,1500,Independent,ACCEPT,0.35,C,2,,,0,False
+UC93X4Rs0vDthp-qsZu4TQpg,@allure_tnd,Allure TND.【Mystery】,2750,Independent,ACCEPT,0.8,C,1,2026-07-24T23:35:24+00:00,,0,True
+UCBLV-Zv25LzajWyKEofqvVQ,@gracechu,[ปิดตัว],34800,Independent,ACCEPT,1.0,B,1,,,0,False
+UCAvKK8pzAthBfVeXq_Bj4Ow,@maewmon,Maewmon ch.,1770,Independent,ACCEPT,0.8,C,1,2026-09-05T17:32:07+00:00,,0,True
+UC9WXRLLO7DrcJvUTg69_lkA,@leoxchannel,Leox Ch. Genesis Project,5860,Genesis Project,ACCEPT,0.8,C,1,2025-12-31T12:00:05+00:00,,0,True
+UCBSiJy11yFeJsCRdZ3ZtfBw,@vellvakoray,Vellva Koray Ch.,8090,Independent,ACCEPT,0.45,C,1,2026-09-05T10:13:35+00:00,,0,True
+UCAr4U_HGMYXn1EZjdWiGSLQ,@baabel_arp,Baabel Ch.【ARP】,281000,Algorhythm Project,ACCEPT,0.0,S,2,2026-08-22T17:01:57+00:00,,0,True
+UC9owX01ODpgeUePEIdC_qlA,@ryoshi_artist,R Y O S H I ch.,2610,Independent,ACCEPT,0.8,C,1,2026-09-06T07:38:43+00:00,,0,True
+UC8pTkUvJe50zHIbl8LkZphQ,@seraphynech,SeraPhyne Ch【ECR】,889,Independent,ACCEPT,0.8,D,1,2026-09-05T22:39:55+00:00,,0,True
+UCBDu-HE-uL4a-SqH9q5ZZ6g,@hengkungpen,Hengkungpen,2570,Independent,ACCEPT,0.8,C,1,2026-09-06T10:36:50+00:00,,0,True
+UCiayPBsTG18EBsORDWmBOXQ,@vitaovo,VitaOvO💊,9410,Independent,ACCEPT,0.8,C,1,2026-06-07T02:45:49+00:00,,0,True
+UCkFFuJTqPWwFZ5I0smL8NrQ,@aikon_st,Aikon (ไอ่ก้อน) 〖ST〗,1560,Independent,ACCEPT,0.8,C,1,2026-09-04T15:34:02+00:00,,0,True
+UCkEcY4RbLYs2AF45nhkyjtw,@jollyestaa,Jolly Estaa Ch. Pixela-Isekai,63600,Pixela Project,ACCEPT,0.8,A,2,2026-09-03T13:21:43+00:00,,0,True
+UCkNTg_9AatcdDorXO0ijfYQ,@fuyukaida,Fuyu Kaida,2660,Independent,ACCEPT,1.0,C,1,2026-08-15T11:00:22+00:00,,0,True
+UCjrs5Sse402rafaOP-k37Xw,@sisirahydrangea,Sisira Hydrangea Ch. Pixela S,58700,Pixela Project,ACCEPT,0.8,A,2,2026-09-04T11:23:40+00:00,,0,True
+UCjygfNCaicPNiP8HZyXY08w,@mina_msv,Mina Nekogaki / 猫垣ミナ【MSV】,1450,Independent,ACCEPT,0.45,C,1,2024-09-01T02:44:42+00:00,,0,True
+UCk0bJC1-V_BIE-FY8qYrVQA,@bingsujuseyo,Bingsujuseyo Ch.,3370,Independent,ACCEPT,0.8,C,1,2026-09-02T16:34:33+00:00,,0,True
+UCjgyitv53-dae3SMkKwruGw,@melbez_bookie,MELBEZ,436,Independent,ACCEPT,0.8,D,1,2026-08-18T15:35:16+00:00,,0,True
+UCihXBP7iwDIIkzbTbUR4jXg,@krynaydin_ztp,Krynaydin 「ZTP」,1230,Independent,ACCEPT,0.8,C,1,2026-09-04T04:06:14+00:00,,0,True
+UCjGGp-gPhMgxgIKxjShbYtA,@teriosdemon,Terios Ch.,94400,Independent,ACCEPT,0.8,A,1,2026-08-28T11:56:33+00:00,,0,True
+UCjr1VnM1LBRp9Ez2JGNndaA,@aosorapopo,Aosora Popo Ch.,66200,Independent,ACCEPT,0.8,A,1,2026-09-04T13:09:30+00:00,,0,True
+UCk1dqQF3v91PtquvzNf151g,@aibohcanis,Aiboh Canis (ไอโบ),3650,Independent,ACCEPT,1.0,C,1,2026-09-04T03:43:07+00:00,,0,True
+UCj9iuFhj63MZfS8ANBzBd9w,@reniamarinette,Renia Marinette Ch.【PSM】,2320,Independent,ACCEPT,0.8,C,1,2026-08-05T04:49:12+00:00,,0,True
+UCiM8hgTBL6sBMugCDBlij6A,@senkoretane,Sen Koretane Ch.,1640,Independent,ACCEPT,0.45,C,1,2026-09-04T11:58:24+00:00,,0,True
+UCjK-ZpWlurxanrP62Di8HkA,@momayinfinite,Momay infinite,3920,Independent,ACCEPT,0.8,C,1,2026-09-02T03:21:29+00:00,,0,True
+UCkU6YBCs4dPsn1FlVzNVqNw,@punquix,Punquix,5280,Independent,ACCEPT,0.8,C,1,2026-09-04T11:58:28+00:00,,0,True
+UCiYFmDfFBoAP2yk9yuXBTTg,@s1r_arp,S1R Ch.【ARP】,40800,Algorhythm Project,ACCEPT,0.8,B,2,2026-09-04T19:49:04+00:00,,0,True
+UCkL-uaHGA8xe516I3y00OZA,@isittimeofficial,IsitTime,14100,Independent,ACCEPT,0.8,B,1,2026-08-30T05:49:13+00:00,,0,True
+UCj3jRZ4HHn1hZtwzs5Sw2KQ,@bburn_out,- BURN -,1150,Independent,ACCEPT,0.8,C,1,2026-09-04T03:56:45+00:00,,0,True
+UCjiIfHN3nlU80_DgNz-5qlA,@mitsukirinna_lh,Mitsuki Vtuber,5060,Independent,ACCEPT,1.0,C,1,2026-08-29T03:12:37+00:00,,0,True
+UCiZG4hoElnNYefqCSu5MC5A,@msandori,Midori,1360,Independent,ACCEPT,0.8,C,1,2026-08-28T19:22:36+00:00,,0,True
+UCjeOlTHXWFsFfQ6o6Y_Dlsw,@maewlham,MaewLham,580,Independent,ACCEPT,0.8,D,1,2026-09-03T20:20:49+00:00,,0,True
+UCjGFO21Jia-O4vL-KSHO44Q,@odiarech,Odiare Ch ,2500,Independent,ACCEPT,0.8,C,1,2026-08-27T16:29:07+00:00,,0,True
+UCkDoqvUkpbGqskcODT-S0ag,@faziafazia-u3k,Fazia,1370,Independent,ACCEPT,0.8,C,1,2023-04-22T11:27:50+00:00,,0,True
+UCivtAz2MHfiy-HC0VW9fR2Q,@วาฬch,วาฬ くじら,423,Independent,ACCEPT,0.8,D,1,2026-08-24T23:16:02+00:00,,0,True
+UCj0_mU0sUlDnVfoaOT6ve_A,@kungphaokung,เคอเรนเซียวีปกติɞ,24100,Independent,ACCEPT,0.8,B,1,2026-09-04T10:22:14+00:00,,0,True
+UCj2sbvVwAQFjHPLZ47RoTOA,@tamaoniisan21pm,Tama OniiSan 【21PM】,524,Independent,ACCEPT,0.8,D,1,2026-08-29T17:06:37+00:00,,0,True
+UCjNcr0lsW_G8u6zJjjHlBXw,@veena-owg7783,Veena - OWG,1900,Independent,ACCEPT,0.2,C,1,2023-03-26T12:20:40+00:00,,0,True
+UCjpsxqVVjdZWy5eW5-ZkbcA,@amnuaich,Amnuai CH,34900,Independent,ACCEPT,0.45,B,1,2026-09-04T05:32:00+00:00,,0,True
+UCjgbkv8rEi3oBPjhsCRUWsA,@inenex,Shunka INE [NEX],6740,Independent,ACCEPT,1.0,C,1,2026-09-04T17:28:04+00:00,,0,True
+UCk5hcuReSItZee785U4jMDA,@dear759th_vtp,Dear_759TH ◤VTP◢,2750,Independent,ACCEPT,0.8,C,1,2026-07-25T04:29:52+00:00,,0,True
+UCiK62ZOsD7vMwTw0MJiYDLw,@kikuharahimegu,Kikuhara Himegu Ch.,2460,Independent,ACCEPT,0.8,C,1,2026-09-04T04:17:53+00:00,,0,True
+UCkWqUSYGks1CqOcCm-zwfzw,@lalia_channel,Lalia,4760,Independent,ACCEPT,0.8,C,1,2026-09-04T04:54:38+00:00,,0,True
+UCijixp2pBTNrgkF5pDw0wPg,@thelittlenelle,Neris Ch.,1530,Independent,ACCEPT,0.45,C,1,2026-08-12T05:00:37+00:00,,0,True
+UCjQS71kGf-Ph6uy08IEG2bg,@walkytalky404,WalkyTalky Vber Ch.,4630,Independent,ACCEPT,1.0,C,1,2026-09-02T05:00:01+00:00,,0,True
+UCiVx0R2pqr8Zg-tivdPDgig,@sarnnabhbr_ch,Sarnna Black Herbilrah |【SH】,5110,Independent,ACCEPT,0.8,C,1,2026-09-03T16:46:02+00:00,,0,True
+UCjnKbgxO0tCXzNlSsnYjdyg,@keroriraika,Kerori Raika,131,Independent,ACCEPT,0.45,D,1,2026-09-03T17:47:25+00:00,,0,True
+UCiZyQDO7v9UY_-Q24VsSLlQ,@antolnettethemagnificent,Antolnette the Magnificent Ch. Lumina-Muse,13800,Lumina Live,ACCEPT,0.8,B,1,2026-09-05T09:15:30+00:00,,0,True
+UCjD3GQq05AJ2Hwh0wDkiV4w,@cielepr,CIEL Chouette ch. Euphora,2880,Euphora Project,ACCEPT,0.65,C,1,2026-08-31T03:29:56+00:00,,0,True
+UCkYpaS7iE8B6r8xPBeo4sOg,@pinkumegami,Pinku no Megami - Virtual7『TH』,15500,Independent,ACCEPT,0.55,B,1,2025-03-15T17:43:20+00:00,,0,True
+UCkF8r4_wvBnMm2mrdvcxU_g,@sunfishch,Sunfish Ch.,5560,Independent,ACCEPT,0.35,C,1,2026-09-01T16:24:20+00:00,,0,True
+UCiVNJohfCMYogqJ4EB6fB1g,@dragooooon_lh,Dragooooon Vtuber,1750,Independent,ACCEPT,0.8,C,1,2026-08-28T10:12:38+00:00,,0,True
+UCjw7DQp5uNND5qMyyhtOpdQ,@rafadxd,RaFa DXD,36400,Independent,ACCEPT,0.8,B,1,2026-09-04T05:00:33+00:00,,0,True
+UCjQxLH9yqYXowVtH7a-6L-Q,@mikuru0project,MikuRu-0 Project,52900,Independent,ACCEPT,0.8,A,2,2026-08-05T12:40:11+00:00,,0,True
+UCjgiHXaBeeuWfxZpNMCJioQ,@galacticlunarr,Galactic Lunarr,4210,Independent,ACCEPT,0.2,C,1,2026-09-02T15:44:48+00:00,,0,True
+UCkLlWzLdsqNdEaW9QYRbZCw,@zynlyp,Zynlyp,10100,Independent,ACCEPT,0.8,B,1,2026-09-03T10:00:22+00:00,,0,True
+UCjtjNwzYjmM3PQkMWTP3MNw,@yushachvwy,Yusha | V.W.Y,18200,V.W.Y,ACCEPT,0.45,B,1,2026-09-04T05:54:34+00:00,,0,True
+UCiggUCFZrCho_ZtAMxSYx0Q,@itsalexiswolf,AlexisWolf,816,Independent,ACCEPT,0.8,D,1,2026-09-04T20:09:25+00:00,,0,True
+UCikyhPyuEu3rn1izGOGxZcg,@araniselvene,Aranis Elvene Ch. Pixela-Isekai,70400,Pixela Project,ACCEPT,0.8,A,2,2026-09-04T03:58:01+00:00,,0,True
+UChgmNRdjJHlFaSm_xGmue9g,@konpe,Konpe Ch. [Autumnia],1620,Autumnia,ACCEPT,0.45,C,1,2023-12-21T03:15:31+00:00,,0,True
+UCgRxjdx4-ZMtmhjyl2N27nw,@blinkdraws,Blinkdraws ,64,Independent,ACCEPT,0.35,D,1,2026-08-10T18:42:22+00:00,,0,True
+UChZv4NseLfZ98PmCA-gii7A,@grazia_vtuber,Grazia Ch.,2830,Independent,ACCEPT,1.0,C,1,2026-08-02T12:30:08+00:00,,0,True
+UCgfEMiBgW-JSS3qksegDo3Q,@rlanzshino,Rlanzshino,111,Independent,ACCEPT,0.8,D,1,2026-09-02T02:26:13+00:00,,0,True
+UChmC0OWdqJFyrdKQtseamJA,@killach,Killa ch.,14000,Independent,ACCEPT,0.8,B,1,,,0,False
+UCghRTkqCoqGGmq9s8z7muLg,@gredch,G RED,141,Independent,ACCEPT,0.8,D,1,2026-08-29T15:15:28+00:00,,0,True
+UCgLadXz0sJbHQL98eoAd9ag,@iceshirakoi_as,【graduated】Ice Shirakoi Ch. / AStars Amakara,24000,AStars Production,ACCEPT,0.35,B,1,2025-04-30T11:00:06+00:00,,0,True
+UCi2T9exDdJRTsxL1vnNV9gQ,@naninonaninona,Nanino Channel,231000,Independent,ACCEPT,0.35,S,1,2026-08-27T08:50:36+00:00,,0,True
+UCi201iDULX3c5VXIlh65zOA,@bunnieskisses.vtuber,Bunnieskisses ch. | VtuberTH,5410,Independent,ACCEPT,0.8,C,1,2026-09-03T03:58:33+00:00,,0,True
+UCgM2ZDG20kYbeYrG1wy1MSQ,@normach,Norma Ch.,1080,Independent,ACCEPT,0.45,C,1,2026-09-04T15:50:59+00:00,,0,True
+UCi0lsSeXkSUuFwWTdhk73IA,@homooto,Homooto the gang (โฮมู่โตะ),1720,Independent,ACCEPT,0.8,C,1,2026-09-04T10:00:16+00:00,,0,True
+UCh27XHdphGUo6meLoVblIoQ,@kevaraepr,Kevara ch. Euphora,13500,Euphora Project,ACCEPT,0.8,B,1,2026-09-04T18:08:53+00:00,,0,True
+UCgnavpGZUMzWODQB_daHZbQ,@listen_arp,Listen Ch.【ARP】,54000,Algorhythm Project,ACCEPT,1.0,A,1,2026-09-01T05:15:38+00:00,,0,True
+UCgQHTHlOXAX0PEVBeHTlSnA,@shirokaminero,Nero Ch.《CodeCreation》,2890,Independent,ACCEPT,0.65,C,1,2026-08-30T16:16:48+00:00,,0,True
+UCiFkwxPLkte3F9h7cgo3tOg,@dubeduck,DubeDuck ,2620,Independent,ACCEPT,0.45,C,1,,,0,False
+UChSGIJlrLUI1UVds38w2Obg,@leon_thepinklion,Leon Ch.,1260,Independent,ACCEPT,0.2,C,1,2026-09-04T16:54:15+00:00,,0,True
+UChgltsIqf_o4bFSKd9dVE5A,@ramirezvtuber,Ramirez Svensons,28600,Independent,ACCEPT,0.65,B,1,2026-09-01T02:09:32+00:00,,0,True
+UChF6_MAcqWD8q-mnRoDViEQ,@knightbarlet5751,KNIGHT BARLET Ch.,7610,Independent,ACCEPT,0.8,C,1,2026-09-02T04:52:37+00:00,,0,True
+UCh3KvFEZOwMfaFYMzvdznRA,@kyofuakari,Kyofu Akari Ch.,8770,Independent,ACCEPT,0.45,C,1,2026-08-31T21:32:49+00:00,,0,True
+UCgyDesMB7dtmRf5O8WCbsgQ,@fynnvtuber,Fynn Ch.,1690,Independent,ACCEPT,0.35,C,1,2024-09-21T17:55:58+00:00,,0,True
+UCh-ktlPulzCBs5S1Ynk3UOg,@fayeashefort,Faye Ashefort,4490,Independent,ACCEPT,0.35,C,1,2023-01-30T15:13:08+00:00,,0,True
+UCg53fzp6UNYvsyAg8UoNXCA,@drakikona,Draki Kona Ch. Lumina-First-Myth,248000,Lumina Live,ACCEPT,0.8,S,2,2026-09-04T13:23:15+00:00,,0,True
+UChgVLsZjY0Pzzm5CZ-8a6MQ,@pingpingko,PingPingko【REC】,4320,Independent,ACCEPT,0.8,C,1,2026-09-04T14:24:21+00:00,,0,True
+UCgMHb11ydIWSAgvzrxOPjRg,@arcanontarotar,Arcanon Tarotar Ch. Lumina-Mutelu,7110,Lumina Live,ACCEPT,0.8,C,1,2026-09-02T16:15:24+00:00,,0,True
+UCgxuLWOuU5QX8ReEFthb_lA,@ookamichannel,อยากเปลี่ยนชื่ออะ อดีตตามหลอกหลอนอย่างมาก,3690,Independent,ACCEPT,0.8,C,2,2022-07-26T02:00:23+00:00,,0,True
+UCgiEVQfolrB4MExyzxq_L5Q,@aquamarinia_blp,AquaMarinia 【BLP】,1860,Independent,ACCEPT,0.35,C,1,2026-08-27T18:37:39+00:00,,0,True
+UCgXcfaWl68A1gHWm4AiJXAQ,@yoshiechyoshieteriri,Yoshie Ch. Yoshie Teriri,1430,Independent,ACCEPT,0.55,C,1,2020-12-26T12:43:57+00:00,,0,True
+UCgwH2no530s8Ios2doKELKw,@dantedesperadoofficial,DanDan,1590,Independent,ACCEPT,0.35,C,1,2025-05-04T03:02:33+00:00,,0,True
+UChBuxXl8poN1Jz8kZDdsfhw,@selene_arp,Selene Ch.【ARP】,32200,Algorhythm Project,ACCEPT,0.35,B,2,2026-08-27T21:04:00+00:00,,0,True
+UCg7LMUxDiwIDngWPjo60iTw,@killian_marexoxo,Killian Mare,1020,Independent,ACCEPT,0.45,C,1,2026-09-04T04:00:36+00:00,,0,True
+UCgZt2jUdPnEVCKQtnzS0ywg,@klangkhuen,Klangkhuen / กลางคืน,8470,Independent,ACCEPT,0.45,C,1,2026-08-14T05:40:00+00:00,,0,True
+UCgFEQdBjM12Cg-IY5tFzU_g,@ursungtheo,TOP【PRIME】,2090,Independent,ACCEPT,0.35,C,1,2026-05-01T17:55:59+00:00,,0,True
+UCgq-rIElYiBFQnxgMnkojwg,@padzangchannel,Padzang Channel,50400,Independent,ACCEPT,0.8,A,1,2026-09-03T17:42:41+00:00,,0,True
+UCgJiSmkfl1jCbczrs6kDWVw,@duziha,DuziHa DuDu Ch.,1350,Independent,ACCEPT,0.2,C,1,2026-09-04T15:57:19+00:00,,0,True
+UChNALrBJanqhbKasT0tgajQ,@honorulynn,Honoru Ch. โฮโนรุ,4190,Independent,ACCEPT,0.45,C,1,2026-05-20T02:13:43+00:00,,0,True
+UCgkQ3ELvRzik3JDfc4o4S_g,@mor9an_m,Mor9an ՞·ᴥ·՞ (มอร์แกน)『VFree』,674,Independent,ACCEPT,0.8,D,1,2026-08-22T12:58:42+00:00,,0,True
+UCgmytgwJVDe74ewiHklGcBA,@minatohatsukich,Minato Hatsuki【JVP】,1350,Independent,ACCEPT,1.0,C,1,2026-08-16T06:45:50+00:00,,0,True
+UChAhP23slVdjdrpt4aRukIw,@daddyevilch,Daddy Evil Ch.,9010,Independent,ACCEPT,0.55,C,1,2026-09-04T15:37:46+00:00,,0,True
+UChJCeUsXs42TOe1m4LZ_lJg,@cynthiatepes,Cynthia Tepes Ch. [Autumnia],1860,Autumnia,ACCEPT,0.8,C,1,2025-01-31T19:15:24+00:00,,0,True
+UChNrxGsRq7xpntwWcI-h5Hg,@yuitoku_woof,Yuitoku Ch.,1420,Independent,ACCEPT,1.0,C,1,2026-09-03T04:12:38+00:00,,0,True
+UChy20fuMn3c_rB2NEZLQecA,@charlottych.9815,Charlotty Ch. ,1580,Independent,ACCEPT,0.55,C,1,2022-10-19T21:37:14+00:00,,0,True
+UCgqsGN6McgMtc-Xz50MsG9w,@uniwii_arp,Uniwii Ch.【ARP】,25200,Algorhythm Project,ACCEPT,0.45,B,1,2025-10-23T07:18:04+00:00,,0,True
+UChrGwUGm1puXFhoC0lC7LFQ,@yukino-taifu,Yukino Taifu Ch. ,783,Independent,ACCEPT,0.2,D,1,2026-09-04T12:07:33+00:00,,0,True
+UCg5zRBCc-X-O4ZPQQ3jDAIg,@estellewil,Estelle Wil Ch.,1640,Independent,ACCEPT,0.8,C,1,2026-08-11T04:14:33+00:00,,0,True
+UCiHID_2M0x_oEo62Kate2jQ,@zoomdesu,Zoomdesu,2620,Independent,ACCEPT,0.8,C,1,2025-10-29T16:21:48+00:00,,0,True
+UCgSsXxQ71nScJ-GIc90ZkYw,@cerafinemikael,Cerafine Mikael Ch. Lumina-First-Myth,34800,Lumina Live,ACCEPT,0.8,B,1,2026-09-04T13:00:38+00:00,,0,True
+UCf0WmZk5F5_1Qm9CNgEZNuA,@watch,WATCH,3320,Independent,ACCEPT,0.0,C,1,,,0,False
+UCVjpFP1_Ny3PUoE26r4ITaw,@bunana_vtuber,Bunana Vtuber,15200,Independent,ACCEPT,0.0,B,1,,,0,False
+UC-qBbCCqtD2H4WSs9m978Ow,@cazziekmonie,Cazzie K. Monie,35000,Independent,ACCEPT,0.35,B,1,,,0,False
+UCh4SV9jjhMTFd8QRBh0IegA,@creamysteww,Cream Stew,765,Independent,ACCEPT,0.0,D,1,,,0,False
+UClEcDlghI58w28f7H9pO-7Q,@ec19projektofficial29,EC19 Projekt Official,702,Independent,ACCEPT,0.45,D,1,,,0,False
+UCPzpIPohJ6axdgSWGyCNmHg,@veerach.3467,Veera Ch.,214,Independent,ACCEPT,0.35,D,1,,,0,False
+UC6lZLAOgSYgJ6ZkW2ZTI75Q,@effy_arp,Effy Ch.【ARP】,47600,Algorhythm Project,ACCEPT,0.0,B,1,,,0,False
+UCkEgF0BmvRD2QKETDKoIzdQ,@fernisesme815,Fernis Esme,2520,Independent,ACCEPT,0.0,C,1,,,0,False
+UCaNo5k03dtYzsJ3TqL3JPUw,@hirabikivr7944,HirabikiVR,1720,Independent,ACCEPT,0.35,C,1,,,0,False
+UCV04Z1PL6HevUdDeHDHwkDw,@MeiLiChParabellum2,MeiLi,0,Independent,ACCEPT,0.0,D,1,,,0,False
+UC2GaO3oPD_bkDMtLLRHnJgw,@UC2GaO3oPD_bkDMtLLRHnJgw,Nelynn,0,Independent,ACCEPT,0.0,D,1,,,0,False
+UClSlkwPIViMrT4Mj_8enkew,@UClSlkwPIViMrT4Mj_8enkew,Ning Ning,0,Independent,ACCEPT,0.0,D,1,,,0,False
+UC3qWSgyoIB-pyGhjTBUwQww,@novicezoel,Zoel Ch.,7520,Independent,ACCEPT,0.35,C,1,,,0,False
+UCmvFibZ6umhTdyUpLya_vLg,@nyeeeon,Nyeeeon,2570,Independent,ACCEPT,0.35,C,1,,,0,False
+UCcRaKGCG3RFenb8D2php_Jw,@pixelaofficial,Pixela Official,74400,Pixela Project,ACCEPT,0.8,A,1,,,0,False
+UCbJzR2e_KQAATjnkddLTL9A,@polygonofficial,Polygon Official,29500,Polygon Official,ACCEPT,0.8,B,1,,,0,False
+UCa7Slk7_l3qK3YFGZWa2IsQ,@ponyachparabellum,Ponya Ch. - Parabellum,1180,Independent,ACCEPT,0.2,C,1,,,0,False
+UCXtQTtPJedfjqEPysorbsMg,@qualiaquch.5487,久檻夜くぅ / Qualia Qu Ch.,134000,Independent,ACCEPT,0.65,S,1,,,0,False
+UCyC0qxWVTV7Aq0WdyBkeypw,@reradragoakd,Rera Drago ch. AKD,3760,Independent,ACCEPT,0.8,C,1,,,0,False
+UC0vtaaMk6-hGYcx4QWoMymg,@torukuma,Toru Kuma,0,Independent,ACCEPT,0.0,D,1,,,0,False
+UCrIs26bEKOvA_lRnO2Hgscw,@unnamednow00,Unnämed,476000,Independent,ACCEPT,0.0,S,1,,,0,False
+UC_XyNfXasr_yngj3VOJU3dg,@ursa_vtuber,Ursa Scorpio,4770,Independent,ACCEPT,0.8,C,1,,,0,False
+UCSdV0wKlfljMvRY3mFVn1ZQ,@UCSdV0wKlfljMvRY3mFVn1ZQ,Vanila Mali,0,Independent,ACCEPT,0.0,D,1,,,0,False
+UCtorf7cuSwiGmA2lEuuubCQ,@nene_vtp,LUNA NENE ◤VTP◢,524,Independent,ACCEPT,1.0,D,1,,,0,False
+UC6jEdLoM959IpJeDP5sYgaQ,@wanjan,Wan Jan,0,Independent,ACCEPT,0.0,D,1,,,0,False
+UCvsZDzO8ATDZJJgkhVlWopg,@UCvsZDzO8ATDZJJgkhVlWopg,Xeno Horizon,0,Independent,ACCEPT,0.0,D,1,,,0,False
+UC31u9DPv_zbrasL8FTH7K5g,@reiden_r,Reiden_R Ch.,2160,Independent,ACCEPT,1.0,C,2,2026-07-03T18:50:15+00:00,,0,True
+UCGAYOnH9azmAmcHpzRWZsOg,@noa_noaris,NoA Noaris,5760,Independent,ACCEPT,1.0,C,2,2026-09-02T13:00:18+00:00,,0,True
+UCH3mEs_fK3r0M2hJ9NsgNPg,@fxoverpur,fxoverpur,10300,Independent,ACCEPT,1.0,B,2,2026-09-02T20:29:58+00:00,,0,True
+UCUOVWfFzNwIfu3_MfXegyPA,@akakumikoni,Akaku Mikoni | V.W.Y,10100,V.W.Y,ACCEPT,1.0,B,2,2026-08-30T20:05:00+00:00,,0,True
+UCUlc9fwNihOqufbS8KtakvA,@koharuchannel,Koharu Channel,4680,Independent,ACCEPT,1.0,C,2,2020-08-10T12:24:14+00:00,,0,True
+UCaCHWJ4_dp4ovreQ91lp3Iw,@moonshinelyrics_z,Lyrics 🌙,1170,Independent,ACCEPT,1.0,C,2,2026-09-02T17:43:21+00:00,,0,True
+UC_nmh9XycGlquouvai2UC6g,@newzkungraccoon,Newzkung Raccoonza,781000,Independent,ACCEPT,1.0,S,2,2026-09-04T11:05:18+00:00,,0,True
+UCsB043n4HJ1SfywowZACmug,@monie_oal,Ané Monie Ch. | OAL,1430,OAL,ACCEPT,1.0,C,2,2026-08-31T03:44:37+00:00,,0,True
+UCtECeyZ_Uc-oE4fJCt3YPoA,@byte001_slr,Byte001_SLR,301,Independent,ACCEPT,1.0,D,2,2026-08-31T17:15:17+00:00,,0,True
+UCtHdI-Bb1OWP9VaQpBHy7kg,@titorch_ch,Titorch Ch.,1270,Independent,ACCEPT,1.0,C,2,2026-09-05T03:22:48+00:00,,0,True
+UCONVwO_B2jxgzpbsVopQ6fw,@zion_atx,Zion《ATX》,4740,ATX,ACCEPT,1.0,C,2,2026-07-31T04:21:37+00:00,,0,True
+UCNaHMNS61Q1f1nIRDS0429A,@lalalost8e,Weiß,15900,Independent,ACCEPT,1.0,B,2,2024-02-23T17:39:22+00:00,,0,True
+UCOFHRsSrDPOcdiz3Crc2ZBw,@hatsuxch,Hatsu ch〖DPX〗,1850,DPX,ACCEPT,1.0,C,2,2026-08-21T16:51:39+00:00,,0,True
+UC82qGW5XAba3LYqMEmiVBgg,@naokiyuuto,Naoki Yuuto Ch.,3620,Independent,ACCEPT,1.0,C,2,2025-07-08T00:00:08+00:00,,0,True
+UCDmay2oK3RLbl8ooxYv-wJg,@chalonettavamp,CHALONETTA | VArtisit,5170,Independent,ACCEPT,1.0,C,2,2026-07-26T09:15:06+00:00,,0,True
+UCEL3qsIRdudjSuFHMHUxi0Q,@ruikazu_exia,Rui Kazu 《 EXia 》,814,EXia,ACCEPT,1.0,D,2,2026-08-28T04:21:44+00:00,,0,True
+UCyv2oEiAXQp9xLlBr1Tn6Vg,@yokinasaori,Yokina Saori,1010,Independent,ACCEPT,1.0,C,2,2026-08-15T15:00:26+00:00,,0,True
+UCHhEdxjXqC8sbAj7a-PVFlg,@lum1ns,LUM1N S.,2310,Independent,ACCEPT,1.0,C,2,2026-09-01T16:59:18+00:00,,0,True
+UCpD_Ds-YEOOhPobh2xOGBHA,@zainvtuber,ZAIN Ch.,1710,Independent,ACCEPT,1.0,C,2,2026-08-30T15:46:24+00:00,,0,True
+UCpfWYM5nNmWfroMIXBk3Gug,@jozette_oal,Jozetté Wrasset Ch. | OAL,916,OAL,ACCEPT,1.0,D,2,2026-08-22T10:54:54+00:00,,0,True
+UCqUHXBufAIuF9KI-OoMFUQw,@eikishiro,EikiShiro ch.,821,Independent,ACCEPT,1.0,D,2,2026-09-03T03:46:16+00:00,,0,True
+UCpbHtJERmEP-GZJeSpziqCQ,@zuruya-zip,Zuruya Ch.,1610,Independent,ACCEPT,1.0,C,2,2026-07-06T17:51:13+00:00,,0,True
+UCT0u795YFp9O_k9cL5d0RZg,@user-wj8iv9im1u,Z,2920,Independent,ACCEPT,1.0,C,2,2022-05-15T16:11:05+00:00,,0,True
+UCRjdIz5ngcJVDZ-bjs2mEzg,@shiorichanvt,shiorichan,16700,Independent,ACCEPT,1.0,B,2,2026-09-01T06:01:35+00:00,,0,True
+UCSpIYbnsnaXgRpIpipxJRcw,@laychlype_alf,Laychlype「ALF」,806,ALF,ACCEPT,1.0,D,2,2026-08-22T01:32:50+00:00,,0,True
+UCKuzX7wNaRVXEI9a81xeNfA,@minamilollipopzach,Minami Lollipopza Ch. ʕ •ᴥ•ʔ,2320,Independent,ACCEPT,1.0,C,2,2026-06-23T04:28:05+00:00,,0,True
+UCKg9vWWT_2yK3FFNNnnhhLw,@goozillaily,Goozilla Ily Ch. [Autumnia],1570,Autumnia,ACCEPT,1.0,C,2,2025-08-31T17:31:40+00:00,,0,True
+UCLT-U861QLvJmrlP7K6kv2w,@vulgt_bgp,Vulgtmnahog,276,Independent,ACCEPT,1.0,D,2,2026-09-02T19:28:55+00:00,,0,True
+UC4Ty5GzSA5YjeXN-DqPIWfA,@rewarinrei,Rewarin Ch.,1300,Independent,ACCEPT,1.0,C,2,2026-08-31T08:44:36+00:00,,0,True
+UCc6hwdN1yu2QT9o4yIHUPnQ,@vermillvt,Vermillion Ch. Flora Project,31700,Flora Project,ACCEPT,1.0,B,2,2022-08-09T09:57:56.3503Z,,0,False
+UCmLd6QDRBcD9TfFrThJucng,@haineinwza,Haine『Paralist』,1980,Paralist,ACCEPT,1.0,C,2,2026-01-22T22:13:47+00:00,,0,True
+UCkjQ55wHjS7cQ9Xol9qW7Ow,@shinonomekone,東雲こね / Shinonome Kone ⌜VZ⌟,10200,Virtual Zeven (VZ),ACCEPT,1.0,B,2,2026-09-04T06:50:51+00:00,,0,True
+UCVogMqMZimg5YbPE48oPrlg,@mystyrelife,Mysterica X. Ch. | RPG,877,RPG,ACCEPT,1.0,D,2,2024-09-03T11:26:58+00:00,,0,False
+UCWp6-EK_2seNDN_HN3mo9gA,@marukomaruchan,^-Maru Chan-^,2950,Independent,ACCEPT,1.0,C,2,2026-08-31T17:55:03+00:00,,0,True
+UCD2BJUqKTEPOkxdTyxfvCuQ,@azuruvt,AzuruVT,17500,Independent,ACCEPT,1.0,B,2,2026-07-07T16:01:25+00:00,,0,True
+UCCwDLJmhL5pYyXzN7coVwTw,@hajikeruharuno,Hajikeru Haruno Ch,4060,Independent,ACCEPT,1.0,C,2,2026-06-03T06:36:34+00:00,,0,True
+UCZq9-nxDs5XXEtAPzAuBnhQ,@wynn_oal,Wynn Carwin Ch. | OAL,1150,OAL,ACCEPT,1.0,C,2,2026-07-10T09:55:32+00:00,,0,True
+UCZsXl4d82Yx76SeGNtWGjlQ,@fusuich,Fusui Ch.,6940,Independent,ACCEPT,1.0,C,2,2026-02-10T18:43:47+00:00,,0,True
+UCtk8lcwk_Gx9egTljfiCMYw,@qmulaz_vt,Qmulaz,2170,Independent,ACCEPT,1.0,C,2,2026-05-29T01:11:13+00:00,,0,True
+UCwSohSYD00uLV-kq_UFJb4g,@folpuzx,Folpuzx Ch.,4200,Independent,ACCEPT,1.0,C,2,2026-05-31T16:17:36+00:00,,0,True
+UCvYUivIS4WcgfACH3xBJ0DQ,@zayngloucesterchannel,Zayn Ch【 HZ 】,3860,HZ,ACCEPT,1.0,C,2,2026-09-05T14:53:41+00:00,,0,True
+UCPh5ZGdw9LkBXxpCAdSaCrw,@vivera_eylz,Vivera Carmine,622,EYLZ,ACCEPT,1.0,D,2,2026-09-03T13:03:44+00:00,,0,True
+UCPW4hvhGciPdGqcsM1OCZ-Q,@avele_pdr,Avele Ch. [Pandora],1390,Pandora,ACCEPT,1.0,C,2,2022-08-24T09:07:13.318139Z,,0,False
+UCAid1uC5pxxvPasgFTJZEAw,@miledyz_ch,Miledy Z.Devlin ch.,2180,Independent,ACCEPT,1.0,C,2,2026-09-02T10:00:39+00:00,,0,True
+UChd2cJe7HuTYbZGkOO-QKwg,@xen_desu,Xen Ch. 【Ti19t】,1740,Ti19t,ACCEPT,1.0,C,2,2026-08-21T19:25:54+00:00,,0,True
+UCiG3hDSyLNx-tani2z03_Zg,@amillyarchive,AmiLLy,20000,Independent,ACCEPT,1.0,B,2,2026-08-12T18:31:32+00:00,,0,True
+UChW_l65xozteVRme3mFE0Jg,@melanthavtopia705,Melantha Vtopia,1030,Vtopia,ACCEPT,1.0,C,2,2021-11-12T15:09:22+00:00,,0,True
+UCt8vlwt6qi6P1mz5uuStJCA,@shimonnnnn,Shimonz,1580,Independent,ACCEPT,1.0,C,2,2020-06-04T10:46:22.967512Z,,0,False
+UCFSkExeBcqI4nb_ArHeByNw,@-shinolailawactor5871,シノライラ - Shino Laila【WACTOR】,100000,WACTOR,ACCEPT,1.0,S,2,2021-05-07T11:05:15.020925Z,,0,False

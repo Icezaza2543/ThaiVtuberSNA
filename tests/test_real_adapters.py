@@ -12,7 +12,7 @@ def test_thai_vtuber_ranking_adapter(monkeypatch):
     from types import SimpleNamespace
     monkeypatch.setattr("collector.thai_vtuber_ranking_adapter.requests.get",
         lambda *a, **k: SimpleNamespace(raise_for_status=lambda: None, json=lambda: {"result": [
-            {"channel_id": "UC_TEST", "title": "Test ARP", "subscribers": 1000}]}))
+            {"channel_id": "UC_TEST_1234567890123456", "title": "Test ARP", "subscribers": 1000}]}))
     adapter = ThaiVtuberRankingAdapter()
     candidates = adapter.fetch_candidates()
     
