@@ -6,10 +6,44 @@ suite reproduced **39 passed / 1 failed** in a checkout without a production key
 Historical real-pilot and throughput files are prior observations, not validation
 of the repaired implementation.
 
-The repair is validated offline with synthetic data. Production collection was
-not started, historical data was not migrated, and production credentials were
-not read or changed. No claim of exhaustive live coverage or production readiness
-follows from these tests.
+The repair was first validated offline, then exercised in the bounded real check
+below at the owner's request. Historical data was not migrated and credentials
+were not changed. No claim of exhaustive live coverage or unattended production
+readiness follows from these checks.
+
+## Real check: 2026-09-06
+
+The owner's original key matched its original fingerprint and the reviewed dataset
+manifest. Since the main checkout's old dataset lacked its manifest, collection
+used a new isolated dataset with that verified identity.
+
+An initial run exposed missing Google client dependencies (`google.api_core`).
+The jobs correctly entered RETRY rather than completing as empty. Installing the
+declared requirements into a separate `.venv` fixed the environment; no fallback
+backend or substituted channel was used.
+
+Two actual Google API polls sampled the configured Aisha and Dacapo videos, capped
+at 30 comments each. The collector was reconstructed between polls, with an
+11-second pause and a 10-second poll interval. Both comment jobs reached poll
+generation 1 on the second run. Each run retained 57 distinct presence rows in
+two partitions; the sum of maximum batch appearances remained 60. The second
+poll preserved all first-poll evidence and observed zero new presence rows.
+
+Both comment jobs reported PARTIAL_CAPTURE because this is a capped sample.
+Live-chat jobs reported LIVE_CHAT_UNAVAILABLE; no real live-chat validation was
+achieved. The completed dataset/report audit passed and the full regression suite
+also passed in the real-run environment (79 tests, 7.69 seconds).
+
+Aggregate evidence and runtime versions: `docs/evidence/continuous-real-check.json`.
+Local pseudonymous Parquet, journal and report remain under the gitignored
+`data/validation/real-continuity-20260906-02/`. The bounded run has finished; no
+background collector is left running.
+
+Repeat with a new output directory:
+
+```powershell
+./.venv/Scripts/python.exe scripts/run_real_continuity_check.py --identity-root <original-checkout> --output data/validation/<new-run> --timeout 45
+```
 
 ## What changed
 

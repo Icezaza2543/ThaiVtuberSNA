@@ -71,7 +71,8 @@ Pseudonymous viewer data remains linkable; HMAC is not an anonymity guarantee.
 
 Continuous collection now uses stable source-separated partitions, identity-bound
 datasets, scheduled re-polling, claim fencing and killable extraction processes.
-The repair is tested offline; production collection has not been revalidated.
+The repair passed offline tests and a bounded two-poll real comment check on two
+videos. Real live-chat collection and unattended operation remain unvalidated.
 `appearances` is the maximum observed batch count, not a lifetime message count.
 Existing monthly partitions require explicit offline migration before new writes.
 See the correctness document for migration, timeout semantics and CLI usage.

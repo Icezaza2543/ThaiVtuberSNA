@@ -12,6 +12,7 @@ __pycache__/
 .pytest_cache/
 .coverage
 .worktrees/
+.venv/
 pytest-cache-files-*/
 
 # Temporary files & yt-dlp dumps
