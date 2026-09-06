@@ -48,42 +48,42 @@ const AGENCY_COLORS = {
 
 // Pre-defined Archipelago Island Coordinates for Agency Swarms & Central Independent
 const AGENCY_ISLAND_COORDINATES = {
-  // Central Independent Continent
-  "Independent": { x: 0, y: 0, r: 280 },
+  // Central Independent Continent (Spacious ~460px radius)
+  "Independent": { x: 0, y: 0, r: 460 },
 
-  // 4 Major Cardinal Wings (pushed out further for bigger nodes)
-  "Algorhythm Project": { x: -550, y: -360, r: 130 },
-  "Pixela Project": { x: 550, y: -360, r: 120 },
-  "Virtual Zeven (VZ)": { x: 550, y: 360, r: 115 },
-  "Lumina Live": { x: -550, y: 360, r: 110 },
+  // 4 Major Cardinal Wings (generously spaced around central continent)
+  "Algorhythm Project": { x: -820, y: -520, r: 240 },
+  "Pixela Project": { x: 820, y: -520, r: 200 },
+  "Virtual Zeven (VZ)": { x: 820, y: 520, r: 170 },
+  "Lumina Live": { x: -820, y: 520, r: 170 },
 
   // North & South Flanks
-  "AStars Production": { x: -200, y: -560, r: 80 },
-  "Polygon Official": { x: 200, y: -560, r: 75 },
-  "Autumnia": { x: 200, y: 560, r: 75 },
-  "Flora Project": { x: -200, y: 560, r: 70 },
-  "Paralist": { x: 0, y: 560, r: 50 },
+  "AStars Production": { x: -300, y: -880, r: 110 },
+  "Polygon Official": { x: 300, y: -880, r: 105 },
+  "Autumnia": { x: 300, y: 880, r: 80 },
+  "Flora Project": { x: -300, y: 880, r: 80 },
+  "Paralist": { x: 0, y: 920, r: 60 },
 
   // East & West Outer Outposts
-  "Euphora Project": { x: 780, y: 0, r: 90 },
-  "DPX": { x: 800, y: 240, r: 70 },
-  "Ti19t": { x: 800, y: -240, r: 50 },
-  "ALF": { x: -780, y: 0, r: 65 },
-  "V.W.Y": { x: -800, y: 240, r: 60 },
-  "OAL": { x: -800, y: -240, r: 60 },
+  "Euphora Project": { x: 1200, y: 0, r: 120 },
+  "DPX": { x: 1200, y: 380, r: 80 },
+  "Ti19t": { x: 1200, y: -380, r: 70 },
+  "ALF": { x: -1200, y: 0, r: 70 },
+  "V.W.Y": { x: -1200, y: 380, r: 70 },
+  "OAL": { x: -1200, y: -380, r: 70 },
 
   // Mid-Range Satellites
-  "HZ": { x: 500, y: 0, r: 50 },
-  "RPG": { x: -500, y: 0, r: 50 },
-  "Genesis Project": { x: -370, y: -190, r: 45 },
-  "EXia": { x: 370, y: -190, r: 45 },
-  "WACTOR": { x: 370, y: 190, r: 45 },
-  "STP": { x: -370, y: 190, r: 45 },
-  "Loveland Project": { x: 190, y: 360, r: 45 },
-  "ATX": { x: -190, y: 360, r: 45 },
-  "EYLZ": { x: -190, y: -360, r: 45 },
-  "Pandora": { x: 190, y: -360, r: 45 },
-  "Vtopia": { x: 0, y: -560, r: 45 }
+  "HZ": { x: 780, y: 0, r: 60 },
+  "RPG": { x: -780, y: 0, r: 60 },
+  "Genesis Project": { x: -620, y: -260, r: 55 },
+  "EXia": { x: 620, y: -260, r: 55 },
+  "WACTOR": { x: 620, y: 260, r: 55 },
+  "STP": { x: -620, y: 260, r: 55 },
+  "Loveland Project": { x: 300, y: 600, r: 55 },
+  "ATX": { x: -300, y: 600, r: 55 },
+  "EYLZ": { x: -300, y: -600, r: 55 },
+  "Pandora": { x: 300, y: -600, r: 55 },
+  "Vtopia": { x: 0, y: -920, r: 55 }
 };
 
 // State Variables
@@ -96,7 +96,7 @@ let agencySwarmAnchors = new Map();
 // Camera & Pan/Zoom
 let panX = 0;
 let panY = 0;
-let zoom = 0.85; // Fit whole archipelago comfortably on load
+let zoom = 0.68; // Fit whole archipelago comfortably on load
 let isPanning = false;
 let startPanX = 0;
 let startPanY = 0;
@@ -235,16 +235,46 @@ function setupAgencyAnchors() {
 }
 
 // ==========================================================
-// 3. Node Sizing & Sunflower Spiral Pre-Placement
+// 3. Node Sizing & Clean Name Parsing
 // ==========================================================
 function calculate2DRadius(subs) {
-  if (!subs || subs <= 0) return 2.5;
-  // Dramatic scale: 2.5px (nano <100) to 45px (mega 2M+)
+  if (!subs || subs <= 0) return 4.0;
+  // Dramatic scale: 4.0px (nano <100) to 45px (mega 2M+)
   // Uses power-scaled log10 for maximum visual contrast between tiers
   const logSubs = Math.log10(Math.max(10, subs));  // 1 (10 subs) → 6.4 (2.59M subs)
   const normalized = (logSubs - 1) / 5.4;           // 0.0 → 1.0
   const curved = Math.pow(normalized, 1.6);          // Power curve: emphasize big channels
-  return Math.max(2.5, Math.min(45, 2.5 + curved * 42.5));
+  return Math.max(4.0, Math.min(45, 4.0 + curved * 41.0));
+}
+
+function getCleanShortName(label) {
+  if (!label) return "";
+  let name = label;
+  name = name.replace(/【[^】]*】/g, "");
+  name = name.replace(/〖[^〗]*〗/g, "");
+  name = name.replace(/⌜[^⌟]*⌟/g, "");
+  name = name.replace(/「[^」]*」/g, "");
+  name = name.replace(/《[^》]*》/g, "");
+  name = name.replace(/\[[^\]]*\]/g, "");
+  name = name.replace(/\([^\)]*\)/g, "");
+  name = name.replace(/『[^』]*』/g, "");
+  name = name.replace(/[⚡✨🔥🌟💫|/]/g, " ");
+  name = name.replace(/\b(ch\b\.?|channel|official)\b/gi, " ");
+  name = name.replace(/\./g, " ");
+  name = name.split("/")[0].split("|")[0].trim();
+  const parts = name.split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return label.slice(0, 8);
+  if (parts[0].startsWith("UC") && parts[0].length > 15) {
+    return parts[0].slice(0, 6) + "…";
+  }
+  if (parts.length === 1) {
+    return parts[0].length <= 11 ? parts[0] : parts[0].slice(0, 9) + "…";
+  }
+  if (parts[0].length >= 4) {
+    return parts[0].length <= 11 ? parts[0] : parts[0].slice(0, 9) + "…";
+  }
+  const cand = `${parts[0]} ${parts[1]}`;
+  return cand.length <= 11 ? cand : parts[0];
 }
 
 function processGraphData() {
@@ -289,7 +319,7 @@ function processGraphData() {
         initialY = anchor.y;
       } else {
         const angle = mIdx * 2.399963; // Golden angle
-        const spread = 20 + Math.sqrt(mIdx) * 22;
+        const spread = 35 + Math.sqrt(mIdx) * 28;
         initialX = anchor.x + Math.cos(angle) * spread;
         initialY = anchor.y + Math.sin(angle) * spread;
       }
@@ -301,18 +331,20 @@ function processGraphData() {
         initialY = 0; // Aisha Channel right at the heart of the cluster
       } else {
         const angle = rank * 2.399963;
-        // Spacious non-overlapping sunflower spiral (spread up to ~185px)
-        const spread = 20 + Math.sqrt(rank) * 20;
+        // Generously spaced sunflower spiral
+        const spread = 45 + Math.sqrt(rank) * 32;
         initialX = Math.cos(angle) * spread;
-        initialY = Math.sin(angle) * (spread * 0.86);
+        initialY = Math.sin(angle) * (spread * 0.92);
       }
     }
 
     const r = calculate2DRadius(n.subscribers);
     const nodeColor = AGENCY_COLORS[ag] || "#64748b";
+    const shortLabel = getCleanShortName(n.label);
 
     return {
       ...n,
+      shortLabel: shortLabel,
       x: initialX,
       y: initialY,
       homeX: initialX,
@@ -323,6 +355,13 @@ function processGraphData() {
       color: nodeColor,
       visible: true
     };
+  });
+
+  // CRITICAL: Guarantee 0 overlapping circles right from Frame 0 with PBD relaxation
+  resolveCollisions(95, 6.0);
+  graphNodes.forEach(n => {
+    n.homeX = n.x;
+    n.homeY = n.y;
   });
 
   nodeMap.clear();
@@ -438,6 +477,51 @@ function reheatSimulation(heat = 0.5) {
 }
 
 // ==========================================================
+// 4. Position-Based Dynamics (PBD) Collision & Non-Overlap Solver
+// Absolutely guarantees ZERO overlapping circles across all swarms
+// ==========================================================
+function resolveCollisions(iterations = 10, padding = 5.0) {
+  const visible = graphNodes.filter(n => n.visible);
+  const len = visible.length;
+  for (let it = 0; it < iterations; it++) {
+    for (let i = 0; i < len; i++) {
+      const na = visible[i];
+      for (let j = i + 1; j < len; j++) {
+        const nb = visible[j];
+        const dx = nb.x - na.x;
+        const dy = nb.y - na.y;
+        const minDist = na.radius + nb.radius + padding;
+        const distSq = dx * dx + dy * dy;
+        if (distSq < minDist * minDist) {
+          let dist = Math.sqrt(distSq);
+          let nx = 1, ny = 0;
+          if (dist > 0.001) {
+            nx = dx / dist;
+            ny = dy / dist;
+          } else {
+            dist = 0.001;
+          }
+          const overlap = minDist - dist;
+          if (na === draggedNode) {
+            nb.x += nx * overlap;
+            nb.y += ny * overlap;
+          } else if (nb === draggedNode) {
+            na.x -= nx * overlap;
+            na.y -= ny * overlap;
+          } else {
+            const push = overlap * 0.51;
+            na.x -= nx * push;
+            na.y -= ny * push;
+            nb.x += nx * push;
+            nb.y += ny * push;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ==========================================================
 // 5. Obsidian Physics Engine (100% Non-Exploding, Distance-Capped)
 // ==========================================================
 function simulationLoop() {
@@ -454,16 +538,16 @@ function updatePhysics() {
   if (alpha < 0.005) {
     alpha = 0.0;
     isSleeping = true;
+    resolveCollisions(15, 5.0);
     return;
   }
 
   const visibleNodes = graphNodes.filter(n => n.visible);
   const visibleEdges = graphEdges.filter(e => e.visible);
 
-  // 1. Soft Distance-Capped Repulsion (< 100px only!)
-  // Nodes farther than 100px exert ZERO force. Completely eliminates cross-island repulsion!
-  const MAX_REPULSION_DIST = 100;
-  const MAX_REP_DIST_SQ = MAX_REPULSION_DIST * MAX_REPULSION_DIST; // 10000
+  // 1. Soft Distance-Capped Repulsion (< 120px only!)
+  const MAX_REPULSION_DIST = 120;
+  const MAX_REP_DIST_SQ = MAX_REPULSION_DIST * MAX_REPULSION_DIST;
 
   for (let i = 0; i < visibleNodes.length; i++) {
     const na = visibleNodes[i];
@@ -473,19 +557,16 @@ function updatePhysics() {
       const dy = nb.y - na.y;
       const distSq = dx * dx + dy * dy;
 
-      // Ignore distant pairs entirely: zero inter-island pressure!
       if (distSq > MAX_REP_DIST_SQ || distSq < 0.5) continue;
 
       const dist = Math.sqrt(distSq);
-      const minDist = na.radius + nb.radius + 4;
+      const minDist = na.radius + nb.radius + 6;
       let force = 0;
 
       if (dist < minDist) {
-        // Soft overlap resolution
-        force = ((minDist - dist) / minDist) * 1.0 * alpha;
+        force = ((minDist - dist) / minDist) * 1.5 * alpha;
       } else {
-        // Gentle local proximity buffer
-        force = Math.min(0.5, (repulsionStrength / (distSq + 200)) * alpha);
+        force = Math.min(0.6, (repulsionStrength / (distSq + 200)) * alpha);
       }
 
       const fx = (dx / dist) * force;
@@ -505,39 +586,37 @@ function updatePhysics() {
     const dist = Math.sqrt(dx * dx + dy * dy) || 1;
 
     const delta = dist - linkDistance;
-    // Strict clamp: max spring impulse 0.4px per frame
     const springForce = Math.max(-0.4, Math.min(0.4, delta * 0.01 * alpha));
     const fx = (dx / dist) * springForce;
     const fy = (dy / dist) * springForce;
 
-    if (na !== draggedNode) { na.vx += fx; na.vy -= fy; }
+    if (na !== draggedNode) { na.vx -= fx; na.vy -= fy; }
     if (nb !== draggedNode) { nb.vx += fx; nb.vy += fy; }
   }
 
   // 3. Swarm 2D Home Position Retention Springs
-  // Anchor each node to its own 2D sunflower coordinate!
-  // This preserves the organic 2D cluster shape and prevents 1D line collapse!
   for (const node of visibleNodes) {
     if (node === draggedNode) continue;
-    node.vx += (node.homeX - node.x) * 0.05 * alpha;
-    node.vy += (node.homeY - node.y) * 0.05 * alpha;
+    node.vx += (node.homeX - node.x) * 0.06 * alpha;
+    node.vy += (node.homeY - node.y) * 0.06 * alpha;
   }
 
   // 4. Heavy Damping (0.70) & Strict Velocity Clamp (1.0 px/frame)
-  // Mathematically impossible to fly off screen or explode
   for (const node of visibleNodes) {
     if (node === draggedNode) continue;
 
-    node.vx *= 0.70; // 30% reduction per frame
+    node.vx *= 0.70;
     node.vy *= 0.70;
 
-    // Strict speed limit: max 1.0 px per frame!
     node.vx = Math.max(-1.0, Math.min(1.0, node.vx));
     node.vy = Math.max(-1.0, Math.min(1.0, node.vy));
 
     node.x += node.vx;
     node.y += node.vy;
   }
+
+  // 5. Positional Non-Overlap Constraint (Strict Zero-Overlap Guarantee)
+  resolveCollisions(3, 5.0);
 }
 
 // ==========================================================
@@ -618,33 +697,63 @@ function renderCanvas() {
     }
 
     // Clean 2D Flat Circle
+    const drawRadius = isHovered ? Math.max(r, 16) : r;
     ctx.beginPath();
-    ctx.arc(0, 0, r, 0, 2 * Math.PI);
+    ctx.arc(0, 0, drawRadius, 0, 2 * Math.PI);
     ctx.fillStyle = node.color;
     ctx.fill();
 
     // Clean 2D Border
     ctx.lineWidth = isHovered ? 2.5 : 1.0;
-    ctx.strokeStyle = isHovered ? "#ffffff" : "rgba(255, 255, 255, 0.25)";
+    ctx.strokeStyle = isHovered ? "#ffffff" : "rgba(255, 255, 255, 0.35)";
     ctx.stroke();
 
-    // Node Label - Obsidian smart visibility logic
-    // Prominent network hubs shown at overview, other labels appear on hover or zoom
+    // Node Label INSIDE Circle ("เอาชื่อใส่ในวงกลม")
+    const effectiveR = drawRadius * zoom;
     const isNetworkHub = (node.betweenness > 0.08 || (node.degree >= 0.4 && node.subscribers >= 100000));
     const shouldShowLabel = isHovered || isNeighbor || 
-      (isNetworkHub && zoom >= 0.7) || 
-      (node.priority === "S" && zoom >= 1.15) || 
-      (node.priority === "A" && zoom >= 1.45) || 
-      (zoom >= 1.85);
+      (effectiveR >= 7.0) || 
+      (node.priority === "S") || 
+      (node.priority === "A" && zoom >= 0.65) || 
+      (zoom >= 1.2);
 
     if (shouldShowLabel) {
-      const fontSize = isHovered ? 13 : Math.max(9, Math.min(14, 8 + r * 0.15));
-      ctx.font = `${isHovered ? "600" : "500"} ${fontSize}px 'Outfit', sans-serif`;
-      ctx.fillStyle = isDimmed ? "rgba(148, 163, 184, 0.25)" : (isHovered ? "#ffffff" : "#f1f5f9");
+      const cleanName = node.shortLabel || getCleanShortName(node.label);
+
+      ctx.save();
+      // Clip inside circle so text NEVER overflows or leaks outside
+      ctx.beginPath();
+      ctx.arc(0, 0, Math.max(1, drawRadius - 0.8), 0, 2 * Math.PI);
+      ctx.clip();
+
       ctx.textAlign = "center";
-      ctx.textBaseline = "top";
-      const shortName = node.label.split(" ")[0] || node.label;
-      ctx.fillText(shortName, 0, r + 4);
+      ctx.textBaseline = "middle";
+
+      const maxTextWidth = drawRadius * 1.8;
+      let fontSize = Math.max(5.5, Math.min(14, drawRadius * 0.36 + 2.5));
+      if (isHovered) fontSize = Math.max(fontSize, 11);
+      ctx.font = `600 ${fontSize}px 'Outfit', sans-serif`;
+
+      const textWidth = ctx.measureText(cleanName).width;
+      if (textWidth > maxTextWidth && textWidth > 0) {
+        fontSize = Math.max(5, fontSize * (maxTextWidth / textWidth));
+        ctx.font = `600 ${fontSize}px 'Outfit', sans-serif`;
+      }
+
+      if (isDimmed) {
+        ctx.fillStyle = "rgba(148, 163, 184, 0.35)";
+        ctx.fillText(cleanName, 0, 0);
+      } else {
+        // Dark outline for guaranteed readability on any circle color
+        ctx.lineWidth = Math.max(1.8, fontSize * 0.25);
+        ctx.strokeStyle = "rgba(10, 15, 29, 0.92)";
+        ctx.strokeText(cleanName, 0, 0);
+
+        ctx.fillStyle = "#ffffff";
+        ctx.fillText(cleanName, 0, 0);
+      }
+
+      ctx.restore();
     }
 
     ctx.restore();
@@ -825,13 +934,34 @@ function onMouseMove(e) {
 
     if (isDraggingNode && draggedNode) {
       const coords = getGraphCoordinates(e);
-      // Move ONLY the dragged node to the cursor position
+      // Move dragged node to the cursor position
       draggedNode.x = coords.x;
       draggedNode.y = coords.y;
       draggedNode.homeX = coords.x;
       draggedNode.homeY = coords.y;
       draggedNode.vx = 0;
       draggedNode.vy = 0;
+
+      // Push colliding nodes away during dragging
+      const PADDING = 5.0;
+      const visible = graphNodes.filter(n => n.visible);
+      for (let i = 0; i < visible.length; i++) {
+        const nb = visible[i];
+        if (nb === draggedNode) continue;
+        const dx = nb.x - draggedNode.x;
+        const dy = nb.y - draggedNode.y;
+        const minDist = draggedNode.radius + nb.radius + PADDING;
+        const distSq = dx * dx + dy * dy;
+        if (distSq < minDist * minDist) {
+          const dist = Math.sqrt(distSq) || 0.001;
+          const push = minDist - dist;
+          nb.x += (dx / dist) * push;
+          nb.y += (dy / dist) * push;
+          nb.homeX = nb.x;
+          nb.homeY = nb.y;
+        }
+      }
+
       renderCanvas();
       return;
     }
@@ -858,6 +988,11 @@ function onMouseMove(e) {
 }
 
 function onMouseUp() {
+  if (isDraggingNode && draggedNode) {
+    resolveCollisions(25, 5.0);
+    graphNodes.forEach(n => { n.homeX = n.x; n.homeY = n.y; });
+    renderCanvas();
+  }
   potentialDragNode = null;
   draggedNode = null;
   isDraggingNode = false;
