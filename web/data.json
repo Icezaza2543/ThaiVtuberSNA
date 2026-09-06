@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "total_vtubers": 327,
+    "total_vtubers": 334,
     "total_connections": 581,
     "agencies_count": 27,
     "updated_at": "2026-09-06"
@@ -9,7 +9,7 @@
     {
       "name": "Independent",
       "color": "#94a3b8",
-      "member_count": 140
+      "member_count": 147
     },
     {
       "name": "Algorhythm Project",
@@ -4389,6 +4389,97 @@
       "views": 343324,
       "agency": "Independent",
       "priority": "B",
+      "status": "active",
+      "degree": 0.0,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UCkvce0jZJYBWJLTuKoLIvLA",
+      "label": "Noeluc",
+      "handle": "@noeluc_",
+      "subscribers": 498,
+      "views": 0,
+      "agency": "Independent",
+      "priority": "D",
+      "status": "active",
+      "degree": 0.0,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UCtJXU7YRwS-Cc8pu8U8bicg",
+      "label": "Chiziz R Fa",
+      "handle": "@ChizizFa",
+      "subscribers": 1360,
+      "views": 0,
+      "agency": "Independent",
+      "priority": "C",
+      "status": "active",
+      "degree": 0.0,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UCP8tsYT8efX32P4WUlNrFOA",
+      "label": "Aozora Sukai Ch.",
+      "handle": "@SukaiVtuber",
+      "subscribers": 1260,
+      "views": 4981,
+      "agency": "Independent",
+      "priority": "C",
+      "status": "active",
+      "degree": 0.0,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UC2q-fPPrsyKOjRpmm--vzPQ",
+      "label": "Kuroyoru Yami",
+      "handle": "@kuroyoruyami",
+      "subscribers": 1240,
+      "views": 10728,
+      "agency": "Independent",
+      "priority": "C",
+      "status": "active",
+      "degree": 0.0,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UCfIXIjmCUKMBdmB2EspTygw",
+      "label": "crazyghsot",
+      "handle": "@crazyghsot",
+      "subscribers": 2240,
+      "views": 0,
+      "agency": "Independent",
+      "priority": "C",
+      "status": "active",
+      "degree": 0.0,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UCOv6QnpFZfsVsOfh581sFrA",
+      "label": "KitadesuS",
+      "handle": "@KitadesuS_MDZ",
+      "subscribers": 102,
+      "views": 239,
+      "agency": "Independent",
+      "priority": "D",
+      "status": "active",
+      "degree": 0.0,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UCobiRetMOLHDrdLfLQzGiAw",
+      "label": "Elsenia Volentia",
+      "handle": "@ElseniaVolentia",
+      "subscribers": 411,
+      "views": 0,
+      "agency": "Independent",
+      "priority": "D",
       "status": "active",
       "degree": 0.0,
       "betweenness": 0.0,
