@@ -1,0 +1,415 @@
+{
+  "metadata": {
+    "total_vtubers": 15,
+    "total_connections": 28,
+    "communities_count": 9
+  },
+  "nodes": [
+    {
+      "id": "UC_ARP001_SCHNEIDER",
+      "label": "Schneider ARP",
+      "handle": "@SchneiderARP",
+      "subscribers": 185000,
+      "agency": "Algorhythm Project",
+      "priority": "S",
+      "community": 0,
+      "degree": 0.5,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UC_ARP002_BAABEL",
+      "label": "Baabel ARP",
+      "handle": "@BaabelARP",
+      "subscribers": 142000,
+      "agency": "Algorhythm Project",
+      "priority": "S",
+      "community": 0,
+      "degree": 0.5,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UC_ARP003_MAYLYN",
+      "label": "Maylyn ARP",
+      "handle": "@MaylynARP",
+      "subscribers": 128000,
+      "agency": "Algorhythm Project",
+      "priority": "S",
+      "community": 0,
+      "degree": 0.5,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UC_ARP004_ZENITH",
+      "label": "Zenith ARP",
+      "handle": "@ZenithARP",
+      "subscribers": 96000,
+      "agency": "Algorhythm Project",
+      "priority": "A",
+      "community": 1,
+      "degree": 0.0,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UC_ARP005_DACAPO",
+      "label": "Dacapo ARP",
+      "handle": "@DacapoARP",
+      "subscribers": 115000,
+      "agency": "Algorhythm Project",
+      "priority": "S",
+      "community": 0,
+      "degree": 0.5,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UC_POLY001_HOKU",
+      "label": "Hoku Polygon",
+      "handle": "@HokuPolygon",
+      "subscribers": 110000,
+      "agency": "Polygon Official",
+      "priority": "S",
+      "community": 2,
+      "degree": 0.5,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UC_POLY002_LUCINE",
+      "label": "Lucine Polygon",
+      "handle": "@LucinePolygon",
+      "subscribers": 89000,
+      "agency": "Polygon Official",
+      "priority": "A",
+      "community": 0,
+      "degree": 0.5,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UC_POLY003_ZONA",
+      "label": "Zona Polygon",
+      "handle": "@ZonaPolygon",
+      "subscribers": 64000,
+      "agency": "Polygon Official",
+      "priority": "A",
+      "community": 3,
+      "degree": 0.0,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UC_PIX001_HINABE",
+      "label": "Hinabe Pixela",
+      "handle": "@HinabePixela",
+      "subscribers": 78000,
+      "agency": "Pixela Project",
+      "priority": "A",
+      "community": 2,
+      "degree": 0.5,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UC_PIX002_MASHIRO",
+      "label": "Mashiro Pixela",
+      "handle": "@MashiroPixela",
+      "subscribers": 52000,
+      "agency": "Pixela Project",
+      "priority": "A",
+      "community": 4,
+      "degree": 0.0,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UC_INDIE001_AISHA",
+      "label": "Aisha Channel",
+      "handle": "@AishaChannelTH",
+      "subscribers": 480000,
+      "agency": "Independent",
+      "priority": "S",
+      "community": 0,
+      "degree": 0.5,
+      "betweenness": 0.1758,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UC_INDIE002_MEW",
+      "label": "Mew Kitten",
+      "handle": "@MewKittenTH",
+      "subscribers": 35000,
+      "agency": "Independent",
+      "priority": "B",
+      "community": 5,
+      "degree": 0.0,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UC_INDIE003_KORRA",
+      "label": "Korra VT",
+      "handle": "@KorraStreamer",
+      "subscribers": 18000,
+      "agency": "Independent",
+      "priority": "B",
+      "community": 6,
+      "degree": 0.0,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UC_INDIE004_ZEPHYR",
+      "label": "Zephyr Sky",
+      "handle": "@ZephyrChTH",
+      "subscribers": 7500,
+      "agency": "Independent",
+      "priority": "C",
+      "community": 7,
+      "degree": 0.0,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    },
+    {
+      "id": "UC_FOREIGN_001_TEST",
+      "label": "Global Gamer JP",
+      "handle": "@ForeignGamer",
+      "subscribers": 250000,
+      "agency": "Other",
+      "priority": "S",
+      "community": 8,
+      "degree": 0.0,
+      "betweenness": 0.0,
+      "pagerank": 0.0
+    }
+  ],
+  "edges": [
+    {
+      "source": "UC_ARP001_SCHNEIDER",
+      "target": "UC_ARP002_BAABEL",
+      "shared_viewers": 105,
+      "jaccard": 0.3134,
+      "overlap_coefficient": 0.5585,
+      "weight": 105.0
+    },
+    {
+      "source": "UC_ARP001_SCHNEIDER",
+      "target": "UC_ARP005_DACAPO",
+      "shared_viewers": 55,
+      "jaccard": 0.1288,
+      "overlap_coefficient": 0.2926,
+      "weight": 55.0
+    },
+    {
+      "source": "UC_ARP001_SCHNEIDER",
+      "target": "UC_ARP003_MAYLYN",
+      "shared_viewers": 48,
+      "jaccard": 0.1176,
+      "overlap_coefficient": 0.2553,
+      "weight": 48.0
+    },
+    {
+      "source": "UC_ARP001_SCHNEIDER",
+      "target": "UC_POLY001_HOKU",
+      "shared_viewers": 36,
+      "jaccard": 0.1032,
+      "overlap_coefficient": 0.1915,
+      "weight": 36.0
+    },
+    {
+      "source": "UC_ARP001_SCHNEIDER",
+      "target": "UC_PIX001_HINABE",
+      "shared_viewers": 36,
+      "jaccard": 0.1032,
+      "overlap_coefficient": 0.1915,
+      "weight": 36.0
+    },
+    {
+      "source": "UC_ARP001_SCHNEIDER",
+      "target": "UC_POLY002_LUCINE",
+      "shared_viewers": 35,
+      "jaccard": 0.0964,
+      "overlap_coefficient": 0.1862,
+      "weight": 35.0
+    },
+    {
+      "source": "UC_ARP001_SCHNEIDER",
+      "target": "UC_INDIE001_AISHA",
+      "shared_viewers": 19,
+      "jaccard": 0.0592,
+      "overlap_coefficient": 0.125,
+      "weight": 19.0
+    },
+    {
+      "source": "UC_ARP002_BAABEL",
+      "target": "UC_ARP003_MAYLYN",
+      "shared_viewers": 112,
+      "jaccard": 0.2745,
+      "overlap_coefficient": 0.4444,
+      "weight": 112.0
+    },
+    {
+      "source": "UC_ARP002_BAABEL",
+      "target": "UC_ARP005_DACAPO",
+      "shared_viewers": 90,
+      "jaccard": 0.1974,
+      "overlap_coefficient": 0.3571,
+      "weight": 90.0
+    },
+    {
+      "source": "UC_ARP002_BAABEL",
+      "target": "UC_POLY001_HOKU",
+      "shared_viewers": 59,
+      "jaccard": 0.1513,
+      "overlap_coefficient": 0.2995,
+      "weight": 59.0
+    },
+    {
+      "source": "UC_ARP002_BAABEL",
+      "target": "UC_PIX001_HINABE",
+      "shared_viewers": 59,
+      "jaccard": 0.1513,
+      "overlap_coefficient": 0.2995,
+      "weight": 59.0
+    },
+    {
+      "source": "UC_ARP002_BAABEL",
+      "target": "UC_POLY002_LUCINE",
+      "shared_viewers": 55,
+      "jaccard": 0.1351,
+      "overlap_coefficient": 0.2619,
+      "weight": 55.0
+    },
+    {
+      "source": "UC_ARP002_BAABEL",
+      "target": "UC_INDIE001_AISHA",
+      "shared_viewers": 29,
+      "jaccard": 0.0773,
+      "overlap_coefficient": 0.1908,
+      "weight": 29.0
+    },
+    {
+      "source": "UC_ARP003_MAYLYN",
+      "target": "UC_ARP005_DACAPO",
+      "shared_viewers": 144,
+      "jaccard": 0.3445,
+      "overlap_coefficient": 0.5373,
+      "weight": 144.0
+    },
+    {
+      "source": "UC_ARP003_MAYLYN",
+      "target": "UC_POLY002_LUCINE",
+      "shared_viewers": 60,
+      "jaccard": 0.1435,
+      "overlap_coefficient": 0.2857,
+      "weight": 60.0
+    },
+    {
+      "source": "UC_ARP003_MAYLYN",
+      "target": "UC_POLY001_HOKU",
+      "shared_viewers": 58,
+      "jaccard": 0.1425,
+      "overlap_coefficient": 0.2944,
+      "weight": 58.0
+    },
+    {
+      "source": "UC_ARP003_MAYLYN",
+      "target": "UC_PIX001_HINABE",
+      "shared_viewers": 58,
+      "jaccard": 0.1425,
+      "overlap_coefficient": 0.2944,
+      "weight": 58.0
+    },
+    {
+      "source": "UC_ARP003_MAYLYN",
+      "target": "UC_INDIE001_AISHA",
+      "shared_viewers": 30,
+      "jaccard": 0.0769,
+      "overlap_coefficient": 0.1974,
+      "weight": 30.0
+    },
+    {
+      "source": "UC_ARP005_DACAPO",
+      "target": "UC_POLY002_LUCINE",
+      "shared_viewers": 123,
+      "jaccard": 0.3228,
+      "overlap_coefficient": 0.5857,
+      "weight": 123.0
+    },
+    {
+      "source": "UC_ARP005_DACAPO",
+      "target": "UC_PIX001_HINABE",
+      "shared_viewers": 68,
+      "jaccard": 0.1608,
+      "overlap_coefficient": 0.3452,
+      "weight": 68.0
+    },
+    {
+      "source": "UC_ARP005_DACAPO",
+      "target": "UC_POLY001_HOKU",
+      "shared_viewers": 68,
+      "jaccard": 0.1608,
+      "overlap_coefficient": 0.3452,
+      "weight": 68.0
+    },
+    {
+      "source": "UC_ARP005_DACAPO",
+      "target": "UC_INDIE001_AISHA",
+      "shared_viewers": 38,
+      "jaccard": 0.0931,
+      "overlap_coefficient": 0.25,
+      "weight": 38.0
+    },
+    {
+      "source": "UC_POLY001_HOKU",
+      "target": "UC_PIX001_HINABE",
+      "shared_viewers": 119,
+      "jaccard": 0.4327,
+      "overlap_coefficient": 0.6041,
+      "weight": 119.0
+    },
+    {
+      "source": "UC_POLY001_HOKU",
+      "target": "UC_POLY002_LUCINE",
+      "shared_viewers": 48,
+      "jaccard": 0.1337,
+      "overlap_coefficient": 0.2437,
+      "weight": 48.0
+    },
+    {
+      "source": "UC_POLY001_HOKU",
+      "target": "UC_INDIE001_AISHA",
+      "shared_viewers": 24,
+      "jaccard": 0.0738,
+      "overlap_coefficient": 0.1579,
+      "weight": 24.0
+    },
+    {
+      "source": "UC_POLY002_LUCINE",
+      "target": "UC_PIX001_HINABE",
+      "shared_viewers": 48,
+      "jaccard": 0.1337,
+      "overlap_coefficient": 0.2437,
+      "weight": 48.0
+    },
+    {
+      "source": "UC_POLY002_LUCINE",
+      "target": "UC_INDIE001_AISHA",
+      "shared_viewers": 21,
+      "jaccard": 0.0616,
+      "overlap_coefficient": 0.1382,
+      "weight": 21.0
+    },
+    {
+      "source": "UC_PIX001_HINABE",
+      "target": "UC_INDIE001_AISHA",
+      "shared_viewers": 24,
+      "jaccard": 0.0738,
+      "overlap_coefficient": 0.1579,
+      "weight": 24.0
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+# Secret Keys & Credentials (CRITICAL - Never commit HMAC secrets)
+config/secret.key
+*.key
+*.secret
+.env
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+
+# Temporary files & yt-dlp dumps
+temp_*
+*.part
+*.part*
+
+# Local Databases & Raw Parquet Events
+*.duckdb
+*.duckdb.wal
+data/events/
+data/real/events/
+data/benchmarks/

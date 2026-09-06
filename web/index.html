@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thai VTuber Audience Network (SNA) — Interactive Visualizer</title>
+  <meta name="description" content="Privacy-preserving Social Network Analysis and Audience Overlap mapping for the Thai VTuber ecosystem.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Navigation & Stats Bar -->
+  <header class="header">
+    <div class="brand-section">
+      <div class="brand-icon">VT</div>
+      <div>
+        <h1 class="brand-title">Thai VTuber Audience Network</h1>
+      </div>
+      <span class="brand-badge">SNA Engine v1.0</span>
+    </div>
+
+    <div class="stats-bar">
+      <div class="privacy-pill">
+        <span class="privacy-dot"></span>
+        <span>HMAC-SHA256 Privacy Preserved</span>
+      </div>
+
+      <div class="stat-item">
+        <span class="stat-label">VTubers</span>
+        <span class="stat-value" id="statVtubers">--</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Connections</span>
+        <span class="stat-value" id="statEdges">--</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Communities</span>
+        <span class="stat-value" id="statCommunities">--</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Top Bridge</span>
+        <span class="stat-value" id="statTopBridge" style="color: var(--accent-amber);">--</span>
+      </div>
+
+      <button id="btnInfoModal" class="btn-info" title="System Architecture & Metrics">
+        How it Works
+      </button>
+    </div>
+  </header>
+
+  <!-- Main View Area -->
+  <main class="main-container">
+
+    <!-- Controls Overlay (Left Panel) -->
+    <aside class="controls-panel">
+      <div class="panel-title">
+        <span>Network Controls</span>
+        <span id="activeCount" style="font-size: 0.75rem; color: var(--accent-cyan);">15/15 Active</span>
+      </div>
+
+      <!-- Search Box -->
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search VTuber name or handle...">
+      </div>
+
+      <!-- Agency Filter -->
+      <div class="filter-group">
+        <label for="agencyFilter" class="filter-label">Agency / Group</label>
+        <select id="agencyFilter" class="filter-select">
+          <option value="ALL">All Agencies</option>
+          <option value="Algorhythm Project">Algorhythm Project (ARP)</option>
+          <option value="Polygon Official">Polygon Official</option>
+          <option value="Pixela Project">Pixela Project</option>
+          <option value="Independent">Independent / Indie</option>
+        </select>
+      </div>
+
+      <!-- Subscriber Tier Filter -->
+      <div class="filter-group">
+        <label for="tierFilter" class="filter-label">Subscriber Tier</label>
+        <select id="tierFilter" class="filter-select">
+          <option value="ALL">All Tiers (S, A, B, C, D)</option>
+          <option value="S">Tier S (>= 100k subs)</option>
+          <option value="A">Tier A (>= 50k subs)</option>
+          <option value="B">Tier B (>= 10k subs)</option>
+          <option value="C">Tier C (>= 1k subs)</option>
+        </select>
+      </div>
+
+      <!-- Overlap Metric Mode -->
+      <div class="filter-group">
+        <label for="metricSelect" class="filter-label">Edge Metric</label>
+        <select id="metricSelect" class="filter-select">
+          <option value="shared_viewers">Shared Viewers (|A ∩ B|)</option>
+          <option value="overlap_coefficient">Overlap Coeff (|A ∩ B| / min(|A|,|B|))</option>
+          <option value="jaccard">Jaccard Similarity (|A ∩ B| / |A ∪ B|)</option>
+        </select>
+      </div>
+
+      <!-- Min Overlap Slider -->
+      <div class="slider-container">
+        <div class="filter-label">
+          <span>Min Edge Weight</span>
+          <span id="sliderValue" style="color: var(--accent-cyan); font-family: var(--font-mono);">1</span>
+        </div>
+        <input type="range" id="thresholdSlider" class="slider" min="1" max="150" value="1">
+      </div>
+
+      <!-- Bridge Spotlight Mode -->
+      <button id="btnToggleBridges" class="btn-toggle-bridge">
+        <span>🌟 Spotlight Bridge VTubers</span>
+      </button>
+
+      <!-- Legend -->
+      <div class="legend-container">
+        <div class="filter-label">Agencies & Clusters</div>
+        <div class="legend-item">
+          <span class="legend-color" style="background-color: var(--agency-arp); box-shadow: 0 0 8px var(--agency-arp);"></span>
+          <span>Algorhythm Project</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color" style="background-color: var(--agency-poly); box-shadow: 0 0 8px var(--agency-poly);"></span>
+          <span>Polygon Official</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color" style="background-color: var(--agency-pix); box-shadow: 0 0 8px var(--agency-pix);"></span>
+          <span>Pixela Project</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color" style="background-color: var(--agency-indie); box-shadow: 0 0 8px var(--agency-indie);"></span>
+          <span>Independent / Other</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Interactive Graph Canvas -->
+    <section class="graph-container" id="canvasContainer">
+      <canvas id="networkCanvas"></canvas>
+    </section>
+
+    <!-- VTuber Inspector Card (Right Flyout) -->
+    <aside class="inspector-panel" id="inspectorPanel">
+      <div class="inspector-header">
+        <div class="vtuber-title">
+          <h2 class="vtuber-name" id="inspName">VTuber Name</h2>
+          <span class="vtuber-handle" id="inspHandle">@handle</span>
+        </div>
+        <button id="btnCloseInspector" class="btn-close-inspector" aria-label="Close">✕</button>
+      </div>
+
+      <div class="vtuber-badges">
+        <span class="badge badge-tier" id="inspTier">Tier S</span>
+        <span class="badge badge-agency" id="inspAgency">Algorhythm Project</span>
+        <span class="badge" style="background: rgba(6, 182, 212, 0.2); color: #67e8f9;" id="inspSubs">185,000 Subs</span>
+      </div>
+
+      <!-- Centrality Metrics Grid -->
+      <div class="metrics-grid">
+        <div class="metric-cell">
+          <span class="metric-cell-label">Degree</span>
+          <span class="metric-cell-val" id="inspDegree">0.00</span>
+        </div>
+        <div class="metric-cell">
+          <span class="metric-cell-label">Bridge Power</span>
+          <span class="metric-cell-val" id="inspBetweenness" style="color: var(--accent-amber);">0.00</span>
+        </div>
+        <div class="metric-cell">
+          <span class="metric-cell-label">PageRank</span>
+          <span class="metric-cell-val" id="inspPageRank">0.00</span>
+        </div>
+      </div>
+
+      <!-- Top Audience Overlap Connections -->
+      <div>
+        <h3 class="connections-title">Top Audience Overlaps</h3>
+        <div class="connections-list" id="inspConnectionsList">
+          <!-- Dynamic Overlap items -->
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Information / Architecture Modal -->
+  <div class="modal-backdrop" id="infoModal">
+    <div class="modal-card">
+      <h2>Thai VTuber Audience Network (SNA) Architecture</h2>
+      <p>
+        ระบบวิเคราะห์ความสัมพันธ์ของฐานผู้ชมในวงการ VTuber ไทย ออกแบบภายใต้แนวคิด <strong>Zero Cloud Cost</strong> และ <strong>Privacy by Design</strong>:
+      </p>
+      <ul>
+        <li><strong>Privacy-Preserving Hashing:</strong> รหัสประจำตัวผู้ชม (Viewer Channel ID) จะถูกแปลงเป็น <code>HMAC-SHA256(salt, channel_id)</code> ทันทีตั้งแต่จุดรับเข้า ไม่มีการบันทึกข้อความแชต (Zero chat text stored).</li>
+        <li><strong>Local Parquet + DuckDB:</strong> เหตุการณ์การรับชมถูกบันทึกลงไฟล์ Parquet บีบอัดแบบ Snappy และใช้ DuckDB รัน Query ค้นหา Intersection ของผู้ชมได้ในระดับมิลลิวินาที.</li>
+        <li><strong>SNA Centrality & Bridge Detection:</strong> การคำนวณ Betweenness Centrality ช่วยระบุช่องที่เป็น "สะพานเชื่อม" (Bridge) ระหว่างคอมมูนิตี้และค่ายต่าง ๆ.</li>
+        <li><strong>Simpson Overlap Coefficient:</strong> คำนวณ <code>|A ∩ B| / min(|A|, |B|)</code> ช่วยให้เห็นการทับซ้อนของฐานผู้ชมช่องอินดี้ขนาดเล็กกับช่องใหญ่ได้อย่างแม่นยำ.</li>
+      </ul>
+      <button class="btn-primary" id="btnCloseModal">เข้าใจแล้ว</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

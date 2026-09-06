@@ -1,0 +1,167 @@
+[
+  {
+    "channel_id": "UC_ARP001_SCHNEIDER",
+    "handle": "@SchneiderARP",
+    "name": "Schneider ARP",
+    "subscriber_count": 185000,
+    "agency": "Algorhythm Project",
+    "source": "VTuberThai Directory",
+    "source_url": "https://vtuberthai.example.com/directory/schneider",
+    "description": "Schneider from Algorhythm Project (ARP) Thai VTuber",
+    "last_seen": "2026-09-01T12:00:00Z"
+  },
+  {
+    "channel_id": "UC_ARP002_BAABEL",
+    "handle": "@BaabelARP",
+    "name": "Baabel ARP",
+    "subscriber_count": 142000,
+    "agency": "Algorhythm Project",
+    "source": "VTuberThai Directory",
+    "source_url": "https://vtuberthai.example.com/directory/baabel",
+    "description": "Baabel Algorhythm Project วีทูปเบอร์ไทย",
+    "last_seen": "2026-09-02T15:00:00Z"
+  },
+  {
+    "channel_id": "UC_ARP003_MAYLYN",
+    "handle": "@MaylynARP",
+    "name": "Maylyn ARP",
+    "subscriber_count": 128000,
+    "agency": "Algorhythm Project",
+    "source": "VTuberThai Directory",
+    "source_url": "https://vtuberthai.example.com/directory/maylyn",
+    "description": "Maylyn Algorhythm Project VTuber Thailand",
+    "last_seen": "2026-09-03T10:00:00Z"
+  },
+  {
+    "channel_id": "UC_ARP004_ZENITH",
+    "handle": "@ZenithARP",
+    "name": "Zenith ARP",
+    "subscriber_count": 96000,
+    "agency": "Algorhythm Project",
+    "source": "VTuberThai Directory",
+    "source_url": "https://vtuberthai.example.com/directory/zenith",
+    "description": "Zenith ARP Thai VTuber Live2D",
+    "last_seen": "2026-09-04T18:00:00Z"
+  },
+  {
+    "channel_id": "UC_ARP005_DACAPO",
+    "handle": "@DacapoARP",
+    "name": "Dacapo ARP",
+    "subscriber_count": 115000,
+    "agency": "Algorhythm Project",
+    "source": "VTuberThai Directory",
+    "source_url": "https://vtuberthai.example.com/directory/dacapo",
+    "description": "Dacapo Algorhythm Project Thai Virtual Youtuber",
+    "last_seen": "2026-09-05T20:00:00Z"
+  },
+  {
+    "channel_id": "UC_POLY001_HOKU",
+    "handle": "@HokuPolygon",
+    "name": "Hoku Polygon",
+    "subscriber_count": 110000,
+    "agency": "Polygon Official",
+    "source": "VTuberThai Directory",
+    "source_url": "https://vtuberthai.example.com/directory/hoku",
+    "description": "Hoku from Polygon Production วีทูปเบอร์ไทย",
+    "last_seen": "2026-09-03T14:00:00Z"
+  },
+  {
+    "channel_id": "UC_POLY002_LUCINE",
+    "handle": "@LucinePolygon",
+    "name": "Lucine Polygon",
+    "subscriber_count": 89000,
+    "agency": "Polygon Official",
+    "source": "VTuberThai Directory",
+    "source_url": "https://vtuberthai.example.com/directory/lucine",
+    "description": "Lucine Polygon Production Virtual Streamer",
+    "last_seen": "2026-09-04T16:00:00Z"
+  },
+  {
+    "channel_id": "UC_POLY003_ZONA",
+    "handle": "@ZonaPolygon",
+    "name": "Zona Polygon",
+    "subscriber_count": 64000,
+    "agency": "Polygon Official",
+    "source": "VTuberThai Directory",
+    "source_url": "https://vtuberthai.example.com/directory/zona",
+    "description": "Zona Polygon Thai VTuber Live",
+    "last_seen": "2026-09-02T19:00:00Z"
+  },
+  {
+    "channel_id": "UC_PIX001_HINABE",
+    "handle": "@HinabePixela",
+    "name": "Hinabe Pixela",
+    "subscriber_count": 78000,
+    "agency": "Pixela Project",
+    "source": "Thai VTuber Index",
+    "source_url": "https://thai-vtuber-index.example.com/hinabe",
+    "description": "Hinabe Pixela Project VTuber TH",
+    "last_seen": "2026-09-01T11:00:00Z"
+  },
+  {
+    "channel_id": "UC_PIX002_MASHIRO",
+    "handle": "@MashiroPixela",
+    "name": "Mashiro Pixela",
+    "subscriber_count": 52000,
+    "agency": "Pixela Project",
+    "source": "Thai VTuber Index",
+    "source_url": "https://thai-vtuber-index.example.com/mashiro",
+    "description": "Mashiro Pixela Virtual Idol TH",
+    "last_seen": "2026-09-04T12:00:00Z"
+  },
+  {
+    "channel_id": "UC_INDIE001_AISHA",
+    "handle": "@AishaChannelTH",
+    "name": "Aisha Channel",
+    "subscriber_count": 480000,
+    "agency": "Independent",
+    "source": "VTuberThai Directory",
+    "source_url": "https://vtuberthai.example.com/directory/aisha",
+    "description": "Aisha Virtual Idol Thailand Thai VTuber pioneer",
+    "last_seen": "2026-09-05T17:00:00Z"
+  },
+  {
+    "channel_id": "UC_INDIE002_MEW",
+    "handle": "@MewKittenTH",
+    "name": "Mew Kitten",
+    "subscriber_count": 35000,
+    "agency": "Independent",
+    "source": "Thai VTuber Index",
+    "source_url": "https://thai-vtuber-index.example.com/mew",
+    "description": "Mew Kitten Indie VTuber TH เล่นเกม ร้องเพลง",
+    "last_seen": "2026-09-02T21:00:00Z"
+  },
+  {
+    "channel_id": "UC_INDIE003_KORRA",
+    "handle": "@KorraStreamer",
+    "name": "Korra VT",
+    "subscriber_count": 18000,
+    "agency": "Independent",
+    "source": "VTuber Community Forum",
+    "source_url": "https://community.example.com/korra",
+    "description": "Korra Indie Thai VTuber สาย Collab",
+    "last_seen": "2026-09-05T19:00:00Z"
+  },
+  {
+    "channel_id": "UC_INDIE004_ZEPHYR",
+    "handle": "@ZephyrChTH",
+    "name": "Zephyr Sky",
+    "subscriber_count": 7500,
+    "agency": "Independent",
+    "source": "VTuber Community Forum",
+    "source_url": "https://community.example.com/zephyr",
+    "description": "Zephyr Indie VTuber ไทย น้องใหม่",
+    "last_seen": "2026-09-04T15:00:00Z"
+  },
+  {
+    "channel_id": "UC_FOREIGN_001_TEST",
+    "handle": "@ForeignGamer",
+    "name": "Global Gamer JP",
+    "subscriber_count": 250000,
+    "agency": "Other",
+    "source": "Random Directory",
+    "source_url": "https://random.example.com/global",
+    "description": "Japanese Gaming Streams Only. No Thai content.",
+    "last_seen": "2026-08-01T00:00:00Z"
+  }
+]

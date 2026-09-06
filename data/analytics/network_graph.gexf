@@ -1,0 +1,435 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd" version="1.2">
+  <meta lastmodifieddate="2026-09-06">
+    <creator>NetworkX 3.6.1</creator>
+  </meta>
+  <graph defaultedgetype="undirected" mode="static" name="">
+    <attributes mode="static" class="edge">
+      <attribute id="10" title="shared_viewers" type="long" />
+      <attribute id="11" title="jaccard" type="double" />
+      <attribute id="12" title="overlap_coefficient" type="double" />
+    </attributes>
+    <attributes mode="static" class="node">
+      <attribute id="0" title="name" type="string" />
+      <attribute id="1" title="handle" type="string" />
+      <attribute id="2" title="subscriber_count" type="long" />
+      <attribute id="3" title="agency" type="string" />
+      <attribute id="4" title="priority" type="string" />
+      <attribute id="5" title="status" type="string" />
+      <attribute id="6" title="degree_centrality" type="double" />
+      <attribute id="7" title="betweenness_centrality" type="double" />
+      <attribute id="8" title="pagerank" type="double" />
+      <attribute id="9" title="community_id" type="long" />
+    </attributes>
+    <nodes>
+      <node id="UC_ARP001_SCHNEIDER" label="UC_ARP001_SCHNEIDER">
+        <attvalues>
+          <attvalue for="0" value="Schneider ARP" />
+          <attvalue for="1" value="@SchneiderARP" />
+          <attvalue for="2" value="185000" />
+          <attvalue for="3" value="Algorhythm Project" />
+          <attvalue for="4" value="S" />
+          <attvalue for="5" value="ACCEPT" />
+          <attvalue for="6" value="0.5" />
+          <attvalue for="7" value="0.0" />
+          <attvalue for="8" value="0.0" />
+          <attvalue for="9" value="0" />
+        </attvalues>
+      </node>
+      <node id="UC_ARP002_BAABEL" label="UC_ARP002_BAABEL">
+        <attvalues>
+          <attvalue for="0" value="Baabel ARP" />
+          <attvalue for="1" value="@BaabelARP" />
+          <attvalue for="2" value="142000" />
+          <attvalue for="3" value="Algorhythm Project" />
+          <attvalue for="4" value="S" />
+          <attvalue for="5" value="ACCEPT" />
+          <attvalue for="6" value="0.5" />
+          <attvalue for="7" value="0.0" />
+          <attvalue for="8" value="0.0" />
+          <attvalue for="9" value="0" />
+        </attvalues>
+      </node>
+      <node id="UC_ARP003_MAYLYN" label="UC_ARP003_MAYLYN">
+        <attvalues>
+          <attvalue for="0" value="Maylyn ARP" />
+          <attvalue for="1" value="@MaylynARP" />
+          <attvalue for="2" value="128000" />
+          <attvalue for="3" value="Algorhythm Project" />
+          <attvalue for="4" value="S" />
+          <attvalue for="5" value="ACCEPT" />
+          <attvalue for="6" value="0.5" />
+          <attvalue for="7" value="0.0" />
+          <attvalue for="8" value="0.0" />
+          <attvalue for="9" value="0" />
+        </attvalues>
+      </node>
+      <node id="UC_ARP004_ZENITH" label="UC_ARP004_ZENITH">
+        <attvalues>
+          <attvalue for="0" value="Zenith ARP" />
+          <attvalue for="1" value="@ZenithARP" />
+          <attvalue for="2" value="96000" />
+          <attvalue for="3" value="Algorhythm Project" />
+          <attvalue for="4" value="A" />
+          <attvalue for="5" value="ACCEPT" />
+          <attvalue for="6" value="0.0" />
+          <attvalue for="7" value="0.0" />
+          <attvalue for="8" value="0.0" />
+          <attvalue for="9" value="1" />
+        </attvalues>
+      </node>
+      <node id="UC_ARP005_DACAPO" label="UC_ARP005_DACAPO">
+        <attvalues>
+          <attvalue for="0" value="Dacapo ARP" />
+          <attvalue for="1" value="@DacapoARP" />
+          <attvalue for="2" value="115000" />
+          <attvalue for="3" value="Algorhythm Project" />
+          <attvalue for="4" value="S" />
+          <attvalue for="5" value="ACCEPT" />
+          <attvalue for="6" value="0.5" />
+          <attvalue for="7" value="0.0" />
+          <attvalue for="8" value="0.0" />
+          <attvalue for="9" value="0" />
+        </attvalues>
+      </node>
+      <node id="UC_POLY001_HOKU" label="UC_POLY001_HOKU">
+        <attvalues>
+          <attvalue for="0" value="Hoku Polygon" />
+          <attvalue for="1" value="@HokuPolygon" />
+          <attvalue for="2" value="110000" />
+          <attvalue for="3" value="Polygon Official" />
+          <attvalue for="4" value="S" />
+          <attvalue for="5" value="ACCEPT" />
+          <attvalue for="6" value="0.5" />
+          <attvalue for="7" value="0.0" />
+          <attvalue for="8" value="0.0" />
+          <attvalue for="9" value="2" />
+        </attvalues>
+      </node>
+      <node id="UC_POLY002_LUCINE" label="UC_POLY002_LUCINE">
+        <attvalues>
+          <attvalue for="0" value="Lucine Polygon" />
+          <attvalue for="1" value="@LucinePolygon" />
+          <attvalue for="2" value="89000" />
+          <attvalue for="3" value="Polygon Official" />
+          <attvalue for="4" value="A" />
+          <attvalue for="5" value="ACCEPT" />
+          <attvalue for="6" value="0.5" />
+          <attvalue for="7" value="0.0" />
+          <attvalue for="8" value="0.0" />
+          <attvalue for="9" value="0" />
+        </attvalues>
+      </node>
+      <node id="UC_POLY003_ZONA" label="UC_POLY003_ZONA">
+        <attvalues>
+          <attvalue for="0" value="Zona Polygon" />
+          <attvalue for="1" value="@ZonaPolygon" />
+          <attvalue for="2" value="64000" />
+          <attvalue for="3" value="Polygon Official" />
+          <attvalue for="4" value="A" />
+          <attvalue for="5" value="ACCEPT" />
+          <attvalue for="6" value="0.0" />
+          <attvalue for="7" value="0.0" />
+          <attvalue for="8" value="0.0" />
+          <attvalue for="9" value="3" />
+        </attvalues>
+      </node>
+      <node id="UC_PIX001_HINABE" label="UC_PIX001_HINABE">
+        <attvalues>
+          <attvalue for="0" value="Hinabe Pixela" />
+          <attvalue for="1" value="@HinabePixela" />
+          <attvalue for="2" value="78000" />
+          <attvalue for="3" value="Pixela Project" />
+          <attvalue for="4" value="A" />
+          <attvalue for="5" value="ACCEPT" />
+          <attvalue for="6" value="0.5" />
+          <attvalue for="7" value="0.0" />
+          <attvalue for="8" value="0.0" />
+          <attvalue for="9" value="2" />
+        </attvalues>
+      </node>
+      <node id="UC_PIX002_MASHIRO" label="UC_PIX002_MASHIRO">
+        <attvalues>
+          <attvalue for="0" value="Mashiro Pixela" />
+          <attvalue for="1" value="@MashiroPixela" />
+          <attvalue for="2" value="52000" />
+          <attvalue for="3" value="Pixela Project" />
+          <attvalue for="4" value="A" />
+          <attvalue for="5" value="ACCEPT" />
+          <attvalue for="6" value="0.0" />
+          <attvalue for="7" value="0.0" />
+          <attvalue for="8" value="0.0" />
+          <attvalue for="9" value="4" />
+        </attvalues>
+      </node>
+      <node id="UC_INDIE001_AISHA" label="UC_INDIE001_AISHA">
+        <attvalues>
+          <attvalue for="0" value="Aisha Channel" />
+          <attvalue for="1" value="@AishaChannelTH" />
+          <attvalue for="2" value="480000" />
+          <attvalue for="3" value="Independent" />
+          <attvalue for="4" value="S" />
+          <attvalue for="5" value="ACCEPT" />
+          <attvalue for="6" value="0.5" />
+          <attvalue for="7" value="0.1758" />
+          <attvalue for="8" value="0.0" />
+          <attvalue for="9" value="0" />
+        </attvalues>
+      </node>
+      <node id="UC_INDIE002_MEW" label="UC_INDIE002_MEW">
+        <attvalues>
+          <attvalue for="0" value="Mew Kitten" />
+          <attvalue for="1" value="@MewKittenTH" />
+          <attvalue for="2" value="35000" />
+          <attvalue for="3" value="Independent" />
+          <attvalue for="4" value="B" />
+          <attvalue for="5" value="ACCEPT" />
+          <attvalue for="6" value="0.0" />
+          <attvalue for="7" value="0.0" />
+          <attvalue for="8" value="0.0" />
+          <attvalue for="9" value="5" />
+        </attvalues>
+      </node>
+      <node id="UC_INDIE003_KORRA" label="UC_INDIE003_KORRA">
+        <attvalues>
+          <attvalue for="0" value="Korra VT" />
+          <attvalue for="1" value="@KorraStreamer" />
+          <attvalue for="2" value="18000" />
+          <attvalue for="3" value="Independent" />
+          <attvalue for="4" value="B" />
+          <attvalue for="5" value="ACCEPT" />
+          <attvalue for="6" value="0.0" />
+          <attvalue for="7" value="0.0" />
+          <attvalue for="8" value="0.0" />
+          <attvalue for="9" value="6" />
+        </attvalues>
+      </node>
+      <node id="UC_INDIE004_ZEPHYR" label="UC_INDIE004_ZEPHYR">
+        <attvalues>
+          <attvalue for="0" value="Zephyr Sky" />
+          <attvalue for="1" value="@ZephyrChTH" />
+          <attvalue for="2" value="7500" />
+          <attvalue for="3" value="Independent" />
+          <attvalue for="4" value="C" />
+          <attvalue for="5" value="ACCEPT" />
+          <attvalue for="6" value="0.0" />
+          <attvalue for="7" value="0.0" />
+          <attvalue for="8" value="0.0" />
+          <attvalue for="9" value="7" />
+        </attvalues>
+      </node>
+      <node id="UC_FOREIGN_001_TEST" label="UC_FOREIGN_001_TEST">
+        <attvalues>
+          <attvalue for="0" value="Global Gamer JP" />
+          <attvalue for="1" value="@ForeignGamer" />
+          <attvalue for="2" value="250000" />
+          <attvalue for="3" value="Other" />
+          <attvalue for="4" value="S" />
+          <attvalue for="5" value="REJECT" />
+          <attvalue for="6" value="0.0" />
+          <attvalue for="7" value="0.0" />
+          <attvalue for="8" value="0.0" />
+          <attvalue for="9" value="8" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge source="UC_ARP001_SCHNEIDER" target="UC_ARP002_BAABEL" id="0" weight="105.0">
+        <attvalues>
+          <attvalue for="10" value="105" />
+          <attvalue for="11" value="0.3134" />
+          <attvalue for="12" value="0.5585" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP001_SCHNEIDER" target="UC_ARP005_DACAPO" id="1" weight="55.0">
+        <attvalues>
+          <attvalue for="10" value="55" />
+          <attvalue for="11" value="0.1288" />
+          <attvalue for="12" value="0.2926" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP001_SCHNEIDER" target="UC_ARP003_MAYLYN" id="2" weight="48.0">
+        <attvalues>
+          <attvalue for="10" value="48" />
+          <attvalue for="11" value="0.1176" />
+          <attvalue for="12" value="0.2553" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP001_SCHNEIDER" target="UC_POLY001_HOKU" id="3" weight="36.0">
+        <attvalues>
+          <attvalue for="10" value="36" />
+          <attvalue for="11" value="0.1032" />
+          <attvalue for="12" value="0.1915" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP001_SCHNEIDER" target="UC_PIX001_HINABE" id="4" weight="36.0">
+        <attvalues>
+          <attvalue for="10" value="36" />
+          <attvalue for="11" value="0.1032" />
+          <attvalue for="12" value="0.1915" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP001_SCHNEIDER" target="UC_POLY002_LUCINE" id="5" weight="35.0">
+        <attvalues>
+          <attvalue for="10" value="35" />
+          <attvalue for="11" value="0.0964" />
+          <attvalue for="12" value="0.1862" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP001_SCHNEIDER" target="UC_INDIE001_AISHA" id="6" weight="19.0">
+        <attvalues>
+          <attvalue for="10" value="19" />
+          <attvalue for="11" value="0.0592" />
+          <attvalue for="12" value="0.125" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP002_BAABEL" target="UC_ARP003_MAYLYN" id="7" weight="112.0">
+        <attvalues>
+          <attvalue for="10" value="112" />
+          <attvalue for="11" value="0.2745" />
+          <attvalue for="12" value="0.4444" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP002_BAABEL" target="UC_ARP005_DACAPO" id="8" weight="90.0">
+        <attvalues>
+          <attvalue for="10" value="90" />
+          <attvalue for="11" value="0.1974" />
+          <attvalue for="12" value="0.3571" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP002_BAABEL" target="UC_POLY001_HOKU" id="9" weight="59.0">
+        <attvalues>
+          <attvalue for="10" value="59" />
+          <attvalue for="11" value="0.1513" />
+          <attvalue for="12" value="0.2995" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP002_BAABEL" target="UC_PIX001_HINABE" id="10" weight="59.0">
+        <attvalues>
+          <attvalue for="10" value="59" />
+          <attvalue for="11" value="0.1513" />
+          <attvalue for="12" value="0.2995" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP002_BAABEL" target="UC_POLY002_LUCINE" id="11" weight="55.0">
+        <attvalues>
+          <attvalue for="10" value="55" />
+          <attvalue for="11" value="0.1351" />
+          <attvalue for="12" value="0.2619" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP002_BAABEL" target="UC_INDIE001_AISHA" id="12" weight="29.0">
+        <attvalues>
+          <attvalue for="10" value="29" />
+          <attvalue for="11" value="0.0773" />
+          <attvalue for="12" value="0.1908" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP003_MAYLYN" target="UC_ARP005_DACAPO" id="13" weight="144.0">
+        <attvalues>
+          <attvalue for="10" value="144" />
+          <attvalue for="11" value="0.3445" />
+          <attvalue for="12" value="0.5373" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP003_MAYLYN" target="UC_POLY002_LUCINE" id="14" weight="60.0">
+        <attvalues>
+          <attvalue for="10" value="60" />
+          <attvalue for="11" value="0.1435" />
+          <attvalue for="12" value="0.2857" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP003_MAYLYN" target="UC_POLY001_HOKU" id="15" weight="58.0">
+        <attvalues>
+          <attvalue for="10" value="58" />
+          <attvalue for="11" value="0.1425" />
+          <attvalue for="12" value="0.2944" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP003_MAYLYN" target="UC_PIX001_HINABE" id="16" weight="58.0">
+        <attvalues>
+          <attvalue for="10" value="58" />
+          <attvalue for="11" value="0.1425" />
+          <attvalue for="12" value="0.2944" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP003_MAYLYN" target="UC_INDIE001_AISHA" id="17" weight="30.0">
+        <attvalues>
+          <attvalue for="10" value="30" />
+          <attvalue for="11" value="0.0769" />
+          <attvalue for="12" value="0.1974" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP005_DACAPO" target="UC_POLY002_LUCINE" id="18" weight="123.0">
+        <attvalues>
+          <attvalue for="10" value="123" />
+          <attvalue for="11" value="0.3228" />
+          <attvalue for="12" value="0.5857" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP005_DACAPO" target="UC_PIX001_HINABE" id="19" weight="68.0">
+        <attvalues>
+          <attvalue for="10" value="68" />
+          <attvalue for="11" value="0.1608" />
+          <attvalue for="12" value="0.3452" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP005_DACAPO" target="UC_POLY001_HOKU" id="20" weight="68.0">
+        <attvalues>
+          <attvalue for="10" value="68" />
+          <attvalue for="11" value="0.1608" />
+          <attvalue for="12" value="0.3452" />
+        </attvalues>
+      </edge>
+      <edge source="UC_ARP005_DACAPO" target="UC_INDIE001_AISHA" id="21" weight="38.0">
+        <attvalues>
+          <attvalue for="10" value="38" />
+          <attvalue for="11" value="0.0931" />
+          <attvalue for="12" value="0.25" />
+        </attvalues>
+      </edge>
+      <edge source="UC_POLY001_HOKU" target="UC_PIX001_HINABE" id="22" weight="119.0">
+        <attvalues>
+          <attvalue for="10" value="119" />
+          <attvalue for="11" value="0.4327" />
+          <attvalue for="12" value="0.6041" />
+        </attvalues>
+      </edge>
+      <edge source="UC_POLY001_HOKU" target="UC_POLY002_LUCINE" id="23" weight="48.0">
+        <attvalues>
+          <attvalue for="10" value="48" />
+          <attvalue for="11" value="0.1337" />
+          <attvalue for="12" value="0.2437" />
+        </attvalues>
+      </edge>
+      <edge source="UC_POLY001_HOKU" target="UC_INDIE001_AISHA" id="24" weight="24.0">
+        <attvalues>
+          <attvalue for="10" value="24" />
+          <attvalue for="11" value="0.0738" />
+          <attvalue for="12" value="0.1579" />
+        </attvalues>
+      </edge>
+      <edge source="UC_POLY002_LUCINE" target="UC_PIX001_HINABE" id="25" weight="48.0">
+        <attvalues>
+          <attvalue for="10" value="48" />
+          <attvalue for="11" value="0.1337" />
+          <attvalue for="12" value="0.2437" />
+        </attvalues>
+      </edge>
+      <edge source="UC_POLY002_LUCINE" target="UC_INDIE001_AISHA" id="26" weight="21.0">
+        <attvalues>
+          <attvalue for="10" value="21" />
+          <attvalue for="11" value="0.0616" />
+          <attvalue for="12" value="0.1382" />
+        </attvalues>
+      </edge>
+      <edge source="UC_PIX001_HINABE" target="UC_INDIE001_AISHA" id="27" weight="24.0">
+        <attvalues>
+          <attvalue for="10" value="24" />
+          <attvalue for="11" value="0.0738" />
+          <attvalue for="12" value="0.1579" />
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

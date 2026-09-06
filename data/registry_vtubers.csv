@@ -1,0 +1,16 @@
+channel_id,handle,name,subscriber_count,agency,status,thai_confidence,priority,source_count,last_activity,last_collected,streams_collected,enabled
+UC_ARP001_SCHNEIDER,@SchneiderARP,Schneider ARP,185000,Algorhythm Project,ACCEPT,0.9,S,1,2026-09-01T12:00:00Z,,0,True
+UC_ARP002_BAABEL,@BaabelARP,Baabel ARP,142000,Algorhythm Project,ACCEPT,1.0,S,1,2026-09-02T15:00:00Z,2026-09-06T12:49:52.154826+00:00,1,True
+UC_ARP003_MAYLYN,@MaylynARP,Maylyn ARP,128000,Algorhythm Project,ACCEPT,0.9,S,1,2026-09-03T10:00:00Z,2026-09-06T12:49:52.154845+00:00,1,True
+UC_ARP004_ZENITH,@ZenithARP,Zenith ARP,96000,Algorhythm Project,ACCEPT,0.9,A,1,2026-09-04T18:00:00Z,,0,True
+UC_ARP005_DACAPO,@DacapoARP,Dacapo ARP,115000,Algorhythm Project,ACCEPT,0.9,S,1,2026-09-05T20:00:00Z,2026-09-06T12:49:52.154848+00:00,1,True
+UC_POLY001_HOKU,@HokuPolygon,Hoku Polygon,110000,Polygon Official,ACCEPT,1.0,S,1,2026-09-03T14:00:00Z,,0,True
+UC_POLY002_LUCINE,@LucinePolygon,Lucine Polygon,89000,Polygon Official,ACCEPT,0.9,A,1,2026-09-04T16:00:00Z,2026-09-06T12:49:52.154841+00:00,1,True
+UC_POLY003_ZONA,@ZonaPolygon,Zona Polygon,64000,Polygon Official,ACCEPT,0.9,A,1,2026-09-02T19:00:00Z,,0,True
+UC_PIX001_HINABE,@HinabePixela,Hinabe Pixela,78000,Pixela Project,ACCEPT,0.9,A,1,2026-09-01T11:00:00Z,2026-09-06T12:49:52.154851+00:00,1,True
+UC_PIX002_MASHIRO,@MashiroPixela,Mashiro Pixela,52000,Pixela Project,ACCEPT,0.9,A,1,2026-09-04T12:00:00Z,,0,True
+UC_INDIE001_AISHA,@AishaChannelTH,Aisha Channel,480000,Independent,ACCEPT,0.5,S,1,2026-09-05T17:00:00Z,2026-09-06T12:49:52.154837+00:00,1,True
+UC_INDIE002_MEW,@MewKittenTH,Mew Kitten,35000,Independent,ACCEPT,0.85,B,1,2026-09-02T21:00:00Z,,0,True
+UC_INDIE003_KORRA,@KorraStreamer,Korra VT,18000,Independent,ACCEPT,0.5,B,1,2026-09-05T19:00:00Z,,0,True
+UC_INDIE004_ZEPHYR,@ZephyrChTH,Zephyr Sky,7500,Independent,ACCEPT,0.9,C,1,2026-09-04T15:00:00Z,,0,True
+UC_FOREIGN_001_TEST,@ForeignGamer,Global Gamer JP,250000,Other,REJECT,0.15,S,1,2026-08-01T00:00:00Z,,0,False
