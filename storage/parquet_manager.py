@@ -1,221 +1,158 @@
-"""
-Thai VTuber Audience Network (SNA)
-Parquet Storage Manager
+"""Canonical per-channel/video/source presence snapshots.
 
-Handles partitioning, schema enforcement, and writing of viewer presence events
-into compressed Apache Parquet files.
-File layout: data/events/{year}/{month}/{video_id}.parquet
+Appearances is the maximum observed batch count, not a unique lifetime event count.
+Raw rows are aggregated within each batch; repeated snapshots reconcile by max.
 """
-import logging
-import re
 import os
+import re
 import uuid
-from datetime import datetime
+from collections import defaultdict
+from datetime import datetime, timezone
 from pathlib import Path
-from typing import List, Dict, Any
 import pyarrow as pa
 import pyarrow.parquet as pq
 from config.settings import EVENTS_DIR
+from core.file_lock import file_lock
 
-logger = logging.getLogger(__name__)
-
-# Standard PyArrow Schema for Presence Events
-EVENT_SCHEMA = pa.schema([
-    ("viewer_hash", pa.string()),
-    ("vtuber_channel_id", pa.string()),
-    ("video_id", pa.string()),
-    ("timestamp", pa.string()),
-    ("source_type", pa.string())
-])
-
-# Early Aggregated Session Schema (Per-video viewer presence)
+EVENT_SCHEMA = pa.schema([(k, pa.string()) for k in
+    ('viewer_hash', 'vtuber_channel_id', 'video_id', 'timestamp', 'source_type')])
 AGGREGATED_SCHEMA = pa.schema([
-    ("viewer_hash", pa.string()),
-    ("vtuber_channel_id", pa.string()),
-    ("video_id", pa.string()),
-    ("first_seen", pa.string()),
-    ("last_seen", pa.string()),
-    ("appearances", pa.int64()),
-    ("source_type", pa.string())
-])
+    ('viewer_hash', pa.string()), ('vtuber_channel_id', pa.string()),
+    ('video_id', pa.string()), ('first_seen', pa.string()), ('last_seen', pa.string()),
+    ('appearances', pa.int64()), ('source_type', pa.string())])
+
+
+def _timestamp(value):
+    try:
+        dt = datetime.fromisoformat(str(value).replace('Z', '+00:00'))
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc).isoformat()
+    except (ValueError, TypeError):
+        raise ValueError('Invalid presence timestamp') from None
+
+
+def _normalize(events):
+    rows = {}
+    raw_counts = defaultdict(int)
+    snapshot_counts = defaultdict(int)
+    for event in events:
+        for field in ('video_id', 'vtuber_channel_id'):
+            if not re.fullmatch(r'[A-Za-z0-9_-]+', event.get(field, '')):
+                raise ValueError('Invalid presence identity')
+        if event.get('source_type') not in {'comment', 'live_chat'}:
+            raise ValueError('Explicit source_type live_chat or comment required')
+        if not isinstance(event.get('viewer_hash'), str) or not event['viewer_hash']:
+            raise ValueError('Missing viewer pseudonym')
+        first = _timestamp(event.get('first_seen', event.get('timestamp')))
+        last = _timestamp(event.get('last_seen', event.get('timestamp')))
+        count = event.get('appearances', 1)
+        if type(count) is not int or count < 1 or first > last:
+            raise ValueError('Invalid presence count or interval')
+        key = tuple(event[k] for k in ('vtuber_channel_id', 'video_id', 'source_type', 'viewer_hash'))
+        if 'timestamp' in event and 'first_seen' not in event:
+            raw_counts[key] += count
+        else:
+            snapshot_counts[key] = max(snapshot_counts[key], count)
+        row = dict(zip(('vtuber_channel_id', 'video_id', 'source_type', 'viewer_hash'), key))
+        row.update(first_seen=first, last_seen=last, appearances=count)
+        if key in rows:
+            current = rows[key]
+            current['first_seen'] = min(current['first_seen'], first)
+            current['last_seen'] = max(current['last_seen'], last)
+        else:
+            rows[key] = row
+        rows[key]['appearances'] = max(raw_counts[key], snapshot_counts[key])
+    return rows
+
+
+def _merge(current, incoming):
+    for key, row in incoming.items():
+        if key not in current:
+            current[key] = dict(row)
+        else:
+            old = current[key]
+            old['first_seen'] = min(old['first_seen'], row['first_seen'])
+            old['last_seen'] = max(old['last_seen'], row['last_seen'])
+            old['appearances'] = max(old['appearances'], row['appearances'])
+    return current
 
 
 class ParquetStorageManager:
-    def __init__(self, base_dir: Path = None):
-        self.base_dir = base_dir or EVENTS_DIR
+    def __init__(self, base_dir=None):
+        self.base_dir = Path(base_dir or EVENTS_DIR)
         self.base_dir.mkdir(parents=True, exist_ok=True)
 
-    def get_partition_path(self, video_id: str, timestamp_str: str = None) -> Path:
-        """Determines target path: data/events/YYYY/MM/{video_id}.parquet"""
-        if timestamp_str:
+    def get_partition_path(self, video_id, timestamp_str=None, *, source_type='comment',
+                           vtuber_channel_id='unknown'):
+        # timestamp_str is retained for callers, but never controls partition identity.
+        for value in (video_id, vtuber_channel_id):
+            if not re.fullmatch(r'[A-Za-z0-9_-]+', value):
+                raise ValueError('Invalid partition identity')
+        if source_type not in {'comment', 'live_chat'}:
+            raise ValueError('Invalid source')
+        return self.base_dir / 'canonical' / vtuber_channel_id / f'{video_id}_{source_type}.parquet'
+
+    def _path(self, row):
+        return self.get_partition_path(row['video_id'], source_type=row['source_type'],
+                                       vtuber_channel_id=row['vtuber_channel_id'])
+
+    def _publish(self, rows):
+        groups = defaultdict(dict)
+        for key, row in rows.items():
+            groups[self._path(row)][key] = row
+        # Read and validate every old partition before publishing anything.
+        prepared = {}
+        for path, incoming in groups.items():
+            existing = _normalize(pq.read_table(path).to_pylist()) if path.exists() else {}
+            if any(self._path(row) != path for row in existing.values()):
+                raise ValueError('Existing partition contains another identity/source')
+            prepared[path] = _merge(existing, incoming)
+        for path, merged in prepared.items():
+            path.parent.mkdir(parents=True, exist_ok=True)
+            temporary = path.with_name('.' + uuid.uuid4().hex + '.tmp')
             try:
-                dt = datetime.fromisoformat(timestamp_str.replace("Z", "+00:00"))
-            except Exception:
-                dt = datetime.utcnow()
-        else:
-            dt = datetime.utcnow()
+                table = pa.Table.from_pylist(list(merged.values()), schema=AGGREGATED_SCHEMA)
+                pq.write_table(table, temporary, compression='snappy')
+                with temporary.open('r+b') as handle:
+                    os.fsync(handle.fileno())
+                os.replace(temporary, path)
+            finally:
+                temporary.unlink(missing_ok=True)
+        paths = sorted(prepared)
+        return paths[0] if len(paths) == 1 else paths
 
-        year_str = f"{dt.year:04d}"
-        month_str = f"{dt.month:02d}"
-        partition_dir = self.base_dir / year_str / month_str
-        partition_dir.mkdir(parents=True, exist_ok=True)
-        return partition_dir / f"{video_id}.parquet"
-
-    def write_events(self, events: List[Dict[str, Any]]) -> Path:
-        """
-        Writes a list of event dictionaries to a partitioned Parquet file.
-        Uses Snappy compression for maximum read performance and minimal disk footprint.
-        """
+    def write_events(self, events):
         if not events:
-            raise ValueError("No events provided to write.")
+            raise ValueError('No events provided to write')
+        rows = _normalize(events)
+        with file_lock(self.base_dir / '.storage.lock'):
+            if any(p.relative_to(self.base_dir).parts[0] != 'canonical'
+                   for p in self.get_all_parquet_paths()):
+                raise RuntimeError('Legacy partitions require explicit migration before writing')
+            return self._publish(rows)
 
-        for event in events:
-            if event.get("source_type") not in {"live_chat", "comment"}:
-                raise ValueError("Explicit source_type live_chat or comment required")
-            if not re.fullmatch(r"[A-Za-z0-9_-]+", event.get("video_id", "")):
-                raise ValueError("Invalid video_id")
-        if len({e["video_id"] for e in events}) != 1:
-            raise ValueError("A write must contain exactly one video")
-        first_event = events[0]
-        video_id = first_event["video_id"]
-        timestamp = first_event.get("timestamp") or first_event.get("first_seen")
-        target_path = self.get_partition_path(video_id, timestamp)
+    def get_all_parquet_paths(self):
+        return sorted(self.base_dir.rglob('*.parquet'))
 
-        # Check if events are aggregated format or raw event format
-        is_aggregated = "first_seen" in first_event and "appearances" in first_event
-        if is_aggregated:
-            arrays = {
-                "viewer_hash": [e["viewer_hash"] for e in events],
-                "vtuber_channel_id": [e["vtuber_channel_id"] for e in events],
-                "video_id": [e["video_id"] for e in events],
-                "first_seen": [str(e.get("first_seen", "")) for e in events],
-                "last_seen": [str(e.get("last_seen", "")) for e in events],
-                "appearances": [int(e.get("appearances", 1)) for e in events],
-                "source_type": [str(e.get("source_type", "comment")) for e in events]
-            }
-            table = pa.Table.from_pydict(arrays, schema=AGGREGATED_SCHEMA)
-        else:
-            arrays = {
-                "viewer_hash": [e["viewer_hash"] for e in events],
-                "vtuber_channel_id": [e["vtuber_channel_id"] for e in events],
-                "video_id": [e["video_id"] for e in events],
-                "timestamp": [str(e.get("timestamp", "")) for e in events],
-                "source_type": [str(e.get("source_type", "live_chat")) for e in events]
-            }
-            table = pa.Table.from_pydict(arrays, schema=EVENT_SCHEMA)
+    def migrate_legacy_partitions(self):
+        """Offline, exclusive migration. Retry after interruption before reading analytics.
 
-        # Separate collection batches by source_type while ensuring idempotency.
-        # Naming by {video_id}_{source_type}.parquet prevents comment and live_chat collisions
-        # while enabling deterministic reconciliation without appearance inflation.
-        target_path = target_path.with_name(f"{video_id}_{first_event['source_type']}.parquet")
-        
-        # If target file already exists for this video and source, reconcile idempotently
-        if target_path.exists():
-            try:
-                existing_table = pq.read_table(target_path)
-                existing_rows = existing_table.to_pylist()
-                
-                # Index existing records by viewer_hash
-                reconciled: Dict[str, Dict[str, Any]] = {}
-                for row in existing_rows:
-                    vh = row.get("viewer_hash")
-                    if not vh:
-                        continue
-                    reconciled[vh] = {
-                        "viewer_hash": vh,
-                        "vtuber_channel_id": row.get("vtuber_channel_id", first_event["vtuber_channel_id"]),
-                        "video_id": video_id,
-                        "first_seen": str(row.get("first_seen") or row.get("timestamp", "")),
-                        "last_seen": str(row.get("last_seen") or row.get("timestamp", "")),
-                        "appearances": int(row.get("appearances", 1)),
-                        "source_type": str(row.get("source_type", first_event["source_type"]))
-                    }
-                
-                # Merge new events
-                for e in events:
-                    vh = e["viewer_hash"]
-                    e_first = str(e.get("first_seen") or e.get("timestamp", ""))
-                    e_last = str(e.get("last_seen") or e.get("timestamp", ""))
-                    e_app = int(e.get("appearances", 1))
-                    
-                    if vh in reconciled:
-                        # Reconcile timestamps
-                        curr = reconciled[vh]
-                        if e_first and (not curr["first_seen"] or e_first < curr["first_seen"]):
-                            curr["first_seen"] = e_first
-                        if e_last and (not curr["last_seen"] or e_last > curr["last_seen"]):
-                            curr["last_seen"] = e_last
-                        # For snapshot sources (e.g. comments), take max appearances to avoid polling inflation
-                        if first_event["source_type"] == "comment":
-                            curr["appearances"] = max(curr["appearances"], e_app)
-                        else:
-                            curr["appearances"] = max(curr["appearances"], e_app)
-                    else:
-                        reconciled[vh] = {
-                            "viewer_hash": vh,
-                            "vtuber_channel_id": e["vtuber_channel_id"],
-                            "video_id": video_id,
-                            "first_seen": e_first,
-                            "last_seen": e_last,
-                            "appearances": e_app,
-                            "source_type": e.get("source_type", first_event["source_type"])
-                        }
-                
-                # Reconstruct table from reconciled dictionary
-                merged_events = list(reconciled.values())
-                arrays = {
-                    "viewer_hash": [m["viewer_hash"] for m in merged_events],
-                    "vtuber_channel_id": [m["vtuber_channel_id"] for m in merged_events],
-                    "video_id": [m["video_id"] for m in merged_events],
-                    "first_seen": [m["first_seen"] for m in merged_events],
-                    "last_seen": [m["last_seen"] for m in merged_events],
-                    "appearances": [m["appearances"] for m in merged_events],
-                    "source_type": [m["source_type"] for m in merged_events]
-                }
-                table = pa.Table.from_pydict(arrays, schema=AGGREGATED_SCHEMA)
-                is_aggregated = True
-            except Exception as e:
-                logger.warning(f"Could not reconcile existing partition {target_path}: {e}; overwriting atomically")
-
-        temporary = target_path.with_suffix(".tmp")
-        try:
-            pq.write_table(table, temporary, compression="snappy")
-            os.replace(temporary, target_path)
-        finally:
-            temporary.unlink(missing_ok=True)
-        logger.info(f"Saved {len(events)} {'aggregated' if is_aggregated else 'raw'} records to {target_path}")
-        return target_path
-
-    def get_all_parquet_paths(self) -> List[Path]:
-        """Finds all Parquet event files under base_dir."""
-        return list(self.base_dir.glob("*/*/*.parquet"))
-
-    def migrate_legacy_partitions(self) -> int:
+        Canonical rows and legacy rows reconcile by maximum batch appearances.
+        Original files remain until all canonical publications have succeeded.
         """
-        Explicit testable migration:
-        Finds legacy UUID-named files ({video_id}-{uuid}.parquet), merges their records
-        idempotently into deterministic source partitions ({video_id}_{source_type}.parquet),
-        and removes the redundant legacy files.
-        """
-        migrated_count = 0
-        all_files = self.get_all_parquet_paths()
-        
-        for p in all_files:
-            # Check if file has legacy hyphen-uuid pattern (e.g. VID-75b8e239e199...)
-            # but is not a deterministic source partition ending in _comment or _live_chat
-            stem = p.stem
-            if "-" in stem and not (stem.endswith("_comment") or stem.endswith("_live_chat")):
-                try:
-                    table = pq.read_table(p)
-                    rows = table.to_pylist()
-                    if rows:
-                        # Normalize and write into deterministic partition
-                        self.write_events(rows)
-                    # Once merged safely into deterministic partition, remove legacy file
-                    p.unlink(missing_ok=True)
-                    migrated_count += 1
-                    logger.info(f"Migrated legacy partition {p.name} into deterministic source partition.")
-                except Exception as e:
-                    logger.error(f"Error migrating legacy file {p}: {e}")
-
-        return migrated_count
+        with file_lock(self.base_dir / '.storage.lock'):
+            files = self.get_all_parquet_paths()
+            merged = {}
+            legacy = []
+            for path in files:
+                rows = _normalize(pq.read_table(path).to_pylist())
+                _merge(merged, rows)
+                if path.relative_to(self.base_dir).parts[0] != 'canonical':
+                    legacy.append(path)
+            if not legacy:
+                return 0
+            self._publish(merged)
+            for path in legacy:
+                path.unlink()
+            return len(legacy)

@@ -1,0 +1,148 @@
+{
+  "evidence_type": "synthetic_offline",
+  "python": "3.13.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "versions": {
+    "pytest": "9.1.1",
+    "pyarrow": "25.0.1",
+    "duckdb": "1.5.5",
+    "yt-dlp": "2026.2.4",
+    "requests": "2.32.5",
+    "pandas": "3.0.0"
+  },
+  "production_key_present": false,
+  "first_cycle": {
+    "elapsed_seconds": 1.01438,
+    "jobs_processed": 1,
+    "total_records_persisted": 1,
+    "status_breakdown": {
+      "SUCCESS": 1
+    },
+    "journal_summary": {
+      "states": {
+        "COMPLETED": 1
+      },
+      "total_records_committed": 1
+    }
+  },
+  "second_cycle_after_restart": {
+    "elapsed_seconds": 0.535767,
+    "jobs_processed": 1,
+    "total_records_persisted": 2,
+    "status_breakdown": {
+      "SUCCESS": 1
+    },
+    "journal_summary": {
+      "states": {
+        "COMPLETED": 1
+      },
+      "total_records_committed": 2
+    }
+  },
+  "unique_presence_rows": 2,
+  "sum_max_batch_appearances": 4,
+  "timeout_cycle": {
+    "elapsed_seconds": 0.014673,
+    "jobs_processed": 1,
+    "total_records_persisted": 0,
+    "status_breakdown": {
+      "TIMEOUT": 1
+    },
+    "journal_summary": {
+      "states": {
+        "RETRY": 1
+      },
+      "total_records_committed": 2
+    }
+  },
+  "audit": [
+    {
+      "file": ".identity.lock",
+      "status": "LOCK_FILE",
+      "type": ".lock"
+    },
+    {
+      "file": "analytics.duckdb",
+      "status": "PASS",
+      "type": ".duckdb",
+      "tables": [
+        {
+          "name": "raw_events",
+          "columns": [
+            "viewer_hash",
+            "vtuber_channel_id",
+            "video_id",
+            "source_type",
+            "first_seen",
+            "last_seen",
+            "appearances"
+          ],
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "file": "events\\.storage.lock",
+      "status": "LOCK_FILE",
+      "type": ".lock"
+    },
+    {
+      "file": "events\\canonical\\SYNTHETIC_CHANNEL\\SYNTHETIC_VIDEO_comment.parquet",
+      "status": "PASS",
+      "type": ".parquet",
+      "rows": 2,
+      "schema": "viewer_hash: string\nvtuber_channel_id: string\nvideo_id: string\nfirst_seen: string\nlast_seen: string\nappearances: int64\nsource_type: string"
+    },
+    {
+      "file": "identity_manifest.json",
+      "status": "PASS",
+      "type": ".json"
+    },
+    {
+      "file": "jobs.sqlite3",
+      "status": "PASS",
+      "type": ".sqlite3",
+      "tables": [
+        {
+          "name": "collection_jobs",
+          "columns": [
+            "job_id",
+            "vtuber_channel_id",
+            "video_id",
+            "source_type",
+            "state",
+            "worker_id",
+            "attempts",
+            "max_attempts",
+            "priority",
+            "checkpoint",
+            "error_reason",
+            "records_committed",
+            "last_attempt_at",
+            "last_success_at",
+            "next_retry_at",
+            "created_at",
+            "updated_at",
+            "claim_token",
+            "lease_until",
+            "next_collection_at",
+            "last_outcome",
+            "poll_generation"
+          ],
+          "rows": 1
+        },
+        {
+          "name": "journal_identity",
+          "columns": [
+            "singleton",
+            "dataset",
+            "key_fingerprint"
+          ],
+          "rows": 1
+        }
+      ],
+      "scope": "Decoded committed SQLite snapshot including WAL-visible rows; excludes deleted pages and uncommitted WAL frames"
+    }
+  ],
+  "limitations": "Synthetic evidence only; no real collection. Deadline permits process teardown and synchronous filesystem/journal commit latency."
+}

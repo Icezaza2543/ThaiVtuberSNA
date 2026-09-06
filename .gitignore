@@ -11,6 +11,8 @@ __pycache__/
 *.so
 .pytest_cache/
 .coverage
+.worktrees/
+pytest-cache-files-*/
 
 # Temporary files & yt-dlp dumps
 temp_*

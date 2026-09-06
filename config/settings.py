@@ -29,9 +29,6 @@ EVENTS_DIR = DATA_DIR / "events"
 ANALYTICS_DIR = DATA_DIR / "analytics"
 CACHE_DIR = DATA_DIR / "cache"
 
-for directory in [DATA_DIR, EVENTS_DIR, ANALYTICS_DIR, CACHE_DIR]:
-    directory.mkdir(parents=True, exist_ok=True)
-
 # Privacy & Hashing
 # Persistent HMAC Secret Key location
 SECRET_KEY_PATH = BASE_DIR / "config" / "secret.key"

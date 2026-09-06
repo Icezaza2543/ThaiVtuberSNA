@@ -11,6 +11,7 @@ import argparse
 import json
 import logging
 import sys
+import time
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,6 +19,7 @@ sys.path.insert(0, str(BASE_DIR))
 
 from collector.continuous_collector import ContinuousCollector
 from core.job_journal import JobJournal
+from config.settings import DATA_DIR
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("ContinuousCollectionRunner")
@@ -37,39 +39,67 @@ def main():
     parser = argparse.ArgumentParser(description="Continuous Lightweight Collection Runner")
     parser.add_argument("--channels", type=int, default=6, help="Max channels to process")
     parser.add_argument("--events-per-job", type=int, default=120, help="Max events extracted per job")
-    parser.add_argument("--workers", type=int, default=3, help="Max concurrent worker threads")
+    parser.add_argument("--workers", type=int, default=3, help="Max concurrent extraction processes")
     parser.add_argument("--scheduler", choices=["greedy", "pso"], default="greedy", help="Scheduler algorithm")
     parser.add_argument("--timeout", type=float, default=60.0, help="Max cycle duration in seconds")
     parser.add_argument("--status", action="store_true", help="Print journal status and exit")
     parser.add_argument("--recover", action="store_true", help="Recover abandoned claimed jobs and exit")
+    parser.add_argument('--dataset', type=Path, default=DATA_DIR/'real'/'events')
+    parser.add_argument('--journal', type=Path, default=None)
+    parser.add_argument('--poll-interval', type=float, default=300, help='Seconds between successful polls')
+    parser.add_argument('--continuous', action='store_true', help='Repeat bounded cycles until interrupted')
+    parser.add_argument('--sources', nargs='+', choices=['comment', 'live_chat'], default=['comment'])
+    parser.add_argument('--migrate', action='store_true', help='Validate identity and migrate old partitions offline, then exit')
 
     args = parser.parse_args()
+    if args.channels < 1 or args.channels > len(DEFAULT_CANDIDATE_POOL) or args.poll_interval <= 0:
+        parser.error('channels must be within the candidate pool; poll interval must be positive')
+    journal_path = args.journal or args.dataset.parent/'job_journal.sqlite3'
 
     if args.status:
-        journal = JobJournal()
+        journal = JobJournal(journal_path)
         summary = journal.get_summary()
         print("\n=== Durable Job Journal Status ===")
         print(json.dumps(summary, indent=2))
         return
 
     if args.recover:
-        journal = JobJournal()
-        recovered = journal.recover_abandoned_jobs(timeout_seconds=0)
+        journal = JobJournal(journal_path)
+        recovered = journal.recover_abandoned_jobs()
         print(f"Recovered {recovered} abandoned jobs.")
         return
 
     collector = ContinuousCollector(
         max_workers=args.workers,
-        scheduler_type=args.scheduler
+        scheduler_type=args.scheduler,
+        storage_dir=args.dataset,
+        journal_path=journal_path,
+        poll_interval_seconds=args.poll_interval
     )
+    if args.migrate:
+        print(json.dumps({'migrated_files': collector.storage_mgr.migrate_legacy_partitions()}))
+        return
 
     candidates = DEFAULT_CANDIDATE_POOL[:args.channels]
     logger.info(f"Planning collection for {len(candidates)} channels...")
-    collector.plan_and_register_jobs(candidates, sources=["comment"])
+    collector.plan_and_register_jobs(candidates, sources=args.sources)
+
+    if args.continuous:
+        try:
+            while True:
+                collector.journal.recover_abandoned_jobs()
+                summary = collector.run_bounded_cycle(
+                    max_jobs_to_process=args.channels*len(args.sources),
+                    max_events_per_job=args.events_per_job, max_cycle_seconds=args.timeout)
+                print(json.dumps(summary), flush=True)
+                time.sleep(min(args.poll_interval, 5))
+        except KeyboardInterrupt:
+            return
+        return
 
     logger.info("Executing bounded continuous collection cycle...")
     summary = collector.run_bounded_cycle(
-        max_jobs_to_process=args.channels,
+        max_jobs_to_process=args.channels*len(args.sources),
         max_events_per_job=args.events_per_job,
         max_cycle_seconds=args.timeout
     )

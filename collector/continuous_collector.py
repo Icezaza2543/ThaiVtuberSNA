@@ -1,258 +1,190 @@
-"""
-Thai VTuber Audience Network (SNA)
-Continuous Lightweight Collector Orchestrator
-
-Coordinates bounded, idempotent, and privacy-preserving collection across:
-1. Public VOD / Video Comments (Snapshot reconciliation)
-2. Live Chat Telemetry (Bounded in-memory streaming via LiveChatAdapter)
-3. Durable ACID State & Claim Tracking (JobJournal)
-4. Idempotent Columnar Persistence (ParquetStorageManager)
-
-Guarantees:
-- Greedy scheduler is default; PSO is optional.
-- Bounded runtime, worker counts, retry budgets, and timeouts.
-- Explicit outcome categorisation without silent channel replacement.
-- Zero raw viewer IDs or message bodies persisted anywhere.
-"""
-import concurrent.futures
-import logging
+"""Bounded extraction in killable processes; fenced publication in the coordinator."""
+import json
+import multiprocessing
 import time
-from datetime import datetime, timezone
+import uuid
+from multiprocessing.connection import wait
 from pathlib import Path
-from typing import Dict, Any, List, Optional
-
-from core.hasher import PrivacyHasher, load_persistent_secret_key, compute_key_fingerprint
-from core.job_journal import JobJournal
+from core.hasher import PrivacyHasher
+from core.dataset_identity import bind_dataset, validate_dataset_identity
+from core.file_lock import file_lock
+from core.job_journal import JobJournal, OUTCOMES, utcnow
 from core.scheduler import BaselinePriorityQueueScheduler, PSOScheduler
 from storage.parquet_manager import ParquetStorageManager
 from collector.youtube_collector import YouTubeCollector
 from collector.live_chat_adapter import LiveChatAdapter
-from config.settings import DATA_DIR, EVENTS_DIR
-
-logger = logging.getLogger(__name__)
+from collector.extraction_worker import extract, extraction_worker
+from config.settings import DATA_DIR
 
 
 class ContinuousCollector:
-    def __init__(
-        self,
-        storage_dir: Optional[Path] = None,
-        journal_path: Optional[Path] = None,
-        max_workers: int = 3,
-        scheduler_type: str = "greedy",
-        hasher: Optional[PrivacyHasher] = None
-    ):
-        # Validate persistent key continuity before any collector operations
-        self.key_fingerprint = compute_key_fingerprint(load_persistent_secret_key())
+    def __init__(self, storage_dir=None, journal_path=None, max_workers=3,
+                 scheduler_type='greedy', hasher=None, poll_interval_seconds=300,
+                 clock=utcnow, comment_collector=None, live_chat_adapter=None):
+        if max_workers < 1 or scheduler_type not in {'greedy', 'pso'}:
+            raise ValueError('Invalid worker or scheduler policy')
         self.hasher = hasher or PrivacyHasher()
-        
-        self.storage_dir = Path(storage_dir or (DATA_DIR / "real" / "events"))
-        self.storage_mgr = ParquetStorageManager(base_dir=self.storage_dir)
-        self.journal = JobJournal(db_path=journal_path)
-        
-        self.max_workers = max(1, max_workers)
-        self.scheduler_type = scheduler_type.lower()
-        
-        self.comment_collector = YouTubeCollector()
-        self.live_chat_adapter = LiveChatAdapter(hasher=self.hasher)
+        self.storage_dir = Path(storage_dir or DATA_DIR / 'real' / 'events')
+        self.key_fingerprint = bind_dataset(self.storage_dir, self.hasher)
+        self.storage_mgr = ParquetStorageManager(self.storage_dir)
+        self.journal = JobJournal(journal_path or self.storage_dir.parent / 'job_journal.sqlite3',
+                                  clock=clock, poll_interval_seconds=poll_interval_seconds)
+        self.journal.bind_identity(self.storage_dir, self.key_fingerprint)
+        self.max_workers = max_workers
+        self.scheduler_type = scheduler_type
+        self.comment_collector = comment_collector or YouTubeCollector(hasher=self.hasher)
+        self.live_chat_adapter = live_chat_adapter or LiveChatAdapter(hasher=self.hasher)
+        for adapter in (self.comment_collector, self.live_chat_adapter):
+            if hasattr(adapter, 'hasher') and adapter.hasher.secret_salt != self.hasher.secret_salt:
+                raise RuntimeError('Adapter key continuity mismatch')
+        self.journal.recover_abandoned_jobs()
 
-        # Recover any stale claimed jobs from a previous interrupted session
-        self.journal.recover_abandoned_jobs(timeout_seconds=60)
+    def plan_and_register_jobs(self, candidate_pool, sources=None):
+        validate_dataset_identity(self.storage_dir, self.key_fingerprint)
+        sources = sources or ['comment']
+        if set(sources) - {'comment', 'live_chat'}:
+            raise ValueError('Invalid collection source')
+        items = []
+        for candidate in candidate_pool:
+            # Discovery is a separate operation; do not hide unbounded network I/O in planning.
+            if not candidate.get('video_id'):
+                raise ValueError('Explicit video_id required; discover videos before planning')
+            items.append({'vtuber_channel_id': candidate['channel_id'],
+                          'video_id': candidate['video_id'], 'is_live': False,
+                          'vtuber': dict(candidate)})
+        scheduler = (PSOScheduler(num_workers=self.max_workers, swarm_size=10, max_iter=15)
+                     if self.scheduler_type == 'pso' and items
+                     else BaselinePriorityQueueScheduler(num_workers=self.max_workers))
+        scheduled = scheduler.schedule(items)
+        priorities = {j.video_id: getattr(j, 'priority_score', 1) for j in scheduled}
+        return [self.journal.register_job(item['vtuber_channel_id'], item['video_id'], source,
+                                         priority=priorities.get(item['video_id'], 1))
+                for item in items for source in sources]
 
-    def plan_and_register_jobs(
-        self,
-        candidate_pool: List[Dict[str, Any]],
-        sources: List[str] = None
-    ) -> List[str]:
-        """
-        Registers candidate videos/channels into the durable JobJournal.
-        Uses priority queue / PSO scheduler to assign priority scores.
-        """
-        sources = sources or ["comment"]
-        registered_job_ids = []
+    def _adapter(self, job):
+        return self.comment_collector if job['source_type'] == 'comment' else self.live_chat_adapter
 
-        # Build stream candidate list for scheduler
-        sched_items = []
-        for cand in candidate_pool:
-            cid = cand["channel_id"]
-            vid = cand.get("video_id") or self.comment_collector.fetch_latest_video_for_channel(cid)
-            if not vid:
-                continue
-            cand_copy = dict(cand)
-            cand_copy["video_id"] = vid
-            sched_items.append({
-                "vtuber_channel_id": cid,
-                "video_id": vid,
-                "is_live": False,
-                "vtuber": cand_copy
-            })
-
-        # Schedule jobs based on selected strategy
-        if self.scheduler_type == "pso" and sched_items:
-            scheduler = PSOScheduler(num_workers=self.max_workers, swarm_size=10, max_iter=15)
-        else:
-            scheduler = BaselinePriorityQueueScheduler(num_workers=self.max_workers)
-
-        scheduled_jobs = scheduler.schedule(sched_items)
-        priority_map = {j.video_id: getattr(j, "priority_score", 1.0) for j in scheduled_jobs}
-
-        for item in sched_items:
-            cid = item["vtuber_channel_id"]
-            vid = item["video_id"]
-            score = priority_map.get(vid, 1.0)
-            for src in sources:
-                job_id = self.journal.register_job(
-                    vtuber_channel_id=cid,
-                    video_id=vid,
-                    source_type=src,
-                    priority=score,
-                    max_attempts=3
-                )
-                registered_job_ids.append(job_id)
-
-        logger.info(f"Registered {len(registered_job_ids)} collection jobs in durable journal.")
-        return registered_job_ids
-
-    def process_single_job(self, job: Dict[str, Any], max_events: int = 150) -> Dict[str, Any]:
-        """
-        Executes a claimed job, reconciles storage idempotently, and commits status.
-        Never replaces channels or suppresses failure reasons.
-        """
-        job_id = job["job_id"]
-        cid = job["vtuber_channel_id"]
-        vid = job["video_id"]
-        source_type = job["source_type"]
-
-        logger.info(f"Worker processing job {job_id} ({source_type})...")
-        t0 = time.perf_counter()
-
-        try:
-            if source_type == "comment":
-                # Collect snapshot comments
-                events = self.comment_collector.collect_aggregated_events(
-                    {"vtuber_channel_id": cid, "video_id": vid, "source_type": "comment"},
-                    max_comments=max_events
-                )
-                if not events:
-                    self.journal.commit_job(job_id, records_committed=0)
-                    return {"job_id": job_id, "status": "EMPTY_RESULT", "records": 0, "duration": time.perf_counter() - t0}
-
-                # Idempotent write / reconciliation
-                written_path = self.storage_mgr.write_events(events)
-                self.journal.commit_job(job_id, records_committed=len(events))
-                return {
-                    "job_id": job_id,
-                    "status": "SUCCESS",
-                    "records": len(events),
-                    "path": str(written_path),
-                    "duration": time.perf_counter() - t0
-                }
-
-            elif source_type == "live_chat":
-                # Collect memory-only live chat
-                outcome = self.live_chat_adapter.collect_live_chat_events(
-                    {"vtuber_channel_id": cid, "video_id": vid},
-                    max_messages=max_events,
-                    continuation_token=job.get("checkpoint")
-                )
-                status = outcome["status"]
-                events = outcome["events"]
-
-                if status == "SUCCESS" and events:
-                    written_path = self.storage_mgr.write_events(events)
-                    # Use continuation token as checkpoint if available (no raw IDs)
-                    token = outcome.get("continuation_token")
-                    safe_checkpoint = f'{{"continuation": "{token}"}}' if token else None
-                    self.journal.commit_job(job_id, records_committed=len(events), checkpoint=safe_checkpoint)
-                    return {
-                        "job_id": job_id,
-                        "status": "SUCCESS",
-                        "records": len(events),
-                        "path": str(written_path),
-                        "duration": time.perf_counter() - t0
-                    }
-                elif status == "LIVE_CHAT_UNAVAILABLE":
-                    self.journal.fail_job(job_id, error_reason="LIVE_CHAT_UNAVAILABLE", retryable=False)
-                    return {"job_id": job_id, "status": "LIVE_CHAT_UNAVAILABLE", "records": 0, "duration": time.perf_counter() - t0}
-                elif status == "RATE_LIMITED":
-                    self.journal.fail_job(job_id, error_reason="RATE_LIMITED", retryable=True, backoff_seconds=60)
-                    return {"job_id": job_id, "status": "RATE_LIMITED", "records": 0, "duration": time.perf_counter() - t0}
+    def _accept(self, job, outcome):
+        status = outcome.get('status', 'EXTRACTION_FAILURE')
+        if status not in OUTCOMES:
+            status = 'EXTRACTION_FAILURE'
+        result = {'job_id': job['job_id'], 'status': status, 'records': 0}
+        token = job['claim_token']
+        if status in {'SUCCESS', 'EMPTY_RESULT', 'PARTIAL_CAPTURE'}:
+            events = outcome.get('events', [])
+            try:
+                if status == 'EMPTY_RESULT' and events:
+                    raise ValueError('Empty outcome has records')
+                for event in events:
+                    if any(event.get(key) != job[key] for key in
+                           ('vtuber_channel_id', 'video_id', 'source_type')):
+                        raise ValueError('Extractor returned another job identity')
+                checkpoint = outcome.get('continuation_token')
+                checkpoint = json.dumps({'continuation': checkpoint}) if checkpoint else job.get('checkpoint')
+                def publish():
+                    validate_dataset_identity(self.storage_dir, self.key_fingerprint)
+                    if events:
+                        self.storage_mgr.write_events(events)
+                # All cooperative identity changes/writers serialize on this lock.
+                with file_lock(self.storage_dir.parent / '.identity.lock'):
+                    validate_dataset_identity(self.storage_dir, self.key_fingerprint)
+                    committed = self.journal.commit_job(
+                        job['job_id'], len(events), checkpoint, claim_token=token,
+                        outcome=status, publish=publish)
+                if committed:
+                    result['records'] = len(events)
                 else:
-                    self.journal.fail_job(job_id, error_reason=outcome.get("reason", "EXTRACTION_FAILURE"), retryable=True)
-                    return {"job_id": job_id, "status": "EXTRACTION_FAILURE", "records": 0, "duration": time.perf_counter() - t0}
+                    result['status'] = 'STALE_CLAIM'
+            except Exception:
+                result['status'] = 'STORAGE_FAILURE'
+                if not self.journal.fail_job(job['job_id'], 'STORAGE_FAILURE', claim_token=token):
+                    result['status'] = 'STALE_CLAIM'
+        else:
+            updated = self.journal.fail_job(job['job_id'], status, claim_token=token,
+                                           retryable=status not in {'COMMENTS_DISABLED', 'LIVE_CHAT_UNAVAILABLE'},
+                                           backoff_seconds=60 if status == 'RATE_LIMITED' else 30)
+            if not updated:
+                result['status'] = 'STALE_CLAIM'
+        return result
 
-            else:
-                self.journal.fail_job(job_id, error_reason=f"INVALID_SOURCE_{source_type}", retryable=False)
-                return {"job_id": job_id, "status": "EXTRACTION_FAILURE", "records": 0, "duration": time.perf_counter() - t0}
+    def process_single_job(self, job, max_events=150):
+        """Synchronous helper for adapter tests. Use run_bounded_cycle for deadlines."""
+        validate_dataset_identity(self.storage_dir, self.key_fingerprint)
+        return self._accept(job, extract(self._adapter(job), job, max_events))
 
-        except Exception as e:
-            logger.error(f"Error executing job {job_id}: {e}")
-            err_str = str(e).lower()
-            if "comments are turned off" in err_str or "disabled" in err_str:
-                status = "COMMENTS_DISABLED"
-                retryable = False
-            else:
-                status = "EXTRACTION_FAILURE"
-                retryable = True
-
-            self.journal.fail_job(job_id, error_reason=status, retryable=retryable)
-            return {"job_id": job_id, "status": status, "records": 0, "duration": time.perf_counter() - t0, "error": str(e)}
-
-    def run_bounded_cycle(
-        self,
-        max_jobs_to_process: int = 10,
-        max_events_per_job: int = 120,
-        max_cycle_seconds: float = 60.0
-    ) -> Dict[str, Any]:
-        """
-        Executes a bounded batch of jobs across worker threads.
-        """
-        start_time = time.perf_counter()
+    def run_bounded_cycle(self, max_jobs_to_process=10, max_events_per_job=120,
+                          max_cycle_seconds=60):
+        if max_jobs_to_process < 0 or max_events_per_job < 1 or max_cycle_seconds <= 0:
+            raise ValueError('Invalid cycle limits')
+        validate_dataset_identity(self.storage_dir, self.key_fingerprint)
+        start = time.monotonic()
+        deadline = start + max_cycle_seconds
+        context = multiprocessing.get_context('spawn')
+        active = {}
         results = []
-        processed_count = 0
-
-        logger.info(f"Starting bounded collection cycle (max_jobs={max_jobs_to_process}, workers={self.max_workers})...")
-
-        with concurrent.futures.ThreadPoolExecutor(max_workers=self.max_workers) as executor:
-            future_to_job = {}
-
-            while processed_count < max_jobs_to_process:
-                # Check cycle timeout
-                if (time.perf_counter() - start_time) >= max_cycle_seconds:
-                    logger.warning("Bounded collection cycle reached maximum time limit. Halting gracefully.")
+        launched = 0
+        try:
+            while time.monotonic() < deadline:
+                while len(active) < self.max_workers and launched < max_jobs_to_process:
+                    remaining = deadline - time.monotonic()
+                    if remaining <= 0:
+                        break
+                    job = self.journal.claim_next_job(uuid.uuid4().hex, lease_seconds=remaining+5)
+                    if job is None:
+                        break
+                    launched += 1
+                    receive, send = context.Pipe(duplex=False)
+                    process = context.Process(target=extraction_worker,
+                        args=(send, self._adapter(job), job, max_events_per_job), daemon=True)
+                    try:
+                        process.start()
+                    except Exception:
+                        receive.close()
+                        send.close()
+                        results.append(self._accept(job, {'status': 'EXTRACTION_FAILURE'}))
+                        continue
+                    send.close()
+                    active[receive] = (process, job)
+                if not active:
                     break
-
-                # Claim job atomically
-                worker_tag = f"worker_{processed_count % self.max_workers}"
-                job = self.journal.claim_next_job(worker_id=worker_tag)
-                if not job:
-                    # No pending jobs available
+                ready = wait(list(active), timeout=max(0, deadline-time.monotonic()))
+                for connection in ready:
+                    process, job = active.pop(connection)
+                    try:
+                        outcome = connection.recv()
+                    except (EOFError, OSError):
+                        outcome = {'status': 'EXTRACTION_FAILURE'}
+                    finally:
+                        connection.close()
+                        process.join(timeout=0)
+                        if process.is_alive():
+                            process.terminate()
+                        process.join(timeout=0.1)
+                        if not process.is_alive():
+                            process.close()
+                    if time.monotonic() >= deadline:
+                        outcome = {'status': 'TIMEOUT'}
+                    results.append(self._accept(job, outcome))
+                if launched >= max_jobs_to_process and not active:
                     break
-
-                fut = executor.submit(self.process_single_job, job, max_events_per_job)
-                future_to_job[fut] = job["job_id"]
-                processed_count += 1
-
-            for fut in concurrent.futures.as_completed(future_to_job):
-                jid = future_to_job[fut]
-                try:
-                    res = fut.result()
-                    results.append(res)
-                except Exception as exc:
-                    results.append({"job_id": jid, "status": "EXTRACTION_FAILURE", "error": str(exc)})
-
-        elapsed = time.perf_counter() - start_time
-        total_records = sum(r.get("records", 0) for r in results)
+        finally:
+            # Invalidate each attempt and terminate extraction; it never has access
+            # to storage/journal, so even delayed OS teardown cannot publish.
+            for connection, (process, job) in active.items():
+                process.terminate()
+            for connection, (process, job) in active.items():
+                connection.close()
+                process.join(timeout=0.1)
+                if process.is_alive():
+                    process.kill()
+                    process.join(timeout=0.1)
+                if not process.is_alive():
+                    process.close()
+                results.append(self._accept(job, {'status': 'TIMEOUT'}))
         statuses = {}
-        for r in results:
-            st = r.get("status", "UNKNOWN")
-            statuses[st] = statuses.get(st, 0) + 1
-
-        summary = {
-            "elapsed_seconds": round(elapsed, 3),
-            "jobs_processed": len(results),
-            "total_records_persisted": total_records,
-            "status_breakdown": statuses,
-            "journal_summary": self.journal.get_summary()
-        }
-        logger.info(f"Bounded cycle complete: {summary}")
-        return summary
+        for result in results:
+            statuses[result['status']] = statuses.get(result['status'], 0) + 1
+        return {'elapsed_seconds': round(time.monotonic()-start, 6),
+                'jobs_processed': len(results),
+                'total_records_persisted': sum(r['records'] for r in results),
+                'status_breakdown': statuses, 'journal_summary': self.journal.get_summary()}

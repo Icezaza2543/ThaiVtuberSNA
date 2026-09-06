@@ -108,7 +108,7 @@ def test_job_journal_atomic_claims_and_lifecycle(temp_dir):
     assert claimed_3 is None
 
     # Worker 1 completes job
-    assert journal.commit_job(j1, records_committed=50) is True
+    assert journal.commit_job(j1, records_committed=50, claim_token=claimed_1['claim_token']) is True
     job_status = journal.get_job(j1)
     assert job_status["state"] == "COMPLETED"
     assert job_status["records_committed"] == 50
@@ -143,18 +143,18 @@ def test_job_journal_privacy_guard(temp_dir):
     """
     journal = JobJournal(db_path=temp_dir / "jobs.sqlite3")
     j1 = journal.register_job("CH_1", "V_1", "comment")
-    journal.claim_next_job(worker_id="w1")
+    claim = journal.claim_next_job(worker_id="w1")
 
     # Forbidden: raw YouTube channel ID in checkpoint
     with pytest.raises(ValueError, match="Privacy violation"):
-        journal.commit_job(j1, records_committed=10, checkpoint='{"last_author": "UC12345"}')
+        journal.commit_job(j1, records_committed=10, checkpoint='{"last_author": "UC12345"}', claim_token=claim['claim_token'])
 
     # Forbidden: message text in checkpoint
     with pytest.raises(ValueError, match="Privacy violation"):
-        journal.commit_job(j1, records_committed=10, checkpoint='{"text": "hello stream"}')
+        journal.commit_job(j1, records_committed=10, checkpoint='{"text": "hello stream"}', claim_token=claim['claim_token'])
 
     # Allowed: safe token
-    assert journal.commit_job(j1, records_committed=10, checkpoint='{"page": 2, "token": "abc"}') is True
+    assert journal.commit_job(j1, records_committed=10, checkpoint='{"page": 2, "token": "abc"}', claim_token=claim['claim_token']) is True
 
 
 def test_mixed_evidence_same_viewer_same_video(temp_dir):
@@ -315,6 +315,14 @@ def test_live_chat_adapter_memory_only_privacy(temp_dir):
         assert e["source_type"] == "live_chat"
 
 
+class SyntheticComments:
+    def collect_aggregated_events(self, job, max_comments=150):
+        return [{**{k: job[k] for k in ('vtuber_channel_id', 'video_id', 'source_type')},
+                 'viewer_hash': PrivacyHasher('test_salt_continuous').hash_viewer_id('synthetic'),
+                 'first_seen': '2026-09-01T12:00:00Z',
+                 'last_seen': '2026-09-01T12:00:00Z', 'appearances': 1}]
+
+
 def test_continuous_collector_bounded_cycle_execution(temp_dir):
     """
     Verifies that ContinuousCollector respects bounded cycle limits,
@@ -328,21 +336,9 @@ def test_continuous_collector_bounded_cycle_execution(temp_dir):
         storage_dir=storage_dir,
         journal_path=journal_path,
         max_workers=2,
-        hasher=hasher
+        hasher=hasher,
+        comment_collector=SyntheticComments()
     )
-
-    # Mock collect_aggregated_events
-    collector.comment_collector.collect_aggregated_events = MagicMock(return_value=[
-        {
-            "viewer_hash": hasher.hash_viewer_id("UC_VIEWER_MOCK_1"),
-            "vtuber_channel_id": "CH_TEST_1",
-            "video_id": "VID_01",
-            "first_seen": "2026-09-01T12:00:00Z",
-            "last_seen": "2026-09-01T12:00:00Z",
-            "appearances": 1,
-            "source_type": "comment"
-        }
-    ])
 
     candidates = [
         {"channel_id": "CH_TEST_1", "video_id": "VID_01", "name": "VTuber 1"},
@@ -412,7 +408,7 @@ def test_legacy_migration_to_deterministic_partitions(temp_dir):
     assert not legacy_file.exists()
 
     # Deterministic partition was created
-    det_file = events_dir / "VID99_comment.parquet"
+    det_file = temp_dir / 'events' / 'canonical' / 'CH_LEGACY' / "VID99_comment.parquet"
     assert det_file.exists()
     migrated_tab = pq.read_table(det_file)
     assert len(migrated_tab) == 1

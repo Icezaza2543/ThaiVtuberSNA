@@ -19,22 +19,17 @@ from typing import List, Dict, Any, Optional
 from collector.base_collector import BaseCollector
 from core.hasher import PrivacyHasher
 from config.settings import YOUTUBE_API_KEY
+from collector.outcomes import ExtractionFailure, classify_error, QuietExtractorLogger
 
 logger = logging.getLogger(__name__)
 
 
 class YouTubeCollector(BaseCollector):
-    def __init__(self, api_key: Optional[str] = None):
-        self.hasher = PrivacyHasher()  # Validate continuity before any network I/O.
-        self.api_key = api_key or YOUTUBE_API_KEY
+    def __init__(self, api_key: Optional[str] = None, hasher=None):
+        self.hasher = hasher or PrivacyHasher()
+        self.api_key = api_key if api_key is not None else YOUTUBE_API_KEY
         self._youtube = None
-        if self.api_key:
-            try:
-                from googleapiclient.discovery import build
-                self._youtube = build("youtube", "v3", developerKey=self.api_key)
-                logger.info("YouTube API client initialized successfully.")
-            except Exception as e:
-                logger.warning(f"Failed to initialize YouTube API client: {e}")
+        self.last_capture_partial = False
 
     def fetch_latest_video_for_channel(self, channel_id: str) -> Optional[str]:
         """
@@ -50,6 +45,7 @@ class YouTubeCollector(BaseCollector):
             "quiet": True,
             "no_warnings": True
         }
+        ydl_opts.update(cachedir=False, socket_timeout=10, retries=1, logger=QuietExtractorLogger())
         try:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 res = ydl.extract_info(channel_url, download=False)
@@ -57,7 +53,7 @@ class YouTubeCollector(BaseCollector):
                 if entries and entries[0]:
                     return entries[0].get("id")
         except Exception as e:
-            logger.warning(f"Could not fetch latest video for channel {channel_id}: {e}")
+            raise ExtractionFailure(classify_error(e)) from None
         return None
 
     def collect_events(self, job_dict: Dict[str, Any], max_comments: int = 150) -> List[Dict[str, Any]]:
@@ -72,6 +68,7 @@ class YouTubeCollector(BaseCollector):
         """
         video_id = job_dict["video_id"]
         vtuber_id = job_dict["vtuber_channel_id"]
+        self.last_capture_partial = False
 
         if job_dict.get("source_type", "comment") != "comment":
             raise NotImplementedError("Live chat ingestion is not yet supported; comments cannot substitute for it")
@@ -79,10 +76,16 @@ class YouTubeCollector(BaseCollector):
             raise ValueError("max_comments must be positive")
 
         # 1. Try YouTube Data API v3 if client available
+        if self.api_key and self._youtube is None:
+            try:
+                from googleapiclient.discovery import build
+                self._youtube = build('youtube', 'v3', developerKey=self.api_key, cache_discovery=False)
+            except Exception as error:
+                raise ExtractionFailure(classify_error(error)) from None
         if self._youtube:
-            api_events = self._collect_via_api(video_id, vtuber_id)
-            if api_events:
-                return api_events[:max_comments]
+            events = self._collect_via_api(video_id, vtuber_id)
+            self.last_capture_partial = self.last_capture_partial or len(events) > max_comments
+            return events[:max_comments]
 
         # 2. Extract via yt-dlp public comment/chat extractor
         return self._collect_via_ytdlp(video_id, vtuber_id, max_comments=max_comments)
@@ -134,13 +137,14 @@ class YouTubeCollector(BaseCollector):
         ydl_opts = {
             "getcomments": True,
             "skip_download": True,
-            "extractor_args": {"youtube": {"max_comments": [str(max_comments)]}},
+            "extractor_args": {"youtube": {"max_comments": [str(max_comments)], "comment_sort": ["new"]}},
             "cachedir": False,
             "socket_timeout": 20,
             "retries": 1,
             "quiet": True,
             "no_warnings": True
         }
+        ydl_opts['logger'] = QuietExtractorLogger()
 
         events = []
         try:
@@ -148,6 +152,7 @@ class YouTubeCollector(BaseCollector):
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(video_url, download=False)
                 comments = info.get("comments", [])
+                self.last_capture_partial = len(comments) >= max_comments or bool(info.get('comment_count', 0) > len(comments))
                 
                 for c in comments[:max_comments]:
                     raw_author_id = c.get("author_id")
@@ -176,7 +181,7 @@ class YouTubeCollector(BaseCollector):
 
             logger.info(f"Extracted {len(events)} privacy-preserving events from {video_id}.")
         except Exception as e:
-            logger.error(f"Error in yt-dlp extraction for video {video_id}: {e}")
+            raise ExtractionFailure(classify_error(e)) from None
 
         return events
 
@@ -187,9 +192,11 @@ class YouTubeCollector(BaseCollector):
                 part="snippet",
                 videoId=video_id,
                 maxResults=100,
+                order='time',
                 textFormat="plainText"
             )
             comment_res = comment_req.execute()
+            self.last_capture_partial = bool(comment_res.get('nextPageToken'))
             events = []
 
             for item in comment_res.get("items", []):
@@ -211,5 +218,4 @@ class YouTubeCollector(BaseCollector):
 
             return events
         except Exception as e:
-            logger.warning(f"YouTube Data API error for {video_id}: {e}")
-            return []
+            raise ExtractionFailure(classify_error(e)) from None

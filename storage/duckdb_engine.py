@@ -29,6 +29,9 @@ class DuckDBAnalyticsEngine:
     def _init_views(self):
         """Creates views on top of the Parquet directory structure."""
         files = sorted(self.events_dir.rglob("*.parquet"))
+        canonical = [p.relative_to(self.events_dir).parts[0] == 'canonical' for p in files]
+        if any(canonical) and not all(canonical):
+            raise RuntimeError('Incomplete partition migration; resume migration before analytics')
         if not files:
             self.con.execute("""CREATE OR REPLACE VIEW raw_events AS SELECT
                 ''::VARCHAR AS viewer_hash, ''::VARCHAR AS vtuber_channel_id,

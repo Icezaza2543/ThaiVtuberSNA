@@ -49,6 +49,8 @@ class LiveChatAdapter:
         """
         video_id = job_dict.get("video_id", "")
         vtuber_id = job_dict.get("vtuber_channel_id", "")
+        if type(max_messages) is not int or max_messages < 1:
+            raise ValueError('max_messages must be positive')
 
         if not re.fullmatch(r"[A-Za-z0-9_-]+", video_id):
             raise ValueError(f"Invalid video_id: {video_id}")
@@ -85,7 +87,7 @@ class LiveChatAdapter:
             params = {
                 "liveChatId": chat_id,
                 "part": "snippet,authorDetails",
-                "maxResults": min(max_messages, 200),
+                "maxResults": max(200, min(max_messages, 2000)),
                 "key": self.api_key
             }
             if continuation_token:
@@ -100,11 +102,16 @@ class LiveChatAdapter:
 
             data = chat_resp.json()
             items = data.get("items", [])
+            if len(items) > params['maxResults']:
+                return {'status': 'EXTRACTION_FAILURE', 'events': [],
+                        'continuation_token': None, 'reason': 'OVERSIZED_RESPONSE'}
             next_token = data.get("nextPageToken")
 
             # 3. Privacy Transformation: Hash authorChannelId immediately in-memory
             events = []
-            for item in items[:max_messages]:
+            # Consume the whole returned page before advancing its token. Truncating
+            # a page and saving nextPageToken silently loses the remaining messages.
+            for item in items:
                 author_details = item.get("authorDetails", {})
                 raw_author_id = author_details.get("channelId")
                 if not raw_author_id or not str(raw_author_id).startswith("UC"):
@@ -131,10 +138,9 @@ class LiveChatAdapter:
             }
 
         except Exception as e:
-            logger.error(f"Error in memory-only live chat collection for {video_id}: {e}")
             return {
                 "status": "EXTRACTION_FAILURE",
                 "events": [],
                 "continuation_token": None,
-                "reason": str(e)
+                "reason": "EXTRACTION_FAILURE"
             }
