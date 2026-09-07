@@ -441,6 +441,68 @@ def compute_window_snapshots(
 
     return results
 
+def load_dataset_maturity_metadata(con: duckdb.DuckDBPyConnection) -> Dict[str, Any]:
+    """Extracts dataset maturity metadata from sampling manifest, checkpoint, and DuckDB canonical events."""
+    manifest_path = DATA_DIR / "temporal" / "backfill" / "sampling_manifest.parquet"
+    sampled_videos_total = 0
+    if manifest_path.exists():
+        try:
+            tbl = pq.read_table(manifest_path)
+            sampled_videos_total = len(tbl)
+        except Exception as e:
+            logger.warning(f"Could not read sampling manifest length: {e}")
+
+    checkpoint_db = DATA_DIR / "temporal" / "backfill" / "backfill_checkpoint.sqlite3"
+    sampled_videos_processed = 0
+    if checkpoint_db.exists():
+        import sqlite3
+        try:
+            scon = sqlite3.connect(str(checkpoint_db))
+            row = scon.execute("SELECT COUNT(*) FROM backfill_jobs WHERE status != 'PENDING'").fetchone()
+            if row:
+                sampled_videos_processed = row[0]
+            scon.close()
+        except Exception as e:
+            logger.warning(f"Could not read checkpoint count: {e}")
+
+    dated_events = con.execute("SELECT COUNT(*) FROM canonical_events WHERE interaction_time IS NOT NULL").fetchone()[0]
+    channels_with_temporal_evidence = con.execute(
+        "SELECT COUNT(DISTINCT vtuber_channel_id) FROM canonical_events WHERE interaction_time IS NOT NULL"
+    ).fetchone()[0]
+
+    year_cov_rows = con.execute("""
+        SELECT
+            CAST(extract(year FROM interaction_time) AS INT) AS yr,
+            COUNT(DISTINCT vtuber_channel_id) AS channels_with_evidence,
+            COUNT(DISTINCT video_id) AS videos_with_evidence,
+            COUNT(*) AS dated_interactions
+        FROM canonical_events
+        WHERE interaction_time IS NOT NULL
+          AND extract(year FROM interaction_time) BETWEEN 2020 AND 2026
+        GROUP BY yr
+        ORDER BY yr
+    """).fetchall()
+
+    year_coverage = {
+        str(r[0]): {
+            "channels_with_evidence": r[1],
+            "videos_with_evidence": r[2],
+            "dated_interactions": r[3]
+        }
+        for r in year_cov_rows
+    }
+
+    return {
+        "temporal_dataset_stage": "historical_stratified_backfill",
+        "sampling_strategy": "6 videos/channel/year baseline",
+        "sampled_videos_total": sampled_videos_total,
+        "sampled_videos_processed": sampled_videos_processed,
+        "dated_interactions": dated_events,
+        "channels_with_temporal_evidence": channels_with_temporal_evidence,
+        "year_coverage": year_coverage
+    }
+
+
 def main():
     logger.info("==========================================================")
     logger.info(" PHASE T3: DuckDB Temporal Snapshot Engine (Hotfix 1-3)   ")
@@ -565,16 +627,24 @@ def main():
                 "coverage_b": row["coverage_b"]
             })
 
+        maturity = load_dataset_maturity_metadata(con)
         web_export = {
             "metadata": {
                 "description": "Thai VTuber Dynamic Temporal Network (Observed Commenters & Live Chat Participants with Dated Interaction Evidence)",
+                "temporal_dataset_stage": maturity["temporal_dataset_stage"],
+                "sampling_strategy": maturity["sampling_strategy"],
+                "sampled_videos_total": maturity["sampled_videos_total"],
+                "sampled_videos_processed": maturity["sampled_videos_processed"],
+                "dated_interactions": maturity["dated_interactions"],
+                "channels_with_temporal_evidence": maturity["channels_with_temporal_evidence"],
+                "year_coverage": maturity["year_coverage"],
                 "total_slices": len(slices),
                 "total_events_loaded": total_events,
                 "dated_events_accepted": dated_events,
                 "undated_events_excluded": undated_events,
                 "invalid_events_rejected": invalid_raw,
                 "generated_at": now_utc,
-                "note": "This network measures observed commenters and live chat participants with dated interaction evidence. Undated observations are excluded from temporal slices. Video publication date is never substituted for audience interaction time."
+                "note": "Historical audience network based on stratified samples of dated commenter/chat interaction evidence. It does not represent all YouTube viewers or exhaustive comment history. Undated observations are excluded from temporal slices. Video publication date is never substituted for audience interaction time."
             },
             "slices": slices
         }
