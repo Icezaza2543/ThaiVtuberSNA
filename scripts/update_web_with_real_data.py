@@ -1,13 +1,13 @@
 """
 Thai VTuber Audience Network (SNA)
-Update Web Visualizer with Real 30-Video Google Sheets SNA Dataset
+Update Web Visualizer with ALL 1,370 VTubers & High-Confidence (>=5 Viewers) Relation Edges
 
-1. Fetches real calculated overlap pairs (3,665 edges) from Google Sheets 'NETWORK_RESULT'.
-2. Matches with 'thai_vtuber_registry.csv' to get channel IDs, subscribers, handles, and agencies.
-3. Computes real NetworkX centrality metrics (Degree, Betweenness, PageRank).
-4. Generates web/data.json and data/real/analytics/network_graph.json.
-5. Injects embedded dataset into web/app.js for 100% offline & local file:/// compatibility.
-6. Updates web/index.html with direct Google Sheet link and v2.0 badge.
+1. Loads ALL 1,370 Thai VTubers from data/thai_vtuber_registry.csv as nodes.
+2. Fetches real calculated overlap pairs from Google Sheets 'NETWORK_RESULT'.
+3. Filters relations with Shared Viewers >= 5 (913 clean, high-confidence edges).
+4. Computes NetworkX centrality metrics (Degree, Betweenness, PageRank) on the real network.
+5. Generates web/data.json and data/real/analytics/network_graph.json.
+6. Injects embedded dataset into web/app.js with minThreshold = 5 for 100% offline & local file:/// compatibility.
 """
 import csv
 import json
@@ -24,7 +24,7 @@ import networkx as nx
 from config.settings import GOOGLE_SHEETS_CONFIG, DATA_DIR
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
-logger = logging.getLogger("UpdateWeb")
+logger = logging.getLogger("UpdateWebAllVTubers")
 
 AGENCY_COLORS = {
     "Algorhythm Project": "#ec4899",
@@ -58,14 +58,16 @@ def main():
 
     ws_net = sh.worksheet("NETWORK_RESULT")
     raw_edges = ws_net.get_all_records()
-    logger.info(f"Fetched {len(raw_edges)} real overlap edges from 'NETWORK_RESULT'.")
+    logger.info(f"Fetched {len(raw_edges)} total overlap edges from 'NETWORK_RESULT'.")
 
-    # Load Registry
+    # Load ALL 1,370 VTubers from registry
     registry_file = DATA_DIR / "thai_vtuber_registry.csv"
     with open(registry_file, "r", encoding="utf-8") as f:
         all_vtubers = list(csv.DictReader(f))
 
-    # Name to Info Mapping
+    logger.info(f"Loaded {len(all_vtubers)} VTubers from registry.")
+
+    # Name and ID to Info Mapping
     name_to_info = {}
     cid_to_info = {}
     for v in all_vtubers:
@@ -76,7 +78,12 @@ def main():
 
     # Build NetworkX Graph
     G = nx.Graph()
+    for v in all_vtubers:
+        G.add_node(v["channel_id"])
+
+    # Filter edges with Shared Viewers >= 5
     edge_records = []
+    min_edge_threshold = 5
 
     for r in raw_edges:
         ch_a = str(r.get("Channel A", "")).strip()
@@ -84,7 +91,7 @@ def main():
         shared = int(r.get("Shared Viewers", 0) or 0)
         strong = int(r.get("Strong Shared", 0) or 0)
 
-        if not ch_a or not ch_b or shared <= 0:
+        if not ch_a or not ch_b or shared < min_edge_threshold:
             continue
 
         info_a = name_to_info.get(ch_a) or cid_to_info.get(ch_a)
@@ -104,36 +111,28 @@ def main():
             "overlap_coefficient": round(shared / (shared + 20), 3)
         })
 
-    logger.info(f"Constructed Graph: {G.number_of_nodes()} nodes, {G.number_of_edges()} edges.")
+    logger.info(f"Constructed Graph: {G.number_of_nodes()} nodes (All VTubers), {len(edge_records)} relations (Threshold >= 5).")
 
-    # Calculate Centralities
-    degree_cent = nx.degree_centrality(G) if len(G) > 0 else {}
-    between_cent = nx.betweenness_centrality(G, weight="weight") if len(G) > 0 else {}
+    # Centralities
+    degree_cent = nx.degree_centrality(G)
+    between_cent = nx.betweenness_centrality(G, weight="weight")
     try:
-        pagerank_cent = nx.pagerank(G, weight="weight") if len(G) > 0 else {}
+        pagerank_cent = nx.pagerank(G, weight="weight")
     except Exception:
         pagerank_cent = degree_cent
 
-    # Build Node Records
+    # Build Node List for ALL 1,370 VTubers
     nodes = []
     agency_groups: Dict[str, List[str]] = {}
 
-    for node_id in G.nodes():
-        info = cid_to_info.get(node_id) or name_to_info.get(node_id)
-        if info:
-            label = info.get("name", node_id)
-            handle = info.get("handle") or f"@{node_id}"
-            subs = int(info.get("subscriber_count", 0) or 0)
-            views = int(info.get("view_count", 0) or 0)
-            agency = info.get("agency", "Independent")
-            status = info.get("activity_status", "active")
-        else:
-            label = node_id
-            handle = f"@{node_id}"
-            subs = 1000
-            views = 0
-            agency = "Independent"
-            status = "active"
+    for v in all_vtubers:
+        node_id = v["channel_id"]
+        label = v.get("name", node_id)
+        handle = v.get("handle") or f"@{node_id}"
+        subs = int(v.get("subscriber_count", 0) or 0)
+        views = int(v.get("view_count", 0) or 0)
+        agency = v.get("agency", "Independent")
+        status = v.get("activity_status", "active")
 
         tier = "D"
         if subs >= 100000: tier = "S"
@@ -174,7 +173,8 @@ def main():
             "total_vtubers": len(nodes),
             "total_connections": len(edge_records),
             "agencies_count": len(agency_groups),
-            "updated_at": "2026-09-07 (30-Video Dataset)"
+            "min_relation_threshold": min_edge_threshold,
+            "updated_at": "2026-09-07 (All 1,370 VTubers | Threshold >= 5)"
         },
         "agencies": agencies_meta,
         "nodes": nodes,
@@ -185,21 +185,29 @@ def main():
     out_web_json = BASE_DIR / "web" / "data.json"
     with open(out_web_json, "w", encoding="utf-8") as f:
         json.dump(web_data, f, indent=2, ensure_ascii=False)
-    logger.info(f"Saved web/data.json with {len(nodes)} nodes and {len(edge_records)} edges.")
+    logger.info(f"Saved web/data.json with {len(nodes)} nodes (100% of VTubers) and {len(edge_records)} edges.")
 
     # Write to data/real/analytics/network_graph.json
     out_analytics_json = BASE_DIR / "data" / "real" / "analytics" / "network_graph.json"
     out_analytics_json.parent.mkdir(parents=True, exist_ok=True)
     with open(out_analytics_json, "w", encoding="utf-8") as f:
         json.dump(web_data, f, indent=2, ensure_ascii=False)
-    logger.info(f"Updated data/real/analytics/network_graph.json.")
+    logger.info("Updated data/real/analytics/network_graph.json.")
 
-    # Update web/app.js EMBEDDED_DATA
+    # Update web/app.js
     app_js_path = BASE_DIR / "web" / "app.js"
     with open(app_js_path, "r", encoding="utf-8") as f:
         app_js_content = f.read()
 
-    # Locate EMBEDDED_DATA replacement
+    # 1. Update minThreshold default to 5 in app.js if needed
+    app_js_content = app_js_content.replace("let minThreshold = 1;", "let minThreshold = 5;")
+    # Ensure independent memberCount is dynamic
+    app_js_content = app_js_content.replace(
+        'memberCount: 140',
+        'memberCount: (rawData.nodes || []).filter(n => n.agency === "Independent").length'
+    )
+
+    # 2. Locate EMBEDDED_DATA replacement
     start_marker = "const EMBEDDED_DATA = "
     end_marker = ";\n\n// Agency Theme Palette"
 
@@ -210,11 +218,14 @@ def main():
         updated_app_js = app_js_content[:idx_start] + json_compact + app_js_content[idx_end:]
         with open(app_js_path, "w", encoding="utf-8") as f:
             f.write(updated_app_js)
-        logger.info(f"Successfully embedded real 30-video dataset into web/app.js!")
+        logger.info(f"Successfully embedded all 1,370 VTubers and {len(edge_records)} relations into web/app.js!")
     else:
         logger.warning("Could not find EMBEDDED_DATA markers in web/app.js.")
 
-    logger.info("Web Data Update Complete!")
+    logger.info("==========================================================")
+    logger.info(f" SUCCESS: Web updated with ALL {len(nodes)} VTubers!      ")
+    logger.info(f" Relations: {len(edge_records)} high-confidence edges (>= 5)")
+    logger.info("==========================================================")
 
 if __name__ == "__main__":
     main()
