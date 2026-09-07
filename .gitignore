@@ -33,6 +33,7 @@ data/historical_unverified/events/
 data/historical_unverified/analytics/
 data/journal/
 data/benchmarks/
+data/temporal/observations/
 
 credentials.json
 service-account*.json
