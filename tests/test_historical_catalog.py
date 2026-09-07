@@ -22,7 +22,8 @@ sys.path.insert(0, str(BASE_DIR))
 
 from collector.historical_catalog_builder import (
     HistoricalCatalogBuilder,
-    DEFAULT_CUTOFF_DATE
+    DEFAULT_CUTOFF_DATE,
+    _atomic_replace_with_retry
 )
 
 
@@ -190,3 +191,99 @@ def test_crash_recovery_and_resume(temp_catalog_dir):
     vids = tbl["video_id"].to_pylist()
     assert len(vids) == 100
     assert len(set(vids)) == 100
+
+
+def test_atomic_replace_fails_all_attempts_fails_closed(temp_catalog_dir):
+    """
+    Test A: Replacement fails all 5 attempts.
+    Must raise exception, target file remains unchanged, seen_video_ids is NOT updated,
+    and temporary file is cleaned up.
+    """
+    builder = HistoricalCatalogBuilder(output_dir=temp_catalog_dir, api_key="test_key")
+
+    # Initial write of 1 good record
+    initial_rec = {
+        "channel_id": "UC_initial",
+        "video_id": "vid_init",
+        "video_published_at": datetime(2023, 1, 1, 0, 0, 0, tzinfo=timezone.utc),
+        "playlist_added_at": datetime(2023, 1, 1, 0, 0, 0, tzinfo=timezone.utc),
+        "timestamp_quality": "exact",
+        "fetched_at": datetime(2026, 9, 8, 0, 0, 0, tzinfo=timezone.utc),
+        "page_index": 0,
+        "source": "youtube_api_v3",
+        "schema_version": "2.0"
+    }
+    builder._append_video_records_atomic([initial_rec])
+    assert "vid_init" in builder.seen_video_ids
+    assert len(builder.seen_video_ids) == 1
+
+    # Attempt to append bad record with Path.replace raising PermissionError
+    bad_rec = {
+        "channel_id": "UC_initial",
+        "video_id": "vid_bad_failed_write",
+        "video_published_at": datetime(2023, 1, 2, 0, 0, 0, tzinfo=timezone.utc),
+        "playlist_added_at": datetime(2023, 1, 2, 0, 0, 0, tzinfo=timezone.utc),
+        "timestamp_quality": "exact",
+        "fetched_at": datetime(2026, 9, 8, 0, 0, 0, tzinfo=timezone.utc),
+        "page_index": 1,
+        "source": "youtube_api_v3",
+        "schema_version": "2.0"
+    }
+
+    with patch("pathlib.Path.replace", side_effect=PermissionError("Simulated WinError 5 Access is denied")):
+        with pytest.raises(PermissionError):
+            builder._append_video_records_atomic([bad_rec])
+
+    # In-memory state must NOT have updated
+    assert "vid_bad_failed_write" not in builder.seen_video_ids
+    assert len(builder.seen_video_ids) == 1
+
+    # Target parquet must remain intact with only initial record
+    tbl = pq.read_table(builder.video_catalog_path)
+    vids = tbl["video_id"].to_pylist()
+    assert vids == ["vid_init"]
+
+    # Temporary file must be cleaned up
+    tmp_file = builder.video_catalog_path.with_suffix(".tmp")
+    assert not tmp_file.exists()
+
+
+def test_atomic_replace_eventual_success_after_retries(temp_catalog_dir):
+    """
+    Test B: Replacement fails twice with PermissionError and succeeds on third attempt.
+    Must succeed without error, target updated, and in-memory state updated once.
+    """
+    builder = HistoricalCatalogBuilder(output_dir=temp_catalog_dir, api_key="test_key")
+
+    rec = {
+        "channel_id": "UC_retry",
+        "video_id": "vid_retry_success",
+        "video_published_at": datetime(2023, 2, 1, 0, 0, 0, tzinfo=timezone.utc),
+        "playlist_added_at": datetime(2023, 2, 1, 0, 0, 0, tzinfo=timezone.utc),
+        "timestamp_quality": "exact",
+        "fetched_at": datetime(2026, 9, 8, 0, 0, 0, tzinfo=timezone.utc),
+        "page_index": 0,
+        "source": "youtube_api_v3",
+        "schema_version": "2.0"
+    }
+
+    call_count = 0
+    orig_replace = Path.replace
+
+    def mock_replace_flaky(self, target):
+        nonlocal call_count
+        call_count += 1
+        if call_count <= 2:
+            raise PermissionError(f"Simulated Windows file lock attempt {call_count}")
+        return orig_replace(self, target)
+
+    with patch("pathlib.Path.replace", autospec=True, side_effect=mock_replace_flaky):
+        builder._append_video_records_atomic([rec])
+
+    assert call_count == 3
+    assert "vid_retry_success" in builder.seen_video_ids
+
+    # Target parquet updated cleanly
+    tbl = pq.read_table(builder.video_catalog_path)
+    vids = tbl["video_id"].to_pylist()
+    assert vids == ["vid_retry_success"]

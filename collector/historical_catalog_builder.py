@@ -9,6 +9,7 @@ Specialized collector for Phase T1:
 """
 import os
 import json
+import time
 import logging
 from pathlib import Path
 from datetime import datetime, timezone
@@ -55,6 +56,38 @@ CHANNEL_COVERAGE_SCHEMA = pa.schema([
 ])
 
 
+def _atomic_replace_with_retry(
+    tmp_path: Path,
+    target_path: Path,
+    attempts: int = 5,
+    delay: float = 0.05
+) -> None:
+    """
+    Atomically replaces target_path with tmp_path, retrying on Windows PermissionError / file lock.
+    If all attempts fail, cleans up tmp_path where possible and raises the final exception (fails closed).
+    """
+    last_exc = None
+    for attempt in range(attempts):
+        try:
+            tmp_path.replace(target_path)
+            return
+        except PermissionError as e:
+            last_exc = e
+            time.sleep(delay)
+        except Exception as e:
+            last_exc = e
+            break
+
+    if tmp_path.exists():
+        try:
+            tmp_path.unlink()
+        except Exception:
+            pass
+    if last_exc:
+        raise last_exc
+    raise RuntimeError(f"Atomic replacement of {target_path} failed after {attempts} attempts.")
+
+
 class HistoricalCatalogBuilder:
     def __init__(
         self,
@@ -89,16 +122,10 @@ class HistoricalCatalogBuilder:
         return {"completed_channels": [], "in_progress_channels": {}}
 
     def _save_checkpoint_atomic(self):
-        import time
         tmp_file = self.checkpoint_path.with_suffix(".tmp")
         with open(tmp_file, "w", encoding="utf-8") as f:
             json.dump(self.checkpoint, f, indent=2)
-        for attempt in range(5):
-            try:
-                tmp_file.replace(self.checkpoint_path)
-                break
-            except PermissionError:
-                time.sleep(0.05)
+        _atomic_replace_with_retry(tmp_file, self.checkpoint_path)
 
     def _load_existing_video_ids(self) -> Set[str]:
         seen = set()
@@ -140,12 +167,7 @@ class HistoricalCatalogBuilder:
 
         tmp_file = self.video_catalog_path.with_suffix(".tmp")
         pq.write_table(combined_table, tmp_file, compression="snappy")
-        for attempt in range(5):
-            try:
-                tmp_file.replace(self.video_catalog_path)
-                break
-            except PermissionError:
-                time.sleep(0.05)
+        _atomic_replace_with_retry(tmp_file, self.video_catalog_path)
 
         for r in records:
             self.seen_video_ids.add(r["video_id"])
@@ -168,12 +190,7 @@ class HistoricalCatalogBuilder:
         new_table = pa.Table.from_pylist(records, schema=CHANNEL_COVERAGE_SCHEMA)
         tmp_file = self.channel_coverage_path.with_suffix(".tmp")
         pq.write_table(new_table, tmp_file, compression="snappy")
-        for attempt in range(5):
-            try:
-                tmp_file.replace(self.channel_coverage_path)
-                break
-            except PermissionError:
-                time.sleep(0.05)
+        _atomic_replace_with_retry(tmp_file, self.channel_coverage_path)
 
     def fetch_page_api(self, playlist_id: str, page_token: Optional[str] = None) -> Tuple[List[Dict[str, Any]], Optional[str], int]:
         """
