@@ -44,29 +44,26 @@ PILOT_REPORT_MD = DATA_DIR / "temporal" / "backfill" / "phase_t5_real_pilot_repo
 
 # Bounded pilot selection: 20 diverse channels across tiers, agencies, lifecycles, and eras
 PILOT_20_CHANNELS = [
-    # Tier S (Top Megas: Indie & Agencies)
-    "UCdlpXdGT3nGDTqIlxUcufCQ",  # Aisha Channel (Veteran indie pioneer)
-    "UCGBkYTR4tMKS38TQHGWWLjg",  # Aito LH (Mega indie)
-    "UCaNQI1xcU1ZC4W0guaIMgTg",  # San Jao (Indie)
-    "UCpjyD0b6mXvW_P_xO35bWeg",  # Evalia Ch. (Algorhythm Project)
-    "UCbEkHjG43yPMGq5W08jq1TQ",  # ChaAYM (Top Indie)
-    # Tier A (Mid-to-Large: Diverse agencies & active/graduated)
-    "UCwZeU3bOeq_c_n_9qVw0J9A",  # Hinabe HongFei (Pixela Project)
-    "UC2eai5waelgobAHgp20DEYg",  # Ardalita Lilibelle (Lumina Live)
-    "UC2z7pz25bgnqLHdTd7EvVoQ",  # Shishiou Seito (AStars Production)
-    "UC3D2LNEOdYQq5mu9hjoQTZQ",  # ROOKCAN (DPX)
-    "UCafG1bj6Qtcbn4bozcicWfA",  # ZONA Ch. (Polygon Official)
-    "UC25e5qEqvVaG_VKrkTmJBmw",  # Lucene Ch. (Indie)
-    "UC3O5wAgEVyNA1Jw3gyi-_jA",  # MOLLY (Indie)
-    # Tier B & C (Growing / Niche / Legacy / Graduated)
-    "UC1xmO5jVjOCeo02XCpq4WFA",  # Erima Channel (Indie)
-    "UCFr02a1OIuA1yrnJuB2dSpw",  # Shishiro Taiga (Indie)
-    "UCURSzDgzFhYWhKDySspPisA",  # LittleG ch. (Euphora Project)
-    "UCUfM5IcATD5-AB1If9v7wTA",  # Den Trenton (OAL)
-    "UC3QIcnp1II_iCt-_JG8btKQ",  # Era Ch. (Algorhythm Project)
-    "UC_djfyZ7N_-hPSxtrSsBNfQ",  # Victor Hoshino (Graduated)
-    "UC32lsx7u7vqy63SguuuzmVg",  # Narelle ch. (Hiatus)
-    "UCadBHNCSacgE3vePH8UtbMA",  # Chalong Ch. (Indie active)
+    "UCdlpXdGT3nGDTqIlxUcufCQ",  # Doyser | Independent | S | active
+    "UCGBkYTR4tMKS38TQHGWWLjg",  # Aito LH | Independent | S | active
+    "UCbEkHjG43yPMGq5W08jq1TQ",  # ChaAYM | Independent | S | active
+    "UCuZ1ajvlGFUMCHZAPdetKHw",  # Dacapo Ch. | Algorhythm Project | S | active
+    "UCPtSgQ5-yCPl9wbo5w7tmWQ",  # Evalia Ch. | Algorhythm Project | S | active
+    "UCutz6S1DcEHPnEb_r9ztkzg",  # Hinabe HongFei | Pixela Project | S | hiatus
+    "UCOaTgKPjI9cgXLoDW7XFDDw",  # Princess Zelina | Pixela Project | A | hiatus
+    "UCJ6HUQOWSjCHHdOgz13zFlA",  # TheQuillmon | Virtual Zeven | S | active
+    "UCMvc8BlQ7r5gRbz-D2EY0LA",  # HORI 07 | Virtual Zeven | S | active
+    "UCg53fzp6UNYvsyAg8UoNXCA",  # Draki Kona | Lumina Live | S | active
+    "UCLNBff3KDEUxdfH_lkvyOKQ",  # Kamiyu Reirin | Lumina Live | A | active
+    "UC2eai5waelgobAHgp20DEYg",  # Ardalita Lilibelle | Lumina Live | A | active
+    "UCafG1bj6Qtcbn4bozcicWfA",  # ZONA Ch. | Polygon Official | S | active
+    "UC8-JXAccuh7DvI_A_lObw-w",  # Uniinu | Euphora Project | A | active
+    "UC7BTojsUPC4JhxDYRgmuz2Q",  # Jiru | Euphora Project | B | hiatus
+    "UCAnKhwx493i5myddnJFF_gg",  # Pengu Ch. | Ti19t | B | active
+    "UCgLadXz0sJbHQL98eoAd9ag",  # Ice Shirakoi | AStars | B | graduated
+    "UC25e5qEqvVaG_VKrkTmJBmw",  # Lucene Ch. | Independent | A | active
+    "UC3O5wAgEVyNA1Jw3gyi-_jA",  # MOLLY | Independent | A | active
+    "UC_djfyZ7N_-hPSxtrSsBNfQ",  # Victor Hoshino | Independent | C | graduated
 ]
 
 
