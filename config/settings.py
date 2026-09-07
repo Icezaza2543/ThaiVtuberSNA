@@ -65,8 +65,11 @@ FILTER_RULES = {
 }
 
 # Google Sheets Configuration
+_cred_env = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "credentials.json")
+_cred_path = Path(_cred_env) if Path(_cred_env).is_absolute() else (BASE_DIR / _cred_env)
+
 GOOGLE_SHEETS_CONFIG = {
-    "credentials_path": os.getenv("GOOGLE_APPLICATION_CREDENTIALS", str(BASE_DIR / "credentials.json")),
+    "credentials_path": str(_cred_path),
     "spreadsheet_id": os.getenv("VTUBER_SPREADSHEET_ID", ""),
     "sheet_vtubers": "VTUBERS",
     "sheet_system": "SYSTEM",
