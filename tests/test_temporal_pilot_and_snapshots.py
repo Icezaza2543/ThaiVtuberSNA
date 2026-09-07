@@ -17,8 +17,9 @@ from datetime import datetime, timezone
 import duckdb
 import pyarrow as pa
 
+from unittest.mock import MagicMock
 from core.hasher import PrivacyHasher
-from scripts.run_temporal_comment_pilot import parse_iso_dt
+from scripts.run_temporal_comment_pilot import parse_iso_dt, fetch_sampled_comments
 from scripts.build_duckdb_temporal_snapshots import (
     build_canonical_events_view,
     compute_window_snapshots,
@@ -40,17 +41,82 @@ def test_comment_timestamp_strict_no_fallback():
     assert dt.tzinfo == timezone.utc
 
 def test_privacy_extraction_boundary_no_raw_id_leak():
-    """Ensures raw viewer channel ID is transformed to HMAC hash."""
+    """
+    HOTFIX 6: Tests that fetch_sampled_comments() enforces the extraction boundary:
+    - Raw author channel ID is hashed immediately inside extractor loop.
+    - No author_id, authorDisplayName, authorChannelUrl, or comment text escapes.
+    - Missing publishedAt yields interaction_at = None, timestamp_quality = 'missing'.
+    """
     secret_key = "test_persistent_secret_key_32bytes_12345"
     hasher = PrivacyHasher(secret_key)
 
-    raw_author_id = "UCraw_test_viewer_channel_999"
-    viewer_hash = hasher.hash_viewer_id(raw_author_id)
+    mock_items = [
+        {
+            "snippet": {
+                "topLevelComment": {
+                    "snippet": {
+                        "authorChannelId": {"value": "UCsynthetic_viewer_001"},
+                        "authorDisplayName": "Sensitive Viewer Name",
+                        "authorChannelUrl": "https://www.youtube.com/channel/UCsynthetic_viewer_001",
+                        "textDisplay": "Super secret comment text",
+                        "publishedAt": "2024-05-10T12:00:00Z"
+                    }
+                }
+            }
+        },
+        {
+            "snippet": {
+                "topLevelComment": {
+                    "snippet": {
+                        "authorChannelId": {"value": "UCsynthetic_viewer_002"},
+                        "authorDisplayName": "Another Secret Name",
+                        "authorChannelUrl": "https://www.youtube.com/channel/UCsynthetic_viewer_002",
+                        "textDisplay": "Another comment",
+                        "publishedAt": None
+                    }
+                }
+            }
+        }
+    ]
 
-    assert viewer_hash != raw_author_id
-    assert len(viewer_hash) == 64
-    assert not viewer_hash.startswith("UC")
-    assert hasher.hash_viewer_id(raw_author_id) == viewer_hash
+    mock_session = MagicMock()
+    mock_resp = MagicMock()
+    mock_resp.status_code = 200
+    mock_resp.json.return_value = {"items": mock_items}
+    mock_session.get.return_value = mock_resp
+
+    records = fetch_sampled_comments("vid_test", mock_session, hasher, max_comments=50)
+
+    assert len(records) == 2
+
+    # Verification 1: records contain viewer_hash and expected metadata only
+    expected_hash_1 = hasher.hash_viewer_id("UCsynthetic_viewer_001")
+    expected_hash_2 = hasher.hash_viewer_id("UCsynthetic_viewer_002")
+
+    assert records[0]["viewer_hash"] == expected_hash_1
+    assert records[0]["interaction_at"] == datetime(2024, 5, 10, 12, 0, 0, tzinfo=timezone.utc)
+    assert records[0]["timestamp_quality"] == "exact"
+
+    assert records[1]["viewer_hash"] == expected_hash_2
+    assert records[1]["interaction_at"] is None
+    assert records[1]["timestamp_quality"] == "missing"
+
+    # Verification 2: Zero raw PII survives in returned structures
+    for r in records:
+        assert "author_id" not in r
+        assert "authorChannelId" not in r
+        assert "authorDisplayName" not in r
+        assert "authorChannelUrl" not in r
+        assert "textDisplay" not in r
+        assert "comment" not in r
+
+    serialized = str(records)
+    assert "UCsynthetic_viewer_001" not in serialized
+    assert "UCsynthetic_viewer_002" not in serialized
+    assert "Sensitive Viewer Name" not in serialized
+    assert "Another Secret Name" not in serialized
+    assert "Super secret comment text" not in serialized
+    assert "https://www.youtube.com/channel" not in serialized
 
 def test_regression_case_1_missing_interaction_timestamp_excluded():
     """

@@ -97,7 +97,7 @@ def safe_update_sheet(ws, data_rows: List[List[Any]], batch_size: int = 2000):
 
     needed_rows = max(100, len(data_rows) + 50)
     needed_cols = max(10, max(len(r) for r in data_rows))
-    
+
     current_rows = ws.row_count
     current_cols = ws.col_count
 
@@ -232,7 +232,7 @@ def fetch_comments_api(video_id: str, session: requests.Session, max_comments: i
                 cid = snip.get("authorChannelId", {}).get("value")
                 name = snip.get("authorDisplayName", "").strip()
                 curl = snip.get("authorChannelUrl", "").strip()
-                pub = snip.get("publishedAt") or datetime.now(timezone.utc).isoformat()
+                pub = snip.get("publishedAt") or None
                 if cid and str(cid).startswith("UC"):
                     parsed.append({
                         "author_id": cid,
@@ -275,7 +275,7 @@ def fetch_comments_ytdlp(video_id: str, max_comments: int = 100) -> List[Dict[st
                 if ts:
                     pub = datetime.fromtimestamp(ts, tz=timezone.utc).isoformat()
                 else:
-                    pub = datetime.now(timezone.utc).isoformat()
+                    pub = None
 
                 if cid and str(cid).startswith("UC"):
                     parsed.append({
@@ -318,7 +318,7 @@ def fetch_video_comments_hybrid(video_id: str, channel_id: str, channel_name: st
 # Phase 3 & 4: In-Memory Overlap & Google Sheets Sync
 # =========================================================================
 
-def sync_to_google_sheets(sh, unique_viewer_hashes: set, in_memory_events: List[Dict[str, Any]], 
+def sync_to_google_sheets(sh, unique_viewer_hashes: set, in_memory_events: List[Dict[str, Any]],
                           cid_to_name: Dict[str, str], cid_to_agency: Dict[str, str], target_channel_count: int, total_videos_count: int, is_final: bool = False):
     calc_time = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
     logger.info(f"--- Triggering Google Sheets Sync (Final={is_final}) at {calc_time} ---")
@@ -344,7 +344,7 @@ def sync_to_google_sheets(sh, unique_viewer_hashes: set, in_memory_events: List[
 
         overlap_query = f"""
             WITH viewer_channel_stats AS (
-                SELECT 
+                SELECT
                     vtuber_channel_id,
                     viewer_hash,
                     COUNT(DISTINCT video_id) AS videos_seen,
@@ -357,26 +357,26 @@ def sync_to_google_sheets(sh, unique_viewer_hashes: set, in_memory_events: List[
                 GROUP BY vtuber_channel_id, viewer_hash
             ),
             channel_totals AS (
-                SELECT 
-                    vtuber_channel_id, 
+                SELECT
+                    vtuber_channel_id,
                     COUNT(DISTINCT viewer_hash) AS total_viewers
                 FROM viewer_channel_stats
                 GROUP BY vtuber_channel_id
             ),
             shared_pairs AS (
-                SELECT 
+                SELECT
                     a.vtuber_channel_id AS vtuber_a,
                     b.vtuber_channel_id AS vtuber_b,
                     COUNT(DISTINCT a.viewer_hash) AS shared_any,
                     COUNT(DISTINCT CASE WHEN a.videos_seen >= {threshold} AND b.videos_seen >= {threshold} THEN a.viewer_hash END) AS strong_shared_any
                 FROM viewer_channel_stats a
-                JOIN viewer_channel_stats b 
-                    ON a.viewer_hash = b.viewer_hash 
+                JOIN viewer_channel_stats b
+                    ON a.viewer_hash = b.viewer_hash
                     AND a.vtuber_channel_id < b.vtuber_channel_id
                 GROUP BY a.vtuber_channel_id, b.vtuber_channel_id
                 HAVING COUNT(DISTINCT a.viewer_hash) >= {min_shared_viewers}
             )
-            SELECT 
+            SELECT
                 s.vtuber_a,
                 s.vtuber_b,
                 s.shared_any,
@@ -479,7 +479,7 @@ def main():
     # ---------------------------------------------------------------------
     logger.info("Phase 1: Discovering up to 30 recent uploads per channel...")
     all_videos_to_process = []
-    
+
     with ThreadPoolExecutor(max_workers=10) as executor:
         futures = {executor.submit(fetch_channel_videos_hybrid, ch, session, 30): ch for ch in target_channels}
         done = 0
@@ -527,7 +527,7 @@ def main():
                 logger.info(f">>> CHECKPOINT: Syncing intermediate results ({completed_videos} videos) to Google Sheets... <<<")
                 try:
                     sync_to_google_sheets(
-                        sh, unique_viewer_hashes, in_memory_events, 
+                        sh, unique_viewer_hashes, in_memory_events,
                         cid_to_name, cid_to_agency, len(target_channels), completed_videos, is_final=False
                     )
                 except Exception as ex:
@@ -543,7 +543,7 @@ def main():
     logger.info("=" * 65)
     # Final Sync to Google Sheets
     sync_to_google_sheets(
-        sh, unique_viewer_hashes, in_memory_events, 
+        sh, unique_viewer_hashes, in_memory_events,
         cid_to_name, cid_to_agency, len(target_channels), len(all_videos_to_process), is_final=True
     )
 

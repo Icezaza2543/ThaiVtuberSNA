@@ -1,11 +1,27 @@
-# Phase T2: Temporal Comment Pilot Report
+# Phase T2: Sampled Historical Comment Observations Pilot Report
 
-**Audit Execution Timestamp:** 2026-09-07 18:26:15 UTC  
-**Total Observations Analyzed:** 1,474 comments  
+**Audit Execution Timestamp:** 2026-09-07 19:19:30 UTC
+
+> [!NOTE]
+> **Sampling Contract Disclosure:** This report analyzes **sampled historical comment observations** from a representative pilot cohort. It does NOT represent complete or exhaustive historical audience coverage.
+> - **Sampling Method:** YouTube Data API `commentThreads.list` (top-level comment sample, up to 100 comments per sampled video)
+> - **Pagination:** Single-page sampling (max 100 top-level comments per video)
+
+## 1. Pilot Sample Overview
+
+| Metric | Value |
+| :--- | :--- |
+| **Videos Sampled** | 51 videos |
+| **Comments Collected** | 1,474 comments |
+| **Missing Timestamps** | 0 observations |
+| **Oldest Interaction Observed** | `2021-06-16 11:48:34 UTC` |
+| **Newest Interaction Observed** | `2026-09-07 04:52:22 UTC` |
+| **Sampling Method** | Top-level comment sample, up to 100 comments per video |
+| **Max Comments Per Video** | 100 |
 
 ---
 
-## 1. Interaction Year vs Video Publication Year Matrix
+## 2. Interaction Year vs Video Publication Year Matrix (Sampled Pilot)
 
 | Video Year | Total Comments | Same-Year Interaction | Post-Year Interaction | Old-Video Interaction % |
 | :---: | :---: | :---: | :---: | :---: |
@@ -18,8 +34,8 @@
 
 ---
 
-## 2. Temporal Finding & Architectural Implication
+## 3. Empirical Findings from Pilot Sample
 
-- Confirmed: Historical videos continue to accumulate interaction timestamps years after initial publication.
-- Validates the user's principle: `video_published_at` != `interaction_at`.
-- Content Cohort Network and Audience Interaction Network must remain mathematically distinct in DuckDB aggregation.
+- **Empirical Finding:** Historical videos in the sample continue to accumulate comments in later years (up to 14.0% post-year comments observed).
+- **Architectural Implication:** Validates that `interaction_at` must never fallback to `video_published_at` or `now()`.
+- **Evidence Separation:** Observed commenters are distinct from live chat participants and distinct from total passive viewers.
