@@ -125,11 +125,22 @@ def main():
     # Deliberate Selection: 6 representative channels across categories
     # 1. Veteran (Aisha Channel)
     # 2. High-volume stream archive (Dacapo)
-    # 3. Agency hub (Algorhythm Project)
-    # 4. Agency hub (Pixela Project)
-    # 5. Graduated talent
-    # 6. Top Indie
-    pilot_cids = list(vids_by_channel.keys())[:6]
+    # 3. Agency hub (Evalia / ARP)
+    # 4. Agency hub (Hinabe HongFei / Pixela)
+    # 5. Graduated talent (Ice Shirakoi / AStars)
+    # 6. Top Indie (Doyser)
+    target_cids = [
+        "UCqhhWjpw23dWhJ5rRwCCrMA",  # Aisha Channel (Veteran)
+        "UCuZ1ajvlGFUMCHZAPdetKHw",  # Dacapo Ch.【ARP】 (Stream Archive)
+        "UCPtSgQ5-yCPl9wbo5w7tmWQ",  # Evalia Ch.【ARP】 (ARP Hub)
+        "UCutz6S1DcEHPnEb_r9ztkzg",  # Hinabe HongFei Ch. (Pixela Hub)
+        "UCgLadXz0sJbHQL98eoAd9ag",  # Ice Shirakoi (Graduated Talent)
+        "UCdlpXdGT3nGDTqIlxUcufCQ"   # Doyser (Top Indie)
+    ]
+    # Filter to those present in catalog
+    pilot_cids = [cid for cid in target_cids if cid in vids_by_channel]
+    if not pilot_cids:
+        pilot_cids = list(vids_by_channel.keys())[:6]
     logger.info(f"Selected {len(pilot_cids)} pilot channels for temporal distribution study.")
 
     observations = []

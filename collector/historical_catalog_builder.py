@@ -89,10 +89,16 @@ class HistoricalCatalogBuilder:
         return {"completed_channels": [], "in_progress_channels": {}}
 
     def _save_checkpoint_atomic(self):
+        import time
         tmp_file = self.checkpoint_path.with_suffix(".tmp")
         with open(tmp_file, "w", encoding="utf-8") as f:
             json.dump(self.checkpoint, f, indent=2)
-        tmp_file.replace(self.checkpoint_path)
+        for attempt in range(5):
+            try:
+                tmp_file.replace(self.checkpoint_path)
+                break
+            except PermissionError:
+                time.sleep(0.05)
 
     def _load_existing_video_ids(self) -> Set[str]:
         seen = set()
@@ -134,7 +140,12 @@ class HistoricalCatalogBuilder:
 
         tmp_file = self.video_catalog_path.with_suffix(".tmp")
         pq.write_table(combined_table, tmp_file, compression="snappy")
-        tmp_file.replace(self.video_catalog_path)
+        for attempt in range(5):
+            try:
+                tmp_file.replace(self.video_catalog_path)
+                break
+            except PermissionError:
+                time.sleep(0.05)
 
         for r in records:
             self.seen_video_ids.add(r["video_id"])
@@ -157,7 +168,12 @@ class HistoricalCatalogBuilder:
         new_table = pa.Table.from_pylist(records, schema=CHANNEL_COVERAGE_SCHEMA)
         tmp_file = self.channel_coverage_path.with_suffix(".tmp")
         pq.write_table(new_table, tmp_file, compression="snappy")
-        tmp_file.replace(self.channel_coverage_path)
+        for attempt in range(5):
+            try:
+                tmp_file.replace(self.channel_coverage_path)
+                break
+            except PermissionError:
+                time.sleep(0.05)
 
     def fetch_page_api(self, playlist_id: str, page_token: Optional[str] = None) -> Tuple[List[Dict[str, Any]], Optional[str], int]:
         """

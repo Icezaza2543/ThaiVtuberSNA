@@ -23,7 +23,7 @@ import os
 from pathlib import Path
 import secrets
 import sys
-from typing import Optional
+from typing import Optional, Any, Union
 
 # Ensure project root is on sys.path
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -121,9 +121,12 @@ def load_persistent_secret_key() -> bytes:
 
 
 class PrivacyHasher:
-    def __init__(self, secret_salt: Optional[str] = None):
+    def __init__(self, secret_salt: Optional[Any] = None):
         if secret_salt:
-            self.secret_salt = secret_salt.encode("utf-8")
+            if isinstance(secret_salt, str):
+                self.secret_salt = secret_salt.encode("utf-8")
+            else:
+                self.secret_salt = secret_salt
         else:
             self.secret_salt = load_persistent_secret_key()
 
