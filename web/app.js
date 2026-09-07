@@ -47,43 +47,46 @@ const AGENCY_COLORS = {
 };
 
 // Pre-defined Archipelago Island Coordinates for Agency Swarms & Central Independent
+// Generous cosmic layout with wide oceanic buffer zones preventing cluster overlap
 const AGENCY_ISLAND_COORDINATES = {
-  // Central Independent Continent (Spacious ~460px radius)
-  "Independent": { x: 0, y: 0, r: 460 },
+  // Central Independent Continent (Radius ~650px)
+  "Independent": { x: 0, y: 0, r: 650 },
 
-  // 4 Major Cardinal Wings (generously spaced around central continent)
-  "Algorhythm Project": { x: -820, y: -520, r: 240 },
-  "Pixela Project": { x: 820, y: -520, r: 200 },
-  "Virtual Zeven (VZ)": { x: 820, y: 520, r: 170 },
-  "Lumina Live": { x: -820, y: 520, r: 170 },
+  // --- North Constellations ---
+  "Algorhythm Project": { x: -1900, y: -1700, r: 360 },
+  "AStars Production":  { x: -800,  y: -2400, r: 230 },
+  "Vtopia":             { x: 0,     y: -2700, r: 160 },
+  "Polygon Official":   { x: 800,   y: -2400, r: 230 },
+  "Pixela Project":     { x: 1900,  y: -1700, r: 360 },
 
-  // North & South Flanks
-  "AStars Production": { x: -300, y: -880, r: 110 },
-  "Polygon Official": { x: 300, y: -880, r: 105 },
-  "Autumnia": { x: 300, y: 880, r: 80 },
-  "Flora Project": { x: -300, y: 880, r: 80 },
-  "Paralist": { x: 0, y: 920, r: 60 },
+  // --- East Constellations ---
+  "DPX":                { x: 2500,  y: -1300, r: 210 },
+  "Ti19t":              { x: 2850,  y: -650,  r: 170 },
+  "Virtual Zeven (VZ)": { x: 2300,  y: 0,     r: 340 },
+  "HZ":                 { x: 2900,  y: 550,   r: 160 },
+  "Euphora Project":    { x: 2450,  y: 1150,  r: 260 },
+  "WACTOR":             { x: 3100,  y: 1300,  r: 130 },
 
-  // East & West Outer Outposts
-  "Euphora Project": { x: 1200, y: 0, r: 120 },
-  "DPX": { x: 1200, y: 380, r: 80 },
-  "Ti19t": { x: 1200, y: -380, r: 70 },
-  "ALF": { x: -1200, y: 0, r: 70 },
-  "V.W.Y": { x: -1200, y: 380, r: 70 },
-  "OAL": { x: -1200, y: -380, r: 70 },
+  // --- South Constellations ---
+  "Flora Project":      { x: 1900,  y: 1900,  r: 220 },
+  "Autumnia":           { x: 900,   y: 2550,  r: 220 },
+  "Paralist":           { x: 0,     y: 2700,  r: 170 },
+  "V.W.Y":              { x: -900,  y: 2550,  r: 210 },
+  "Lumina Live":        { x: -1900, y: 1900,  r: 340 },
 
-  // Mid-Range Satellites
-  "HZ": { x: 780, y: 0, r: 60 },
-  "RPG": { x: -780, y: 0, r: 60 },
-  "Genesis Project": { x: -620, y: -260, r: 55 },
-  "EXia": { x: 620, y: -260, r: 55 },
-  "WACTOR": { x: 620, y: 260, r: 55 },
-  "STP": { x: -620, y: 260, r: 55 },
-  "Loveland Project": { x: 300, y: 600, r: 55 },
-  "ATX": { x: -300, y: 600, r: 55 },
-  "EYLZ": { x: -300, y: -600, r: 55 },
-  "Pandora": { x: 300, y: -600, r: 55 },
-  "Vtopia": { x: 0, y: -920, r: 55 }
+  // --- West Constellations ---
+  "RPG":                { x: -2550, y: 1350,  r: 180 },
+  "STP":                { x: -2850, y: 750,   r: 140 },
+  "ALF":                { x: -2350, y: 0,     r: 230 },
+  "Genesis Project":    { x: -2850, y: -600,  r: 170 },
+  "OAL":                { x: -2500, y: -1250, r: 190 },
+
+  // --- Outer Orbit Satellites ---
+  "EXia":               { x: 2800,  y: -2100, r: 150 },
+  "Pandora":            { x: 1500,  y: -2600, r: 140 },
+  "EYLZ":               { x: -1500, y: -2600, r: 140 },
+  "ATX":                { x: -2950, y: 150,   r: 140 },
+  "Loveland Project":   { x: 1600,  y: 2650,  r: 140 }
 };
 
 // State Variables
@@ -96,7 +99,7 @@ let agencySwarmAnchors = new Map();
 // Camera & Pan/Zoom
 let panX = 0;
 let panY = 0;
-let zoom = 0.68; // Fit whole archipelago comfortably on load
+let zoom = 0.22; // Wide celestial view fitting whole archipelago on load
 let isPanning = false;
 let startPanX = 0;
 let startPanY = 0;
@@ -205,22 +208,24 @@ function resizeCanvas() {
 function setupAgencyAnchors() {
   agencySwarmAnchors.clear();
 
-  // Central Independent Anchor
+  const indieCount = (rawData.nodes || []).filter(n => n.agency === "Independent" || !n.agency).length;
+
+  // Central Independent Anchor (Dedicated 750px continent)
   agencySwarmAnchors.set("Independent", {
     x: 0,
     y: 0,
-    radius: 185,
+    radius: 750,
     name: "Independent",
     color: AGENCY_COLORS["Independent"] || "#64748b",
-    memberCount: (rawData.nodes || []).filter(n => n.agency === "Independent").length
+    memberCount: indieCount
   });
 
   const agencies = (rawData.agencies || []).filter(a => a.name !== "Independent");
   agencies.forEach((ag, idx) => {
     const coord = AGENCY_ISLAND_COORDINATES[ag.name] || {
-      x: Math.cos((idx / agencies.length) * 2 * Math.PI) * 440,
-      y: Math.sin((idx / agencies.length) * 2 * Math.PI) * 320,
-      r: 40
+      x: Math.cos((idx / agencies.length) * 2 * Math.PI) * 2450,
+      y: Math.sin((idx / agencies.length) * 2 * Math.PI) * 2150,
+      r: 150
     };
 
     agencySwarmAnchors.set(ag.name, {
@@ -309,7 +314,7 @@ function processGraphData() {
     let initialY = 0;
 
     if (ag !== "Independent" && agencySwarmAnchors.has(ag)) {
-      // Agency Swarm: Sunflower spiral inside the agency's island
+      // Agency Swarm: Sunflower spiral inside the agency's dedicated island
       const anchor = agencySwarmAnchors.get(ag);
       agencyMemberCounters[ag] = (agencyMemberCounters[ag] || 0) + 1;
       const mIdx = agencyMemberCounters[ag];
@@ -319,22 +324,22 @@ function processGraphData() {
         initialY = anchor.y;
       } else {
         const angle = mIdx * 2.399963; // Golden angle
-        const spread = 35 + Math.sqrt(mIdx) * 28;
+        const spread = 26 + Math.sqrt(mIdx) * 20;
         initialX = anchor.x + Math.cos(angle) * spread;
         initialY = anchor.y + Math.sin(angle) * spread;
       }
     } else {
-      // Central Independent Cluster: All 140 creators clustered organically right at (0, 0)
+      // Central Independent Cluster: Tightly packed phyllotaxis galaxy at (0, 0)
       const rank = indieRankMap.get(n.id) || 1;
       if (rank === 1) {
         initialX = 0;
-        initialY = 0; // Aisha Channel right at the heart of the cluster
+        initialY = 0; // Aisha Channel right at the heart
       } else {
         const angle = rank * 2.399963;
-        // Generously spaced sunflower spiral
-        const spread = 45 + Math.sqrt(rank) * 32;
+        // Crisp spacing keeping all 1,180 indie VTubers comfortably inside ~650px
+        const spread = 20 + Math.sqrt(rank) * 18.0;
         initialX = Math.cos(angle) * spread;
-        initialY = Math.sin(angle) * (spread * 0.92);
+        initialY = Math.sin(angle) * (spread * 0.94);
       }
     }
 
@@ -357,8 +362,8 @@ function processGraphData() {
     };
   });
 
-  // CRITICAL: Guarantee 0 overlapping circles right from Frame 0 with PBD relaxation
-  resolveCollisions(95, 6.0);
+  // Guarantee 0 overlapping circles right from Frame 0 with intra-cluster relaxation
+  resolveCollisions(15, 4.0);
   graphNodes.forEach(n => {
     n.homeX = n.x;
     n.homeY = n.y;
@@ -416,12 +421,15 @@ function populateDynamicLegend() {
 
       if (selectedAgency !== "ALL" && agencySwarmAnchors.has(selectedAgency)) {
         const anc = agencySwarmAnchors.get(selectedAgency);
+        zoom = 0.72;
         panX = container.clientWidth / 2 - anc.x * zoom;
         panY = container.clientHeight / 2 - anc.y * zoom;
-      } else if (selectedAgency === "Independent") {
+      } else {
+        zoom = 0.22;
         panX = container.clientWidth / 2;
         panY = container.clientHeight / 2;
       }
+      renderCanvas();
     });
     dynamicLegendList.appendChild(item);
   });
@@ -480,40 +488,50 @@ function reheatSimulation(heat = 0.5) {
 // 4. Position-Based Dynamics (PBD) Collision & Non-Overlap Solver
 // Absolutely guarantees ZERO overlapping circles across all swarms
 // ==========================================================
-function resolveCollisions(iterations = 10, padding = 5.0) {
+function resolveCollisions(iterations = 10, padding = 4.0) {
   const visible = graphNodes.filter(n => n.visible);
-  const len = visible.length;
-  for (let it = 0; it < iterations; it++) {
-    for (let i = 0; i < len; i++) {
-      const na = visible[i];
-      for (let j = i + 1; j < len; j++) {
-        const nb = visible[j];
-        const dx = nb.x - na.x;
-        const dy = nb.y - na.y;
-        const minDist = na.radius + nb.radius + padding;
-        const distSq = dx * dx + dy * dy;
-        if (distSq < minDist * minDist) {
-          let dist = Math.sqrt(distSq);
-          let nx = 1, ny = 0;
-          if (dist > 0.001) {
-            nx = dx / dist;
-            ny = dy / dist;
-          } else {
-            dist = 0.001;
-          }
-          const overlap = minDist - dist;
-          if (na === draggedNode) {
-            nb.x += nx * overlap;
-            nb.y += ny * overlap;
-          } else if (nb === draggedNode) {
-            na.x -= nx * overlap;
-            na.y -= ny * overlap;
-          } else {
-            const push = overlap * 0.51;
-            na.x -= nx * push;
-            na.y -= ny * push;
-            nb.x += nx * push;
-            nb.y += ny * push;
+  // Group by agency for intra-cluster collision resolution (Zero cross-agency displacement!)
+  const byAgency = new Map();
+  visible.forEach(n => {
+    const ag = n.agency || "Independent";
+    if (!byAgency.has(ag)) byAgency.set(ag, []);
+    byAgency.get(ag).push(n);
+  });
+
+  for (const [ag, group] of byAgency.entries()) {
+    const len = group.length;
+    for (let it = 0; it < iterations; it++) {
+      for (let i = 0; i < len; i++) {
+        const na = group[i];
+        for (let j = i + 1; j < len; j++) {
+          const nb = group[j];
+          const dx = nb.x - na.x;
+          const dy = nb.y - na.y;
+          const minDist = na.radius + nb.radius + padding;
+          const distSq = dx * dx + dy * dy;
+          if (distSq < minDist * minDist) {
+            let dist = Math.sqrt(distSq);
+            let nx = 1, ny = 0;
+            if (dist > 0.001) {
+              nx = dx / dist;
+              ny = dy / dist;
+            } else {
+              dist = 0.001;
+            }
+            const overlap = minDist - dist;
+            if (na === draggedNode) {
+              nb.x += nx * overlap;
+              nb.y += ny * overlap;
+            } else if (nb === draggedNode) {
+              na.x -= nx * overlap;
+              na.y -= ny * overlap;
+            } else {
+              const push = overlap * 0.51;
+              na.x -= nx * push;
+              na.y -= ny * push;
+              nb.x += nx * push;
+              nb.y += ny * push;
+            }
           }
         }
       }
@@ -644,14 +662,91 @@ function renderCanvas() {
     });
   }
 
-  // 1. Draw Agency Island & Central Swarm Labels (Clean minimal floating text)
+  // 1. Draw Agency Island & Central Swarm Labels (Clean Obsidian Typography)
+  // Sleek, refined text with dark semi-transparent halo (ZERO clunky boxes, zero collisions!)
   if (selectedAgency === "ALL") {
     for (const [agName, anchor] of agencySwarmAnchors.entries()) {
-      ctx.font = "600 11px 'Outfit', sans-serif";
-      ctx.fillStyle = `${anchor.color}99`;
+      const count = anchor.memberCount || 0;
+
+      // LOD: Don't show micro-agencies (< 4 creators) when zoomed out to keep view pristine
+      if (zoom < 0.35 && count < 4 && agName !== "Independent") {
+        continue;
+      }
+
+      // Restrained screen font size (strictly 11px to 15px, sleek & sharp)
+      let targetScreenPx = 11;
+      if (agName === "Independent") {
+        targetScreenPx = Math.max(12, Math.min(15, 13 / Math.pow(zoom, 0.12)));
+      } else if (count >= 10) {
+        targetScreenPx = Math.max(11, Math.min(14, 12 / Math.pow(zoom, 0.12)));
+      } else if (count >= 4) {
+        targetScreenPx = Math.max(10, Math.min(12, 11 / Math.pow(zoom, 0.12)));
+      } else {
+        targetScreenPx = Math.max(9, Math.min(11, 10 / Math.pow(zoom, 0.12)));
+      }
+
+      const worldFontSize = Math.round(targetScreenPx / zoom);
+      const subFontSize = Math.round((targetScreenPx * 0.72) / zoom);
+      const labelOffset = agName === "Independent" 
+        ? Math.max(35 / zoom, worldFontSize * 1.1)
+        : Math.max(16 / zoom, worldFontSize * 0.65);
+      const labelY = anchor.y - anchor.radius - labelOffset;
+      const displayName = agName === "Independent" ? "Independent Creators" : anchor.name;
+      const countText = `${count} ${count === 1 ? 'Creator' : 'Creators'}`;
+
+      ctx.save();
       ctx.textAlign = "center";
-      ctx.fillText(anchor.name, anchor.x, anchor.y - anchor.radius - 8);
+      ctx.textBaseline = "middle";
+
+      // 1. Clean Title with Dark Contrast Halo (NO giant opaque pill boxes!)
+      ctx.font = `700 ${worldFontSize}px 'Outfit', sans-serif`;
+      ctx.lineJoin = "round";
+      ctx.lineWidth = Math.max(2.5, 4.0 / zoom);
+      ctx.strokeStyle = "rgba(7, 10, 19, 0.95)";
+      ctx.strokeText(displayName, anchor.x, labelY);
+      ctx.fillStyle = "#f8fafc";
+      ctx.fillText(displayName, anchor.x, labelY);
+
+      // 2. Crisp Subtitle with member count
+      ctx.font = `600 ${subFontSize}px 'Outfit', sans-serif`;
+      ctx.lineWidth = Math.max(2.0, 3.0 / zoom);
+      ctx.strokeStyle = "rgba(7, 10, 19, 0.92)";
+      ctx.strokeText(countText, anchor.x, labelY + (worldFontSize * 0.82));
+      ctx.fillStyle = anchor.color;
+      ctx.fillText(countText, anchor.x, labelY + (worldFontSize * 0.82));
+
+      ctx.restore();
     }
+  } else if (agencySwarmAnchors.has(selectedAgency)) {
+    // When a specific agency is chosen, highlight its label prominently
+    const anchor = agencySwarmAnchors.get(selectedAgency);
+    const count = anchor.memberCount || 0;
+    const targetScreenPx = 14;
+    const worldFontSize = Math.round(targetScreenPx / zoom);
+    const subFontSize = Math.round((targetScreenPx * 0.75) / zoom);
+    const labelY = anchor.y - anchor.radius - (worldFontSize * 0.6);
+    const countText = `${count} Creators`;
+
+    ctx.save();
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    ctx.font = `700 ${worldFontSize}px 'Outfit', sans-serif`;
+    ctx.lineJoin = "round";
+    ctx.lineWidth = Math.max(3.0, 4.5 / zoom);
+    ctx.strokeStyle = "rgba(7, 10, 19, 0.95)";
+    ctx.strokeText(anchor.name, anchor.x, labelY);
+    ctx.fillStyle = "#38bdf8";
+    ctx.fillText(anchor.name, anchor.x, labelY);
+
+    ctx.font = `600 ${subFontSize}px 'Outfit', sans-serif`;
+    ctx.lineWidth = Math.max(2.0, 3.0 / zoom);
+    ctx.strokeStyle = "rgba(7, 10, 19, 0.92)";
+    ctx.strokeText(countText, anchor.x, labelY + (worldFontSize * 0.82));
+    ctx.fillStyle = anchor.color;
+    ctx.fillText(countText, anchor.x, labelY + (worldFontSize * 0.82));
+
+    ctx.restore();
   }
 
   // 2. Draw 2D Edges (Thin, crisp lines)
@@ -791,9 +886,11 @@ function setupEventListeners() {
     applyFilters();
     if (selectedAgency !== "ALL" && agencySwarmAnchors.has(selectedAgency)) {
       const anc = agencySwarmAnchors.get(selectedAgency);
+      zoom = 0.72;
       panX = container.clientWidth / 2 - anc.x * zoom;
       panY = container.clientHeight / 2 - anc.y * zoom;
-    } else if (selectedAgency === "Independent") {
+    } else {
+      zoom = 0.22;
       panX = container.clientWidth / 2;
       panY = container.clientHeight / 2;
     }
@@ -812,8 +909,8 @@ function setupEventListeners() {
     currentMetric = e.target.value;
     if (currentMetric === "shared_viewers") {
       thresholdSlider.max = 150;
-      thresholdSlider.value = 1;
-      sliderValue.textContent = "1";
+      thresholdSlider.value = 5;
+      sliderValue.textContent = "5";
     } else {
       thresholdSlider.max = 100;
       thresholdSlider.value = 5;
@@ -1002,7 +1099,7 @@ function onMouseUp() {
 function onWheel(e) {
   e.preventDefault();
   const zoomFactor = e.deltaY < 0 ? 1.08 : 0.92;
-  const newZoom = Math.max(0.25, Math.min(3.5, zoom * zoomFactor));
+  const newZoom = Math.max(0.10, Math.min(3.5, zoom * zoomFactor));
 
   const rect = container.getBoundingClientRect();
   const mouseX = e.clientX - rect.left;
