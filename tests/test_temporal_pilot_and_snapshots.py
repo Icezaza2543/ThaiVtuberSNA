@@ -13,6 +13,7 @@ Regression Cases:
 6. Buddhist Era normalization: Thai BE 2569 -> 2026, while normal CE 2024 remains 2024.
 """
 import pytest
+from pathlib import Path
 from datetime import datetime, timezone
 import duckdb
 import pyarrow as pa
@@ -23,7 +24,8 @@ from scripts.run_temporal_comment_pilot import parse_iso_dt, fetch_sampled_comme
 from scripts.build_duckdb_temporal_snapshots import (
     build_canonical_events_view,
     compute_window_snapshots,
-    calculate_channel_window_coverage
+    calculate_channel_window_coverage,
+    update_web_app_embedded_snapshots
 )
 
 def test_comment_timestamp_strict_no_fallback():
@@ -301,3 +303,53 @@ def test_regression_case_6_buddhist_era_normalization():
     # v_ce preserved at 2024
     assert res[1][0] == "v_ce"
     assert res[1][1].year == 2024
+
+def test_update_web_app_embedded_snapshots_idempotency(tmp_path):
+    """
+    Test that update_web_app_embedded_snapshots is strictly idempotent:
+    - Creates markers if absent
+    - Updates cleanly if markers present
+    - Exactly one EMBEDDED_TEMPORAL_SLICES declaration exists
+    - Calling it multiple times produces identical, byte-stable content
+    """
+    fake_app_js = tmp_path / "app.js"
+    initial_content = (
+        "// Some header\n"
+        "const EMBEDDED_DATA = {\"foo\": \"bar\"};\n\n"
+        "// Old embedded slices\n"
+        "const EMBEDDED_TEMPORAL_SLICES = {\"old\": true};\n\n"
+        "console.log('ready');\n"
+    )
+    fake_app_js.write_text(initial_content, encoding="utf-8")
+
+    sample_payload = {"metadata": {"total_slices": 2}, "slices": {"all_time": {"edges": []}}}
+
+    # First update
+    update_web_app_embedded_snapshots(sample_payload, fake_app_js)
+    content_after_first = fake_app_js.read_text(encoding="utf-8")
+    assert content_after_first.count("const EMBEDDED_TEMPORAL_SLICES") == 1
+    assert "// BEGIN GENERATED TEMPORAL SNAPSHOTS" in content_after_first
+    assert "// END GENERATED TEMPORAL SNAPSHOTS" in content_after_first
+
+    # Second update
+    update_web_app_embedded_snapshots(sample_payload, fake_app_js)
+    content_after_second = fake_app_js.read_text(encoding="utf-8")
+    assert content_after_second.count("const EMBEDDED_TEMPORAL_SLICES") == 1
+    assert content_after_first == content_after_second  # Byte-stable idempotency
+
+    # Third update
+    update_web_app_embedded_snapshots(sample_payload, fake_app_js)
+    content_after_third = fake_app_js.read_text(encoding="utf-8")
+    assert content_after_third.count("const EMBEDDED_TEMPORAL_SLICES") == 1
+    assert content_after_first == content_after_third
+
+
+def test_production_web_app_js_has_single_embedded_temporal_slices():
+    """Verify that production web/app.js has exactly ONE EMBEDDED_TEMPORAL_SLICES declaration."""
+    app_js_path = Path(__file__).resolve().parent.parent / "web" / "app.js"
+    assert app_js_path.exists()
+    content = app_js_path.read_text(encoding="utf-8")
+    count = content.count("const EMBEDDED_TEMPORAL_SLICES")
+    assert count == 1, f"Expected 1 EMBEDDED_TEMPORAL_SLICES in web/app.js, got {count}"
+    assert "// BEGIN GENERATED TEMPORAL SNAPSHOTS" in content
+    assert "// END GENERATED TEMPORAL SNAPSHOTS" in content

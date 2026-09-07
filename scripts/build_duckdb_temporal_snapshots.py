@@ -53,6 +53,60 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 SNAPSHOTS_PARQUET = OUTPUT_DIR / "network_snapshots.parquet"
 WEB_SNAPSHOTS_JSON = BASE_DIR / "web" / "data" / "temporal_snapshots.json"
 WEB_SNAPSHOTS_JSON.parent.mkdir(parents=True, exist_ok=True)
+WEB_APP_JS = BASE_DIR / "web" / "app.js"
+
+BEGIN_MARKER = "// BEGIN GENERATED TEMPORAL SNAPSHOTS"
+END_MARKER = "// END GENERATED TEMPORAL SNAPSHOTS"
+
+
+def update_web_app_embedded_snapshots(web_export: dict, app_js_path: Path = WEB_APP_JS) -> None:
+    """Deterministically and idempotently updates the embedded temporal snapshots in web/app.js.
+
+    Replaces the block enclosed by:
+    // BEGIN GENERATED TEMPORAL SNAPSHOTS
+    const EMBEDDED_TEMPORAL_SLICES = {...};
+    // END GENERATED TEMPORAL SNAPSHOTS
+
+    If markers are not yet present, locates existing const EMBEDDED_TEMPORAL_SLICES declaration
+    and wraps it cleanly with the markers.
+    Guarantees that exactly ONE const EMBEDDED_TEMPORAL_SLICES declaration exists.
+    """
+    if not app_js_path.exists():
+        logger.warning(f"{app_js_path} does not exist, skipping embedded update.")
+        return
+
+    content = app_js_path.read_text(encoding="utf-8")
+    json_payload = json.dumps(web_export, ensure_ascii=False, sort_keys=True)
+    generated_block = f"{BEGIN_MARKER}\nconst EMBEDDED_TEMPORAL_SLICES = {json_payload};\n{END_MARKER}"
+
+    if BEGIN_MARKER in content and END_MARKER in content:
+        start_idx = content.find(BEGIN_MARKER)
+        end_idx = content.find(END_MARKER) + len(END_MARKER)
+        new_content = content[:start_idx] + generated_block + content[end_idx:]
+    else:
+        import re
+        pattern = re.compile(
+            r"(?://[^\n]*\n)?const\s+EMBEDDED_TEMPORAL_SLICES\s*=\s*[\s\S]*?;\s*\n"
+        )
+        match = pattern.search(content)
+        if match:
+            new_content = content[:match.start()] + generated_block + "\n" + content[match.end():]
+        else:
+            data_match = re.search(r"const\s+EMBEDDED_DATA\s*=\s*[\s\S]*?;\s*\n", content)
+            if data_match:
+                insert_pos = data_match.end()
+                new_content = content[:insert_pos] + "\n" + generated_block + "\n" + content[insert_pos:]
+            else:
+                new_content = generated_block + "\n\n" + content
+
+    count = new_content.count("const EMBEDDED_TEMPORAL_SLICES")
+    if count != 1:
+        raise ValueError(
+            f"Embedded temporal snapshot update failed: expected exactly 1 declaration, found {count}"
+        )
+
+    app_js_path.write_text(new_content, encoding="utf-8")
+    logger.info(f"Updated embedded temporal snapshots in {app_js_path} (idempotent, 1 declaration verified).")
 
 # Schema definition for Network Snapshots
 NETWORK_SNAPSHOT_SCHEMA = pa.schema([
@@ -527,6 +581,9 @@ def main():
         with open(WEB_SNAPSHOTS_JSON, "w", encoding="utf-8") as f:
             json.dump(web_export, f, ensure_ascii=False)
         logger.info(f"Saved Web Time Slider snapshot slices to {WEB_SNAPSHOTS_JSON}.")
+
+        # Deterministically update embedded fallback in web/app.js
+        update_web_app_embedded_snapshots(web_export, WEB_APP_JS)
 
     logger.info("==========================================================")
     logger.info(" Phase T3 / Hotfix 1-3 Complete! Dynamic Snapshots Ready. ")
