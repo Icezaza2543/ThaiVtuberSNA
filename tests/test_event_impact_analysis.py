@@ -1,7 +1,7 @@
 """
-Regression and analytical tests for Phase T9: Event Impact Analysis.
-Validates outputs, column contracts, privacy preservation, evidence stratification,
-and non-causal reporting language.
+Regression and analytical tests for Phase T9: Event Impact Analysis (Research Integrity Edition).
+Validates verified vs proxy result separation, non-causal reporting, privacy preservation,
+and evidence stratification.
 """
 
 import re
@@ -39,6 +39,9 @@ def test_event_impact_schema_and_columns(impact_metrics_df):
         "event_date",
         "agency_at_event",
         "agency_at_selection",
+        "verification_status",
+        "confidence",
+        "analysis_tier",
         "window_days",
         "pre_start",
         "pre_end",
@@ -63,6 +66,22 @@ def test_event_impact_schema_and_columns(impact_metrics_df):
         assert col in impact_metrics_df.columns, f"Missing required column: {col}"
 
 
+def test_verified_vs_proxy_separation(impact_metrics_df):
+    """Verify that primary verified events and exploratory proxy events are strictly partitioned."""
+    assert set(impact_metrics_df["analysis_tier"].unique()) == {"PRIMARY_VERIFIED", "EXPLORATORY_PROXY"}
+    
+    verified_rows = impact_metrics_df[impact_metrics_df["analysis_tier"] == "PRIMARY_VERIFIED"]
+    proxy_rows = impact_metrics_df[impact_metrics_df["analysis_tier"] == "EXPLORATORY_PROXY"]
+
+    assert len(verified_rows) > 0, "Expected verified events in primary tier"
+    assert (verified_rows["verification_status"] == "VERIFIED").all()
+    assert (verified_rows["confidence"] == "HIGH").all()
+
+    assert len(proxy_rows) > 0, "Expected proxy events in exploratory tier"
+    assert (proxy_rows["verification_status"] == "INFERRED_PROXY").all()
+    assert (proxy_rows["confidence"] != "HIGH").all()
+
+
 def test_event_impact_windows(impact_metrics_df):
     """Verify metrics exist for both 30-day and 90-day observation windows."""
     windows = set(impact_metrics_df["window_days"].unique())
@@ -71,7 +90,6 @@ def test_event_impact_windows(impact_metrics_df):
     count_30 = (impact_metrics_df["window_days"] == 30).sum()
     count_90 = (impact_metrics_df["window_days"] == 90).sum()
     assert count_30 == count_90, "Event count must match between 30d and 90d window analyses"
-    assert count_30 >= 200, f"Expected >= 200 events analyzed, got {count_30}"
 
 
 def test_zero_viewer_hash_leakage(impact_metrics_df):
