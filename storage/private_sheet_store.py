@@ -15,7 +15,7 @@ def column_name(number):
 
 
 class PrivateSheetStore:
-    def __init__(self, spreadsheet=None, *, known_secrets=(), request_interval=1.05):
+    def __init__(self, spreadsheet=None, *, known_secrets=None, request_interval=1.05):
         if spreadsheet is None:
             import gspread
             from config.settings import GOOGLE_SHEETS_CONFIG
@@ -26,6 +26,9 @@ class PrivateSheetStore:
         if spreadsheet.id != SPREADSHEET_ID or spreadsheet.title != SPREADSHEET_TITLE:
             raise RuntimeError('Wrong private data plane')
         self.spreadsheet = spreadsheet
+        if known_secrets is None:
+            from scripts.audit_private_data_plane import local_secret_values
+            known_secrets = local_secret_values()
         self.known_secrets = known_secrets
         self.request_interval = request_interval
         self._last_write = 0
@@ -57,11 +60,13 @@ class PrivateSheetStore:
     def write_verified_table(self, title, headers, rows, *, batch_size=5000):
         """Resume deterministic writes; never clear a worksheet. Refuse conflicting data."""
         rows = [['' if x is None else str(x) for x in row] for row in rows]
+        if not headers or any(len(row) != len(headers) for row in rows):
+            raise ValueError('Table rows must match the declared schema')
         assert_sheet_rows(headers, rows, self.known_secrets)
         ws = self.ensure_tab(title, len(headers), len(rows)+1)
         end = column_name(len(headers))
         existing_header = self._write(ws.get_values, f'A1:{end}1')
-        if existing_header and existing_header[0] != headers:
+        if existing_header and any(existing_header[0]) and existing_header[0] != headers:
             raise RuntimeError('Existing worksheet schema differs; preserve it for explicit migration')
         values = [headers] + rows
         for start in range(0, len(values), batch_size):
@@ -83,7 +88,7 @@ class PrivateSheetStore:
         digest = hashlib.sha256(json.dumps(values, ensure_ascii=False, separators=(',',':')).encode()).hexdigest()
         return {'tab': title, 'rows': len(rows), 'columns': len(headers), 'content_sha256': digest, 'verified': True}
 
-    def read_records(self, title, headers, *, batch_size=3000):
+    def read_records(self, title, headers, *, batch_size=5000):
         ws = self.spreadsheet.worksheet(title)
         end = column_name(len(headers))
         if self._write(ws.get_values, f'A1:{end}1') != [headers]:

@@ -4,5 +4,7 @@ pandas>=2.0.0
 networkx>=3.0
 requests>=2.31.0
 google-api-python-client>=2.100.0
+gspread>=6.0.0
+google-auth>=2.0.0
 pytest>=8.0.0
 yt-dlp>=2024.1.1
