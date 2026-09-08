@@ -5,14 +5,14 @@ This report analyzes observed audience and network changes surrounding documente
 
 ### Methodological & Epistemic Contracts
 1. **Primary Verified vs. Exploratory Proxy Separation:**
-   - **Primary Analysis Tier:** Strictly limited to **4 verified lifecycle events** (events anchored by explicit video stream evidence or audited registry records).
-   - **Exploratory Analysis Tier:** Evaluates **220 observational proxy events** (derived from earliest observed content boundaries or activity cutoffs). Headline statistics do NOT conflate verified milestones with observational proxies.
+   - **Primary Analysis Tier:** Strictly limited to **2 verified lifecycle events** (events anchored by explicit video stream evidence or audited registry records).
+   - **Exploratory Analysis Tier:** Evaluates **222 observational proxy events** (derived from earliest observed content boundaries or activity cutoffs). Headline statistics do NOT conflate verified milestones with observational proxies.
 2. **Strict Non-Causal Framing:**
    - All findings express *observed changes around events* and *temporal co-occurrence associations*. Observational SNA data reflects active interaction within sampled content and must never be interpreted as proving that an event "caused" audience migration.
 3. **Evidence Stratification:**
    - Events with fewer than 5 observed active viewers in both pre- and post-windows are classified as `INSUFFICIENT_EVIDENCE`.
 4. **Honest Reporting of Event Reduction:**
-   - Rigorous correction in T8 reduced the number of verified channel-level events from inflated counts (~300) down to **4 genuine verified anchors**, while preserving **220 exploratory proxy events** for separate sensitivity modeling. 9 target channels with zero public video history were excluded from temporal window analysis.
+   - Rigorous correction in T8 reduced the number of verified channel-level events from inflated counts (~300) down to **2 genuine verified anchors**, while preserving **222 exploratory proxy events** for separate sensitivity modeling. 9 target channels with zero public video history were excluded from temporal window analysis.
 
 ---
 
@@ -20,8 +20,8 @@ This report analyzes observed audience and network changes surrounding documente
 
 | Analysis Tier | Verification Status | Events Modeled | 30d Windows | 90d Windows | Sufficient Evidence (90d) | Insufficient Evidence (90d) |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| **PRIMARY** | `VERIFIED` | **4** | 4 | 4 | 1 | 3 |
-| **EXPLORATORY** | `INFERRED_PROXY` | **220** | 220 | 220 | 150 | 70 |
+| **PRIMARY** | `VERIFIED` | **2** | 2 | 2 | 0 | 2 |
+| **EXPLORATORY** | `INFERRED_PROXY` | **222** | 222 | 222 | 151 | 71 |
 | **EXCLUDED** | `UNKNOWN` | **9** | 0 | 0 | 0 | 9 (Zero video history) |
 
 ---
@@ -35,22 +35,18 @@ The primary analysis evaluates events where the exact event date and lifecycle t
 | Channel | Event Type | Event Date | Agency (at Event) | Pre Viewers (90d) | Post Focal Viewers | Focal Retention Rate | Pre-Viewers Seen Elsewhere | Top Post-Associated Channels | Evidence Status |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- | :---: |
 | **UC3ZglUA0HEUCuGbe5b8zXKw** | `re_debut` | 2022-01-17 | Unknown | 0 | 0 | 0.0% | 0 | None observed | `INSUFFICIENT_EVIDENCE` |
-| **Shimonz** | `graduation` | 2022-10-16 | Unknown | 14 | 3 | 0.0% | 0 | None observed | `SUFFICIENT_EVIDENCE` |
-| **Mysterica X. Ch. | RPG** | `graduation` | 2024-09-03 | Unknown | 0 | 0 | 0.0% | 0 | None observed | `INSUFFICIENT_EVIDENCE` |
 | **UC32lsx7u7vqy63SguuuzmVg** | `graduation` | 2025-12-20 | Unknown | 0 | 0 | 0.0% | 0 | None observed | `INSUFFICIENT_EVIDENCE` |
-
 ### 2.2 Substantive Observations on Verified Anchors
-- **Shimonz (Verified Retirement / Graduation, 2022-10-16):**
-  - Prior to retirement, 14 active interacting viewers were recorded in the 90-day window.
-  - In the post-retirement window, focal participation fell to 3 viewers (focal retention rate = 0.0%).
-  - Pre-event viewers were not observed actively participating on other cataloged channels during this early period, reflecting the smaller overall network density in 2022.
-- **Narelle ch. 【FIXIX VT】 (Verified Graduation Stream, 2025-12-20):**
-  - Prior to graduation, 4 active viewers were recorded; post-graduation focal activity was 1 viewer.
-  - Classified as `INSUFFICIENT_EVIDENCE` due to interaction volume below the 5-viewer reliability threshold.
-- **The Lupas (Verified Re-Debut Stream, 2022-01-17):**
-  - Re-debut marked by the stream *【Re-Debut : การกลับมาของลูปัสแอลลล】*; low catalog comment density in early 2022 places this event in `INSUFFICIENT_EVIDENCE`.
-- **Mysterica X. Ch. | RPG (Verified Graduation in RPG Closure Cohort, 2024-09-03):**
-  - Single archival upload cataloged; interaction volume is below threshold (`INSUFFICIENT_EVIDENCE`).
+- **UC3ZglUA0HEUCuGbe5b8zXKw (Verified `re_debut`, 2022-01-17):**
+  - Pre-event active interacting viewers: 0 in the 90-day window.
+  - Post-event focal viewers: 0 (focal retention rate = 0.0%).
+  - Viewers observed on other channels post-event: 0.
+  - Evidence classification: `INSUFFICIENT_EVIDENCE` (Low interaction volume in window (< 5 viewers pre and post)).
+- **UC32lsx7u7vqy63SguuuzmVg (Verified `graduation`, 2025-12-20):**
+  - Pre-event active interacting viewers: 0 in the 90-day window.
+  - Post-event focal viewers: 0 (focal retention rate = 0.0%).
+  - Viewers observed on other channels post-event: 0.
+  - Evidence classification: `INSUFFICIENT_EVIDENCE` (Low interaction volume in window (< 5 viewers pre and post)).
 
 ---
 

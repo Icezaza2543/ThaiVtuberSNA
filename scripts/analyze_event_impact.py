@@ -399,20 +399,21 @@ The primary analysis evaluates events where the exact event date and lifecycle t
             f"{r['pre_viewers_seen_other_post']} | {top_str} | `{r['evidence_status']}` |\n"
         )
 
-    md += """
-### 2.2 Substantive Observations on Verified Anchors
-- **Shimonz (Verified Retirement / Graduation, 2022-10-16):**
-  - Prior to retirement, 14 active interacting viewers were recorded in the 90-day window.
-  - In the post-retirement window, focal participation fell to 3 viewers (focal retention rate = 0.0%).
-  - Pre-event viewers were not observed actively participating on other cataloged channels during this early period, reflecting the smaller overall network density in 2022.
-- **Narelle ch. 【FIXIX VT】 (Verified Graduation Stream, 2025-12-20):**
-  - Prior to graduation, 4 active viewers were recorded; post-graduation focal activity was 1 viewer.
-  - Classified as `INSUFFICIENT_EVIDENCE` due to interaction volume below the 5-viewer reliability threshold.
-- **The Lupas (Verified Re-Debut Stream, 2022-01-17):**
-  - Re-debut marked by the stream *【Re-Debut : การกลับมาของลูปัสแอลลล】*; low catalog comment density in early 2022 places this event in `INSUFFICIENT_EVIDENCE`.
-- **Mysterica X. Ch. | RPG (Verified Graduation in RPG Closure Cohort, 2024-09-03):**
-  - Single archival upload cataloged; interaction volume is below threshold (`INSUFFICIENT_EVIDENCE`).
+    md += "### 2.2 Substantive Observations on Verified Anchors\n"
+    if v_90.empty:
+        md += "No verified channel anchors available in the evaluated observation window.\n"
+    else:
+        for _, r in v_90.iterrows():
+            top_info = f" Top post-associated channels: {r['top_post_associated_channels']}." if r['top_post_associated_channels'] else ""
+            md += (
+                f"- **{r['channel_name']} (Verified `{r['event_type']}`, {r['event_date']}):**\n"
+                f"  - Pre-event active interacting viewers: {r['pre_focal_viewers']} in the 90-day window.\n"
+                f"  - Post-event focal viewers: {r['post_focal_viewers']} (focal retention rate = {r['focal_retention_rate']:.1%}).\n"
+                f"  - Viewers observed on other channels post-event: {r['pre_viewers_seen_other_post']}.{top_info}\n"
+                f"  - Evidence classification: `{r['evidence_status']}` ({r['evidence_note']}).\n"
+            )
 
+    md += """
 ---
 
 ## 3. Exploratory Analysis: Observational Proxy Slices
