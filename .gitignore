@@ -58,3 +58,4 @@ data/**/raw_comment*.csv
 .observatory.lock
 .observatory_pending.json
 .observatory_generations/
+scratch/

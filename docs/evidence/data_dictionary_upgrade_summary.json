@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "worksheet": "DATA_DICTIONARY",
+  "rows_created": 161,
+  "total_rows_with_header": 162,
+  "columns": 15,
+  "headers": [
+    "category",
+    "tab_or_artifact",
+    "field",
+    "thai_name",
+    "definition_th",
+    "calculation_or_source",
+    "data_type_unit",
+    "example_value",
+    "high_value_means",
+    "low_value_means",
+    "blank_null_means",
+    "allowed_values",
+    "interpretation_warning",
+    "privacy_class",
+    "used_for"
+  ],
+  "conditional_format_rules_count": 3,
+  "content_sha256": "6367b05d9891485846960ec5ec8863128d9ad31fa6cfde116af163ee378d0194",
+  "semantic_hotfix_applied": true,
+  "categories_covered": {
+    "PROJECT_SHEET_GUIDE": 11,
+    "QUICK_REFERENCE_METRIC": 27,
+    "SHEET_COLUMN": 73,
+    "RESEARCH_METRIC": 24,
+    "STATUS_ENUM": 26
+  },
+  "tabs_covered": [
+    "NETWORK_RESULT",
+    "VTUBERS",
+    "SYSTEM",
+    "ALL_COMMENTERS",
+    "VIEWER_INDEX",
+    "VIEWER_CHANNEL_PRESENCE",
+    "VIEWER_ACTIVITY_SUMMARY",
+    "PRIVATE_DATA_ARCHIVE",
+    "RECOVERY_METADATA",
+    "MIGRATION_AUDIT",
+    "DATA_DICTIONARY"
+  ]
+}

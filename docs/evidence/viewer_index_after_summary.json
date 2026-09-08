@@ -1,0 +1,62 @@
+{
+  "viewer_hash": {
+    "TOTAL_ROWS": 108480,
+    "NON_EMPTY": 79718,
+    "MISSING": 28762,
+    "INVALID": 0
+  },
+  "raw_channel_id": {
+    "TOTAL_ROWS": 108480,
+    "NON_EMPTY": 0,
+    "MISSING": 108480,
+    "INVALID": 0
+  },
+  "display_name": {
+    "TOTAL_ROWS": 108480,
+    "NON_EMPTY": 28762,
+    "MISSING": 79718,
+    "INVALID": 0
+  },
+  "channel_url": {
+    "TOTAL_ROWS": 108480,
+    "NON_EMPTY": 28762,
+    "MISSING": 79718,
+    "INVALID": 0
+  },
+  "first_seen": {
+    "TOTAL_ROWS": 108480,
+    "NON_EMPTY": 108480,
+    "MISSING": 0,
+    "INVALID": 0
+  },
+  "last_seen": {
+    "TOTAL_ROWS": 108480,
+    "NON_EMPTY": 108480,
+    "MISSING": 0,
+    "INVALID": 0
+  },
+  "total_interactions": {
+    "TOTAL_ROWS": 108480,
+    "NON_EMPTY": 108480,
+    "MISSING": 0,
+    "INVALID": 0
+  },
+  "channels_observed_count": {
+    "TOTAL_ROWS": 108480,
+    "NON_EMPTY": 108480,
+    "MISSING": 0,
+    "INVALID": 0
+  },
+  "recovery_source": {
+    "TOTAL_ROWS": 108480,
+    "NON_EMPTY": 108480,
+    "MISSING": 0,
+    "INVALID": 0
+  },
+  "recovery_status": {
+    "TOTAL_ROWS": 108480,
+    "NON_EMPTY": 108480,
+    "MISSING": 0,
+    "INVALID": 0
+  }
+}

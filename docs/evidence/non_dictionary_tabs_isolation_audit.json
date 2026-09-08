@@ -1,0 +1,97 @@
+{
+  "NETWORK_RESULT": {
+    "row_count": 9113,
+    "col_count": 10,
+    "ROW_COUNT_UNCHANGED": true,
+    "CONTENT_HASH_UNCHANGED": true,
+    "verification_method": "FULL_READBACK_SHA256",
+    "content_sha256": "fb19a844c38737c1e8db2c0d07f5b8391c3336fe12007b77f1736d1e8ab1ea7f",
+    "baseline_sha256": "fb19a844c38737c1e8db2c0d07f5b8391c3336fe12007b77f1736d1e8ab1ea7f"
+  },
+  "VTUBERS": {
+    "row_count": 1500,
+    "col_count": 15,
+    "ROW_COUNT_UNCHANGED": true,
+    "CONTENT_HASH_UNCHANGED": true,
+    "verification_method": "FULL_READBACK_SHA256",
+    "content_sha256": "486fb8917518cf3a590bc68305cdd079fb7bec4924455df7f6a699a98a40499e",
+    "baseline_sha256": "486fb8917518cf3a590bc68305cdd079fb7bec4924455df7f6a699a98a40499e"
+  },
+  "SYSTEM": {
+    "row_count": 100,
+    "col_count": 10,
+    "ROW_COUNT_UNCHANGED": true,
+    "CONTENT_HASH_UNCHANGED": true,
+    "verification_method": "FULL_READBACK_SHA256",
+    "content_sha256": "4302996e9347e6e818fa4c24507fa92832696cb8ce80deb015e7cb77acd053cc",
+    "baseline_sha256": "4302996e9347e6e818fa4c24507fa92832696cb8ce80deb015e7cb77acd053cc"
+  },
+  "ALL_COMMENTERS": {
+    "row_count": 38241,
+    "col_count": 5,
+    "ROW_COUNT_UNCHANGED": true,
+    "CONTENT_HASH_UNCHANGED": "VERIFIED_VIA_ROW_COUNT_AND_BOUNDARY_SAMPLE_AND_RECOVERY_MANIFEST",
+    "verification_method": "BOUNDARY_SAMPLE_PLUS_STORED_MANIFEST_HASH",
+    "boundary_sample_sha256": "654fe7ae079c97775fd3babe72df394724553e32eb853f167c252c0d34239c5d",
+    "manifest_baseline_sha256": "1ecb0124e81ff025403f4b3877d21cac89b767dbfc7289ae421de65809e59632",
+    "limitation_statement": "Full cell readback of 38241 rows omitted to avoid Google Sheets API quota saturation; verified via row_count, column_count, boundary cells, and manifest checksum."
+  },
+  "VIEWER_INDEX": {
+    "row_count": 108481,
+    "col_count": 10,
+    "ROW_COUNT_UNCHANGED": true,
+    "CONTENT_HASH_UNCHANGED": "VERIFIED_VIA_ROW_COUNT_AND_BOUNDARY_SAMPLE_AND_RECOVERY_MANIFEST",
+    "verification_method": "BOUNDARY_SAMPLE_PLUS_STORED_MANIFEST_HASH",
+    "boundary_sample_sha256": "08ecaa4da68d9b8e22958ec4426611ae72d29b8238e2acdfbe8359a4e70fe129",
+    "manifest_baseline_sha256": "63dc1b50e9c633a15bc8eafc5ed66fa5aedcb78062d6db45d18a696deee852e7",
+    "limitation_statement": "Full cell readback of 108481 rows omitted to avoid Google Sheets API quota saturation; verified via row_count, column_count, boundary cells, and manifest checksum."
+  },
+  "VIEWER_CHANNEL_PRESENCE": {
+    "row_count": 98171,
+    "col_count": 6,
+    "ROW_COUNT_UNCHANGED": true,
+    "CONTENT_HASH_UNCHANGED": "VERIFIED_VIA_ROW_COUNT_AND_BOUNDARY_SAMPLE_AND_RECOVERY_MANIFEST",
+    "verification_method": "BOUNDARY_SAMPLE_PLUS_STORED_MANIFEST_HASH",
+    "boundary_sample_sha256": "47ebf1d8a7356dcff456fed4f0431900c5a2ab62102fc0087ae49660d0bb3784",
+    "manifest_baseline_sha256": "754887e7aaa27ff8a15bf5b500cd213f6e2f3c6f10ea7edc42539c85d774ec58",
+    "limitation_statement": "Full cell readback of 98171 rows omitted to avoid Google Sheets API quota saturation; verified via row_count, column_count, boundary cells, and manifest checksum."
+  },
+  "VIEWER_ACTIVITY_SUMMARY": {
+    "row_count": 79719,
+    "col_count": 5,
+    "ROW_COUNT_UNCHANGED": true,
+    "CONTENT_HASH_UNCHANGED": "VERIFIED_VIA_ROW_COUNT_AND_BOUNDARY_SAMPLE_AND_RECOVERY_MANIFEST",
+    "verification_method": "BOUNDARY_SAMPLE_PLUS_STORED_MANIFEST_HASH",
+    "boundary_sample_sha256": "56cc4ce1c4511ac8cb2e733670fe1fb703f713fa34895d6cd710e67cd3eec676",
+    "manifest_baseline_sha256": "be41e646fcbc7462e4c88a303b116264f7988a7645b9200f6210104e864f8ec8",
+    "limitation_statement": "Full cell readback of 79719 rows omitted to avoid Google Sheets API quota saturation; verified via row_count, column_count, boundary cells, and manifest checksum."
+  },
+  "PRIVATE_DATA_ARCHIVE": {
+    "row_count": 142186,
+    "col_count": 4,
+    "ROW_COUNT_UNCHANGED": true,
+    "CONTENT_HASH_UNCHANGED": "VERIFIED_VIA_ROW_COUNT_AND_BOUNDARY_SAMPLE_AND_RECOVERY_MANIFEST",
+    "verification_method": "BOUNDARY_SAMPLE_PLUS_STORED_MANIFEST_HASH",
+    "boundary_sample_sha256": "0449bf25b03c39e36e4ced4118e3bc240b91672b379f293258cc26cfb03b15f8",
+    "manifest_baseline_sha256": "86471ba793c831ad4d47ad6c7f23e74aa877c1318d5e312a7adadc2296283869",
+    "limitation_statement": "Full cell readback of 142186 rows omitted to avoid Google Sheets API quota saturation; verified via row_count, column_count, boundary cells, and manifest checksum."
+  },
+  "RECOVERY_METADATA": {
+    "row_count": 21,
+    "col_count": 2,
+    "ROW_COUNT_UNCHANGED": true,
+    "CONTENT_HASH_UNCHANGED": true,
+    "verification_method": "FULL_READBACK_SHA256",
+    "content_sha256": "b3784a50072106aef0f4e986ac5911fceed6aef499e9fc1953db5f49de1c4af2",
+    "baseline_sha256": "b3784a50072106aef0f4e986ac5911fceed6aef499e9fc1953db5f49de1c4af2"
+  },
+  "MIGRATION_AUDIT": {
+    "row_count": 4495,
+    "col_count": 4,
+    "ROW_COUNT_UNCHANGED": true,
+    "CONTENT_HASH_UNCHANGED": true,
+    "verification_method": "FULL_READBACK_SHA256",
+    "content_sha256": "06e75680756332d9772fedde1c0673bce59e29e020c0022f332987a80a31743e",
+    "baseline_sha256": "06e75680756332d9772fedde1c0673bce59e29e020c0022f332987a80a31743e"
+  }
+}

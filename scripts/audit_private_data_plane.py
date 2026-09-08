@@ -22,10 +22,11 @@ def local_secret_values():
     return values
 
 
-def audit_private_sheet(spreadsheet, known_secrets=()):
+def audit_private_sheet(spreadsheet, known_secrets=(), target_tab=None):
     store = PrivateSheetStore(spreadsheet, known_secrets=known_secrets)
     findings, tabs, hashes = [], [], set()
-    for ws in spreadsheet.worksheets():
+    worksheets = [ws for ws in spreadsheet.worksheets() if target_tab is None or ws.title == target_tab]
+    for ws in worksheets:
         end = column_name(ws.col_count)
         header = store._write(ws.get_values, f'A1:{end}1')
         headers = header[0] if header else []
@@ -65,8 +66,9 @@ def audit_private_sheet(spreadsheet, known_secrets=()):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--verify', action='store_true')
-    parser.parse_args()
-    report = audit_private_sheet(PrivateSheetStore().spreadsheet, local_secret_values())
+    parser.add_argument('--tab', type=str, default=None, help='Audit specific tab only')
+    args = parser.parse_args()
+    report = audit_private_sheet(PrivateSheetStore().spreadsheet, local_secret_values(), target_tab=args.tab)
     print(json.dumps(report, indent=2))
     return 1 if report['status']=='FAIL' else 0
 

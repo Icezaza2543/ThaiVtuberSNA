@@ -26992,7 +26992,7 @@
       "tab": "VIEWER_INDEX",
       "rows": 108480,
       "columns": 10,
-      "content_sha256": "ea5e329b4b08686ee6ea4a02b50abde7e4d9701941ff7250f9ef30aa3aa01bc8",
+      "content_sha256": "63dc1b50e9c633a15bc8eafc5ed66fa5aedcb78062d6db45d18a696deee852e7",
       "verified": true
     },
     {
@@ -27018,9 +27018,9 @@
     },
     {
       "tab": "RECOVERY_METADATA",
-      "rows": 13,
+      "rows": 20,
       "columns": 2,
-      "content_sha256": "bd2e0ab098f804f14a21efd7504861ab63a5f7a81ddd0c419c96aa6dea3cf52d",
+      "content_sha256": "b3784a50072106aef0f4e986ac5911fceed6aef499e9fc1953db5f49de1c4af2",
       "verified": true
     },
     {
@@ -27032,9 +27032,9 @@
     },
     {
       "tab": "DATA_DICTIONARY",
-      "rows": 30,
-      "columns": 4,
-      "content_sha256": "5bde7dadc7aa6d51e7f9e7287c7f47155e13b45954bcef968460a511c2276525",
+      "rows": 161,
+      "columns": 15,
+      "content_sha256": "6367b05d9891485846960ec5ec8863128d9ad31fa6cfde116af163ee378d0194",
       "verified": true
     }
   ]
