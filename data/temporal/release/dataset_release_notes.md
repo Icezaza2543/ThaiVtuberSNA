@@ -1,10 +1,10 @@
 # Thai VTuber SNA — Reproducible Research Dataset Release Notes
 
 **Release Version:** 1.0.0
-**Deterministic Content Hash:** `sha256_91a91cb328e50c4c99b5df7f9fda4dd49f6a360cc1bf2ccb19c6a32548138b3d`
+**Deterministic Content Hash:** `sha256_1036574679f392422b8120cb03591daa96a5dbfad75ef145b3e8149863910f76`
 **Privacy Classification:** `NO_VIEWER_LEVEL_DATA`
-**Documented Artifacts:** 38 files (1.04 MB)
-**Generated Timestamp:** 2026-09-08T15:40:04.660518+00:00
+**Documented Artifacts:** 39 files (1.04 MB)
+**Generated Timestamp:** 2026-09-08T15:45:39.151676+00:00
 
 ---
 
@@ -132,11 +132,12 @@
 ---
 
 ### Integrity Reports
-**Files:** 2 | **Size:** 12.0 KB
+**Files:** 3 | **Size:** 19.5 KB
 
 | File Path | Format | Size | SHA-256 Checksum |
 | :--- | :---: | ---: | :--- |
 | `data/temporal/research_integrity/t11_t16_integrity_report.md` | md | 8.2 KB | `sha256_718d14631501c7d72...` |
+| `data/temporal/research_integrity/t11_t19_final_integrity_report.md` | md | 7.5 KB | `sha256_efb2ddf2a2c88dfd9...` |
 | `data/temporal/research_integrity/t8_t10_integrity_report.md` | md | 3.8 KB | `sha256_6e5580228bec0413f...` |
 
 ---

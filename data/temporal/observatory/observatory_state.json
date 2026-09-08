@@ -1,0 +1,10 @@
+{
+  "active_dataset_version": "v1.0.0",
+  "last_success_run_id": null,
+  "last_success_timestamp": null,
+  "last_data_interaction_time": "2026-09-08T11:37:10+07:00",
+  "stale_threshold_days": 30,
+  "total_runs": 0,
+  "historical_baseline_hash": "sha256_2588ce1ce8e48df69a449ebe3bb8de7266b1cf6bf18b08495ae4d4acc5c43805",
+  "hmac_key_fingerprint": "sha256_142e095047f2f49c652fa1d04c3d146070f1b96b2bae697731bb40d146cf3eba"
+}

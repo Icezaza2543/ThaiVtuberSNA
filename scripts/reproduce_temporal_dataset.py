@@ -20,7 +20,7 @@ PIPELINE_STEPS = [
     ("T11 Community Lineage v2", ["python", "scripts/build_community_lineage_v2.py"]),
     ("T13 Centrality Evolution", ["python", "scripts/analyze_centrality_evolution.py"]),
     ("T14 Ecosystem Evolution", ["python", "scripts/analyze_ecosystem_evolution.py"]),
-    ("T15 Evidence Quality", ["python", "scripts/generate_evidence_quality_report.py"]),
+    ("T15 Evidence Quality", ["python", "scripts/analyze_evidence_quality.py"]),
     ("T17 Research Dashboard Data", ["python", "scripts/build_research_dashboard_data.py"]),
     ("T18 Dataset Release Package", ["python", "scripts/build_dataset_release.py"]),
     ("T18 Release Validation", ["python", "scripts/validate_dataset_release.py"]),

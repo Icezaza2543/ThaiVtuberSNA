@@ -3,10 +3,10 @@
     "title": "Thai VTuber SNA — Reproducible Research Dataset",
     "version": "1.0.0",
     "release_id": "thai_vtuber_sna_v1_0_0",
-    "generated_at": "2026-09-08T15:40:04.660518+00:00",
-    "deterministic_content_hash": "sha256_91a91cb328e50c4c99b5df7f9fda4dd49f6a360cc1bf2ccb19c6a32548138b3d",
-    "total_artifacts": 38,
-    "total_bytes": 1086581,
+    "generated_at": "2026-09-08T15:45:39.151676+00:00",
+    "deterministic_content_hash": "sha256_1036574679f392422b8120cb03591daa96a5dbfad75ef145b3e8149863910f76",
+    "total_artifacts": 39,
+    "total_bytes": 1094286,
     "checksum_algorithm": "SHA-256",
     "privacy_level": "NO_VIEWER_LEVEL_DATA"
   },
@@ -3487,8 +3487,8 @@
     },
     "research_integrity": {
       "label": "Integrity Reports",
-      "file_count": 2,
-      "total_bytes": 12243,
+      "file_count": 3,
+      "total_bytes": 19948,
       "artifacts": [
         {
           "path": "data/temporal/research_integrity/t11_t16_integrity_report.md",
@@ -3497,6 +3497,14 @@
           "format": "md",
           "content_type": "markdown_report",
           "lines": 127
+        },
+        {
+          "path": "data/temporal/research_integrity/t11_t19_final_integrity_report.md",
+          "size_bytes": 7705,
+          "checksum": "sha256_efb2ddf2a2c88dfd94a768ffa44e8f433cc92c1683ceddde378b50ad1182e091",
+          "format": "md",
+          "content_type": "markdown_report",
+          "lines": 109
         },
         {
           "path": "data/temporal/research_integrity/t8_t10_integrity_report.md",

@@ -139,4 +139,4 @@ We emphasize that all findings must be interpreted within observational constrai
 
 ---
 
-*Report generated programmatically via `scripts/build_technical_report.py` on 2026-09-08 15:39 UTC.*
+*Report generated programmatically via `scripts/build_technical_report.py` on 2026-09-08 15:45 UTC.*
