@@ -275,14 +275,14 @@ def run_centrality_evolution_analysis() -> None:
         if num_years <= 1 or max_btw_pct < 0.75:
             classification = "INSUFFICIENT_EVIDENCE"
             rule_reason = f"Observed in {num_years} year(s) with max percentile {max_btw_pct:.2f} < 0.75"
-        # 2. STABLE_BRIDGE: in top decile >= 3 years and present in 2026 with >= 75th pct, AND robust under th>=5
+        # 2. STABLE_BRIDGE: in top decile >= 3 years and present in 2026 with >= 75th pct, AND th5_retention_ratio >= 0.50
         elif top_decile_count >= 3 and 2026 in years_observed and c_rows[c_rows["year"] == 2026]["betweenness_percentile"].iloc[0] >= 0.75:
-            if th5_present >= 1:
+            if th_stability_ratio >= 0.50:
                 classification = "STABLE_BRIDGE"
-                rule_reason = f"Top decile in {top_decile_count} years; retained >= 75th percentile in 2026; threshold >= 5 retention present ({th5_present} yr(s))"
+                rule_reason = f"Top decile in {top_decile_count} years; retained >= 75th percentile in 2026; threshold >= 5 retention ratio {th_stability_ratio:.2f} >= 0.50"
             else:
                 classification = "STABLE_BRIDGE_CANONICAL_ONLY"
-                rule_reason = f"Top decile in {top_decile_count} years; retained in 2026 at canonical threshold >= 1, but zero threshold >= 5 retention"
+                rule_reason = f"Top decile in {top_decile_count} years; retained in 2026 at canonical threshold >= 1, but threshold >= 5 retention ratio {th_stability_ratio:.2f} < 0.50"
         # 3. EMERGING_BRIDGE: first entered top decile in 2024-2026 with documented ascending trajectory
         elif (
             first_year_top_decile is not None

@@ -97,8 +97,8 @@ def test_bridge_dynamics_classifications(bridge_dynamics_df):
     for _, r in stable.iterrows():
         assert r["years_in_top_decile_count"] >= 3
         assert r["last_observed_year"] == 2026
-        # Must have non-zero threshold >= 5 retention
-        assert r["threshold_th5_retention_ratio"] > 0.0
+        # Must have threshold >= 5 retention ratio >= 0.50
+        assert r["threshold_th5_retention_ratio"] >= 0.50
 
 def test_change_points_delta_threshold(change_points_df):
     """Verify that detected change points satisfy the |delta| >= 0.25 threshold."""

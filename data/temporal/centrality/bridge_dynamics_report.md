@@ -14,8 +14,8 @@ This report tracks the longitudinal evolution of creator structural network role
 
 ## 1. Classification of Creator Structural Roles
 
-- **STABLE_BRIDGE Creators (Threshold Robust):** 3
-- **STABLE_BRIDGE_CANONICAL_ONLY (Threshold >= 1 Only):** 1
+- **STABLE_BRIDGE Creators (Threshold Robust):** 2
+- **STABLE_BRIDGE_CANONICAL_ONLY (Threshold >= 1 Only):** 2
 - **EMERGING_BRIDGE Creators (Ascending 2024–2026):** 10
 - **DECLINING_BRIDGE Creators:** 6
 - **VOLATILE Structural Positions:** 54
@@ -25,7 +25,7 @@ This report tracks the longitudinal evolution of creator structural network role
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **Pixela Official** | Pixela Project | 6 | 5 | 94.2% | 100.0% | 57.2% | 81.0% | 80.0% |
 | **Beariss Beam** | Independent | 7 | 5 | 90.1% | 98.5% | 62.4% | 35.5% | 60.0% |
-| **Aisha Channel** | Independent | 6 | 4 | 87.6% | 97.5% | 60.0% | 48.5% | 25.0% |
+| **Aisha Channel (Th>=1 only)** | Independent | 6 | 4 | 87.6% | 97.5% | 60.0% | 48.5% | 25.0% |
 | **Reilim Channel (Th>=1 only)** | Independent | 7 | 3 | 80.9% | 94.4% | 54.9% | 43.4% | 0.0% |
 
 ### 1.2 Emerging Bridge Creators (Recent Ascents 2024–2026)
