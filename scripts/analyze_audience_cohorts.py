@@ -97,16 +97,23 @@ def run_audience_cohort_analysis() -> None:
         GROUP BY 1
     """)
 
-    # 3. Channels engaged in cohort year (Year 0)
+    # 3. Channels and Agencies engaged in cohort year (Year 0)
     con.execute("""
         CREATE OR REPLACE TEMP TABLE viewer_first_year_channels AS
-        SELECT 
+        SELECT DISTINCT
             vcy.viewer_hash,
-            vcy.vtuber_channel_id AS base_channel_id,
+            vcy.vtuber_channel_id AS base_channel_id
+        FROM viewer_channel_years vcy
+        JOIN viewer_cohorts vc ON vcy.viewer_hash = vc.viewer_hash AND vcy.interaction_year = vc.cohort_year
+    """)
+
+    con.execute("""
+        CREATE OR REPLACE TEMP TABLE viewer_first_year_agencies AS
+        SELECT DISTINCT
+            vcy.viewer_hash,
             vcy.agency AS base_agency
         FROM viewer_channel_years vcy
         JOIN viewer_cohorts vc ON vcy.viewer_hash = vc.viewer_hash AND vcy.interaction_year = vc.cohort_year
-        GROUP BY 1, 2, 3
     """)
 
     # 4. Cohort sizes (Year 0 denominators)
@@ -122,23 +129,33 @@ def run_audience_cohort_analysis() -> None:
     # 5. Cohort retention matrix computation
     logger.info("Computing longitudinal cohort retention matrix...")
     matrix_raw_df = con.execute("""
-        WITH viewer_year_summary AS (
+        WITH viewer_year_channels_evaluated AS (
             SELECT 
+                vcy.viewer_hash,
                 vc.cohort_year,
                 vcy.interaction_year AS observation_year,
-                vcy.interaction_year - vc.cohort_year AS elapsed_years,
-                vc.viewer_hash,
-                COUNT(DISTINCT vcy.vtuber_channel_id) AS distinct_channels_in_year,
-                -- Has interaction with >= 1 base channel from cohort year?
-                MAX(CASE WHEN vfc.base_channel_id IS NOT NULL THEN 1 ELSE 0 END) AS has_same_channel,
-                -- Has interaction with any channel different from base channels?
-                MAX(CASE WHEN vfc.base_channel_id IS NULL THEN 1 ELSE 0 END) AS has_cross_channel,
-                -- Has interaction with a channel in a different agency than base agencies?
-                MAX(CASE WHEN vfc.base_agency IS NULL OR vcy.agency != vfc.base_agency THEN 1 ELSE 0 END) AS has_cross_agency
+                vcy.vtuber_channel_id,
+                vcy.agency,
+                CASE WHEN vfc.base_channel_id IS NOT NULL THEN 1 ELSE 0 END AS is_base_channel,
+                CASE WHEN vfa.base_agency IS NOT NULL THEN 1 ELSE 0 END AS is_base_agency
             FROM viewer_channel_years vcy
             JOIN viewer_cohorts vc ON vcy.viewer_hash = vc.viewer_hash
             LEFT JOIN viewer_first_year_channels vfc 
                 ON vcy.viewer_hash = vfc.viewer_hash AND vcy.vtuber_channel_id = vfc.base_channel_id
+            LEFT JOIN viewer_first_year_agencies vfa 
+                ON vcy.viewer_hash = vfa.viewer_hash AND vcy.agency = vfa.base_agency
+        ),
+        viewer_year_summary AS (
+            SELECT 
+                cohort_year,
+                observation_year,
+                observation_year - cohort_year AS elapsed_years,
+                viewer_hash,
+                COUNT(DISTINCT vtuber_channel_id) AS distinct_channels_in_year,
+                MAX(is_base_channel) AS has_same_channel,
+                MAX(CASE WHEN is_base_channel = 0 THEN 1 ELSE 0 END) AS has_cross_channel,
+                MAX(CASE WHEN is_base_agency = 0 THEN 1 ELSE 0 END) AS has_cross_agency
+            FROM viewer_year_channels_evaluated
             GROUP BY 1, 2, 3, 4
         )
         SELECT 
@@ -155,33 +172,49 @@ def run_audience_cohort_analysis() -> None:
         ORDER BY cohort_year, observation_year
     """).df()
 
-    matrix_records = []
+    raw_dict = {}
     for _, r in matrix_raw_df.iterrows():
-        cy = int(r["cohort_year"])
-        oy = int(r["observation_year"])
-        ey = int(r["elapsed_years"])
-        c_size = cohort_size_map[cy]
-        reobs = int(r["reobserved_viewers"])
-        same_ch = int(r["same_channel_reobserved_viewers"])
-        cross_ch = int(r["cross_channel_reobserved_viewers"])
-        cross_ag = int(r["cross_agency_reobserved_viewers"])
-        breadth = float(r["median_channel_breadth"])
+        raw_dict[(int(r["cohort_year"]), int(r["observation_year"]))] = r
 
-        matrix_records.append({
-            "cohort_year": cy,
-            "observation_year": oy,
-            "elapsed_years": ey,
-            "cohort_size": c_size,
-            "reobserved_viewers": reobs,
-            "continuation_rate": round(reobs / c_size, 4),
-            "same_channel_reobserved_viewers": same_ch,
-            "same_channel_retention_rate": round(same_ch / c_size, 4),
-            "cross_channel_reobserved_viewers": cross_ch,
-            "cross_channel_rate": round(cross_ch / c_size, 4),
-            "cross_agency_reobserved_viewers": cross_ag,
-            "cross_agency_rate": round(cross_ag / c_size, 4),
-            "median_channel_breadth": breadth
-        })
+    # Build complete grid for all valid observation horizons (oy >= cy)
+    all_cohort_years = sorted(cohort_size_map.keys())
+    max_year = 2026 if not all_cohort_years else max(max(all_cohort_years), 2026)
+
+    matrix_records = []
+    for cy in all_cohort_years:
+        c_size = cohort_size_map[cy]
+        for oy in range(cy, max_year + 1):
+            ey = oy - cy
+            if (cy, oy) in raw_dict:
+                r = raw_dict[(cy, oy)]
+                reobs = int(r["reobserved_viewers"])
+                same_ch = int(r["same_channel_reobserved_viewers"])
+                cross_ch = int(r["cross_channel_reobserved_viewers"])
+                cross_ag = int(r["cross_agency_reobserved_viewers"])
+                breadth = float(r["median_channel_breadth"])
+            else:
+                # Explicit zero-reobserved cell
+                reobs = 0
+                same_ch = 0
+                cross_ch = 0
+                cross_ag = 0
+                breadth = 0.0
+
+            matrix_records.append({
+                "cohort_year": cy,
+                "observation_year": oy,
+                "elapsed_years": ey,
+                "cohort_size": c_size,
+                "reobserved_viewers": reobs,
+                "continuation_rate": round(reobs / c_size, 4) if c_size > 0 else 0.0,
+                "same_channel_reobserved_viewers": same_ch,
+                "same_channel_retention_rate": round(same_ch / c_size, 4) if c_size > 0 else 0.0,
+                "cross_channel_reobserved_viewers": cross_ch,
+                "cross_channel_rate": round(cross_ch / c_size, 4) if c_size > 0 else 0.0,
+                "cross_agency_reobserved_viewers": cross_ag,
+                "cross_agency_rate": round(cross_ag / c_size, 4) if c_size > 0 else 0.0,
+                "median_channel_breadth": breadth
+            })
 
     df_matrix = pd.DataFrame(matrix_records)
 
@@ -190,23 +223,24 @@ def run_audience_cohort_analysis() -> None:
     survival_records = []
     for ey in sorted(df_matrix["elapsed_years"].unique()):
         sub = df_matrix[df_matrix["elapsed_years"] == ey]
-        tot_cohort_size = sub["cohort_size"].sum()
-        tot_reobserved = sub["reobserved_viewers"].sum()
-        tot_same = sub["same_channel_reobserved_viewers"].sum()
-        tot_cross = sub["cross_channel_reobserved_viewers"].sum()
-        tot_cross_ag = sub["cross_agency_reobserved_viewers"].sum()
-        mean_breadth = sub["median_channel_breadth"].mean()
+        tot_cohort_size = int(sub["cohort_size"].sum())
+        tot_reobserved = int(sub["reobserved_viewers"].sum())
+        tot_same = int(sub["same_channel_reobserved_viewers"].sum())
+        tot_cross = int(sub["cross_channel_reobserved_viewers"].sum())
+        tot_cross_ag = int(sub["cross_agency_reobserved_viewers"].sum())
+        active_sub = sub[sub["reobserved_viewers"] > 0]
+        mean_breadth = float(active_sub["median_channel_breadth"].mean()) if not active_sub.empty else 0.0
 
         survival_records.append({
             "elapsed_years": ey,
             "cohorts_evaluated_count": len(sub),
             "pooled_cohort_size": tot_cohort_size,
             "pooled_reobserved_viewers": tot_reobserved,
-            "persistence_rate": round(tot_reobserved / tot_cohort_size, 4),
-            "same_channel_persistence_rate": round(tot_same / tot_cohort_size, 4),
-            "cross_channel_persistence_rate": round(tot_cross / tot_cohort_size, 4),
-            "cross_agency_persistence_rate": round(tot_cross_ag / tot_cohort_size, 4),
-            "mean_channel_breadth": round(mean_breadth, 2)
+            "persistence_rate": round(tot_reobserved / tot_cohort_size, 4) if tot_cohort_size > 0 else 0.0,
+            "same_channel_persistence_rate": round(tot_same / tot_cohort_size, 4) if tot_cohort_size > 0 else 0.0,
+            "cross_channel_persistence_rate": round(tot_cross / tot_cohort_size, 4) if tot_cohort_size > 0 else 0.0,
+            "cross_agency_persistence_rate": round(tot_cross_ag / tot_cohort_size, 4) if tot_cohort_size > 0 else 0.0,
+            "mean_of_cohort_median_channel_breadth": round(mean_breadth, 2)
         })
     df_survival = pd.DataFrame(survival_records)
 
@@ -315,13 +349,13 @@ def generate_cohort_survival_report(
     lines.append("")
     lines.append("## 2. Longitudinal Cohort Survival & Persistence Curve")
     lines.append("")
-    lines.append("| Elapsed Horizon | Cohorts Evaluated | Pooled Cohort Base | Pooled Re-Observed | Persistence Rate | Same-Channel Persistence | Cross-Channel Persistence | Cross-Agency Persistence | Mean Breadth |")
+    lines.append("| Elapsed Horizon | Cohorts Evaluated | Pooled Cohort Base | Pooled Re-Observed | Persistence Rate | Same-Channel Persistence | Cross-Channel Persistence | Cross-Agency Persistence | Mean Cohort Median Breadth |")
     lines.append("| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
     for _, r in df_survival.iterrows():
         lines.append(
             f"| +{int(r['elapsed_years'])} Year(s) | {int(r['cohorts_evaluated_count'])} | {int(r['pooled_cohort_size'])} | "
             f"{int(r['pooled_reobserved_viewers'])} | {r['persistence_rate']:.1%} | {r['same_channel_persistence_rate']:.1%} | "
-            f"{r['cross_channel_persistence_rate']:.1%} | {r['cross_agency_persistence_rate']:.1%} | {r['mean_channel_breadth']:.2f} |"
+            f"{r['cross_channel_persistence_rate']:.1%} | {r['cross_agency_persistence_rate']:.1%} | {r['mean_of_cohort_median_channel_breadth']:.2f} |"
         )
     lines.append("")
     lines.append("### Substantive Observations on Persistence")
