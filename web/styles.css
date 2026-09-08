@@ -121,7 +121,7 @@ summary { min-height: 40px; cursor: pointer; padding-block: 8px; color: var(--te
 .stage-tools .icon-button { background: var(--ink-900); }
 .stage-footer { position: absolute; bottom: 16px; left: 24px; right: 24px; display: flex; gap: 20px; color: var(--text-500); font-size: 11px; pointer-events: none; }
 .pan-hint { margin-left: auto; }
-.graph-message { position: absolute; top: 50%; left: 55%; max-width: 300px; color: var(--text-300); pointer-events: none; }
+.graph-message { position: absolute; top: 86px; left: 352px; max-width: 420px; font-size: 11px; color: var(--text-300); pointer-events: none; }
 .graph-tooltip { position: absolute; max-width: 260px; padding: 8px 12px; background: var(--ink-850); border: 1px solid var(--border-subtle); border-radius: 10px; z-index: 25; pointer-events: none; font-size: 12px; }
 .drawer-toggle,.drawer-close { display: none; }
 .modal-backdrop { position: fixed; inset: 0; padding: 24px; display: grid; place-items: center; background: rgba(5,6,10,.78); z-index: 200; opacity: 0; visibility: hidden; transition: opacity var(--motion-ui); }
@@ -142,6 +142,7 @@ code { font-family: var(--font-mono); font-size: .9em; overflow-wrap: anywhere; 
   .drawer-toggle { position: absolute; top: 22px; left: 20px; display: inline-flex; z-index: 35; background: var(--ink-850); }
   .drawer-close { display: inline-flex; }
   .scene-status { left: 240px; top: 26px; }
+  .graph-message { left: 240px; max-width: 420px; }
   .inspector-panel { top: 78px; max-height: calc(100% - 132px); }
   .brand-title { font-size: 19px; }
   .header-actions kbd { display: none; }
@@ -168,7 +169,7 @@ code { font-family: var(--font-mono); font-size: .9em; overflow-wrap: anywhere; 
   .stage-tools { bottom: 52px; right: 16px; gap: 3px; }
   .stage-footer { left: 16px; right: 16px; bottom: 10px; flex-direction: column; gap: 0; font-size: 10px; }
   .pan-hint { display: none; }
-  .graph-message { left: 20px; top: 40%; max-width: calc(100% - 40px); }
+  .graph-message { left: 20px; top: 84px; max-width: calc(100% - 40px); }
   .modal-backdrop { padding: 12px; }
   .modal-card { padding: 24px; }
   .modal-card h2 { font-size: 23px; }

@@ -234,15 +234,32 @@ async function initApp() {
   updateKPIs();
   updateSceneStatus();
   updateSnapshotLabel();
-  requestAnimationFrame(simulationLoop);
+  fitConstellation();
+  scheduleGraphFrame();
+  document.fonts.ready.then(() => renderCanvas());
 }
 
+let canvasWidth = 0, canvasHeight = 0;
+let graphFramePending = false;
+let previousEdges = [];
+let graphTransitionStart = 0;
+const GRAPH_TRANSITION_MS = 480;
+
 function resizeCanvas() {
-  canvas.width = container.clientWidth * window.devicePixelRatio;
-  canvas.height = container.clientHeight * window.devicePixelRatio;
-  canvas.style.width = `${container.clientWidth}px`;
-  canvas.style.height = `${container.clientHeight}px`;
-  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  const previousWidth = canvasWidth, previousHeight = canvasHeight;
+  canvasWidth = container.clientWidth;
+  canvasHeight = container.clientHeight;
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = Math.round(canvasWidth * dpr);
+  canvas.height = Math.round(canvasHeight * dpr);
+  canvas.style.width = `${canvasWidth}px`;
+  canvas.style.height = `${canvasHeight}px`;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  if (previousWidth) {
+    panX += (canvasWidth - previousWidth) / 2;
+    panY += (canvasHeight - previousHeight) / 2;
+    renderCanvas();
+  }
 }
 
 // ==========================================================
@@ -528,8 +545,15 @@ function applyFilters() {
 }
 
 function reheatSimulation(heat = 0.5) {
-  alpha = Math.max(alpha, heat);
-  isSleeping = false;
+  if (reducedMotion.matches) {
+    alpha = 0;
+    isSleeping = true;
+    resolveCollisions(3, 5.0);
+  } else {
+    alpha = Math.max(alpha, heat);
+    isSleeping = false;
+  }
+  scheduleGraphFrame();
 }
 
 // ==========================================================
@@ -590,12 +614,18 @@ function resolveCollisions(iterations = 10, padding = 4.0) {
 // ==========================================================
 // 5. Obsidian Physics Engine (100% Non-Exploding, Distance-Capped)
 // ==========================================================
-function simulationLoop() {
-  if (!isSleeping) {
-    updatePhysics();
-  }
-  renderCanvas();
+function scheduleGraphFrame() {
+  if (graphFramePending || document.hidden) return;
+  graphFramePending = true;
   requestAnimationFrame(simulationLoop);
+}
+
+function simulationLoop() {
+  graphFramePending = false;
+  if (document.hidden) return;
+  if (!isSleeping) updatePhysics();
+  renderCanvas();
+  if (!isSleeping || previousEdges.length) scheduleGraphFrame();
 }
 
 function updatePhysics() {
@@ -689,24 +719,47 @@ function updatePhysics() {
 // 6. 2D Canvas Renderer ("Obsidian Graph View")
 // ==========================================================
 function renderCanvas() {
-  const width = container.clientWidth;
-  const height = container.clientHeight;
+  const width = canvasWidth;
+  const height = canvasHeight;
 
   ctx.clearRect(0, 0, width, height);
   ctx.save();
   ctx.translate(panX, panY);
   ctx.scale(zoom, zoom);
 
+  const focusNode = hoveredNode || selectedNode;
   const visibleNodes = graphNodes.filter(n => n.visible);
   const visibleEdges = graphEdges.filter(e => e.visible);
 
+  // Soft agency haze uses the existing anchors and data colors only.
+  for (const [name, anchor] of agencySwarmAnchors) {
+    if (name === "Independent" || (selectedAgency !== "ALL" && selectedAgency !== name)) continue;
+    const radius = Math.max(anchor.radius, 150) * 1.35;
+    const haze = ctx.createRadialGradient(anchor.x, anchor.y, 0, anchor.x, anchor.y, radius);
+    haze.addColorStop(0, anchor.color + "18");
+    haze.addColorStop(1, anchor.color + "00");
+    ctx.fillStyle = haze;
+    ctx.fillRect(anchor.x - radius, anchor.y - radius, radius * 2, radius * 2);
+  }
+  const progress = reducedMotion.matches ? 1 : Math.min(1, (performance.now() - graphTransitionStart) / GRAPH_TRANSITION_MS);
+  if (progress < 1) {
+    ctx.strokeStyle = `rgba(200,215,235,${.12 * (1 - progress)})`;
+    ctx.lineWidth = 1;
+    for (const edge of previousEdges) {
+      ctx.beginPath();
+      ctx.moveTo(edge.sourceNode.x, edge.sourceNode.y);
+      ctx.lineTo(edge.targetNode.x, edge.targetNode.y);
+      ctx.stroke();
+    }
+  } else previousEdges = [];
+
   // Set of hovered node neighbors
   const neighborIds = new Set();
-  if (hoveredNode) {
-    neighborIds.add(hoveredNode.id);
+  if (focusNode) {
+    neighborIds.add(focusNode.id);
     visibleEdges.forEach(e => {
-      if (e.sourceNode.id === hoveredNode.id) neighborIds.add(e.targetNode.id);
-      if (e.targetNode.id === hoveredNode.id) neighborIds.add(e.sourceNode.id);
+      if (e.sourceNode.id === focusNode.id) neighborIds.add(e.targetNode.id);
+      if (e.targetNode.id === focusNode.id) neighborIds.add(e.sourceNode.id);
     });
   }
 
@@ -747,7 +800,7 @@ function renderCanvas() {
       ctx.textBaseline = "middle";
 
       // 1. Clean Title with Dark Contrast Halo (NO giant opaque pill boxes!)
-      ctx.font = `700 ${worldFontSize}px 'Outfit', sans-serif`;
+      ctx.font = `700 ${worldFontSize}px 'Noto Sans Thai', sans-serif`;
       ctx.lineJoin = "round";
       ctx.lineWidth = Math.max(2.5, 4.0 / zoom);
       ctx.strokeStyle = "rgba(7, 10, 19, 0.95)";
@@ -756,7 +809,7 @@ function renderCanvas() {
       ctx.fillText(displayName, anchor.x, labelY);
 
       // 2. Crisp Subtitle with member count
-      ctx.font = `600 ${subFontSize}px 'Outfit', sans-serif`;
+      ctx.font = `600 ${subFontSize}px 'Noto Sans Thai', sans-serif`;
       ctx.lineWidth = Math.max(2.0, 3.0 / zoom);
       ctx.strokeStyle = "rgba(7, 10, 19, 0.92)";
       ctx.strokeText(countText, anchor.x, labelY + (worldFontSize * 0.82));
@@ -779,7 +832,7 @@ function renderCanvas() {
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
 
-    ctx.font = `700 ${worldFontSize}px 'Outfit', sans-serif`;
+    ctx.font = `700 ${worldFontSize}px 'Noto Sans Thai', sans-serif`;
     ctx.lineJoin = "round";
     ctx.lineWidth = Math.max(3.0, 4.5 / zoom);
     ctx.strokeStyle = "rgba(7, 10, 19, 0.95)";
@@ -787,7 +840,7 @@ function renderCanvas() {
     ctx.fillStyle = "#38bdf8";
     ctx.fillText(anchor.name, anchor.x, labelY);
 
-    ctx.font = `600 ${subFontSize}px 'Outfit', sans-serif`;
+    ctx.font = `600 ${subFontSize}px 'Noto Sans Thai', sans-serif`;
     ctx.lineWidth = Math.max(2.0, 3.0 / zoom);
     ctx.strokeStyle = "rgba(7, 10, 19, 0.92)";
     ctx.strokeText(countText, anchor.x, labelY + (worldFontSize * 0.82));
@@ -799,27 +852,27 @@ function renderCanvas() {
 
   // 2. Draw 2D Edges (Thin, crisp lines)
   for (const edge of visibleEdges) {
-    const isHovered = hoveredNode && (
-      edge.sourceNode.id === hoveredNode.id || edge.targetNode.id === hoveredNode.id
+    const isHovered = focusNode && (
+      edge.sourceNode.id === focusNode.id || edge.targetNode.id === focusNode.id
     );
-    const isDimmed = hoveredNode && !isHovered;
+    const isDimmed = focusNode && !isHovered;
 
     let baseWidth = Math.max(0.7, Math.min(2.0, (edge.shared_viewers || 10) / 50));
-    let alphaVal = isHovered ? 0.9 : (isDimmed ? 0.02 : 0.12);
+    let alphaVal = (isHovered ? 0.9 : (isDimmed ? 0.04 : 0.16)) * progress;
 
     ctx.beginPath();
     ctx.moveTo(edge.sourceNode.x, edge.sourceNode.y);
     ctx.lineTo(edge.targetNode.x, edge.targetNode.y);
     ctx.lineWidth = isHovered ? baseWidth + 1.5 : baseWidth;
-    ctx.strokeStyle = isHovered ? "#38bdf8" : `rgba(200, 215, 235, ${alphaVal})`;
+    ctx.strokeStyle = isHovered ? `rgba(98,231,255,${alphaVal})` : `rgba(200,215,235,${alphaVal})`;
     ctx.stroke();
   }
 
   // 3. Draw 2D Flat Circles ("แบบ Obsidian ไม่หลอกตา")
   for (const node of visibleNodes) {
-    const isHovered = (hoveredNode && hoveredNode.id === node.id);
-    const isNeighbor = (hoveredNode && neighborIds.has(node.id));
-    const isDimmed = hoveredNode && !isNeighbor;
+    const isHovered = (focusNode && focusNode.id === node.id);
+    const isNeighbor = (focusNode && neighborIds.has(node.id));
+    const isDimmed = focusNode && !isNeighbor;
     const isBridgeSpotlight = spotlightBridges && node.betweenness > 0.05;
     const r = node.radius;
 
@@ -830,6 +883,17 @@ function renderCanvas() {
       ctx.globalAlpha = 0.15;
     }
 
+    if (isHovered) {
+      const halo = ctx.createRadialGradient(0, 0, r, 0, 0, r + 20 / zoom);
+      halo.addColorStop(0, "rgba(167,139,250,.24)");
+      halo.addColorStop(1, "rgba(167,139,250,0)");
+      ctx.fillStyle = halo;
+      ctx.beginPath(); ctx.arc(0, 0, r + 20 / zoom, 0, Math.PI * 2); ctx.fill();
+    }
+    if (selectedNode?.id === node.id) {
+      ctx.beginPath(); ctx.arc(0, 0, r + 5 / zoom, 0, Math.PI * 2);
+      ctx.strokeStyle = "#f7f7fb"; ctx.lineWidth = 1.5 / zoom; ctx.stroke();
+    }
     // Subtle bridge halo
     if (isBridgeSpotlight) {
       ctx.beginPath();
@@ -875,12 +939,12 @@ function renderCanvas() {
       const maxTextWidth = drawRadius * 1.8;
       let fontSize = Math.max(5.5, Math.min(14, drawRadius * 0.36 + 2.5));
       if (isHovered) fontSize = Math.max(fontSize, 11);
-      ctx.font = `600 ${fontSize}px 'Outfit', sans-serif`;
+      ctx.font = `600 ${fontSize}px 'Noto Sans Thai', sans-serif`;
 
       const textWidth = ctx.measureText(cleanName).width;
       if (textWidth > maxTextWidth && textWidth > 0) {
         fontSize = Math.max(5, fontSize * (maxTextWidth / textWidth));
-        ctx.font = `600 ${fontSize}px 'Outfit', sans-serif`;
+        ctx.font = `600 ${fontSize}px 'Noto Sans Thai', sans-serif`;
       }
 
       if (isDimmed) {
@@ -909,9 +973,22 @@ function renderCanvas() {
 // 7. Mouse & Touch Event Listeners (Safe Click vs Drag)
 // ==========================================================
 function setupEventListeners() {
-  container.addEventListener("mousedown", onMouseDown);
-  window.addEventListener("mousemove", onMouseMove);
-  window.addEventListener("mouseup", onMouseUp);
+  canvas.addEventListener("pointerdown", e => {
+    if (!e.isPrimary || e.button !== 0) return;
+    canvas.setPointerCapture(e.pointerId);
+    onMouseDown(e);
+  });
+  window.addEventListener("pointermove", e => {
+    if (!e.isPrimary) return;
+    if (e.target === canvas || potentialDragNode || isPanning) onMouseMove(e);
+  });
+  window.addEventListener("pointerup", onMouseUp);
+  canvas.addEventListener("pointercancel", onMouseUp);
+  canvas.addEventListener("pointerleave", () => {
+    hoveredNode = null;
+    document.getElementById("graphTooltip").hidden = true;
+    renderCanvas();
+  });
   container.addEventListener("wheel", onWheel, { passive: false });
 
   // Search
@@ -1067,6 +1144,8 @@ function setupEventListeners() {
 // 8. Temporal Dynamic Timeline Slice Dispatcher (PR-6)
 // ==========================================================
 function updateTimelineSlice(step) {
+  previousEdges = reducedMotion.matches ? [] : graphEdges.filter(edge => edge.visible);
+  graphTransitionStart = reducedMotion.matches ? 0 : performance.now();
   currentTimelineStep = step;
   const label = TIMELINE_STEPS[step] || "All-Time (Dated)";
   const labelEl = document.getElementById("temporalCurrentLabel");
@@ -1295,6 +1374,14 @@ function onMouseMove(e) {
     container.style.cursor = hovered ? "pointer" : "grab";
     renderCanvas();
   }
+  const tooltip = document.getElementById("graphTooltip");
+  tooltip.hidden = !hovered || isPanning || isDraggingNode;
+  if (hovered && !tooltip.hidden) {
+    tooltip.textContent = `${hovered.label} · ${hovered.agency || "Independent"}`;
+    const rect = container.getBoundingClientRect();
+    tooltip.style.left = `${Math.max(8, Math.min(canvasWidth - 280, e.clientX - rect.left + 18))}px`;
+    tooltip.style.top = `${Math.max(8, Math.min(canvasHeight - 75, e.clientY - rect.top + 18))}px`;
+  }
 }
 
 function onMouseUp() {
@@ -1312,7 +1399,7 @@ function onMouseUp() {
 function onWheel(e) {
   e.preventDefault();
   const zoomFactor = e.deltaY < 0 ? 1.08 : 0.92;
-  const newZoom = Math.max(0.10, Math.min(3.5, zoom * zoomFactor));
+  const newZoom = Math.max(0.05, Math.min(3.5, zoom * zoomFactor));
 
   const rect = container.getBoundingClientRect();
   const mouseX = e.clientX - rect.left;
@@ -1381,8 +1468,7 @@ function openInspector(node, focus = true) {
       item.append(head, bar);
       item.addEventListener("click", () => {
         openInspector(c.partner);
-        panX = container.clientWidth / 2 - c.partner.x * zoom;
-        panY = container.clientHeight / 2 - c.partner.y * zoom;
+        focusCreator(c.partner);
         renderCanvas();
       });
       inspConnectionsList.appendChild(item);

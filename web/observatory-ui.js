@@ -188,15 +188,18 @@ function setupObservatoryUI() {
     }
   });
   const motionChanged = () => {
-    if (reducedMotion.matches) stopTimeline();
+    if (reducedMotion.matches) { stopTimeline(); previousEdges = []; reheatSimulation(0); }
     const play = document.getElementById('btnPlayTimeline');
     play.disabled = reducedMotion.matches;
     play.title = reducedMotion.matches ? 'Automatic playback is off for reduced motion. Select a year manually.' : 'Play observation years';
   };
   reducedMotion.addEventListener('change', motionChanged);
   motionChanged();
+  agencyFilter.addEventListener('change', fitConstellation);
+  dynamicLegendList.addEventListener('click', fitConstellation);
+  searchInput.addEventListener('input', () => { const match = graphNodes.find(node => node.visible); if (match && searchQuery.length >= 2) { focusCreator(match); renderCanvas(); } });
   compactLayout.addEventListener('change', () => setControlsOpen(false, false));
-  document.addEventListener('visibilitychange', () => { if (document.hidden) stopTimeline(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stopTimeline(); else scheduleGraphFrame(); });
   // Match the controls to the existing simulation defaults without changing physics.
   repulsionSlider.value = repulsionStrength; repulsionValue.textContent = repulsionStrength;
   linkDistSlider.value = linkDistance; linkDistValue.textContent = linkDistance;
