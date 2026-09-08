@@ -1,13 +1,13 @@
 # Phase T6 Deep Comment History & Bias Correction Report
 
-- **Generated at:** 2026-09-08 05:50:44 UTC
-- **Dataset Stage:** `deep_historical_backfill_partial`
+- **Generated at:** 2026-09-08 05:51:45 UTC
+- **Dataset Stage:** `deep_historical_backfill_complete`
 - **Deepening Target Cohort:** 226 Partial-Capture Historical Videos
-- **Terminal Jobs:** 161 / 226 (71.2%)
-- **Pending Jobs:** 65
-- **Total Pages Fetched:** 634
-- **Total Raw Comments Captured:** 54,174
-- **Total Unique Viewer-Video Observations:** 51,097
+- **Terminal Jobs:** 226 / 226 (100.0%)
+- **Pending Jobs:** 0
+- **Total Pages Fetched:** 811
+- **Total Raw Comments Captured:** 68,081
+- **Total Unique Viewer-Video Observations:** 64,504
 
 ---
 
@@ -15,12 +15,12 @@
 
 | Terminal State | Job Count | % of Deep Targets | Definition |
 | :--- | :---: | :---: | :--- |
-| **COMPLETED (Full Pagination)** | **161** | 71.2% | Complete pagination reached via nextPageToken |
+| **COMPLETED (Full Pagination)** | **226** | 100.0% | Complete pagination reached via nextPageToken |
 | **NO_COMMENTS** | **0** | 0.0% | Verified zero comments |
 | **COMMENTS_DISABLED** | **0** | 0.0% | Comments disabled by publisher |
 | **VIDEO_UNAVAILABLE** | **0** | 0.0% | Video private, deleted, or removed |
 | **FAILED** | **0** | 0.0% | Unrecoverable execution error |
-| **PENDING / RUNNING** | **65** | 28.8% | Awaiting execution or batch allocation |
+| **PENDING / RUNNING** | **0** | 0.0% | Awaiting execution or batch allocation |
 
 ---
 
@@ -33,8 +33,8 @@
 | **2022** | 22 | 22 | 0 | 0 | 0 | 0 | **100.0%** |
 | **2023** | 37 | 37 | 0 | 0 | 0 | 0 | **100.0%** |
 | **2024** | 34 | 34 | 0 | 0 | 0 | 0 | **100.0%** |
-| **2025** | 46 | 5 | 0 | 0 | 0 | 41 | **10.9%** |
-| **2026** | 27 | 3 | 0 | 0 | 0 | 24 | **11.1%** |
+| **2025** | 46 | 46 | 0 | 0 | 0 | 0 | **100.0%** |
+| **2026** | 27 | 27 | 0 | 0 | 0 | 0 | **100.0%** |
 
 ---
 
