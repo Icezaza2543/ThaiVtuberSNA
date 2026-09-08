@@ -97,7 +97,7 @@ def test_lineage_community_disappearance():
 
 
 def test_lineage_community_split():
-    """Community in year t dividing substantially into >= 2 communities in year t+1 must be detected as split."""
+    """Community in year t dividing substantially into >= 2 communities in year t+1 must be detected as split_branch."""
     yearly_comms = {
         2024: {"comm_2024_01": {"ch1", "ch2", "ch3", "ch4", "ch5", "ch6", "ch7", "ch8"}},
         2025: {
@@ -106,14 +106,14 @@ def test_lineage_community_split():
         },
     }
     events = compute_lineage_events(yearly_comms)
-    splits = [e for e in events if e["event_type"] == "split"]
+    splits = [e for e in events if e["event_type"] == "split_branch"]
     assert len(splits) == 2
     targets = {s["to_community_id"] for s in splits}
     assert targets == {"comm_2025_01", "comm_2025_02"}
 
 
 def test_lineage_community_merge():
-    """Target community in year t+1 formed from >= 2 communities from year t must be detected as merge."""
+    """Target community in year t+1 formed from >= 2 communities from year t must be detected as merge_tributary."""
     yearly_comms = {
         2024: {
             "comm_2024_01": {"ch1", "ch2", "ch3", "ch4"},
@@ -122,10 +122,93 @@ def test_lineage_community_merge():
         2025: {"comm_2025_01": {"ch1", "ch2", "ch3", "ch4", "ch5", "ch6", "ch7", "ch8"}},
     }
     events = compute_lineage_events(yearly_comms)
-    merges = [e for e in events if e["event_type"] == "merge"]
+    merges = [e for e in events if e["event_type"] == "merge_tributary"]
     assert len(merges) == 2
     sources = {m["from_community_id"] for m in merges}
     assert sources == {"comm_2024_01", "comm_2024_02"}
+
+
+def test_lineage_no_birth_when_significant_split_predecessor_exists():
+    """A target community that is a branch of a split must NEVER be classified as a birth."""
+    yearly_comms = {
+        2024: {"comm_2024_01": {"ch1", "ch2", "ch3", "ch4", "ch5", "ch6", "ch7", "ch8"}},
+        2025: {
+            "comm_2025_01": {"ch1", "ch2", "ch3", "ch4"},  # 50% split branch
+            "comm_2025_02": {"ch5", "ch6", "ch7", "ch8"},  # 50% split branch
+        },
+    }
+    events = compute_lineage_events(yearly_comms)
+    births = [e for e in events if e["event_type"] == "birth"]
+    assert len(births) == 0, f"Expected 0 births for split targets, got {births}"
+
+
+def test_lineage_no_disappearance_when_significant_successor_exists():
+    """A source community that splits or merges into target communities must NEVER be classified as a disappearance."""
+    yearly_comms = {
+        2024: {"comm_2024_01": {"ch1", "ch2", "ch3", "ch4", "ch5", "ch6", "ch7", "ch8"}},
+        2025: {
+            "comm_2025_01": {"ch1", "ch2", "ch3", "ch4"},
+            "comm_2025_02": {"ch5", "ch6", "ch7", "ch8"},
+        },
+    }
+    events = compute_lineage_events(yearly_comms)
+    disapps = [e for e in events if e["event_type"] == "disappearance"]
+    assert len(disapps) == 0, f"Expected 0 disappearances for split source, got {disapps}"
+
+
+def test_true_active_channel_count_distinct_union():
+    """Active channel count must be the true distinct union of vtuber_a and vtuber_b, not double counting."""
+    df_metrics = pq.read_table("data/temporal/analysis/yearly_network_metrics.parquet").to_pandas()
+    df_snaps = pq.read_table("data/temporal/snapshots/network_snapshots.parquet").to_pandas()
+    yearly_snaps = df_snaps[df_snaps["window_type"] == "yearly"]
+
+    for _, row in df_metrics.iterrows():
+        yr = int(row["year"])
+        sub = yearly_snaps[yearly_snaps["window_start"].str.startswith(str(yr))]
+        if sub.empty:
+            continue
+        true_unique = set(sub["vtuber_a"]).union(set(sub["vtuber_b"]))
+        reported_active = int(row["active_channels"])
+        assert reported_active == len(true_unique), f"Year {yr}: expected {len(true_unique)} channels, got {reported_active}"
+
+
+def test_retention_rate_mathematical_invariants():
+    """Retention rate formulas must hold mathematically without denominator conflation."""
+    df_metrics = pq.read_table("data/temporal/analysis/yearly_network_metrics.parquet").to_pandas()
+    for _, row in df_metrics.iterrows():
+        yr = int(row["year"])
+        if yr == 2026:  # Final year has no adjacent t+1 window
+            continue
+        act_t = int(row["active_viewers_t"])
+        act_t1 = int(row["active_viewers_t1"])
+        cont_any = int(row["continuing_viewers_any"])
+        ret = int(row["same_channel_retained_viewers"])
+        cont_rate = float(row["continuation_rate"])
+        ret_rate = float(row["same_channel_retention_rate"])
+        cond_rate = float(row["conditional_same_channel_rate"])
+
+        assert act_t > 0
+        assert act_t1 > 0
+        assert cont_any <= act_t
+        assert ret <= cont_any
+        assert ret_rate <= cont_rate, "same_channel_retention_rate must be <= continuation_rate"
+        assert abs(cont_rate - (cont_any / act_t)) < 0.001
+        assert abs(ret_rate - (ret / act_t)) < 0.001
+        assert abs(cond_rate - (ret / cont_any)) < 0.001
+
+
+def test_no_duplicate_lineage_labels_in_actual_dataset():
+    """In actual community_lineage.parquet, no community target can be both birth and target of relation."""
+    df_lineage = pq.read_table("data/temporal/analysis/community_lineage.parquet").to_pandas()
+    birth_targets = set(df_lineage[df_lineage["event_type"] == "birth"]["to_community_id"])
+    relation_targets = set(df_lineage[df_lineage["event_category"] == "relation"]["to_community_id"])
+    conflicts = birth_targets & relation_targets
+    assert len(conflicts) == 0, f"Conflicting birth and relation targets: {conflicts}"
+
+    disapp_sources = set(df_lineage[df_lineage["event_type"] == "disappearance"]["from_community_id"])
+    relation_sources = set(df_lineage[df_lineage["event_category"] == "relation"]["from_community_id"])
+    disapp_conflicts = disapp_sources & relation_sources
+    assert len(disapp_conflicts) == 0, f"Conflicting disappearance and relation sources: {disapp_conflicts}"
 
 
 def test_audience_transition_direction_and_separation():
