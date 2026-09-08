@@ -92,7 +92,7 @@ function updatePeriodControls() {
   const label = TIMELINE_STEPS[currentTimelineStep];
   document.getElementById('timeSlider').value = currentTimelineStep;
   document.getElementById('timeSlider').setAttribute('aria-valuetext', label);
-  document.getElementById('scenePeriod').textContent = `${label} · ${isCumulativeTimeline ? 'cumulative' : 'yearly'}`;
+  document.getElementById('scenePeriod').textContent = label.startsWith('All-Time') ? 'All-Time · dated evidence' : `${label} · ${isCumulativeTimeline ? 'cumulative' : 'yearly'}`;
   document.querySelectorAll('[data-step]').forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.step) === currentTimelineStep)));
 }
 

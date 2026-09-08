@@ -1,6 +1,6 @@
 # Observatory frontend implementation and QA
 
-Implemented DESIGN.md phases A–G on main. Design authority and skill provenance are recorded in [frontend_design_audit.md](frontend_design_audit.md).
+Implemented [frontend/DESIGN.md](frontend/DESIGN.md) phases A–G on main. Design authority and skill provenance are recorded in [frontend_design_audit.md](frontend_design_audit.md).
 
 ## Scope and changes
 
@@ -61,3 +61,18 @@ node tests/frontend_observatory.mjs
 Milestones pushed before final QA: `e4be79a` (tokens/audit), `b76197e` (shell and accessible sheets), `a70ac24` (canvas/motion), `f38dac4` (Research). The final QA/correctness commit contains this report and reproducible browser checks.
 
 The verification scope is frontend rendering and interaction. It does not certify collection completeness, analytical input reproducibility, or continuous collector operation.
+
+
+## Final contract and guardrail seal
+
+The repository [frontend/DESIGN.md](frontend/DESIGN.md) is authoritative and preserves the original design contract wording; three Markdown hard breaks use backslashes instead of trailing spaces. This cleanup changes documentation/comments and the All-Time header label only; it does not redesign the interface.
+
+- `python -m pytest tests/ -q`: **305 passed**, with 120 existing NetworkX runtime warnings. Includes 19 public-boundary regression cases.
+- `node --check` passed for `web/app.js`, `web/observatory-ui.js`, and `web/research/research_dashboard.js`.
+- `git diff --check`: passed.
+- Playwright: main and Research passed at 1440, 1280, 1024, and 390 pixels, including All-Time in both modes, year qualifiers, search, touch, keyboard, reduced motion, inspector, six Research tabs and canvas scaling. [Machine-readable results](evidence/frontend_observatory_qa.json).
+- Exact protected coordinate block SHA-256: `47a63e3160c1b1282fe0ceb997f08ef6ae5beec584771c237bb11d50fab83adc`.
+- Public `web/` scan: no private workbook identifier/direct spreadsheet links, private worksheet references, viewer identity rows, or channel IDs outside the public creator registry.
+- Four compressed screenshots only, 225,368 bytes combined: [main desktop](frontend/screenshots/main-desktop.webp), [main mobile](frontend/screenshots/main-mobile.webp), [Research desktop](frontend/screenshots/research-desktop.webp), [Research mobile](frontend/screenshots/research-mobile.webp). Full local visualization output is not committed.
+
+Analytical data, backend, Google Sheets, security architecture, coordinates and graph methodology are unchanged. Browser verification was run after Python tests completed, avoiding interference from temporary export fixtures.

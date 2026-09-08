@@ -59,14 +59,16 @@
     "modal focus and Escape",
     "reduced motion",
     "idle rendering",
-    "research tabs and DPR"
+    "research tabs and DPR",
+    "All-Time dated evidence in both modes",
+    "cumulative/yearly qualifiers for year slices"
   ],
   "errors": [],
   "performance": {
     "nodes": 1370,
     "samples": 30,
-    "medianMs": 2,
-    "p95Ms": 2.7000000029802322,
+    "medianMs": 2.2999999970197678,
+    "p95Ms": 2.9000000059604645,
     "idleDraws": 0
   },
   "status": "PASS"

@@ -1,6 +1,6 @@
 # Frontend design contract and audit
 
-Authority: user-supplied `C:/Users/Icezaza/Downloads/DESIGN.md`, Virtual Constellation Observatory / Prismatic Midnight. Vanilla HTML, CSS and JavaScript remain the implementation.
+Authority: repository contract [frontend/DESIGN.md](frontend/DESIGN.md), Virtual Constellation Observatory / Prismatic Midnight. Vanilla HTML, CSS and JavaScript remain the implementation.
 
 ## Phase A: baseline
 
@@ -33,3 +33,10 @@ Observatory bar: identity | time context | methodology / research
 The signature is the broadcast chronology changing the constellation, not ornamental dashboard cards. On mobile the graph remains first, with filters and creator details in separate bottom sheets. No marketing hero, random layout, GSAP dependency or fabricated profile classification is introduced: those defaults in gpt-taste are overridden by the user's explicit design contract.
 
 Skill sources installed at pinned revisions: frontend-skill from winklerbremen/codex-skills `af28efd6d134888d7d7fe30e791285e8a0eefd6d`; gpt-taste from Leonxlnx/taste-skill `ccbc15639c97057cbfcf32ecebc38ef716e4bb37`; canvas-design-codex and shared visual runtime from dachent/skills `2e133e356a11214cd9c31f479ec021625f2df571`. Runtime dependencies installed with lifecycle scripts disabled; syntax checks and live browser capture passed. Frontend-design uses the locally installed Anthropic skill. Canvas guidance applies only to graph rendering; ui-ux-pro-max is reserved for Phase G.
+
+
+## Repository design authority and public boundary
+
+The committed [frontend/DESIGN.md](frontend/DESIGN.md) is the authoritative frontend visual contract. It preserves the original contract wording, with Markdown hard breaks normalized to avoid trailing whitespace; local Downloads paths are not required. The identity remains Virtual Constellation Observatory / Prismatic Midnight. Stale design labels are absent from frontend source.
+
+`tests/test_frontend_public_boundary.py` checks every public `web/` file for the configured private workbook identifier, direct spreadsheet URLs, private worksheet names, viewer identity fields/rows, and channel IDs absent from the independent public creator registry. Synthetic negative cases cover plain, URL-encoded, and JavaScript-escaped leaks; public creator identities and aggregate counts remain allowed. This is a static regression for shipped files, not a replacement for export-boundary controls.

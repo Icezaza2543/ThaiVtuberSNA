@@ -30,6 +30,12 @@ try {
     page.on('pageerror', error => report.errors.push(error.message));
     page.on('console', message => { if (message.type() === 'error') report.errors.push(message.text()); });
     await ready(page);
+    assert.equal(await page.locator('#scenePeriod').textContent(), 'All-Time · dated evidence');
+    if (width < 1200) await page.locator('#btnControls').click();
+    await page.locator('#btnToggleTimeMode').click();
+    assert.equal(await page.locator('#scenePeriod').textContent(), 'All-Time · dated evidence');
+    await page.locator('#btnToggleTimeMode').click();
+    if (width < 1200) await page.locator('#btnCloseControls').click();
     await overflow(page);
     const expectedEdges = await page.evaluate(() => temporalSnapshotsData.slices.all_time.edges.filter(edge => nodeMap.has(edge.source) && nodeMap.has(edge.target) && (edge.shared_any ?? edge.shared_viewers) >= 5).length);
     assert.ok(expectedEdges > 0, 'Real aggregate fixture unexpectedly has no edges');
@@ -73,11 +79,13 @@ try {
     await page.locator('#searchInput').fill('');
     await page.locator('[data-step="6"]').click();
     assert.match(await page.locator('#temporalCurrentLabel').textContent(), /2026 YTD/);
+    assert.match(await page.locator('#scenePeriod').textContent(), /2026 YTD · cumulative/);
     await page.locator('#btnPlayTimeline').click();
     await page.locator('#btnPlayTimeline').click();
     assert.equal(await page.evaluate(() => isPlayingTimeline), false);
     await page.locator('#btnToggleTimeMode').click();
     assert.equal(await page.evaluate(() => isCumulativeTimeline), false);
+    assert.match(await page.locator('#scenePeriod').textContent(), /202[0-6]( YTD)? · yearly/);
     await page.locator('#agencyFilter').selectOption('Algorhythm Project');
     assert.ok(await page.evaluate(() => graphNodes.filter(node => node.visible).every(node => node.agency === 'Algorhythm Project')));
     if (width < 1200) await page.locator('#btnCloseControls').click();
