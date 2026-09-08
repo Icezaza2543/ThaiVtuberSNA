@@ -367,10 +367,11 @@ def test_real_t5_schema_and_dataset_maturity_metadata():
         data = json.load(f)
 
     meta = data.get("metadata", {})
-    assert meta.get("temporal_dataset_stage") == "historical_stratified_backfill"
-    assert meta.get("sampling_strategy") == "6 videos/channel/year baseline"
-    assert meta.get("sampled_videos_total") == 4630
-    assert meta.get("sampled_videos_processed", 0) >= 1103
+    assert meta.get("temporal_dataset_stage") in ["historical_stratified_backfill_partial", "historical_stratified_backfill_complete"]
+    assert meta.get("sampling_strategy") == "deterministic SHA-256 hash ranking; first-ranked candidate per temporal bin"
+    assert meta.get("sampling_manifest_total") == 4630
+    assert meta.get("terminal_jobs", 0) >= 1103
+    assert "pending_jobs" in meta
     assert meta.get("dated_interactions", 0) >= 25000
     assert meta.get("channels_with_temporal_evidence", 0) >= 100
 

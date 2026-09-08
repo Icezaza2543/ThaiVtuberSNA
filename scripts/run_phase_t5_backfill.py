@@ -136,29 +136,47 @@ def generate_backfill_report(
     total_unavailable = len(df[df["status"] == "VIDEO_UNAVAILABLE"])
     total_pending = len(df[df["status"].isin(["PENDING", "RETRYABLE"])])
     total_failed = len(df[df["status"] == "FAILED"])
+    total_terminal = total_completed + total_no_comments + total_disabled + total_unavailable + total_failed
+    completion_ratio = (total_terminal / total_jobs * 100.0) if total_jobs else 0.0
+
+    dataset_stage = "historical_stratified_backfill_complete" if (total_pending == 0 and total_terminal >= total_jobs) else "historical_stratified_backfill_partial"
 
     # Year level
     year_rows = []
     for y in sorted(df["year"].unique()):
         y_df = df[df["year"] == y]
         y_comp = y_df[y_df["status"] == "COMPLETED"]
+        y_no_com = y_df[y_df["status"] == "NO_COMMENTS"]
+        y_dis = y_df[y_df["status"] == "COMMENTS_DISABLED"]
+        y_unavail = y_df[y_df["status"] == "VIDEO_UNAVAILABLE"]
+        y_fail = y_df[y_df["status"] == "FAILED"]
+        y_pend = y_df[y_df["status"].isin(["PENDING", "RETRYABLE"])]
+        y_term = len(y_comp) + len(y_no_com) + len(y_dis) + len(y_unavail) + len(y_fail)
+
         year_rows.append({
             "year": y,
             "manifest_videos": len(y_df),
-            "completed_videos": len(y_comp),
-            "channels_processed": y_comp["channel_id"].nunique(),
+            "terminal_jobs": y_term,
+            "completed_with_observations": len(y_comp),
+            "no_comments": len(y_no_com),
+            "comments_disabled": len(y_dis),
+            "video_unavailable": len(y_unavail),
+            "failed": len(y_fail),
+            "pending": len(y_pend),
+            "channels_with_captured_comments": y_comp["channel_id"].nunique(),
             "comment_observations": y_comp["capture_count"].sum(),
             "partial_captures": len(y_df[y_df["partial_capture"] == 1]),
-            "disabled_or_empty": len(y_df[y_df["status"].isin(["COMMENTS_DISABLED", "NO_COMMENTS"])]),
         })
 
     title = "Phase T5 Bounded Real Pilot Report" if is_pilot else "Phase T5 Historical Backfill Report"
     lines = [
         f"# {title}",
         "",
-        f"**Generated at:** {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')}  ",
-        f"**Scope:** {'Bounded 20-Channel Pilot Cohort' if is_pilot else 'Full Stratified Historical Cohort'}  ",
-        f"**Storage Engine:** Local Parquet + DuckDB (`data/temporal/observations/comment/`)  ",
+        f"- **Generated at:** {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')}",
+        f"- **Scope:** {'Bounded 20-Channel Pilot Cohort' if is_pilot else 'Full Stratified Historical Cohort'}",
+        f"- **Dataset Stage:** `{dataset_stage}`",
+        f"- **Sampling Strategy:** deterministic SHA-256 hash ranking; first-ranked candidate per temporal bin",
+        f"- **Storage Engine:** Local Parquet + DuckDB (`data/temporal/observations/comment/`)",
         "",
         "---",
         "",
@@ -166,14 +184,17 @@ def generate_backfill_report(
         "",
         "| Metric | Value | Notes / Methodology |",
         "| :--- | :---: | :--- |",
-        f"| **Manifest Videos Registered** | **{total_jobs:,}** | Total stratified videos queued |",
-        f"| **Videos Successfully Extracted** | **{total_completed:,}** | Parquet observations written |",
+        f"| **Dataset Maturity Stage** | **`{dataset_stage}`** | Explicit partial vs complete gate |",
+        f"| **Sampling Manifest Total** | **{total_jobs:,}** | Total stratified videos queued |",
+        f"| **Terminal Jobs** | **{total_terminal:,}** | Completed, empty, disabled, unavailable, or failed |",
+        f"| **Pending Jobs** | **{total_pending:,}** | Remaining jobs to process |",
+        f"| **Completion Ratio** | **{completion_ratio:.1f}%** | Terminal jobs / manifest videos |",
+        f"| **Completed with Observations** | **{total_completed:,}** | Parquet observations successfully written |",
         f"| **Total Comment Observations** | **{total_comments:,}** | Deduplicated presence records |",
         f"| **Partial Captures (hit 100 cap)** | **{total_partial:,}** | Videos where $>100$ comments exist |",
         f"| **Comments Disabled** | **{total_disabled:,}** | YouTube comments disabled by creator |",
         f"| **No Comments Found** | **{total_no_comments:,}** | Video with 0 comments posted |",
         f"| **Video Unavailable / 404** | **{total_unavailable:,}** | Private, deleted, or unlisted |",
-        f"| **Pending Jobs** | **{total_pending:,}** | Ready for subsequent batch execution |",
         f"| **Failed Jobs** | **{total_failed:,}** | Network or unexpected API errors |",
         "",
         "> [!NOTE]",
@@ -183,13 +204,13 @@ def generate_backfill_report(
         "",
         "## 2. Longitudinal Interaction Evidence Coverage by Year",
         "",
-        "| Year | Sampled Videos | Completed | Active Channels | Comment Observations | Partial Captures | Disabled/Empty |",
-        "| :---: | :---: | :---: | :---: | :---: | :---: | :---: |",
+        "| Year | Manifest Videos | Terminal Jobs | Completed with Observations | No Comments | Disabled | Unavailable | Failed | Pending | Channels with Captured Comments | Comment Observations | Partial Captures |",
+        "| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |",
     ]
 
     for yr in year_rows:
         lines.append(
-            f"| {yr['year']} | {yr['manifest_videos']:,} | {yr['completed_videos']:,} | {yr['channels_processed']} | {yr['comment_observations']:,} | {yr['partial_captures']} | {yr['disabled_or_empty']} |"
+            f"| {yr['year']} | {yr['manifest_videos']:,} | {yr['terminal_jobs']:,} | {yr['completed_with_observations']:,} | {yr['no_comments']:,} | {yr['comments_disabled']:,} | {yr['video_unavailable']:,} | {yr['failed']:,} | {yr['pending']:,} | {yr['channels_with_captured_comments']} | {yr['comment_observations']:,} | {yr['partial_captures']} |"
         )
 
     lines.extend([

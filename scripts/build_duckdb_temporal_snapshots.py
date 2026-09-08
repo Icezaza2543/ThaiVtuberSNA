@@ -444,23 +444,36 @@ def compute_window_snapshots(
 def load_dataset_maturity_metadata(con: duckdb.DuckDBPyConnection) -> Dict[str, Any]:
     """Extracts dataset maturity metadata from sampling manifest, checkpoint, and DuckDB canonical events."""
     manifest_path = DATA_DIR / "temporal" / "backfill" / "sampling_manifest.parquet"
-    sampled_videos_total = 0
+    sampling_manifest_total = 0
     if manifest_path.exists():
         try:
             tbl = pq.read_table(manifest_path)
-            sampled_videos_total = len(tbl)
+            sampling_manifest_total = len(tbl)
         except Exception as e:
             logger.warning(f"Could not read sampling manifest length: {e}")
 
     checkpoint_db = DATA_DIR / "temporal" / "backfill" / "backfill_checkpoint.sqlite3"
-    sampled_videos_processed = 0
+    terminal_jobs = 0
+    pending_jobs = 0
+    completed_with_obs = 0
+    no_comments_cnt = 0
+    comments_disabled_cnt = 0
+    video_unavail_cnt = 0
+    failed_cnt = 0
+
     if checkpoint_db.exists():
         import sqlite3
         try:
             scon = sqlite3.connect(str(checkpoint_db))
-            row = scon.execute("SELECT COUNT(*) FROM backfill_jobs WHERE status != 'PENDING'").fetchone()
-            if row:
-                sampled_videos_processed = row[0]
+            rows = scon.execute("SELECT status, COUNT(*) FROM backfill_jobs GROUP BY status").fetchall()
+            status_map = {r[0]: r[1] for r in rows}
+            completed_with_obs = status_map.get("COMPLETED", 0)
+            no_comments_cnt = status_map.get("NO_COMMENTS", 0)
+            comments_disabled_cnt = status_map.get("COMMENTS_DISABLED", 0)
+            video_unavail_cnt = status_map.get("VIDEO_UNAVAILABLE", 0)
+            failed_cnt = status_map.get("FAILED", 0)
+            pending_jobs = status_map.get("PENDING", 0) + status_map.get("RETRYABLE", 0)
+            terminal_jobs = completed_with_obs + no_comments_cnt + comments_disabled_cnt + video_unavail_cnt + failed_cnt
             scon.close()
         except Exception as e:
             logger.warning(f"Could not read checkpoint count: {e}")
@@ -492,11 +505,23 @@ def load_dataset_maturity_metadata(con: duckdb.DuckDBPyConnection) -> Dict[str, 
         for r in year_cov_rows
     }
 
+    completion_ratio = round(terminal_jobs / sampling_manifest_total, 4) if sampling_manifest_total > 0 else 0.0
+    stage = "historical_stratified_backfill_complete" if (pending_jobs == 0 and terminal_jobs >= sampling_manifest_total and sampling_manifest_total > 0) else "historical_stratified_backfill_partial"
+
     return {
-        "temporal_dataset_stage": "historical_stratified_backfill",
-        "sampling_strategy": "6 videos/channel/year baseline",
-        "sampled_videos_total": sampled_videos_total,
-        "sampled_videos_processed": sampled_videos_processed,
+        "temporal_dataset_stage": stage,
+        "sampling_strategy": "deterministic SHA-256 hash ranking; first-ranked candidate per temporal bin",
+        "sampling_manifest_total": sampling_manifest_total,
+        "sampled_videos_total": sampling_manifest_total,
+        "terminal_jobs": terminal_jobs,
+        "pending_jobs": pending_jobs,
+        "completion_ratio": completion_ratio,
+        "completed_with_observations": completed_with_obs,
+        "no_comments": no_comments_cnt,
+        "comments_disabled": comments_disabled_cnt,
+        "video_unavailable": video_unavail_cnt,
+        "failed": failed_cnt,
+        "sampled_videos_processed": terminal_jobs,
         "dated_interactions": dated_events,
         "channels_with_temporal_evidence": channels_with_temporal_evidence,
         "year_coverage": year_coverage
@@ -633,7 +658,16 @@ def main():
                 "description": "Thai VTuber Dynamic Temporal Network (Observed Commenters & Live Chat Participants with Dated Interaction Evidence)",
                 "temporal_dataset_stage": maturity["temporal_dataset_stage"],
                 "sampling_strategy": maturity["sampling_strategy"],
+                "sampling_manifest_total": maturity["sampling_manifest_total"],
                 "sampled_videos_total": maturity["sampled_videos_total"],
+                "terminal_jobs": maturity["terminal_jobs"],
+                "pending_jobs": maturity["pending_jobs"],
+                "completion_ratio": maturity["completion_ratio"],
+                "completed_with_observations": maturity["completed_with_observations"],
+                "no_comments": maturity["no_comments"],
+                "comments_disabled": maturity["comments_disabled"],
+                "video_unavailable": maturity["video_unavailable"],
+                "failed": maturity["failed"],
                 "sampled_videos_processed": maturity["sampled_videos_processed"],
                 "dated_interactions": maturity["dated_interactions"],
                 "channels_with_temporal_evidence": maturity["channels_with_temporal_evidence"],

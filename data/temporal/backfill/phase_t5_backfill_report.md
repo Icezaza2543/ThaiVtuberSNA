@@ -1,8 +1,10 @@
 # Phase T5 Historical Backfill Report
 
-**Generated at:** 2026-09-07 19:50:54 UTC  
-**Scope:** Full Stratified Historical Cohort  
-**Storage Engine:** Local Parquet + DuckDB (`data/temporal/observations/comment/`)  
+- **Generated at:** 2026-09-08 05:00:04 UTC
+- **Scope:** Full Stratified Historical Cohort
+- **Dataset Stage:** `historical_stratified_backfill_partial`
+- **Sampling Strategy:** deterministic SHA-256 hash ranking; first-ranked candidate per temporal bin
+- **Storage Engine:** Local Parquet + DuckDB (`data/temporal/observations/comment/`)
 
 ---
 
@@ -10,14 +12,17 @@
 
 | Metric | Value | Notes / Methodology |
 | :--- | :---: | :--- |
-| **Manifest Videos Registered** | **4,630** | Total stratified videos queued |
-| **Videos Successfully Extracted** | **1,103** | Parquet observations written |
+| **Dataset Maturity Stage** | **`historical_stratified_backfill_partial`** | Explicit partial vs complete gate |
+| **Sampling Manifest Total** | **4,630** | Total stratified videos queued |
+| **Terminal Jobs** | **1,350** | Completed, empty, disabled, unavailable, or failed |
+| **Pending Jobs** | **3,280** | Remaining jobs to process |
+| **Completion Ratio** | **29.2%** | Terminal jobs / manifest videos |
+| **Completed with Observations** | **1,103** | Parquet observations successfully written |
 | **Total Comment Observations** | **25,597** | Deduplicated presence records |
 | **Partial Captures (hit 100 cap)** | **99** | Videos where $>100$ comments exist |
 | **Comments Disabled** | **15** | YouTube comments disabled by creator |
 | **No Comments Found** | **232** | Video with 0 comments posted |
 | **Video Unavailable / 404** | **0** | Private, deleted, or unlisted |
-| **Pending Jobs** | **3,280** | Ready for subsequent batch execution |
 | **Failed Jobs** | **0** | Network or unexpected API errors |
 
 > [!NOTE]
@@ -27,15 +32,15 @@
 
 ## 2. Longitudinal Interaction Evidence Coverage by Year
 
-| Year | Sampled Videos | Completed | Active Channels | Comment Observations | Partial Captures | Disabled/Empty |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| 2020 | 164 | 133 | 31 | 4,038 | 20 | 31 |
-| 2021 | 383 | 327 | 72 | 8,733 | 40 | 56 |
-| 2022 | 576 | 437 | 98 | 8,432 | 22 | 135 |
-| 2023 | 788 | 88 | 17 | 1,990 | 7 | 14 |
-| 2024 | 930 | 103 | 19 | 2,230 | 10 | 11 |
-| 2025 | 962 | 15 | 3 | 174 | 0 | 0 |
-| 2026 | 827 | 0 | 0 | 0 | 0 | 0 |
+| Year | Manifest Videos | Terminal Jobs | Completed with Observations | No Comments | Disabled | Unavailable | Failed | Pending | Channels with Captured Comments | Comment Observations | Partial Captures |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 2020 | 164 | 164 | 133 | 24 | 7 | 0 | 0 | 0 | 31 | 4,038 | 20 |
+| 2021 | 383 | 383 | 327 | 55 | 1 | 0 | 0 | 0 | 72 | 8,733 | 40 |
+| 2022 | 576 | 572 | 437 | 129 | 6 | 0 | 0 | 4 | 98 | 8,432 | 22 |
+| 2023 | 788 | 102 | 88 | 13 | 1 | 0 | 0 | 686 | 17 | 1,990 | 7 |
+| 2024 | 930 | 114 | 103 | 11 | 0 | 0 | 0 | 816 | 19 | 2,230 | 10 |
+| 2025 | 962 | 15 | 15 | 0 | 0 | 0 | 0 | 947 | 3 | 174 | 0 |
+| 2026 | 827 | 0 | 0 | 0 | 0 | 0 | 0 | 827 | 0 | 0 | 0 |
 
 ---
 
