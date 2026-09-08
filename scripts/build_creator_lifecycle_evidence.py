@@ -459,6 +459,198 @@ VERIFIED_CREATOR_INTEL = {
             "source_reference": "https://virtualyoutuber.fandom.com/wiki/Solly",
             "notes": "Debuted on 2021-08-26 as independent Thai VTuber."
         }
+    ],
+    # 25. Lucene (Polygon Project - POLAR1SS)
+    "UC25e5qEqvVaG_VKrkTmJBmw": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2020-10-25",
+            "event_year": 2020,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Lucene",
+            "notes": "Debuted on 2020-10-25 as member of Polygon Project 1st Gen (POLAR1SS)."
+        }
+    ],
+    # 26. Luxia (Polygon Project - POLAR1SS)
+    "UCRG5fX1v4b-3sUyKfAAtxxA": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2020-10-20",
+            "event_year": 2020,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Luxia",
+            "notes": "Debuted on 2020-10-20 as member of Polygon Project 1st Gen (POLAR1SS)."
+        }
+    ],
+    # 27. Lapine (Polygon Project - POLAR1SS)
+    "UCC5q6CpuDflPvO7pNn52RGQ": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2020-10-02",
+            "event_year": 2020,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Lapine",
+            "notes": "Debuted on 2020-10-02 as member of Polygon Project 1st Gen (POLAR1SS)."
+        }
+    ],
+    # 28. Hoku (Polygon Project - POLAR1SS)
+    "UCZilc7jP-X_92Fii1uTIs0Q": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2020-10-14",
+            "event_year": 2020,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Hoku",
+            "notes": "Debuted on 2020-10-14 as member of Polygon Project 1st Gen (POLAR1SS)."
+        }
+    ],
+    # 29. Zona (Polygon Project - POLAR1SS)
+    "UCafG1bj6Qtcbn4bozcicWfA": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2020-10-08",
+            "event_year": 2020,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Zona",
+            "notes": "Debuted on 2020-10-08 as member of Polygon Project 1st Gen (POLAR1SS)."
+        }
+    ],
+    # 30. Laibaht (Algorhythm Project)
+    "UCR1Htb-H1-tus7UPotPh69A": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2021-05-15",
+            "event_year": 2021,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Laibaht",
+            "notes": "Debuted on 2021-05-15 as member of Algorhythm Project (Eclipse unit)."
+        }
+    ],
+    # 31. Schneider / S1R (Algorhythm Project)
+    "UCiYFmDfFBoAP2yk9yuXBTTg": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2021-04-09",
+            "event_year": 2021,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/S1R",
+            "notes": "Debuted on 2021-04-09 as member of Algorhythm Project."
+        }
+    ],
+    # 32. Selene (Algorhythm Project)
+    "UChBuxXl8poN1Jz8kZDdsfhw": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2021-08-06",
+            "event_year": 2021,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Selene",
+            "notes": "Debuted on 2021-08-06 as member of Algorhythm Project."
+        }
+    ],
+    # 33. Hanabi Lafy (Pixela Legends)
+    "UCVAsOHcLLGVQq6aOpesOwBQ": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2022-01-25",
+            "event_year": 2022,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Hanabi_Lafy",
+            "notes": "Debuted on 2022-01-25 as member of Pixela Legends."
+        }
+    ],
+    # 34. Kamiyu Reirin (Pixela Legends)
+    "UCLNBff3KDEUxdfH_lkvyOKQ": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2022-01-27",
+            "event_year": 2022,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Kamiyu_Reirin",
+            "notes": "Debuted on 2022-01-27 as member of Pixela Legends."
+        }
+    ],
+    # 35. Kitsuneko Mewten (Pixela Legends)
+    "UCPMOk4hbIh5A-_6uNhzAvDg": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2022-01-27",
+            "event_year": 2022,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Kitsuneko_Mewten",
+            "notes": "Debuted on 2022-01-27 as member of Pixela Legends."
+        }
+    ],
+    # 36. Superpretty TAKOPERO (Pixela Legends)
+    "UCktUGMC7AKl1e8n20Ys8w0Q": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2022-01-06",
+            "event_year": 2022,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Superpretty_TAKOPERO",
+            "notes": "Debuted on 2022-01-06 as member of Pixela Legends."
+        }
+    ],
+    # 37. Jolly Estaa (Pixela Legends)
+    "UCkEcY4RbLYs2AF45nhkyjtw": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2022-01-25",
+            "event_year": 2022,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Jolly_Estaa",
+            "notes": "Debuted on 2022-01-25 as member of Pixela Legends."
+        }
+    ],
+    # 38. Azato Stacia (Independent)
+    "UCDCOWpzyBFsavT-K7AmN3MQ": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2022-02-19",
+            "event_year": 2022,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Azato_Stacia",
+            "notes": "Debuted on 2022-02-19 as independent Thai VTuber."
+        }
+    ],
+    # 39. Fumi Hausu (Independent)
+    "UCE010cVAgWFD24wIJ95sDKw": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2022-02-10",
+            "event_year": 2022,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Fumi_Hausu",
+            "notes": "Debuted on 2022-02-10 as independent Thai VTuber."
+        }
+    ],
+    # 40. ChaAYM (Independent)
+    "UCbEkHjG43yPMGq5W08jq1TQ": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2021-11-05",
+            "event_year": 2021,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/ChaAYM",
+            "notes": "Debuted on 2021-11-05 as independent Thai VTuber."
+        }
     ]
 }
 

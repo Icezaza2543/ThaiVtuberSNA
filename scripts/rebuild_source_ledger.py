@@ -39,6 +39,8 @@ def rebuild_source_ledger():
     add_source("SRC_REALIC_SHIPPING_POLICY", "https://shop.realic.net/pages/shipping-policy", "Realic Co. Ltd.", "MARKET_MERCH", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Official store shipping fee schedule (25 THB flat).")
     add_source("SRC_DATAREPORTAL_TH_2024", "https://datareportal.com/reports/digital-2024-thailand", "DataReportal / We Are Social & Meltwater", "MACRO_CONTEXT", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_3_SECONDARY_DOCUMENTED", "Thailand Digital 2024 report (YouTube reach 44.2M).")
     add_source("SRC_REALIC_PRODUCTS_API", "https://shop.realic.net/products.json?limit=250", "Realic Co. Ltd.", "MARKET_MERCH", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Shopify public product catalog API for official ARP goods and voice packs (151 live products).")
+    add_source("SRC_REALIC_ARP_PORTAL", "https://algorhythm.realic.net/", "Realic Co., Ltd.", "AGENCY_HISTORY", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Official Algorhythm Project agency portal and talent roster.")
+    add_source("SRC_ASTARS_PORTAL", "https://astars-production.com/", "Brave group APAC (Thailand) Co., Ltd.", "AGENCY_HISTORY", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Official AStars Production agency portal, unit roster, and audition announcements.")
 
     # 2. Official Primary Social Announcements (Tier 1 & 2)
     add_source("SRC_X_ARP_GRAD_2025", "https://x.com/ARP_Vtuber/status/1897988102767231056", "Algorhythm Project (X/Twitter)", "CREATOR_LIFECYCLE", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Official graduation announcement for Quentin, Ricotta, and Ayna.")
@@ -60,6 +62,17 @@ def rebuild_source_ledger():
     add_source("SRC_YT_AMARIS_SAYO_GRAD", "https://www.youtube.com/watch?v=Hj_0Ozk5KnA", "Amaris Sayo Ch.", "CREATOR_LIFECYCLE", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_2_PRIMARY_CREATOR", "Final graduation broadcast stream.")
     add_source("SRC_YT_CHRONO_PRINCE_SONG", "https://www.youtube.com/watch?v=901uaSVnKuY", "AStars Production", "AGENCY_HISTORY", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Chrono Prince debut music video.")
     add_source("SRC_YT_AMAKARA_SONG", "https://www.youtube.com/watch?v=iB0q6PLIdgE", "AStars Production", "AGENCY_HISTORY", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Amakara debut music video.")
+    add_source("SRC_X_ARP_OFFICIAL", "https://x.com/ARP_Vtuber", "Algorhythm Project", "AGENCY_HISTORY", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Official X profile and institutional announcements.")
+    add_source("SRC_X_PIXELA_OFFICIAL", "https://x.com/PixelaProject", "Pixela Project", "AGENCY_HISTORY", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Official X profile and institutional announcements.")
+    add_source("SRC_X_VZ_OFFICIAL", "https://x.com/VirtualZeven", "Virtual Zeven Co., Ltd.", "AGENCY_HISTORY", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Official X profile and institutional announcements.")
+    add_source("SRC_X_ASTARS_OFFICIAL", "https://x.com/AStarsofficial", "AStars Production / Brave Group APAC", "AGENCY_HISTORY", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Official X profile and institutional announcements.")
+    add_source("SRC_X_POLYGON_OFFICIAL", "https://x.com/PolygonOfficial", "Polygon Official", "AGENCY_HISTORY", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Official X profile and institutional announcements.")
+    add_source("SRC_X_EUPHORA_OFFICIAL", "https://x.com/EuphoraProject", "Euphora Project", "AGENCY_HISTORY", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Official X profile and institutional announcements.")
+    add_source("SRC_X_LUMINA_OFFICIAL", "https://x.com/LuminaLive_TH", "Lumina Live", "AGENCY_HISTORY", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Official X profile and institutional announcements.")
+    add_source("SRC_YT_AISHA_CHANNEL", "https://www.youtube.com/@AishaChannel", "Polygon Official / Aisha", "AGENCY_HISTORY", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Official YouTube channel and primary broadcast archive.")
+    add_source("SRC_YT_QUILLMON_CHANNEL", "https://www.youtube.com/@TheQuillmon", "TheQuillmon / Virtual Zeven", "AGENCY_HISTORY", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_2_PRIMARY_CREATOR", "Official YouTube channel for pioneer Thai VTuber.")
+    add_source("SRC_YT_YUCHAN_CHANNEL", "https://www.youtube.com/@YuChanChannel", "Phoenix Next / Virtual Zeven", "AGENCY_HISTORY", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Official YouTube channel for pioneer Kadokawa Amarin VTuber.")
+    add_source("SRC_YT_PIXELA_CHANNEL", "https://www.youtube.com/@PixelaProject", "Pixela Project", "AGENCY_HISTORY", "VERIFIED_EXTERNAL_EVIDENCE", "TIER_1_PRIMARY_OFFICIAL", "Official Pixela Project YouTube channel.")
 
     # 4. Live Realic Products Inspected (Tier 1 Primary E-Commerce)
     try:
