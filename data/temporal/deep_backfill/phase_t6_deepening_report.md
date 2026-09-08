@@ -1,13 +1,13 @@
 # Phase T6 Deep Comment History & Bias Correction Report
 
-- **Generated at:** 2026-09-08 05:49:03 UTC
+- **Generated at:** 2026-09-08 05:50:44 UTC
 - **Dataset Stage:** `deep_historical_backfill_partial`
 - **Deepening Target Cohort:** 226 Partial-Capture Historical Videos
-- **Terminal Jobs:** 91 / 226 (40.3%)
-- **Pending Jobs:** 135
-- **Total Pages Fetched:** 339
-- **Total Raw Comments Captured:** 28,784
-- **Total Unique Viewer-Video Observations:** 27,304
+- **Terminal Jobs:** 161 / 226 (71.2%)
+- **Pending Jobs:** 65
+- **Total Pages Fetched:** 634
+- **Total Raw Comments Captured:** 54,174
+- **Total Unique Viewer-Video Observations:** 51,097
 
 ---
 
@@ -15,12 +15,12 @@
 
 | Terminal State | Job Count | % of Deep Targets | Definition |
 | :--- | :---: | :---: | :--- |
-| **COMPLETED (Full Pagination)** | **91** | 40.3% | Complete pagination reached via nextPageToken |
+| **COMPLETED (Full Pagination)** | **161** | 71.2% | Complete pagination reached via nextPageToken |
 | **NO_COMMENTS** | **0** | 0.0% | Verified zero comments |
 | **COMMENTS_DISABLED** | **0** | 0.0% | Comments disabled by publisher |
 | **VIDEO_UNAVAILABLE** | **0** | 0.0% | Video private, deleted, or removed |
 | **FAILED** | **0** | 0.0% | Unrecoverable execution error |
-| **PENDING / RUNNING** | **135** | 59.7% | Awaiting execution or batch allocation |
+| **PENDING / RUNNING** | **65** | 28.8% | Awaiting execution or batch allocation |
 
 ---
 
@@ -30,10 +30,10 @@
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **2020** | 20 | 20 | 0 | 0 | 0 | 0 | **100.0%** |
 | **2021** | 40 | 40 | 0 | 0 | 0 | 0 | **100.0%** |
-| **2022** | 22 | 19 | 0 | 0 | 0 | 3 | **86.4%** |
-| **2023** | 37 | 3 | 0 | 0 | 0 | 34 | **8.1%** |
-| **2024** | 34 | 3 | 0 | 0 | 0 | 31 | **8.8%** |
-| **2025** | 46 | 3 | 0 | 0 | 0 | 43 | **6.5%** |
+| **2022** | 22 | 22 | 0 | 0 | 0 | 0 | **100.0%** |
+| **2023** | 37 | 37 | 0 | 0 | 0 | 0 | **100.0%** |
+| **2024** | 34 | 34 | 0 | 0 | 0 | 0 | **100.0%** |
+| **2025** | 46 | 5 | 0 | 0 | 0 | 41 | **10.9%** |
 | **2026** | 27 | 3 | 0 | 0 | 0 | 24 | **11.1%** |
 
 ---
