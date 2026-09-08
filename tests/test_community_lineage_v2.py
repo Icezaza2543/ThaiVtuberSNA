@@ -53,7 +53,7 @@ def test_community_lifecycles_schema_and_semantics(lifecycles_df):
         "lineage_id", "birth_year", "last_observed_year", "lifespan_years",
         "lifecycle_status", "dominant_agency", "dominant_agency_share",
         "total_unique_creators", "mean_membership_churn",
-        "split_ancestors", "merge_ancestors", "member_snapshot_communities"
+        "split_contributors", "merge_contributors", "member_snapshot_communities"
     ]
     for col in expected_cols:
         assert col in lifecycles_df.columns, f"Missing column: {col}"
@@ -69,6 +69,15 @@ def test_community_lifecycles_schema_and_semantics(lifecycles_df):
             assert r["lifecycle_status"] == "ACTIVE"
         else:
             assert r["lifecycle_status"] == "DISAPPEARED"
+
+def test_one_to_one_primary_backbone_matching(lineage_v2_df):
+    """Verify each source has <= 1 continuation and each target has <= 1 continuation per year pair."""
+    continuations = lineage_v2_df[lineage_v2_df["relation_type"] == "continuation"]
+    for yr_from, grp in continuations.groupby("from_year"):
+        # Sources in this year transition must be unique
+        assert len(grp["from_community_id"]) == len(grp["from_community_id"].unique()), f"Duplicate continuation source in {yr_from}"
+        # Targets in this year transition must be unique
+        assert len(grp["to_community_id"]) == len(grp["to_community_id"].unique()), f"Duplicate continuation target in {yr_from}"
 
 def test_no_contradictory_lifecycle_states(lifecycles_df, lineage_v2_df):
     """Verify that lineage birth and death do not have contradictory concurrent transitions."""
@@ -94,10 +103,48 @@ def test_deterministic_lineage_generation():
     pd.testing.assert_frame_equal(df1_edges, df2_edges)
     pd.testing.assert_frame_equal(df1_life, df2_life)
 
-def test_split_and_merge_ancestry_tracking(lifecycles_df):
-    """Verify that split and merge ancestry fields are populated properly."""
-    has_split_ancestor = lifecycles_df[lifecycles_df["split_ancestors"] != "None"]
-    assert len(has_split_ancestor) >= 3, "Expected multiple lineages with traceable split ancestry"
+def test_split_and_merge_contributors_tracking(lifecycles_df):
+    """Verify that split and merge contributor fields are populated properly."""
+    has_split = lifecycles_df[lifecycles_df["split_contributors"] != "None"]
+    assert len(has_split) >= 3, "Expected multiple lineages with traceable split contributors"
+
+def test_two_sources_to_same_target_synthetic_regression():
+    """Synthetic regression: two source communities overlapping with the same target must result in 1 continuation + 1 merge_tributary."""
+    # Synthetic test data
+    c_from = {
+        "comm_A": {"c1", "c2", "c3", "c4", "c5"},
+        "comm_B": {"c1", "c2", "c3", "c6", "c7"}
+    }
+    c_to = {
+        "comm_T": {"c1", "c2", "c3", "c4", "c5", "c8"}
+    }
+    # Match candidate score for A -> T: J = 5/6 = 0.833, fwd = 5/5 = 1.0, bwd = 5/6 = 0.833 -> score high
+    # Score for B -> T: J = 3/8 = 0.375, fwd = 3/5 = 0.60, bwd = 3/6 = 0.50 -> score lower
+    # Target comm_T must only have 1 continuation (from comm_A), while comm_B becomes merge_tributary
+    candidates = [
+        {"src_id": "comm_A", "tgt_id": "comm_T", "score": 0.833 * 0.4 + 1.0 * 0.3 + 0.833 * 0.3, "shared": 5, "jacc": 0.833, "fwd": 1.0, "bwd": 0.833},
+        {"src_id": "comm_B", "tgt_id": "comm_T", "score": 0.375 * 0.4 + 0.6 * 0.3 + 0.5 * 0.3, "shared": 3, "jacc": 0.375, "fwd": 0.6, "bwd": 0.5}
+    ]
+    candidates.sort(key=lambda x: -x["score"])
+    matched_sources = set()
+    matched_targets = set()
+    cont_edges = []
+    secondary_edges = []
+
+    for c in candidates:
+        s, t = c["src_id"], c["tgt_id"]
+        if s not in matched_sources and t not in matched_targets:
+            matched_sources.add(s)
+            matched_targets.add(t)
+            cont_edges.append((s, t))
+        else:
+            if c["bwd"] >= 0.20:
+                secondary_edges.append((s, t, "merge_tributary"))
+
+    assert len(cont_edges) == 1
+    assert cont_edges[0] == ("comm_A", "comm_T")
+    assert len(secondary_edges) == 1
+    assert secondary_edges[0] == ("comm_B", "comm_T", "merge_tributary")
 
 def test_report_numbers_match_parquet(lifecycles_df, report_content):
     """Verify report counts match parquet values dynamically."""

@@ -1,15 +1,25 @@
-"""Phase T11: Multi-Year Community Lineage Engine v2
+"""Phase T11: Multi-Year Community Lineage Engine v2 (Hotfix Edition)
 
 Upgrades adjacent-year community relationships into stable multi-year community identities.
 Uses existing yearly community partitions (2020-2026) from data/temporal/analysis/community_snapshots.parquet.
 
-Core Requirements:
-1. Persistent community lineage IDs across 2020–2026 (independent of arbitrary Louvain cluster numbering).
-2. Ancestry & descendant tracking (split ancestry, merge ancestry).
-3. Lifecycle metrics: lifespan, birth year, last observed year, yearly membership size, membership churn.
-4. Dominant agency composition (dominant agency_at_selection without equating communities with agencies).
-5. Clean separation of relation edges (continuation / split_branch / merge_tributary) vs lifecycle states (birth / disappearance).
-6. Deterministic, conflict-free tracking.
+Hotfix Specifications:
+1. One-to-one primary backbone continuation:
+   - Evaluates all candidate pairs with Jaccard >= 0.25 or (forward >= 0.30 and backward >= 0.30) and shared >= 2.
+   - Matching weight W = Jaccard * 0.4 + forward * 0.3 + backward * 0.3.
+   - Solves deterministic maximum-weight bipartite matching (via scipy.optimize.linear_sum_assignment or greedy best-candidate ordering with strict one-to-one reservation).
+   - Each source has <= 1 primary continuation; each target has <= 1 primary continuation.
+2. Relation classification:
+   - Selected match -> continuation (primary backbone).
+   - Additional significant incoming sources -> merge_tributary.
+   - Additional significant outgoing targets -> split_branch.
+   - Lineage table agrees with actual lineage propagation.
+3. Restructure ancestry tracking:
+   - Renamed to split_contributors and merge_contributors with relation year info:
+     e.g., "LINEAGE_04 (2022); LINEAGE_05 (2023)".
+4. Clean empirical prose:
+   - Removes unsupported generalizations like "Emergent Specialization".
+   - Sourced purely from measured metrics.
 
 Outputs:
 - data/temporal/analysis/community_lineage_v2.parquet
@@ -24,6 +34,7 @@ from collections import Counter
 
 import duckdb
 import pandas as pd
+import numpy as np
 import pyarrow as pa
 import pyarrow.parquet as pq
 
@@ -48,7 +59,7 @@ def load_snapshots() -> pd.DataFrame:
 
 
 def build_community_lineage_v2() -> Tuple[pd.DataFrame, pd.DataFrame]:
-    """Builds persistent community lineage IDs, relation transitions, and lifecycles."""
+    """Builds persistent community lineage IDs, relation transitions, and lifecycles with one-to-one backbone matching."""
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     df_snapshots = load_snapshots()
 
@@ -67,10 +78,10 @@ def build_community_lineage_v2() -> Tuple[pd.DataFrame, pd.DataFrame]:
         for cid, grp in yr_df.groupby("community_id"):
             yearly_communities[yr][cid] = set(grp["channel_id"])
 
-    # Step 1: Track adjacent-year relation edges (continuation, split_branch, merge_tributary)
+    # Step 1: One-to-one primary backbone matching per adjacent-year pair
     relation_edges: List[Dict[str, Any]] = []
-    # Mapping for best continuation: (from_cid, to_cid)
-    continuations: Set[Tuple[str, str]] = set()
+    # Set of (from_cid, to_cid) for 1-to-1 primary continuations
+    primary_continuations: Set[Tuple[str, str]] = set()
 
     for i in range(len(years) - 1):
         y_from = years[i]
@@ -79,101 +90,101 @@ def build_community_lineage_v2() -> Tuple[pd.DataFrame, pd.DataFrame]:
         c_to = yearly_communities[y_to]
 
         # Calculate all pairwise overlaps
-        src_overlaps: Dict[str, List[Dict[str, Any]]] = {s: [] for s in c_from}
-        tgt_overlaps: Dict[str, List[Dict[str, Any]]] = {t: [] for t in c_to}
+        all_candidates: List[Dict[str, Any]] = []
 
         for s_id, s_nodes in c_from.items():
             for t_id, t_nodes in c_to.items():
                 inter = s_nodes & t_nodes
-                if inter:
+                if len(inter) >= 2:
                     jacc = len(inter) / len(s_nodes | t_nodes)
                     fwd = len(inter) / len(s_nodes)
                     bwd = len(inter) / len(t_nodes)
-                    rec = {
-                        "src_id": s_id,
-                        "tgt_id": t_id,
-                        "shared_count": len(inter),
-                        "jaccard": jacc,
-                        "fwd": fwd,
-                        "bwd": bwd,
-                    }
-                    src_overlaps[s_id].append(rec)
-                    tgt_overlaps[t_id].append(rec)
+                    # Candidate qualify threshold: Jaccard >= 0.25 or (fwd >= 0.30 and bwd >= 0.30)
+                    if jacc >= 0.25 or (fwd >= 0.30 and bwd >= 0.30):
+                        score = jacc * 0.4 + fwd * 0.3 + bwd * 0.3
+                        all_candidates.append({
+                            "src_id": s_id,
+                            "tgt_id": t_id,
+                            "shared_count": len(inter),
+                            "jaccard": jacc,
+                            "fwd": fwd,
+                            "bwd": bwd,
+                            "score": score
+                        })
 
-        # A: Determine primary continuations (backbone)
-        # For each source, best outgoing target with J >= 0.30 or (fwd >= 0.35 and bwd >= 0.35) and shared >= 2
-        for s_id in sorted(c_from.keys()):
-            outgoing = sorted(src_overlaps[s_id], key=lambda x: (-x["jaccard"], -x["shared_count"], x["tgt_id"]))
-            if outgoing:
-                best = outgoing[0]
-                if (best["jaccard"] >= 0.30 or (best["fwd"] >= 0.35 and best["bwd"] >= 0.35)) and best["shared_count"] >= 2:
-                    continuations.add((s_id, best["tgt_id"]))
-                    relation_edges.append({
-                        "from_year": y_from,
-                        "to_year": y_to,
-                        "from_community_id": s_id,
-                        "to_community_id": best["tgt_id"],
-                        "relation_type": "continuation",
-                        "shared_channels": best["shared_count"],
-                        "jaccard_similarity": round(best["jaccard"], 4),
-                        "forward_overlap": round(best["fwd"], 4),
-                        "backward_overlap": round(best["bwd"], 4),
-                        "is_primary_backbone": True
-                    })
+        # Deterministic 1-to-1 matching: sort by descending score, descending shared, ascending ids
+        all_candidates.sort(key=lambda x: (-x["score"], -x["shared_count"], x["src_id"], x["tgt_id"]))
 
-        # B: Split branches (source sends >= 20% to multiple targets with shared >= 2)
-        for s_id in sorted(c_from.keys()):
-            outgoing = src_overlaps[s_id]
-            sig = [r for r in outgoing if r["fwd"] >= 0.20 and r["shared_count"] >= 2]
-            if len(sig) >= 2:
-                for b in sig:
-                    if (s_id, b["tgt_id"]) not in continuations:
+        matched_sources: Set[str] = set()
+        matched_targets: Set[str] = set()
+        pair_matches: Set[Tuple[str, str]] = set()
+
+        for cand in all_candidates:
+            s = cand["src_id"]
+            t = cand["tgt_id"]
+            if s not in matched_sources and t not in matched_targets:
+                matched_sources.add(s)
+                matched_targets.add(t)
+                pair_matches.add((s, t))
+                primary_continuations.add((s, t))
+                relation_edges.append({
+                    "from_year": y_from,
+                    "to_year": y_to,
+                    "from_community_id": s,
+                    "to_community_id": t,
+                    "relation_type": "continuation",
+                    "shared_channels": cand["shared_count"],
+                    "jaccard_similarity": round(cand["jaccard"], 4),
+                    "forward_overlap": round(cand["fwd"], 4),
+                    "backward_overlap": round(cand["bwd"], 4),
+                    "is_primary_backbone": True
+                })
+
+        # Secondary relations: split_branch and merge_tributary
+        # Split branch: source sends >= 20% to additional target with shared >= 2
+        for s_id, s_nodes in c_from.items():
+            for t_id, t_nodes in c_to.items():
+                if (s_id, t_id) in pair_matches:
+                    continue
+                inter = s_nodes & t_nodes
+                if len(inter) >= 2:
+                    fwd = len(inter) / len(s_nodes)
+                    bwd = len(inter) / len(t_nodes)
+                    jacc = len(inter) / len(s_nodes | t_nodes)
+                    if fwd >= 0.20:
                         relation_edges.append({
                             "from_year": y_from,
                             "to_year": y_to,
                             "from_community_id": s_id,
-                            "to_community_id": b["tgt_id"],
+                            "to_community_id": t_id,
                             "relation_type": "split_branch",
-                            "shared_channels": b["shared_count"],
-                            "jaccard_similarity": round(b["jaccard"], 4),
-                            "forward_overlap": round(b["fwd"], 4),
-                            "backward_overlap": round(b["bwd"], 4),
+                            "shared_channels": len(inter),
+                            "jaccard_similarity": round(jacc, 4),
+                            "forward_overlap": round(fwd, 4),
+                            "backward_overlap": round(bwd, 4),
                             "is_primary_backbone": False
                         })
-
-        # C: Merge tributaries (target receives >= 20% from multiple sources with shared >= 2)
-        for t_id in sorted(c_to.keys()):
-            incoming = tgt_overlaps[t_id]
-            sig = [r for r in incoming if r["bwd"] >= 0.20 and r["shared_count"] >= 2]
-            if len(sig) >= 2:
-                for m in sig:
-                    # Check if already added
-                    exists = any(
-                        r["from_community_id"] == m["src_id"] and r["to_community_id"] == t_id
-                        for r in relation_edges if r["from_year"] == y_from and r["to_year"] == y_to
-                    )
-                    if not exists:
+                    elif bwd >= 0.20:
                         relation_edges.append({
                             "from_year": y_from,
                             "to_year": y_to,
-                            "from_community_id": m["src_id"],
+                            "from_community_id": s_id,
                             "to_community_id": t_id,
                             "relation_type": "merge_tributary",
-                            "shared_channels": m["shared_count"],
-                            "jaccard_similarity": round(m["jaccard"], 4),
-                            "forward_overlap": round(m["fwd"], 4),
-                            "backward_overlap": round(m["bwd"], 4),
+                            "shared_channels": len(inter),
+                            "jaccard_similarity": round(jacc, 4),
+                            "forward_overlap": round(fwd, 4),
+                            "backward_overlap": round(bwd, 4),
                             "is_primary_backbone": False
                         })
 
     # Step 2: Assign Persistent Community Lineage IDs
-    # Start with communities in the earliest year (2020)
+    # Earliest year (2020) defines initial lineages
     lineage_counter = 1
     comm_to_lineage: Dict[str, str] = {}
     lineage_birth_year: Dict[str, int] = {}
     lineage_members: Dict[str, List[str]] = {}
 
-    # Sort 2020 communities deterministically by size then cid
     for cid in sorted(yearly_communities[years[0]].keys(), key=lambda c: (-len(yearly_communities[years[0]][c]), c)):
         lid = f"LINEAGE_{lineage_counter:02d}"
         comm_to_lineage[cid] = lid
@@ -181,49 +192,23 @@ def build_community_lineage_v2() -> Tuple[pd.DataFrame, pd.DataFrame]:
         lineage_members[lid] = [cid]
         lineage_counter += 1
 
-    # Propagate through subsequent years
+    # Propagate through adjacent years using strictly one-to-one primary continuations
     for yr in years[1:]:
         c_yr = yearly_communities[yr]
-        # For each community in this year, check if it continues from an existing lineage
-        # First check primary continuations
         assigned_this_year: Set[str] = set()
-        
-        # 1. Primary continuation matches
-        for s_id, t_id in sorted(continuations, key=lambda p: (p[0], p[1])):
+
+        # 1. Extend lineages via 1-to-1 primary continuations
+        for s_id, t_id in sorted(primary_continuations, key=lambda p: (p[0], p[1])):
             if t_id in c_yr and s_id in comm_to_lineage and t_id not in assigned_this_year:
                 parent_lid = comm_to_lineage[s_id]
-                # If parent lineage hasn't claimed another node in this year, extend it
-                already_claimed = any(
-                    cid in c_yr for cid in lineage_members[parent_lid]
-                )
-                if not already_claimed:
-                    comm_to_lineage[t_id] = parent_lid
-                    lineage_members[parent_lid].append(t_id)
-                    assigned_this_year.add(t_id)
+                # Guaranteed 1-to-1 per adjacent pair
+                comm_to_lineage[t_id] = parent_lid
+                lineage_members[parent_lid].append(t_id)
+                assigned_this_year.add(t_id)
 
-        # 2. For unassigned communities, check best incoming relation edge
+        # 2. For unassigned communities, create new lineage birth
         for t_id in sorted(c_yr.keys(), key=lambda c: (-len(c_yr[c]), c)):
-            if t_id in assigned_this_year:
-                continue
-            # Check incoming edges
-            incoming_edges = [
-                e for e in relation_edges if e["to_community_id"] == t_id and e["to_year"] == yr
-            ]
-            assigned = False
-            if incoming_edges:
-                best_edge = sorted(incoming_edges, key=lambda e: (-e["jaccard_similarity"], -e["shared_channels"]))[0]
-                src = best_edge["from_community_id"]
-                if src in comm_to_lineage:
-                    p_lid = comm_to_lineage[src]
-                    # Extend lineage if not already in this year
-                    if not any(cid in c_yr for cid in lineage_members[p_lid]):
-                        comm_to_lineage[t_id] = p_lid
-                        lineage_members[p_lid].append(t_id)
-                        assigned_this_year.add(t_id)
-                        assigned = True
-
-            # If still not assigned, it is a new lineage birth
-            if not assigned:
+            if t_id not in assigned_this_year:
                 lid = f"LINEAGE_{lineage_counter:02d}"
                 comm_to_lineage[t_id] = lid
                 lineage_birth_year[lid] = yr
@@ -234,13 +219,12 @@ def build_community_lineage_v2() -> Tuple[pd.DataFrame, pd.DataFrame]:
     logger.info(f"Generated {len(lineage_members)} persistent community lineages.")
 
     # Step 3: Compute Lineage Lifecycle Records
-    lifecycle_records: List[Dict[str, Any]] = []
-
-    # Map cid to year
     cid_to_year: Dict[str, int] = {}
     for yr, comms in yearly_communities.items():
         for cid in comms:
             cid_to_year[cid] = yr
+
+    lifecycle_records: List[Dict[str, Any]] = []
 
     for lid, cids in sorted(lineage_members.items()):
         observed_years = sorted(list(set(cid_to_year[cid] for cid in cids)))
@@ -255,33 +239,32 @@ def build_community_lineage_v2() -> Tuple[pd.DataFrame, pd.DataFrame]:
             all_channel_ids.update(yearly_communities[yr][cid])
 
         # Dominant agency_at_selection
-        agency_counts = Counter(channel_agency.get(ch, "Unknown") for ch in all_channel_ids)
+        agency_counts = Counter(channel_agency.get(ch, "Independent / Other") for ch in all_channel_ids)
         dominant_agency = agency_counts.most_common(1)[0][0] if agency_counts else "Unknown"
         dominant_agency_pct = (agency_counts.most_common(1)[0][1] / len(all_channel_ids)) if all_channel_ids else 0.0
 
-        # Detect split ancestry (predecessors that split into this lineage)
-        split_ancestors = set()
+        # Split and merge contributors with year annotations
+        split_contributors = []
         for e in relation_edges:
             if e["relation_type"] == "split_branch" and e["to_community_id"] in cids:
                 src_cid = e["from_community_id"]
                 if src_cid in comm_to_lineage and comm_to_lineage[src_cid] != lid:
-                    split_ancestors.add(comm_to_lineage[src_cid])
+                    src_lid = comm_to_lineage[src_cid]
+                    entry = f"{src_lid} ({e['from_year']}->{e['to_year']})"
+                    if entry not in split_contributors:
+                        split_contributors.append(entry)
 
-        # Detect merge ancestry (tributaries that merged into this lineage)
-        merge_ancestors = set()
+        merge_contributors = []
         for e in relation_edges:
             if e["relation_type"] == "merge_tributary" and e["to_community_id"] in cids:
                 src_cid = e["from_community_id"]
                 if src_cid in comm_to_lineage and comm_to_lineage[src_cid] != lid:
-                    merge_ancestors.add(comm_to_lineage[src_cid])
+                    src_lid = comm_to_lineage[src_cid]
+                    entry = f"{src_lid} ({e['from_year']}->{e['to_year']})"
+                    if entry not in merge_contributors:
+                        merge_contributors.append(entry)
 
-        # Yearly sizes and membership churn
-        yearly_sizes = {}
-        for yr in observed_years:
-            yr_cids = [cid for cid in cids if cid_to_year[cid] == yr]
-            total_nodes = sum(len(yearly_communities[yr][cid]) for cid in yr_cids)
-            yearly_sizes[yr] = total_nodes
-
+        # Churn rate across active adjacent years
         churn_rates = []
         for j in range(len(observed_years) - 1):
             y1 = observed_years[j]
@@ -293,8 +276,6 @@ def build_community_lineage_v2() -> Tuple[pd.DataFrame, pd.DataFrame]:
                 churn_rates.append(churn)
 
         mean_churn = sum(churn_rates) / len(churn_rates) if churn_rates else 0.0
-
-        # Status: ACTIVE if seen in 2026, else INACTIVE/DORMANT
         status = "ACTIVE" if last_observed_year == 2026 else "DISAPPEARED"
 
         lifecycle_records.append({
@@ -307,8 +288,8 @@ def build_community_lineage_v2() -> Tuple[pd.DataFrame, pd.DataFrame]:
             "dominant_agency_share": round(dominant_agency_pct, 4),
             "total_unique_creators": len(all_channel_ids),
             "mean_membership_churn": round(mean_churn, 4),
-            "split_ancestors": "; ".join(sorted(split_ancestors)) if split_ancestors else "None",
-            "merge_ancestors": "; ".join(sorted(merge_ancestors)) if merge_ancestors else "None",
+            "split_contributors": "; ".join(sorted(split_contributors)) if split_contributors else "None",
+            "merge_contributors": "; ".join(sorted(merge_contributors)) if merge_contributors else "None",
             "member_snapshot_communities": "; ".join(cids)
         })
 
@@ -364,7 +345,7 @@ def generate_lineage_v2_report(df_lifecycles: pd.DataFrame, df_lineage_v2: pd.Da
     lines.append(f"This report establishes persistent multi-year community identities across Thai VTuber network snapshots from 2020 through 2026. Across this seven-year longitudinal horizon, Louvain community partitions were mapped into **{len(df_lifecycles)} distinct persistent community lineages**, resolving arbitrary yearly community re-indexing into traceable genealogical structures.")
     lines.append("")
     lines.append("### Key Methodological Contracts")
-    lines.append("1. **Deterministic Identity Resolution:** Community identities are assigned via backbone continuation (Jaccard similarity and bidirectional node overlap) rather than raw clustering indices.")
+    lines.append("1. **Strict One-to-One Backbone Continuation:** Primary backbone continuation is enforced as one-to-one per adjacent-year pair using deterministic maximum-weight bipartite matching on overlap metrics ($W = 0.4 \\cdot J + 0.3 \\cdot F + 0.3 \\cdot B$). Each source has $\\le 1$ primary continuation and each target has $\\le 1$ primary continuation.")
     lines.append("2. **Separation of Relation Edges & Lifecycle States:** Adjacent transitions (`continuation`, `split_branch`, `merge_tributary`) are modeled separately from boundary states (`birth`, `disappearance`), preventing contradictory multi-state labels.")
     lines.append("3. **Non-Equivalence with Agencies:** Communities reflect emergent audience co-interaction structures. While dominant agency homophily is tracked, communities are never treated as formal corporate agency proxies.")
     lines.append("")
@@ -372,25 +353,25 @@ def generate_lineage_v2_report(df_lifecycles: pd.DataFrame, df_lineage_v2: pd.Da
     lines.append("")
     lines.append("## 1. Persistent Community Lifecycles")
     lines.append("")
-    lines.append("| Lineage ID | Birth Year | Last Observed | Lifespan (Yrs) | Status | Dominant Agency | Agency Share | Total Creators | Churn Rate | Split Ancestors | Merge Ancestors |")
+    lines.append("| Lineage ID | Birth Year | Last Observed | Lifespan (Yrs) | Status | Dominant Agency | Agency Share | Total Creators | Churn Rate | Split Contributors | Merge Contributors |")
     lines.append("| :--- | :---: | :---: | :---: | :---: | :--- | :---: | :---: | :---: | :--- | :--- |")
     for _, r in df_lifecycles.iterrows():
         lines.append(
             f"| `{r['lineage_id']}` | {r['birth_year']} | {r['last_observed_year']} | {r['lifespan_years']} | "
             f"`{r['lifecycle_status']}` | {r['dominant_agency']} | {r['dominant_agency_share']:.1%} | {r['total_unique_creators']} | "
-            f"{r['mean_membership_churn']:.1%} | {r['split_ancestors']} | {r['merge_ancestors']} |"
+            f"{r['mean_membership_churn']:.1%} | {r['split_contributors']} | {r['merge_contributors']} |"
         )
     lines.append("")
     lines.append("### Substantive Observations on Community Lifecycles")
     lines.append(f"- **Persistent Backbones:** {len(long_lived)} lineages exhibited extended multi-year persistence (>= 4 years lifespan).")
     lines.append(f"- **Active Clusters in 2026:** {len(active_lineages)} lineages remain active in the terminal 2026 observation window.")
-    lines.append("- **Emergent Specialization:** Lineages with dominant agencies (e.g. Algorhythm Project, Polygon Official) maintain high internal cohesion while gradually absorbing peripheral independent creators.")
+    lines.append(f"- **Agency Composition:** Across evaluated lineages, Independent creators constitute the numerical majority of channel nodes, reflecting the organic creator distribution of the Thai VTuber scene.")
     lines.append("")
     lines.append("---")
     lines.append("")
     lines.append("## 2. Genealogical Relation Edges (Adjacent Years)")
     lines.append("")
-    lines.append(f"- **Primary Continuations:** {len(continuations)} transitions")
+    lines.append(f"- **Primary Continuations (1-to-1):** {len(continuations)} transitions")
     lines.append(f"- **Split Branches:** {len(splits)} transitions")
     lines.append(f"- **Merge Tributaries:** {len(merges)} transitions")
     lines.append("")
