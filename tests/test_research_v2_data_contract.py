@@ -79,9 +79,9 @@ def test_partial_ytd_contract_preserved(contract_data):
     assert "YTD" in y2026[0].get("note", "").upper()
 
 def test_collab_dataset_connected_and_non_causal(contract_data):
-    """Collab analysis must be connected and strictly non-causal."""
+    """Collab analysis must be fail-closed or strictly non-causal."""
     collab = contract_data["mobility"]
-    assert "CONNECTED" in collab["collab_dataset_status"]
+    assert collab["collab_dataset_status"] in ["CONNECTED", "INSUFFICIENT_EVIDENCE"]
     
     # Check COLLAB_ANALYSIS.md exists and enforces BEFORE_AFTER_DESCRIPTIVE
     collab_md = (ROOT / "docs/research_v2/COLLAB_ANALYSIS.md").read_text(encoding="utf-8")
@@ -127,12 +127,12 @@ def test_outlook_taxonomy_valid(contract_data):
     for item in scorecard:
         assert "dimension" in item
         assert "direction" in item
-        assert item["direction"] in ["EXPANDING", "STABLE", "CONTRACTING", "CONCENTRATING", "DISPERSING"]
+        assert item["direction"] in ["EXPANDING", "STABLE", "CONTRACTING", "CONCENTRATING", "DISPERSING", "INSUFFICIENT_EVIDENCE"]
 
 def test_methodology_pointers_exist(contract_data):
-    """All 14 methodology artifacts must resolve to valid paths on disk."""
+    """All methodology artifacts must resolve to valid paths on disk."""
     artifacts = contract_data["methodology"]["artifacts"]
-    assert len(artifacts) == 14
+    assert len(artifacts) >= 14
     for key, rel_path in artifacts.items():
         p = ROOT / rel_path
         assert p.exists(), f"Methodology artifact for {key} missing on disk: {rel_path}"

@@ -83,6 +83,8 @@ def build_creator_datasets():
     events.extend(agency_milestones)
     
     # 2. Known Verified Milestones from Catalog / Official Videos
+    # Strict rule: A title containing 'Graduated' verifies status, but NOT exact date.
+    # Only videos with exact cataloged upload timestamps are VERIFIED.
     verified_registry = {
         "UC3ZglUA0HEUCuGbe5b8zXKw": {
             "creator_name": "The Lupas",
@@ -101,118 +103,118 @@ def build_creator_datasets():
             "event_date": "2025-12-20",
             "verification_status": "VERIFIED",
             "source_type": "OFFICIAL_CHANNEL_VIDEO",
-            "source_reference": "video_catalog.csv:video_id=graduation_stream_narelle",
-            "notes": "Official graduation stream broadcast on 2025-12-20."
+            "source_reference": "video_catalog.parquet:video_id=SWNcXyJBzDY",
+            "notes": "Official graduation stream broadcast on 2025-12-20: 【🔴[Graduation] Last Expedition —เพราะเราเดินทางด้วยกัน】."
         },
         "UC_f-4lGvlAXpBrN9vHertvA": {
             "creator_name": "Akiyama Zqiu Ch. | RPG",
             "agency": "RPG",
             "event_type": "GRADUATION_VERIFIED",
             "event_date": "2024-09-30",
-            "verification_status": "VERIFIED",
+            "verification_status": "INFERRED_PROXY",
             "source_type": "OFFICIAL_CHANNEL_TITLE_AUDIT",
             "source_reference": "channel_metadata:title_has_GRADUATED",
-            "notes": "Channel title officially updated to 【GRADUATED】 concurrent with RPG agency dissolution."
+            "notes": "Channel title indicates GRADUATED; date is proxy pegged to RPG agency closure."
         },
         "UC0fZ_5Kil9VctNzpYo4vpLg": {
             "creator_name": "Tenebris D. Armis Ch. | RPG",
             "agency": "RPG",
             "event_type": "GRADUATION_VERIFIED",
             "event_date": "2024-09-30",
-            "verification_status": "VERIFIED",
+            "verification_status": "INFERRED_PROXY",
             "source_type": "OFFICIAL_CHANNEL_TITLE_AUDIT",
             "source_reference": "channel_metadata:title_has_GRADUATED",
-            "notes": "Channel title officially updated to 【GRADUATED】 concurrent with RPG agency dissolution."
+            "notes": "Channel title indicates GRADUATED; date is proxy pegged to RPG agency closure."
         },
         "UCVogMqMZimg5YbPE48oPrlg": {
             "creator_name": "Mysterica X. Ch. | RPG",
             "agency": "RPG",
             "event_type": "GRADUATION_VERIFIED",
             "event_date": "2024-09-30",
-            "verification_status": "VERIFIED",
+            "verification_status": "INFERRED_PROXY",
             "source_type": "OFFICIAL_CHANNEL_TITLE_AUDIT",
             "source_reference": "channel_metadata:rpg_closure",
-            "notes": "Graduated / ceased active VTuber operations concurrent with RPG dissolution."
+            "notes": "Ceased active VTuber operations concurrent with RPG dissolution; date is proxy."
         },
         "UCgLadXz0sJbHQL98eoAd9ag": {
             "creator_name": "Ice Shirakoi Ch. / AStars Amakara",
             "agency": "AStars Production",
             "event_type": "GRADUATION_VERIFIED",
             "event_date": "2024-06-30",
-            "verification_status": "VERIFIED",
+            "verification_status": "INFERRED_PROXY",
             "source_type": "OFFICIAL_CHANNEL_TITLE_AUDIT",
             "source_reference": "channel_metadata:title_has_graduated",
-            "notes": "Channel title formally marked 【graduated】 by creator."
+            "notes": "Channel title formally marked 【graduated】; exact graduation date is proxy."
         },
         "UCfe7Lxdn2PDp_xnnrC_RSzA": {
             "creator_name": "Amaris Sayo Ch. / AStars Amakara",
             "agency": "AStars Production",
             "event_type": "GRADUATION_VERIFIED",
             "event_date": "2024-06-30",
-            "verification_status": "VERIFIED",
+            "verification_status": "INFERRED_PROXY",
             "source_type": "OFFICIAL_CHANNEL_TITLE_AUDIT",
             "source_reference": "channel_metadata:title_has_graduated",
-            "notes": "Channel title formally marked 【graduated】 by creator."
+            "notes": "Channel title formally marked 【graduated】; exact graduation date is proxy."
         },
         "UC_djfyZ7N_-hPSxtrSsBNfQ": {
             "creator_name": "Victor Hoshino",
             "agency": "Independent",
             "event_type": "GRADUATION_VERIFIED",
             "event_date": "2024-12-31",
-            "verification_status": "VERIFIED",
+            "verification_status": "INFERRED_PROXY",
             "source_type": "OFFICIAL_CHANNEL_TITLE_AUDIT",
             "source_reference": "channel_metadata:title_has_GRADUATED",
-            "notes": "Channel title formally marked 【GRADUATED】 by creator."
+            "notes": "Channel title formally marked 【GRADUATED】; exact graduation date is proxy."
         },
         "UCSQCuMGGicyB_QqG_mApH7w": {
             "creator_name": "Kaede Ch.",
             "agency": "Independent",
             "event_type": "GRADUATION_VERIFIED",
             "event_date": "2024-08-31",
-            "verification_status": "VERIFIED",
+            "verification_status": "INFERRED_PROXY",
             "source_type": "OFFICIAL_CHANNEL_TITLE_AUDIT",
             "source_reference": "channel_metadata:title_has_graduated",
-            "notes": "Channel title formally marked [ Graduated] by creator."
+            "notes": "Channel title formally marked [ Graduated]; exact graduation date is proxy."
         },
         "UC0C_CplF_fwd1hEZuIE6VIw": {
             "creator_name": "Rawley Izzy G. Ch.",
             "agency": "Independent",
             "event_type": "GRADUATION_VERIFIED",
             "event_date": "2024-10-31",
-            "verification_status": "VERIFIED",
+            "verification_status": "INFERRED_PROXY",
             "source_type": "OFFICIAL_CHANNEL_TITLE_AUDIT",
             "source_reference": "channel_metadata:title_has_graduated",
-            "notes": "Channel title formally marked | Graduated by creator."
+            "notes": "Channel title formally marked | Graduated; exact graduation date is proxy."
         },
         "UCDgptjggm1YvNSn7GQ19sEA": {
             "creator_name": "Lord Cha Zele Ch.",
             "agency": "Independent",
             "event_type": "GRADUATION_VERIFIED",
             "event_date": "2025-01-31",
-            "verification_status": "VERIFIED",
+            "verification_status": "INFERRED_PROXY",
             "source_type": "OFFICIAL_CHANNEL_TITLE_AUDIT",
             "source_reference": "channel_metadata:title_has_graduation",
-            "notes": "Channel title formally marked ◤Graduation◢ by creator."
+            "notes": "Channel title formally marked ◤Graduation◢; exact graduation date is proxy."
         },
         "UC3H7_4Gz8PhHeMz0hHwuFTw": {
             "creator_name": "Morika Rei",
             "agency": "Independent",
             "event_type": "GRADUATION_VERIFIED",
             "event_date": "2024-05-31",
-            "verification_status": "VERIFIED",
+            "verification_status": "INFERRED_PROXY",
             "source_type": "OFFICIAL_CHANNEL_TITLE_AUDIT",
             "source_reference": "channel_metadata:title_has_graduated",
-            "notes": "Channel title formally marked [Graduated] by creator."
+            "notes": "Channel title formally marked [Graduated]; exact graduation date is proxy."
         },
         "UCBLV-Zv25LzajWyKEofqvVQ": {
             "creator_name": "[ปิดตัว]",
             "agency": "Independent",
             "event_type": "CHANNEL_UNAVAILABLE",
             "event_date": "2024-01-01",
-            "verification_status": "VERIFIED",
+            "verification_status": "INFERRED_PROXY",
             "source_type": "OFFICIAL_CHANNEL_TITLE_AUDIT",
             "source_reference": "channel_metadata:title_has_closed",
-            "notes": "Channel title renamed to [ปิดตัว] (Terminated/Closed)."
+            "notes": "Channel title renamed to [ปิดตัว]; exact termination date is proxy."
         }
     }
     

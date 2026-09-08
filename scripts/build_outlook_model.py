@@ -53,6 +53,11 @@ def build_outlook_model():
     evt_2024 = len(evt_df[(evt_df["event_year"] == 2024) & (evt_df["event_type"].str.contains("GRADUATION|CHANNEL_UNAVAILABLE", case=False))])
     evt_2025 = len(evt_df[(evt_df["event_year"] == 2025) & (evt_df["event_type"].str.contains("GRADUATION|CHANNEL_UNAVAILABLE", case=False))])
     
+    # Load actual data confidence from quality artifact
+    qual_df = pd.read_parquet(ROOT / "data/temporal/quality/yearly_evidence_quality.parquet")
+    qual_2025 = qual_df[qual_df["year"] == 2025].iloc[0]
+    cat_cov_pct = round(float(qual_2025["catalog_channel_coverage_rate"]) * 100.0, 1)
+
     indicators = [
         # 1. CREATOR_SUPPLY
         {
@@ -62,7 +67,7 @@ def build_outlook_model():
             "value": float(eco_2025["active_channels"]),
             "previous_comparable_value": float(eco_2024["active_channels"]),
             "direction": "EXPANDING" if eco_2025["active_channels"] > eco_2024["active_channels"] * 1.05 else ("CONTRACTING" if eco_2025["active_channels"] < eco_2024["active_channels"] * 0.95 else "STABLE"),
-            "coverage": "100 target cohort channels",
+            "coverage": "193 target cohort channels (166 active in 2025)",
             "confidence": "HIGH",
             "source_artifact": "yearly_ecosystem_metrics.parquet",
             "limitation": "Restricted to target research cohort channels with active interaction in window."
@@ -88,8 +93,8 @@ def build_outlook_model():
             "value": float(evt_2025),
             "previous_comparable_value": float(evt_2024),
             "direction": "CONTRACTING" if evt_2025 < evt_2024 else ("EXPANDING" if evt_2025 > evt_2024 else "STABLE"),
-            "coverage": "Verified lifecycle milestones in target cohort",
-            "confidence": "HIGH",
+            "coverage": "Verified and proxy lifecycle milestones in target cohort",
+            "confidence": "MEDIUM",
             "source_artifact": "creator_status_events.parquet",
             "limitation": "Official graduations and agency closures only. Excludes silent hiatuses."
         },
@@ -139,11 +144,11 @@ def build_outlook_model():
             "period": "2025",
             "value": float(eco_2025["cross_community_edge_share"]),
             "previous_comparable_value": float(eco_2024["cross_community_edge_share"]),
-            "direction": "EXPANDING" if eco_2025["cross_community_edge_share"] > eco_2024["cross_community_edge_share"] else "CONTRACTING",
-            "coverage": "Active network co-occurrence graph",
+            "direction": "STABLE" if abs(eco_2025["cross_community_edge_share"] - eco_2024["cross_community_edge_share"]) < 0.05 else ("EXPANDING" if eco_2025["cross_community_edge_share"] > eco_2024["cross_community_edge_share"] else "CONTRACTING"),
+            "coverage": "Temporal Louvain network partitions",
             "confidence": "HIGH",
             "source_artifact": "yearly_ecosystem_metrics.parquet",
-            "limitation": "Proportion of network edges bridging distinct Louvain communities."
+            "limitation": "48.6% of network edges span community boundaries in 2025."
         },
         # 8. NETWORK_CONCENTRATION
         {
@@ -152,50 +157,50 @@ def build_outlook_model():
             "period": "2025",
             "value": float(eco_2025["degree_concentration_gini"]),
             "previous_comparable_value": float(eco_2024["degree_concentration_gini"]),
-            "direction": "CONCENTRATING" if eco_2025["degree_concentration_gini"] > eco_2024["degree_concentration_gini"] + 0.02 else ("DISPERSING" if eco_2025["degree_concentration_gini"] < eco_2024["degree_concentration_gini"] - 0.02 else "STABLE"),
-            "coverage": "Degree centrality distribution across active channels",
+            "direction": "STABLE" if abs(eco_2025["degree_concentration_gini"] - eco_2024["degree_concentration_gini"]) < 0.02 else ("EXPANDING" if eco_2025["degree_concentration_gini"] > eco_2024["degree_concentration_gini"] else "CONTRACTING"),
+            "coverage": "All active network nodes in 2025",
             "confidence": "HIGH",
             "source_artifact": "yearly_ecosystem_metrics.parquet",
-            "limitation": "Gini coefficient of degree distribution. Moderate values (~0.42-0.45) indicate healthy tiered visibility."
+            "limitation": "Gini ~0.42-0.43 reflects moderate concentration without extreme monopoly."
         },
         # 9. COMMUNITY_STRUCTURE
         {
             "dimension": "COMMUNITY_STRUCTURE",
-            "metric": "louvain_modularity_q",
+            "metric": "modularity_q",
             "period": "2025",
             "value": float(eco_2025["modularity"]),
             "previous_comparable_value": float(eco_2024["modularity"]),
-            "direction": "STABLE" if abs(eco_2025["modularity"] - eco_2024["modularity"]) < 0.03 else ("CONCENTRATING" if eco_2025["modularity"] > eco_2024["modularity"] else "DISPERSING"),
-            "coverage": "Louvain community partition quality",
+            "direction": "STABLE" if abs(eco_2025["modularity"] - eco_2024["modularity"]) < 0.02 else ("EXPANDING" if eco_2025["modularity"] > eco_2024["modularity"] else "CONTRACTING"),
+            "coverage": "Temporal Louvain network partitions",
             "confidence": "HIGH",
             "source_artifact": "yearly_ecosystem_metrics.parquet",
             "limitation": "Modularity Q ~0.31-0.32 reflects robust community sub-clusters."
         },
-        # 10. MONETIZATION_EVIDENCE
+        # 10. MONETIZATION_EVIDENCE (Strictly unsummed, reports missing commercial data)
         {
             "dimension": "MONETIZATION_EVIDENCE",
-            "metric": "observed_public_monetization_signals",
+            "metric": "monetization_evidence_status",
             "period": "2020-2025",
-            "value": 12500000.0,
-            "previous_comparable_value": 8500000.0,
-            "direction": "STABLE",
-            "coverage": "Public verified price signals and Super Chat index",
-            "confidence": "MEDIUM",
+            "value": None,
+            "previous_comparable_value": None,
+            "direction": "INSUFFICIENT_EVIDENCE",
+            "coverage": "Public verified price signals only (can_be_summed=False)",
+            "confidence": "LOW",
             "source_artifact": "market_evidence.parquet",
-            "limitation": "Public observable floor only. Missing private commercial contracts."
+            "limitation": "Individual unit prices cannot be summed without private sales volumes; aggregate financial size is unverified."
         },
-        # 11. DATA_CONFIDENCE
+        # 11. DATA_CONFIDENCE (Dynamically loaded from quality report)
         {
             "dimension": "DATA_CONFIDENCE",
-            "metric": "sampling_coverage_confidence",
-            "period": "2020-2026_YTD",
-            "value": 96.0,
-            "previous_comparable_value": 96.0,
+            "metric": "catalog_channel_coverage_rate_pct",
+            "period": "2025",
+            "value": cat_cov_pct,
+            "previous_comparable_value": round(float(qual_df[qual_df["year"] == 2024]["catalog_channel_coverage_rate"].iloc[0]) * 100.0, 1),
             "direction": "STABLE",
-            "coverage": "Target research cohort coverage",
+            "coverage": "Target research cohort coverage rate",
             "confidence": "HIGH",
-            "source_artifact": "channel_coverage.parquet",
-            "limitation": "96% of target channels have verified video history."
+            "source_artifact": "yearly_evidence_quality.parquet",
+            "limitation": "Derived from yearly_evidence_quality.parquet catalog coverage rate."
         }
     ]
     
@@ -203,60 +208,59 @@ def build_outlook_model():
     ind_df.to_parquet(OUT_INDICATORS_PARQUET, index=False)
     print(f"Saved {OUT_INDICATORS_PARQUET} ({len(ind_df)} outlook indicators).")
     
-    # Classification Rules Engine
-    # Sensitivity Evaluation across Empirical States:
-    # 1. EXPANSION: Creator supply expanding AND Audience activity expanding AND Entry rate expanding.
-    # 2. CONSOLIDATING: Creator supply stable/flat AND Audience persistence expanding (>50%) AND Modularity high (>0.30) AND Concentration stable/rising.
-    # 3. NICHE_STABLE: Creator supply stable AND Audience activity stable (+-10%) AND Retention high.
-    # 4. CONTRACTING: Creator supply down (>15%) AND Audience activity down (>20%) AND Persistence down.
-    # 5. FRAGILE: Creator supply down AND Network modularity collapsing AND Extreme Gini (>0.70).
+    # Classification Rules Engine (Fail-Closed)
+    # Rigorous Rules:
+    # 1. EXPANSION: supply_growth > 0.15 AND audience_growth > 0.20 AND new_audience_expanding.
+    # 2. CONTRACTING: supply_change < -0.15 AND audience_change < -0.20 AND persistence_falling.
+    # 3. CONSOLIDATING: abs(supply_change) <= 0.10 AND ret_2025 >= 50.0 AND mod_2025 >= 0.25 AND monetization is NOT contradictory.
+    # 4. If critical monetization evidence is missing or indicators conflict -> FAIL CLOSED to INSUFFICIENT_EVIDENCE.
     
-    # Evaluate 2024->2025 state:
     supply_change = (eco_2025["active_channels"] - eco_2024["active_channels"]) / eco_2024["active_channels"]
     aud_change = (aud_2025["population_observed_accounts"] - aud_2024["population_observed_accounts"]) / aud_2024["population_observed_accounts"]
     ret_2025 = aud_2025["pct_re_observed"]
     mod_2025 = eco_2025["modularity"]
     gini_2025 = eco_2025["degree_concentration_gini"]
     
-    if supply_change > 0.15 and aud_change > 0.20:
-        primary_state = "EXPANSION"
-    elif ret_2025 >= 50.0 and mod_2025 >= 0.25 and abs(supply_change) <= 0.15:
-        primary_state = "CONSOLIDATING"
-    elif abs(supply_change) <= 0.10 and abs(aud_change) <= 0.15:
-        primary_state = "NICHE_STABLE"
-    elif supply_change < -0.15 and aud_change < -0.20:
-        primary_state = "CONTRACTING"
-    else:
-        primary_state = "NICHE_STABLE"
-        
-    secondary_state = "NICHE_STABLE" if primary_state == "CONSOLIDATING" else "CONSOLIDATING"
+    # Because monetization dimension lacks commercial volume disclosures, strict fail-closed policy applies:
+    monetization_verified = False  # Private agency disclosures absent
     
-    print(f"Empirical Ecosystem Classification: {primary_state} (Secondary: {secondary_state})")
+    if supply_change < -0.15 and aud_change < -0.20:
+        primary_state = "CONTRACTING"
+    elif supply_change > 0.15 and aud_change > 0.20:
+        primary_state = "EXPANSION"
+    elif not monetization_verified:
+        # Fails closed when evidence gates are incomplete
+        primary_state = "INSUFFICIENT_EVIDENCE"
+    else:
+        primary_state = "INSUFFICIENT_EVIDENCE"
+        
+    secondary_state = None
+    
+    print(f"Empirical Ecosystem Classification: {primary_state} (Fail-Closed Standard)")
     
     # Generate OUTLOOK_MODEL.md
     md = [
-        "# Empirical Ecosystem Outlook Model: Is the Thai VTuber Industry Dying?",
+        "# Empirical Ecosystem Outlook Model: Structural Indicators & Trajectory",
         "",
-        "> **Verdict**: **STRUCTURAL CONSOLIDATION (`CONSOLIDATING` / `NICHE_STABLE`)**  ",
-        "> **Methodological Standard**: Multi-dimensional empirical scorecard based on 11 verifiable indicators. Zero arbitrary black-box scores.",
+        f"> **Primary Classification**: **`{primary_state}`**  ",
+        "> **Methodological Standard**: Multi-dimensional empirical scorecard based on 11 verifiable indicators. Zero arbitrary black-box scores. Fails closed when commercial monetization evidence is absent.",
         "",
         "---",
         "",
-        "## 1. Executive Summary & The Empirical Question",
+        "## 1. Executive Summary & Epistemic Boundaries",
         "",
-        "Public commentary frequently asks emotionally charged questions: *'Is the Thai VTuber industry dying?'*, *'Are VTubers collapsing after the COVID boom?'*, or *'Why are so many creators graduating?'*",
+        "Public commentary frequently poses questions regarding ecosystem contraction or expansion across virtual streamer rosters. Rather than relying on social media sentiment, this framework evaluates the ecosystem across **11 structural dimensions** spanning Creator Supply, Audience Activity, Persistence, and Network Topology.",
         "",
-        "Rather than relying on anecdotes or social media sentiment, this framework models the industry across **11 empirical structural dimensions** spanning Creator Supply, Audience Activity, Retention Dynamics, and Network Topology.",
-        "",
-        "### Key Empirical Takeaways",
-        "1. **The Industry is NOT Dying or Collapsing**:",
-        "   - Active channels in our target research cohort reached **166 channels in 2025** (up from 21 in 2020 and 92 in 2022).",
-        "   - Annual interacting audience volume in 2025 reached **17,119 active accounts** (a +27.0% rebound over 2024).",
-        "2. **The Phenomenon is Structural Consolidation, Not Collapse**:",
-        "   - The initial rapid influx of casual new viewers (84.7% new in 2021) has matured into a **high-retention core audience** where **58.7% of all active interacting accounts in 2025 are returning multi-year supporters**.",
-        "   - The industry has transitioned from speculative expansion into an established, resilient cultural niche.",
-        "3. **Graduations and Agency Exits are Normal Industry Lifecycle Events**:",
-        "   - The closure of agencies like RPG (2024) and Virtual Zeven (2021) reflects talent reallocation and market discipline, typical of maturing entertainment sectors globally.",
+        "### Observed Empirical Patterns",
+        "1. **Creator Activity in Target Cohort**:",
+        "   - Active channels in our target research cohort numbered **166 channels in 2025** (out of 193 total cohort channels).",
+        "   - Annual interacting audience volume in 2025 reached **17,119 active accounts**.",
+        "2. **Audience Account Persistence**:",
+        "   - Re-observed accounts accounted for **58.7% of all active interacting accounts in 2025** (up from 15.3% in 2021).",
+        "   - The proportion of newly observed interacting accounts decreased from 84.7% (2021) to 41.3% (2025), reflecting cohort maturation.",
+        "3. **Monetization & Commercial Transparency Boundary**:",
+        "   - While non-summable public price signals exist (e.g. ticket prices, retail merchandise unit prices), private agency disclosures and transaction volumes remain undisclosed.",
+        "   - Under the fail-closed epistemic policy, overall industry financial outlook remains **`INSUFFICIENT_EVIDENCE`**.",
         "",
         "---",
         "",
@@ -267,11 +271,26 @@ def build_outlook_model():
     ]
     
     for it in indicators:
-        val_str = f"{it['value']:,.2f}" if it['value'] < 1000 else f"{it['value']:,.0f}"
-        prev_str = f"{it['previous_comparable_value']:,.2f}" if it['previous_comparable_value'] < 1000 else f"{it['previous_comparable_value']:,.0f}"
-        if "pct" in it["metric"]:
-            val_str += "%"
-            prev_str += "%"
+        val = it['value']
+        prev = it['previous_comparable_value']
+        if val is None or pd.isna(val):
+            val_str = "INSUFFICIENT_EVIDENCE"
+        elif isinstance(val, (int, float)):
+            val_str = f"{val:,.2f}" if val < 1000 else f"{val:,.0f}"
+            if "pct" in it["metric"]:
+                val_str += "%"
+        else:
+            val_str = str(val)
+            
+        if prev is None or pd.isna(prev):
+            prev_str = "INSUFFICIENT_EVIDENCE"
+        elif isinstance(prev, (int, float)):
+            prev_str = f"{prev:,.2f}" if prev < 1000 else f"{prev:,.0f}"
+            if "pct" in it["metric"]:
+                prev_str += "%"
+        else:
+            prev_str = str(prev)
+            
         md.append(
             f"| **`{it['dimension']}`** | `{it['metric']}` | `{prev_str}` | `{val_str}` | **`{it['direction']}`** | `{it['confidence']}` | `{it['source_artifact']}` |"
         )
@@ -290,16 +309,16 @@ def build_outlook_model():
         "│                    │ AND Entry rate expanding.                                   │",
         "├────────────────────┼─────────────────────────────────────────────────────────────┤",
         "│ CONSOLIDATING      │ Supply flat/modest (+-10%) AND Audience persistence > 50%   │",
-        "│ [PRIMARY MATCH]    │ AND Modularity Q >= 0.25 AND Concentration Gini stable.     │",
+        "│                    │ AND Modularity Q >= 0.25 AND Concentration Gini stable.     │",
         "├────────────────────┼─────────────────────────────────────────────────────────────┤",
         "│ NICHE_STABLE       │ Supply stable (+-10%) AND Audience activity stable (+-15%)  │",
-        "│ [SECONDARY MATCH]  │ AND Core community loyal.                                   │",
+        "│                    │ AND Persistence stable.                                     │",
         "├────────────────────┼─────────────────────────────────────────────────────────────┤",
         "│ CONTRACTING        │ Supply drop > -15% AND Audience drop > -20%                 │",
         "│                    │ AND Persistence falling.                                    │",
         "├────────────────────┼─────────────────────────────────────────────────────────────┤",
-        "│ FRAGILE            │ Supply falling AND Modularity collapsing (< 0.15)            │",
-        "│                    │ AND Extreme concentration (Gini > 0.70).                    │",
+        "│ INSUFFICIENT_EVID  │ Monetization evidence missing or indicators conflict.       │",
+        "│ [FAIL-CLOSED]      │ Default state when evidence gates fail.                     │",
         "└────────────────────┴─────────────────────────────────────────────────────────────┘",
         "```",
         "",
@@ -307,10 +326,9 @@ def build_outlook_model():
         "",
         "## 4. Sensitivity Analysis",
         "",
-        "To ensure the verdict is robust and does not hinge on an isolated indicator:",
-        "- **Test 1: Excluding 2026 YTD**: 2026 data represents an incomplete annual window. When evaluating solely completed full calendar years (2020 through 2025), the consolidation verdict holds with 100% agreement.",
-        "- **Test 2: Modality Sensitivity**: Analyzing comment-only vs live-chat accounts reveals identical retention trajectories (re-observed accounts grew from 15.3% in 2021 to 58.7% in 2025 across all modalities).",
-        "- **Test 3: Agency vs. Independent Separation**: Even after excluding major agency channels (Algorhythm Project, Pixela), the independent cohort shows stable active creator counts (70+ active channels) and multi-channel audience overlap.",
+        "- **Test 1: Excluding 2026 YTD**: 2026 represents an incomplete annual window. Analysis focuses on completed calendar years 2020 through 2025.",
+        "- **Test 2: Modality Sensitivity**: Comment-only and live-chat accounts show consistent re-observation trends across the target cohort.",
+        "- **Test 3: Commercial Disclosure Gate**: Without auditable revenue statements, economic viability cannot be inferred solely from audience participation.",
         "",
         "---",
         "*Report generated automatically by `scripts/build_outlook_model.py`.*"
