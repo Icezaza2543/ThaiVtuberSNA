@@ -1,7 +1,7 @@
 {
   "status": "REPRODUCIBLE_FROM_INPUTS",
-  "input_fingerprint": "sha256_13f17dd207ac5b07e220df2f9aa5389b04bbcf462810699e88eb435891165a89",
-  "code_fingerprint": "sha256_e8e6dc2add951e28248bc569bb5897ba89d520e1772811278a4cdd027d4150aa",
+  "input_fingerprint": "sha256_ca08670de31701b47f67a576ac3033a61f1da119fb7a0570eaaca9f7520e7cc1",
+  "code_fingerprint": "sha256_4366d4abd9b66e56a0933bb9afb50739e00833e3c849196014c7013aa6964ed6",
   "pipeline_steps": [
     "T7",
     "T7_transitions",
@@ -58,18 +58,18 @@
     "data/temporal/quality/evidence_quality_report.md": "sha256_931285cd83a4a82eac0769f2ef3acffbc882b31f9015dd25cec7b1608d6fcc29",
     "data/temporal/quality/yearly_evidence_quality.parquet": "sha256_b9ef11dfbc8a42c555ae668117417a1e15d0e79de4b1fcaaedb3c8b49bd90e66",
     "data/temporal/release/data_dictionary.json": "sha256_40f52c801b111c4400726441769828691b0417d959c23a78b5ae3eeda1d7baee",
-    "data/temporal/release/dataset_manifest.json": "sha256_585cd46c46eb491933374a232682cfbb9d4314bdc3b36128bae7538331937c1a",
-    "data/temporal/release/dataset_release_notes.md": "sha256_bbb3c65cdfa17781f3b70f84b5d3fb6df672426e0f8b73f546074fe785837fd9",
+    "data/temporal/release/dataset_manifest.json": "sha256_c9e292396aa8bf725495a36d14f8b6ed2c6e5a0d570f62eb8318127d5a5eca42",
+    "data/temporal/release/dataset_release_notes.md": "sha256_7a40d61fabec9ebc5ca0cca6f1f3008a60780c16a938d06a8d545f841db1f659",
     "data/temporal/release/environment_dependencies.json": "sha256_9012642be11a5bc47f56cc5dae677ad8de8b8af1def07ac94a487ee6921f9570",
     "data/temporal/release/provenance_map.json": "sha256_f26ce397a901490864168265264fef33c89b2725ff0460fc97aecb36c7e2fd04",
     "data/temporal/report/appendix_tables.md": "sha256_cbd913db8f6879f5bcc6a002f3d6301e7ffdc41c0a43e0fc85190f87f85ca701",
     "data/temporal/report/technical_report.md": "sha256_2c48a5b07d5640ce7311fd0f1ebb73dbc4e6b63fef80f611bdaad5d1ce521310",
-    "data/temporal/robustness/robustness_report.md": "sha256_4b5c2c937e00f61d1da4743fba398a0fdafbbbce4f5f386b356db74d90b5b405",
+    "data/temporal/robustness/robustness_report.md": "sha256_4bd272c1d9fa0bc91d14311d278cbfae6b6d75a89b6c9cb3c2ea66e406359ec3",
     "data/temporal/robustness/robustness_summary.parquet": "sha256_b537ee0d8733c0a2cbefd48bf34bf999367c67300679d0cb64cc844643cb75aa",
-    "data/temporal/robustness/sensitivity_results.parquet": "sha256_3de96a2de7c43a12699596c8b4837ffd7decad1b8a81402183cc5032ba363b97",
-    "data/temporal/snapshots/network_snapshots.parquet": "sha256_3044d6f21c9fb502c9548295b919240bf5cb8a369ccfe14193021f07f5d85293",
+    "data/temporal/robustness/sensitivity_results.parquet": "sha256_dbc588de3aeb5b1eda3eb64987a977497384b5e9b067f3c2a4eb97d5aefe5f46",
+    "data/temporal/snapshots/network_snapshots.parquet": "sha256_45c5ace19748634722633cd2f5fd02f480bcdaa1c3223e8d0eff452402894438",
     "web/data/temporal_communities.json": "sha256_919d7d488d0ddc0f2d05492b321fb9f203d5608497bdc1734a9592e05cafb451",
-    "web/research/dashboard_data.json": "sha256_93de2c909f994d455208425932e7f476e1b6efc6af9ecafed378f65a7521b444"
+    "web/research/dashboard_data.json": "sha256_0fc45344fe2dbcbc416f9203baae056b37f7e2cd48c5e804647eecf87a3a2ac1"
   },
   "differences": [],
   "input_kind": "synthetic"

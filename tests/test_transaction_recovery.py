@@ -41,3 +41,15 @@ def test_stale_pipeline_instance_reloads_state(tmp_path, synthetic_pipeline_data
                    interaction_time='2027-01-01T00:00:00Z')]
     first.ingest_batch('same_batch', events)
     assert stale.ingest_batch('same_batch',events).status == 'ALREADY_PROCESSED'
+
+
+def test_shared_writer_lock_is_reentrant_but_excludes_other_threads(tmp_path):
+    from concurrent.futures import ThreadPoolExecutor
+    from core.file_transaction import exclusive_lock
+    path = tmp_path/'writer.lock'
+    def competing_writer():
+        with exclusive_lock(path):
+            raise AssertionError('A competing writer acquired the active transaction lock')
+    with exclusive_lock(path), exclusive_lock(path), ThreadPoolExecutor(max_workers=1) as executor:
+        with pytest.raises(OSError):
+            executor.submit(competing_writer).result()

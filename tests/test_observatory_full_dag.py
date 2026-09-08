@@ -76,6 +76,16 @@ def test_reproduce_two_clean_roots_from_same_inputs(full_sandbox):
     save_evidence('hotfix_synthetic_reproducibility.json',dict(evidence,input_kind='synthetic'))
 
 
+def test_snapshot_rebuild_preserves_existing_window_contract(full_sandbox):
+    path = full_sandbox/'data/temporal/snapshots/network_snapshots.parquet'
+    cols = ['window_type','window_start','window_end']
+    before = set(pd.read_parquet(path)[cols].itertuples(index=False,name=None))
+    with analysis_context(full_sandbox):
+        rebuild_canonical_snapshots(full_sandbox)
+    after = set(pd.read_parquet(path)[cols].itertuples(index=False,name=None))
+    assert after == before
+
+
 def test_failure_after_downstream_write_restores_whole_generation(full_sandbox, monkeypatch):
     ctrl = ObservatoryController(full_sandbox)
     before = checksums(full_sandbox)
@@ -92,3 +102,19 @@ def test_failure_after_downstream_write_restores_whole_generation(full_sandbox, 
     assert checksums(full_sandbox) == before
     assert ctrl.obs_state_file.read_bytes() == state_before
     assert not (full_sandbox/'data/temporal/incremental/batch_failed_downstream.parquet').exists()
+
+
+def test_controller_recovers_nested_ingestion_crash(full_sandbox, monkeypatch):
+    from scripts.incremental_temporal_pipeline import IncrementalTemporalPipeline
+    ctrl = ObservatoryController(full_sandbox)
+    before = checksums(full_sandbox)
+    original = IncrementalTemporalPipeline._ingest_batch
+    def crash(self, *args, **kwargs):
+        return original(self,*args,**kwargs,crash_at='C')
+    monkeypatch.setattr(IncrementalTemporalPipeline,'_ingest_batch',crash)
+    with pytest.raises(RuntimeError,match='CRASH_C'):
+        ctrl.update('nested_crash',[dict(author_id='synthetic-nested',vtuber_channel_id='synthetic-channel',
+                                       video_id='synthetic-nested',interaction_time='2027-01-01T00:00:00Z')])
+    assert checksums(full_sandbox) == before
+    assert not (full_sandbox/'data/temporal/state/.ingestion_transaction').exists()
+    assert not (full_sandbox/'data/temporal/incremental/batch_nested_crash.parquet').exists()

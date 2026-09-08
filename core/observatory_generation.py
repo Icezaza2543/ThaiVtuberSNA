@@ -35,6 +35,10 @@ class ObservatoryGeneration:
         atomic_bytes(self.pending, json.dumps({'generation':self.identifier}).encode())
 
     def restore(self, clear_pending=True):
+        # Resolve the nested T16 decision before restoring the outer generation;
+        # otherwise a later T16 startup could resurrect state after rollback.
+        nested = FileTransaction(self.root, self.root/'data/temporal/state/.ingestion_transaction')
+        nested.recover()
         before = json.loads((self.tx.journal / 'undo.json').read_text())
         for path in managed_files(self.root):
             if path.relative_to(self.root).as_posix() not in before:

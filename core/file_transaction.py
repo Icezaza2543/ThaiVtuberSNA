@@ -8,8 +8,11 @@ This is process-crash recovery, not a promise about hardware power-loss durabili
 import json
 import os
 import shutil
+import threading
 from contextlib import contextmanager
 from pathlib import Path
+
+_HELD_LOCKS = threading.local()
 
 
 def atomic_bytes(path, data):
@@ -25,7 +28,11 @@ def atomic_bytes(path, data):
 
 @contextmanager
 def exclusive_lock(path):
-    path = Path(path)
+    path = Path(path).resolve()
+    held = getattr(_HELD_LOCKS, 'paths', set())
+    if path in held:
+        yield
+        return
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open('a+b') as f:
         if f.tell() == 0:
@@ -37,9 +44,12 @@ def exclusive_lock(path):
         else:
             import fcntl
             fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        held.add(path)
+        _HELD_LOCKS.paths = held
         try:
             yield
         finally:
+            held.remove(path)
             f.seek(0)
             if os.name == 'nt':
                 msvcrt.locking(f.fileno(), msvcrt.LK_UNLCK, 1)

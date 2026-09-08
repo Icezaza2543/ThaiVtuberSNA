@@ -122,11 +122,12 @@ def rebuild_canonical_snapshots(root):
         if not previous.empty:
             for row in previous[['window_type','window_start','window_end','calculated_at']].drop_duplicates().itertuples(index=False):
                 windows[tuple(row[:3])] = row[3]
+        prior_terminal_year = max((int(k[2][:4]) for k in windows), default=-1)
         for year in years:
             end = f'{year}-12-31 23:59:59' if year != 2026 else '2026-09-08 23:59:59'
             if not any(k[0] == 'yearly' and k[1].startswith(str(year)) for k in windows):
                 windows[('yearly',f'{year}-01-01',end)] = '2026-09-08 00:00:00 UTC'
-            if not any(k[0] == 'cumulative' and k[2].startswith(str(year)) for k in windows):
+            if year > prior_terminal_year and not any(k[0] == 'cumulative' and k[2].startswith(str(year)) for k in windows):
                 windows[('cumulative',f'{min(years)}-01-01',end)] = '2026-09-08 00:00:00 UTC'
         if not any(k[0] == 'all_time' for k in windows):
             windows[('all_time',f'{min(years)}-01-01',f'{max(years)}-12-31 23:59:59')] = '2026-09-08 00:00:00 UTC'
@@ -135,7 +136,15 @@ def rebuild_canonical_snapshots(root):
         for (kind,start,end), calculated in sorted(windows.items()):
             rows.extend(s.compute_window_snapshots(con,dict(type=kind,start=start,end=end),coverage,calculated_at=calculated))
     path.parent.mkdir(parents=True, exist_ok=True)
-    pq.write_table(pa.Table.from_pylist(rows, schema=s.NETWORK_SNAPSHOT_SCHEMA),path)
+    table = pa.Table.from_pylist(rows, schema=s.NETWORK_SNAPSHOT_SCHEMA)
+    if Path(root).resolve() == ROOT and set(s.NETWORK_SNAPSHOT_SCHEMA.names) <= set(previous.columns):
+        # A reproduction must not silently rewrite the protected historical contract.
+        keys = ['window_type','window_start','window_end','vtuber_a','vtuber_b']
+        def historical(frame):
+            return frame[frame.window_end < '2026-01-01'].sort_values(keys).to_csv(index=False)
+        if historical(previous) != historical(table.to_pandas()):
+            raise RuntimeError('Canonical rebuild differs from protected historical snapshots')
+    pq.write_table(table,path)
 
 
 def run_dag(root=ROOT, rebuild_snapshots=True, canonical_table=None):

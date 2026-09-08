@@ -138,7 +138,7 @@ class IncrementalTemporalPipeline:
         self.state_file = self.state_dir / "pipeline_state.json"
         self.manifest_file = self.state_dir / "release_manifest.json"
         self.transaction = FileTransaction(self.base_dir, self.state_dir / '.ingestion_transaction')
-        with exclusive_lock(self.state_dir / '.ingestion.lock'):
+        with exclusive_lock(self.base_dir / '.observatory.lock'), exclusive_lock(self.state_dir / '.ingestion.lock'):
             self.transaction.recover()
             for folder in (self.incremental_dir, self.snapshots_path.parent):
                 for p in folder.glob('*.tmp'):
@@ -184,7 +184,7 @@ class IncrementalTemporalPipeline:
         tmp_file.replace(self.state_file)
 
     def ingest_batch(self, *args, **kwargs):
-        with exclusive_lock(self.state_dir / '.ingestion.lock'):
+        with exclusive_lock(self.base_dir / '.observatory.lock'), exclusive_lock(self.state_dir / '.ingestion.lock'):
             self.transaction.recover()
             self.state = self._load_or_init_state()
             self._verify_hmac_continuity()

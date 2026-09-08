@@ -41,17 +41,17 @@
     "data/temporal/quality/evidence_quality_report.md": "sha256_5bc001cdbb6eac15b996c7c8e7c359fea96bcf7963e6098dda26752566dc0bb3",
     "data/temporal/quality/yearly_evidence_quality.parquet": "sha256_72384884aaf21977f2972aaa5e92b3243b4da3925426bba6bb0776cfabd2740a",
     "data/temporal/release/data_dictionary.json": "sha256_7b4ba2d44be6e8585b625d19fc515afb57f58b8de0a188545f55e6847ed2077c",
-    "data/temporal/release/dataset_manifest.json": "sha256_2d22e8c85e6d6cae94693194ea5e1136b11dfc77d72c473854bb8d72a4254765",
-    "data/temporal/release/dataset_release_notes.md": "sha256_05f1744019d858a3bdd483067857629b3117d6b3643c68d2ad9a300cbb39a901",
+    "data/temporal/release/dataset_manifest.json": "sha256_0537ddce5ece23a9b7b716b083693aecf0aba42e9f9c959fb0a20385b6e5cc6e",
+    "data/temporal/release/dataset_release_notes.md": "sha256_f59cdcde44ebdea2314f9d1698c8d020c8474bf888fc9be8a731fe5e30edd0fb",
     "data/temporal/release/environment_dependencies.json": "sha256_0325ad5ac19210ee9ac0a748d5a837380ff1ac1d3993b1dc5ace362825274e51",
     "data/temporal/release/provenance_map.json": "sha256_9b63481953e2e6609e5ba16bd7382193e66fbf5ab5b2fc41b2a914354eb747c9",
     "data/temporal/report/appendix_tables.md": "sha256_b4547177052e306bc4c1c548e990898e7a5cf9c6c328e6111411d9e616112980",
     "data/temporal/report/technical_report.md": "sha256_258d5de5b6b8fd9713c943e55661d99b9e0ff64d95df2f81379b86a95ed4c24b",
-    "data/temporal/robustness/robustness_report.md": "sha256_7b57aff85bc776614f309dbe571f5403f671a9a168681b7ab6ca4a7f0f582daa",
+    "data/temporal/robustness/robustness_report.md": "sha256_cc603bd1dc03a0e4d04ffe041d69dbe6fe6cbc3766f3c25aa84d21fcfb0551b2",
     "data/temporal/robustness/robustness_summary.parquet": "sha256_51933ab73d3727726f20cb53adb942c871740a94551399ee0599b0f35ea5a24d",
-    "data/temporal/robustness/sensitivity_results.parquet": "sha256_031ae728a5aad91897a499a426b76131d6a4f18e46ed015701fbbbf318a7e0b1",
-    "data/temporal/snapshots/network_snapshots.parquet": "sha256_c362385d540b59b37f91070f71f3ba272bb3224710885d54fcfa2d3cca7b5c65",
+    "data/temporal/robustness/sensitivity_results.parquet": "sha256_d0e231db472e19f07bd8a0681d0d3dc17b07d233019a18095eb8ba9d50619d29",
+    "data/temporal/snapshots/network_snapshots.parquet": "sha256_69de9ec5a25e2da7e995c1bdf0c613e2b1e7c9e820c8f631118625eb99b000bb",
     "web/data/temporal_communities.json": "sha256_98fba38bd881c9330ef90bcef07d569c5796e6303fab19ce779aa4232454de87",
-    "web/research/dashboard_data.json": "sha256_70320876144ef2ecb937f91cd61e38695f741e051af71a1369524c99f28913ce"
+    "web/research/dashboard_data.json": "sha256_120b01355a6300428d6a699543fb4c6d50497089e03c4b17ce786f7eabd9cc19"
   }
 }
