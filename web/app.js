@@ -228,9 +228,12 @@ async function initApp() {
   populateAgencyFilter();
   populateDynamicLegend();
   setupEventListeners();
+  setupObservatoryUI();
   processGraphData();
   updateTimelineSlice(currentTimelineStep);
   updateKPIs();
+  updateSceneStatus();
+  updateSnapshotLabel();
   requestAnimationFrame(simulationLoop);
 }
 
@@ -427,7 +430,7 @@ function processGraphData() {
 }
 
 function populateAgencyFilter() {
-  agencyFilter.innerHTML = '<option value="ALL">All Agencies (All Swarms)</option>';
+  agencyFilter.innerHTML = '<option value="ALL">All groups at selection</option>';
   const agencies = rawData.agencies || [];
   agencies.forEach(ag => {
     const opt = document.createElement("option");
@@ -440,11 +443,13 @@ function populateAgencyFilter() {
 function populateDynamicLegend() {
   dynamicLegendList.innerHTML = "";
   const agencies = rawData.agencies || [];
-  legendSwarmCount.textContent = `${agencies.length} Swarms`;
+  legendSwarmCount.textContent = `${agencies.length} groups`;
 
   agencies.forEach(ag => {
-    const item = document.createElement("div");
+    const item = document.createElement("button");
     item.className = "legend-item";
+    item.type = "button";
+    item.setAttribute("aria-pressed", "false");
     item.innerHTML = `
       <div class="legend-left">
         <span class="legend-color" style="background-color: ${ag.color};"></span>
@@ -484,7 +489,7 @@ function updateKPIs() {
   if (sortedBridges.length > 0 && sortedBridges[0].betweenness > 0) {
     statTopBridge.textContent = sortedBridges[0].label.split(" ")[0];
   } else {
-    statTopBridge.textContent = "Aisha";
+    statTopBridge.textContent = "None recorded";
   }
 }
 
@@ -515,7 +520,10 @@ function applyFilters() {
     }
   });
 
-  activeCount.textContent = `${activeNodesCount}/${graphNodes.length} Active`;
+  activeCount.textContent = `${activeNodesCount}/${graphNodes.length} creators match filters`;
+  updateSceneStatus();
+  renderSearchResults();
+  if (selectedNode && !selectedNode.visible) closeInspector(false);
   reheatSimulation(0.3);
 }
 
@@ -1000,20 +1008,20 @@ function setupEventListeners() {
   btnToggleBridges.addEventListener("click", () => {
     spotlightBridges = !spotlightBridges;
     btnToggleBridges.classList.toggle("active", spotlightBridges);
+    btnToggleBridges.setAttribute("aria-pressed", String(spotlightBridges));
     renderCanvas();
   });
 
   // Inspector Panel Close
   btnCloseInspector.addEventListener("click", () => {
-    inspectorPanel.classList.remove("open");
-    selectedNode = null;
-    renderCanvas();
+    closeInspector();
   });
 
   // Dynamic Temporal Timeline Controls (PR-6)
   const timeSlider = document.getElementById("timeSlider");
   if (timeSlider) {
     timeSlider.addEventListener("input", e => {
+      stopTimeline();
       updateTimelineSlice(Number(e.target.value));
     });
   }
@@ -1021,33 +1029,15 @@ function setupEventListeners() {
   const btnPlayTimeline = document.getElementById("btnPlayTimeline");
   if (btnPlayTimeline) {
     btnPlayTimeline.addEventListener("click", () => {
-      isPlayingTimeline = !isPlayingTimeline;
-      const playIcon = document.getElementById("playIcon");
-      const playText = document.getElementById("playText");
-      if (isPlayingTimeline) {
-        if (playIcon) playIcon.textContent = "⏸";
-        if (playText) playText.textContent = "Pause";
-        if (currentTimelineStep >= 6) {
-          currentTimelineStep = 0;
-          if (timeSlider) timeSlider.value = 0;
-          updateTimelineSlice(0);
-        }
+      if (isPlayingTimeline) stopTimeline();
+      else if (!reducedMotion.matches) {
+        isPlayingTimeline = true;
+        updatePlaybackButton();
+        if (currentTimelineStep >= 6) updateTimelineSlice(0);
         timelinePlayTimer = setInterval(() => {
-          if (currentTimelineStep < 6) {
-            currentTimelineStep++;
-            if (timeSlider) timeSlider.value = currentTimelineStep;
-            updateTimelineSlice(currentTimelineStep);
-          } else {
-            isPlayingTimeline = false;
-            clearInterval(timelinePlayTimer);
-            if (playIcon) playIcon.textContent = "▶";
-            if (playText) playText.textContent = "Play";
-          }
-        }, 1600);
-      } else {
-        if (playIcon) playIcon.textContent = "▶";
-        if (playText) playText.textContent = "Play";
-        clearInterval(timelinePlayTimer);
+          if (currentTimelineStep < 6) updateTimelineSlice(currentTimelineStep + 1);
+          else stopTimeline();
+        }, 3000);
       }
     });
   }
@@ -1056,6 +1046,7 @@ function setupEventListeners() {
   if (btnToggleTimeMode) {
     btnToggleTimeMode.addEventListener("click", () => {
       isCumulativeTimeline = !isCumulativeTimeline;
+      btnToggleTimeMode.setAttribute("aria-pressed", String(isCumulativeTimeline));
       const modeText = document.getElementById("timeModeText");
       if (modeText) {
         modeText.textContent = isCumulativeTimeline ? "Cumulative" : "Yearly Slice";
@@ -1065,10 +1056,10 @@ function setupEventListeners() {
   }
 
   // Info Modal
-  btnInfoModal.addEventListener("click", () => infoModal.classList.add("open"));
-  btnCloseModal.addEventListener("click", () => infoModal.classList.remove("open"));
+  btnInfoModal.addEventListener("click", () => setMethodologyOpen(true));
+  btnCloseModal.addEventListener("click", () => setMethodologyOpen(false));
   infoModal.addEventListener("click", e => {
-    if (e.target === infoModal) infoModal.classList.remove("open");
+    if (e.target === infoModal) setMethodologyOpen(false);
   });
 }
 
@@ -1080,6 +1071,7 @@ function updateTimelineSlice(step) {
   const label = TIMELINE_STEPS[step] || "All-Time (Dated)";
   const labelEl = document.getElementById("temporalCurrentLabel");
   if (labelEl) labelEl.textContent = label;
+  updatePeriodControls();
 
   const isAllTime = (step === 7);
   let slice = null;
@@ -1128,7 +1120,8 @@ function updateTimelineSlice(step) {
   });
 
   applyFilters();
-  statEdges.textContent = graphEdges.length;
+  updateSceneStatus();
+  if (selectedNode) openInspector(selectedNode, false);
   updateTemporalAnalyticsPanel(step);
   reheatSimulation(0.35);
   renderCanvas();
@@ -1180,11 +1173,11 @@ function updateTemporalAnalyticsPanel(step) {
   if (lineageBox) {
     const ev = yearData.events || {};
     const evParts = [];
-    if (ev.births > 0) evParts.push(`🌱 ${ev.births} birth${ev.births > 1 ? "s" : ""}`);
-    if (ev.splits > 0) evParts.push(`🔀 ${ev.splits} split branch${ev.splits > 1 ? "es" : ""}`);
-    if (ev.merges > 0) evParts.push(`🔗 ${ev.merges} merge tributary${ev.merges > 1 ? "ies" : ""}`);
-    if (ev.persistent > 0) evParts.push(`⭐ ${ev.persistent} persistent`);
-    if (ev.disappearances > 0) evParts.push(`🍂 ${ev.disappearances} exit`);
+    if (ev.births > 0) evParts.push(`${ev.births} birth${ev.births > 1 ? "s" : ""}`);
+    if (ev.splits > 0) evParts.push(`${ev.splits} split branch${ev.splits > 1 ? "es" : ""}`);
+    if (ev.merges > 0) evParts.push(`${ev.merges} merge tributary${ev.merges > 1 ? "ies" : ""}`);
+    if (ev.persistent > 0) evParts.push(`${ev.persistent} persistent`);
+    if (ev.disappearances > 0) evParts.push(`${ev.disappearances} exit`);
 
     const dominantAgencies = (yearData.communities || [])
       .slice(0, 3)
@@ -1334,7 +1327,7 @@ function onWheel(e) {
 // ==========================================================
 // 8. Inspector Card
 // ==========================================================
-function openInspector(node) {
+function openInspector(node, focus = true) {
   selectedNode = node;
   inspName.textContent = node.label;
   inspHandle.textContent = node.handle || `@${node.id}`;
@@ -1360,22 +1353,32 @@ function openInspector(node) {
 
   inspConnectionsList.innerHTML = "";
   if (connections.length === 0) {
-    inspConnectionsList.innerHTML = `<div style="font-size:0.8rem; color: var(--text-muted);">No recorded stream overlap yet.</div>`;
+    inspConnectionsList.innerHTML = `<div style="font-size:0.8rem; color: var(--text-muted);">No recorded overlap in this observation period.</div>`;
   } else {
     const maxShared = connections[0].shared || 1;
     connections.slice(0, 6).forEach(c => {
       const pct = Math.min(100, Math.round((c.shared / maxShared) * 100));
-      const item = document.createElement("div");
+      const item = document.createElement("button");
+      item.type = "button";
       item.className = "connection-item";
-      item.innerHTML = `
-        <div class="connection-head">
-          <span class="connection-name">${c.partner.label}</span>
-          <span class="connection-shared">${c.shared} Viewers (${(c.jaccard * 100).toFixed(1)}%)</span>
-        </div>
-        <div class="progress-bar-bg">
-          <div class="progress-bar-fill" style="width: ${pct}%"></div>
-        </div>
-      `;
+      const head = document.createElement("span");
+      head.className = "connection-head";
+      const name = document.createElement("span");
+      name.className = "connection-name";
+      name.textContent = c.partner.label;
+      const shared = document.createElement("span");
+      shared.className = "connection-shared";
+      shared.textContent = `${c.shared} shared · ${((c.jaccard || 0) * 100).toFixed(1)}% Jaccard`;
+      head.append(name, shared);
+      const bar = document.createElement("span");
+      bar.className = "progress-bar-bg";
+      bar.setAttribute("aria-hidden", "true");
+      const fill = document.createElement("span");
+      fill.className = "progress-bar-fill";
+      fill.style.display = "block";
+      fill.style.width = `${pct}%`;
+      bar.append(fill);
+      item.append(head, bar);
       item.addEventListener("click", () => {
         openInspector(c.partner);
         panX = container.clientWidth / 2 - c.partner.x * zoom;
@@ -1386,7 +1389,14 @@ function openInspector(node) {
     });
   }
 
+  inspectorPanel.inert = false;
   inspectorPanel.classList.add("open");
+  document.getElementById("connectionPeriod").textContent = `${TIMELINE_STEPS[currentTimelineStep]} · all recorded connections`;
+  if (focus) {
+    inspectorReturnFocus = document.activeElement;
+    setControlsOpen(false, false);
+    btnCloseInspector.focus({ preventScroll: true });
+  }
 }
 
 // Launch app on load

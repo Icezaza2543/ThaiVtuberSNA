@@ -3,278 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thai VTuber Audience Network (SNA) — Interactive Visualizer</title>
-  <meta name="description" content="Privacy-preserving Social Network Analysis and Audience Overlap mapping for the Thai VTuber ecosystem.">
+  <title>Thai VTuber Constellation — Audience Network Observatory</title>
+  <meta name="description" content="Explore observed public interaction evidence across the Thai VTuber ecosystem. Public creator metadata and aggregate network metrics only.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <!-- Top Navigation & Stats Bar -->
+  <svg class="icon-definitions" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7v1"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5c-3-2-6-2-10-1v15c4-1 7-1 10 1 3-2 6-2 10-1V4c-4-1-7-1-10 1Zm0 0v15"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3Z"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 10a9 9 0 1 1 2 8M3 4v6h6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  </defs></svg>
   <header class="header">
-    <div class="brand-section">
-      <div class="brand-icon">VT</div>
-      <div>
-        <h1 class="brand-title">Thai VTuber Audience Network</h1>
-      </div>
-      <span class="brand-badge">SNA Engine v3.0 (Longitudinal Cohort)</span>
-    </div>
-
-    <div class="stats-bar">
-      <div class="privacy-pill">
-        <span class="privacy-dot"></span>
-        <span>HMAC-SHA256 Pseudonymized</span>
-      </div>
-
-      <div class="stat-item">
-        <span class="stat-label">VTubers</span>
-        <span class="stat-value" id="statVtubers">--</span>
-      </div>
-      <div class="stat-item" title="Active connections at current UI threshold">
-        <span class="stat-label">Connections</span>
-        <span class="stat-value" id="statEdges">--</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-label">Communities</span>
-        <span class="stat-value" id="statCommunities">--</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-label">Top Bridge</span>
-        <span class="stat-value" id="statTopBridge" style="color: var(--accent-amber);">--</span>
-      </div>
-
-      <a href="https://docs.google.com/spreadsheets/d/1H876HyqxkOEYJGczctP5G-ZNAZv22jzViw787h441fE/edit?gid=0#gid=0" target="_blank" rel="noopener" class="btn-info" style="display:inline-flex; align-items:center; gap:6px; background: rgba(16, 185, 129, 0.15); border-color: var(--accent-emerald); color: var(--accent-emerald); text-decoration:none; font-weight:600;" title="Open Live Google Sheets Database">
-        <span>📊 Live Sheet</span>
-      </a>
-
-      <button id="btnInfoModal" class="btn-info" title="System Architecture & Metrics">
-        How it Works
-      </button>
-    </div>
+    <div class="brand-section"><span class="brand-icon" aria-hidden="true"></span><div>
+      <h1 class="brand-title">Thai VTuber <span>Constellation</span></h1>
+      <p class="brand-subtitle">Audience Network Observatory</p>
+    </div></div>
+    <div class="header-context"><span class="signal-dot"></span><span id="scenePeriod">All-time · dated evidence</span></div>
+    <nav class="header-actions" aria-label="Observatory navigation">
+      <button id="btnSearch" class="btn-info" aria-label="Search creators"><svg class="icon"><use href="#i-search"/></svg><span class="action-label">Search</span><kbd>/</kbd></button>
+      <button id="btnInfoModal" class="btn-info" aria-haspopup="dialog"><svg class="icon"><use href="#i-info"/></svg><span class="action-label">Methodology</span></button>
+      <a href="research/" class="btn-info" aria-label="Research view"><svg class="icon"><use href="#i-book"/></svg><span class="action-label">Research</span></a>
+    </nav>
   </header>
-
-  <!-- Main View Area -->
   <main class="main-container">
-
-    <!-- Controls Overlay (Left Panel) -->
-    <aside class="controls-panel">
-      <div class="panel-title">
-        <span>Network Controls</span>
-        <span id="activeCount" style="font-size: 0.75rem; color: var(--accent-cyan);">15/15 Active</span>
-      </div>
-
-      <!-- Search Box -->
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" class="search-input" placeholder="Search VTuber name or handle...">
-      </div>
-
-      <!-- Agency Filter -->
-      <div class="filter-group">
-        <label for="agencyFilter" class="filter-label">Agency / Group</label>
-        <select id="agencyFilter" class="filter-select">
-          <option value="ALL">All Agencies</option>
-          <option value="Algorhythm Project">Algorhythm Project (ARP)</option>
-          <option value="Polygon Official">Polygon Official</option>
-          <option value="Pixela Project">Pixela Project</option>
-          <option value="Independent">Independent / Indie</option>
-        </select>
-      </div>
-
-      <!-- Subscriber Tier Filter -->
-      <div class="filter-group">
-        <label for="tierFilter" class="filter-label">Subscriber Tier</label>
-        <select id="tierFilter" class="filter-select">
-          <option value="ALL">All Tiers (S, A, B, C, D)</option>
-          <option value="S">Tier S (>= 100k subs)</option>
-          <option value="A">Tier A (>= 50k subs)</option>
-          <option value="B">Tier B (>= 10k subs)</option>
-          <option value="C">Tier C (>= 1k subs)</option>
-        </select>
-      </div>
-
-      <!-- Overlap Metric Mode -->
-      <div class="filter-group">
-        <label for="metricSelect" class="filter-label">Edge Metric</label>
-        <select id="metricSelect" class="filter-select">
-          <option value="shared_viewers">Shared Viewers (|A ∩ B|)</option>
-          <option value="overlap_coefficient">Overlap Coeff (|A ∩ B| / min(|A|,|B|))</option>
-          <option value="jaccard">Jaccard Similarity (|A ∩ B| / |A ∪ B|)</option>
-        </select>
-      </div>
-
-      <!-- Dynamic Temporal Time Slider (PR-6) -->
-      <div class="slider-container" style="background: rgba(15, 23, 42, 0.55); padding: 12px; border-radius: 12px; border: 1px solid rgba(6, 182, 212, 0.25); margin-bottom: 6px;">
-        <div class="filter-label" style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 6px;">
-          <span style="font-weight: 600; color: var(--accent-cyan); display: flex; align-items: center; gap: 4px;">
-            <span>🕒</span> Temporal Timeline
-          </span>
-          <span id="temporalCurrentLabel" style="color: #67e8f9; font-weight: 700; font-family: var(--font-mono); font-size: 0.85rem;">All-Time (Dated)</span>
-        </div>
-        <input type="range" id="timeSlider" class="slider" min="0" max="7" value="7" step="1">
-        <div style="display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--text-muted); margin-top: 4px; font-family: var(--font-mono);">
-          <span>'20</span>
-          <span>'21</span>
-          <span>'22</span>
-          <span>'23</span>
-          <span>'24</span>
-          <span>'25</span>
-          <span>'26</span>
-          <span style="color: var(--accent-cyan);">ALL</span>
-        </div>
-        
-        <div style="display: flex; gap: 6px; margin-top: 10px;">
-          <button id="btnPlayTimeline" class="btn-toggle-bridge" style="flex: 1; padding: 5px 8px; font-size: 0.75rem;">
-            <span id="playIcon">▶</span> <span id="playText">Play</span>
-          </button>
-          <button id="btnToggleTimeMode" class="btn-toggle-bridge" style="flex: 1.4; padding: 5px 8px; font-size: 0.75rem;">
-            <span id="timeModeText">Cumulative</span>
-          </button>
-        </div>
-        <div style="font-size: 0.63rem; color: #94a3b8; margin-top: 6px; line-height: 1.3;">
-          * This is a stratified observed-interaction sample, not all viewers and not exhaustive comment history. Undated observations excluded.
-        </div>
-      </div>
-
-      <!-- Temporal Evolution & Retention Analytics Panel (Phase T7) -->
-      <div id="temporalAnalyticsPanel" class="slider-container" style="display: none; background: rgba(15, 23, 42, 0.65); padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(139, 92, 246, 0.3); margin-top: 6px; margin-bottom: 6px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 6px;">
-          <span style="font-weight: 600; font-size: 0.78rem; color: #c084fc; display: flex; align-items: center; gap: 4px;">
-            <span>🧬</span> Community Evolution (<span id="analyticsYearLabel">--</span>)
-          </span>
-          <span id="analyticsFlagBadge" style="font-size: 0.62rem; padding: 2px 6px; border-radius: 4px; background: rgba(148, 163, 184, 0.15); color: #94a3b8; font-family: var(--font-mono);">NORMAL</span>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 0.72rem; margin-bottom: 6px;">
-          <div style="background: rgba(30, 41, 59, 0.5); padding: 5px 8px; border-radius: 6px;">
-            <div style="color: var(--text-muted); font-size: 0.65rem;">Communities / Modularity</div>
-            <div id="analyticsCommsVal" style="color: #67e8f9; font-weight: 700; font-family: var(--font-mono);">--</div>
-          </div>
-          <div style="background: rgba(30, 41, 59, 0.5); padding: 5px 8px; border-radius: 6px;">
-            <div style="color: var(--text-muted); font-size: 0.65rem;">Observed Retention (t→t+1)</div>
-            <div id="analyticsRetainedVal" style="color: #4ade80; font-weight: 700; font-family: var(--font-mono);">--</div>
-          </div>
-        </div>
-        <div id="analyticsLineageEvents" style="font-size: 0.68rem; color: #cbd5e1; line-height: 1.35; padding: 4px 6px; background: rgba(15, 23, 42, 0.4); border-radius: 6px;">
-          <!-- dynamic lineage event description -->
-        </div>
-        <div style="font-size: 0.60rem; color: #64748b; margin-top: 4px; font-style: italic;">
-          * Observed interaction evidence only. Not causal migration.
-        </div>
-      </div>
-
-      <!-- Min Overlap Slider -->
-      <div class="slider-container">
-        <div class="filter-label">
-          <span>Min Edge Weight</span>
-          <span id="sliderValue" style="color: var(--accent-cyan); font-family: var(--font-mono);">5</span>
-        </div>
-        <input type="range" id="thresholdSlider" class="slider" min="5" max="100" value="5">
-      </div>
-
-      <!-- Obsidian Graph Physics Controls -->
-      <div class="slider-container">
-        <div class="filter-label">
-          <span>Repulsion (Node Spacing)</span>
-          <span id="repulsionValue" style="color: var(--accent-cyan); font-family: var(--font-mono);">300</span>
-        </div>
-        <input type="range" id="repulsionSlider" class="slider" min="50" max="800" value="300">
-      </div>
-
-      <div class="slider-container">
-        <div class="filter-label">
-          <span>Link Distance</span>
-          <span id="linkDistValue" style="color: var(--accent-pink); font-family: var(--font-mono);">70</span>
-        </div>
-        <input type="range" id="linkDistSlider" class="slider" min="30" max="200" value="70">
-      </div>
-
-      <!-- Reheat Simulation / Reset Button -->
-      <button id="btnReheatSim" class="btn-toggle-bridge">
-        <span>🔄 Stabilize / Rearrange</span>
-      </button>
-
-      <!-- Bridge Spotlight Mode -->
-      <button id="btnToggleBridges" class="btn-toggle-bridge">
-        <span>🌟 Spotlight Bridge VTubers</span>
-      </button>
-
-      <!-- Legend -->
-      <div class="legend-container">
-        <div class="filter-label" style="display:flex; justify-content:space-between; align-items:center;">
-          <span>Agency Swarms</span>
-          <span id="legendSwarmCount" style="color: var(--accent-cyan); font-size:0.75rem;">-- Swarms</span>
-        </div>
-        <div id="dynamicLegendList" class="dynamic-legend-list">
-          <!-- Populated dynamically by app.js -->
-        </div>
-      </div>
-    </aside>
-
-    <!-- Interactive Graph Canvas -->
-    <section class="graph-container" id="canvasContainer">
-      <canvas id="networkCanvas"></canvas>
+    <section class="graph-container" id="canvasContainer" aria-label="Thai VTuber audience network">
+      <canvas id="networkCanvas" tabindex="0" aria-label="Creator constellation. Use search to select a creator. Arrow keys pan; plus and minus zoom."></canvas>
     </section>
-
-    <!-- VTuber Inspector Card (Right Flyout) -->
-    <aside class="inspector-panel" id="inspectorPanel">
-      <div class="inspector-header">
-        <div class="vtuber-title">
-          <h2 class="vtuber-name" id="inspName">VTuber Name</h2>
-          <span class="vtuber-handle" id="inspHandle">@handle</span>
-        </div>
-        <button id="btnCloseInspector" class="btn-close-inspector" aria-label="Close">✕</button>
-      </div>
-
-      <div class="vtuber-badges">
-        <span class="badge badge-tier" id="inspTier">Tier S</span>
-        <span class="badge badge-agency" id="inspAgency">Algorhythm Project</span>
-        <span class="badge" style="background: rgba(6, 182, 212, 0.2); color: #67e8f9;" id="inspSubs">185,000 Subs</span>
-      </div>
-
-      <!-- Centrality Metrics Grid -->
-      <div class="metrics-grid">
-        <div class="metric-cell">
-          <span class="metric-cell-label">Degree</span>
-          <span class="metric-cell-val" id="inspDegree">0.00</span>
-        </div>
-        <div class="metric-cell">
-          <span class="metric-cell-label">Bridge Power</span>
-          <span class="metric-cell-val" id="inspBetweenness" style="color: var(--accent-amber);">0.00</span>
-        </div>
-        <div class="metric-cell">
-          <span class="metric-cell-label">PageRank</span>
-          <span class="metric-cell-val" id="inspPageRank">0.00</span>
-        </div>
-      </div>
-
-      <!-- Top Audience Overlap Connections -->
-      <div>
-        <h3 class="connections-title">Top Audience Overlaps</h3>
-        <div class="connections-list" id="inspConnectionsList">
-          <!-- Dynamic Overlap items -->
-        </div>
-      </div>
-    </aside>
-
-  </main>
-
-  <!-- Information / Architecture Modal -->
-  <div class="modal-backdrop" id="infoModal">
-    <div class="modal-card">
-      <h2>Thai VTuber Audience Network (SNA) Architecture</h2>
-      <p>
-        ระบบวิเคราะห์ความสัมพันธ์ของฐานผู้ชมในวงการ VTuber ไทย ออกแบบภายใต้แนวคิด <strong>Zero Cloud Cost</strong> และ <strong>Privacy by Design</strong>:
-      </p>
-      <ul>
-        <li><strong>Privacy-Preserving Hashing:</strong> รหัสประจำตัวผู้ชม (Viewer Channel ID) จะถูกแปลงเป็น <code>HMAC-SHA256(salt, channel_id)</code> ทันทีตั้งแต่จุดรับเข้า ไม่มีการบันทึกข้อความแชต (Zero chat text stored).</li>
-        <li><strong>Local Parquet + DuckDB:</strong> เหตุการณ์การรับชมถูกบันทึกลงไฟล์ Parquet บีบอัดแบบ Snappy และใช้ DuckDB รัน Query ค้นหา Intersection ของผู้ชมได้ในระดับมิลลิวินาที.</li>
-        <li><strong>SNA Centrality & Bridge Detection:</strong> การคำนวณ Betweenness Centrality ช่วยระบุช่องที่เป็น "สะพานเชื่อม" (Bridge) ระหว่างคอมมูนิตี้และค่ายต่าง ๆ.</li>
-        <li><strong>Simpson Overlap Coefficient:</strong> คำนวณ <code>|A ∩ B| / min(|A|, |B|)</code> ช่วยให้เห็นการทับซ้อนของฐานผู้ชมช่องอินดี้ขนาดเล็กกับช่องใหญ่ได้อย่างแม่นยำ.</li>
-        <li><strong>Temporal Audience Dynamics (2020–2026):</strong> ไทม์ไลน์แสดงวิวัฒนาการตามหลักฐานปฏิสัมพันธ์จริง (Dated interaction evidence) โดยแยก Audience Interaction Network ออกจาก Content Cohort ชัดเจน และตัดข้อมูลที่ไม่ระบุเวลาออกจากสไลซ์เวลา.</li>
-      </ul>
-      <button class="btn-primary" id="btnCloseModal">เข้าใจแล้ว</button>
+    <div class="scene-status" aria-live="polite">
+      <div><strong id="statVtubers">—</strong><span>creators visible</span></div>
+      <div><strong id="statEdges">—</strong><span>connections visible</span></div>
+      <div class="secondary-stat"><strong id="statCommunities">—</strong><span>selection-time groups</span></div>
+      <div class="secondary-stat"><strong id="statTopBridge">—</strong><span>highest bridge position · dataset</span></div>
     </div>
+    <p class="graph-message" id="graphMessage" role="status">Loading constellation…</p>
+    <p class="graph-tooltip" id="graphTooltip" role="tooltip" hidden></p>
+    <button id="btnControls" class="btn-info drawer-toggle" aria-controls="controlDock" aria-expanded="false"><svg class="icon"><use href="#i-filter"/></svg>Filters & timeline</button>
+    <aside class="controls-panel" id="controlDock" aria-label="Network controls">
+      <div class="panel-title"><h2>Explore the constellation</h2><button id="btnCloseControls" class="icon-button drawer-close" aria-label="Close filters"><svg class="icon"><use href="#i-close"/></svg></button></div>
+      <div class="search-box"><label for="searchInput" class="filter-label">Find a creator</label><div class="search-field"><svg class="icon"><use href="#i-search"/></svg><input type="search" id="searchInput" class="search-input" placeholder="ชื่อ VTuber / @handle" autocomplete="off" aria-controls="searchResults"></div><div id="searchResults" class="search-results" aria-label="Matching creators"></div></div>
+      <section class="timeline-section" aria-label="Broadcast chronology">
+        <div class="section-heading"><label for="timeSlider">Broadcast chronology</label><span id="temporalCurrentLabel">All-Time (Dated)</span></div>
+        <input type="range" id="timeSlider" class="slider timeline-slider" min="0" max="7" value="7" step="1">
+        <div class="timeline-ticks" aria-label="Choose observation period">
+          <button data-step="0">2020</button><button data-step="1">2021</button><button data-step="2">2022</button><button data-step="3">2023</button><button data-step="4">2024</button><button data-step="5">2025</button><button data-step="6">2026 <small>YTD</small></button><button data-step="7" aria-pressed="true">All</button>
+        </div>
+        <div class="timeline-actions"><button id="btnPlayTimeline" class="btn-info" aria-pressed="false"><svg id="playIcon" class="icon"><use href="#i-play"/></svg><span id="playText">Play</span></button><button id="btnToggleTimeMode" class="btn-info" aria-pressed="true"><span id="timeModeText">Cumulative</span></button></div>
+        <p class="note">Dated public interactions only. 2026 is YTD; undated observations are excluded.</p>
+        <div id="temporalAnalyticsPanel" class="temporal-analytics" style="display:none">
+          <h3>Community evolution · <span id="analyticsYearLabel">—</span></h3><span id="analyticsFlagBadge" class="badge">—</span>
+          <dl><dt>Communities / modularity</dt><dd id="analyticsCommsVal">—</dd><dt>Observed retention (t → t+1)</dt><dd id="analyticsRetainedVal">—</dd></dl>
+          <div id="analyticsLineageEvents"></div><p class="note">Observed evidence, not causal migration.</p>
+        </div>
+      </section>
+      <div class="filter-group"><label for="agencyFilter" class="filter-label">Agency / group at selection</label><select id="agencyFilter" class="filter-select"><option value="ALL">All groups</option></select></div>
+      <div class="filter-group"><label for="metricSelect" class="filter-label">Connection metric</label><select id="metricSelect" class="filter-select"><option value="shared_viewers">Shared viewers · count</option><option value="overlap_coefficient">Overlap coefficient · %</option><option value="jaccard">Jaccard similarity · %</option></select></div>
+      <div class="slider-container"><label for="thresholdSlider" class="filter-label">Minimum connection weight <output id="sliderValue">5</output></label><input type="range" id="thresholdSlider" class="slider" min="5" max="100" value="5"></div>
+      <button id="btnToggleBridges" class="btn-toggle-bridge" aria-pressed="false"><svg class="icon"><use href="#i-star"/></svg>Spotlight bridge creators</button>
+      <details class="advanced"><summary>Advanced controls</summary><div class="advanced-content">
+        <div class="filter-group"><label for="tierFilter" class="filter-label">Subscriber tier</label><select id="tierFilter" class="filter-select"><option value="ALL">All tiers</option><option value="S">S · 100k or more</option><option value="A">A · 50k or more</option><option value="B">B · 10k or more</option><option value="C">C · 1k or more</option><option value="D">D · below 1k</option></select></div>
+        <div class="slider-container"><label for="repulsionSlider" class="filter-label">Node spacing <output id="repulsionValue">300</output></label><input type="range" id="repulsionSlider" class="slider" min="50" max="800" value="300"></div>
+        <div class="slider-container"><label for="linkDistSlider" class="filter-label">Link distance <output id="linkDistValue">70</output></label><input type="range" id="linkDistSlider" class="slider" min="30" max="200" value="70"></div>
+        <button id="btnReheatSim" class="btn-info"><svg class="icon"><use href="#i-reset"/></svg>Settle layout</button>
+      </div></details>
+      <details class="legend-container"><summary>Agency color key <span id="legendSwarmCount">—</span></summary><p class="note">Color marks selection-time affiliation. Independent creators are not one agency.</p><div id="dynamicLegendList" class="dynamic-legend-list"></div></details>
+      <p id="activeCount" class="note">Loading creators…</p>
+    </aside>
+    <aside class="inspector-panel" id="inspectorPanel" aria-labelledby="inspName" inert>
+      <div class="inspector-header"><span class="profile-orbit" aria-hidden="true"><svg class="icon"><use href="#i-star"/></svg></span><button id="btnCloseInspector" class="icon-button" aria-label="Close creator profile"><svg class="icon"><use href="#i-close"/></svg></button></div>
+      <div class="vtuber-title"><p class="eyebrow">Selected creator</p><h2 class="vtuber-name" id="inspName">Creator</h2><span class="vtuber-handle" id="inspHandle"></span></div>
+      <div class="vtuber-badges"><span class="badge" id="inspAgency"></span><span class="badge" id="inspTier"></span><span class="badge" id="inspSubs"></span></div>
+      <p class="note">Agency at study selection · public subscriber metadata</p>
+      <section><h3>Structural centrality</h3><p class="note">Dataset-level metrics; not a measure of influence.</p><dl class="metrics-grid"><div><dt>Degree</dt><dd id="inspDegree">—</dd></div><div><dt>Bridge position</dt><dd id="inspBetweenness">—</dd></div><div><dt>PageRank</dt><dd id="inspPageRank">—</dd></div></dl></section>
+      <section><h3 class="connections-title">Observed audience overlap</h3><p class="note" id="connectionPeriod">Current observation period · all recorded connections</p><div class="connections-list" id="inspConnectionsList"></div></section>
+      <footer class="inspector-footer">Observed public interaction evidence · not all viewers</footer>
+    </aside>
+    <div class="stage-tools" aria-label="Graph view controls"><button id="btnZoomIn" class="icon-button" aria-label="Zoom in"><svg class="icon"><use href="#i-plus"/></svg></button><button id="btnZoomOut" class="icon-button" aria-label="Zoom out"><svg class="icon"><use href="#i-minus"/></svg></button><button id="btnFitGraph" class="icon-button" aria-label="Fit constellation"><svg class="icon"><use href="#i-reset"/></svg></button></div>
+    <footer class="stage-footer"><span>Public creators · aggregate evidence</span><span id="dataFreshness">Snapshot date unavailable</span><span class="pan-hint">Drag to explore · scroll to zoom</span></footer>
+  </main>
+  <div class="modal-backdrop" id="infoModal" inert>
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="methodologyTitle" tabindex="-1">
+      <p class="eyebrow">Reading the constellation</p><h2 id="methodologyTitle">What the connections mean</h2>
+      <p>เส้นเชื่อมแสดงผู้มีปฏิสัมพันธ์สาธารณะที่พบร่วมกันระหว่างช่องในตัวอย่างที่เก็บได้ ไม่ใช่ผู้ชมทั้งหมด และไม่ใช่หลักฐานความสัมพันธ์เชิงเหตุผล</p>
+      <ul>
+        <li><strong>Observed overlap:</strong> Shared viewers is an intersection count; overlap coefficient divides by the smaller observed set, and Jaccard divides by the union. The threshold controls which edges are visible.</li>
+        <li><strong>Time:</strong> Slices use dated interaction evidence. Cumulative includes observations up to the selected year; yearly uses that year alone. 2026 is a partial YTD window.</li>
+        <li><strong>Identity:</strong> Node size reflects public subscriber metadata. Colors show <code>agency_at_selection</code>, not verified historical affiliation. Independent creators are a rendering group, not an agency.</li>
+        <li><strong>Centrality:</strong> Profile metrics describe structural position in the supplied dataset, not influence or causal migration. The profile overlap list follows the chosen period and includes connections below the graph threshold.</li>
+        <li><strong>Privacy:</strong> This public view contains creator metadata and aggregate metrics. It does not expose viewer-level rows or interaction logs.</li>
+      </ul>
+      <a href="research/" class="text-link">Explore research evidence and limitations</a><button class="btn-primary" id="btnCloseModal">กลับไปสำรวจ / Back to graph</button>
+    </section>
   </div>
-
   <script src="app.js"></script>
+  <script src="observatory-ui.js"></script>
 </body>
 </html>
