@@ -1,0 +1,1159 @@
+{
+  "git": {
+    "status": "FAIL",
+    "ref": "HEAD",
+    "classification_counts": {
+      "PUBLIC_RESEARCH_DATA": 223,
+      "PRIVATE_DATA": 1
+    },
+    "inventory": [
+      {
+        "path": ".env.example",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": ".gitignore",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "README.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "analytics/exporter.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "analytics/network_graph.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "analytics/overlap_metrics.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "collector/balanced_video_collector.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "collector/base_collector.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "collector/continuous_collector.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "collector/deep_comment_backfill.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "collector/discovery_adapter.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "collector/extraction_worker.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "collector/fandom_thai_adapter.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "collector/historical_catalog_builder.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "collector/historical_comment_backfill.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "collector/live_chat_adapter.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "collector/mock_collector.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "collector/outcomes.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "collector/thai_vtuber_ranking_adapter.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "collector/thai_vtuber_registry_builder.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "collector/video_catalog_builder.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "collector/youtube_collector.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "config/secret.fingerprint",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "config/seeds_vtuber.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "config/settings.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "core/dataset_identity.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "core/file_lock.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "core/filter_engine.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "core/hasher.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "core/job_journal.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "core/priority.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "core/registry.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "core/registry_checkpoint.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "core/scheduler.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "core/thai_vtuber_criteria.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/analytics/network_graph.gexf",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/analytics/network_graph.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/excluded_channels.csv",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/historical_unverified/README.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/network_results.csv",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/phase1_registry_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/phase2_video_catalog_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/phase3_collection_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/real/analytics/network_graph.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/real/identity_manifest.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/registry_checkpoint.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/registry_system.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/registry_vtubers.csv",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/analysis/agency_transition_matrix.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (266 rows)"
+      },
+      {
+        "path": "data/temporal/analysis/channel_transition_summary.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (15455 rows)"
+      },
+      {
+        "path": "data/temporal/analysis/community_lifecycles.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (15 rows)"
+      },
+      {
+        "path": "data/temporal/analysis/community_lineage.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (53 rows)"
+      },
+      {
+        "path": "data/temporal/analysis/community_lineage_v2.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (41 rows)"
+      },
+      {
+        "path": "data/temporal/analysis/community_lineage_v2_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/analysis/community_snapshots.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (790 rows)"
+      },
+      {
+        "path": "data/temporal/analysis/temporal_community_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/analysis/temporal_migration_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/analysis/yearly_network_metrics.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (7 rows)"
+      },
+      {
+        "path": "data/temporal/backfill/event_windows.csv",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/backfill/phase_t5_backfill_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/backfill/phase_t5_real_pilot_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/backfill/phase_t5_sampling_audit.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/backfill/sampling_manifest.csv",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/backfill/sampling_manifest.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (4630 rows)"
+      },
+      {
+        "path": "data/temporal/backfill/temporal_backfill_quality.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/catalog/channel_coverage.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (193 rows)"
+      },
+      {
+        "path": "data/temporal/catalog/checkpoint.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/catalog/phase_t1_catalog_audit.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/catalog/target_manifest.csv",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/catalog/video_catalog.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (96420 rows)"
+      },
+      {
+        "path": "data/temporal/centrality/bridge_dynamics.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (189 rows)"
+      },
+      {
+        "path": "data/temporal/centrality/bridge_dynamics_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/centrality/centrality_change_points.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (214 rows)"
+      },
+      {
+        "path": "data/temporal/centrality/yearly_centrality.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (790 rows)"
+      },
+      {
+        "path": "data/temporal/cohorts/cohort_reactivation.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (35 rows)"
+      },
+      {
+        "path": "data/temporal/cohorts/cohort_retention_matrix.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (28 rows)"
+      },
+      {
+        "path": "data/temporal/cohorts/cohort_survival.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (7 rows)"
+      },
+      {
+        "path": "data/temporal/cohorts/cohort_survival_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/deep_backfill/deep_comment_bias_analysis.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/deep_backfill/deep_sampling_manifest.csv",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/deep_backfill/deep_sampling_manifest.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (226 rows)"
+      },
+      {
+        "path": "data/temporal/deep_backfill/phase_t6_deepening_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/ecosystem/ecosystem_evolution_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/ecosystem/structural_breaks.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (10 rows)"
+      },
+      {
+        "path": "data/temporal/ecosystem/yearly_ecosystem_metrics.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (7 rows)"
+      },
+      {
+        "path": "data/temporal/event_analysis/event_impact_metrics.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (448 rows)"
+      },
+      {
+        "path": "data/temporal/event_analysis/event_impact_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/lifecycle/channel_lifecycle_intervals.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (237 rows)"
+      },
+      {
+        "path": "data/temporal/lifecycle/lifecycle_events.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (226 rows)"
+      },
+      {
+        "path": "data/temporal/lifecycle/lifecycle_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/observatory/observatory_state.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/observatory/run_ledger.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/pilot/phase_t2_pilot_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/pilot/temporal_comment_pilot.parquet",
+        "classification": "PRIVATE_DATA",
+        "reason": "Viewer-level table (1474 rows)"
+      },
+      {
+        "path": "data/temporal/quality/bias_sensitivity.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (49 rows)"
+      },
+      {
+        "path": "data/temporal/quality/channel_evidence_quality.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (193 rows)"
+      },
+      {
+        "path": "data/temporal/quality/evidence_quality_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/quality/yearly_evidence_quality.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (7 rows)"
+      },
+      {
+        "path": "data/temporal/release/data_dictionary.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/release/dataset_manifest.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/release/dataset_release_notes.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/release/environment_dependencies.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/release/provenance_map.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/report/appendix_tables.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/report/technical_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/research_integrity/t11_t16_integrity_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/research_integrity/t11_t19_final_integrity_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/research_integrity/t11_t20_ecosystem_observatory_integrity_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/research_integrity/t8_t10_integrity_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/robustness/robustness_report.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/robustness/robustness_summary.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (6 rows)"
+      },
+      {
+        "path": "data/temporal/robustness/sensitivity_results.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (860 rows)"
+      },
+      {
+        "path": "data/temporal/snapshots/network_snapshots.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (48290 rows)"
+      },
+      {
+        "path": "data/temporal/state/pipeline_state.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/temporal/state/release_manifest.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/thai_vtuber_registry.csv",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/thai_vtuber_registry.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/unconfirmed_candidates.csv",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/video_catalog.csv",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "data/video_catalog.parquet",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Public/aggregate table (581 rows)"
+      },
+      {
+        "path": "docs/antigravity-continuous-collection-fixes.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "docs/continuous-lightweight-collection.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "docs/evidence-milestone.md",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "docs/evidence/benchmark.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "docs/evidence/continuous-baseline-regressions.txt",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "docs/evidence/continuous-correctness.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "docs/evidence/continuous-privacy-audit.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "docs/evidence/continuous-real-check.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "docs/evidence/continuous-tests.txt",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "docs/evidence/privacy-audit.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "docs/evidence/pytest.txt",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "docs/evidence/real-pilot.txt",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "docs/evidence/schemas-and-graph.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "main.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "requirements.txt",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/analyze_audience_cohorts.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/analyze_audience_transitions.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/analyze_centrality_evolution.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/analyze_deep_comment_bias.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/analyze_ecosystem_evolution.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/analyze_event_impact.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/analyze_evidence_quality.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/analyze_temporal_backfill_quality.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/analyze_temporal_communities.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/audit_sheets_privacy.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/benchmark_suite.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/build_community_lineage_v2.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/build_dataset_release.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/build_deep_sampling_manifest.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/build_duckdb_temporal_snapshots.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/build_historical_lifecycle.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/build_historical_sampling_manifest.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/build_research_dashboard_data.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/build_technical_report.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/build_web_data.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/create_target_manifest.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/generate_catalog_audit_report.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/generate_integrity_report.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/generate_sampling_audit.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/generate_t11_t16_integrity_report.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/generate_web_app.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/incremental_temporal_pipeline.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/merge_reilim_into_all_commenters.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/observatory_controller.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/privacy_audit.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/purge_sheets_pii.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/reproduce_temporal_dataset.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/run_batch_network_350.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/run_continuous_collection.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/run_hybrid_crawler_30.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/run_phase_t1_catalog.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/run_phase_t5_backfill.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/run_phase_t6_deepening.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/run_real_continuity_check.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/run_real_pilot.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/run_temporal_comment_pilot.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/sync_to_google_sheets.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/test_live_chat_empirically.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/update_web_with_real_data.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/validate_dataset_release.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/validate_temporal_robustness.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "scripts/verify_continuous_collection.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "storage/duckdb_engine.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "storage/parquet_manager.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/conftest.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_audience_cohorts.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_centrality_evolution.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_collection_correctness.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_comment_backfill.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_community_lineage_v2.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_continuous_collection.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_deep_comment_backfill.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_ecosystem_evolution.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_event_impact_analysis.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_evidence_quality.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_evidence_separation.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_historical_catalog.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_incremental_pipeline.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_lifecycle_timeline.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_milestone_regressions.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_observatory_controller.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_original_review_cases.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_real_adapters.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_release_reproducibility.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_research_integrity_regressions.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_robustness_validation.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_sampling_manifest.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_sna_pipeline.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_source_provenance_deduplication.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_technical_report.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_temporal_backfill_quality.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_temporal_community_analysis.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_temporal_pilot_and_snapshots.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "tests/test_three_phase_pipeline.py",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "web/app.js",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "web/data.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "web/data/temporal_communities.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "web/data/temporal_snapshots.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "web/index.html",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "web/research/dashboard_data.json",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "web/research/index.html",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "web/research/research_dashboard.css",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "web/research/research_dashboard.js",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      },
+      {
+        "path": "web/styles.css",
+        "classification": "PUBLIC_RESEARCH_DATA",
+        "reason": "Source/schema/methodology or public channel/aggregate data"
+      }
+    ],
+    "findings": [
+      {
+        "path": "data/temporal/pilot/temporal_comment_pilot.parquet",
+        "classification": "PRIVATE_DATA",
+        "reason": "Viewer-level table (1474 rows)"
+      }
+    ],
+    "ignore_checks": {
+      "config/secret.key": true,
+      "credentials.json": true,
+      ".env": true,
+      "data/private_recovery/probe.csv": true
+    },
+    "history_findings": [
+      {
+        "path": "data/temporal/pilot/temporal_comment_pilot.parquet",
+        "blob": "64a74dcafd5af0ae5aa75a2043ea1c7e51596277",
+        "classification": "PRIVATE_DATA",
+        "commits": [
+          "ac6ce266c09498a7057558aa17c229593cad441a"
+        ],
+        "reason": "Viewer-level table (1474 rows)",
+        "credential_status": null
+      }
+    ],
+    "scope": "All Git blobs at ref; optional all reachable historical blobs decoded by format; no history rewrite"
+  },
+  "status": "FAIL"
+}

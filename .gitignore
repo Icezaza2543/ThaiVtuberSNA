@@ -39,3 +39,9 @@ data/temporal/deep_observations/
 credentials.json
 service-account*.json
 data/validation/
+data/private_recovery/
+data/private_cache/
+data/private_archive/
+data/reilim_commenters*.csv
+data/all_commenters*.csv
+data/temporal/pilot/temporal_comment_pilot.parquet
