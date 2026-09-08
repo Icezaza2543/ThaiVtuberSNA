@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0.0",
+  "pipeline_mode": "incremental",
+  "hmac_key_fingerprint": "142e095047f2f49c652fa1d04c3d146070f1b96b2bae697731bb40d146cf3eba",
+  "created_at": "2026-09-08T14:34:00.868635+00:00",
+  "last_committed_at": null,
+  "active_dataset_version": "v1.0.0",
+  "processed_batches": {}
+}

@@ -1,0 +1,21 @@
+{
+  "dataset_name": "ThaiVtuberSNA Longitudinal Network Dataset",
+  "release_version": "v1.0.0",
+  "generated_at": "2026-09-08T14:34:00.869786+00:00",
+  "hmac_key_fingerprint": "142e095047f2f49c652fa1d04c3d146070f1b96b2bae697731bb40d146cf3eba",
+  "provenance_hierarchy": {
+    "legacy": 10,
+    "t2_pilot": 20,
+    "t5_stratified": 30,
+    "t6_deep": 40,
+    "t16_incremental": 50
+  },
+  "active_temporal_range": [
+    2020,
+    2026
+  ],
+  "last_affected_years": [
+    2026
+  ],
+  "state_file_checksum": "6ff3199892e0c6bd4ad4648c893778c59eb0a55c35ced65bd19a4a6477d701ea"
+}
