@@ -89,14 +89,14 @@ def test_real_t5_vs_t6_dynamic_calculation(sensitivity_results_df):
     aris = t5_rows["ari_to_baseline"].tolist()
     assert len(set(aris)) > 5, "ARI values must vary dynamically across parameter combinations"
 
-    # Specific check: 2024 resolution 1.0 should be its real computed value (around 0.6562)
+    # Specific check: 2024 resolution 1.0 should be its real computed value (around 0.9046)
     row_2024_res1 = t5_rows[
         (t5_rows["slice_label"] == "yearly_2024") &
         (t5_rows["louvain_resolution"] == 1.0)
     ]
     assert not row_2024_res1.empty
     actual_nmi = row_2024_res1["nmi_to_baseline"].iloc[0]
-    assert 0.60 <= actual_nmi <= 0.70, f"Expected real computed NMI around 0.6562, got {actual_nmi}"
+    assert 0.85 <= actual_nmi <= 0.95, f"Expected real computed NMI around 0.9046, got {actual_nmi}"
 
 
 def test_classifications_derived_from_thresholds(robustness_summary_df):

@@ -287,6 +287,15 @@ def run_robustness_sweep() -> Tuple[pd.DataFrame, pd.DataFrame]:
                             "jaccard_top_bridges": 0.0,
                             "top_5_bridges": "",
                             "agency_purity": 0.0,
+                            "t6_nodes": active_nodes,
+                            "t5_nodes": None,
+                            "common_nodes": None,
+                            "t6_edges": active_edges,
+                            "t5_edges": None,
+                            "t6_modularity": 0.0,
+                            "t5_modularity": None,
+                            "real_nmi": 0.0,
+                            "real_ari": 0.0,
                             "status": "INSUFFICIENT_EVIDENCE"
                         })
                     continue
@@ -334,6 +343,15 @@ def run_robustness_sweep() -> Tuple[pd.DataFrame, pd.DataFrame]:
                             "jaccard_top_bridges": round(jacc_bridges, 4),
                             "top_5_bridges": "; ".join(top5_names),
                             "agency_purity": round(purity, 4),
+                            "t6_nodes": active_nodes,
+                            "t5_nodes": None,
+                            "common_nodes": None,
+                            "t6_edges": active_edges,
+                            "t5_edges": None,
+                            "t6_modularity": round(mod_q, 4),
+                            "t5_modularity": None,
+                            "real_nmi": round(nmi, 4),
+                            "real_ari": round(ari, 4),
                             "status": "EVALUATED"
                         })
                     except Exception as e:
@@ -398,6 +416,7 @@ def run_robustness_sweep() -> Tuple[pd.DataFrame, pd.DataFrame]:
                 real_nmi = 0.0
                 real_ari = 0.0
 
+            mod_t6 = nx_comm.modularity(G_t6, comms_t6, weight="weight")
             mod_t5 = nx_comm.modularity(G_t5, comms_t5, weight="weight")
             top5_t5 = get_top_bridges(G_t5, 5)
             top5_t6 = get_top_bridges(G_t6, 5)
@@ -411,7 +430,11 @@ def run_robustness_sweep() -> Tuple[pd.DataFrame, pd.DataFrame]:
                 "real_ari": real_ari,
                 "t6_nodes": len(G_t6),
                 "t5_nodes": len(G_t5),
-                "common_nodes": len(common_nodes)
+                "common_nodes": len(common_nodes),
+                "t6_edges": G_t6.number_of_edges(),
+                "t5_edges": G_t5.number_of_edges(),
+                "t6_modularity": round(mod_t6, 4),
+                "t5_modularity": round(mod_t5, 4)
             })
 
             results.append({
@@ -433,6 +456,15 @@ def run_robustness_sweep() -> Tuple[pd.DataFrame, pd.DataFrame]:
                 "jaccard_top_bridges": round(jacc_b, 4),
                 "top_5_bridges": "; ".join([channel_name.get(c, c) for c in top5_t5]),
                 "agency_purity": round(purity_t5, 4),
+                "t6_nodes": len(G_t6),
+                "t5_nodes": len(G_t5),
+                "common_nodes": len(common_nodes),
+                "t6_edges": G_t6.number_of_edges(),
+                "t5_edges": G_t5.number_of_edges(),
+                "t6_modularity": round(mod_t6, 4),
+                "t5_modularity": round(mod_t5, 4),
+                "real_nmi": round(real_nmi, 4),
+                "real_ari": round(real_ari, 4),
                 "status": "EVALUATED"
             })
 
@@ -678,10 +710,24 @@ Baseline: `Year 2024`, `unified` interaction evidence, `edge_threshold >= 1`, `s
             f"{r['ari_to_baseline']:.4f} | {r['agency_purity']:.1%} |\n"
         )
 
-    md += r"""
+    res_mid = res_2024[res_2024["louvain_resolution"].isin([0.75, 1.0, 1.25])]
+    min_nmi_mid = res_mid["nmi_to_baseline"].min()
+    max_nmi_mid = res_mid["nmi_to_baseline"].max()
+    min_ari_mid = res_mid["ari_to_baseline"].min()
+    max_ari_mid = res_mid["ari_to_baseline"].max()
+    min_purity_mid = res_mid["agency_purity"].min()
+
+    r_050 = res_2024[res_2024["louvain_resolution"] == 0.50].iloc[0]
+    r_150 = res_2024[res_2024["louvain_resolution"] == 1.50].iloc[0]
+    q_050 = r_050["modularity_q"]
+    c_050 = r_050["community_count"]
+    q_150 = r_150["modularity_q"]
+    c_150 = r_150["community_count"]
+
+    md += f"""
 *Empirical Observations on Resolution:*
-- **Stability Core (0.75 to 1.25):** The community partition remains stable across the tested parameter range between resolutions 0.75 and 1.25 (NMI: 0.80 to 0.89; ARI: 0.74 to 0.91). Agency purity exceeds 80%.
-- **Resolution Boundary Dynamics:** Lowering resolution to 0.50 merges communities into 2 large macro-clusters ($Q=0.2115$). Increasing resolution to 1.50 subdivides communities into 9 sub-clusters ($Q=0.2628$).
+- **Stability Core (0.75 to 1.25):** The community partition remains stable across the tested parameter range between resolutions 0.75 and 1.25 (NMI: {min_nmi_mid:.4f} to {max_nmi_mid:.4f}; ARI: {min_ari_mid:.4f} to {max_ari_mid:.4f}). Agency purity exceeds {min_purity_mid:.1%}.
+- **Resolution Boundary Dynamics:** Lowering resolution to 0.50 merges communities into {c_050} large macro-clusters ($Q={q_050:.4f}$). Increasing resolution to 1.50 subdivides communities into {c_150} sub-clusters ($Q={q_150:.4f}$).
 
 ---
 
@@ -700,10 +746,25 @@ Evaluating network stability when pruning low-weight edges (shared viewers $< k$
             f"{r['jaccard_top_bridges']:.3f} |\n"
         )
 
-    md += r"""
+    th1_r = th_2024[th_2024["edge_threshold"] == 1].iloc[0]
+    th5_r = th_2024[th_2024["edge_threshold"] == 5].iloc[0]
+    th10_r = th_2024[th_2024["edge_threshold"] == 10].iloc[0]
+
+    q_th1 = th1_r["modularity_q"]
+    q_th5 = th5_r["modularity_q"]
+
+    total_th_nodes = th1_r["active_nodes"]
+    th5_nodes = th5_r["active_nodes"]
+    th5_pct = (th5_nodes / total_th_nodes * 100.0) if total_th_nodes > 0 else 0.0
+    th10_nodes = th10_r["active_nodes"]
+    th10_pct = (th10_nodes / total_th_nodes * 100.0) if total_th_nodes > 0 else 0.0
+
+    c4_class = df_summary[df_summary["finding_id"] == "FINDING_4_PERIPHERAL_INDEPENDENT_INTEGRATION"]["classification"].iloc[0]
+
+    md += f"""
 *Empirical Observations on Edge Thresholds:*
-- **Modularity Increase with Pruning:** Pruning low-weight edges increases modularity from $0.3106$ ($\ge 1$) to $0.5195$ ($\ge 5$), as cross-community ties drop and dense intra-agency cohesion dominates.
-- **Peripheral Attrition:** Pruning at $\ge 5$ retains only 69 of 157 channels (43.9%), and $\ge 10$ retains only 27 channels (17.2%). This empirically supports the `HIGHLY_SENSITIVE` classification for peripheral creator integration.
+- **Modularity Increase with Pruning:** Pruning low-weight edges increases modularity from ${q_th1:.4f}$ ($\\ge 1$) to ${q_th5:.4f}$ ($\\ge 5$), as cross-community ties drop and dense intra-agency cohesion dominates.
+- **Peripheral Attrition:** Pruning at $\\ge 5$ retains only {th5_nodes} of {total_th_nodes} channels ({th5_pct:.1f}%), and $\\ge 10$ retains only {th10_nodes} channels ({th10_pct:.1f}%). This empirically supports the `{c4_class}` classification for peripheral creator integration.
 
 ---
 
@@ -720,9 +781,16 @@ Comparing modalities where both comments and live chats were collected.
             f"{r['top_5_bridges'][:50]}... |\n"
         )
 
-    md += """
+    comm_row = ev_2026[ev_2026["evidence_mode"] == "comment_only"]
+    uni_row = ev_2026[ev_2026["evidence_mode"] == "unified"]
+    comm_q = comm_row["modularity_q"].iloc[0] if not comm_row.empty else 0.0
+    uni_q = uni_row["modularity_q"].iloc[0] if not uni_row.empty else 0.0
+    comm_nmi = comm_row["nmi_to_baseline"].iloc[0] if not comm_row.empty else 0.0
+    comm_ari = comm_row["ari_to_baseline"].iloc[0] if not comm_row.empty else 0.0
+
+    md += f"""
 *Empirical Observations on Evidence Modality:*
-- **Partition Alignment vs Modularity Shift:** In Year 2026, `comment_only` and `unified` show strong partition concordance on common nodes (NMI = 0.8733, ARI = 0.8878). However, modularity differs noticeably ($Q=0.3248$ vs $Q=0.5085$) because multi-interaction live-chat ties reinforce dense clustering.
+- **Partition Alignment vs Modularity Shift:** In Year 2026, `comment_only` and `unified` show strong partition concordance on common nodes (NMI = {comm_nmi:.4f}, ARI = {comm_ari:.4f}). However, modularity differs noticeably ($Q={comm_q:.4f}$ vs $Q={uni_q:.4f}$) because multi-interaction live-chat ties reinforce dense clustering without displacing underlying macro community clusters.
 - **Live-Chat Historical Sparsity:** Prior to late 2025, live chat data is absent from the catalog, rendering historical live-chat only analysis `INSUFFICIENT_EVIDENCE`.
 
 ---
@@ -730,19 +798,29 @@ Comparing modalities where both comments and live chats were collected.
 ## 5. Dataset Provenance Comparison: Real T5 vs T6 Partition Metrics
 Evaluating actual partition similarity on common active nodes between T5 Stratified Baseline and T6 Deepened datasets (Resolution = 1.0, Threshold >= 1).
 
-| Year | T6 Nodes | T5 Nodes | Common Active Nodes | T6 Modularity | T5 Modularity | Actual NMI (T5 vs T6) | Actual ARI (T5 vs T6) |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Year | T6 Nodes | T5 Nodes | Common Active Nodes | T6 Edges | T5 Edges | T6 Modularity | T5 Modularity | Actual NMI (T5 vs T6) | Actual ARI (T5 vs T6) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 """
     for _, r in t5_comp.iterrows():
+        t5_nodes_val = int(r['t5_nodes']) if pd.notna(r['t5_nodes']) else 0
+        common_nodes_val = int(r['common_nodes']) if pd.notna(r['common_nodes']) else 0
+        t5_edges_val = int(r['t5_edges']) if pd.notna(r['t5_edges']) else 0
         md += (
-            f"| {r['slice_start'][:4]} | {r['active_nodes']} | {r['active_nodes']} | "
-            f"{r['active_nodes']} | {r['modularity_q']:.4f} | {r['modularity_q']:.4f} | "
-            f"{r['nmi_to_baseline']:.4f} | {r['ari_to_baseline']:.4f} |\n"
+            f"| {r['slice_start'][:4]} | {int(r['t6_nodes'])} | {t5_nodes_val} | "
+            f"{common_nodes_val} | {int(r['t6_edges'])} | {t5_edges_val} | "
+            f"{r['t6_modularity']:.4f} | {r['t5_modularity']:.4f} | "
+            f"{r['real_nmi']:.4f} | {r['real_ari']:.4f} |\n"
         )
 
-    md += """
+    min_t5_nmi = t5_comp["real_nmi"].min()
+    max_t5_nmi = t5_comp["real_nmi"].max()
+    peak_row = t5_comp.loc[t5_comp["real_nmi"].idxmax()]
+    peak_year = peak_row["slice_start"][:4]
+    peak_nmi = peak_row["real_nmi"]
+
+    md += f"""
 *Empirical Observations on Dataset Depth:*
-- Across all tested years (2021-2024), actual partition similarity between T5 and T6 confirms topological concordance (NMI = 0.38 - 0.73, peaking at 0.7301 in 2024).
+- Across all tested years (2021-2024), actual partition similarity between T5 and T6 confirms topological concordance (NMI = {min_t5_nmi:.4f} - {max_t5_nmi:.4f}, peaking at {peak_nmi:.4f} in {peak_year}).
 - Deepening in T6 consolidated community cohesion and increased modularity without displacing macro-level community boundaries.
 
 ---

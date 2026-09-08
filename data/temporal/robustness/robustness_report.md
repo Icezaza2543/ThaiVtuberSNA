@@ -22,7 +22,7 @@ This report presents an empirical sensitivity analysis evaluating the stability 
 | `FINDING_2_MAJOR_COMMUNITY_PERSISTENCE` | Macro-Community Partition Stability | **`MODERATELY_SENSITIVE`** | `mean_res_nmi` | 0.6989 | Shows moderate variation across the tested parameter range (0.50 <= mean_res_nmi=0.699 < 0.70). |
 | `FINDING_3_BRIDGE_CREATOR_RANKINGS` | Network Centrality & Cross-Agency Bridges | **`MODERATELY_SENSITIVE`** | `mean_bridge_top5_jaccard` | 0.25 | Shows moderate variation across the tested parameter range (0.20 <= bridge_jaccard=0.250 < 0.50). |
 | `FINDING_4_PERIPHERAL_INDEPENDENT_INTEGRATION` | Small Creator Integration & Thresholding | **`HIGHLY_SENSITIVE`** | `node_retention_ratio_th5` | 0.4395 | Substantially sensitive to parameter perturbation (node_retention_ratio=0.439 < 0.45). |
-| `FINDING_5_DATASET_DEPTH_CONCORDANCE` | Data Provenance (T5 Stratified vs T6 Deepened) | **`ROBUST`** | `mean_t5_t6_nmi_res1` | 0.6206 | Stable across the tested parameter range (real_depth_nmi=0.621 >= 0.50). |
+| `FINDING_5_DATASET_DEPTH_CONCORDANCE` | Data Provenance (T5 Stratified vs T6 Deepened) | **`ROBUST`** | `mean_t5_t6_nmi_res1` | 0.695 | Stable across the tested parameter range (real_depth_nmi=0.695 >= 0.50). |
 | `FINDING_6_LIVE_CHAT_STANDALONE_SUFFICIENCY` | Evidence Modality (Live Chat vs Comment) | **`INSUFFICIENT_EVIDENCE`** | `historical_live_edges` | 0.0 | Evidence insufficient to evaluate (zero or near-zero historical live-chat edges recorded). |
 
 ---
@@ -39,7 +39,7 @@ Baseline: `Year 2024`, `unified` interaction evidence, `edge_threshold >= 1`, `s
 | 1.50 | 157 | 2547 | 9 | 0.2628 | 0.6891 | 0.5777 | 73.4% |
 
 *Empirical Observations on Resolution:*
-- **Stability Core (0.75 to 1.25):** The community partition remains stable across the tested parameter range between resolutions 0.75 and 1.25 (NMI: 0.80 to 0.89; ARI: 0.74 to 0.91). Agency purity exceeds 80%.
+- **Stability Core (0.75 to 1.25):** The community partition remains stable across the tested parameter range between resolutions 0.75 and 1.25 (NMI: 0.7998 to 1.0000; ARI: 0.7419 to 1.0000). Agency purity exceeds 85.9%.
 - **Resolution Boundary Dynamics:** Lowering resolution to 0.50 merges communities into 2 large macro-clusters ($Q=0.2115$). Increasing resolution to 1.50 subdivides communities into 9 sub-clusters ($Q=0.2628$).
 
 ---
@@ -70,7 +70,7 @@ Comparing modalities where both comments and live chats were collected.
 | `unified` | 160 | 1997 | 4 | 0.5085 | 78.1% | Aisha Channel; Nongwan TV; นานาโฮชิ นานะ / 七星ナナ; I... |
 
 *Empirical Observations on Evidence Modality:*
-- **Partition Alignment vs Modularity Shift:** In Year 2026, `comment_only` and `unified` show strong partition concordance on common nodes (NMI = 0.8733, ARI = 0.8878). However, modularity differs noticeably ($Q=0.3248$ vs $Q=0.5085$) because multi-interaction live-chat ties reinforce dense clustering.
+- **Partition Alignment vs Modularity Shift:** In Year 2026, `comment_only` and `unified` show strong partition concordance on common nodes (NMI = 0.8733, ARI = 0.8878). However, modularity differs noticeably ($Q=0.3248$ vs $Q=0.5085$) because multi-interaction live-chat ties reinforce dense clustering without displacing underlying macro community clusters.
 - **Live-Chat Historical Sparsity:** Prior to late 2025, live chat data is absent from the catalog, rendering historical live-chat only analysis `INSUFFICIENT_EVIDENCE`.
 
 ---
@@ -78,15 +78,15 @@ Comparing modalities where both comments and live chats were collected.
 ## 5. Dataset Provenance Comparison: Real T5 vs T6 Partition Metrics
 Evaluating actual partition similarity on common active nodes between T5 Stratified Baseline and T6 Deepened datasets (Resolution = 1.0, Threshold >= 1).
 
-| Year | T6 Nodes | T5 Nodes | Common Active Nodes | T6 Modularity | T5 Modularity | Actual NMI (T5 vs T6) | Actual ARI (T5 vs T6) |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| 2021 | 64 | 64 | 64 | 0.1818 | 0.1818 | 0.5882 | 0.4411 |
-| 2022 | 88 | 88 | 88 | 0.2071 | 0.2071 | 0.5568 | 0.4033 |
-| 2023 | 126 | 126 | 126 | 0.3042 | 0.3042 | 0.6811 | 0.6686 |
-| 2024 | 155 | 155 | 155 | 0.2675 | 0.2675 | 0.6562 | 0.7007 |
+| Year | T6 Nodes | T5 Nodes | Common Active Nodes | T6 Edges | T5 Edges | T6 Modularity | T5 Modularity | Actual NMI (T5 vs T6) | Actual ARI (T5 vs T6) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 2021 | 65 | 64 | 64 | 625 | 512 | 0.1354 | 0.1879 | 0.6135 | 0.4611 |
+| 2022 | 92 | 88 | 88 | 965 | 857 | 0.1957 | 0.2067 | 0.5184 | 0.3583 |
+| 2023 | 129 | 126 | 126 | 1503 | 1252 | 0.3144 | 0.3082 | 0.7437 | 0.7663 |
+| 2024 | 157 | 155 | 155 | 2547 | 2387 | 0.3119 | 0.2782 | 0.9046 | 0.9432 |
 
 *Empirical Observations on Dataset Depth:*
-- Across all tested years (2021-2024), actual partition similarity between T5 and T6 confirms topological concordance (NMI = 0.38 - 0.73, peaking at 0.7301 in 2024).
+- Across all tested years (2021-2024), actual partition similarity between T5 and T6 confirms topological concordance (NMI = 0.5184 - 0.9046, peaking at 0.9046 in 2024).
 - Deepening in T6 consolidated community cohesion and increased modularity without displacing macro-level community boundaries.
 
 ---
