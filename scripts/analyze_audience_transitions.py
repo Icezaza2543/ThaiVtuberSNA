@@ -14,6 +14,7 @@ Exports:
 """
 
 import csv
+import json
 import logging
 from datetime import datetime, timezone
 from pathlib import Path
@@ -38,6 +39,8 @@ OUTPUT_AGENCY_MATRIX = ANALYSIS_DIR / "agency_transition_matrix.parquet"
 OUTPUT_CHANNEL_SUMMARY = ANALYSIS_DIR / "channel_transition_summary.parquet"
 OUTPUT_YEARLY_METRICS = ANALYSIS_DIR / "yearly_network_metrics.parquet"
 OUTPUT_MIGRATION_REPORT = ANALYSIS_DIR / "temporal_migration_report.md"
+OUTPUT_COMMUNITY_LINEAGE = ANALYSIS_DIR / "community_lineage.parquet"
+OUTPUT_WEB_COMMUNITIES = BASE_DIR / "web" / "data" / "temporal_communities.json"
 
 
 def load_channel_metadata() -> Dict[str, Dict[str, str]]:
@@ -383,6 +386,73 @@ def generate_migration_report(
     return "\n".join(lines)
 
 
+def export_web_temporal_communities() -> Path:
+    """Exports compact JSON summary of yearly communities and transition metrics for web UI."""
+    if not (COMMUNITY_SNAPSHOTS_PARQUET.exists() and OUTPUT_COMMUNITY_LINEAGE.exists() and OUTPUT_YEARLY_METRICS.exists()):
+        logger.warning("Required analysis parquet files not found; skipping web JSON export.")
+        return OUTPUT_WEB_COMMUNITIES
+
+    df_snaps = pq.read_table(COMMUNITY_SNAPSHOTS_PARQUET).to_pandas()
+    df_lineage = pq.read_table(OUTPUT_COMMUNITY_LINEAGE).to_pandas()
+    df_metrics = pq.read_table(OUTPUT_YEARLY_METRICS).to_pandas()
+
+    export_data = {}
+
+    for yr in sorted(df_snaps["year"].unique()):
+        yr = int(yr)
+        yr_metrics = df_metrics[df_metrics["year"] == yr]
+        met = yr_metrics.iloc[0].to_dict() if not yr_metrics.empty else {}
+
+        # Communities in year
+        yr_snaps = df_snaps[df_snaps["year"] == yr]
+        comms = []
+        for cid, group in yr_snaps.groupby("community_id"):
+            agencies = group["agency_at_selection"].value_counts().to_dict()
+            top_ag = list(agencies.keys())[0] if agencies else "Independent"
+            anchors = group["channel_name"].head(4).tolist()
+            comms.append({
+                "id": cid,
+                "size": int(group["community_size"].iloc[0]),
+                "top_agency": top_ag,
+                "agency_counts": {k: int(v) for k, v in agencies.items()},
+                "anchors": anchors
+            })
+        comms.sort(key=lambda c: -c["size"])
+
+        # Lineage events involving this year
+        incoming = df_lineage[df_lineage["to_year"] == yr]
+        outgoing = df_lineage[df_lineage["from_year"] == yr]
+
+        events_summary = {
+            "births": int((incoming["event_type"] == "birth").sum()),
+            "disappearances": int((incoming["event_type"] == "disappearance").sum()),
+            "splits": int((outgoing["event_type"] == "split").sum()),
+            "merges": int((incoming["event_type"] == "merge").sum()),
+            "persistent": int((incoming["event_type"] == "persistent").sum()),
+        }
+
+        export_data[str(yr)] = {
+            "year": yr,
+            "active_channels": int(met.get("active_channels", len(yr_snaps))),
+            "active_edges": int(met.get("active_edges", 0)),
+            "community_count": len(comms),
+            "modularity": round(float(met.get("modularity", 0.0)), 4),
+            "distinct_viewers": int(met.get("distinct_observed_viewers", 0)),
+            "observed_retained_viewers": int(met.get("observed_retained_viewers", 0)),
+            "observed_cross_channel_viewers": int(met.get("observed_cross_channel_viewers", 0)),
+            "observed_same_agency_cross_viewers": int(met.get("observed_same_agency_cross_viewers", 0)),
+            "observed_cross_agency_viewers": int(met.get("observed_cross_agency_viewers", 0)),
+            "reliability_flag": str(met.get("reliability_flag", "NORMAL")),
+            "events": events_summary,
+            "communities": comms
+        }
+
+    OUTPUT_WEB_COMMUNITIES.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT_WEB_COMMUNITIES.write_text(json.dumps(export_data, ensure_ascii=False, indent=2), encoding="utf-8")
+    logger.info(f"Exported web temporal communities to {OUTPUT_WEB_COMMUNITIES} ({OUTPUT_WEB_COMMUNITIES.stat().st_size} bytes)")
+    return OUTPUT_WEB_COMMUNITIES
+
+
 def run_audience_transition_analysis():
     """Main execution function for Phase T7 audience transition analytics."""
     logger.info("Starting Phase T7 Audience Transition Analytics...")
@@ -420,12 +490,16 @@ def run_audience_transition_analysis():
     OUTPUT_MIGRATION_REPORT.write_text(migration_report, encoding="utf-8")
     logger.info(f"Wrote migration report to {OUTPUT_MIGRATION_REPORT}")
 
+    # Export web temporal communities JSON
+    export_web_temporal_communities()
+
     print("\n==========================================")
     print("PHASE T7 AUDIENCE TRANSITION ANALYSIS COMPLETE")
     print(f"Agency Matrix Parquet:   {OUTPUT_AGENCY_MATRIX}")
     print(f"Channel Summary Parquet: {OUTPUT_CHANNEL_SUMMARY}")
     print(f"Yearly Metrics Parquet:  {OUTPUT_YEARLY_METRICS}")
     print(f"Migration Report MD:     {OUTPUT_MIGRATION_REPORT}")
+    print(f"Web Communities JSON:    {OUTPUT_WEB_COMMUNITIES}")
     print("==========================================\n")
 
 
