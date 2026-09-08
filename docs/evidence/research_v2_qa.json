@@ -1,0 +1,43 @@
+{
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 900,
+      "fields": 193,
+      "charts": 7,
+      "sections": 9,
+      "status": "PASS"
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "fields": 193,
+      "charts": 7,
+      "sections": 9,
+      "status": "PASS"
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "fields": 193,
+      "charts": 7,
+      "sections": 9,
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "fields": 193,
+      "charts": 7,
+      "sections": 9,
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "dataRequests": [],
+  "noJavaScript": "Navigation and all chapters remain available",
+  "phase": "HTML structure prototype; no analytical wiring",
+  "fallback": "Original Research: 24 tab/viewport checks passed",
+  "protected_files": "Byte-identical to pre-task baseline",
+  "coordinate_sha256": "47a63e3160c1b1282fe0ceb997f08ef6ae5beec584771c237bb11d50fab83adc"
+}
