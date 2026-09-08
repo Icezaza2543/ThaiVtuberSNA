@@ -132,22 +132,36 @@ NETWORK_SNAPSHOT_SCHEMA = pa.schema([
 ])
 
 def collect_available_parquet_sources() -> List[str]:
-    """Finds all available event/observation parquet files across temporal and legacy directories."""
+    """
+    Finds all available event/observation parquet files across temporal and legacy directories.
+    Enforces strict precedence: T6 deep observations supersede T5 shallow observations for the same video_id.
+    """
     sources = []
+    deep_video_ids = set()
 
-    # 1. Temporal Pilot / Observations
+    # 1. T6 Deep Observations (Highest Precedence)
+    deep_obs_dir = DATA_DIR / "temporal" / "deep_observations"
+    if deep_obs_dir.exists():
+        for p in deep_obs_dir.rglob("*.parquet"):
+            sources.append(str(p).replace("\\", "/"))
+            deep_video_ids.add(p.stem)
+
+    # 2. Temporal Pilot / Observations (T5 observations excluded if superseded by T6)
     pilot_p = DATA_DIR / "temporal" / "pilot" / "temporal_comment_pilot.parquet"
     if pilot_p.exists():
         sources.append(str(pilot_p).replace("\\", "/"))
 
-    for p in (DATA_DIR / "temporal" / "observations").rglob("*.parquet"):
-        sources.append(str(p).replace("\\", "/"))
+    shallow_obs_dir = DATA_DIR / "temporal" / "observations"
+    if shallow_obs_dir.exists():
+        for p in shallow_obs_dir.rglob("*.parquet"):
+            if p.stem not in deep_video_ids:
+                sources.append(str(p).replace("\\", "/"))
 
-    # 2. Real Events
+    # 3. Real Events
     for p in (DATA_DIR / "real" / "events").rglob("*.parquet"):
         sources.append(str(p).replace("\\", "/"))
 
-    # 3. Legacy Events
+    # 4. Legacy Events
     for p in (DATA_DIR / "events").rglob("*.parquet"):
         sources.append(str(p).replace("\\", "/"))
 
@@ -506,7 +520,31 @@ def load_dataset_maturity_metadata(con: duckdb.DuckDBPyConnection) -> Dict[str, 
     }
 
     completion_ratio = round(terminal_jobs / sampling_manifest_total, 4) if sampling_manifest_total > 0 else 0.0
-    stage = "historical_stratified_backfill_complete" if (pending_jobs == 0 and terminal_jobs >= sampling_manifest_total and sampling_manifest_total > 0) else "historical_stratified_backfill_partial"
+
+    deep_checkpoint_db = DATA_DIR / "temporal" / "deep_backfill" / "deep_backfill_checkpoint.sqlite3"
+    t6_manifest_total = 0
+    t6_terminal_jobs = 0
+    t6_pending_jobs = 0
+    if deep_checkpoint_db.exists():
+        try:
+            dcon = sqlite3.connect(str(deep_checkpoint_db))
+            drows = dcon.execute("SELECT status, COUNT(*) FROM deep_backfill_jobs GROUP BY status").fetchall()
+            dstatus_map = {r[0]: r[1] for r in drows}
+            dcon.close()
+            t6_manifest_total = sum(dstatus_map.values())
+            t6_pending_jobs = dstatus_map.get("PENDING", 0) + dstatus_map.get("RETRYABLE", 0) + dstatus_map.get("RUNNING", 0)
+            t6_terminal_jobs = t6_manifest_total - t6_pending_jobs
+        except Exception as e:
+            logger.warning(f"Could not read deep checkpoint: {e}")
+
+    if t6_manifest_total > 0 and t6_pending_jobs == 0 and t6_terminal_jobs >= t6_manifest_total:
+        stage = "deep_historical_backfill_complete"
+    elif t6_terminal_jobs > 0:
+        stage = "deep_historical_backfill_partial"
+    elif pending_jobs == 0 and terminal_jobs >= sampling_manifest_total and sampling_manifest_total > 0:
+        stage = "historical_stratified_backfill_complete"
+    else:
+        stage = "historical_stratified_backfill_partial"
 
     return {
         "temporal_dataset_stage": stage,
@@ -522,6 +560,9 @@ def load_dataset_maturity_metadata(con: duckdb.DuckDBPyConnection) -> Dict[str, 
         "video_unavailable": video_unavail_cnt,
         "failed": failed_cnt,
         "sampled_videos_processed": terminal_jobs,
+        "t6_manifest_total": t6_manifest_total,
+        "t6_terminal_jobs": t6_terminal_jobs,
+        "t6_pending_jobs": t6_pending_jobs,
         "dated_interactions": dated_events,
         "channels_with_temporal_evidence": channels_with_temporal_evidence,
         "year_coverage": year_coverage
