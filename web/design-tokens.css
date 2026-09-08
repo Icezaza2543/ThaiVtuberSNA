@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  color-scheme: dark;
+  --ink-950: #05060a;
+  --ink-900: #090b12;
+  --ink-850: #0e111b;
+  --ink-800: #141826;
+  --text-100: #f7f7fb;
+  --text-300: #d6d8e3;
+  --text-500: #9298aa;
+  --text-650: #687084;
+  --prism-cyan: #62e7ff;
+  --prism-violet: #a78bfa;
+  --prism-pink: #ff7ac8;
+  --prism-mint: #6ef0c2;
+  --prism-gold: #ffd16a;
+  --spectral-gradient: linear-gradient(110deg, #62e7ff, #a78bfa 42%, #ff7ac8 75%, #ffd16a);
+  --font-display: 'Mitr', 'Noto Sans Thai', sans-serif;
+  --font-main: 'Noto Sans Thai', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --motion-micro: 180ms;
+  --motion-ui: 320ms;
+  --motion-graph: 480ms;
+  --ease-out: cubic-bezier(.2, .75, .25, 1);
+  --surface: rgba(14, 17, 27, .88);
+  --border-subtle: rgba(214, 216, 227, .14);
+  --surface-radius: 20px;
+  --control-radius: 12px;
+  --text-primary: var(--text-100);
+  --text-secondary: var(--text-300);
+  --text-muted: var(--text-500);
+  --accent-cyan: var(--prism-cyan);
+  --accent-purple: var(--prism-violet);
+  --accent-pink: var(--prism-pink);
+  --accent-emerald: var(--prism-mint);
+  --accent-amber: var(--prism-gold);
+}
