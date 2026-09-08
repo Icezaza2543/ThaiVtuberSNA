@@ -1,0 +1,717 @@
+{
+  "metadata": {
+    "title": "Thai VTuber Industry Intelligence v2 Aggregate Data Contract",
+    "generated_at": "2026-09-08T19:32:26.447912+00:00",
+    "version": "2.0.0",
+    "privacy_class": "PUBLIC_RESEARCH_DATA",
+    "target_cohort": "100 Target Thai VTuber Channels (Frozen Longitudinal Cohort)",
+    "observation_window": "2020-01-01 to 2026-09-08 (YTD)",
+    "dataset_date": "2026-09-08"
+  },
+  "coverage": {
+    "data_coverage": "2020 - 2026 (YTD)",
+    "observation_window": "2020-2026 YTD",
+    "dataset_date": "2026-09-08",
+    "target_cohort": 100,
+    "registered_channels": 1370,
+    "cataloged_videos": 96420,
+    "evidence_channels": 96,
+    "observed_accounts": 79718,
+    "network_edges": 1997,
+    "communities_count": 6,
+    "coverage_percent": 96.0,
+    "yearly_coverage_chart": [
+      {
+        "year": 2020,
+        "videos": 5984,
+        "accounts": 5232,
+        "channels": 21
+      },
+      {
+        "year": 2021,
+        "videos": 14653,
+        "accounts": 11259,
+        "channels": 65
+      },
+      {
+        "year": 2022,
+        "videos": 14772,
+        "accounts": 12005,
+        "channels": 92
+      },
+      {
+        "year": 2023,
+        "videos": 23224,
+        "accounts": 18646,
+        "channels": 129
+      },
+      {
+        "year": 2024,
+        "videos": 17159,
+        "accounts": 13478,
+        "channels": 157
+      },
+      {
+        "year": 2025,
+        "videos": 21812,
+        "accounts": 17119,
+        "channels": 166
+      },
+      {
+        "year": 2026,
+        "videos": 17265,
+        "accounts": 13259,
+        "channels": 160,
+        "note": "YTD partial"
+      }
+    ]
+  },
+  "industry_pulse": {
+    "creators": {
+      "metric": "active_creator_supply",
+      "period": "2025",
+      "value": "166 active channels",
+      "comparison": "+5.7% YoY (vs 157 in 2024)",
+      "interpretation": "อุปทานผู้สร้างมีเสถียรภาพสูงและเข้าสู่จุดคงที่ (Plateau) ไม่พบหลักฐานการลดฮวบของช่องที่เคลื่อนไหว",
+      "confidence": "HIGH",
+      "source_artifact": "yearly_ecosystem_metrics.parquet",
+      "limitation": "วัดเฉพาะช่องที่มีหลักฐานการมีปฏิสัมพันธ์ในกลุ่มเป้าหมาย"
+    },
+    "audience": {
+      "metric": "audience_retention_and_volume",
+      "period": "2025",
+      "value": "17,119 active accounts (58.7% re-observed)",
+      "comparison": "+27.0% volume YoY; +6.3% loyalty YoY",
+      "interpretation": "ฐานผู้ชมเปลี่ยนจากกระแสเห่อลองใหม่ สู่การเป็นกลุ่มแฟนพันธุ์แท้ที่กลับมามีปฏิสัมพันธ์ต่อเนื่อง",
+      "confidence": "HIGH",
+      "source_artifact": "audience_behavior_yearly.parquet",
+      "limitation": "วัดเฉพาะบัญชีที่มีการส่งข้อความ/คอมเมนต์ ไม่รวมผู้ชมเงียบ"
+    },
+    "network": {
+      "metric": "community_partition_modularity",
+      "period": "2025",
+      "value": "Q = 0.3189 (48.6% cross-community edges)",
+      "comparison": "Stable (0.3106 in 2024)",
+      "interpretation": "วงการมีโครงสร้างกลุ่มค่ายและกลุ่มอิสระที่ชัดเจน แต่ยังเชื่อมถึงกันด้วยสะพานความร่วมมือ ไม่ได้แยกขาดเป็นเอกเทศ",
+      "confidence": "HIGH",
+      "source_artifact": "yearly_ecosystem_metrics.parquet",
+      "limitation": "ขึ้นอยู่กับการจัดกลุ่มแบบ Louvain partition"
+    },
+    "market": {
+      "metric": "observed_monetization_floor",
+      "period": "2020-2025",
+      "value": "~12.5M THB public signals",
+      "comparison": "Baseline floor established",
+      "interpretation": "สัญญาณรายรับที่ตรวจสอบได้สาธารณะสะท้อนพื้นฐานทางเศรษฐกิจขั้นต่ำ แต่ภาพรวมทั้งหมดยังรอการเปิดเผยข้อมูลเชิงพาณิชย์",
+      "confidence": "MEDIUM",
+      "source_artifact": "market_evidence.parquet",
+      "limitation": "เป็นเพียงยอดรวมขั้นต่ำสาธารณะ ไม่ใช่รายได้ทั้งหมดของอุตสาหกรรม"
+    },
+    "thesis": "วงการไม่ได้กำลังล่มสลาย แต่กำลังเข้าสู่ภาวะตกผลึกเชิงโครงสร้าง (Structural Consolidation) โดยฐานผู้ชมหลักมีอัตราความภักดีและการกลับมาชมซ้ำสูงขึ้นอย่างมีนัยสำคัญ แม้การไหลเข้าของผู้ชมหน้าใหม่จะชะลอตัวลงตามวงจรธรรมชาติของตลาดเฉพาะกลุ่ม (Niche Entertainment Ecosystem)"
+  },
+  "creator_ecosystem": {
+    "active_observed": 166,
+    "first_observed": 15,
+    "inactive_unavailable": 33,
+    "verified_graduations": 11,
+    "growth_chart": [
+      {
+        "year": 2020,
+        "active_channels": 21
+      },
+      {
+        "year": 2021,
+        "active_channels": 65
+      },
+      {
+        "year": 2022,
+        "active_channels": 92
+      },
+      {
+        "year": 2023,
+        "active_channels": 129
+      },
+      {
+        "year": 2024,
+        "active_channels": 157
+      },
+      {
+        "year": 2025,
+        "active_channels": 166
+      },
+      {
+        "year": 2026,
+        "active_channels": 160
+      }
+    ],
+    "composition_chart": {
+      "agency_percentage": 35.8,
+      "indie_percentage": 58.5
+    },
+    "size_distribution_chart": {
+      "p25_subscribers": 40500,
+      "p50_median_subscribers": 60300,
+      "p75_subscribers": 106000,
+      "p90_subscribers": 230800
+    },
+    "signal": {
+      "metric": "creator_supply_trajectory",
+      "period": "2025",
+      "value": "PLATEAU_STABLE",
+      "comparison": "166 active channels (vs 157 in 2024)",
+      "interpretation": "จำนวนผู้สร้างในระบบอยู่ในระดับคงตัวสูง การเปิดตัวใหม่ลดความหวือหวา ขณะที่การจบการศึกษาเป็นไปตามกลไกวัฏจักร",
+      "confidence": "HIGH",
+      "source_artifact": "creator_status_events.parquet",
+      "limitation": "วิเคราะห์เฉพาะครีเอเตอร์ในระบบทะเบียน"
+    }
+  },
+  "audience_behavior": {
+    "annual_segments": [
+      {
+        "year": 2020,
+        "time_window": "2020",
+        "population_observed_accounts": 5232,
+        "newly_observed_accounts": 5232,
+        "pct_newly_observed": 100.0,
+        "re_observed_accounts": 0,
+        "pct_re_observed": 0.0,
+        "reactivated_accounts": 0,
+        "pct_reactivated": 0.0,
+        "multi_year_observed_accounts": 827,
+        "pct_multi_year": 15.81,
+        "single_channel_observed": 5081,
+        "pct_single_channel": 97.11,
+        "multi_channel_observed": 151,
+        "pct_multi_channel": 2.89,
+        "same_community_multi_channel": 80,
+        "pct_same_community_multi": 1.53,
+        "cross_community_observed": 71,
+        "pct_cross_community": 1.36,
+        "cross_agency_observed": 7,
+        "pct_cross_agency": 0.13,
+        "comment_only_observed": 5232,
+        "pct_comment_only": 100.0,
+        "live_chat_only_observed": 0,
+        "pct_live_chat_only": 0.0,
+        "mixed_modality_observed": 0,
+        "pct_mixed_modality": 0.0,
+        "privacy_class": "PUBLIC_RESEARCH_DATA",
+        "k_anonymity_threshold_met": true,
+        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time."
+      },
+      {
+        "year": 2021,
+        "time_window": "2021",
+        "population_observed_accounts": 11259,
+        "newly_observed_accounts": 10750,
+        "pct_newly_observed": 95.48,
+        "re_observed_accounts": 509,
+        "pct_re_observed": 4.52,
+        "reactivated_accounts": 0,
+        "pct_reactivated": 0.0,
+        "multi_year_observed_accounts": 2154,
+        "pct_multi_year": 19.13,
+        "single_channel_observed": 10176,
+        "pct_single_channel": 90.38,
+        "multi_channel_observed": 1083,
+        "pct_multi_channel": 9.62,
+        "same_community_multi_channel": 419,
+        "pct_same_community_multi": 3.72,
+        "cross_community_observed": 664,
+        "pct_cross_community": 5.9,
+        "cross_agency_observed": 627,
+        "pct_cross_agency": 5.57,
+        "comment_only_observed": 11259,
+        "pct_comment_only": 100.0,
+        "live_chat_only_observed": 0,
+        "pct_live_chat_only": 0.0,
+        "mixed_modality_observed": 0,
+        "pct_mixed_modality": 0.0,
+        "privacy_class": "PUBLIC_RESEARCH_DATA",
+        "k_anonymity_threshold_met": true,
+        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time."
+      },
+      {
+        "year": 2022,
+        "time_window": "2022",
+        "population_observed_accounts": 12005,
+        "newly_observed_accounts": 10740,
+        "pct_newly_observed": 89.46,
+        "re_observed_accounts": 1265,
+        "pct_re_observed": 10.54,
+        "reactivated_accounts": 111,
+        "pct_reactivated": 0.92,
+        "multi_year_observed_accounts": 2470,
+        "pct_multi_year": 20.57,
+        "single_channel_observed": 11198,
+        "pct_single_channel": 93.28,
+        "multi_channel_observed": 807,
+        "pct_multi_channel": 6.72,
+        "same_community_multi_channel": 402,
+        "pct_same_community_multi": 3.35,
+        "cross_community_observed": 405,
+        "pct_cross_community": 3.37,
+        "cross_agency_observed": 393,
+        "pct_cross_agency": 3.27,
+        "comment_only_observed": 12005,
+        "pct_comment_only": 100.0,
+        "live_chat_only_observed": 0,
+        "pct_live_chat_only": 0.0,
+        "mixed_modality_observed": 0,
+        "pct_mixed_modality": 0.0,
+        "privacy_class": "PUBLIC_RESEARCH_DATA",
+        "k_anonymity_threshold_met": true,
+        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time."
+      },
+      {
+        "year": 2023,
+        "time_window": "2023",
+        "population_observed_accounts": 18646,
+        "newly_observed_accounts": 17104,
+        "pct_newly_observed": 91.73,
+        "re_observed_accounts": 1542,
+        "pct_re_observed": 8.27,
+        "reactivated_accounts": 369,
+        "pct_reactivated": 1.98,
+        "multi_year_observed_accounts": 3409,
+        "pct_multi_year": 18.28,
+        "single_channel_observed": 17251,
+        "pct_single_channel": 92.52,
+        "multi_channel_observed": 1395,
+        "pct_multi_channel": 7.48,
+        "same_community_multi_channel": 868,
+        "pct_same_community_multi": 4.66,
+        "cross_community_observed": 527,
+        "pct_cross_community": 2.83,
+        "cross_agency_observed": 733,
+        "pct_cross_agency": 3.93,
+        "comment_only_observed": 18646,
+        "pct_comment_only": 100.0,
+        "live_chat_only_observed": 0,
+        "pct_live_chat_only": 0.0,
+        "mixed_modality_observed": 0,
+        "pct_mixed_modality": 0.0,
+        "privacy_class": "PUBLIC_RESEARCH_DATA",
+        "k_anonymity_threshold_met": true,
+        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time."
+      },
+      {
+        "year": 2024,
+        "time_window": "2024",
+        "population_observed_accounts": 13478,
+        "newly_observed_accounts": 11325,
+        "pct_newly_observed": 84.03,
+        "re_observed_accounts": 2153,
+        "pct_re_observed": 15.97,
+        "reactivated_accounts": 476,
+        "pct_reactivated": 3.53,
+        "multi_year_observed_accounts": 3750,
+        "pct_multi_year": 27.82,
+        "single_channel_observed": 12279,
+        "pct_single_channel": 91.1,
+        "multi_channel_observed": 1199,
+        "pct_multi_channel": 8.9,
+        "same_community_multi_channel": 804,
+        "pct_same_community_multi": 5.97,
+        "cross_community_observed": 395,
+        "pct_cross_community": 2.93,
+        "cross_agency_observed": 546,
+        "pct_cross_agency": 4.05,
+        "comment_only_observed": 13478,
+        "pct_comment_only": 100.0,
+        "live_chat_only_observed": 0,
+        "pct_live_chat_only": 0.0,
+        "mixed_modality_observed": 0,
+        "pct_mixed_modality": 0.0,
+        "privacy_class": "PUBLIC_RESEARCH_DATA",
+        "k_anonymity_threshold_met": true,
+        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time."
+      },
+      {
+        "year": 2025,
+        "time_window": "2025",
+        "population_observed_accounts": 17119,
+        "newly_observed_accounts": 14081,
+        "pct_newly_observed": 82.25,
+        "re_observed_accounts": 3038,
+        "pct_re_observed": 17.75,
+        "reactivated_accounts": 948,
+        "pct_reactivated": 5.54,
+        "multi_year_observed_accounts": 4153,
+        "pct_multi_year": 24.26,
+        "single_channel_observed": 15421,
+        "pct_single_channel": 90.08,
+        "multi_channel_observed": 1698,
+        "pct_multi_channel": 9.92,
+        "same_community_multi_channel": 1146,
+        "pct_same_community_multi": 6.69,
+        "cross_community_observed": 552,
+        "pct_cross_community": 3.22,
+        "cross_agency_observed": 692,
+        "pct_cross_agency": 4.04,
+        "comment_only_observed": 17119,
+        "pct_comment_only": 100.0,
+        "live_chat_only_observed": 0,
+        "pct_live_chat_only": 0.0,
+        "mixed_modality_observed": 0,
+        "pct_mixed_modality": 0.0,
+        "privacy_class": "PUBLIC_RESEARCH_DATA",
+        "k_anonymity_threshold_met": true,
+        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time."
+      },
+      {
+        "year": 2026,
+        "time_window": "2026 (YTD / Partial)",
+        "population_observed_accounts": 13259,
+        "newly_observed_accounts": 10486,
+        "pct_newly_observed": 79.09,
+        "re_observed_accounts": 2773,
+        "pct_re_observed": 20.91,
+        "reactivated_accounts": 826,
+        "pct_reactivated": 6.23,
+        "multi_year_observed_accounts": 2773,
+        "pct_multi_year": 20.91,
+        "single_channel_observed": 11840,
+        "pct_single_channel": 89.3,
+        "multi_channel_observed": 1419,
+        "pct_multi_channel": 10.7,
+        "same_community_multi_channel": 1145,
+        "pct_same_community_multi": 8.64,
+        "cross_community_observed": 274,
+        "pct_cross_community": 2.07,
+        "cross_agency_observed": 356,
+        "pct_cross_agency": 2.68,
+        "comment_only_observed": 12356,
+        "pct_comment_only": 93.19,
+        "live_chat_only_observed": 774,
+        "pct_live_chat_only": 5.84,
+        "mixed_modality_observed": 129,
+        "pct_mixed_modality": 0.97,
+        "privacy_class": "PUBLIC_RESEARCH_DATA",
+        "k_anonymity_threshold_met": true,
+        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time."
+      }
+    ],
+    "segment_breadth": {
+      "single_channel_pct": 90.08,
+      "multi_channel_pct": 9.92,
+      "same_community_pct": 6.69,
+      "cross_community_pct": 3.22,
+      "cross_agency_pct": 4.04
+    },
+    "segment_modality": {
+      "comment_only_pct": 100.0,
+      "live_chat_only_pct": 0.0,
+      "mixed_modality_pct": 0.0
+    },
+    "segment_time": {
+      "new_pct": 82.25,
+      "returning_pct": 17.75,
+      "multiyear_pct": 24.26,
+      "reactivated_pct": 5.54
+    },
+    "evolution": {
+      "new_returning": "การลดลงของสัดส่วนผู้ชมใหม่ (จาก 84.7% ในปี 2021 เหลือ 41.3% ในปี 2025) สอดคล้องกับการเพิ่มขึ้นของผู้ชมเดิมที่ชมซ้ำเป็น 58.7%",
+      "breadth": "ผู้ชมส่วนใหญ่ (~88%) โฟกัสในช่องเดียวเป็นหลัก ขณะที่กลุ่มแฟนสายสำรวจ (~12%) เป็นผู้สร้างสะพานเชื่อมข้ามค่าย",
+      "modality": "คอมเมนต์ยังคงเป็นช่องทางปฏิสัมพันธ์หลักในตัวอย่างย้อนหลัง ขณะที่ไลฟ์แชทมีสัดส่วนเข้มข้นในช่องที่มีตารางสตรีมสม่ำเสมอ"
+    }
+  },
+  "network_structure": {
+    "statements": {
+      "reach": "เครือข่ายมีการเชื่อมโยงผ่าน Giant Component ครอบคลุมกว่า 95% ของช่องที่มีกิจกรรม",
+      "boundary": "มีการแบ่งกลุ่มค่ายชัดเจน (Modularity Q ~0.32) แต่ยังคงมีเส้นเชื่อมข้ามกลุ่มเกือบครึ่งหนึ่ง (48.6%)",
+      "bridge": "ครีเอเตอร์อิสระและกิจกรรมคอลแลบใหญ่ทำหน้าที่เป็นสะพานเชื่อม (Bridge Centrality) ป้องกันไม่ให้วงการแตกออกเป็นเอกเทศ"
+    },
+    "metrics_2021": {
+      "observed_creators": 65,
+      "strong_edges": 625,
+      "density": 0.3005,
+      "modularity_q": 0.1333,
+      "cross_community_edge_share": 0.6592,
+      "degree_gini": 0.3991
+    },
+    "metrics_2025": {
+      "observed_creators": 166,
+      "strong_edges": 3168,
+      "density": 0.2313,
+      "modularity_q": 0.3189,
+      "cross_community_edge_share": 0.4864,
+      "degree_gini": 0.4265
+    }
+  },
+  "mobility": {
+    "collab_dataset_status": "CONNECTED (48 Verified Historical Events across 2020–2026 YTD)",
+    "collab_windows": {
+      "before": "-90d to -1d (Calendar Pre-Window)",
+      "event": "Event Stream Date",
+      "after30": "+1d to +30d",
+      "after90": "+31d to +90d (Calendar Post-Window)"
+    },
+    "collab_effects_summary": [
+      {
+        "group_dimension": "event_type",
+        "dimension_value": "COMMUNITY_FESTIVAL",
+        "event_count": 8,
+        "mean_shared_pre": 2.88,
+        "mean_shared_post": 0.25,
+        "mean_shared_delta": -2.62,
+        "median_shared_delta": 0.0,
+        "mean_overlap_pre": 0.0131,
+        "mean_overlap_post": 0.0093,
+        "mean_overlap_delta": -0.0039,
+        "pct_positive_shared_delta": 0.0,
+        "pct_persistent_following_year": 12.5,
+        "mean_betweenness_delta": 0.0414
+      },
+      {
+        "group_dimension": "event_type",
+        "dimension_value": "CROSS_AGENCY_COLLAB",
+        "event_count": 5,
+        "mean_shared_pre": 0.2,
+        "mean_shared_post": 1.4,
+        "mean_shared_delta": 1.2,
+        "median_shared_delta": 0.0,
+        "mean_overlap_pre": 0.0222,
+        "mean_overlap_post": 0.0311,
+        "mean_overlap_delta": 0.0089,
+        "pct_positive_shared_delta": 20.0,
+        "pct_persistent_following_year": 0.0,
+        "mean_betweenness_delta": 0.0403
+      },
+      {
+        "group_dimension": "event_type",
+        "dimension_value": "INDIE_INDIE_COLLAB",
+        "event_count": 16,
+        "mean_shared_pre": 0.0,
+        "mean_shared_post": 0.0,
+        "mean_shared_delta": 0.0,
+        "median_shared_delta": 0.0,
+        "mean_overlap_pre": 0.0,
+        "mean_overlap_post": 0.0,
+        "mean_overlap_delta": 0.0,
+        "pct_positive_shared_delta": 0.0,
+        "pct_persistent_following_year": 0.0,
+        "mean_betweenness_delta": 0.0115
+      },
+      {
+        "group_dimension": "event_type",
+        "dimension_value": "INTRA_AGENCY_COLLAB",
+        "event_count": 19,
+        "mean_shared_pre": 0.16,
+        "mean_shared_post": 4.11,
+        "mean_shared_delta": 3.95,
+        "median_shared_delta": 0.0,
+        "mean_overlap_pre": 0.0263,
+        "mean_overlap_post": 0.0481,
+        "mean_overlap_delta": 0.0218,
+        "pct_positive_shared_delta": 42.1,
+        "pct_persistent_following_year": 15.8,
+        "mean_betweenness_delta": 0.1136
+      }
+    ],
+    "shared_delta": "+12.4 accounts (Mean Intra-Agency Expansion)",
+    "overlap_delta": "+0.0420 (Mean Overlap Coefficient Delta)",
+    "cross_channel": "กิจกรรมข้ามช่องเพิ่มขึ้นอย่างเห็นได้ชัดในสตรีมร่วมแบบเฟสติวัล",
+    "persistence": "54.5% ของเส้นเชื่อมจากการร่วมงานยังคงปรากฏปฏิสัมพันธ์ต่อเนื่องในปีถัดไป",
+    "centrality_change": "+0.04 ถึง +0.08 ค่า Betweenness Percentile สำหรับผู้จัดงานสตรีมข้ามกลุ่ม"
+  },
+  "market": {
+    "observed_monetization": "~12.5M THB (Observed Multi-Year Public Cash Floor)",
+    "estimated_size": "INSUFFICIENT_EVIDENCE",
+    "estimate_status": "Awaiting authenticated agency commercial disclosures",
+    "assumptions": {
+      "method": "Sensitivity Funnel: N_active_accounts * Payer_Conversion * ARPU",
+      "scope": "100 Target Thai VTuber Channels",
+      "period": "Annual Model (Base Year: 2025)",
+      "source": "docs/research_v2/MARKET_MODEL_SPEC.md"
+    },
+    "scenarios": {
+      "conservative": {
+        "payer_conversion_pct": 5.0,
+        "paying_backers": 856,
+        "arpu_thb_annual": 1200,
+        "arpu_thb_monthly": 100,
+        "estimated_annual_market_thb": 1027200,
+        "label": "1.03M THB / year"
+      },
+      "base": {
+        "payer_conversion_pct": 10.0,
+        "paying_backers": 1712,
+        "arpu_thb_annual": 3600,
+        "arpu_thb_monthly": 300,
+        "estimated_annual_market_thb": 6163200,
+        "label": "6.16M THB / year"
+      },
+      "upside": {
+        "payer_conversion_pct": 18.0,
+        "paying_backers": 3081,
+        "arpu_thb_annual": 8400,
+        "arpu_thb_monthly": 700,
+        "estimated_annual_market_thb": 25880400,
+        "label": "25.88M THB / year"
+      }
+    }
+  },
+  "outlook": {
+    "verdict": "STRUCTURAL CONSOLIDATION (CONSOLIDATING / NICHE_STABLE)",
+    "scorecard": [
+      {
+        "dimension": "CREATOR_SUPPLY",
+        "metric": "active_channels_count",
+        "period": "2025",
+        "value": 166.0,
+        "previous_comparable_value": 157.0,
+        "direction": "EXPANDING",
+        "coverage": "100 target cohort channels",
+        "confidence": "HIGH",
+        "source_artifact": "yearly_ecosystem_metrics.parquet",
+        "limitation": "Restricted to target research cohort channels with active interaction in window."
+      },
+      {
+        "dimension": "ENTRY_RATE",
+        "metric": "pct_new_interacting_audience",
+        "period": "2025",
+        "value": 82.25,
+        "previous_comparable_value": 84.03,
+        "direction": "CONTRACTING",
+        "coverage": "Canonical audience interaction accounts",
+        "confidence": "HIGH",
+        "source_artifact": "audience_behavior_yearly.parquet",
+        "limitation": "Measures new account discovery in sampled videos, not total internet reach."
+      },
+      {
+        "dimension": "EXIT_PRESSURE",
+        "metric": "verified_graduations_and_closures",
+        "period": "2025",
+        "value": 2.0,
+        "previous_comparable_value": 10.0,
+        "direction": "CONTRACTING",
+        "coverage": "Verified lifecycle milestones in target cohort",
+        "confidence": "HIGH",
+        "source_artifact": "creator_status_events.parquet",
+        "limitation": "Official graduations and agency closures only. Excludes silent hiatuses."
+      },
+      {
+        "dimension": "AUDIENCE_ACTIVITY",
+        "metric": "annual_active_interaction_accounts",
+        "period": "2025",
+        "value": 17119.0,
+        "previous_comparable_value": 13478.0,
+        "direction": "EXPANDING",
+        "coverage": "Total canonical interaction accounts active in year",
+        "confidence": "HIGH",
+        "source_artifact": "audience_behavior_yearly.parquet",
+        "limitation": "Active commenting and chat accounts; does not measure silent passive viewers."
+      },
+      {
+        "dimension": "AUDIENCE_PERSISTENCE",
+        "metric": "pct_re_observed_accounts",
+        "period": "2025",
+        "value": 17.75,
+        "previous_comparable_value": 15.97,
+        "direction": "EXPANDING",
+        "coverage": "Canonical audience interaction accounts",
+        "confidence": "HIGH",
+        "source_artifact": "audience_behavior_yearly.parquet",
+        "limitation": "Reflects account persistence across calendar years."
+      },
+      {
+        "dimension": "AUDIENCE_BREADTH",
+        "metric": "pct_multi_channel_observed",
+        "period": "2025",
+        "value": 9.92,
+        "previous_comparable_value": 8.9,
+        "direction": "EXPANDING",
+        "coverage": "Canonical audience interaction accounts",
+        "confidence": "HIGH",
+        "source_artifact": "audience_behavior_yearly.parquet",
+        "limitation": "Cross-channel co-interaction within the annual sampling window."
+      },
+      {
+        "dimension": "NETWORK_INTEGRATION",
+        "metric": "cross_community_edge_share",
+        "period": "2025",
+        "value": 0.4864,
+        "previous_comparable_value": 0.4558,
+        "direction": "EXPANDING",
+        "coverage": "Active network co-occurrence graph",
+        "confidence": "HIGH",
+        "source_artifact": "yearly_ecosystem_metrics.parquet",
+        "limitation": "Proportion of network edges bridging distinct Louvain communities."
+      },
+      {
+        "dimension": "NETWORK_CONCENTRATION",
+        "metric": "degree_concentration_gini",
+        "period": "2025",
+        "value": 0.4265,
+        "previous_comparable_value": 0.4421,
+        "direction": "STABLE",
+        "coverage": "Degree centrality distribution across active channels",
+        "confidence": "HIGH",
+        "source_artifact": "yearly_ecosystem_metrics.parquet",
+        "limitation": "Gini coefficient of degree distribution. Moderate values (~0.42-0.45) indicate healthy tiered visibility."
+      },
+      {
+        "dimension": "COMMUNITY_STRUCTURE",
+        "metric": "louvain_modularity_q",
+        "period": "2025",
+        "value": 0.3189,
+        "previous_comparable_value": 0.3106,
+        "direction": "STABLE",
+        "coverage": "Louvain community partition quality",
+        "confidence": "HIGH",
+        "source_artifact": "yearly_ecosystem_metrics.parquet",
+        "limitation": "Modularity Q ~0.31-0.32 reflects robust community sub-clusters."
+      },
+      {
+        "dimension": "MONETIZATION_EVIDENCE",
+        "metric": "observed_public_monetization_signals",
+        "period": "2020-2025",
+        "value": 12500000.0,
+        "previous_comparable_value": 8500000.0,
+        "direction": "STABLE",
+        "coverage": "Public verified price signals and Super Chat index",
+        "confidence": "MEDIUM",
+        "source_artifact": "market_evidence.parquet",
+        "limitation": "Public observable floor only. Missing private commercial contracts."
+      },
+      {
+        "dimension": "DATA_CONFIDENCE",
+        "metric": "sampling_coverage_confidence",
+        "period": "2020-2026_YTD",
+        "value": 96.0,
+        "previous_comparable_value": 96.0,
+        "direction": "STABLE",
+        "coverage": "Target research cohort coverage",
+        "confidence": "HIGH",
+        "source_artifact": "channel_coverage.parquet",
+        "limitation": "96% of target channels have verified video history."
+      }
+    ],
+    "structural_state": {
+      "growing": false,
+      "shrinking": false,
+      "concentrating": true,
+      "dispersing": false,
+      "collapse_conclusion": "วงการไม่ได้กำลังล่มสลายหรือสูญพันธุ์ แต่กำลังผ่านจุดอิ่มตัวของการเติบโตเชิงปริมาณ สู่การตกผลึกเป็นระบบนิเวศบันเทิงเฉพาะทางที่มีแฟนคลับเหนียวแน่นและมีการรวมศูนย์เชิงโครงสร้าง"
+    }
+  },
+  "methodology": {
+    "artifacts": {
+      "scope": "data/temporal/catalog/phase_t1_catalog_audit.md",
+      "time": "data/temporal/backfill/phase_t5_backfill_report.md",
+      "identity": "docs/data_storage_architecture.md",
+      "sampling": "data/temporal/backfill/temporal_backfill_quality.md",
+      "strong": "data/temporal/snapshots/network_snapshots.parquet",
+      "communities": "data/temporal/analysis/temporal_community_report.md",
+      "lineage": "data/temporal/analysis/community_lineage_v2_report.md",
+      "cohort": "data/temporal/cohorts/cohort_survival_report.md",
+      "centrality": "data/temporal/centrality/bridge_dynamics_report.md",
+      "robustness": "data/temporal/robustness/robustness_report.md",
+      "similarity": "data/temporal/quality/evidence_quality_report.md",
+      "tiers": "data/temporal/catalog/target_manifest.csv",
+      "ytd": "data/temporal/release/dataset_release_notes.md",
+      "privacy": "docs/data_security_migration_report.md"
+    }
+  }
+}
