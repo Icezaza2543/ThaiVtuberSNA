@@ -1,0 +1,3584 @@
+{
+  "meta": {
+    "title": "Thai VTuber SNA — Reproducible Research Dataset",
+    "version": "1.0.0",
+    "generated_at": "2026-09-08T14:57:00.983249+00:00",
+    "phases_covered": "T8–T16",
+    "temporal_range": "2020–2026 (2026 = YTD partial window)",
+    "privacy_level": "AGGREGATED_MACRO_ONLY",
+    "privacy_guarantee": "Zero raw viewer identifiers, channel IDs are public YouTube metadata.",
+    "total_files": 38,
+    "total_bytes": 1068805,
+    "checksum_algorithm": "SHA-256"
+  },
+  "methodology": {
+    "data_collection": "YouTube public comment and live chat interaction evidence collected via YouTube Data API v3 with HMAC-SHA256 pseudonymization at ingestion. Viewer channel IDs are irreversibly transformed; zero raw IDs are stored.",
+    "network_construction": "Co-commenter/co-chatter edges built from shared pseudonymized viewer presence across channel video pairs. Edge weight = count of shared distinct viewer pseudonyms.",
+    "temporal_slicing": "Interactions partitioned by calendar year of video publication date. Undated interactions excluded from temporal slices.",
+    "community_detection": "Louvain community detection (NetworkX) at resolution=1.0.",
+    "lineage_matching": "Deterministic maximum-weight bipartite matching per adjacent-year pair using W = 0.4*Jaccard + 0.3*Forward + 0.3*Backward. Strict one-to-one backbone constraint.",
+    "limitations": [
+      "Observational sampling: only commenters/chatters captured, not silent viewers.",
+      "YouTube API pagination ceiling: ~100 comments per standard fetch.",
+      "2026 represents partial Year-To-Date window.",
+      "Agency/group assignments reflect selection-time status, not historical membership.",
+      "HMAC pseudonymization is linkable within the same key; not full anonymity."
+    ]
+  },
+  "sections": {
+    "lifecycle": {
+      "label": "T8: Lifecycle Events & Intervals",
+      "file_count": 3,
+      "total_bytes": 65963,
+      "artifacts": [
+        {
+          "path": "data/temporal/lifecycle/channel_lifecycle_intervals.parquet",
+          "size_bytes": 30346,
+          "checksum": "sha256_02a9c74d626c60a36fe0c377119f755ed85d9bce739ce78529babca032c3b498",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 237,
+            "columns": 15,
+            "schema": {
+              "interval_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "int_UCqhhWjp_1",
+                  "int_UCGBkYTR_1",
+                  "int_UCrsyP6H_1"
+                ]
+              },
+              "channel_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "UCqhhWjpw23dWhJ5rRwCCrMA",
+                  "UCGBkYTR4tMKS38TQHGWWLjg",
+                  "UCrsyP6H1Ftqt503xKE7_CUg"
+                ]
+              },
+              "channel_name": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Aisha Channel",
+                  "Aito LH",
+                  "Akemi Arlin Ch. Pixela Legends"
+                ]
+              },
+              "start_date": {
+                "dtype": "str",
+                "null_count": 11,
+                "sample_values": [
+                  "2021-10-31",
+                  "2022-11-12",
+                  "2022-05-05"
+                ]
+              },
+              "end_date": {
+                "dtype": "str",
+                "null_count": 191,
+                "sample_values": [
+                  "2025-06-08",
+                  "2025-09-12",
+                  "2025-04-05"
+                ]
+              },
+              "effective_agency": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Unknown",
+                  "Unknown",
+                  "Unknown"
+                ]
+              },
+              "agency_at_selection": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Independent",
+                  "Independent",
+                  "Pixela Project"
+                ]
+              },
+              "lifecycle_status": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "active",
+                  "active",
+                  "active"
+                ]
+              },
+              "is_current": {
+                "dtype": "bool",
+                "null_count": 0,
+                "sample_values": [
+                  "True",
+                  "True",
+                  "True"
+                ]
+              },
+              "verification_status": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "INFERRED_PROXY",
+                  "INFERRED_PROXY",
+                  "INFERRED_PROXY"
+                ]
+              },
+              "confidence": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "LOW",
+                  "LOW",
+                  "LOW"
+                ]
+              },
+              "evidence_type": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "observational_catalog_boundary",
+                  "observational_catalog_boundary",
+                  "observational_catalog_boundary"
+                ]
+              },
+              "evidence_source": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "channel_coverage.parquet",
+                  "channel_coverage.parquet",
+                  "channel_coverage.parquet"
+                ]
+              },
+              "evidence_source_ref": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "channel_coverage.parquet:channel_id=UCqhhWjpw23dWhJ5rRwCCrMA",
+                  "channel_coverage.parquet:channel_id=UCGBkYTR4tMKS38TQHGWWLjg",
+                  "channel_coverage.parquet:channel_id=UCrsyP6H1Ftqt503xKE7_CUg"
+                ]
+              },
+              "provenance": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "observed_content_ongoing",
+                  "observed_content_ongoing",
+                  "observed_content_ongoing"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/lifecycle/lifecycle_events.parquet",
+          "size_bytes": 31541,
+          "checksum": "sha256_e3be8f0d5b74fd59915f4f4831152947e8210244aae11e9ade758a5d0ede74bd",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 226,
+            "columns": 13,
+            "schema": {
+              "event_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "evt_agency_vz_closure",
+                  "evt_agency_rpg_closure",
+                  "evt_re_debut_UC3ZglUA"
+                ]
+              },
+              "channel_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "GLOBAL_AGENCY_EVENT",
+                  "GLOBAL_AGENCY_EVENT",
+                  "UC3ZglUA0HEUCuGbe5b8zXKw"
+                ]
+              },
+              "channel_name": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Virtual Zeven (VZ)",
+                  "RPG",
+                  "UC3ZglUA0HEUCuGbe5b8zXKw"
+                ]
+              },
+              "event_type": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "agency_closure",
+                  "agency_closure",
+                  "re_debut"
+                ]
+              },
+              "event_date": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "2021-12-31",
+                  "2024-09-30",
+                  "2022-01-17"
+                ]
+              },
+              "event_year": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "2021",
+                  "2024",
+                  "2022"
+                ]
+              },
+              "agency": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Virtual Zeven (VZ)",
+                  "RPG",
+                  "Independent"
+                ]
+              },
+              "evidence_type": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "inferred_agency_closure",
+                  "inferred_agency_closure",
+                  "verified_video_stream"
+                ]
+              },
+              "evidence_source": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Reported disbandment of Virtual Zeven operations",
+                  "Reported closure of RPG agency talent operations",
+                  "video_catalog.csv: 【Re-Debut : การกลับมาของลูปัสแอลลล】"
+                ]
+              },
+              "evidence_source_ref": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "unverified_announcement_ref:vz_closure_20211231",
+                  "unverified_announcement_ref:rpg_closure_20240930",
+                  "video_catalog.csv:video_id=-PZhQFYOndE"
+                ]
+              },
+              "confidence": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "LOW",
+                  "LOW",
+                  "HIGH"
+                ]
+              },
+              "verification_status": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "INFERRED_PROXY",
+                  "INFERRED_PROXY",
+                  "VERIFIED"
+                ]
+              },
+              "details": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Virtual Zeven ceased agency operations on 2021-12-31; inferr",
+                  "RPG agency talent operations closed on 2024-09-30; inferred ",
+                  "Verified re-debut stream on 2022-01-17 via catalog video -PZ"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/lifecycle/lifecycle_report.md",
+          "size_bytes": 4076,
+          "checksum": "sha256_9ce6476954e445cc46ab758cb2aa9f106904434510d401b63c4a19a70aade5fd",
+          "format": "md",
+          "content_type": "markdown_report",
+          "lines": 68
+        }
+      ]
+    },
+    "event_analysis": {
+      "label": "T9: Lifecycle Event Impact Analysis",
+      "file_count": 2,
+      "total_bytes": 53767,
+      "artifacts": [
+        {
+          "path": "data/temporal/event_analysis/event_impact_metrics.parquet",
+          "size_bytes": 46038,
+          "checksum": "sha256_6c5873664d8720219e871536c5d2c33e2bdccced03b6ce3a8ec77938cf4e4c19",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 448,
+            "columns": 30,
+            "schema": {
+              "event_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "evt_re_debut_UC3ZglUA",
+                  "evt_graduation_UC32lsx7",
+                  "evt_earliest_content_UCY3reV-"
+                ]
+              },
+              "channel_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "UC3ZglUA0HEUCuGbe5b8zXKw",
+                  "UC32lsx7u7vqy63SguuuzmVg",
+                  "UCY3reV-jwagniwcghy1B4VA"
+                ]
+              },
+              "channel_name": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "UC3ZglUA0HEUCuGbe5b8zXKw",
+                  "UC32lsx7u7vqy63SguuuzmVg",
+                  "Nicca Ch."
+                ]
+              },
+              "event_type": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "re_debut",
+                  "graduation",
+                  "earliest_observed_content"
+                ]
+              },
+              "event_date": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "2022-01-17",
+                  "2025-12-20",
+                  "2007-02-09"
+                ]
+              },
+              "verification_status": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "VERIFIED",
+                  "VERIFIED",
+                  "INFERRED_PROXY"
+                ]
+              },
+              "confidence": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "HIGH",
+                  "HIGH",
+                  "LOW"
+                ]
+              },
+              "analysis_tier": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "PRIMARY_VERIFIED",
+                  "PRIMARY_VERIFIED",
+                  "EXPLORATORY_PROXY"
+                ]
+              },
+              "window_days": {
+                "dtype": "int32",
+                "null_count": 0,
+                "sample_values": [
+                  "30",
+                  "30",
+                  "30"
+                ]
+              },
+              "pre_start": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "2021-12-18 00:00:00",
+                  "2025-11-20 00:00:00",
+                  "2007-01-10 00:00:00"
+                ]
+              },
+              "pre_end": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "2022-01-17 00:00:00",
+                  "2025-12-20 00:00:00",
+                  "2007-02-09 00:00:00"
+                ]
+              },
+              "post_start": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "2022-01-17 00:00:00",
+                  "2025-12-20 00:00:00",
+                  "2007-02-09 00:00:00"
+                ]
+              },
+              "post_end": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "2022-02-16 00:00:00",
+                  "2026-01-19 00:00:00",
+                  "2007-03-11 00:00:00"
+                ]
+              },
+              "pre_focal_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "post_focal_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "delta_focal_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "pct_change_focal_viewers": {
+                "dtype": "float64",
+                "null_count": 385,
+                "sample_values": [
+                  "366.67",
+                  "-100.0",
+                  "-65.96"
+                ]
+              },
+              "continuing_focal_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "focal_retention_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0",
+                  "0.0",
+                  "0.0"
+                ]
+              },
+              "pre_viewers_seen_other_post": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "same_agency_other_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "cross_agency_other_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "distinct_other_channels_engaged": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "pre_focal_degree": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "post_focal_degree": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "evidence_status": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "INSUFFICIENT_EVIDENCE",
+                  "INSUFFICIENT_EVIDENCE",
+                  "INSUFFICIENT_EVIDENCE"
+                ]
+              },
+              "evidence_note": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Low interaction volume in window (< 5 viewers pre and post)",
+                  "Low interaction volume in window (< 5 viewers pre and post)",
+                  "Low interaction volume in window (< 5 viewers pre and post)"
+                ]
+              },
+              "top_post_associated_channels": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "",
+                  "",
+                  ""
+                ]
+              },
+              "agency_at_event": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Unknown",
+                  "Unknown",
+                  "Unknown"
+                ]
+              },
+              "agency_at_selection": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Unknown",
+                  "Unknown",
+                  "Independent"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/event_analysis/event_impact_report.md",
+          "size_bytes": 7729,
+          "checksum": "sha256_9b26a18eb3f567f60a474356e522e19e709653b00bf6aa622a4b672d45b760a9",
+          "format": "md",
+          "content_type": "markdown_report",
+          "lines": 98
+        }
+      ]
+    },
+    "robustness": {
+      "label": "T10: Sensitivity & Robustness Analysis",
+      "file_count": 3,
+      "total_bytes": 58521,
+      "artifacts": [
+        {
+          "path": "data/temporal/robustness/robustness_report.md",
+          "size_bytes": 7493,
+          "checksum": "sha256_634e3615673dd5824ba2538358adeb0f22c813c62086e879fb5dd93663ed7e2f",
+          "format": "md",
+          "content_type": "markdown_report",
+          "lines": 93
+        },
+        {
+          "path": "data/temporal/robustness/robustness_summary.parquet",
+          "size_bytes": 9191,
+          "checksum": "sha256_c56f61819634e2bee9ac4bdaa8ccbfa20fb4ffe4b76440e146e523564aa05611",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 6,
+            "columns": 8,
+            "schema": {
+              "finding_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "FINDING_1_AGENCY_ISLAND_CLUSTERING",
+                  "FINDING_2_MAJOR_COMMUNITY_PERSISTENCE",
+                  "FINDING_3_BRIDGE_CREATOR_RANKINGS"
+                ]
+              },
+              "research_domain": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Community Structure & Agency Homophily",
+                  "Macro-Community Partition Stability",
+                  "Network Centrality & Cross-Agency Bridges"
+                ]
+              },
+              "finding_statement": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Thai VTuber community networks partition into distinct agenc",
+                  "Macro-community partition boundaries remain concordant acros",
+                  "Key bridging creators maintain high betweenness centrality c"
+                ]
+              },
+              "measured_metric_name": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "mean_agency_purity",
+                  "mean_res_nmi",
+                  "mean_bridge_top5_jaccard"
+                ]
+              },
+              "measured_metric_value": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.7012",
+                  "0.6989",
+                  "0.25"
+                ]
+              },
+              "classification": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "ROBUST",
+                  "MODERATELY_SENSITIVE",
+                  "MODERATELY_SENSITIVE"
+                ]
+              },
+              "deterministic_rule_basis": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Stable across the tested parameter range (mean_agency_purity",
+                  "Shows moderate variation across the tested parameter range (",
+                  "Shows moderate variation across the tested parameter range ("
+                ]
+              },
+              "methodological_implication": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Agency clustering is stable across the tested parameter rang",
+                  "Partition structure is supported under the evaluated configu",
+                  "Top-tier bridge presence is supported, but exact ordinal ran"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/robustness/sensitivity_results.parquet",
+          "size_bytes": 41837,
+          "checksum": "sha256_0ea5c9f7bad60bc799961e64866a85d385788c9037ae24de573fe16b73f4d82c",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 860,
+            "columns": 28,
+            "schema": {
+              "slice_type": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "all_time",
+                  "all_time",
+                  "all_time"
+                ]
+              },
+              "slice_label": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "all_time_2026",
+                  "all_time_2026",
+                  "all_time_2026"
+                ]
+              },
+              "slice_start": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "2020-01-01",
+                  "2020-01-01",
+                  "2020-01-01"
+                ]
+              },
+              "slice_end": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "2026-09-08 23:59:59",
+                  "2026-09-08 23:59:59",
+                  "2026-09-08 23:59:59"
+                ]
+              },
+              "evidence_mode": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "unified",
+                  "unified",
+                  "unified"
+                ]
+              },
+              "dataset_depth": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "t6_canonical",
+                  "t6_canonical",
+                  "t6_canonical"
+                ]
+              },
+              "edge_threshold": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "1",
+                  "1",
+                  "1"
+                ]
+              },
+              "louvain_resolution": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.5",
+                  "0.75",
+                  "1.0"
+                ]
+              },
+              "random_seed": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "42",
+                  "42",
+                  "42"
+                ]
+              },
+              "active_nodes": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "190",
+                  "190",
+                  "190"
+                ]
+              },
+              "active_edges": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "8980",
+                  "8980",
+                  "8980"
+                ]
+              },
+              "community_count": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "2",
+                  "3",
+                  "5"
+                ]
+              },
+              "modularity_q": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0625",
+                  "0.1974",
+                  "0.2689"
+                ]
+              },
+              "nmi_to_baseline": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.2084",
+                  "0.5289",
+                  "1.0"
+                ]
+              },
+              "ari_to_baseline": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0508",
+                  "0.3054",
+                  "1.0"
+                ]
+              },
+              "jaccard_top_bridges": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "1.0",
+                  "1.0",
+                  "1.0"
+                ]
+              },
+              "top_5_bridges": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Aito LH; Pyork The Pork; Gibpuri Ch; Aisha Channel; TakumaRe",
+                  "Aito LH; Pyork The Pork; Gibpuri Ch; Aisha Channel; TakumaRe",
+                  "Aito LH; Pyork The Pork; Gibpuri Ch; Aisha Channel; TakumaRe"
+                ]
+              },
+              "agency_purity": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "1.0",
+                  "0.8143",
+                  "0.8143"
+                ]
+              },
+              "t6_nodes": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "190",
+                  "190",
+                  "190"
+                ]
+              },
+              "t5_nodes": {
+                "dtype": "float64",
+                "null_count": 840,
+                "sample_values": [
+                  "64.0",
+                  "64.0",
+                  "64.0"
+                ]
+              },
+              "common_nodes": {
+                "dtype": "float64",
+                "null_count": 840,
+                "sample_values": [
+                  "64.0",
+                  "64.0",
+                  "64.0"
+                ]
+              },
+              "t6_edges": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "8980",
+                  "8980",
+                  "8980"
+                ]
+              },
+              "t5_edges": {
+                "dtype": "float64",
+                "null_count": 840,
+                "sample_values": [
+                  "512.0",
+                  "512.0",
+                  "512.0"
+                ]
+              },
+              "t6_modularity": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0625",
+                  "0.1974",
+                  "0.2689"
+                ]
+              },
+              "t5_modularity": {
+                "dtype": "float64",
+                "null_count": 840,
+                "sample_values": [
+                  "0.0",
+                  "0.1786",
+                  "0.1879"
+                ]
+              },
+              "real_nmi": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.2084",
+                  "0.5289",
+                  "1.0"
+                ]
+              },
+              "real_ari": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0508",
+                  "0.3054",
+                  "1.0"
+                ]
+              },
+              "status": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "EVALUATED",
+                  "EVALUATED",
+                  "EVALUATED"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "analysis": {
+      "label": "T11: Community Lineage & Network Metrics",
+      "file_count": 10,
+      "total_bytes": 200314,
+      "artifacts": [
+        {
+          "path": "data/temporal/analysis/agency_transition_matrix.parquet",
+          "size_bytes": 6077,
+          "checksum": "sha256_831f2511b39488925a29553404566518b7cb853310962885079ee24358bd63a5",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 266,
+            "columns": 6,
+            "schema": {
+              "from_year": {
+                "dtype": "int32",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2020",
+                  "2020"
+                ]
+              },
+              "to_year": {
+                "dtype": "int32",
+                "null_count": 0,
+                "sample_values": [
+                  "2021",
+                  "2021",
+                  "2021"
+                ]
+              },
+              "from_agency_at_selection": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Independent",
+                  "Independent",
+                  "Independent"
+                ]
+              },
+              "to_agency_at_selection": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Independent",
+                  "Pixela Project",
+                  "Algorhythm Project"
+                ]
+              },
+              "transition_type": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "within_agency",
+                  "cross_agency",
+                  "cross_agency"
+                ]
+              },
+              "observed_transition_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "439",
+                  "73",
+                  "38"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/analysis/channel_transition_summary.parquet",
+          "size_bytes": 103735,
+          "checksum": "sha256_bbd04bafb81a8919d4405befc128d6d47e1cd796009842cb0a2bcbb4505a205e",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 15455,
+            "columns": 10,
+            "schema": {
+              "from_year": {
+                "dtype": "int32",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2020",
+                  "2020"
+                ]
+              },
+              "to_year": {
+                "dtype": "int32",
+                "null_count": 0,
+                "sample_values": [
+                  "2021",
+                  "2021",
+                  "2021"
+                ]
+              },
+              "from_channel_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "UCXtQTtPJedfjqEPysorbsMg",
+                  "UC0Ky1U__7T2Z5SOZCvNlJ-Q",
+                  "UCbeaB9MoD9IyXqBshyQuNRQ"
+                ]
+              },
+              "from_channel_name": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "久檻夜くぅ / Qualia Qu Ch.",
+                  "Beariss Beam",
+                  "Nerumi-s"
+                ]
+              },
+              "from_agency_at_selection": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Independent",
+                  "Independent",
+                  "Independent"
+                ]
+              },
+              "to_channel_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "UCXtQTtPJedfjqEPysorbsMg",
+                  "UC0Ky1U__7T2Z5SOZCvNlJ-Q",
+                  "UCbeaB9MoD9IyXqBshyQuNRQ"
+                ]
+              },
+              "to_channel_name": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "久檻夜くぅ / Qualia Qu Ch.",
+                  "Beariss Beam",
+                  "Nerumi-s"
+                ]
+              },
+              "to_agency_at_selection": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Independent",
+                  "Independent",
+                  "Independent"
+                ]
+              },
+              "transition_type": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "same_channel_retention",
+                  "same_channel_retention",
+                  "same_channel_retention"
+                ]
+              },
+              "observed_transition_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "68",
+                  "52",
+                  "39"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/analysis/community_lifecycles.parquet",
+          "size_bytes": 8918,
+          "checksum": "sha256_61b9a267feaf66df099940fe81c5e2f77f698d48d08c72e1b2bc9e14774a472c",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 15,
+            "columns": 12,
+            "schema": {
+              "lineage_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "LINEAGE_01",
+                  "LINEAGE_02",
+                  "LINEAGE_03"
+                ]
+              },
+              "birth_year": {
+                "dtype": "int32",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2020",
+                  "2020"
+                ]
+              },
+              "last_observed_year": {
+                "dtype": "int32",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2021",
+                  "2020"
+                ]
+              },
+              "lifespan_years": {
+                "dtype": "int32",
+                "null_count": 0,
+                "sample_values": [
+                  "1",
+                  "2",
+                  "1"
+                ]
+              },
+              "lifecycle_status": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "DISAPPEARED",
+                  "DISAPPEARED",
+                  "DISAPPEARED"
+                ]
+              },
+              "dominant_agency": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Independent",
+                  "Independent",
+                  "Independent"
+                ]
+              },
+              "dominant_agency_share": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "1.0",
+                  "0.9167",
+                  "0.8333"
+                ]
+              },
+              "total_unique_creators": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "8",
+                  "12",
+                  "6"
+                ]
+              },
+              "mean_membership_churn": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0",
+                  "0.6667",
+                  "0.0"
+                ]
+              },
+              "split_contributors": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "None",
+                  "None",
+                  "None"
+                ]
+              },
+              "merge_contributors": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "None",
+                  "None",
+                  "None"
+                ]
+              },
+              "member_snapshot_communities": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "comm_2020_01",
+                  "comm_2020_02; comm_2021_05",
+                  "comm_2020_03"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/analysis/community_lineage.parquet",
+          "size_bytes": 6118,
+          "checksum": "sha256_9c37cbbe8c2f7352243ca929c1e41e9c1a5ce39589dcd138eae0840540ed514c",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 53,
+            "columns": 11,
+            "schema": {
+              "from_year": {
+                "dtype": "int32",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2020",
+                  "2020"
+                ]
+              },
+              "to_year": {
+                "dtype": "int32",
+                "null_count": 0,
+                "sample_values": [
+                  "2021",
+                  "2021",
+                  "2021"
+                ]
+              },
+              "from_community_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "comm_2020_02",
+                  "NEW",
+                  "NEW"
+                ]
+              },
+              "to_community_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "comm_2021_05",
+                  "comm_2021_03",
+                  "comm_2021_04"
+                ]
+              },
+              "event_category": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "relation",
+                  "lifecycle",
+                  "lifecycle"
+                ]
+              },
+              "event_type": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "persistent",
+                  "birth",
+                  "birth"
+                ]
+              },
+              "shared_channel_count": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "4",
+                  "0",
+                  "0"
+                ]
+              },
+              "jaccard_similarity": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.3333333333333333",
+                  "0.0",
+                  "0.0"
+                ]
+              },
+              "forward_overlap_ratio": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.5714285714285714",
+                  "0.0",
+                  "0.0"
+                ]
+              },
+              "backward_overlap_ratio": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.4444444444444444",
+                  "0.0",
+                  "0.0"
+                ]
+              },
+              "details": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Persistent backbone: comm_2020_02 -> comm_2021_05 (J=0.33, s",
+                  "New community birth in 2021 (12 nodes), zero significant pre",
+                  "New community birth in 2021 (10 nodes), zero significant pre"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/analysis/community_lineage_v2.parquet",
+          "size_bytes": 9299,
+          "checksum": "sha256_970f6e733b7dbdac2eab0d6070397f63c36a18d2bbd6cbb87a5efe0b0c0da44e",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 41,
+            "columns": 12,
+            "schema": {
+              "from_year": {
+                "dtype": "int32",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2020",
+                  "2020"
+                ]
+              },
+              "to_year": {
+                "dtype": "int32",
+                "null_count": 0,
+                "sample_values": [
+                  "2021",
+                  "2021",
+                  "2021"
+                ]
+              },
+              "from_community_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "comm_2020_02",
+                  "comm_2020_01",
+                  "comm_2020_03"
+                ]
+              },
+              "to_community_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "comm_2021_05",
+                  "comm_2021_01",
+                  "comm_2021_02"
+                ]
+              },
+              "from_lineage_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "LINEAGE_02",
+                  "LINEAGE_01",
+                  "LINEAGE_03"
+                ]
+              },
+              "to_lineage_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "LINEAGE_02",
+                  "LINEAGE_04",
+                  "LINEAGE_05"
+                ]
+              },
+              "relation_type": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "continuation",
+                  "split_branch",
+                  "split_branch"
+                ]
+              },
+              "shared_channels": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "4",
+                  "4",
+                  "3"
+                ]
+              },
+              "jaccard_similarity": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.3333",
+                  "0.1667",
+                  "0.1765"
+                ]
+              },
+              "forward_overlap": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.5714",
+                  "0.5",
+                  "0.5"
+                ]
+              },
+              "backward_overlap": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.4444",
+                  "0.2",
+                  "0.2143"
+                ]
+              },
+              "is_primary_backbone": {
+                "dtype": "bool",
+                "null_count": 0,
+                "sample_values": [
+                  "True",
+                  "False",
+                  "False"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/analysis/community_lineage_v2_report.md",
+          "size_bytes": 9892,
+          "checksum": "sha256_276ab18ea0f6280834abd353867ab8f6201719e8dd52ebb8a733f937d2a68436",
+          "format": "md",
+          "content_type": "markdown_report",
+          "lines": 91
+        },
+        {
+          "path": "data/temporal/analysis/community_snapshots.parquet",
+          "size_bytes": 12980,
+          "checksum": "sha256_e13e6436f1a7071516ce4a6dca46df322927628156c2a1e48790d29ab27cd6cf",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 790,
+            "columns": 8,
+            "schema": {
+              "year": {
+                "dtype": "int32",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2020",
+                  "2020"
+                ]
+              },
+              "community_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "comm_2020_01",
+                  "comm_2020_01",
+                  "comm_2020_01"
+                ]
+              },
+              "channel_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "UC0C_CplF_fwd1hEZuIE6VIw",
+                  "UCGofntRkNUAgXGqimLtLy4g",
+                  "UCWNVjAzZmYUni8YBXYiy01w"
+                ]
+              },
+              "channel_name": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Rawley Izzy G. Ch. | Graduated",
+                  "Reilim Channel",
+                  "dtto."
+                ]
+              },
+              "agency_at_selection": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Independent",
+                  "Independent",
+                  "Independent"
+                ]
+              },
+              "community_size": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "8",
+                  "8",
+                  "8"
+                ]
+              },
+              "community_rank": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "1",
+                  "1",
+                  "1"
+                ]
+              },
+              "yearly_modularity": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.1968201754385965",
+                  "0.1968201754385965",
+                  "0.1968201754385965"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/analysis/temporal_community_report.md",
+          "size_bytes": 19897,
+          "checksum": "sha256_a52ffdee640ad4634b94f47ac02f46ea5b314fe963d139c33878255e7cead5b2",
+          "format": "md",
+          "content_type": "markdown_report",
+          "lines": 209
+        },
+        {
+          "path": "data/temporal/analysis/temporal_migration_report.md",
+          "size_bytes": 15593,
+          "checksum": "sha256_e0b13ad8c7d0a8d7c20dcd06704c235df9727ec3a104874949b6dc18b76e6470",
+          "format": "md",
+          "content_type": "markdown_report",
+          "lines": 228
+        },
+        {
+          "path": "data/temporal/analysis/yearly_network_metrics.parquet",
+          "size_bytes": 7805,
+          "checksum": "sha256_bdeaffc0822b320330a215b0c077d4f3057139fcada93570d900bd9fb751f5e7",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 7,
+            "columns": 20,
+            "schema": {
+              "year": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "2020.0",
+                  "2021.0",
+                  "2022.0"
+                ]
+              },
+              "active_channels": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "21",
+                  "65",
+                  "92"
+                ]
+              },
+              "active_edges": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "72",
+                  "625",
+                  "965"
+                ]
+              },
+              "community_count": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "3",
+                  "5",
+                  "4"
+                ]
+              },
+              "modularity": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.1968201754385965",
+                  "0.13333972894701338",
+                  "0.20065305536617747"
+                ]
+              },
+              "distinct_observed_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "5232",
+                  "11259",
+                  "12005"
+                ]
+              },
+              "total_observed_interactions": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "5984",
+                  "14653",
+                  "14772"
+                ]
+              },
+              "adjacent_transition_window": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "2020.0->2021.0",
+                  "2021.0->2022.0",
+                  "2022.0->2023.0"
+                ]
+              },
+              "active_viewers_t": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "5232",
+                  "11259",
+                  "12005"
+                ]
+              },
+              "active_viewers_t1": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "11259",
+                  "12005",
+                  "18646"
+                ]
+              },
+              "continuing_viewers_any": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "509",
+                  "1154",
+                  "1173"
+                ]
+              },
+              "same_channel_retained_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "258",
+                  "523",
+                  "566"
+                ]
+              },
+              "cross_channel_continuing_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "312",
+                  "870",
+                  "859"
+                ]
+              },
+              "same_agency_cross_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "237",
+                  "606",
+                  "602"
+                ]
+              },
+              "cross_agency_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "131",
+                  "500",
+                  "507"
+                ]
+              },
+              "continuation_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0973",
+                  "0.1025",
+                  "0.0977"
+                ]
+              },
+              "same_channel_retention_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0493",
+                  "0.0465",
+                  "0.0471"
+                ]
+              },
+              "conditional_same_channel_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.5069",
+                  "0.4532",
+                  "0.4825"
+                ]
+              },
+              "reliability_flag": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "LOW_EDGE_COUNT / LOW_VIEWER_EVIDENCE / LOW_CHANNEL_COVERAGE",
+                  "NORMAL",
+                  "NORMAL"
+                ]
+              },
+              "calculated_at": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "2026-09-08T07:38:30.622877+00:00",
+                  "2026-09-08T07:38:30.622877+00:00",
+                  "2026-09-08T07:38:30.622877+00:00"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "cohorts": {
+      "label": "T12: Audience Cohort Survival",
+      "file_count": 4,
+      "total_bytes": 32497,
+      "artifacts": [
+        {
+          "path": "data/temporal/cohorts/cohort_reactivation.parquet",
+          "size_bytes": 5728,
+          "checksum": "sha256_4a3949f5017b469c769e62f11f939fd25a556017e93d59c6b179381054df38bb",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 35,
+            "columns": 7,
+            "schema": {
+              "cohort_year": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2020",
+                  "2020"
+                ]
+              },
+              "reactivation_year": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "2022",
+                  "2023",
+                  "2023"
+                ]
+              },
+              "gap_years": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "2",
+                  "2",
+                  "3"
+                ]
+              },
+              "reactivated_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "111",
+                  "37",
+                  "63"
+                ]
+              },
+              "cohort_size": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "5232",
+                  "5232",
+                  "5232"
+                ]
+              },
+              "reactivation_rate_of_cohort": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0212",
+                  "0.0071",
+                  "0.012"
+                ]
+              },
+              "reactivation_note": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Reactivated after 1 unobserved year(s)",
+                  "Reactivated after 1 unobserved year(s)",
+                  "Reactivated after 2 unobserved year(s)"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/cohorts/cohort_retention_matrix.parquet",
+          "size_bytes": 10688,
+          "checksum": "sha256_edc7da18dfad0e1966325e301b70be8eba08549cc6707a7d62691587b25f3d44",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 28,
+            "columns": 13,
+            "schema": {
+              "cohort_year": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2020",
+                  "2020"
+                ]
+              },
+              "observation_year": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2021",
+                  "2022"
+                ]
+              },
+              "elapsed_years": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "1",
+                  "2"
+                ]
+              },
+              "cohort_size": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "5232",
+                  "5232",
+                  "5232"
+                ]
+              },
+              "reobserved_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "5232",
+                  "509",
+                  "240"
+                ]
+              },
+              "continuation_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "1.0",
+                  "0.0973",
+                  "0.0459"
+                ]
+              },
+              "same_channel_reobserved_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "5232",
+                  "258",
+                  "79"
+                ]
+              },
+              "same_channel_retention_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "1.0",
+                  "0.0493",
+                  "0.0151"
+                ]
+              },
+              "cross_channel_reobserved_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "291",
+                  "179"
+                ]
+              },
+              "cross_channel_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0",
+                  "0.0556",
+                  "0.0342"
+                ]
+              },
+              "cross_agency_reobserved_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "126",
+                  "81"
+                ]
+              },
+              "cross_agency_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0",
+                  "0.0241",
+                  "0.0155"
+                ]
+              },
+              "median_channel_breadth": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "1.0",
+                  "1.0",
+                  "1.0"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/cohorts/cohort_survival.parquet",
+          "size_bytes": 7254,
+          "checksum": "sha256_54cbb235498f782958b80b3d404843d6bdece84da58424532abe7b35358250f9",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 7,
+            "columns": 9,
+            "schema": {
+              "elapsed_years": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "1",
+                  "2"
+                ]
+              },
+              "cohorts_evaluated_count": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "7",
+                  "6",
+                  "5"
+                ]
+              },
+              "pooled_cohort_size": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "79718",
+                  "69232",
+                  "55151"
+                ]
+              },
+              "pooled_reobserved_viewers": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "79718",
+                  "6058",
+                  "2644"
+                ]
+              },
+              "persistence_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "1.0",
+                  "0.0875",
+                  "0.0479"
+                ]
+              },
+              "same_channel_persistence_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "1.0",
+                  "0.0396",
+                  "0.0165"
+                ]
+              },
+              "cross_channel_persistence_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0",
+                  "0.0574",
+                  "0.0356"
+                ]
+              },
+              "cross_agency_persistence_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0",
+                  "0.0226",
+                  "0.0148"
+                ]
+              },
+              "mean_of_cohort_median_channel_breadth": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "1.0",
+                  "1.0",
+                  "1.0"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/cohorts/cohort_survival_report.md",
+          "size_bytes": 8827,
+          "checksum": "sha256_5036c08ef461adf2225c6e4ebe21a7c4895b0c98141253e62867a4c16d1d45fb",
+          "format": "md",
+          "content_type": "markdown_report",
+          "lines": 110
+        }
+      ]
+    },
+    "centrality": {
+      "label": "T13: Bridge Dynamics & Centrality",
+      "file_count": 4,
+      "total_bytes": 135755,
+      "artifacts": [
+        {
+          "path": "data/temporal/centrality/bridge_dynamics.parquet",
+          "size_bytes": 30332,
+          "checksum": "sha256_80b16c98366d06ea4bf585cd8ad32e70c84449ea853c5bc49f5b9f5347794faa",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 189,
+            "columns": 17,
+            "schema": {
+              "channel_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "UCXtQTtPJedfjqEPysorbsMg",
+                  "UCatSdbBdnsXgFpCyhJ7jYGg",
+                  "UC0Ky1U__7T2Z5SOZCvNlJ-Q"
+                ]
+              },
+              "channel_name": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "久檻夜くぅ / Qualia Qu Ch.",
+                  "Darin V",
+                  "Beariss Beam"
+                ]
+              },
+              "agency_at_selection": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Independent",
+                  "Independent",
+                  "Independent"
+                ]
+              },
+              "first_observed_year": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2020",
+                  "2020"
+                ]
+              },
+              "last_observed_year": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "2025",
+                  "2026",
+                  "2026"
+                ]
+              },
+              "years_observed_count": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "6",
+                  "7",
+                  "7"
+                ]
+              },
+              "years_in_top_decile_count": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "2",
+                  "1",
+                  "5"
+                ]
+              },
+              "first_year_entering_top_decile": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2020",
+                  "2020"
+                ]
+              },
+              "mean_betweenness_percentile": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.664",
+                  "0.4409",
+                  "0.9014"
+                ]
+              },
+              "max_betweenness_percentile": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.9524",
+                  "1.0",
+                  "0.9846"
+                ]
+              },
+              "min_betweenness_percentile": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.2898",
+                  "0.2687",
+                  "0.7108"
+                ]
+              },
+              "percentile_volatility_std": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.2754",
+                  "0.2493",
+                  "0.0896"
+                ]
+              },
+              "mean_cross_community_share": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.41",
+                  "0.3029",
+                  "0.6237"
+                ]
+              },
+              "mean_cross_agency_share": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.3683",
+                  "0.4758",
+                  "0.3549"
+                ]
+              },
+              "threshold_th5_retention_ratio": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0",
+                  "1.0",
+                  "0.6"
+                ]
+              },
+              "bridge_classification": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "DECLINING_BRIDGE",
+                  "VOLATILE",
+                  "STABLE_BRIDGE"
+                ]
+              },
+              "classification_rule_basis": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Previously reached top decile in 2 years (>= 2), but decline",
+                  "High percentile standard deviation (0.249 >= 0.15) with top ",
+                  "Top decile in 5 years; retained >= 75th percentile in 2026; "
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/centrality/bridge_dynamics_report.md",
+          "size_bytes": 31438,
+          "checksum": "sha256_1ed36fd0efdbdfd522747b29f15e547577ea32ba09f8a6c2884ecd8933a7a644",
+          "format": "md",
+          "content_type": "markdown_report",
+          "lines": 287
+        },
+        {
+          "path": "data/temporal/centrality/centrality_change_points.parquet",
+          "size_bytes": 15577,
+          "checksum": "sha256_a47cee69b09984a1b97c6494bf18659c7d125bd7f75c45be817a8e707f117796",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 214,
+            "columns": 10,
+            "schema": {
+              "channel_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "UCXtQTtPJedfjqEPysorbsMg",
+                  "UCatSdbBdnsXgFpCyhJ7jYGg",
+                  "UC0Ky1U__7T2Z5SOZCvNlJ-Q"
+                ]
+              },
+              "channel_name": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "久檻夜くぅ / Qualia Qu Ch.",
+                  "Darin V",
+                  "Beariss Beam"
+                ]
+              },
+              "from_year": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "2023",
+                  "2020",
+                  "2024"
+                ]
+              },
+              "to_year": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "2024",
+                  "2021",
+                  "2025"
+                ]
+              },
+              "from_percentile": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.6434",
+                  "1.0",
+                  "0.9682"
+                ]
+              },
+              "to_percentile": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.2898",
+                  "0.5846",
+                  "0.7108"
+                ]
+              },
+              "percentile_delta": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "-0.3536",
+                  "-0.4154",
+                  "-0.2574"
+                ]
+              },
+              "change_type": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "RAPID_DECLINE",
+                  "RAPID_DECLINE",
+                  "RAPID_DECLINE"
+                ]
+              },
+              "from_band": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "BELOW_QUARTILE",
+                  "TOP_1_PERCENT",
+                  "TOP_5_PERCENT"
+                ]
+              },
+              "to_band": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "BELOW_QUARTILE",
+                  "BELOW_QUARTILE",
+                  "BELOW_QUARTILE"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/centrality/yearly_centrality.parquet",
+          "size_bytes": 58408,
+          "checksum": "sha256_97ed2e5a06675021d05653da05a978a2d33120d0b09c81159b0f64e0ac10e983",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 790,
+            "columns": 18,
+            "schema": {
+              "year": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2020",
+                  "2020"
+                ]
+              },
+              "channel_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "UCXtQTtPJedfjqEPysorbsMg",
+                  "UCatSdbBdnsXgFpCyhJ7jYGg",
+                  "UC0Ky1U__7T2Z5SOZCvNlJ-Q"
+                ]
+              },
+              "channel_name": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "久檻夜くぅ / Qualia Qu Ch.",
+                  "Darin V",
+                  "Beariss Beam"
+                ]
+              },
+              "agency_at_selection": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Independent",
+                  "Independent",
+                  "Independent"
+                ]
+              },
+              "community_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "comm_2020_01",
+                  "comm_2020_01",
+                  "comm_2020_03"
+                ]
+              },
+              "degree": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "16",
+                  "13",
+                  "14"
+                ]
+              },
+              "weighted_degree": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "73.0",
+                  "67.0",
+                  "55.0"
+                ]
+              },
+              "betweenness_centrality": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.378947",
+                  "0.45",
+                  "0.247368"
+                ]
+              },
+              "pagerank": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.145514",
+                  "0.129679",
+                  "0.110848"
+                ]
+              },
+              "eigenvector_centrality": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.5081",
+                  "0.494962",
+                  "0.408323"
+                ]
+              },
+              "cross_community_edge_share": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.5625",
+                  "0.5385",
+                  "0.7143"
+                ]
+              },
+              "cross_agency_edge_share": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0625",
+                  "0.0",
+                  "0.0714"
+                ]
+              },
+              "betweenness_percentile": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.9524",
+                  "1.0",
+                  "0.9048"
+                ]
+              },
+              "degree_percentile": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "1.0",
+                  "0.9048",
+                  "0.9524"
+                ]
+              },
+              "pagerank_percentile": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "1.0",
+                  "0.9524",
+                  "0.9048"
+                ]
+              },
+              "bridge_percentile_band": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "TOP_5_PERCENT",
+                  "TOP_1_PERCENT",
+                  "TOP_10_PERCENT"
+                ]
+              },
+              "is_in_top_decile": {
+                "dtype": "bool",
+                "null_count": 0,
+                "sample_values": [
+                  "True",
+                  "True",
+                  "True"
+                ]
+              },
+              "is_in_top_quartile": {
+                "dtype": "bool",
+                "null_count": 0,
+                "sample_values": [
+                  "True",
+                  "True",
+                  "True"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ecosystem": {
+      "label": "T14: Ecosystem Structural Evolution",
+      "file_count": 3,
+      "total_bytes": 23802,
+      "artifacts": [
+        {
+          "path": "data/temporal/ecosystem/ecosystem_evolution_report.md",
+          "size_bytes": 4798,
+          "checksum": "sha256_f17cc80d5de4b080ae6d6f41177d3218f3a004f95ec353452dd7bebcaf560e81",
+          "format": "md",
+          "content_type": "markdown_report",
+          "lines": 50
+        },
+        {
+          "path": "data/temporal/ecosystem/structural_breaks.parquet",
+          "size_bytes": 6524,
+          "checksum": "sha256_13b1f230128b4d3462094ab7b74332847253b710b2d2309ddc09b4dd3195f605",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 10,
+            "columns": 8,
+            "schema": {
+              "transition": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "2020->2021",
+                  "2020->2021",
+                  "2020->2021"
+                ]
+              },
+              "metric_dimension": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "active_channels",
+                  "modularity",
+                  "density"
+                ]
+              },
+              "from_value": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "21.0",
+                  "0.1968",
+                  "0.3429"
+                ]
+              },
+              "to_value": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "65.0",
+                  "0.1333",
+                  "0.3005"
+                ]
+              },
+              "absolute_delta": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "44.0",
+                  "-0.0635",
+                  "-0.0424"
+                ]
+              },
+              "relative_change_pct": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "2.0952",
+                  "-0.3227",
+                  "-0.1237"
+                ]
+              },
+              "break_category": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "RAPID_ECOSYSTEM_EXPANSION",
+                  "MODULAR_DIFFUSION",
+                  "DENSITY_DILUTION"
+                ]
+              },
+              "descriptive_note": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Active creator count shifted by +209.5% YoY (21 to 65).",
+                  "Community modularity Q shifted by -0.0635 (0.197 to 0.133).",
+                  "Graph density shifted by -0.0424 (0.3429 to 0.3005)."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/ecosystem/yearly_ecosystem_metrics.parquet",
+          "size_bytes": 12480,
+          "checksum": "sha256_0532bad84e1c16180c237299a724cfcc801fce0d49610f38d67d8ddf58bc2377",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 7,
+            "columns": 18,
+            "schema": {
+              "year": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2021",
+                  "2022"
+                ]
+              },
+              "year_label": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2021",
+                  "2022"
+                ]
+              },
+              "is_ytd": {
+                "dtype": "bool",
+                "null_count": 0,
+                "sample_values": [
+                  "False",
+                  "False",
+                  "False"
+                ]
+              },
+              "active_channels": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "21",
+                  "65",
+                  "92"
+                ]
+              },
+              "edges": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "72",
+                  "625",
+                  "965"
+                ]
+              },
+              "density": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.3429",
+                  "0.3005",
+                  "0.2305"
+                ]
+              },
+              "weighted_edge_strength": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "228.0",
+                  "2767.0",
+                  "2697.0"
+                ]
+              },
+              "average_degree": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "6.86",
+                  "19.23",
+                  "20.98"
+                ]
+              },
+              "connected_components": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "1",
+                  "1",
+                  "1"
+                ]
+              },
+              "giant_component_nodes": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "21",
+                  "65",
+                  "92"
+                ]
+              },
+              "giant_component_share": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "1.0",
+                  "1.0",
+                  "1.0"
+                ]
+              },
+              "community_count": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "3",
+                  "5",
+                  "4"
+                ]
+              },
+              "modularity": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.1968",
+                  "0.1333",
+                  "0.2007"
+                ]
+              },
+              "degree_concentration_gini": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.3446",
+                  "0.3991",
+                  "0.4443"
+                ]
+              },
+              "strength_concentration_gini": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.4839",
+                  "0.6401",
+                  "0.6255"
+                ]
+              },
+              "agency_assortativity": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "-0.0286",
+                  "0.0029",
+                  "0.0561"
+                ]
+              },
+              "agency_independent_mixing": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0556",
+                  "0.4656",
+                  "0.4653"
+                ]
+              },
+              "cross_community_edge_share": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.4861",
+                  "0.6592",
+                  "0.6218"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "quality": {
+      "label": "T15: Evidence Quality & Bias",
+      "file_count": 4,
+      "total_bytes": 58829,
+      "artifacts": [
+        {
+          "path": "data/temporal/quality/bias_sensitivity.parquet",
+          "size_bytes": 6649,
+          "checksum": "sha256_ba10dc627cd07374e8e196e4c34a1e5fb2035c00637075f78cabe9e63b88d163",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 35,
+            "columns": 8,
+            "schema": {
+              "year": {
+                "dtype": "int32",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2020",
+                  "2020"
+                ]
+              },
+              "perturbation_scenario": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "BASELINE_UNIFIED_TH1",
+                  "COMMENT_ONLY_TH1",
+                  "LOW_COVERAGE_EXCLUDED"
+                ]
+              },
+              "active_channels": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "21",
+                  "21",
+                  "18"
+                ]
+              },
+              "edges": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "72",
+                  "72",
+                  "55"
+                ]
+              },
+              "density": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.3429",
+                  "0.3429",
+                  "0.3595"
+                ]
+              },
+              "average_degree": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "6.86",
+                  "6.86",
+                  "6.11"
+                ]
+              },
+              "giant_component_share": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "1.0",
+                  "1.0",
+                  "1.0"
+                ]
+              },
+              "modularity": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.1968",
+                  "0.1968",
+                  "0.1871"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/quality/channel_evidence_quality.parquet",
+          "size_bytes": 28656,
+          "checksum": "sha256_81bf24438483ac0e95390d5ac87bc4b86ac626f745a5b11464090994b9f9412a",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 193,
+            "columns": 17,
+            "schema": {
+              "channel_id": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "UCdlpXdGT3nGDTqIlxUcufCQ",
+                  "UCGBkYTR4tMKS38TQHGWWLjg",
+                  "UCompe4fS2oUss8CGTuhOSxA"
+                ]
+              },
+              "channel_name": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Doyser",
+                  "Aito LH",
+                  "Gibpuri Ch"
+                ]
+              },
+              "agency": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Independent",
+                  "Independent",
+                  "Independent"
+                ]
+              },
+              "catalog_videos_count": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "1000",
+                  "1000",
+                  "1000"
+                ]
+              },
+              "sampled_videos_count": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "19",
+                  "30",
+                  "41"
+                ]
+              },
+              "sampling_coverage_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.019",
+                  "0.03",
+                  "0.041"
+                ]
+              },
+              "total_interactions": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "716",
+                  "3421",
+                  "10619"
+                ]
+              },
+              "distinct_viewers_count": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "695",
+                  "2992",
+                  "9934"
+                ]
+              },
+              "t6_deepened_interactions": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "140",
+                  "2646",
+                  "9917"
+                ]
+              },
+              "t6_deepened_share": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.1955",
+                  "0.7735",
+                  "0.9339"
+                ]
+              },
+              "cap_100_hit_videos": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "3",
+                  "15",
+                  "15"
+                ]
+              },
+              "cap_100_exposure_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.1579",
+                  "0.5",
+                  "0.3659"
+                ]
+              },
+              "has_live_chat": {
+                "dtype": "bool",
+                "null_count": 0,
+                "sample_values": [
+                  "False",
+                  "False",
+                  "False"
+                ]
+              },
+              "years_active_count": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "3",
+                  "5",
+                  "7"
+                ]
+              },
+              "lifecycle_verification_status": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "INFERRED_PROXY",
+                  "INFERRED_PROXY",
+                  "INFERRED_PROXY"
+                ]
+              },
+              "evidence_support_tier": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "MODERATE",
+                  "HIGH",
+                  "HIGH"
+                ]
+              },
+              "evidence_tier_rationale": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Adequate sample size (19 vids, 716 interactions)",
+                  "Extensive longitudinal sample (30 vids, 3421 interactions ac",
+                  "Extensive longitudinal sample (41 vids, 10619 interactions a"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "path": "data/temporal/quality/evidence_quality_report.md",
+          "size_bytes": 7084,
+          "checksum": "sha256_9ee9ce39741c8db6c7510ad74239c76a451dde68b2d671056a984adb60d39dd0",
+          "format": "md",
+          "content_type": "markdown_report",
+          "lines": 97
+        },
+        {
+          "path": "data/temporal/quality/yearly_evidence_quality.parquet",
+          "size_bytes": 16440,
+          "checksum": "sha256_ff369d1b83243d233c3ab5702b4cf69fefd4f7de97ef5b5825c4aa99e5fcf4e4",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 7,
+            "columns": 23,
+            "schema": {
+              "year": {
+                "dtype": "int32",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2021",
+                  "2022"
+                ]
+              },
+              "year_label": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "2020",
+                  "2021",
+                  "2022"
+                ]
+              },
+              "is_ytd": {
+                "dtype": "bool",
+                "null_count": 0,
+                "sample_values": [
+                  "False",
+                  "False",
+                  "False"
+                ]
+              },
+              "catalog_videos": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "1897",
+                  "5601",
+                  "9386"
+                ]
+              },
+              "sampled_videos": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "141",
+                  "507",
+                  "701"
+                ]
+              },
+              "video_sampling_ratio": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0743",
+                  "0.0905",
+                  "0.0747"
+                ]
+              },
+              "total_interactions": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "5984",
+                  "14653",
+                  "14772"
+                ]
+              },
+              "comment_interactions": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "5984",
+                  "14653",
+                  "14772"
+                ]
+              },
+              "live_chat_interactions": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "live_chat_share": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0",
+                  "0.0",
+                  "0.0"
+                ]
+              },
+              "t6_deepened_interactions": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "4072",
+                  "9163",
+                  "8382"
+                ]
+              },
+              "t6_deepened_share": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.6805",
+                  "0.6253",
+                  "0.5674"
+                ]
+              },
+              "mean_comments_per_video": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "42.44",
+                  "28.9",
+                  "21.07"
+                ]
+              },
+              "median_comments_per_video": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "11.0",
+                  "5.0",
+                  "3.0"
+                ]
+              },
+              "cap_100_hit_videos": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "16",
+                  "41",
+                  "22"
+                ]
+              },
+              "cap_100_exposure_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.1135",
+                  "0.0809",
+                  "0.0314"
+                ]
+              },
+              "catalog_channels_active": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "36",
+                  "73",
+                  "101"
+                ]
+              },
+              "channels_with_evidence": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "29",
+                  "72",
+                  "101"
+                ]
+              },
+              "channel_coverage_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.1503",
+                  "0.3731",
+                  "0.5233"
+                ]
+              },
+              "catalog_channel_coverage_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.8056",
+                  "0.9863",
+                  "1.0"
+                ]
+              },
+              "source_provenance_entropy": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.6901",
+                  "0.8596",
+                  "0.7945"
+                ]
+              },
+              "evidence_support_tier": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "MODERATE",
+                  "HIGH",
+                  "HIGH"
+                ]
+              },
+              "evidence_tier_rationale": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "Moderate catalog channel coverage (>=60%) and substantial sa",
+                  "Comprehensive catalog channel coverage (>=80%) and robust in",
+                  "Comprehensive catalog channel coverage (>=80%) and robust in"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "research_integrity": {
+      "label": "Integrity Reports",
+      "file_count": 2,
+      "total_bytes": 12243,
+      "artifacts": [
+        {
+          "path": "data/temporal/research_integrity/t11_t16_integrity_report.md",
+          "size_bytes": 8381,
+          "checksum": "sha256_718d14631501c7d7218275b2310ef1a219f45bf944ab8bac0e2ab9eb0b663331",
+          "format": "md",
+          "content_type": "markdown_report",
+          "lines": 127
+        },
+        {
+          "path": "data/temporal/research_integrity/t8_t10_integrity_report.md",
+          "size_bytes": 3862,
+          "checksum": "sha256_6e5580228bec0413fbe0ae79030d6983cc057a0129e32812c6d816e97c758e85",
+          "format": "md",
+          "content_type": "markdown_report",
+          "lines": 60
+        }
+      ]
+    },
+    "snapshots": {
+      "label": "Network Snapshots",
+      "file_count": 1,
+      "total_bytes": 426208,
+      "artifacts": [
+        {
+          "path": "data/temporal/snapshots/network_snapshots.parquet",
+          "size_bytes": 426208,
+          "checksum": "sha256_4ba8560db946ff4930323308db54df695840bf4da3ac80bfc0de25508cc8e7ee",
+          "format": "parquet",
+          "schema_info": {
+            "rows": 48290,
+            "columns": 19,
+            "schema": {
+              "window_type": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "yearly",
+                  "yearly",
+                  "yearly"
+                ]
+              },
+              "window_start": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "2020-01-01",
+                  "2020-01-01",
+                  "2020-01-01"
+                ]
+              },
+              "window_end": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "2020-12-31 23:59:59",
+                  "2020-12-31 23:59:59",
+                  "2020-12-31 23:59:59"
+                ]
+              },
+              "vtuber_a": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "UCXtQTtPJedfjqEPysorbsMg",
+                  "UC0Ky1U__7T2Z5SOZCvNlJ-Q",
+                  "UC0Ky1U__7T2Z5SOZCvNlJ-Q"
+                ]
+              },
+              "vtuber_b": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "UCatSdbBdnsXgFpCyhJ7jYGg",
+                  "UCXtQTtPJedfjqEPysorbsMg",
+                  "UCatSdbBdnsXgFpCyhJ7jYGg"
+                ]
+              },
+              "shared_any": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "16",
+                  "14",
+                  "9"
+                ]
+              },
+              "shared_comments": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "16",
+                  "14",
+                  "9"
+                ]
+              },
+              "shared_live_chat": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "strong_shared_any": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "strong_shared_comments": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "strong_shared_live_chat": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "jaccard_comments": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0099",
+                  "0.0072",
+                  "0.0094"
+                ]
+              },
+              "jaccard_live_chat": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0",
+                  "0.0",
+                  "0.0"
+                ]
+              },
+              "overlap_coefficient": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0503",
+                  "0.0215",
+                  "0.0283"
+                ]
+              },
+              "size_a": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "1313",
+                  "652",
+                  "652"
+                ]
+              },
+              "size_b": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "318",
+                  "1313",
+                  "318"
+                ]
+              },
+              "coverage_a": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "1.0",
+                  "1.0",
+                  "1.0"
+                ]
+              },
+              "coverage_b": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "1.0",
+                  "1.0",
+                  "1.0"
+                ]
+              },
+              "calculated_at": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "2026-09-08 06:31:14 UTC",
+                  "2026-09-08 06:31:14 UTC",
+                  "2026-09-08 06:31:14 UTC"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "state": {
+      "label": "Pipeline State",
+      "file_count": 2,
+      "total_bytes": 906,
+      "artifacts": [
+        {
+          "path": "data/temporal/state/pipeline_state.json",
+          "size_bytes": 313,
+          "checksum": "sha256_6ff3199892e0c6bd4ad4648c893778c59eb0a55c35ced65bd19a4a6477d701ea",
+          "format": "json",
+          "content_type": "json_data",
+          "top_level_keys": [
+            "schema_version",
+            "pipeline_mode",
+            "hmac_key_fingerprint",
+            "created_at",
+            "last_committed_at",
+            "active_dataset_version",
+            "processed_batches"
+          ]
+        },
+        {
+          "path": "data/temporal/state/release_manifest.json",
+          "size_bytes": 593,
+          "checksum": "sha256_97d86a6f5dd2c44bff2e276515c587c126a06db1a3f2ce01e7670a539d8f1a00",
+          "format": "json",
+          "content_type": "json_data",
+          "top_level_keys": [
+            "dataset_name",
+            "release_version",
+            "generated_at",
+            "hmac_key_fingerprint",
+            "provenance_hierarchy",
+            "active_temporal_range",
+            "last_affected_years",
+            "state_file_checksum"
+          ]
+        }
+      ]
+    }
+  }
+}
