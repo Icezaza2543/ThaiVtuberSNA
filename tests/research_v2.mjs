@@ -30,4 +30,3 @@ assert.deepEqual(report.errors,[]);assert.deepEqual(report.dataRequests,[]);
 const nojs=await browser.newPage({javaScriptEnabled:false,viewport:{width:390,height:844}});await nojs.goto(url);assert.equal(await nojs.locator('#chapterNav a:visible').count(),9);await nojs.close();report.noJavaScript='Navigation and all chapters remain available';
 await writeFile(out+'/qa.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));
 }finally{await browser.close();}
-
