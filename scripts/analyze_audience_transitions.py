@@ -503,8 +503,8 @@ def export_web_temporal_communities() -> Path:
         events_summary = {
             "births": int((incoming["event_type"] == "birth").sum()),
             "disappearances": int((incoming["event_type"] == "disappearance").sum()),
-            "splits": int((outgoing["event_type"] == "split").sum()),
-            "merges": int((incoming["event_type"] == "merge").sum()),
+            "splits": int(((outgoing["event_type"] == "split") | (outgoing["event_type"] == "split_branch")).sum()),
+            "merges": int(((incoming["event_type"] == "merge") | (incoming["event_type"] == "merge_tributary")).sum()),
             "persistent": int((incoming["event_type"] == "persistent").sum()),
         }
 

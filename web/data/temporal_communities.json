@@ -93,7 +93,7 @@
     "events": {
       "births": 2,
       "disappearances": 0,
-      "splits": 0,
+      "splits": 9,
       "merges": 0,
       "persistent": 1
     },
@@ -199,8 +199,8 @@
     "events": {
       "births": 0,
       "disappearances": 0,
-      "splits": 0,
-      "merges": 0,
+      "splits": 7,
+      "merges": 7,
       "persistent": 0
     },
     "communities": [
@@ -290,8 +290,8 @@
     "events": {
       "births": 0,
       "disappearances": 0,
-      "splits": 0,
-      "merges": 0,
+      "splits": 4,
+      "merges": 4,
       "persistent": 1
     },
     "communities": [
@@ -400,8 +400,8 @@
     "events": {
       "births": 0,
       "disappearances": 0,
-      "splits": 0,
-      "merges": 0,
+      "splits": 5,
+      "merges": 2,
       "persistent": 2
     },
     "communities": [
@@ -496,7 +496,7 @@
     "events": {
       "births": 0,
       "disappearances": 0,
-      "splits": 0,
+      "splits": 2,
       "merges": 0,
       "persistent": 3
     },

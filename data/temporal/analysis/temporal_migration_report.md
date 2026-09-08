@@ -51,9 +51,9 @@
 | Independent | Ti19t | `cross_agency` | 16 |
 | Virtual Zeven (VZ) | Independent | `cross_agency` | 10 |
 | Virtual Zeven (VZ) | Virtual Zeven (VZ) | `within_agency` | 6 |
-| Virtual Zeven (VZ) | Algorhythm Project | `cross_agency` | 1 |
 | Pixela Project | Algorhythm Project | `cross_agency` | 1 |
 | Virtual Zeven (VZ) | Pixela Project | `cross_agency` | 1 |
+| Pixela Project | Pixela Project | `within_agency` | 1 |
 
 ### Year 2021 -> 2022
 
@@ -126,8 +126,8 @@
 | Independent | Algorhythm Project | `cross_agency` | 92 |
 | Independent | Euphora Project | `cross_agency` | 78 |
 | Pixela Project | Pixela Project | `within_agency` | 71 |
-| Independent | Virtual Zeven (VZ) | `cross_agency` | 67 |
 | Virtual Zeven (VZ) | Independent | `cross_agency` | 67 |
+| Independent | Virtual Zeven (VZ) | `cross_agency` | 67 |
 | Independent | Pixela Project | `cross_agency` | 54 |
 
 ---
@@ -141,11 +141,11 @@
 | 久檻夜くぅ / Qualia Qu Ch. (Independent) | Reilim Channel (Independent) | `same_agency_cross_channel` | 22 |
 | 久檻夜くぅ / Qualia Qu Ch. (Independent) | SiamNeko Ch.【ARP】 (Algorhythm Project) | `cross_agency` | 15 |
 | 久檻夜くぅ / Qualia Qu Ch. (Independent) | Pyork The Pork (Independent) | `same_agency_cross_channel` | 13 |
-| 久檻夜くぅ / Qualia Qu Ch. (Independent) | Pixela Official (Pixela Project) | `cross_agency` | 12 |
 | Darin V (Independent) | Reilim Channel (Independent) | `same_agency_cross_channel` | 12 |
-| 久檻夜くぅ / Qualia Qu Ch. (Independent) | Beariss Beam (Independent) | `same_agency_cross_channel` | 10 |
+| 久檻夜くぅ / Qualia Qu Ch. (Independent) | Pixela Official (Pixela Project) | `cross_agency` | 12 |
 | 久檻夜くぅ / Qualia Qu Ch. (Independent) | Laibaht Ch. / หลายบาท (Independent) | `same_agency_cross_channel` | 10 |
 | Nerumi-s (Independent) | Laguna JuJu Ch. Pixela Project (Pixela Project) | `cross_agency` | 10 |
+| 久檻夜くぅ / Qualia Qu Ch. (Independent) | Beariss Beam (Independent) | `same_agency_cross_channel` | 10 |
 
 ### Top Cross-Channel Transitions (2021 -> 2022)
 
@@ -157,7 +157,7 @@
 | Laguna JuJu Ch. Pixela Project (Pixela Project) | Pixela Official (Pixela Project) | `same_agency_cross_channel` | 27 |
 | Princess Zelina Ch. Pixela Project (Pixela Project) | Pixela Official (Pixela Project) | `same_agency_cross_channel` | 22 |
 | Asteroth Ch.【ARP】 (Algorhythm Project) | Evalia Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 21 |
-| Hinabe HongFei Ch. Pixela Project (Pixela Project) | Aisha Channel (Independent) | `cross_agency` | 19 |
+| Laibaht Ch. / หลายบาท (Independent) | Pixela Official (Pixela Project) | `cross_agency` | 19 |
 | Pyork The Pork (Independent) | Pixela Official (Pixela Project) | `cross_agency` | 19 |
 
 ### Top Cross-Channel Transitions (2022 -> 2023)
@@ -168,8 +168,8 @@
 | Mycara Melony Ch. Pixela-Mystic (Pixela Project) | Meraki Keimii Ch. Pixela Legends (Pixela Project) | `same_agency_cross_channel` | 54 |
 | Draki Kona Ch. Lumina-First-Myth (Lumina Live) | Meraki Keimii Ch. Pixela Legends (Pixela Project) | `cross_agency` | 31 |
 | Mycara Melony Ch. Pixela-Mystic (Pixela Project) | Atlanteia Sireen Ch. Lumina-First-Myth (Lumina Live) | `cross_agency` | 28 |
-| Pyork The Pork (Independent) | moujob (Independent) | `same_agency_cross_channel` | 25 |
 | Mycara Melony Ch. Pixela-Mystic (Pixela Project) | Pixela Official (Pixela Project) | `same_agency_cross_channel` | 25 |
+| Pyork The Pork (Independent) | moujob (Independent) | `same_agency_cross_channel` | 25 |
 | Pixela Official (Pixela Project) | Hinabe HongFei Ch. Pixela Project (Pixela Project) | `same_agency_cross_channel` | 20 |
 | Pixela Official (Pixela Project) | Aisha Channel (Independent) | `cross_agency` | 19 |
 
@@ -179,8 +179,8 @@
 |:---|:---|:---:|:---:|
 | Schneider Ch.【ARP】 (Algorhythm Project) | Dacapo Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 78 |
 | Baabel Ch.【ARP】 (Algorhythm Project) | Dacapo Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 32 |
-| Schneider Ch.【ARP】 (Algorhythm Project) | Baabel Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 31 |
 | Dacapo Ch.【ARP】 (Algorhythm Project) | Baabel Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 31 |
+| Schneider Ch.【ARP】 (Algorhythm Project) | Baabel Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 31 |
 | Meraki Keimii Ch. Pixela Legends (Pixela Project) | Pixela Official (Pixela Project) | `same_agency_cross_channel` | 28 |
 | Unnämed (Independent) | Dacapo Ch.【ARP】 (Algorhythm Project) | `cross_agency` | 26 |
 | Eileennoir Ch. (Independent) | Dacapo Ch.【ARP】 (Algorhythm Project) | `cross_agency` | 23 |
@@ -196,8 +196,8 @@
 | Dacapo Ch.【ARP】 (Algorhythm Project) | Quentin Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 33 |
 | Baabel Ch.【ARP】 (Algorhythm Project) | Zekai Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 32 |
 | Dacapo Ch.【ARP】 (Algorhythm Project) | ดอยล์ (Independent) | `cross_agency` | 29 |
-| MOLLY (Independent) | โป๊ะโกะ / PoKo ปลวกทูปเบ๋อ (Independent) | `same_agency_cross_channel` | 20 |
 | KAMAI (Independent) | นานาโฮชิ นานะ / 七星ナナ (Independent) | `same_agency_cross_channel` | 20 |
+| MOLLY (Independent) | KAMAI (Independent) | `same_agency_cross_channel` | 20 |
 
 ### Top Cross-Channel Transitions (2025 -> 2026)
 
@@ -206,8 +206,8 @@
 | KAMAI (Independent) | นานาโฮชิ นานะ / 七星ナナ (Independent) | `same_agency_cross_channel` | 51 |
 | โป๊ะโกะ / PoKo ปลวกทูปเบ๋อ (Independent) | Nongwan TV (Independent) | `same_agency_cross_channel` | 47 |
 | Zekai Ch.【ARP】 (Algorhythm Project) | Magnum Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 43 |
-| Roxzy ロキジー (Independent) | โป๊ะโกะ / PoKo ปลวกทูปเบ๋อ (Independent) | `same_agency_cross_channel` | 36 |
 | Baabel Ch.【ARP】 (Algorhythm Project) | Magnum Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 36 |
+| Roxzy ロキジー (Independent) | โป๊ะโกะ / PoKo ปลวกทูปเบ๋อ (Independent) | `same_agency_cross_channel` | 36 |
 | โป๊ะโกะ / PoKo ปลวกทูปเบ๋อ (Independent) | Roxzy ロキジー (Independent) | `same_agency_cross_channel` | 34 |
 | โป๊ะโกะ / PoKo ปลวกทูปเบ๋อ (Independent) | MOLLY (Independent) | `same_agency_cross_channel` | 29 |
 | Zekai Ch.【ARP】 (Algorhythm Project) | Baabel Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 24 |

@@ -83,8 +83,8 @@ Communities are detected using deterministic weighted Louvain modularity optimiz
 | `comm_2023_01` | 38 | Pixela Project (16), Independent (13), Lumina Live (5) | Meraki Keimii Ch. Pixela Legends, Pixela Official, Ardalita Lilibelle Ch. Lumina-First-Myth, Hinabe HongFei Ch. Pixela Project |
 | `comm_2023_02` | 32 | Algorhythm Project (20), Independent (7), Pixela Project (4) | Schneider Ch.【ARP】, Dacapo Ch.【ARP】, Eileennoir Ch., Unnämed |
 | `comm_2023_03` | 31 | Independent (31) | TEENIE | WISLIVE, TeenWISU, Gibpuri Ch, Beariss Beam |
-| `comm_2023_04` | 25 | Independent (21), Ti19t (1), Euphora Project (1) | Pyork The Pork, นานาโฮชิ นานะ / 七星ナナ, moujob, Laibaht Ch. / หลายบาท |
-| `comm_2023_05` | 3 | Independent (2), Algorhythm Project (1) | Aosora Popo Ch., Victor Hoshino【GRADUATED】, Selene Ch.【ARP】 |
+| `comm_2023_04` | 25 | Independent (21), Ti19t (1), Virtual Zeven (VZ) (1) | Pyork The Pork, นานาโฮชิ นานะ / 七星ナナ, moujob, Reilim Channel |
+| `comm_2023_05` | 3 | Independent (2), Algorhythm Project (1) | Selene Ch.【ARP】, Victor Hoshino【GRADUATED】, Aosora Popo Ch. |
 
 ### Year 2024
 - **Active Channels:** 157
@@ -111,7 +111,7 @@ Communities are detected using deterministic weighted Louvain modularity optimiz
 |:---|:---:|:---|:---|
 | `comm_2025_01` | 54 | Pixela Project (17), Independent (17), Lumina Live (9) | Princess Zelina Ch. Pixela Project, Ardalita Lilibelle Ch. Lumina-First-Myth, Pixela Official, Aranis Elvene Ch. Pixela-Isekai |
 | `comm_2025_02` | 52 | Independent (48), Virtual Zeven (VZ) (2), Pixela Project (1) | โป๊ะโกะ / PoKo ปลวกทูปเบ๋อ, KAMAI, Roxzy ロキジー, นานาโฮชิ นานะ / 七星ナナ |
-| `comm_2025_03` | 38 | Algorhythm Project (20), Independent (16), Virtual Zeven (VZ) (1) | Baabel Ch.【ARP】, Zekai Ch.【ARP】, Dacapo Ch.【ARP】, Quentin Ch.【ARP】 |
+| `comm_2025_03` | 38 | Algorhythm Project (20), Independent (16), Virtual Zeven (VZ) (1) | Baabel Ch.【ARP】, Dacapo Ch.【ARP】, Zekai Ch.【ARP】, Quentin Ch.【ARP】 |
 | `comm_2025_04` | 22 | Independent (16), Algorhythm Project (4), AStars Production (2) | 【graduated】Ice Shirakoi Ch. / AStars Amakara, 【graduated】Amaris Sayo Ch. / AStars Amakara, Pyork The Pork, Midnight Ch.【ARP】 |
 
 ### Year 2026 YTD
@@ -123,10 +123,10 @@ Communities are detected using deterministic weighted Louvain modularity optimiz
 
 | Community ID | Channels | Top Agencies at Selection | Key Anchor Channels |
 |:---|:---:|:---|:---|
-| `comm_2026_01` | 57 | Independent (49), Virtual Zeven (VZ) (4), Ti19t (1) | Nongwan TV, นานาโฮชิ นานะ / 七星ナナ, MOLLY, Lunatrix Ch. |
-| `comm_2026_02` | 56 | Pixela Project (18), Independent (17), Algorhythm Project (10) | Pixela Official, Mild-R Ch. Lumina-World-End, Aranis Elvene Ch. Pixela-Isekai, UCEvyDOkcGkzCTo62d9BrhkA |
+| `comm_2026_01` | 57 | Independent (49), Virtual Zeven (VZ) (4), Algorhythm Project (1) | Nongwan TV, นานาโฮชิ นานะ / 七星ナナ, MOLLY, Lunatrix Ch. |
+| `comm_2026_02` | 56 | Pixela Project (18), Independent (17), Algorhythm Project (10) | Pixela Official, Mild-R Ch. Lumina-World-End, UCEvyDOkcGkzCTo62d9BrhkA, Aranis Elvene Ch. Pixela-Isekai |
 | `comm_2026_03` | 39 | Independent (19), Algorhythm Project (18), Pixela Project (2) | Magnum Ch.【ARP】, Ivy Ch.【ARP】, Baabel Ch.【ARP】, Dacapo Ch.【ARP】 |
-| `comm_2026_04` | 8 | Independent (8) | UC_ARP005_DACAPO, UC_ARP003_MAYLYN, UC_ARP002_BAABEL, UC_PIX001_HINABE |
+| `comm_2026_04` | 8 | Independent (8) | UC_ARP005_DACAPO, UC_ARP003_MAYLYN, UC_ARP002_BAABEL, UC_POLY001_HOKU |
 
 ---
 
