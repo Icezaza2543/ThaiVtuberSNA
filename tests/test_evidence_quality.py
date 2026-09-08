@@ -58,9 +58,13 @@ def test_yearly_evidence_quality_schema_and_tiers(yearly_quality_df):
         "video_sampling_ratio", "total_interactions", "comment_interactions",
         "live_chat_interactions", "live_chat_share", "t6_deepened_interactions",
         "t6_deepened_share", "mean_comments_per_video", "median_comments_per_video",
-        "cap_100_hit_videos", "cap_100_exposure_rate", "catalog_channels_active",
-        "channels_with_evidence", "channel_coverage_rate", "source_provenance_entropy",
-        "evidence_support_tier", "evidence_tier_rationale"
+        "high_comment_volume_videos", "high_comment_volume_rate",
+        "cap_100_hit_videos", "cap_100_exposure_rate",
+        "partial_capture_videos", "partial_capture_rate",
+        "t6_deepened_resolved_videos", "t6_deepened_resolved_rate",
+        "unresolved_cap_exposure_videos", "unresolved_cap_exposure_rate",
+        "catalog_channels_active", "channels_with_evidence", "channel_coverage_rate",
+        "source_provenance_entropy", "evidence_support_tier", "evidence_tier_rationale"
     ]
     for col in expected_cols:
         assert col in yearly_quality_df.columns, f"Missing column: {col}"
@@ -72,7 +76,8 @@ def test_yearly_evidence_quality_schema_and_tiers(yearly_quality_df):
     # Rates bounded in [0, 1]
     assert (yearly_quality_df["video_sampling_ratio"] >= 0.0).all() and (yearly_quality_df["video_sampling_ratio"] <= 1.0).all()
     assert (yearly_quality_df["channel_coverage_rate"] >= 0.0).all() and (yearly_quality_df["channel_coverage_rate"] <= 1.0).all()
-    assert (yearly_quality_df["cap_100_exposure_rate"] >= 0.0).all() and (yearly_quality_df["cap_100_exposure_rate"] <= 1.0).all()
+    assert (yearly_quality_df["high_comment_volume_rate"] >= 0.0).all() and (yearly_quality_df["high_comment_volume_rate"] <= 1.0).all()
+    assert (yearly_quality_df["unresolved_cap_exposure_rate"] >= 0.0).all() and (yearly_quality_df["unresolved_cap_exposure_rate"] <= 1.0).all()
 
 def test_channel_evidence_quality_schema(channel_quality_df):
     """Verify channel-level quality schema and support tiers."""
@@ -80,8 +85,10 @@ def test_channel_evidence_quality_schema(channel_quality_df):
         "channel_id", "channel_name", "agency", "catalog_videos_count",
         "sampled_videos_count", "sampling_coverage_rate", "total_interactions",
         "distinct_viewers_count", "t6_deepened_interactions", "t6_deepened_share",
-        "cap_100_hit_videos", "cap_100_exposure_rate", "has_live_chat",
-        "years_active_count", "lifecycle_verification_status",
+        "high_comment_volume_videos", "high_comment_volume_rate",
+        "cap_100_hit_videos", "cap_100_exposure_rate",
+        "partial_capture_videos", "t6_deepened_resolved_videos", "unresolved_cap_exposure_videos",
+        "has_live_chat", "years_active_count", "lifecycle_verification_status",
         "evidence_support_tier", "evidence_tier_rationale"
     ]
     for col in expected_cols:
@@ -95,11 +102,12 @@ def test_bias_sensitivity_scenarios(bias_sensitivity_df):
     """Verify perturbation sensitivity scenarios and metric ranges."""
     expected_scenarios = {
         "BASELINE_UNIFIED_TH1", "COMMENT_ONLY_TH1", "LOW_COVERAGE_EXCLUDED",
-        "THRESHOLD_TH3", "THRESHOLD_TH5"
+        "THRESHOLD_TH3", "THRESHOLD_TH5", "DROPOUT_10PCT_MEAN", "DROPOUT_10PCT_SD"
     }
     assert expected_scenarios.issubset(set(bias_sensitivity_df["perturbation_scenario"]))
-    assert len(bias_sensitivity_df) == 35  # 7 years * 5 scenarios
+    assert len(bias_sensitivity_df) == 49  # 7 years * 7 scenarios
 
     for _, r in bias_sensitivity_df.iterrows():
         assert r["density"] >= 0.0 and r["density"] <= 1.0
         assert r["giant_component_share"] >= 0.0 and r["giant_component_share"] <= 1.0
+
