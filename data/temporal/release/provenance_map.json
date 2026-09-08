@@ -1,0 +1,67 @@
+{
+  "dataset_name": "Thai VTuber SNA Longitudinal Interaction Dataset",
+  "provenance_hierarchy": {
+    "t16_incremental": {
+      "priority": 0,
+      "scope": "Append-only incremental update batches (additive overlay)"
+    },
+    "t6_deep": {
+      "priority": 1,
+      "scope": "Exhaustive multi-page historical comment capture"
+    },
+    "t5_stratified": {
+      "priority": 2,
+      "scope": "Stratified hash-ranked temporal backfill"
+    },
+    "t2_pilot": {
+      "priority": 3,
+      "scope": "Initial multi-channel exploratory comment pilot"
+    },
+    "legacy": {
+      "priority": 4,
+      "scope": "Legacy pipeline comments and live chat observations"
+    }
+  },
+  "lineage_dag": {
+    "layer_1_raw_observations": [
+      "data/temporal/deep_observations/*.parquet",
+      "data/temporal/observations/*.parquet",
+      "data/temporal/pilot/*.parquet",
+      "data/real/events/*.parquet",
+      "data/events/*.parquet",
+      "data/temporal/incremental/*.parquet"
+    ],
+    "layer_2_canonical_view": {
+      "view_name": "canonical_events",
+      "engine": "DuckDB In-Memory Snapshot Engine",
+      "rules": [
+        "Strict temporal filter: interaction_time comes ONLY from interaction_at, first_seen, or timestamp.",
+        "Video publication date is NEVER used as fallback for interaction_time.",
+        "Precedence filter: t6_deep (priority 1) > t5_stratified (2) > t2_pilot (3) > legacy (4).",
+        "Additive overlay: t16_incremental does not suppress T6 and is never suppressed by T6.",
+        "Deduplication: exact (viewer_hash, vtuber_channel_id, video_id, source_type) taking MIN(interaction_time)."
+      ]
+    },
+    "layer_3_network_snapshots": {
+      "path": "data/temporal/snapshots/network_snapshots.parquet",
+      "derived_from": "canonical_events",
+      "slices": [
+        "yearly (2020-2026)",
+        "cumulative (through 2021..2026)",
+        "all_time"
+      ]
+    },
+    "layer_4_analytical_modules": {
+      "T8_lifecycle": "data/temporal/lifecycle/lifecycle_events.parquet",
+      "T9_event_impact": "data/temporal/event_analysis/event_impact_metrics.parquet",
+      "T10_robustness": "data/temporal/robustness/robustness_summary.parquet",
+      "T11_community_lineage": "data/temporal/analysis/community_lineage_v2.parquet",
+      "T12_cohort_survival": "data/temporal/cohorts/cohort_survival.parquet",
+      "T13_centrality_bridges": "data/temporal/centrality/bridge_dynamics.parquet",
+      "T14_ecosystem_evolution": "data/temporal/ecosystem/yearly_ecosystem_metrics.parquet",
+      "T15_evidence_quality": "data/temporal/quality/yearly_evidence_quality.parquet",
+      "T16_incremental_pipeline": "data/temporal/state/pipeline_state.json",
+      "T17_research_dashboard": "web/research/dashboard_data.json"
+    }
+  }
+}

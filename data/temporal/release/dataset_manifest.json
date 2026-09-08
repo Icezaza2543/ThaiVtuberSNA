@@ -1,28 +1,33 @@
 {
-  "meta": {
+  "manifest_metadata": {
     "title": "Thai VTuber SNA — Reproducible Research Dataset",
     "version": "1.0.0",
-    "generated_at": "2026-09-08T14:57:00.983249+00:00",
-    "phases_covered": "T8–T16",
-    "temporal_range": "2020–2026 (2026 = YTD partial window)",
-    "privacy_level": "AGGREGATED_MACRO_ONLY",
-    "privacy_guarantee": "Zero raw viewer identifiers, channel IDs are public YouTube metadata.",
-    "total_files": 38,
-    "total_bytes": 1068805,
-    "checksum_algorithm": "SHA-256"
+    "release_id": "thai_vtuber_sna_v1_0_0",
+    "generated_at": "2026-09-08T15:37:39.778419+00:00",
+    "deterministic_content_hash": "sha256_91a91cb328e50c4c99b5df7f9fda4dd49f6a360cc1bf2ccb19c6a32548138b3d",
+    "total_artifacts": 38,
+    "total_bytes": 1086581,
+    "checksum_algorithm": "SHA-256",
+    "privacy_level": "NO_VIEWER_LEVEL_DATA"
+  },
+  "privacy_and_data_classification": {
+    "privacy_level": "NO_VIEWER_LEVEL_DATA",
+    "public_channel_creator_metadata": "Exposed (public YouTube channel names, IDs, agency labels).",
+    "aggregate_audience_metrics": "Exposed (pairwise audience overlap, network densities, community partitions).",
+    "viewer_level_rows": "STRICTLY EXCLUDED (zero viewer hashes, zero individual interaction events)."
   },
   "methodology": {
-    "data_collection": "YouTube public comment and live chat interaction evidence collected via YouTube Data API v3 with HMAC-SHA256 pseudonymization at ingestion. Viewer channel IDs are irreversibly transformed; zero raw IDs are stored.",
-    "network_construction": "Co-commenter/co-chatter edges built from shared pseudonymized viewer presence across channel video pairs. Edge weight = count of shared distinct viewer pseudonyms.",
-    "temporal_slicing": "Interactions partitioned by calendar year of video publication date. Undated interactions excluded from temporal slices.",
-    "community_detection": "Louvain community detection (NetworkX) at resolution=1.0.",
-    "lineage_matching": "Deterministic maximum-weight bipartite matching per adjacent-year pair using W = 0.4*Jaccard + 0.3*Forward + 0.3*Backward. Strict one-to-one backbone constraint.",
+    "data_collection": "YouTube public comment and live chat interaction evidence collected via YouTube Data API v3 with HMAC-SHA256 pseudonymization at ingestion boundary. Zero raw viewer IDs or PII are stored.",
+    "network_construction": "Bipartite projection into co-commenter/co-chatter undirected graphs. Edge weight represents count of shared pseudonymized viewers active on both channels.",
+    "temporal_slicing": "Strictly partitioned by interaction_time (from interaction_at, first_seen, or timestamp). Video publication date is NEVER used as fallback for temporal interaction slicing. Undated interaction records are strictly excluded from temporal slices.",
+    "comment_volume_characterization": "API commentThreads endpoint yields up to 100 comments per standard page. Exhaustive pagination was implemented in Phase T6, resolving all historical cap exposures (0 unresolved). Single-page pilot records are tracked explicitly under collection truncation metadata.",
+    "community_detection": "Louvain community modularity optimization (NetworkX) at resolution=1.0.",
+    "lineage_matching": "Deterministic maximum-weight bipartite matching per adjacent-year pair using score W = 0.4*Jaccard + 0.3*Forward + 0.3*Backward with strict one-to-one backbone.",
     "limitations": [
-      "Observational sampling: only commenters/chatters captured, not silent viewers.",
-      "YouTube API pagination ceiling: ~100 comments per standard fetch.",
-      "2026 represents partial Year-To-Date window.",
-      "Agency/group assignments reflect selection-time status, not historical membership.",
-      "HMAC pseudonymization is linkable within the same key; not full anonymity."
+      "Observational sampling: captures active commenters and chatters; silent viewers are unobserved.",
+      "2026 data reflects partial Year-To-Date window (PARTIAL_WINDOW_DESCRIPTIVE_ONLY).",
+      "Agency affiliations represent selection-time status (agency_at_selection) and do not imply historical membership.",
+      "Observed network structures reflect audience co-attendance, not direct creator coordination or causality."
     ]
   },
   "sections": {
@@ -980,7 +985,7 @@
     "analysis": {
       "label": "T11: Community Lineage & Network Metrics",
       "file_count": 10,
-      "total_bytes": 200314,
+      "total_bytes": 200321,
       "artifacts": [
         {
           "path": "data/temporal/analysis/agency_transition_matrix.parquet",
@@ -1383,8 +1388,8 @@
         },
         {
           "path": "data/temporal/analysis/community_lineage_v2.parquet",
-          "size_bytes": 9299,
-          "checksum": "sha256_970f6e733b7dbdac2eab0d6070397f63c36a18d2bbd6cbb87a5efe0b0c0da44e",
+          "size_bytes": 9306,
+          "checksum": "sha256_402ee6c0d3770a2526e9851ed6cf7edd6f98967f6d6120407efd0c73830a2fc9",
           "format": "parquet",
           "schema_info": {
             "rows": 41,
@@ -1504,7 +1509,7 @@
         {
           "path": "data/temporal/analysis/community_lineage_v2_report.md",
           "size_bytes": 9892,
-          "checksum": "sha256_276ab18ea0f6280834abd353867ab8f6201719e8dd52ebb8a733f937d2a68436",
+          "checksum": "sha256_5a59668eaeb7efaa387cb5f3fc546cbb76f6862d479226e854bdaff23a52132f",
           "format": "md",
           "content_type": "markdown_report",
           "lines": 91
@@ -2118,12 +2123,12 @@
     "centrality": {
       "label": "T13: Bridge Dynamics & Centrality",
       "file_count": 4,
-      "total_bytes": 135755,
+      "total_bytes": 135787,
       "artifacts": [
         {
           "path": "data/temporal/centrality/bridge_dynamics.parquet",
-          "size_bytes": 30332,
-          "checksum": "sha256_80b16c98366d06ea4bf585cd8ad32e70c84449ea853c5bc49f5b9f5347794faa",
+          "size_bytes": 30351,
+          "checksum": "sha256_f710c1c0cc65ec94dcb1816bd5a09e9bf369452a541574b6401b4914188c2765",
           "format": "parquet",
           "schema_info": {
             "rows": 189,
@@ -2287,8 +2292,8 @@
         },
         {
           "path": "data/temporal/centrality/bridge_dynamics_report.md",
-          "size_bytes": 31438,
-          "checksum": "sha256_1ed36fd0efdbdfd522747b29f15e547577ea32ba09f8a6c2884ecd8933a7a644",
+          "size_bytes": 31451,
+          "checksum": "sha256_a8807146e599538a46769471d13560004c09e8a307b9ded285c1d586df4280bd",
           "format": "md",
           "content_type": "markdown_report",
           "lines": 287
@@ -2574,24 +2579,24 @@
     "ecosystem": {
       "label": "T14: Ecosystem Structural Evolution",
       "file_count": 3,
-      "total_bytes": 23802,
+      "total_bytes": 27223,
       "artifacts": [
         {
           "path": "data/temporal/ecosystem/ecosystem_evolution_report.md",
-          "size_bytes": 4798,
-          "checksum": "sha256_f17cc80d5de4b080ae6d6f41177d3218f3a004f95ec353452dd7bebcaf560e81",
+          "size_bytes": 5719,
+          "checksum": "sha256_7e66c99329b79ece8535fa38257654e8ceba156cdb53c71d9b21f0448f13616e",
           "format": "md",
           "content_type": "markdown_report",
-          "lines": 50
+          "lines": 51
         },
         {
           "path": "data/temporal/ecosystem/structural_breaks.parquet",
-          "size_bytes": 6524,
-          "checksum": "sha256_13b1f230128b4d3462094ab7b74332847253b710b2d2309ddc09b4dd3195f605",
+          "size_bytes": 7348,
+          "checksum": "sha256_2a878bac07ed4ed1042f4b518e53fadd2cd976359ddecac6e48dd9ce4e0e7dde",
           "format": "parquet",
           "schema_info": {
             "rows": 10,
-            "columns": 8,
+            "columns": 9,
             "schema": {
               "transition": {
                 "dtype": "str",
@@ -2600,6 +2605,15 @@
                   "2020->2021",
                   "2020->2021",
                   "2020->2021"
+                ]
+              },
+              "break_scope": {
+                "dtype": "str",
+                "null_count": 0,
+                "sample_values": [
+                  "FULL_CALENDAR",
+                  "FULL_CALENDAR",
+                  "FULL_CALENDAR"
                 ]
               },
               "metric_dimension": {
@@ -2670,12 +2684,12 @@
         },
         {
           "path": "data/temporal/ecosystem/yearly_ecosystem_metrics.parquet",
-          "size_bytes": 12480,
-          "checksum": "sha256_0532bad84e1c16180c237299a724cfcc801fce0d49610f38d67d8ddf58bc2377",
+          "size_bytes": 14156,
+          "checksum": "sha256_9ede583857887ac54f4d7cf20c5f1faf5b3b77443e032a135c0070ce9040b439",
           "format": "parquet",
           "schema_info": {
             "rows": 7,
-            "columns": 18,
+            "columns": 20,
             "schema": {
               "year": {
                 "dtype": "int64",
@@ -2812,6 +2826,24 @@
                   "0.6255"
                 ]
               },
+              "agency_at_selection_assortativity": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "-0.0286",
+                  "0.0029",
+                  "0.0561"
+                ]
+              },
+              "agency_at_selection_independent_mixing": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0556",
+                  "0.4656",
+                  "0.4653"
+                ]
+              },
               "agency_assortativity": {
                 "dtype": "float64",
                 "null_count": 0,
@@ -2847,15 +2879,15 @@
     "quality": {
       "label": "T15: Evidence Quality & Bias",
       "file_count": 4,
-      "total_bytes": 58829,
+      "total_bytes": 73145,
       "artifacts": [
         {
           "path": "data/temporal/quality/bias_sensitivity.parquet",
-          "size_bytes": 6649,
-          "checksum": "sha256_ba10dc627cd07374e8e196e4c34a1e5fb2035c00637075f78cabe9e63b88d163",
+          "size_bytes": 7285,
+          "checksum": "sha256_deb43738a77aa22a2a53e0246eaec3bae56c577d56d9e22b2ad13094118f3cb3",
           "format": "parquet",
           "schema_info": {
-            "rows": 35,
+            "rows": 49,
             "columns": 8,
             "schema": {
               "year": {
@@ -2877,21 +2909,21 @@
                 ]
               },
               "active_channels": {
-                "dtype": "int64",
+                "dtype": "float64",
                 "null_count": 0,
                 "sample_values": [
-                  "21",
-                  "21",
-                  "18"
+                  "21.0",
+                  "21.0",
+                  "18.0"
                 ]
               },
               "edges": {
-                "dtype": "int64",
+                "dtype": "float64",
                 "null_count": 0,
                 "sample_values": [
-                  "72",
-                  "72",
-                  "55"
+                  "72.0",
+                  "72.0",
+                  "55.0"
                 ]
               },
               "density": {
@@ -2935,12 +2967,12 @@
         },
         {
           "path": "data/temporal/quality/channel_evidence_quality.parquet",
-          "size_bytes": 28656,
-          "checksum": "sha256_81bf24438483ac0e95390d5ac87bc4b86ac626f745a5b11464090994b9f9412a",
+          "size_bytes": 33150,
+          "checksum": "sha256_c8e5f957c99cd3edfaaffea140b239ae608a73e343a89cf36f1b88b0b3afd735",
           "format": "parquet",
           "schema_info": {
             "rows": 193,
-            "columns": 17,
+            "columns": 22,
             "schema": {
               "channel_id": {
                 "dtype": "str",
@@ -3032,6 +3064,24 @@
                   "0.9339"
                 ]
               },
+              "high_comment_volume_videos": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "3",
+                  "15",
+                  "15"
+                ]
+              },
+              "high_comment_volume_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.1579",
+                  "0.5",
+                  "0.3659"
+                ]
+              },
               "cap_100_hit_videos": {
                 "dtype": "int64",
                 "null_count": 0,
@@ -3048,6 +3098,33 @@
                   "0.1579",
                   "0.5",
                   "0.3659"
+                ]
+              },
+              "partial_capture_videos": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "1",
+                  "15",
+                  "16"
+                ]
+              },
+              "t6_deepened_resolved_videos": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "1",
+                  "15",
+                  "16"
+                ]
+              },
+              "unresolved_cap_exposure_videos": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
                 ]
               },
               "has_live_chat": {
@@ -3100,20 +3177,20 @@
         },
         {
           "path": "data/temporal/quality/evidence_quality_report.md",
-          "size_bytes": 7084,
-          "checksum": "sha256_9ee9ce39741c8db6c7510ad74239c76a451dde68b2d671056a984adb60d39dd0",
+          "size_bytes": 9645,
+          "checksum": "sha256_a55945a868bc7235df935d412f692601a6ba069ce95a35158477cde37eb4e186",
           "format": "md",
           "content_type": "markdown_report",
-          "lines": 97
+          "lines": 114
         },
         {
           "path": "data/temporal/quality/yearly_evidence_quality.parquet",
-          "size_bytes": 16440,
-          "checksum": "sha256_ff369d1b83243d233c3ab5702b4cf69fefd4f7de97ef5b5825c4aa99e5fcf4e4",
+          "size_bytes": 23065,
+          "checksum": "sha256_889b9555865faa873963b73729bd2663eb76b205d960af640cbe1b0bf2901acc",
           "format": "parquet",
           "schema_info": {
             "rows": 7,
-            "columns": 23,
+            "columns": 32,
             "schema": {
               "year": {
                 "dtype": "int32",
@@ -3241,6 +3318,24 @@
                   "3.0"
                 ]
               },
+              "high_comment_volume_videos": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "16",
+                  "41",
+                  "22"
+                ]
+              },
+              "high_comment_volume_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.1135",
+                  "0.0809",
+                  "0.0314"
+                ]
+              },
               "cap_100_hit_videos": {
                 "dtype": "int64",
                 "null_count": 0,
@@ -3257,6 +3352,60 @@
                   "0.1135",
                   "0.0809",
                   "0.0314"
+                ]
+              },
+              "partial_capture_videos": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "20",
+                  "60",
+                  "74"
+                ]
+              },
+              "partial_capture_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.1418",
+                  "0.1183",
+                  "0.1056"
+                ]
+              },
+              "t6_deepened_resolved_videos": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "20",
+                  "60",
+                  "74"
+                ]
+              },
+              "t6_deepened_resolved_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.1418",
+                  "0.1183",
+                  "0.1056"
+                ]
+              },
+              "unresolved_cap_exposure_videos": {
+                "dtype": "int64",
+                "null_count": 0,
+                "sample_values": [
+                  "0",
+                  "0",
+                  "0"
+                ]
+              },
+              "unresolved_cap_exposure_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.0",
+                  "0.0",
+                  "0.0"
                 ]
               },
               "catalog_channels_active": {
@@ -3281,9 +3430,9 @@
                 "dtype": "float64",
                 "null_count": 0,
                 "sample_values": [
-                  "0.1503",
-                  "0.3731",
-                  "0.5233"
+                  "0.8056",
+                  "0.9863",
+                  "1.0"
                 ]
               },
               "catalog_channel_coverage_rate": {
@@ -3293,6 +3442,15 @@
                   "0.8056",
                   "0.9863",
                   "1.0"
+                ]
+              },
+              "cohort_population_coverage_rate": {
+                "dtype": "float64",
+                "null_count": 0,
+                "sample_values": [
+                  "0.1503",
+                  "0.3731",
+                  "0.5233"
                 ]
               },
               "source_provenance_entropy": {

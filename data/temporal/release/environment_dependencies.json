@@ -1,0 +1,18 @@
+{
+  "python_runtime": {
+    "version": "3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]",
+    "executable": "C:\\Python313\\python.exe",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "architecture": "64bit",
+    "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD"
+  },
+  "core_libraries": {
+    "duckdb": "1.5.5",
+    "pandas": "3.0.0",
+    "pyarrow": "25.0.1",
+    "networkx": "3.6.1",
+    "scipy": "not_installed",
+    "pytest": "9.1.1"
+  },
+  "reproducibility_contract": "All random processes use explicit fixed seeds (e.g. seed=42). Graph layouts, community detection, bipartite matchings, and perturbation sweeps are fully deterministic across executions."
+}

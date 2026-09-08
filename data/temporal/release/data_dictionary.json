@@ -1,0 +1,91 @@
+{
+  "network_snapshots.parquet": {
+    "description": "Pairwise audience overlap snapshots across yearly, cumulative, and all-time windows.",
+    "columns": {
+      "window_type": "Temporal window aggregation scope ('yearly', 'cumulative', 'all_time').",
+      "window_start": "Window opening boundary timestamp (UTC ISO format).",
+      "window_end": "Window closing boundary timestamp (UTC ISO format).",
+      "vtuber_a": "First VTuber channel ID (lexicographically ordered: vtuber_a < vtuber_b).",
+      "vtuber_b": "Second VTuber channel ID.",
+      "shared_any": "Count of distinct pseudonymized viewers active in both channels during the window.",
+      "shared_comments": "Count of distinct pseudonymized commenters active in both channels.",
+      "shared_live_chat": "Count of distinct pseudonymized live chatters active in both channels.",
+      "strong_shared_any": "Count of viewers observed across >=2 distinct videos on both channels.",
+      "strong_shared_comments": "Count of commenters observed across >=2 distinct videos on both channels.",
+      "strong_shared_live_chat": "Count of chatters observed across >=2 distinct streams on both channels.",
+      "jaccard_comments": "Jaccard similarity coefficient based on unique commenting audience.",
+      "jaccard_live_chat": "Jaccard similarity coefficient based on unique live chat audience.",
+      "overlap_coefficient": "Szymkiewicz-Simpson overlap coefficient: shared_any / min(size_a, size_b).",
+      "size_a": "Total distinct active audience size for vtuber_a in the window.",
+      "size_b": "Total distinct active audience size for vtuber_b in the window.",
+      "coverage_a": "Mathematical observation completeness indicator for vtuber_a (1.0 or 0.0).",
+      "coverage_b": "Mathematical observation completeness indicator for vtuber_b (1.0 or 0.0).",
+      "calculated_at": "Calculation UTC timestamp."
+    }
+  },
+  "yearly_ecosystem_metrics.parquet": {
+    "description": "Macro-level topological graph metrics for each yearly slice (2020-2026).",
+    "columns": {
+      "year": "Calendar year of interaction slice.",
+      "active_channels": "Count of active VTuber channels with >=1 co-attendance edge.",
+      "edges": "Count of pairwise audience co-attendance links.",
+      "density": "Graph density: 2 * |E| / (|V| * (|V| - 1)).",
+      "modularity": "Louvain community modularity Q score at resolution=1.0.",
+      "community_count": "Number of detected Louvain community partitions.",
+      "agency_at_selection_assortativity": "Newman assortativity coefficient by agency status at selection time.",
+      "agency_at_selection_independent_mixing": "Proportion of cross-agency edges connecting unaffiliated creators.",
+      "cross_community_edge_share": "Proportion of graph edges crossing community partition boundaries."
+    }
+  },
+  "yearly_centrality.parquet": {
+    "description": "Per-channel node centrality metrics across calendar slices.",
+    "columns": {
+      "year": "Calendar year of interaction slice.",
+      "channel_id": "Public YouTube channel ID of the VTuber.",
+      "degree": "Unweighted node degree (number of connected peer channels).",
+      "betweenness_centrality": "Betweenness centrality computed on distance=1/shared_any.",
+      "betweenness_percentile": "Tie-aware betweenness percentile rank.",
+      "pagerank": "Google PageRank score (alpha=0.85).",
+      "eigenvector_centrality": "Eigenvector centrality score."
+    }
+  },
+  "bridge_dynamics.parquet": {
+    "description": "Cross-community bridging dynamics and threshold perturbation stability.",
+    "columns": {
+      "channel_id": "Public YouTube channel ID.",
+      "channel_name": "Public creator display name.",
+      "agency_at_selection": "Selection-time agency/group affiliation.",
+      "threshold_th5_retention_ratio": "Degree retention ratio under threshold=5 perturbation.",
+      "bridge_classification": "Bridging classification: 'STABLE_BRIDGE' (ratio >= 0.50) or 'STABLE_BRIDGE_CANONICAL_ONLY'."
+    }
+  },
+  "yearly_evidence_quality.parquet": {
+    "description": "Tiered evidence collection quality, truncation, and coverage metrics.",
+    "columns": {
+      "year": "Calendar year.",
+      "total_interactions": "Total interaction events with valid interaction_time.",
+      "catalog_channels_active": "Total channels active in catalog during the year (N_cat,yr).",
+      "channels_with_evidence": "Channels observed with interaction evidence.",
+      "channel_coverage_rate": "Channel coverage rate: channels_with_evidence / catalog_channels_active.",
+      "cohort_population_coverage_rate": "Active cohort coverage rate against cumulative active population.",
+      "high_comment_volume_rate": "Proportion of sampled videos with >=95 comments.",
+      "partial_capture_videos": "Count of videos terminating with partial capture.",
+      "t6_deepened_resolved_videos": "Count of historical videos deepened and resolved by Phase T6 exhaustive capture.",
+      "unresolved_cap_exposure_videos": "Count of unexhausted videos exposed to comment caps (empirically 0)."
+    }
+  },
+  "community_lineage_v2.parquet": {
+    "description": "Longitudinal community lineage graph based on global maximum-weight bipartite matching.",
+    "columns": {
+      "from_year": "Source calendar year.",
+      "to_year": "Target calendar year.",
+      "from_community_id": "Source community identifier.",
+      "to_community_id": "Target community identifier.",
+      "relation_type": "Genealogy classification: 'CONTINUATION', 'SPLIT', 'MERGE', or 'DISSOLVED'.",
+      "jaccard_similarity": "Audience overlap Jaccard similarity.",
+      "forward_overlap": "Forward containment proportion: |A ∩ B| / |A|.",
+      "backward_overlap": "Backward containment proportion: |A ∩ B| / |B|.",
+      "is_primary_backbone": "Boolean flag indicating primary one-to-one continuation link."
+    }
+  }
+}
