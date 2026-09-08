@@ -1,37 +1,26 @@
+@import url('../design-tokens.css');
+
 /* ═══════════════════════════════════════════════════════════════
    Thai VTuber SNA — Research Dashboard Stylesheet
    Premium dark glassmorphism design
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  --bg-deep: #0a0e1a;
-  --bg-surface: #111827;
-  --bg-card: rgba(17, 24, 39, 0.85);
-  --bg-card-hover: rgba(30, 41, 59, 0.9);
-  --border: rgba(148, 163, 184, 0.12);
-  --border-accent: rgba(6, 182, 212, 0.25);
-
-  --text-primary: #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-
-  --accent-cyan: #06b6d4;
-  --accent-blue: #3b82f6;
-  --accent-violet: #8b5cf6;
-  --accent-pink: #ec4899;
-  --accent-amber: #f59e0b;
-  --accent-emerald: #10b981;
-  --accent-red: #ef4444;
-
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-
-  --radius-sm: 8px;
+  --bg-deep: var(--ink-950);
+  --bg-surface: var(--ink-850);
+  --bg-card: transparent;
+  --bg-card-hover: var(--ink-800);
+  --border: var(--border-subtle);
+  --border-accent: var(--prism-cyan);
+  --accent-blue: #91baff;
+  --accent-violet: var(--prism-violet);
+  --accent-red: #ff9090;
+  --font-sans: var(--font-main);
+  --radius-sm: 6px;
   --radius-md: 12px;
-  --radius-lg: 16px;
-
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
-  --shadow-glow-cyan: 0 0 20px rgba(6, 182, 212, 0.15);
+  --radius-lg: 0;
+  --shadow-card: none;
+  --shadow-glow-cyan: none;
 }
 
 *, *::before, *::after {
@@ -62,7 +51,7 @@ body {
   justify-content: space-between;
   padding: 14px 28px;
   background: rgba(10, 14, 26, 0.92);
-  backdrop-filter: blur(20px) saturate(1.8);
+  backdrop-filter: none;
   border-bottom: 1px solid var(--border);
 }
 
@@ -120,7 +109,7 @@ body {
   width: 7px; height: 7px;
   border-radius: 50%;
   background: var(--accent-emerald);
-  animation: pulse-dot 2s infinite;
+  animation: none;
 }
 
 @keyframes pulse-dot {
@@ -129,7 +118,7 @@ body {
 }
 
 .version-badge {
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-family: var(--font-mono);
   color: var(--text-secondary);
   padding: 4px 10px;
@@ -211,7 +200,7 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -223,7 +212,7 @@ body {
 }
 
 .kpi-label {
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -239,7 +228,7 @@ body {
 }
 
 .kpi-delta {
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 600;
   margin-top: 4px;
 }
@@ -256,7 +245,7 @@ body {
   border-radius: var(--radius-lg);
   padding: 20px;
   margin-bottom: 16px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
   box-shadow: var(--shadow-card);
   transition: border-color 0.3s ease;
 }
@@ -279,7 +268,7 @@ body {
 }
 
 .card-badge {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   font-family: var(--font-mono);
   font-weight: 600;
   padding: 3px 8px;
@@ -322,7 +311,7 @@ body {
   background: rgba(15, 23, 42, 0.6);
   color: var(--text-secondary);
   font-weight: 700;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   border-bottom: 1px solid var(--border);
@@ -364,7 +353,7 @@ body {
 .data-table .tag {
   padding: 2px 8px;
   border-radius: 4px;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 600;
 }
 
@@ -389,7 +378,7 @@ canvas {
 .dash-footer {
   text-align: center;
   padding: 20px 28px;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   color: var(--text-muted);
   border-top: 1px solid var(--border);
   background: rgba(10, 14, 26, 0.5);
@@ -441,3 +430,48 @@ canvas {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Research shares the observatory identity with a quieter editorial rhythm. */
+h1,h2,h3 { font-family: var(--font-display); font-weight: 400; }
+.dash-header { position: relative; background: var(--ink-900); padding-block: 22px; }
+.header-title { background: none; -webkit-text-fill-color: var(--text-100); font-size: 22px; font-weight: 400; }
+.header-sub { color: var(--text-500); margin-top: 6px; }
+.logo-mark { background: none; box-shadow: none; border: 1px solid var(--prism-violet); color: var(--prism-violet); text-decoration: none; font-family: var(--font-display); }
+.privacy-badge { background: none; border: 0; color: var(--text-500); max-width: 280px; }
+.tab-nav { background: var(--ink-900); padding-block: 0; gap: 14px; }
+.tab-btn { min-height: 48px; border-radius: 0; padding-inline: 8px; font-weight: 500; }
+.tab-btn.active { background: transparent; border-color: transparent; border-bottom-color: var(--prism-cyan); color: var(--text-100); box-shadow: none; }
+.tab-panel { animation: none; }
+.dash-main { width: 100%; padding-top: 32px; }
+.caveat-banner { padding: 8px 0 20px 20px; margin-bottom: 28px; border-left: 2px solid var(--prism-gold); color: var(--text-300); font-size: 13px; line-height: 1.9; }
+.card { min-width: 0; border: 0; border-top: 1px solid var(--border); padding: 24px 0; margin-bottom: 16px; }
+.card:hover { border-color: var(--border); }
+.card-header h3 { font-weight: 400; font-size: 18px; }
+.card-badge { background: none; border: 0; color: var(--text-500); }
+.panel-grid-2 { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 32px; }
+.kpi-strip { gap: 24px; margin-block: 32px; }
+.kpi-card { border: 0; border-left: 1px solid var(--border); border-radius: 0; padding: 0 16px; text-align: left; }
+.kpi-card:hover { transform: none; }
+.kpi-label { text-transform: none; letter-spacing: 0; }
+.kpi-value { font-size: 24px; font-weight: 400; }
+.kpi-delta { font-weight: 400; }
+.data-table tbody td { font-family: var(--font-main); }
+.data-table .num { font-family: var(--font-mono); }
+.data-table thead th { font-family: var(--font-main); text-transform: none; letter-spacing: 0; font-weight: 500; }
+.scrollable-table { scrollbar-width: thin; }
+:focus-visible { outline: 2px solid var(--prism-cyan); outline-offset: 4px; }
+code { font-family: var(--font-mono); font-size: .85em; overflow-wrap: anywhere; }
+@media (max-width: 900px) { .panel-grid-2 { grid-template-columns: minmax(0,1fr); } .header-right { flex-direction: column; align-items: flex-end; } }
+@media (max-width: 767px) {
+  .dash-header { align-items: flex-start; padding: 20px; }
+  .header-title { font-size: 18px; }
+  .header-right { align-items: flex-start; flex-direction: row; justify-content: flex-start; }
+  .privacy-badge { max-width: none; padding: 0; font-size: 11px; }
+  .version-badge { display: none; }
+  .dash-main { padding: 22px 20px; }
+  .caveat-banner { padding-left: 14px; font-size: 12px; }
+  .kpi-strip { gap: 24px 12px; grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .kpi-value { font-size: 20px; }
+  .card-header h3 { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }

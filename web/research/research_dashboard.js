@@ -10,7 +10,7 @@
   let DATA = null;
 
   const COLORS = {
-    cyan: '#06b6d4', blue: '#3b82f6', violet: '#8b5cf6',
+    cyan: '#62e7ff', blue: '#3b82f6', violet: '#a78bfa',
     pink: '#ec4899', amber: '#f59e0b', emerald: '#10b981',
     red: '#ef4444', slate: '#94a3b8',
     cyanA: 'rgba(6,182,212,0.3)', blueA: 'rgba(59,130,246,0.3)',
@@ -18,7 +18,7 @@
     amberA: 'rgba(245,158,11,0.3)', emeraldA: 'rgba(16,185,129,0.3)',
   };
 
-  const YEAR_LABELS = ['2020','2021','2022','2023','2024','2025','2026'];
+  const YEAR_LABELS = ['2020','2021','2022','2023','2024','2025','2026 YTD'];
   const COHORT_PALETTE = [COLORS.cyan, COLORS.blue, COLORS.violet, COLORS.pink, COLORS.amber, COLORS.emerald, COLORS.red];
 
   // ── Initialization ────────────────────────────────────────
@@ -29,31 +29,63 @@
       DATA = await resp.json();
     } catch(e) {
       document.querySelector('.dash-main').innerHTML =
-        '<div style="text-align:center;padding:60px;color:#ef4444;">Failed to load dashboard_data.json. Run scripts/build_research_dashboard_data.py first.</div>';
+        '<div style="text-align:center;padding:60px;color:#ef4444;">Research evidence could not load. Reload this page or return to the constellation.</div>';
       return;
     }
 
     document.getElementById('footerGen').textContent = 'Generated: ' + (DATA.meta?.generated_at || 'unknown');
-    document.getElementById('genTimestamp').textContent = DATA.meta?.phases_covered || 'T8–T16';
+    document.getElementById('genTimestamp').textContent = DATA.meta?.generated_at?.slice(0, 10) || 'Snapshot date unavailable';
 
     setupTabs();
-    renderOverview();
-    renderEcosystem();
-    renderLineage();
-    renderCohorts();
-    renderCentrality();
-    renderQuality();
+    await document.fonts.ready;
+    renderActivePanel();
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(renderActivePanel, 120);
+    });
   }
 
-  // ── Tabs ──────────────────────────────────────────────────
+  function renderActivePanel() {
+    const renderers = { overview: renderOverview, ecosystem: renderEcosystem, lineage: renderLineage,
+      cohorts: renderCohorts, centrality: renderCentrality, quality: renderQuality };
+    const name = document.querySelector('.tab-btn.active')?.dataset.tab;
+    renderers[name]?.();
+    document.querySelectorAll('.scrollable-table').forEach(table => {
+      table.tabIndex = 0;
+      table.setAttribute('role', 'region');
+      table.setAttribute('aria-label', table.closest('.card')?.querySelector('h3')?.textContent || 'Research table');
+    });
+    document.querySelectorAll('canvas').forEach(canvas => {
+      canvas.setAttribute('role', 'img');
+      canvas.setAttribute('aria-label', `${canvas.closest('.card')?.querySelector('h3')?.textContent || 'Research chart'}. Values are available in the associated research tables.`);
+    });
+  }
 
   function setupTabs() {
-    document.querySelectorAll('.tab-btn').forEach(btn => {
+    const buttons = [...document.querySelectorAll('.tab-btn')];
+    buttons.forEach((btn, index) => {
+      btn.id = 'tab-' + btn.dataset.tab;
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-controls', 'panel-' + btn.dataset.tab);
+      btn.setAttribute('aria-selected', String(btn.classList.contains('active')));
+      btn.tabIndex = btn.classList.contains('active') ? 0 : -1;
+      const panel = document.getElementById('panel-' + btn.dataset.tab);
+      panel.setAttribute('role', 'tabpanel');
+      panel.setAttribute('aria-labelledby', btn.id);
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+        buttons.forEach(button => {
+          const active = button === btn;
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-selected', String(active));
+          button.tabIndex = active ? 0 : -1;
+        });
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p === panel));
+        renderActivePanel();
+      });
+      btn.addEventListener('keydown', event => {
+        const next = event.key === 'ArrowRight' ? (index + 1) % buttons.length : event.key === 'ArrowLeft' ? (index - 1 + buttons.length) % buttons.length : event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : null;
+        if (next !== null) { event.preventDefault(); buttons[next].focus(); buttons[next].click(); }
       });
     });
   }
@@ -65,12 +97,14 @@
     if (!canvas) return null;
     const dpr = window.devicePixelRatio || 1;
     const rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width * dpr;
-    canvas.height = (parseInt(canvas.getAttribute('height')) || 260) * dpr;
-    canvas.style.height = (parseInt(canvas.getAttribute('height')) || 260) + 'px';
+    const height = Number(canvas.dataset.chartHeight || canvas.getAttribute('height')) || 260;
+    canvas.dataset.chartHeight = height;
+    canvas.width = Math.round(rect.width * dpr);
+    canvas.height = Math.round(height * dpr);
+    canvas.style.height = height + 'px';
     const ctx = canvas.getContext('2d');
-    ctx.scale(dpr, dpr);
-    return { ctx, w: rect.width, h: parseInt(canvas.getAttribute('height')) || 260 };
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return { ctx, w: rect.width, h: height };
   }
 
   function drawLineChart(id, datasets, labels, opts = {}) {
@@ -95,7 +129,8 @@
     if (yMin === yMax) { yMax = yMin + 1; }
     const yRange = yMax - yMin;
     const yPad = yRange * 0.1;
-    yMin -= yPad; yMax += yPad;
+    yMin = opts.yMin ?? (yMin - yPad);
+    yMax = opts.yMax ?? (yMax + yPad);
 
     // grid
     ctx.strokeStyle = 'rgba(148,163,184,0.08)';
@@ -110,19 +145,22 @@
 
       // y labels
       const val = yMin + ((yMax - yMin) * i / gridLines);
-      ctx.fillStyle = '#64748b';
+      ctx.fillStyle = '#9298aa';
       ctx.font = '11px "JetBrains Mono"';
       ctx.textAlign = 'right';
       ctx.fillText(opts.yFmt ? opts.yFmt(val) : val.toFixed(opts.yDecimals ?? 1), pad.left - 8, y + 4);
     }
 
     // x labels
-    ctx.fillStyle = '#64748b';
+    ctx.fillStyle = '#9298aa';
     ctx.font = '11px "JetBrains Mono"';
     ctx.textAlign = 'center';
     labels.forEach((lbl, i) => {
       const x = pad.left + (plotW * i / (labels.length - 1));
-      ctx.fillText(lbl, x, h - pad.bottom + 20);
+      if (w < 500 && i % 2 && i !== labels.length - 1) return;
+      const label = String(lbl) === '2026' ? '2026 YTD' : String(lbl);
+      const half = ctx.measureText(label).width / 2;
+      ctx.fillText(label, Math.max(half + 4, Math.min(w - half - 4, x)), h - pad.bottom + 20);
     });
 
     // datasets
@@ -170,7 +208,7 @@
     if (datasets.length > 1) {
       let lx = pad.left + 8;
       const ly = pad.top - 10;
-      ctx.font = '11px Inter';
+      ctx.font = '11px "Noto Sans Thai"';
       datasets.forEach(ds => {
         ctx.fillStyle = ds.color;
         ctx.fillRect(lx, ly - 6, 12, 3);
@@ -205,7 +243,7 @@
 
       // glow
       ctx.shadowColor = color;
-      ctx.shadowBlur = 8;
+      ctx.shadowBlur = 0;
       ctx.fillStyle = color;
       ctx.beginPath();
       ctx.roundRect(x, y, barW, barH, [4, 4, 0, 0]);
@@ -220,7 +258,7 @@
     });
 
     // x labels
-    ctx.fillStyle = '#64748b';
+    ctx.fillStyle = '#9298aa';
     ctx.font = '11px "JetBrains Mono"';
     ctx.textAlign = 'center';
     labels.forEach((lbl, i) => {
@@ -256,7 +294,7 @@
       const lx = cx + Math.cos(midAngle) * labelR;
       const ly = cy + Math.sin(midAngle) * labelR;
       ctx.fillStyle = '#94a3b8';
-      ctx.font = '11px Inter';
+      ctx.font = '11px "Noto Sans Thai"';
       ctx.textAlign = midAngle > Math.PI/2 && midAngle < 3*Math.PI/2 ? 'right' : 'left';
       ctx.fillText(`${seg.label} (${seg.value})`, lx, ly);
 
@@ -268,8 +306,8 @@
     ctx.font = 'bold 20px "JetBrains Mono"';
     ctx.textAlign = 'center';
     ctx.fillText(total.toString(), cx, cy + 2);
-    ctx.fillStyle = '#64748b';
-    ctx.font = '10px Inter';
+    ctx.fillStyle = '#9298aa';
+    ctx.font = '11px "Noto Sans Thai"';
     ctx.fillText(opts.centerLabel || 'Channels', cx, cy + 18);
   }
 
@@ -553,7 +591,7 @@
     // x axis
     years.forEach((yr, i) => {
       const x = pad.left + (plotW * i / (years.length - 1));
-      ctx.fillStyle = '#64748b';
+      ctx.fillStyle = '#9298aa';
       ctx.font = '11px "JetBrains Mono"';
       ctx.textAlign = 'center';
       ctx.fillText(String(yr), x, h - pad.bottom + 18);

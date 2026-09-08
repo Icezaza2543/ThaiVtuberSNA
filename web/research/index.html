@@ -7,17 +7,16 @@
   <meta name="description" content="Multi-year longitudinal research dashboard for Thai VTuber Social Network Analysis (2020–2026). Ecosystem evolution, community lineage, cohort survival, and evidence quality.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="research_dashboard.css">
 </head>
 <body>
   <!-- Header -->
   <header class="dash-header" id="dashHeader">
     <div class="header-left">
-      <div class="logo-mark">SNA</div>
+      <a class="logo-mark" href="../" aria-label="Back to constellation">VT</a>
       <div>
-        <h1 class="header-title">Thai VTuber Research Dashboard</h1>
-        <p class="header-sub">Longitudinal Social Network Analysis · 2020–2026</p>
+        <h1 class="header-title">Thai VTuber Constellation · Research</h1>
+        <p class="header-sub">Audience Network Observatory · 2020–2026 YTD</p>
       </div>
     </div>
     <div class="header-right">
@@ -30,7 +29,7 @@
   </header>
 
   <!-- Tab Navigation -->
-  <nav class="tab-nav" id="tabNav">
+  <nav class="tab-nav" id="tabNav" role="tablist" aria-label="Research sections">
     <button class="tab-btn active" data-tab="overview">Overview</button>
     <button class="tab-btn" data-tab="ecosystem">Ecosystem</button>
     <button class="tab-btn" data-tab="lineage">Lineage</button>
@@ -44,8 +43,8 @@
 
     <!-- ═══════════════════ OVERVIEW TAB ═══════════════════ -->
     <section class="tab-panel active" id="panel-overview">
-      <div class="caveat-banner" id="caveatBanner" style="background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(234, 179, 8, 0.4); border-left: 4px solid #eab308; border-radius: 8px; padding: 12px 18px; margin-bottom: 24px; font-size: 0.88rem; color: #cbd5e1; line-height: 1.5;">
-        <strong style="color: #fde047;">⚠️ Methodological & Evidence Quality Caveats:</strong><br>
+      <div class="caveat-banner" id="caveatBanner">
+        <strong style="color: #fde047;">Evidence and interpretation</strong><br>
         • <strong>2026 YTD Window:</strong> 2026 reflects partial calendar observations (2026-01-01 to 2026-09-08) and is classified as <code>PARTIAL_WINDOW_DESCRIPTIVE_ONLY</code> (excluded from full-calendar structural break counts).<br>
         • <strong>Selection-Time Metadata:</strong> Historical agency homophily and mixing metrics represent agency affiliation at the time of study selection (<code>agency_at_selection</code>); they do not imply historical membership or direct VTuber coordination.<br>
         • <strong>Privacy Guarantee:</strong> Strictly <code>NO_VIEWER_LEVEL_DATA</code>. Zero viewer-level rows or interaction logs are exported. Only public channel-level creator metadata and aggregate audience metrics are exposed.
@@ -236,7 +235,7 @@
 
   <!-- Footer -->
   <footer class="dash-footer">
-    <p>Thai VTuber SNA · Privacy-Preserving Research Dashboard · All data HMAC-SHA256 pseudonymized · <span id="footerGen"></span></p>
+    <p>Thai VTuber SNA · Privacy-Preserving Research Dashboard · Public creator metadata and aggregate evidence only · <span id="footerGen"></span></p>
   </footer>
 
   <script src="research_dashboard.js"></script>
