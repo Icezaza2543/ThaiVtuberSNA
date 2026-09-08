@@ -20,16 +20,16 @@ This report documents the historical lifecycle timeline for the **193** Thai VTu
 
 | Verification Status | Event Type | Count | Evidence Basis | Confidence |
 | :--- | :--- | :---: | :--- | :---: |
+| **`INFERRED_PROXY`** | `agency_closure` | 2 | `inferred_agency_closure` | `LOW` |
 | **`INFERRED_PROXY`** | `earliest_observed_content` | 182 | `observational_catalog_boundary` | `LOW` |
 | **`INFERRED_PROXY`** | `graduation_proxy` | 8 | `observational_activity_boundary` | `LOW` |
 | **`INFERRED_PROXY`** | `hiatus_proxy` | 32 | `observational_inactivity_threshold` | `LOW` |
-| **`VERIFIED`** | `agency_closure` | 2 | `agency_announcement` | `HIGH` |
 | **`VERIFIED`** | `graduation` | 1 | `verified_video_stream` | `HIGH` |
 | **`VERIFIED`** | `re_debut` | 1 | `verified_video_stream` | `HIGH` |
 
 **Total Lifecycle Events:** 226
-- **Verified Events:** 4
-- **Inferred Proxy Events:** 222
+- **Verified Events:** 2
+- **Inferred Proxy Events:** 224
 
 ---
 
@@ -37,8 +37,6 @@ This report documents the historical lifecycle timeline for the **193** Thai VTu
 
 | Channel / Entity | Event Type | Event Date | Agency | Evidence Source | Verification Status |
 | :--- | :--- | :---: | :--- | :--- | :---: |
-| **Virtual Zeven (VZ)** | `agency_closure` | 2021-12-31 | Virtual Zeven (VZ) | Virtual Zeven official disbandment announcement | `VERIFIED` |
-| **RPG** | `agency_closure` | 2024-09-30 | RPG | RPG official cohort graduation / closure announcement | `VERIFIED` |
 | **UC3ZglUA0HEUCuGbe5b8zXKw** | `re_debut` | 2022-01-17 | Independent | video_catalog.csv: 【Re-Debut : การกลับมาของลูปัสแอลลล】 | `VERIFIED` |
 | **UC32lsx7u7vqy63SguuuzmVg** | `graduation` | 2025-12-20 | Independent | video_catalog.csv: 【🔴[Graduation] Last Expedition —เพราะเราเดินทางด้วยกัน | `VERIFIED` |
 

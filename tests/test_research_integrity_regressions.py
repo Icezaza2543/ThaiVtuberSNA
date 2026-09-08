@@ -133,7 +133,7 @@ def test_changing_fixture_metric_changes_generated_report_output(monkeypatch, tm
     
     # Generate original
     orig_content = generate_integrity_report()
-    assert "- **VERIFIED Events**: 4" in orig_content
+    assert "- **VERIFIED Events**: 2" in orig_content
 
     # Temporarily monkeypatch pd.read_parquet to alter event counts
     real_read_parquet = pd.read_parquet

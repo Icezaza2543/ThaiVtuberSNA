@@ -79,7 +79,10 @@ def build_historical_lifecycle():
     events: List[Dict[str, Any]] = []
     intervals: List[Dict[str, Any]] = []
 
-    # 1. Macro Agency Milestones (VERIFIED)
+    # 1. Macro Agency Milestones
+    # Audited per Research Integrity Seal:
+    # A plain string or synthetic identifier like announcement:... is not sufficient by itself.
+    # Without a specific reproducible file or catalog URL, macro closure events are demoted to INFERRED_PROXY.
     agency_milestones = [
         {
             "event_id": "evt_agency_vz_closure",
@@ -89,12 +92,12 @@ def build_historical_lifecycle():
             "event_date": "2021-12-31",
             "event_year": 2021,
             "agency": "Virtual Zeven (VZ)",
-            "evidence_type": "agency_announcement",
-            "evidence_source": "Virtual Zeven official disbandment announcement",
-            "evidence_source_ref": "announcement:virtual_zeven_disbandment_20211231",
-            "confidence": "HIGH",
-            "verification_status": "VERIFIED",
-            "details": "Virtual Zeven ceased agency operations on 2021-12-31; verified agency closure."
+            "evidence_type": "inferred_agency_closure",
+            "evidence_source": "Reported disbandment of Virtual Zeven operations",
+            "evidence_source_ref": "unverified_announcement_ref:vz_closure_20211231",
+            "confidence": "LOW",
+            "verification_status": "INFERRED_PROXY",
+            "details": "Virtual Zeven ceased agency operations on 2021-12-31; inferred proxy boundary (untraceable URL)."
         },
         {
             "event_id": "evt_agency_rpg_closure",
@@ -104,12 +107,12 @@ def build_historical_lifecycle():
             "event_date": "2024-09-30",
             "event_year": 2024,
             "agency": "RPG",
-            "evidence_type": "agency_announcement",
-            "evidence_source": "RPG official cohort graduation / closure announcement",
-            "evidence_source_ref": "announcement:rpg_closure_20240930",
-            "confidence": "HIGH",
-            "verification_status": "VERIFIED",
-            "details": "RPG agency talent operations closed on 2024-09-30; verified agency closure."
+            "evidence_type": "inferred_agency_closure",
+            "evidence_source": "Reported closure of RPG agency talent operations",
+            "evidence_source_ref": "unverified_announcement_ref:rpg_closure_20240930",
+            "confidence": "LOW",
+            "verification_status": "INFERRED_PROXY",
+            "details": "RPG agency talent operations closed on 2024-09-30; inferred proxy boundary (untraceable URL)."
         }
     ]
     events.extend(agency_milestones)

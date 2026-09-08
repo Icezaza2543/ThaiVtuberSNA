@@ -5,8 +5,8 @@ This report is programmatically generated from committed analytical artifacts to
 ## 1. T8 Lifecycle Evidence Tier Breakdown
 
 ### Historical Events Breakdown
-- **VERIFIED Events**: 4
-- **INFERRED_PROXY Events**: 222
+- **VERIFIED Events**: 2
+- **INFERRED_PROXY Events**: 224
 - **UNKNOWN Events**: 0
 - **Total Lifecycle Events**: 226
 
