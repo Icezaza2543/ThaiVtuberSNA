@@ -1,9 +1,14 @@
 {
   "meta": {
-    "generated_at": "2026-09-08T14:52:04.818028+00:00",
+    "generated_at": "2026-09-08T15:32:47.733979+00:00",
     "phases_covered": "T8–T16",
-    "privacy_level": "AGGREGATED_MACRO_ONLY",
-    "note": "Zero viewer hashes or PII. All data is macro-level.",
+    "privacy_level": "NO_VIEWER_LEVEL_DATA",
+    "data_classification": {
+      "public_channel_creator_metadata": "Exposed (channel names, IDs, agency affiliations as public creator data)",
+      "aggregate_audience_metrics": "Exposed (pairwise shared audience counts, community sizes, graph metrics)",
+      "viewer_level_rows": "ZERO (strictly excluded; no raw IDs, no viewer hashes, no individual interaction records)"
+    },
+    "note": "NO_VIEWER_LEVEL_DATA: Public creator metadata and aggregate audience metrics only. Zero viewer-level records or hashes.",
     "years": [
       2020,
       2021,
@@ -13,7 +18,12 @@
       2025,
       2026
     ],
-    "partial_year": 2026
+    "partial_year": 2026,
+    "caveats": {
+      "partial_window_2026_ytd": "2026 data reflects partial year-to-date (2026-01-01 to 2026-09-08) and is descriptive only (PARTIAL_WINDOW_DESCRIPTIVE_ONLY).",
+      "evidence_quality": "Collection follows tiered empirical sampling (T6 deep exhaustive capture + T5 stratified backfill). Historical agency metrics represent selection-time metadata (agency_at_selection).",
+      "non_causal_disclaimer": "Network structural metrics and bridge dynamics reflect observed audience co-attendance, not direct social causality or vtuber coordination."
+    }
   },
   "ecosystem": {
     "yearly_metrics": [
@@ -33,6 +43,8 @@
         "modularity": 0.1968,
         "degree_concentration_gini": 0.3446,
         "strength_concentration_gini": 0.4839,
+        "agency_at_selection_assortativity": -0.0286,
+        "agency_at_selection_independent_mixing": 0.0556,
         "agency_assortativity": -0.0286,
         "agency_independent_mixing": 0.0556,
         "cross_community_edge_share": 0.4861
@@ -53,6 +65,8 @@
         "modularity": 0.1333,
         "degree_concentration_gini": 0.3991,
         "strength_concentration_gini": 0.6401,
+        "agency_at_selection_assortativity": 0.0029,
+        "agency_at_selection_independent_mixing": 0.4656,
         "agency_assortativity": 0.0029,
         "agency_independent_mixing": 0.4656,
         "cross_community_edge_share": 0.6592
@@ -73,6 +87,8 @@
         "modularity": 0.2007,
         "degree_concentration_gini": 0.4443,
         "strength_concentration_gini": 0.6255,
+        "agency_at_selection_assortativity": 0.0561,
+        "agency_at_selection_independent_mixing": 0.4653,
         "agency_assortativity": 0.0561,
         "agency_independent_mixing": 0.4653,
         "cross_community_edge_share": 0.6218
@@ -93,6 +109,8 @@
         "modularity": 0.3146,
         "degree_concentration_gini": 0.4574,
         "strength_concentration_gini": 0.6347,
+        "agency_at_selection_assortativity": 0.1252,
+        "agency_at_selection_independent_mixing": 0.4398,
         "agency_assortativity": 0.1252,
         "agency_independent_mixing": 0.4398,
         "cross_community_edge_share": 0.5309
@@ -113,6 +131,8 @@
         "modularity": 0.3106,
         "degree_concentration_gini": 0.4421,
         "strength_concentration_gini": 0.5298,
+        "agency_at_selection_assortativity": 0.1295,
+        "agency_at_selection_independent_mixing": 0.4205,
         "agency_assortativity": 0.1295,
         "agency_independent_mixing": 0.4205,
         "cross_community_edge_share": 0.4558
@@ -133,6 +153,8 @@
         "modularity": 0.3189,
         "degree_concentration_gini": 0.4265,
         "strength_concentration_gini": 0.5554,
+        "agency_at_selection_assortativity": 0.0911,
+        "agency_at_selection_independent_mixing": 0.4321,
         "agency_assortativity": 0.0911,
         "agency_independent_mixing": 0.4321,
         "cross_community_edge_share": 0.4864
@@ -153,6 +175,8 @@
         "modularity": 0.5085,
         "degree_concentration_gini": 0.4887,
         "strength_concentration_gini": 0.6521,
+        "agency_at_selection_assortativity": 0.1332,
+        "agency_at_selection_independent_mixing": 0.3976,
         "agency_assortativity": 0.1332,
         "agency_independent_mixing": 0.3976,
         "cross_community_edge_share": 0.3681
@@ -161,6 +185,7 @@
     "structural_breaks": [
       {
         "transition": "2020->2021",
+        "break_scope": "FULL_CALENDAR",
         "metric_dimension": "active_channels",
         "from_value": 21.0,
         "to_value": 65.0,
@@ -171,6 +196,7 @@
       },
       {
         "transition": "2020->2021",
+        "break_scope": "FULL_CALENDAR",
         "metric_dimension": "modularity",
         "from_value": 0.1968,
         "to_value": 0.1333,
@@ -181,6 +207,7 @@
       },
       {
         "transition": "2020->2021",
+        "break_scope": "FULL_CALENDAR",
         "metric_dimension": "density",
         "from_value": 0.3429,
         "to_value": 0.3005,
@@ -191,16 +218,18 @@
       },
       {
         "transition": "2020->2021",
-        "metric_dimension": "agency_independent_mixing",
+        "break_scope": "FULL_CALENDAR",
+        "metric_dimension": "agency_at_selection_independent_mixing",
         "from_value": 0.0556,
         "to_value": 0.4656,
         "absolute_delta": 0.41,
         "relative_change_pct": 7.3741,
         "break_category": "CROSS_SECTOR_INTEGRATION",
-        "descriptive_note": "Agency/independent bridging edge share shifted by +41.0% (5.6% to 46.6%)."
+        "descriptive_note": "Agency-at-selection/independent bridging edge share shifted by +41.0% (5.6% to 46.6%)."
       },
       {
         "transition": "2021->2022",
+        "break_scope": "FULL_CALENDAR",
         "metric_dimension": "modularity",
         "from_value": 0.1333,
         "to_value": 0.2007,
@@ -211,6 +240,7 @@
       },
       {
         "transition": "2021->2022",
+        "break_scope": "FULL_CALENDAR",
         "metric_dimension": "density",
         "from_value": 0.3005,
         "to_value": 0.2305,
@@ -221,6 +251,7 @@
       },
       {
         "transition": "2022->2023",
+        "break_scope": "FULL_CALENDAR",
         "metric_dimension": "modularity",
         "from_value": 0.2007,
         "to_value": 0.3146,
@@ -231,6 +262,7 @@
       },
       {
         "transition": "2022->2023",
+        "break_scope": "FULL_CALENDAR",
         "metric_dimension": "density",
         "from_value": 0.2305,
         "to_value": 0.182,
@@ -241,23 +273,25 @@
       },
       {
         "transition": "2025->2026 (YTD)",
+        "break_scope": "PARTIAL_WINDOW_DESCRIPTIVE_ONLY",
         "metric_dimension": "modularity",
         "from_value": 0.3189,
         "to_value": 0.5085,
         "absolute_delta": 0.1896,
         "relative_change_pct": 0.5945,
-        "break_category": "MODULAR_CONSOLIDATION",
-        "descriptive_note": "Community modularity Q shifted by +0.1896 (0.319 to 0.508)."
+        "break_category": "PARTIAL_WINDOW_DESCRIPTIVE_ONLY",
+        "descriptive_note": "[PARTIAL_WINDOW_DESCRIPTIVE_ONLY] Community modularity Q shifted by +0.1896 (0.319 to 0.508)."
       },
       {
         "transition": "2025->2026 (YTD)",
+        "break_scope": "PARTIAL_WINDOW_DESCRIPTIVE_ONLY",
         "metric_dimension": "density",
         "from_value": 0.2313,
         "to_value": 0.157,
         "absolute_delta": -0.0743,
         "relative_change_pct": -0.3212,
-        "break_category": "DENSITY_DILUTION",
-        "descriptive_note": "Graph density shifted by -0.0743 (0.2313 to 0.1570)."
+        "break_category": "PARTIAL_WINDOW_DESCRIPTIVE_ONLY",
+        "descriptive_note": "[PARTIAL_WINDOW_DESCRIPTIVE_ONLY] Graph density shifted by -0.0743 (0.2313 to 0.1570)."
       }
     ]
   },
@@ -448,20 +482,6 @@
       {
         "from_year": 2022,
         "to_year": 2023,
-        "from_community_id": "comm_2022_03",
-        "to_community_id": "comm_2023_01",
-        "from_lineage_id": "LINEAGE_09",
-        "to_lineage_id": "LINEAGE_09",
-        "relation_type": "continuation",
-        "shared_channels": 19,
-        "jaccard_similarity": 0.4634,
-        "forward_overlap": 0.8636,
-        "backward_overlap": 0.5,
-        "is_primary_backbone": true
-      },
-      {
-        "from_year": 2022,
-        "to_year": 2023,
         "from_community_id": "comm_2022_01",
         "to_community_id": "comm_2023_04",
         "from_lineage_id": "LINEAGE_08",
@@ -471,6 +491,20 @@
         "jaccard_similarity": 0.2558,
         "forward_overlap": 0.3793,
         "backward_overlap": 0.44,
+        "is_primary_backbone": true
+      },
+      {
+        "from_year": 2022,
+        "to_year": 2023,
+        "from_community_id": "comm_2022_03",
+        "to_community_id": "comm_2023_01",
+        "from_lineage_id": "LINEAGE_09",
+        "to_lineage_id": "LINEAGE_09",
+        "relation_type": "continuation",
+        "shared_channels": 19,
+        "jaccard_similarity": 0.4634,
+        "forward_overlap": 0.8636,
+        "backward_overlap": 0.5,
         "is_primary_backbone": true
       },
       {
@@ -672,15 +706,15 @@
       {
         "from_year": 2024,
         "to_year": 2025,
-        "from_community_id": "comm_2024_03",
-        "to_community_id": "comm_2025_01",
-        "from_lineage_id": "LINEAGE_09",
-        "to_lineage_id": "LINEAGE_09",
+        "from_community_id": "comm_2024_01",
+        "to_community_id": "comm_2025_02",
+        "from_lineage_id": "LINEAGE_08",
+        "to_lineage_id": "LINEAGE_08",
         "relation_type": "continuation",
-        "shared_channels": 35,
-        "jaccard_similarity": 0.6034,
-        "forward_overlap": 0.8974,
-        "backward_overlap": 0.6481,
+        "shared_channels": 34,
+        "jaccard_similarity": 0.3908,
+        "forward_overlap": 0.4928,
+        "backward_overlap": 0.6538,
         "is_primary_backbone": true
       },
       {
@@ -700,15 +734,15 @@
       {
         "from_year": 2024,
         "to_year": 2025,
-        "from_community_id": "comm_2024_01",
-        "to_community_id": "comm_2025_02",
-        "from_lineage_id": "LINEAGE_08",
-        "to_lineage_id": "LINEAGE_08",
+        "from_community_id": "comm_2024_03",
+        "to_community_id": "comm_2025_01",
+        "from_lineage_id": "LINEAGE_09",
+        "to_lineage_id": "LINEAGE_09",
         "relation_type": "continuation",
-        "shared_channels": 34,
-        "jaccard_similarity": 0.3908,
-        "forward_overlap": 0.4928,
-        "backward_overlap": 0.6538,
+        "shared_channels": 35,
+        "jaccard_similarity": 0.6034,
+        "forward_overlap": 0.8974,
+        "backward_overlap": 0.6481,
         "is_primary_backbone": true
       },
       {
@@ -770,20 +804,6 @@
       {
         "from_year": 2025,
         "to_year": 2026,
-        "from_community_id": "comm_2025_02",
-        "to_community_id": "comm_2026_01",
-        "from_lineage_id": "LINEAGE_08",
-        "to_lineage_id": "LINEAGE_08",
-        "relation_type": "continuation",
-        "shared_channels": 40,
-        "jaccard_similarity": 0.5797,
-        "forward_overlap": 0.7692,
-        "backward_overlap": 0.7018,
-        "is_primary_backbone": true
-      },
-      {
-        "from_year": 2025,
-        "to_year": 2026,
         "from_community_id": "comm_2025_01",
         "to_community_id": "comm_2026_02",
         "from_lineage_id": "LINEAGE_09",
@@ -793,6 +813,20 @@
         "jaccard_similarity": 0.5714,
         "forward_overlap": 0.7407,
         "backward_overlap": 0.7143,
+        "is_primary_backbone": true
+      },
+      {
+        "from_year": 2025,
+        "to_year": 2026,
+        "from_community_id": "comm_2025_02",
+        "to_community_id": "comm_2026_01",
+        "from_lineage_id": "LINEAGE_08",
+        "to_lineage_id": "LINEAGE_08",
+        "relation_type": "continuation",
+        "shared_channels": 40,
+        "jaccard_similarity": 0.5797,
+        "forward_overlap": 0.7692,
+        "backward_overlap": 0.7018,
         "is_primary_backbone": true
       },
       {
@@ -9010,7 +9044,7 @@
         "mean_cross_agency_share": 0.3549,
         "threshold_th5_retention_ratio": 0.6,
         "bridge_classification": "STABLE_BRIDGE",
-        "classification_rule_basis": "Top decile in 5 years; retained >= 75th percentile in 2026; threshold >= 5 retention present (3 yr(s))"
+        "classification_rule_basis": "Top decile in 5 years; retained >= 75th percentile in 2026; threshold >= 5 retention ratio 0.60 >= 0.50"
       },
       {
         "channel_id": "UCGofntRkNUAgXGqimLtLy4g",
@@ -9029,7 +9063,7 @@
         "mean_cross_agency_share": 0.4335,
         "threshold_th5_retention_ratio": 0.0,
         "bridge_classification": "STABLE_BRIDGE_CANONICAL_ONLY",
-        "classification_rule_basis": "Top decile in 3 years; retained in 2026 at canonical threshold >= 1, but zero threshold >= 5 retention"
+        "classification_rule_basis": "Top decile in 3 years; retained in 2026 at canonical threshold >= 1, but threshold >= 5 retention ratio 0.00 < 0.50"
       },
       {
         "channel_id": "UCbeaB9MoD9IyXqBshyQuNRQ",
@@ -9370,8 +9404,8 @@
         "mean_cross_community_share": 0.6001,
         "mean_cross_agency_share": 0.485,
         "threshold_th5_retention_ratio": 0.25,
-        "bridge_classification": "STABLE_BRIDGE",
-        "classification_rule_basis": "Top decile in 4 years; retained >= 75th percentile in 2026; threshold >= 5 retention present (1 yr(s))"
+        "bridge_classification": "STABLE_BRIDGE_CANONICAL_ONLY",
+        "classification_rule_basis": "Top decile in 4 years; retained in 2026 at canonical threshold >= 1, but threshold >= 5 retention ratio 0.25 < 0.50"
       },
       {
         "channel_id": "UCutz6S1DcEHPnEb_r9ztkzg",
@@ -9485,7 +9519,7 @@
         "mean_cross_agency_share": 0.8105,
         "threshold_th5_retention_ratio": 0.8,
         "bridge_classification": "STABLE_BRIDGE",
-        "classification_rule_basis": "Top decile in 5 years; retained >= 75th percentile in 2026; threshold >= 5 retention present (4 yr(s))"
+        "classification_rule_basis": "Top decile in 5 years; retained >= 75th percentile in 2026; threshold >= 5 retention ratio 0.80 >= 0.50"
       },
       {
         "channel_id": "UCOaTgKPjI9cgXLoDW7XFDDw",
@@ -15955,12 +15989,21 @@
         "t6_deepened_share": 0.6805,
         "mean_comments_per_video": 42.44,
         "median_comments_per_video": 11.0,
+        "high_comment_volume_videos": 16,
+        "high_comment_volume_rate": 0.1135,
         "cap_100_hit_videos": 16,
         "cap_100_exposure_rate": 0.1135,
+        "partial_capture_videos": 20,
+        "partial_capture_rate": 0.1418,
+        "t6_deepened_resolved_videos": 20,
+        "t6_deepened_resolved_rate": 0.1418,
+        "unresolved_cap_exposure_videos": 0,
+        "unresolved_cap_exposure_rate": 0.0,
         "catalog_channels_active": 36,
         "channels_with_evidence": 29,
-        "channel_coverage_rate": 0.1503,
+        "channel_coverage_rate": 0.8056,
         "catalog_channel_coverage_rate": 0.8056,
+        "cohort_population_coverage_rate": 0.1503,
         "source_provenance_entropy": 0.6901,
         "evidence_support_tier": "MODERATE",
         "evidence_tier_rationale": "Moderate catalog channel coverage (>=60%) and substantial sample (>=5k)"
@@ -15980,12 +16023,21 @@
         "t6_deepened_share": 0.6253,
         "mean_comments_per_video": 28.9,
         "median_comments_per_video": 5.0,
+        "high_comment_volume_videos": 41,
+        "high_comment_volume_rate": 0.0809,
         "cap_100_hit_videos": 41,
         "cap_100_exposure_rate": 0.0809,
+        "partial_capture_videos": 60,
+        "partial_capture_rate": 0.1183,
+        "t6_deepened_resolved_videos": 60,
+        "t6_deepened_resolved_rate": 0.1183,
+        "unresolved_cap_exposure_videos": 0,
+        "unresolved_cap_exposure_rate": 0.0,
         "catalog_channels_active": 73,
         "channels_with_evidence": 72,
-        "channel_coverage_rate": 0.3731,
+        "channel_coverage_rate": 0.9863,
         "catalog_channel_coverage_rate": 0.9863,
+        "cohort_population_coverage_rate": 0.3731,
         "source_provenance_entropy": 0.8596,
         "evidence_support_tier": "HIGH",
         "evidence_tier_rationale": "Comprehensive catalog channel coverage (>=80%) and robust interaction sample (>=10k)"
@@ -16005,12 +16057,21 @@
         "t6_deepened_share": 0.5674,
         "mean_comments_per_video": 21.07,
         "median_comments_per_video": 3.0,
+        "high_comment_volume_videos": 22,
+        "high_comment_volume_rate": 0.0314,
         "cap_100_hit_videos": 22,
         "cap_100_exposure_rate": 0.0314,
+        "partial_capture_videos": 74,
+        "partial_capture_rate": 0.1056,
+        "t6_deepened_resolved_videos": 74,
+        "t6_deepened_resolved_rate": 0.1056,
+        "unresolved_cap_exposure_videos": 0,
+        "unresolved_cap_exposure_rate": 0.0,
         "catalog_channels_active": 101,
         "channels_with_evidence": 101,
-        "channel_coverage_rate": 0.5233,
+        "channel_coverage_rate": 1.0,
         "catalog_channel_coverage_rate": 1.0,
+        "cohort_population_coverage_rate": 0.5233,
         "source_provenance_entropy": 0.7945,
         "evidence_support_tier": "HIGH",
         "evidence_tier_rationale": "Comprehensive catalog channel coverage (>=80%) and robust interaction sample (>=10k)"
@@ -16030,12 +16091,21 @@
         "t6_deepened_share": 0.6445,
         "mean_comments_per_video": 23.63,
         "median_comments_per_video": 3.0,
+        "high_comment_volume_videos": 31,
+        "high_comment_volume_rate": 0.0315,
         "cap_100_hit_videos": 31,
         "cap_100_exposure_rate": 0.0315,
+        "partial_capture_videos": 99,
+        "partial_capture_rate": 0.1007,
+        "t6_deepened_resolved_videos": 99,
+        "t6_deepened_resolved_rate": 0.1007,
+        "unresolved_cap_exposure_videos": 0,
+        "unresolved_cap_exposure_rate": 0.0,
         "catalog_channels_active": 137,
         "channels_with_evidence": 141,
-        "channel_coverage_rate": 0.7306,
+        "channel_coverage_rate": 1.0,
         "catalog_channel_coverage_rate": 1.0,
+        "cohort_population_coverage_rate": 0.7306,
         "source_provenance_entropy": 0.7728,
         "evidence_support_tier": "HIGH",
         "evidence_tier_rationale": "Comprehensive catalog channel coverage (>=80%) and robust interaction sample (>=10k)"
@@ -16055,12 +16125,21 @@
         "t6_deepened_share": 0.4789,
         "mean_comments_per_video": 13.87,
         "median_comments_per_video": 3.0,
+        "high_comment_volume_videos": 37,
+        "high_comment_volume_rate": 0.0299,
         "cap_100_hit_videos": 37,
         "cap_100_exposure_rate": 0.0299,
+        "partial_capture_videos": 128,
+        "partial_capture_rate": 0.1035,
+        "t6_deepened_resolved_videos": 128,
+        "t6_deepened_resolved_rate": 0.1035,
+        "unresolved_cap_exposure_videos": 0,
+        "unresolved_cap_exposure_rate": 0.0,
         "catalog_channels_active": 160,
         "channels_with_evidence": 166,
-        "channel_coverage_rate": 0.8601,
+        "channel_coverage_rate": 1.0,
         "catalog_channel_coverage_rate": 1.0,
+        "cohort_population_coverage_rate": 0.8601,
         "source_provenance_entropy": 0.7974,
         "evidence_support_tier": "HIGH",
         "evidence_tier_rationale": "Comprehensive catalog channel coverage (>=80%) and robust interaction sample (>=10k)"
@@ -16080,12 +16159,21 @@
         "t6_deepened_share": 0.5714,
         "mean_comments_per_video": 15.97,
         "median_comments_per_video": 3.0,
+        "high_comment_volume_videos": 51,
+        "high_comment_volume_rate": 0.0373,
         "cap_100_hit_videos": 51,
         "cap_100_exposure_rate": 0.0373,
+        "partial_capture_videos": 152,
+        "partial_capture_rate": 0.1113,
+        "t6_deepened_resolved_videos": 152,
+        "t6_deepened_resolved_rate": 0.1113,
+        "unresolved_cap_exposure_videos": 0,
+        "unresolved_cap_exposure_rate": 0.0,
         "catalog_channels_active": 165,
         "channels_with_evidence": 173,
-        "channel_coverage_rate": 0.8964,
+        "channel_coverage_rate": 1.0,
         "catalog_channel_coverage_rate": 1.0,
+        "cohort_population_coverage_rate": 0.8964,
         "source_provenance_entropy": 0.8284,
         "evidence_support_tier": "HIGH",
         "evidence_tier_rationale": "Comprehensive catalog channel coverage (>=80%) and robust interaction sample (>=10k)"
@@ -16105,12 +16193,21 @@
         "t6_deepened_share": 0.4193,
         "mean_comments_per_video": 14.03,
         "median_comments_per_video": 3.0,
+        "high_comment_volume_videos": 35,
+        "high_comment_volume_rate": 0.0312,
         "cap_100_hit_videos": 35,
         "cap_100_exposure_rate": 0.0312,
+        "partial_capture_videos": 142,
+        "partial_capture_rate": 0.1268,
+        "t6_deepened_resolved_videos": 142,
+        "t6_deepened_resolved_rate": 0.1268,
+        "unresolved_cap_exposure_videos": 0,
+        "unresolved_cap_exposure_rate": 0.0,
         "catalog_channels_active": 147,
         "channels_with_evidence": 176,
-        "channel_coverage_rate": 0.9119,
+        "channel_coverage_rate": 1.0,
         "catalog_channel_coverage_rate": 1.0,
+        "cohort_population_coverage_rate": 0.9119,
         "source_provenance_entropy": 1.0382,
         "evidence_support_tier": "HIGH",
         "evidence_tier_rationale": "Comprehensive catalog channel coverage (>=80%) and robust interaction sample (>=10k)"
@@ -16126,8 +16223,8 @@
       {
         "year": 2020,
         "perturbation_scenario": "BASELINE_UNIFIED_TH1",
-        "active_channels": 21,
-        "edges": 72,
+        "active_channels": 21.0,
+        "edges": 72.0,
         "density": 0.3429,
         "average_degree": 6.86,
         "giant_component_share": 1.0,
@@ -16136,8 +16233,8 @@
       {
         "year": 2020,
         "perturbation_scenario": "COMMENT_ONLY_TH1",
-        "active_channels": 21,
-        "edges": 72,
+        "active_channels": 21.0,
+        "edges": 72.0,
         "density": 0.3429,
         "average_degree": 6.86,
         "giant_component_share": 1.0,
@@ -16146,8 +16243,8 @@
       {
         "year": 2020,
         "perturbation_scenario": "LOW_COVERAGE_EXCLUDED",
-        "active_channels": 18,
-        "edges": 55,
+        "active_channels": 18.0,
+        "edges": 55.0,
         "density": 0.3595,
         "average_degree": 6.11,
         "giant_component_share": 1.0,
@@ -16156,8 +16253,8 @@
       {
         "year": 2020,
         "perturbation_scenario": "THRESHOLD_TH3",
-        "active_channels": 16,
-        "edges": 31,
+        "active_channels": 16.0,
+        "edges": 31.0,
         "density": 0.2583,
         "average_degree": 3.88,
         "giant_component_share": 1.0,
@@ -16166,18 +16263,38 @@
       {
         "year": 2020,
         "perturbation_scenario": "THRESHOLD_TH5",
-        "active_channels": 11,
-        "edges": 17,
+        "active_channels": 11.0,
+        "edges": 17.0,
         "density": 0.3091,
         "average_degree": 3.09,
         "giant_component_share": 1.0,
         "modularity": 0.1488
       },
       {
+        "year": 2020,
+        "perturbation_scenario": "DROPOUT_10PCT_MEAN",
+        "active_channels": 19.0,
+        "edges": 59.0,
+        "density": 0.345,
+        "average_degree": 6.21,
+        "giant_component_share": 1.0,
+        "modularity": 0.1817
+      },
+      {
+        "year": 2020,
+        "perturbation_scenario": "DROPOUT_10PCT_SD",
+        "active_channels": 0.0,
+        "edges": 5.8,
+        "density": 0.0341,
+        "average_degree": 0.61,
+        "giant_component_share": 0.0,
+        "modularity": 0.0423
+      },
+      {
         "year": 2021,
         "perturbation_scenario": "BASELINE_UNIFIED_TH1",
-        "active_channels": 65,
-        "edges": 625,
+        "active_channels": 65.0,
+        "edges": 625.0,
         "density": 0.3005,
         "average_degree": 19.23,
         "giant_component_share": 1.0,
@@ -16186,8 +16303,8 @@
       {
         "year": 2021,
         "perturbation_scenario": "COMMENT_ONLY_TH1",
-        "active_channels": 65,
-        "edges": 625,
+        "active_channels": 65.0,
+        "edges": 625.0,
         "density": 0.3005,
         "average_degree": 19.23,
         "giant_component_share": 1.0,
@@ -16196,8 +16313,8 @@
       {
         "year": 2021,
         "perturbation_scenario": "LOW_COVERAGE_EXCLUDED",
-        "active_channels": 56,
-        "edges": 584,
+        "active_channels": 56.0,
+        "edges": 584.0,
         "density": 0.3792,
         "average_degree": 20.86,
         "giant_component_share": 1.0,
@@ -16206,8 +16323,8 @@
       {
         "year": 2021,
         "perturbation_scenario": "THRESHOLD_TH3",
-        "active_channels": 44,
-        "edges": 247,
+        "active_channels": 44.0,
+        "edges": 247.0,
         "density": 0.2611,
         "average_degree": 11.23,
         "giant_component_share": 1.0,
@@ -16216,18 +16333,38 @@
       {
         "year": 2021,
         "perturbation_scenario": "THRESHOLD_TH5",
-        "active_channels": 34,
-        "edges": 159,
+        "active_channels": 34.0,
+        "edges": 159.0,
         "density": 0.2834,
         "average_degree": 9.35,
         "giant_component_share": 1.0,
         "modularity": 0.1362
       },
       {
+        "year": 2021,
+        "perturbation_scenario": "DROPOUT_10PCT_MEAN",
+        "active_channels": 58.6,
+        "edges": 525.0,
+        "density": 0.3106,
+        "average_degree": 17.9,
+        "giant_component_share": 1.0,
+        "modularity": 0.1271
+      },
+      {
+        "year": 2021,
+        "perturbation_scenario": "DROPOUT_10PCT_SD",
+        "active_channels": 0.49,
+        "edges": 53.7,
+        "density": 0.0269,
+        "average_degree": 1.69,
+        "giant_component_share": 0.0,
+        "modularity": 0.0072
+      },
+      {
         "year": 2022,
         "perturbation_scenario": "BASELINE_UNIFIED_TH1",
-        "active_channels": 92,
-        "edges": 965,
+        "active_channels": 92.0,
+        "edges": 965.0,
         "density": 0.2305,
         "average_degree": 20.98,
         "giant_component_share": 1.0,
@@ -16236,8 +16373,8 @@
       {
         "year": 2022,
         "perturbation_scenario": "COMMENT_ONLY_TH1",
-        "active_channels": 92,
-        "edges": 965,
+        "active_channels": 92.0,
+        "edges": 965.0,
         "density": 0.2305,
         "average_degree": 20.98,
         "giant_component_share": 1.0,
@@ -16246,8 +16383,8 @@
       {
         "year": 2022,
         "perturbation_scenario": "LOW_COVERAGE_EXCLUDED",
-        "active_channels": 77,
-        "edges": 837,
+        "active_channels": 77.0,
+        "edges": 837.0,
         "density": 0.2861,
         "average_degree": 21.74,
         "giant_component_share": 1.0,
@@ -16256,8 +16393,8 @@
       {
         "year": 2022,
         "perturbation_scenario": "THRESHOLD_TH3",
-        "active_channels": 57,
-        "edges": 264,
+        "active_channels": 57.0,
+        "edges": 264.0,
         "density": 0.1654,
         "average_degree": 9.26,
         "giant_component_share": 1.0,
@@ -16266,18 +16403,38 @@
       {
         "year": 2022,
         "perturbation_scenario": "THRESHOLD_TH5",
-        "active_channels": 42,
-        "edges": 138,
+        "active_channels": 42.0,
+        "edges": 138.0,
         "density": 0.1603,
         "average_degree": 6.57,
         "giant_component_share": 0.9524,
         "modularity": 0.2547
       },
       {
+        "year": 2022,
+        "perturbation_scenario": "DROPOUT_10PCT_MEAN",
+        "active_channels": 82.6,
+        "edges": 790.0,
+        "density": 0.2345,
+        "average_degree": 19.14,
+        "giant_component_share": 1.0,
+        "modularity": 0.1995
+      },
+      {
+        "year": 2022,
+        "perturbation_scenario": "DROPOUT_10PCT_SD",
+        "active_channels": 0.49,
+        "edges": 24.3,
+        "density": 0.0058,
+        "average_degree": 0.52,
+        "giant_component_share": 0.0,
+        "modularity": 0.0115
+      },
+      {
         "year": 2023,
         "perturbation_scenario": "BASELINE_UNIFIED_TH1",
-        "active_channels": 129,
-        "edges": 1503,
+        "active_channels": 129.0,
+        "edges": 1503.0,
         "density": 0.182,
         "average_degree": 23.3,
         "giant_component_share": 1.0,
@@ -16286,8 +16443,8 @@
       {
         "year": 2023,
         "perturbation_scenario": "COMMENT_ONLY_TH1",
-        "active_channels": 129,
-        "edges": 1503,
+        "active_channels": 129.0,
+        "edges": 1503.0,
         "density": 0.182,
         "average_degree": 23.3,
         "giant_component_share": 1.0,
@@ -16296,8 +16453,8 @@
       {
         "year": 2023,
         "perturbation_scenario": "LOW_COVERAGE_EXCLUDED",
-        "active_channels": 112,
-        "edges": 1322,
+        "active_channels": 112.0,
+        "edges": 1322.0,
         "density": 0.2127,
         "average_degree": 23.61,
         "giant_component_share": 1.0,
@@ -16306,8 +16463,8 @@
       {
         "year": 2023,
         "perturbation_scenario": "THRESHOLD_TH3",
-        "active_channels": 77,
-        "edges": 442,
+        "active_channels": 77.0,
+        "edges": 442.0,
         "density": 0.1511,
         "average_degree": 11.48,
         "giant_component_share": 1.0,
@@ -16316,18 +16473,38 @@
       {
         "year": 2023,
         "perturbation_scenario": "THRESHOLD_TH5",
-        "active_channels": 64,
-        "edges": 224,
+        "active_channels": 64.0,
+        "edges": 224.0,
         "density": 0.1111,
         "average_degree": 7.0,
         "giant_component_share": 0.9688,
         "modularity": 0.3953
       },
       {
+        "year": 2023,
+        "perturbation_scenario": "DROPOUT_10PCT_MEAN",
+        "active_channels": 115.4,
+        "edges": 1226.0,
+        "density": 0.1857,
+        "average_degree": 21.25,
+        "giant_component_share": 1.0,
+        "modularity": 0.3127
+      },
+      {
+        "year": 2023,
+        "perturbation_scenario": "DROPOUT_10PCT_SD",
+        "active_channels": 0.8,
+        "edges": 73.1,
+        "density": 0.0087,
+        "average_degree": 1.13,
+        "giant_component_share": 0.0,
+        "modularity": 0.0146
+      },
+      {
         "year": 2024,
         "perturbation_scenario": "BASELINE_UNIFIED_TH1",
-        "active_channels": 157,
-        "edges": 2547,
+        "active_channels": 157.0,
+        "edges": 2547.0,
         "density": 0.208,
         "average_degree": 32.45,
         "giant_component_share": 1.0,
@@ -16336,8 +16513,8 @@
       {
         "year": 2024,
         "perturbation_scenario": "COMMENT_ONLY_TH1",
-        "active_channels": 157,
-        "edges": 2547,
+        "active_channels": 157.0,
+        "edges": 2547.0,
         "density": 0.208,
         "average_degree": 32.45,
         "giant_component_share": 1.0,
@@ -16346,8 +16523,8 @@
       {
         "year": 2024,
         "perturbation_scenario": "LOW_COVERAGE_EXCLUDED",
-        "active_channels": 126,
-        "edges": 1916,
+        "active_channels": 126.0,
+        "edges": 1916.0,
         "density": 0.2433,
         "average_degree": 30.41,
         "giant_component_share": 1.0,
@@ -16356,8 +16533,8 @@
       {
         "year": 2024,
         "perturbation_scenario": "THRESHOLD_TH3",
-        "active_channels": 106,
-        "edges": 388,
+        "active_channels": 106.0,
+        "edges": 388.0,
         "density": 0.0697,
         "average_degree": 7.32,
         "giant_component_share": 0.9528,
@@ -16366,18 +16543,38 @@
       {
         "year": 2024,
         "perturbation_scenario": "THRESHOLD_TH5",
-        "active_channels": 69,
-        "edges": 137,
+        "active_channels": 69.0,
+        "edges": 137.0,
         "density": 0.0584,
         "average_degree": 3.97,
         "giant_component_share": 0.913,
         "modularity": 0.4885
       },
       {
+        "year": 2024,
+        "perturbation_scenario": "DROPOUT_10PCT_MEAN",
+        "active_channels": 140.6,
+        "edges": 1979.0,
+        "density": 0.2016,
+        "average_degree": 28.15,
+        "giant_component_share": 1.0,
+        "modularity": 0.2951
+      },
+      {
+        "year": 2024,
+        "perturbation_scenario": "DROPOUT_10PCT_SD",
+        "active_channels": 0.8,
+        "edges": 93.0,
+        "density": 0.0095,
+        "average_degree": 1.32,
+        "giant_component_share": 0.0,
+        "modularity": 0.0241
+      },
+      {
         "year": 2025,
         "perturbation_scenario": "BASELINE_UNIFIED_TH1",
-        "active_channels": 166,
-        "edges": 3168,
+        "active_channels": 166.0,
+        "edges": 3168.0,
         "density": 0.2313,
         "average_degree": 38.17,
         "giant_component_share": 1.0,
@@ -16386,8 +16583,8 @@
       {
         "year": 2025,
         "perturbation_scenario": "COMMENT_ONLY_TH1",
-        "active_channels": 166,
-        "edges": 3168,
+        "active_channels": 166.0,
+        "edges": 3168.0,
         "density": 0.2313,
         "average_degree": 38.17,
         "giant_component_share": 1.0,
@@ -16396,8 +16593,8 @@
       {
         "year": 2025,
         "perturbation_scenario": "LOW_COVERAGE_EXCLUDED",
-        "active_channels": 133,
-        "edges": 2208,
+        "active_channels": 133.0,
+        "edges": 2208.0,
         "density": 0.2515,
         "average_degree": 33.2,
         "giant_component_share": 1.0,
@@ -16406,8 +16603,8 @@
       {
         "year": 2025,
         "perturbation_scenario": "THRESHOLD_TH3",
-        "active_channels": 124,
-        "edges": 733,
+        "active_channels": 124.0,
+        "edges": 733.0,
         "density": 0.0961,
         "average_degree": 11.82,
         "giant_component_share": 1.0,
@@ -16416,18 +16613,38 @@
       {
         "year": 2025,
         "perturbation_scenario": "THRESHOLD_TH5",
-        "active_channels": 81,
-        "edges": 231,
+        "active_channels": 81.0,
+        "edges": 231.0,
         "density": 0.0713,
         "average_degree": 5.7,
         "giant_component_share": 0.9753,
         "modularity": 0.4998
       },
       {
+        "year": 2025,
+        "perturbation_scenario": "DROPOUT_10PCT_MEAN",
+        "active_channels": 148.0,
+        "edges": 2578.0,
+        "density": 0.2369,
+        "average_degree": 34.83,
+        "giant_component_share": 1.0,
+        "modularity": 0.3155
+      },
+      {
+        "year": 2025,
+        "perturbation_scenario": "DROPOUT_10PCT_SD",
+        "active_channels": 0.63,
+        "edges": 92.7,
+        "density": 0.0072,
+        "average_degree": 1.15,
+        "giant_component_share": 0.0,
+        "modularity": 0.0248
+      },
+      {
         "year": 2026,
         "perturbation_scenario": "BASELINE_UNIFIED_TH1",
-        "active_channels": 160,
-        "edges": 1997,
+        "active_channels": 160.0,
+        "edges": 1997.0,
         "density": 0.157,
         "average_degree": 24.96,
         "giant_component_share": 0.95,
@@ -16436,8 +16653,8 @@
       {
         "year": 2026,
         "perturbation_scenario": "COMMENT_ONLY_TH1",
-        "active_channels": 160,
-        "edges": 1986,
+        "active_channels": 160.0,
+        "edges": 1986.0,
         "density": 0.1561,
         "average_degree": 24.82,
         "giant_component_share": 0.95,
@@ -16446,8 +16663,8 @@
       {
         "year": 2026,
         "perturbation_scenario": "LOW_COVERAGE_EXCLUDED",
-        "active_channels": 136,
-        "edges": 1618,
+        "active_channels": 136.0,
+        "edges": 1618.0,
         "density": 0.1763,
         "average_degree": 23.79,
         "giant_component_share": 0.9412,
@@ -16456,8 +16673,8 @@
       {
         "year": 2026,
         "perturbation_scenario": "THRESHOLD_TH3",
-        "active_channels": 88,
-        "edges": 418,
+        "active_channels": 88.0,
+        "edges": 418.0,
         "density": 0.1092,
         "average_degree": 9.5,
         "giant_component_share": 0.8864,
@@ -16466,12 +16683,32 @@
       {
         "year": 2026,
         "perturbation_scenario": "THRESHOLD_TH5",
-        "active_channels": 61,
-        "edges": 181,
+        "active_channels": 61.0,
+        "edges": 181.0,
         "density": 0.0989,
         "average_degree": 5.93,
         "giant_component_share": 0.8361,
         "modularity": 0.5059
+      },
+      {
+        "year": 2026,
+        "perturbation_scenario": "DROPOUT_10PCT_MEAN",
+        "active_channels": 142.2,
+        "edges": 1592.0,
+        "density": 0.1585,
+        "average_degree": 22.38,
+        "giant_component_share": 0.9423,
+        "modularity": 0.4986
+      },
+      {
+        "year": 2026,
+        "perturbation_scenario": "DROPOUT_10PCT_SD",
+        "active_channels": 1.17,
+        "edges": 88.5,
+        "density": 0.007,
+        "average_degree": 1.11,
+        "giant_component_share": 0.0131,
+        "modularity": 0.0364
       }
     ]
   },

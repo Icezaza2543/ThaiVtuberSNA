@@ -278,10 +278,20 @@ def main():
         "meta": {
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "phases_covered": "T8–T16",
-            "privacy_level": "AGGREGATED_MACRO_ONLY",
-            "note": "Zero viewer hashes or PII. All data is macro-level.",
+            "privacy_level": "NO_VIEWER_LEVEL_DATA",
+            "data_classification": {
+                "public_channel_creator_metadata": "Exposed (channel names, IDs, agency affiliations as public creator data)",
+                "aggregate_audience_metrics": "Exposed (pairwise shared audience counts, community sizes, graph metrics)",
+                "viewer_level_rows": "ZERO (strictly excluded; no raw IDs, no viewer hashes, no individual interaction records)"
+            },
+            "note": "NO_VIEWER_LEVEL_DATA: Public creator metadata and aggregate audience metrics only. Zero viewer-level records or hashes.",
             "years": list(range(2020, 2027)),
             "partial_year": 2026,
+            "caveats": {
+                "partial_window_2026_ytd": "2026 data reflects partial year-to-date (2026-01-01 to 2026-09-08) and is descriptive only (PARTIAL_WINDOW_DESCRIPTIVE_ONLY).",
+                "evidence_quality": "Collection follows tiered empirical sampling (T6 deep exhaustive capture + T5 stratified backfill). Historical agency metrics represent selection-time metadata (agency_at_selection).",
+                "non_causal_disclaimer": "Network structural metrics and bridge dynamics reflect observed audience co-attendance, not direct social causality or vtuber coordination."
+            }
         },
         "ecosystem": build_ecosystem_section(),
         "lineage": build_lineage_section(),
