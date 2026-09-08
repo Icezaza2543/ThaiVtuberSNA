@@ -414,8 +414,54 @@ VERIFIED_CREATOR_INTEL = {
             "source_reference": "video_catalog.csv:video_id=SWNcXyJBzDY",
             "notes": "Verified graduation stream on 2025-12-20 via catalog video SWNcXyJBzDY."
         }
+    ],
+    # 22. Qualia Qu (Independent / Former Vtuber)
+    "UCXtQTtPJedfjqEPysorbsMg": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2020-06-29",
+            "event_year": 2020,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Qualia_Qu",
+            "notes": "Debuted on 2020-06-29 as Thai/Japanese bilingual independent VTuber."
+        },
+        {
+            "event_type": "GRADUATION",
+            "event_date": "2022-03-31",
+            "event_year": 2022,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_ANNOUNCEMENT",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Qualia_Qu",
+            "notes": "Official retirement and graduation on 2022-03-31."
+        }
+    ],
+    # 23. Beariss Beam (Independent)
+    "UC0Ky1U__7T2Z5SOZCvNlJ-Q": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2021-08-15",
+            "event_year": 2021,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Beariss_Beam",
+            "notes": "Debuted as independent Thai VTuber illustrated by Jimo."
+        }
+    ],
+    # 24. Hey Solly (Independent)
+    "UCrYkQnbL_OiYyGuiZyvcO7g": [
+        {
+            "event_type": "DEBUT",
+            "event_date": "2021-08-26",
+            "event_year": 2021,
+            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Solly",
+            "notes": "Debuted on 2021-08-26 as independent Thai VTuber."
+        }
     ]
 }
+
 
 
 def build_creator_datasets():
