@@ -1,0 +1,10 @@
+{
+  "source_commit": "fe0ec307db69ec8a4fc41a4d20b4498a57cf1a5a",
+  "secret_key_present": false,
+  "credentials_present": false,
+  "private_viewer_files_present": false,
+  "command": "python -m pytest tests/ -q --tb=short",
+  "exit_code": 0,
+  "elapsed_seconds": 44.5,
+  "method": "Git HEAD archive extracted to a verified fresh temporary directory; no local environment/private caches copied."
+}

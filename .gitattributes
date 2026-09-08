@@ -1,4 +1,4 @@
-# These release artifacts were byte-sealed with CRLF. Preserve their exact bytes
-# in Git, checkouts and archives so their existing SHA-256 manifest stays valid.
+# These release artifacts have byte-sealed checksums. Disable automatic line-ending
+# conversion in checkouts and archives so their exact-byte manifest stays valid.
 data/temporal/research_integrity/t11_t19_final_integrity_report.md -text
 data/temporal/research_integrity/t11_t20_ecosystem_observatory_integrity_report.md -text

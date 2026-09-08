@@ -1,0 +1,6 @@
+{
+  "status": "API_VERIFIED",
+  "google_rendered_visual_inspection": "Unavailable: in-app browser requires Google sign-in; no credentials were entered and no private workbook was exported.",
+  "verified": "New tables have frozen bold gray headers. SYSTEM and DATA_DICTIONARY wrap text; selected column widths and row heights adjusted through the Sheets API. Readback confirmed wrapping. NETWORK_RESULT and VTUBERS were not restyled.",
+  "limitation": "Long hash and archive JSON cells may require horizontal scrolling or formula-bar inspection; full browser visual verification remains unavailable."
+}

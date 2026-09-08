@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "tabs": [
+    {
+      "tab": "NETWORK_RESULT",
+      "rows": 3665,
+      "columns": 7
+    },
+    {
+      "tab": "VTUBERS",
+      "rows": 1370,
+      "columns": 13
+    },
+    {
+      "tab": "SYSTEM",
+      "rows": 24,
+      "columns": 2
+    },
+    {
+      "tab": "ALL_COMMENTERS",
+      "rows": 38240,
+      "columns": 5
+    },
+    {
+      "tab": "VIEWER_INDEX",
+      "rows": 108480,
+      "columns": 10
+    },
+    {
+      "tab": "VIEWER_CHANNEL_PRESENCE",
+      "rows": 98170,
+      "columns": 6
+    },
+    {
+      "tab": "VIEWER_ACTIVITY_SUMMARY",
+      "rows": 79718,
+      "columns": 5
+    },
+    {
+      "tab": "PRIVATE_DATA_ARCHIVE",
+      "rows": 142185,
+      "columns": 4
+    },
+    {
+      "tab": "RECOVERY_METADATA",
+      "rows": 13,
+      "columns": 2
+    },
+    {
+      "tab": "MIGRATION_AUDIT",
+      "rows": 4494,
+      "columns": 4
+    },
+    {
+      "tab": "DATA_DICTIONARY",
+      "rows": 30,
+      "columns": 4
+    }
+  ],
+  "findings": [],
+  "public_output_files_compared_to_private_hashes": 10,
+  "policy": "LEVEL_B allowed in authorized private workbook; LEVEL_A forbidden",
+  "access_notice": "Anyone granted workbook access may potentially access private viewer tabs."
+}
