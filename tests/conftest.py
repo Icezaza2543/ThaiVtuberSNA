@@ -54,3 +54,29 @@ def synthetic_pipeline_data(monkeypatch):
         monkeypatch.setattr(observatory,'EXPECTED_HISTORICAL_BASELINE_HASH',observatory.compute_historical_baseline_hash(path))
         return root
     return seed
+
+
+@pytest.fixture
+def full_sandbox(tmp_path, synthetic_pipeline_data, monkeypatch):
+    import shutil
+    import pandas as pd
+    from scripts.analysis_dag import ROOT, run_dag, analysis_context, rebuild_canonical_snapshots
+    root = synthetic_pipeline_data(tmp_path / 'observatory')
+    for name in ('catalog','lifecycle'):
+        shutil.copytree(ROOT/'data/temporal'/name, root/'data/temporal'/name)
+    (root/'web').mkdir()
+    shutil.copy2(ROOT/'web/app.js',root/'web/app.js')
+    from core.hasher import PrivacyHasher
+    from scripts import observatory_controller as obs
+    hasher = PrivacyHasher(b'offline-temporal-integration-fixture-key')
+    records = [dict(viewer_hash=hasher.hash_viewer_id(f'synthetic-shared-{i}'),vtuber_channel_id=c,
+                    video_id=f'synthetic-{year}-{j}',source_type='comment',
+                    interaction_at=f'{year}-01-01T00:00:00Z',video_published_at=f'{year}-01-01T00:00:00Z')
+               for year in range(2020,2027) for i in range(15)
+               for j,c in enumerate(('UCpGtwNmbOtgmcKIY81MIX_w','UCGBkYTR4tMKS38TQHGWWLjg'))]
+    pd.DataFrame(records).to_parquet(root/'data/temporal/deep_observations/fixture.parquet',index=False)
+    with analysis_context(root):
+        rebuild_canonical_snapshots(root)
+    monkeypatch.setattr(obs, 'EXPECTED_HISTORICAL_BASELINE_HASH', obs.compute_historical_baseline_hash(root/'data/temporal/snapshots/network_snapshots.parquet'))
+    run_dag(root, rebuild_snapshots=False)
+    return root

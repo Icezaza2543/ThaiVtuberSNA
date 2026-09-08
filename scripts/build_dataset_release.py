@@ -32,6 +32,7 @@ except ImportError:
 import pytest
 
 BASE = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BASE))
 TEMPORAL = BASE / "data" / "temporal"
 RELEASE_DIR = TEMPORAL / "release"
 RELEASE_DIR.mkdir(parents=True, exist_ok=True)
@@ -82,7 +83,11 @@ def scan_directory(dir_path: Path) -> List[Dict[str, Any]]:
         return artifacts
 
     for path in sorted(dir_path.rglob("*")):
-        if path.is_file() and not path.name.startswith(".") and not path.name.endswith(".tmp"):
+        if path.is_file() and not any(part.startswith('.') for part in path.relative_to(dir_path).parts) and not path.name.endswith('.tmp'):
+            from core.data_security import inspect_blob, Classification
+            level, reason = inspect_blob(path.name, path.read_bytes())
+            if level != Classification.PUBLIC_RESEARCH_DATA.value or reason.startswith('UNREADABLE'):
+                raise ValueError(f'Non-public or unreadable release artifact: {path.name}')
             rel = path.relative_to(BASE)
             entry = {
                 "path": str(rel).replace("\\", "/"),
@@ -287,7 +292,7 @@ def build_environment_dependencies() -> Dict[str, Any]:
 
 def compute_deterministic_manifest_hash(sections: Dict[str, Any]) -> str:
     """Computes a deterministic content hash over artifact paths, sizes, and file checksums.
-    
+
     Volatile runtime timestamps are strictly excluded so that identical artifact contents
     consistently produce the exact same manifest content hash.
     """
@@ -315,10 +320,10 @@ def build_manifest(volatile_ts: Optional[str] = None) -> Dict[str, Any]:
         ("centrality", "T13: Bridge Dynamics & Centrality"),
         ("ecosystem", "T14: Ecosystem Structural Evolution"),
         ("quality", "T15: Evidence Quality & Bias"),
-        ("incremental", "T16: Incremental Pipeline State"),
-        ("research_integrity", "Integrity Reports"),
+
+
         ("snapshots", "Network Snapshots"),
-        ("state", "Pipeline State"),
+        ("report", "T19: Technical Report"),
     ]
 
     sections = {}
@@ -339,6 +344,12 @@ def build_manifest(volatile_ts: Optional[str] = None) -> Dict[str, Any]:
             total_bytes += sum(a["size_bytes"] for a in artifacts)
             print(f"  {label}: {len(artifacts)} files ({sum(a['size_bytes'] for a in artifacts) / 1024:.1f} KB)")
 
+    dashboard_artifacts = scan_directory(BASE / 'web/research')
+    if dashboard_artifacts:
+        sections['dashboard'] = dict(label='T17: Dashboard', artifacts=dashboard_artifacts,
+            file_count=len(dashboard_artifacts), total_bytes=sum(a['size_bytes'] for a in dashboard_artifacts))
+        total_files += len(dashboard_artifacts)
+        total_bytes += sections['dashboard']['total_bytes']
     deterministic_hash = compute_deterministic_manifest_hash(sections)
     gen_time = volatile_ts or datetime.now(timezone.utc).isoformat()
 
@@ -364,7 +375,7 @@ def build_manifest(volatile_ts: Optional[str] = None) -> Dict[str, Any]:
             "data_collection": (
                 "YouTube public comment and live chat interaction evidence collected "
                 "via YouTube Data API v3 with HMAC-SHA256 pseudonymization at ingestion boundary. "
-                "Zero raw viewer IDs or PII are stored."
+                "LEVEL B viewer records are stored only in the authorized private ThaiVtuber_SNA workbook; public exports contain LEVEL C aggregates."
             ),
             "network_construction": (
                 "Bipartite projection into co-commenter/co-chatter undirected graphs. "
@@ -377,7 +388,7 @@ def build_manifest(volatile_ts: Optional[str] = None) -> Dict[str, Any]:
             ),
             "comment_volume_characterization": (
                 "API commentThreads endpoint yields up to 100 comments per standard page. "
-                "Exhaustive pagination was implemented in Phase T6, resolving all historical cap exposures (0 unresolved). "
+                "T6 pagination metadata and unresolved exposure are measured in the current T15 artifacts. "
                 "Single-page pilot records are tracked explicitly under collection truncation metadata."
             ),
             "community_detection": "Louvain community modularity optimization (NetworkX) at resolution=1.0.",

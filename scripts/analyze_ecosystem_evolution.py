@@ -260,7 +260,7 @@ def run_ecosystem_evolution_analysis() -> None:
                 "descriptive_note": f"{note_prefix}Agency-at-selection/independent bridging edge share shifted by {mix_delta:+.1%} ({r_prev['agency_at_selection_independent_mixing']:.1%} to {r_curr['agency_at_selection_independent_mixing']:.1%})."
             })
 
-    df_breaks = pd.DataFrame(breaks_records)
+    df_breaks = pd.DataFrame(breaks_records, columns=['transition','break_scope','metric_dimension','from_value','to_value','absolute_delta','relative_change_pct','break_category','descriptive_note'])
 
     # Save to parquet
     df_metrics.to_parquet(OUTPUT_METRICS_PARQUET, index=False)

@@ -53,3 +53,8 @@ data/**/raw_comment*.json
 data/**/raw_comment*.csv
 *.sqlite
 *.db
+
+# Local transaction locks and synthetic generation before images
+.observatory.lock
+.observatory_pending.json
+.observatory_generations/

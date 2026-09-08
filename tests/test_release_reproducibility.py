@@ -26,6 +26,15 @@ from scripts.build_dataset_release import (
 )
 from scripts.validate_dataset_release import validate_release
 
+
+def test_self_consistency_is_not_input_reproducibility(tmp_path):
+    from scripts.validate_dataset_release import validation_level
+    assert validation_level(tmp_path) == 'SELF_CONSISTENT'
+    folder = tmp_path/'data/temporal/release'; folder.mkdir(parents=True)
+    (folder/'reproducibility_evidence.json').write_text(json.dumps({
+        'status':'REPRODUCIBLE_FROM_INPUTS','code_fingerprint':'stale','artifact_hashes':{},'differences':[]}))
+    assert validation_level(tmp_path) == 'SELF_CONSISTENT'
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 

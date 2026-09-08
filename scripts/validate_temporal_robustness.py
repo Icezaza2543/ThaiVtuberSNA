@@ -418,8 +418,8 @@ def run_robustness_sweep() -> Tuple[pd.DataFrame, pd.DataFrame]:
                 real_nmi = 0.0
                 real_ari = 0.0
 
-            mod_t6 = nx_comm.modularity(G_t6, comms_t6, weight="weight")
-            mod_t5 = nx_comm.modularity(G_t5, comms_t5, weight="weight")
+            mod_t6 = nx_comm.modularity(G_t6, comms_t6, weight="weight") if G_t6.number_of_edges() else 0.0
+            mod_t5 = nx_comm.modularity(G_t5, comms_t5, weight="weight") if G_t5.number_of_edges() else 0.0
             top5_t5 = get_top_bridges(G_t5, 5)
             top5_t6 = get_top_bridges(G_t6, 5)
             jacc_b = calc_jaccard(set(top5_t6), set(top5_t5))

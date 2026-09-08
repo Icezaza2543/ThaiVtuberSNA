@@ -17,6 +17,7 @@ from typing import Dict, Any, List
 import pandas as pd
 
 BASE = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BASE))
 RELEASE_DIR = BASE / "data" / "temporal" / "release"
 MANIFEST_JSON = RELEASE_DIR / "dataset_manifest.json"
 DATA_DICT_JSON = RELEASE_DIR / "data_dictionary.json"
@@ -28,6 +29,21 @@ def sha256_file(path: Path) -> str:
         for chunk in iter(lambda: f.read(65536), b""):
             h.update(chunk)
     return f"sha256_{h.hexdigest()}"
+
+
+def validation_level(base=None):
+    """Byte integrity alone never proves reproduction from canonical inputs."""
+    root = Path(base or BASE)
+    evidence_path = root / 'data/temporal/release/reproducibility_evidence.json'
+    if not evidence_path.exists():
+        return 'SELF_CONSISTENT'
+    from scripts.reproduce_temporal_dataset import code_fingerprint, semantic_hashes
+    evidence = json.loads(evidence_path.read_text(encoding='utf-8'))
+    if (evidence.get('status') == 'REPRODUCIBLE_FROM_INPUTS' and not evidence.get('differences')
+            and evidence.get('code_fingerprint') == code_fingerprint()
+            and evidence.get('artifact_hashes') == semantic_hashes(root)):
+        return 'REPRODUCIBLE_FROM_INPUTS'
+    return 'SELF_CONSISTENT'
 
 
 def validate_release() -> bool:
@@ -52,6 +68,9 @@ def validate_release() -> bool:
         for art in sections[sec_name].get("artifacts", []):
             rel_path = art["path"]
             abs_path = BASE / rel_path
+            if not abs_path.resolve().is_relative_to(BASE.resolve()):
+                errors.append(f'Artifact path escapes release root: {rel_path}')
+                continue
             checked_files += 1
 
             if not abs_path.exists():
@@ -81,7 +100,8 @@ def validate_release() -> bool:
         data_dict = json.loads(DATA_DICT_JSON.read_text(encoding="utf-8"))
         for fname, d_info in data_dict.items():
             # Find in artifacts
-            matching = [p for p in BASE.rglob(fname) if p.is_file() and not p.name.startswith(".")]
+            matching = [BASE / art['path'] for section in sections.values() for art in section.get('artifacts', [])
+                        if Path(art['path']).name == fname and (BASE / art['path']).is_file()]
             if matching:
                 target_file = matching[0]
                 try:
@@ -111,7 +131,7 @@ def validate_release() -> bool:
             print(f"  - {err}")
         return False
 
-    print("\n✓ ALL VALIDATION CHECKS PASSED SUCCESSFULLY.")
+    print('\nValidation level: ' + validation_level())
     return True
 
 

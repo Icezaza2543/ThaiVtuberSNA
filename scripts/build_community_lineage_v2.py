@@ -274,7 +274,7 @@ def build_community_lineage_v2() -> Tuple[pd.DataFrame, pd.DataFrame]:
             all_channel_ids.update(yearly_communities[yr][cid])
 
         # Dominant agency_at_selection
-        agency_counts = Counter(channel_agency.get(ch, "Independent / Other") for ch in all_channel_ids)
+        agency_counts = Counter(channel_agency.get(ch, "Independent / Other") for ch in sorted(all_channel_ids))
         dominant_agency = agency_counts.most_common(1)[0][0] if agency_counts else "Unknown"
         dominant_agency_pct = (agency_counts.most_common(1)[0][1] / len(all_channel_ids)) if all_channel_ids else 0.0
 
@@ -311,7 +311,7 @@ def build_community_lineage_v2() -> Tuple[pd.DataFrame, pd.DataFrame]:
                 churn_rates.append(churn)
 
         mean_churn = sum(churn_rates) / len(churn_rates) if churn_rates else 0.0
-        status = "ACTIVE" if last_observed_year == 2026 else "DISAPPEARED"
+        status = "ACTIVE" if last_observed_year == max(years) else "DISAPPEARED"
 
         lifecycle_records.append({
             "lineage_id": lid,

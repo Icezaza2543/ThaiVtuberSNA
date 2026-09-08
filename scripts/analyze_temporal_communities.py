@@ -408,17 +408,17 @@ def run_temporal_community_analysis():
 
             # Calculate agency composition
             agency_counts: Dict[str, int] = {}
-            for cid in comm_nodes:
+            for cid in sorted(comm_nodes):
                 ag = channel_meta.get(cid, {}).get("agency_at_selection", "Independent")
                 agency_counts[ag] = agency_counts.get(ag, 0) + 1
-            sorted_agencies = dict(sorted(agency_counts.items(), key=lambda x: -x[1]))
+            sorted_agencies = dict(sorted(agency_counts.items(), key=lambda x: (-x[1], x[0])))
 
             # Top anchor channels by degree within community
             subgraph = G.subgraph(comm_nodes)
             deg = dict(subgraph.degree(weight="weight"))
             anchors = [
                 channel_meta.get(c, {}).get("name", c)
-                for c in sorted(deg.keys(), key=lambda c: -deg[c])
+                for c in sorted(deg.keys(), key=lambda c: (-deg[c], c))
             ]
 
             comm_summaries.append({
@@ -451,7 +451,7 @@ def run_temporal_community_analysis():
             for ag, cnt in c["top_agencies"].items():
                 all_yr_ag[ag] = all_yr_ag.get(ag, 0) + cnt
         dom_ag = (
-            sorted(all_yr_ag.items(), key=lambda x: -x[1])[0][0]
+            sorted(all_yr_ag.items(), key=lambda x: (-x[1], x[0]))[0][0]
             if all_yr_ag
             else "Independent"
         )

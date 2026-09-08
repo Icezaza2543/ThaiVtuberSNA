@@ -33,6 +33,8 @@ logger = logging.getLogger("ObservatoryController")
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
 
+from core.file_transaction import exclusive_lock
+from core.observatory_generation import ObservatoryGeneration
 from core.hasher import load_persistent_secret_key, compute_key_fingerprint
 from scripts.incremental_temporal_pipeline import IncrementalTemporalPipeline, HMACKeyContinuityError
 
@@ -84,7 +86,9 @@ class ObservatoryController:
         self.obs_state_file = self.observatory_dir / "observatory_state.json"
         self.stale_threshold_days = stale_threshold_days
 
-        self._ensure_initialized()
+        with exclusive_lock(self.base_dir / '.observatory.lock'):
+            ObservatoryGeneration.recover(self.base_dir)
+            self._ensure_initialized()
 
     def _ensure_initialized(self):
         """Initializes ledger and observatory state files if they do not exist."""
@@ -118,9 +122,7 @@ class ObservatoryController:
         tmp_path = path.with_suffix(".tmp")
         with open(tmp_path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
-        if path.exists():
-            path.unlink()
-        tmp_path.rename(path)
+        tmp_path.replace(path)
 
     def _load_ledger(self) -> Dict[str, Any]:
         with open(self.ledger_file, "r", encoding="utf-8") as f:
@@ -234,7 +236,9 @@ class ObservatoryController:
         release_val_msg = "OK"
         try:
             from scripts.validate_dataset_release import validate_release
-            release_val_pass = validate_release()
+            from scripts.analysis_dag import analysis_context
+            with analysis_context(self.base_dir):
+                release_val_pass = validate_release()
         except Exception as e:
             release_val_pass = False
             release_val_msg = str(e)
@@ -249,7 +253,13 @@ class ObservatoryController:
         privacy_pass = True
         try:
             from scripts.privacy_audit import run_full_privacy_audit
-            privacy_pass = run_full_privacy_audit()
+            if self.base_dir.resolve() == REPO_ROOT.resolve():
+                privacy_pass = run_full_privacy_audit()
+            else:
+                from scripts.analysis_dag import public_artifact_paths
+                from core.data_security import inspect_blob, Classification
+                privacy_pass = all(inspect_blob(p.name, p.read_bytes())[0] == Classification.PUBLIC_RESEARCH_DATA.value
+                                   for p in public_artifact_paths(self.base_dir))
         except Exception as e:
             logger.error(f"Privacy audit error: {e}")
             privacy_pass = False
@@ -327,128 +337,58 @@ class ObservatoryController:
         logger.info(f"Dry-run completed successfully. Simulated {res.records_inserted} insertions.")
         return run_entry
 
-    def update(
-        self,
-        batch_id: str,
-        events: List[Dict[str, Any]],
-        skip_downstream: bool = False,
-        auto_publish: bool = True
-    ) -> Dict[str, Any]:
-        """Ingests new events, rebuilds affected layers, enforces quality gates, and publishes."""
+    def update(self, batch_id, events, skip_downstream=False, auto_publish=True):
         from core.storage_boundary import require_t20_sandbox
         require_t20_sandbox(self.base_dir)
-        run_id = f"run_{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')}_{batch_id}"
-        logger.info(f"Starting observatory update '{run_id}' with {len(events)} events...")
-
-        state = self._load_state()
-        version_before = state.get("active_dataset_version", "v1.0.0")
-
-        # 1. Recovery snapshot: backup snapshots parquet and state if exists
-        recovery_meta = {
-            "version_before": version_before,
-            "snapshots_hash_before": compute_historical_baseline_hash(self.snapshots_file),
-            "batch_id": batch_id
-        }
-
-        # Backup snapshot file in memory / temporary location for rollback safety
-        backup_snaps = None
-        if self.snapshots_file.exists():
-            backup_snaps = self.snapshots_file.with_suffix(".parquet.bak")
-            shutil.copy2(self.snapshots_file, backup_snaps)
-
-        try:
-            # 2. Ingest batch via IncrementalTemporalPipeline
-            pipeline = IncrementalTemporalPipeline(base_dir=self.base_dir, dry_run=False)
-            res = pipeline.ingest_batch(batch_id, events)
-
-            if res.status != "COMMITTED":
-                raise RuntimeError(f"Pipeline ingestion failed with status: {res.status}")
-
-            affected_years = res.affected_years
-            logger.info(f"Ingested {res.records_inserted} records. Affected years: {affected_years}")
-
-            # 3. Rebuild downstream analysis, dashboard, and release outputs if needed
-            if not skip_downstream and affected_years:
-                self._rebuild_downstream_outputs(affected_years)
-
-            # 4. Automated Quality Gates Verification
-            gate_res = self.validate_quality_gates()
-            if not gate_res["all_passed"]:
-                logger.error("Quality gate verification FAILED. Aborting and initiating fail-safe rollback...")
-                # Restore snapshot backup
-                if backup_snaps and backup_snaps.exists():
-                    shutil.copy2(backup_snaps, self.snapshots_file)
-                    backup_snaps.unlink()
-                # Remove ingested batch file
-                batch_file = self.temporal_dir / "incremental" / f"batch_{batch_id}.parquet"
-                if batch_file.exists():
-                    batch_file.unlink()
-
-                failed_entry = {
-                    "run_id": run_id,
-                    "timestamp": datetime.now(timezone.utc).isoformat(),
-                    "command": "update",
-                    "status": "FAILED_QUALITY_GATE_ROLLED_BACK",
-                    "batch_id": batch_id,
-                    "records_received": len(events),
-                    "quality_gates": gate_res,
-                    "recovery_meta": recovery_meta
-                }
-                ledger = self._load_ledger()
-                ledger["runs"].append(failed_entry)
+        if skip_downstream and auto_publish:
+            raise ValueError('Publishing requires the complete downstream dependency graph')
+        with exclusive_lock(self.base_dir / '.observatory.lock'):
+            ObservatoryGeneration.recover(self.base_dir)
+            generation = ObservatoryGeneration(self.base_dir)
+            generation.prepare()
+            before = self._load_state()
+            run_id = 'run_' + generation.identifier
+            try:
+                pipeline = IncrementalTemporalPipeline(base_dir=self.base_dir)
+                result = pipeline.ingest_batch(batch_id, events)
+                if result.status == 'ALREADY_PROCESSED':
+                    generation.restore()
+                    return dict(status='ALREADY_PROCESSED', batch_id=batch_id)
+                if result.status != 'COMMITTED':
+                    raise RuntimeError('Pipeline ingestion failed: ' + result.status)
+                if not skip_downstream:
+                    self._rebuild_downstream_outputs(result.affected_years)
+                gates = self.validate_quality_gates()
+                if not gates['all_passed']:
+                    raise RuntimeError('Quality gate failure: ' + str(gates['gates']))
+                state = before.copy()
+                version = self._compute_next_version(before['active_dataset_version'], result.affected_years) if auto_publish else before['active_dataset_version']
+                state.update(active_dataset_version=version, last_success_run_id=run_id,
+                             last_success_timestamp=datetime.now(timezone.utc).isoformat(),
+                             total_runs=before.get('total_runs', 0) + 1,
+                             active_generation=generation.identifier)
+                times = [e.get('interaction_time') or e.get('interaction_at') for e in events]
+                times = [str(t) for t in times if t]
+                if times:
+                    state['last_data_interaction_time'] = max(times)
+                self._save_state(state)
+                entry = dict(run_id=run_id, command='update', status='SUCCESS', batch_id=batch_id,
+                             records_received=result.records_received, records_inserted=result.records_inserted,
+                             duplicates_suppressed=result.duplicates_suppressed, affected_years=result.affected_years,
+                             version_before=before['active_dataset_version'], version_after=version,
+                             generation=generation.identifier, quality_gates=gates)
+                ledger = self._load_ledger(); ledger['runs'].append(entry)
                 self._write_json_atomic(self.ledger_file, ledger)
-                raise RuntimeError(f"Quality gate failure: {gate_res['gates']}")
-
-            # Cleanup backup on success
-            if backup_snaps and backup_snaps.exists():
-                backup_snaps.unlink()
-
-            # 5. Version promotion
-            next_version = version_before
-            if auto_publish:
-                next_version = self._compute_next_version(version_before, affected_years)
-                state["active_dataset_version"] = next_version
-
-            # 6. Update observatory state
-            latest_interaction = None
-            if events:
-                latest_interaction = max(e.get("interaction_time", "") for e in events if e.get("interaction_time"))
-            if latest_interaction:
-                state["last_data_interaction_time"] = latest_interaction
-
-            state["last_success_run_id"] = run_id
-            state["last_success_timestamp"] = datetime.now(timezone.utc).isoformat()
-            state["total_runs"] = state.get("total_runs", 0) + 1
-            self._save_state(state)
-
-            # 7. Append success entry to run ledger
-            success_entry = {
-                "run_id": run_id,
-                "timestamp": datetime.now(timezone.utc).isoformat(),
-                "command": "update",
-                "status": "SUCCESS",
-                "batch_id": batch_id,
-                "records_received": res.records_received,
-                "records_inserted": res.records_inserted,
-                "duplicates_suppressed": res.duplicates_suppressed,
-                "affected_years": affected_years,
-                "version_before": version_before,
-                "version_after": next_version,
-                "quality_gates": gate_res,
-                "recovery_meta": recovery_meta
-            }
-            ledger = self._load_ledger()
-            ledger["runs"].append(success_entry)
-            self._write_json_atomic(self.ledger_file, ledger)
-
-            logger.info(f"Observatory update completed successfully! Promoted to version: {next_version}")
-            return success_entry
-
-        except Exception as e:
-            if backup_snaps and backup_snaps.exists():
-                shutil.copy2(backup_snaps, self.snapshots_file)
-                backup_snaps.unlink()
-            raise e
+                generation.commit()
+                return entry
+            except BaseException:
+                generation.restore()
+                ledger = self._load_ledger()
+                ledger['runs'] = [r for r in ledger['runs'] if r.get('run_id') != run_id]
+                ledger['runs'].append(dict(run_id=run_id, command='update', batch_id=batch_id,
+                                          status='FAILED_QUALITY_GATE_ROLLED_BACK'))
+                self._write_json_atomic(self.ledger_file, ledger)
+                raise
 
     def _compute_next_version(self, current_ver: str, affected_years: List[int]) -> str:
         """Determines semver progression: minor bump if new calendar year (>2026), else patch bump."""
@@ -465,27 +405,8 @@ class ObservatoryController:
         return f"v{major}.{minor}.{patch}"
 
     def _rebuild_downstream_outputs(self, affected_years: List[int]):
-        """Executes downstream regeneration scripts."""
-        import subprocess
-        scripts_to_run = [
-            ("Lineage v2", "scripts/build_community_lineage_v2.py"),
-            ("Centrality Evolution", "scripts/analyze_centrality_evolution.py"),
-            ("Ecosystem Evolution", "scripts/analyze_ecosystem_evolution.py"),
-            ("Evidence Quality", "scripts/analyze_evidence_quality.py"),
-            ("Dashboard Data", "scripts/build_research_dashboard_data.py"),
-            ("Dataset Release", "scripts/build_dataset_release.py"),
-            ("Technical Report", "scripts/build_technical_report.py"),
-        ]
-        for name, rel_script in scripts_to_run:
-            script_path = self.base_dir / rel_script
-            if not script_path.exists():
-                logger.warning(f"Script {rel_script} not found; skipping.")
-                continue
-            logger.info(f"Rebuilding downstream: {name}...")
-            res = subprocess.run([sys.executable, str(script_path)], cwd=str(self.base_dir), capture_output=True, text=True)
-            if res.returncode != 0:
-                logger.error(f"Downstream script {rel_script} failed:\n{res.stderr}")
-                raise RuntimeError(f"Downstream build error in {rel_script}: {res.stderr}")
+        from scripts.analysis_dag import run_dag
+        return run_dag(self.base_dir, rebuild_snapshots=False)
 
     def publish(self, target_version: Optional[str] = None) -> Dict[str, Any]:
         """Publishes the current dataset state under an explicit version pointer."""
@@ -519,50 +440,33 @@ class ObservatoryController:
         logger.info(f"Dataset published and promoted to version {new_version}")
         return entry
 
-    def rollback(self, run_id: Optional[str] = None) -> Dict[str, Any]:
-        """Rolls back the most recent update in the ledger."""
-        ledger = self._load_ledger()
-        if not ledger.get("runs"):
-            raise RuntimeError("No runs found in ledger to rollback.")
-
-        target_run = None
-        if run_id:
-            for r in reversed(ledger["runs"]):
-                if r["run_id"] == run_id:
-                    target_run = r
-                    break
-        else:
-            for r in reversed(ledger["runs"]):
-                if r.get("command") == "update" and r.get("status") == "SUCCESS":
-                    target_run = r
-                    break
-
-        if not target_run:
-            raise RuntimeError("No eligible update run found for rollback.")
-
-        batch_id = target_run.get("batch_id")
-        batch_file = self.temporal_dir / "incremental" / f"batch_{batch_id}.parquet"
-        if batch_file.exists():
-            batch_file.unlink()
-            logger.info(f"Removed batch file: {batch_file.name}")
-
-        state = self._load_state()
-        state["active_dataset_version"] = target_run.get("version_before", "v1.0.0")
-        self._save_state(state)
-
-        rollback_entry = {
-            "run_id": f"run_{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')}_rollback",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "command": "rollback",
-            "status": "ROLLED_BACK",
-            "reverted_run_id": target_run["run_id"],
-            "batch_id": batch_id,
-            "reverted_to_version": target_run.get("version_before")
-        }
-        ledger["runs"].append(rollback_entry)
-        self._write_json_atomic(self.ledger_file, ledger)
-        logger.info(f"Successfully rolled back batch {batch_id}.")
-        return rollback_entry
+    def rollback(self, run_id=None):
+        from core.storage_boundary import require_t20_sandbox
+        require_t20_sandbox(self.base_dir)
+        with exclusive_lock(self.base_dir / '.observatory.lock'):
+            ObservatoryGeneration.recover(self.base_dir)
+            state = self._load_state()
+            target = next((r for r in reversed(self._load_ledger()['runs'])
+                           if r.get('command') == 'update' and r.get('status') == 'SUCCESS'
+                           and r.get('generation') == state.get('active_generation')
+                           and (run_id is None or r['run_id'] == run_id)), None)
+            if target is None:
+                raise RuntimeError('Only the active successful generation can be rolled back')
+            # A rollback itself has a before image, so interruption recovers atomically.
+            undo_rollback = ObservatoryGeneration(self.base_dir)
+            undo_rollback.prepare()
+            try:
+                ObservatoryGeneration(self.base_dir, target['generation']).restore(clear_pending=False)
+                entry = dict(run_id='rollback_' + undo_rollback.identifier,command='rollback',
+                             status='ROLLED_BACK', reverted_run_id=target['run_id'],
+                             reverted_to_version=target['version_before'],batch_id=target['batch_id'])
+                ledger = self._load_ledger(); ledger['runs'].append(entry)
+                self._write_json_atomic(self.ledger_file, ledger)
+                undo_rollback.commit()
+                return entry
+            except BaseException:
+                undo_rollback.restore()
+                raise
 
 
 def main():

@@ -41,13 +41,9 @@ EVENT_IMPACT = TEMPORAL / "event_analysis" / "event_impact_metrics.parquet"
 LIFECYCLE_EVENTS = TEMPORAL / "lifecycle" / "lifecycle_events.parquet"
 
 
-def safe_read(path: Path) -> pd.DataFrame | None:
-    if path.exists():
-        try:
-            return pd.read_parquet(path)
-        except Exception:
-            return None
-    return None
+def safe_read(path: Path) -> pd.DataFrame:
+    """Required report inputs fail loudly on missing files or invalid schemas."""
+    return pd.read_parquet(path)
 
 
 def fmtnum(v, d=0):
@@ -149,12 +145,12 @@ def build_appendix() -> str:
         ])
         for _, r in ret_df.iterrows():
             lines.append(
-                f"| {int(r.get('cohort_year', 0))} | {int(r.get('observation_year', 0))} | "
-                f"+{int(r.get('elapsed_years', 0))} | {fmtnum(r.get('cohort_size', 0))} | "
-                f"{fmtnum(r.get('reobserved_viewers', 0))} | {fmtpct(r.get('continuation_rate', 0))} | "
-                f"{fmtnum(r.get('same_channel_reobserved_viewers', 0))} | "
-                f"{fmtnum(r.get('cross_channel_reobserved_viewers', 0))} | "
-                f"{fmtnum(r.get('cross_agency_reobserved_viewers', 0))} |"
+                f"| {int(r['cohort_year'])} | {int(r['observation_year'])} | "
+                f"+{int(r['elapsed_years'])} | {fmtnum(r['cohort_size'])} | "
+                f"{fmtnum(r['reobserved_viewers'])} | {fmtpct(r['continuation_rate'])} | "
+                f"{fmtnum(r['same_channel_reobserved_viewers'])} | "
+                f"{fmtnum(r['cross_channel_reobserved_viewers'])} | "
+                f"{fmtnum(r['cross_agency_reobserved_viewers'])} |"
             )
         lines.extend(["", "---", ""])
 
@@ -168,16 +164,16 @@ def build_appendix() -> str:
             "| :---: | :--- | :--- | :--- | ---: | :---: | :---: | :---: | :---: |",
         ])
         for _, r in lin_df.iterrows():
-            from_yr = int(r.get("from_year", 0))
-            to_yr = int(r.get("to_year", 0))
-            backbone_str = "Yes" if r.get("is_primary_backbone") else "No"
+            from_yr = int(r["from_year"])
+            to_yr = int(r["to_year"])
+            backbone_str = "Yes" if r["is_primary_backbone"] else "No"
             lines.append(
-                f"| {from_yr}→{to_yr} | `{r.get('from_lineage_id', '')}` ({r.get('from_community_id', '')}) | "
-                f"`{r.get('to_lineage_id', '')}` ({r.get('to_community_id', '')}) | "
-                f"`{r.get('relation_type', '')}` | {fmtnum(r.get('shared_channels', 0))} | "
-                f"{r.get('jaccard_similarity', 0.0):.4f} | "
-                f"{fmtpct(r.get('forward_overlap', 0.0))} | "
-                f"{fmtpct(r.get('backward_overlap', 0.0))} | {backbone_str} |"
+                f"| {from_yr}→{to_yr} | `{r['from_lineage_id']}` ({r['from_community_id']}) | "
+                f"`{r['to_lineage_id']}` ({r['to_community_id']}) | "
+                f"`{r['relation_type']}` | {fmtnum(r['shared_channels'])} | "
+                f"{r['jaccard_similarity']:.4f} | "
+                f"{fmtpct(r['forward_overlap'])} | "
+                f"{fmtpct(r['backward_overlap'])} | {backbone_str} |"
             )
         lines.extend(["", "---", ""])
 
@@ -192,10 +188,10 @@ def build_appendix() -> str:
         ])
         for _, r in bridge_df.sort_values(by="mean_betweenness_percentile", ascending=False).iterrows():
             lines.append(
-                f"| **{r.get('channel_name', '')}** | {r.get('agency_at_selection', 'Independent')} | "
-                f"{fmtnum(r.get('years_observed_count', 0))} | {fmtnum(r.get('years_in_top_decile_count', 0))} | "
-                f"{r.get('mean_betweenness_percentile', 0.0):.1f}% | {r.get('threshold_th5_retention_ratio', 0.0):.3f} | "
-                f"`{r.get('bridge_classification', '')}` |"
+                f"| **{r['channel_name']}** | {r['agency_at_selection']} | "
+                f"{fmtnum(r['years_observed_count'])} | {fmtnum(r['years_in_top_decile_count'])} | "
+                f"{r['mean_betweenness_percentile']:.1f}% | {r['threshold_th5_retention_ratio']:.3f} | "
+                f"`{r['bridge_classification']}` |"
             )
         lines.extend(["", "---", ""])
 

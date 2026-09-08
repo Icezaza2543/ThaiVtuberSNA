@@ -243,14 +243,14 @@ def build_yearly_network_metrics(
             }
 
     # Load edge counts and true distinct active channels from network_snapshots
-    edge_stats = con.execute("""
+    edge_stats = con.execute(f"""
         WITH yearly_edges AS (
             SELECT 
                 CAST(window_start[:4] AS INT) AS yr,
                 vtuber_a,
                 vtuber_b,
                 shared_any
-            FROM read_parquet('data/temporal/snapshots/network_snapshots.parquet')
+            FROM read_parquet('{(BASE_DIR / 'data/temporal/snapshots/network_snapshots.parquet').as_posix()}')
             WHERE window_type = 'yearly'
         ),
         yearly_channels AS (
@@ -417,7 +417,7 @@ def generate_migration_report(
         lines.append("")
         lines.append("| Source Agency at Selection | Target Agency at Selection | Transition Type | Observed Transition Viewers |")
         lines.append("|:---|:---|:---:|:---:|")
-        for _, row in sub.head(10).iterrows():
+        for _, row in sub.sort_values(['observed_transition_viewers','from_agency_at_selection','to_agency_at_selection','transition_type'], ascending=[False,True,True,True]).head(10).iterrows():
             lines.append(
                 f"| {row['from_agency_at_selection']} | {row['to_agency_at_selection']} | `{row['transition_type']}` | {row['observed_transition_viewers']:,} |"
             )
@@ -439,7 +439,7 @@ def generate_migration_report(
         lines.append("")
         lines.append("| From VTuber (Agency) | To VTuber (Agency) | Transition Type | Observed Transition Viewers |")
         lines.append("|:---|:---|:---:|:---:|")
-        for _, row in sub_ch.head(8).iterrows():
+        for _, row in sub_ch.sort_values(['observed_transition_viewers','from_channel_name','to_channel_name','transition_type'], ascending=[False,True,True,True]).head(8).iterrows():
             lines.append(
                 f"| {row['from_channel_name']} ({row['from_agency_at_selection']}) | {row['to_channel_name']} ({row['to_agency_at_selection']}) | `{row['transition_type']}` | {row['observed_transition_viewers']:,} |"
             )
@@ -447,19 +447,7 @@ def generate_migration_report(
 
     lines.append("---")
     lines.append("")
-    lines.append("## Key Analytical Findings")
-    lines.append("")
-    lines.append("1. **Audience Retention Resiliency:**")
-    lines.append("   - Observed audience retention between adjacent years consistently ranged from ~45% to >50% among active interacting viewers.")
-    lines.append("   - In 2024 -> 2025, a record 981 distinct viewers exhibited same-channel interaction continuity.")
-    lines.append("")
-    lines.append("2. **Intra-Agency Cross-Channel Cohesion:**")
-    lines.append("   - Cross-channel transitions within the same agency (notably Algorhythm Project and Pixela Project) significantly outnumbered individual cross-agency transitions.")
-    lines.append("   - In 2024 -> 2025, 1,138 viewers were observed engaging across different talents within the same agency.")
-    lines.append("")
-    lines.append("3. **Cross-Agency Bridging:**")
-    lines.append("   - Cross-agency transitions peaked during major collaborative events and collaborative streams, with independent creators serving as major mutual audience bridges.")
-    lines.append("")
+    lines.append("Metrics above are observed continuation in sampled interaction evidence. They do not identify passive viewers or establish causes of changing participation.")
     return "\n".join(lines)
 
 

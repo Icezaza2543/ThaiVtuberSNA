@@ -1,10 +1,10 @@
 # Thai VTuber SNA — Reproducible Research Dataset Release Notes
 
 **Release Version:** 1.0.0
-**Deterministic Content Hash:** `sha256_7e66058fc5c3a85de0f3013c89b594e624b7cdcf4ffe8e623c40093cc3081735`
+**Deterministic Content Hash:** `sha256_4219abc44ddce0cbebe0d3aed1bce709e593fda001837ea608e2db90a663c000`
 **Privacy Classification:** `NO_VIEWER_LEVEL_DATA`
-**Documented Artifacts:** 40 files (1.06 MB)
-**Generated Timestamp:** 2026-09-08T15:55:59.630214+00:00
+**Documented Artifacts:** 40 files (3.07 MB)
+**Generated Timestamp:** 2026-09-08T17:10:16.000444+00:00
 
 ---
 
@@ -19,7 +19,7 @@
 ## 2. Rigorous Methodology & Slicing Rules
 
 - **Temporal Interaction Slicing:** Strictly partitioned by interaction_time (from interaction_at, first_seen, or timestamp). Video publication date is NEVER used as fallback for temporal interaction slicing. Undated interaction records are strictly excluded from temporal slices.
-- **Comment Volume & Pagination:** API commentThreads endpoint yields up to 100 comments per standard page. Exhaustive pagination was implemented in Phase T6, resolving all historical cap exposures (0 unresolved). Single-page pilot records are tracked explicitly under collection truncation metadata.
+- **Comment Volume & Pagination:** API commentThreads endpoint yields up to 100 comments per standard page. T6 pagination metadata and unresolved exposure are measured in the current T15 artifacts. Single-page pilot records are tracked explicitly under collection truncation metadata.
 - **Network Construction:** Bipartite projection into co-commenter/co-chatter undirected graphs. Edge weight represents count of shared pseudonymized viewers active on both channels.
 - **Lineage Genealogy:** Deterministic maximum-weight bipartite matching per adjacent-year pair using score W = 0.4*Jaccard + 0.3*Forward + 0.3*Backward with strict one-to-one backbone.
 
@@ -120,26 +120,14 @@
 ---
 
 ### T15: Evidence Quality & Bias
-**Files:** 4 | **Size:** 71.4 KB
+**Files:** 4 | **Size:** 74.5 KB
 
 | File Path | Format | Size | SHA-256 Checksum |
 | :--- | :---: | ---: | :--- |
 | `data/temporal/quality/bias_sensitivity.parquet` | parquet | 7.1 KB | `sha256_deb43738a77aa22a2...` |
 | `data/temporal/quality/channel_evidence_quality.parquet` | parquet | 32.4 KB | `sha256_c8e5f957c99cd3edf...` |
-| `data/temporal/quality/evidence_quality_report.md` | md | 9.4 KB | `sha256_a55945a868bc7235d...` |
-| `data/temporal/quality/yearly_evidence_quality.parquet` | parquet | 22.5 KB | `sha256_889b9555865faa873...` |
-
----
-
-### Integrity Reports
-**Files:** 4 | **Size:** 31.5 KB
-
-| File Path | Format | Size | SHA-256 Checksum |
-| :--- | :---: | ---: | :--- |
-| `data/temporal/research_integrity/t11_t16_integrity_report.md` | md | 8.2 KB | `sha256_718d14631501c7d72...` |
-| `data/temporal/research_integrity/t11_t19_final_integrity_report.md` | md | 7.5 KB | `sha256_efb2ddf2a2c88dfd9...` |
-| `data/temporal/research_integrity/t11_t20_ecosystem_observatory_integrity_report.md` | md | 12.1 KB | `sha256_9551d21e7792e039d...` |
-| `data/temporal/research_integrity/t8_t10_integrity_report.md` | md | 3.8 KB | `sha256_6e5580228bec0413f...` |
+| `data/temporal/quality/evidence_quality_report.md` | md | 8.8 KB | `sha256_623dcf7b1cc90ba73...` |
+| `data/temporal/quality/yearly_evidence_quality.parquet` | parquet | 26.2 KB | `sha256_8c7fcbf3b7506e7c0...` |
 
 ---
 
@@ -152,13 +140,25 @@
 
 ---
 
-### Pipeline State
-**Files:** 2 | **Size:** 0.9 KB
+### T19: Technical Report
+**Files:** 2 | **Size:** 28.0 KB
 
 | File Path | Format | Size | SHA-256 Checksum |
 | :--- | :---: | ---: | :--- |
-| `data/temporal/state/pipeline_state.json` | json | 0.3 KB | `sha256_6ff3199892e0c6bd4...` |
-| `data/temporal/state/release_manifest.json` | json | 0.6 KB | `sha256_97d86a6f5dd2c44bf...` |
+| `data/temporal/report/appendix_tables.md` | md | 24.4 KB | `sha256_2cfdcd129b01ff46c...` |
+| `data/temporal/report/technical_report.md` | md | 3.6 KB | `sha256_158e91348632a5b8d...` |
+
+---
+
+### T17: Dashboard
+**Files:** 4 | **Size:** 2067.0 KB
+
+| File Path | Format | Size | SHA-256 Checksum |
+| :--- | :---: | ---: | :--- |
+| `web/research/dashboard_data.json` | json | 2017.7 KB | `sha256_a3b684a3fc1db7beb...` |
+| `web/research/index.html` | html | 9.7 KB | `sha256_cf4028613a22e1f08...` |
+| `web/research/research_dashboard.css` | css | 10.6 KB | `sha256_6c9751b53b8fec541...` |
+| `web/research/research_dashboard.js` | js | 29.0 KB | `sha256_48a3228efdae9e648...` |
 
 ---
 

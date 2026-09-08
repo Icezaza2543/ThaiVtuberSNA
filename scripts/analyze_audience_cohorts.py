@@ -178,7 +178,7 @@ def run_audience_cohort_analysis() -> None:
 
     # Build complete grid for all valid observation horizons (oy >= cy)
     all_cohort_years = sorted(cohort_size_map.keys())
-    max_year = 2026 if not all_cohort_years else max(max(all_cohort_years), 2026)
+    max_year = int(con.execute('SELECT max(interaction_year) FROM viewer_channel_years').fetchone()[0])
 
     matrix_records = []
     for cy in all_cohort_years:
@@ -292,7 +292,7 @@ def run_audience_cohort_analysis() -> None:
             "reactivation_rate_of_cohort": round(rv / c_size, 4),
             "reactivation_note": f"Reactivated after {gap - 1} unobserved year(s)"
         })
-    df_reactivation = pd.DataFrame(reactivation_records)
+    df_reactivation = pd.DataFrame(reactivation_records, columns=['cohort_year','reactivation_year','gap_years','reactivated_viewers','cohort_size','reactivation_rate_of_cohort','reactivation_note'])
 
     # Save to parquet
     df_matrix.to_parquet(OUTPUT_RETENTION_MATRIX, index=False)

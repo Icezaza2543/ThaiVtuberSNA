@@ -150,7 +150,7 @@ def get_sources_by_provenance(
         p1 = target_data_dir / subpath
         if p1.exists():
             return p1
-        return fallback_data_dir / subpath
+        return p1 if base_dir is not None else fallback_data_dir / subpath
 
     deep_dir = resolve_dir("temporal/deep_observations")
     deep_sources = sorted(str(p).replace("\\", "/") for p in deep_dir.rglob("*.parquet")) if deep_dir.exists() else []
@@ -300,7 +300,7 @@ def load_channel_coverage_records(base_dir: Optional[Path] = None) -> Dict[str, 
     """Loads coverage records by channel_id from T1 channel_coverage.parquet."""
     target_data_dir = (base_dir / "data") if base_dir else DATA_DIR
     cov_path = target_data_dir / "temporal" / "catalog" / "channel_coverage.parquet"
-    if not cov_path.exists():
+    if not cov_path.exists() and base_dir is None:
         cov_path = DATA_DIR / "temporal" / "catalog" / "channel_coverage.parquet"
     if not cov_path.exists():
         return {}
@@ -618,7 +618,7 @@ def compute_window_snapshots(
         FROM shared_pairs s
         JOIN channel_totals t_a ON s.vtuber_a = t_a.vtuber_channel_id
         JOIN channel_totals t_b ON s.vtuber_b = t_b.vtuber_channel_id
-        ORDER BY s.shared_any DESC
+        ORDER BY s.shared_any DESC, s.vtuber_a, s.vtuber_b
     """
     rows = con.execute(query).fetchall()
     results = []

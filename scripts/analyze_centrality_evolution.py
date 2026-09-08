@@ -349,7 +349,7 @@ def run_centrality_evolution_analysis() -> None:
                     })
 
     df_bridges = pd.DataFrame(bridge_records)
-    df_change_points = pd.DataFrame(change_point_records)
+    df_change_points = pd.DataFrame(change_point_records, columns=['channel_id','channel_name','from_year','to_year','from_percentile','to_percentile','percentile_delta','change_type','from_band','to_band'])
 
     # Save to parquet
     df_yearly.to_parquet(OUTPUT_YEARLY_CENTRALITY, index=False)

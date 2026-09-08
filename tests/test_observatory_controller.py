@@ -33,32 +33,8 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 @pytest.fixture
-def sandbox_observatory(tmp_path, synthetic_pipeline_data):
-    """Sets up an isolated sandbox environment with snapshots, state, and web files."""
-    sandbox_data = tmp_path / "data" / "temporal"
-    sandbox_snaps = sandbox_data / "snapshots"
-    sandbox_state = sandbox_data / "state"
-    sandbox_inc = sandbox_data / "incremental"
-    sandbox_obs = sandbox_data / "observatory"
-    sandbox_web = tmp_path / "web"
-
-    sandbox_snaps.mkdir(parents=True)
-    sandbox_state.mkdir(parents=True)
-    sandbox_inc.mkdir(parents=True)
-    sandbox_obs.mkdir(parents=True)
-    sandbox_web.mkdir(parents=True)
-
-    # Copy real snapshots to sandbox
-    real_snaps = REPO_ROOT / "data" / "temporal" / "snapshots" / "network_snapshots.parquet"
-    assert real_snaps.exists()
-    shutil.copy2(real_snaps, sandbox_snaps / "network_snapshots.parquet")
-
-    # Copy web/app.js to sandbox
-    real_web_app = REPO_ROOT / "web" / "app.js"
-    assert real_web_app.exists()
-    shutil.copy2(real_web_app, sandbox_web / "app.js")
-
-    return synthetic_pipeline_data(tmp_path)
+def sandbox_observatory(full_sandbox):
+    return full_sandbox
 
 
 @pytest.fixture(autouse=True)
@@ -175,7 +151,7 @@ def test_05_e2e_synthetic_batch_update_and_baseline_isolation(sandbox_observator
         }
     ]
 
-    res = ctrl.update("batch_obs_e2e_01", events, skip_downstream=True, auto_publish=True)
+    res = ctrl.update("batch_obs_e2e_01", events, auto_publish=True)
     assert res["status"] == "SUCCESS"
     assert res["version_before"] == "v1.0.0"
     assert res["version_after"] == "v1.0.1"
@@ -210,7 +186,7 @@ def test_06_future_year_minor_version_bump(sandbox_observatory):
         }
     ]
 
-    res = ctrl.update("batch_future_2027", events, skip_downstream=True, auto_publish=True)
+    res = ctrl.update("batch_future_2027", events, auto_publish=True)
     assert res["status"] == "SUCCESS"
     assert res["version_before"] == "v1.0.0"
     assert res["version_after"] == "v1.1.0"
@@ -235,7 +211,7 @@ def test_07_fail_safe_on_quality_gate_violation(sandbox_observatory):
     ]
 
     with pytest.raises(RuntimeError, match="Quality gate failure"):
-        ctrl.update("batch_fail_safe_test", events, skip_downstream=True, auto_publish=True)
+        ctrl.update("batch_fail_safe_test", events, auto_publish=True)
 
     # State must not have been promoted
     state = ctrl._load_state()
@@ -259,7 +235,7 @@ def test_08_rollback_mechanism(sandbox_observatory):
         }
     ]
 
-    res = ctrl.update("batch_to_rollback", events, skip_downstream=True, auto_publish=True)
+    res = ctrl.update("batch_to_rollback", events, auto_publish=True)
     assert res["version_after"] == "v1.0.1"
 
     batch_parquet = sandbox_observatory / "data" / "temporal" / "incremental" / "batch_batch_to_rollback.parquet"

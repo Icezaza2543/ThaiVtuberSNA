@@ -285,7 +285,7 @@ def main():
                 "viewer_level_rows": "ZERO (strictly excluded; no raw IDs, no viewer hashes, no individual interaction records)"
             },
             "note": "NO_VIEWER_LEVEL_DATA: Public creator metadata and aggregate audience metrics only. Zero viewer-level records or hashes.",
-            "years": list(range(2020, 2027)),
+            "years": sorted(int(y) for y in pd.read_parquet(ECOSYSTEM_METRICS)['year'].unique()),
             "partial_year": 2026,
             "caveats": {
                 "partial_window_2026_ytd": "2026 data reflects partial year-to-date (2026-01-01 to 2026-09-08) and is descriptive only (PARTIAL_WINDOW_DESCRIPTIVE_ONLY).",
