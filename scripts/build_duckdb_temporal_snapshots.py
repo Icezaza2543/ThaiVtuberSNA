@@ -131,41 +131,117 @@ NETWORK_SNAPSHOT_SCHEMA = pa.schema([
     ("calculated_at", pa.string())
 ])
 
+def get_sources_by_provenance() -> Dict[str, List[str]]:
+    """
+    Categorizes all available event/observation parquet files by explicit provenance tier:
+      - t6_deep: Exhaustive comments from Phase T6
+      - t5_stratified: Stratified comment backfill from Phase T5
+      - t2_pilot: Initial temporal pilot dataset
+      - legacy: Historical real pipeline and legacy events (comment + live chat)
+    """
+    deep_dir = DATA_DIR / "temporal" / "deep_observations"
+    deep_sources = sorted(str(p).replace("\\", "/") for p in deep_dir.rglob("*.parquet")) if deep_dir.exists() else []
+
+    t5_dir = DATA_DIR / "temporal" / "observations"
+    t5_sources = sorted(str(p).replace("\\", "/") for p in t5_dir.rglob("*.parquet")) if t5_dir.exists() else []
+
+    pilot_p = DATA_DIR / "temporal" / "pilot" / "temporal_comment_pilot.parquet"
+    t2_sources = [str(pilot_p).replace("\\", "/")] if pilot_p.exists() else []
+
+    real_dir = DATA_DIR / "real" / "events"
+    real_sources = sorted(str(p).replace("\\", "/") for p in real_dir.rglob("*.parquet")) if real_dir.exists() else []
+
+    legacy_dir = DATA_DIR / "events"
+    legacy_sources = sorted(str(p).replace("\\", "/") for p in legacy_dir.rglob("*.parquet")) if legacy_dir.exists() else []
+
+    return {
+        "t6_deep": deep_sources,
+        "t5_stratified": t5_sources,
+        "t2_pilot": t2_sources,
+        "legacy": real_sources + legacy_sources,
+    }
+
 def collect_available_parquet_sources() -> List[str]:
     """
     Finds all available event/observation parquet files across temporal and legacy directories.
-    Enforces strict precedence: T6 deep observations supersede T5 shallow observations for the same video_id.
+    Returns full list across all provenance tiers.
     """
-    sources = []
-    deep_video_ids = set()
+    by_prov = get_sources_by_provenance()
+    return by_prov["t6_deep"] + by_prov["t5_stratified"] + by_prov["t2_pilot"] + by_prov["legacy"]
 
-    # 1. T6 Deep Observations (Highest Precedence)
-    deep_obs_dir = DATA_DIR / "temporal" / "deep_observations"
-    if deep_obs_dir.exists():
-        for p in deep_obs_dir.rglob("*.parquet"):
-            sources.append(str(p).replace("\\", "/"))
-            deep_video_ids.add(p.stem)
+def build_unified_raw_view(con: duckdb.DuckDBPyConnection, sources_by_prov: Optional[Dict[str, List[str]]] = None) -> None:
+    """
+    Constructs the unified_raw view from all available parquet sources,
+    attaching explicit provenance and priority to each source tier:
+      - t6_deep (priority 1)
+      - t5_stratified (priority 2)
+      - t2_pilot (priority 3)
+      - legacy (priority 4)
+    """
+    by_prov = sources_by_prov or get_sources_by_provenance()
+    union_queries = []
 
-    # 2. Temporal Pilot / Observations (T5 observations excluded if superseded by T6)
-    pilot_p = DATA_DIR / "temporal" / "pilot" / "temporal_comment_pilot.parquet"
-    if pilot_p.exists():
-        sources.append(str(pilot_p).replace("\\", "/"))
+    if by_prov.get("t6_deep"):
+        t6_list = ", ".join(f"'{s}'" for s in by_prov["t6_deep"])
+        union_queries.append(f"""
+            SELECT viewer_hash, vtuber_channel_id, video_id,
+                   COALESCE(source_type, 'comment') AS source_type,
+                   try_cast(interaction_at AS TIMESTAMPTZ) AS interaction_at,
+                   CAST(NULL AS TIMESTAMPTZ) AS first_seen,
+                   CAST(NULL AS TIMESTAMPTZ) AS timestamp,
+                   try_cast(video_published_at AS TIMESTAMPTZ) AS video_published_at,
+                   't6_deep' AS provenance,
+                   1 AS priority
+            FROM read_parquet([{t6_list}], union_by_name=True)
+        """)
 
-    shallow_obs_dir = DATA_DIR / "temporal" / "observations"
-    if shallow_obs_dir.exists():
-        for p in shallow_obs_dir.rglob("*.parquet"):
-            if p.stem not in deep_video_ids:
-                sources.append(str(p).replace("\\", "/"))
+    if by_prov.get("t5_stratified"):
+        t5_list = ", ".join(f"'{s}'" for s in by_prov["t5_stratified"])
+        union_queries.append(f"""
+            SELECT viewer_hash, vtuber_channel_id, video_id,
+                   COALESCE(source_type, 'comment') AS source_type,
+                   try_cast(interaction_at AS TIMESTAMPTZ) AS interaction_at,
+                   CAST(NULL AS TIMESTAMPTZ) AS first_seen,
+                   CAST(NULL AS TIMESTAMPTZ) AS timestamp,
+                   try_cast(video_published_at AS TIMESTAMPTZ) AS video_published_at,
+                   't5_stratified' AS provenance,
+                   2 AS priority
+            FROM read_parquet([{t5_list}], union_by_name=True)
+        """)
 
-    # 3. Real Events
-    for p in (DATA_DIR / "real" / "events").rglob("*.parquet"):
-        sources.append(str(p).replace("\\", "/"))
+    if by_prov.get("t2_pilot"):
+        t2_list = ", ".join(f"'{s}'" for s in by_prov["t2_pilot"])
+        union_queries.append(f"""
+            SELECT viewer_hash, vtuber_channel_id, video_id,
+                   COALESCE(source_type, 'comment') AS source_type,
+                   try_cast(interaction_at AS TIMESTAMPTZ) AS interaction_at,
+                   CAST(NULL AS TIMESTAMPTZ) AS first_seen,
+                   CAST(NULL AS TIMESTAMPTZ) AS timestamp,
+                   try_cast(video_published_at AS TIMESTAMPTZ) AS video_published_at,
+                   't2_pilot' AS provenance,
+                   3 AS priority
+            FROM read_parquet([{t2_list}], union_by_name=True)
+        """)
 
-    # 4. Legacy Events
-    for p in (DATA_DIR / "events").rglob("*.parquet"):
-        sources.append(str(p).replace("\\", "/"))
+    if by_prov.get("legacy"):
+        legacy_list = ", ".join(f"'{s}'" for s in by_prov["legacy"])
+        union_queries.append(f"""
+            SELECT viewer_hash, vtuber_channel_id, video_id,
+                   COALESCE(source_type, 'comment') AS source_type,
+                   CAST(NULL AS TIMESTAMPTZ) AS interaction_at,
+                   try_cast(first_seen AS TIMESTAMPTZ) AS first_seen,
+                   try_cast(timestamp AS TIMESTAMPTZ) AS timestamp,
+                   CAST(NULL AS TIMESTAMPTZ) AS video_published_at,
+                   'legacy' AS provenance,
+                   4 AS priority
+            FROM read_parquet([{legacy_list}], union_by_name=True)
+        """)
 
-    return sources
+    if not union_queries:
+        raise RuntimeError("No parquet sources available to build unified_raw view!")
+
+    full_sql = " UNION ALL ".join(union_queries)
+    con.execute(f"CREATE OR REPLACE VIEW unified_raw AS {full_sql}")
 
 def load_channel_coverage_records() -> Dict[str, Dict[str, Any]]:
     """Loads coverage records by channel_id from T1 channel_coverage.parquet."""
@@ -236,13 +312,18 @@ def calculate_channel_window_coverage(
 
 def build_canonical_events_view(con: duckdb.DuckDBPyConnection, source_table_or_view: str = "unified_raw") -> None:
     """
-    Constructs the canonical_events view from the unified raw table.
-
-    Strict Temporal Contract:
-    - interaction_time MUST only come from interaction_at, first_seen, or timestamp.
-    - video_published_at MUST NEVER be used as a fallback for interaction_time.
-    - Missing interaction timestamps yield interaction_time = NULL and interaction_time_source = 'missing'.
-    - Buddhist Era dates (> 2500) are normalized by subtracting 543 years.
+    Constructs the canonical_events view from the unified raw table/view with source precedence:
+    - Precedence for same (vtuber_channel_id, video_id, source_type='comment'):
+        t6_deep (priority 1) > t5_stratified (priority 2) > t2_pilot (priority 3) > legacy (priority 4)
+    - If T6 deep comment data exists for a video, excludes T5/T2/legacy comment data for that video.
+    - Else if T5 comment data exists, excludes T2/legacy comment data for that video.
+    - Preserves legacy/T2 live_chat evidence even when the same video has T5/T6 comment data.
+    - Deduplicates same (viewer_hash, vtuber_channel_id, video_id, source_type) taking MIN(interaction_time).
+    - Strict Temporal Contract:
+      - interaction_time MUST only come from interaction_at, first_seen, or timestamp.
+      - video_published_at MUST NEVER be used as fallback for interaction_time.
+      - Missing interaction timestamps yield interaction_time = NULL and interaction_time_source = 'missing'.
+      - Buddhist Era dates (> 2500) are normalized by subtracting 543 years.
     """
     con.execute("SET Calendar = 'gregorian'")
     cols = {r[0] for r in con.execute(f"DESCRIBE {source_table_or_view}").fetchall()}
@@ -252,6 +333,35 @@ def build_canonical_events_view(con: duckdb.DuckDBPyConnection, source_table_or_
     timestamp_expr = "timestamp" if "timestamp" in cols else "NULL"
     pub_expr = "video_published_at" if "video_published_at" in cols else "NULL"
     source_expr = "source_type" if "source_type" in cols else "'comment'"
+
+    # Support explicit provenance or infer from signature columns
+    if "provenance" in cols:
+        prov_expr = "provenance"
+    else:
+        conds = []
+        if "pages_fetched" in cols:
+            conds.append("WHEN pages_fetched IS NOT NULL THEN 't6_deep'")
+        if "sampling_manifest_version" in cols:
+            conds.append("WHEN sampling_manifest_version IS NOT NULL THEN 't5_stratified'")
+        if "page_number" in cols:
+            conds.append("WHEN page_number IS NOT NULL THEN 't2_pilot'")
+        if conds:
+            prov_expr = f"CASE {' '.join(conds)} ELSE 'legacy' END"
+        else:
+            prov_expr = "'unspecified'"
+
+    if "priority" in cols:
+        prio_expr = "priority"
+    else:
+        prio_expr = f"""
+            CASE
+                WHEN {prov_expr} = 't6_deep' THEN 1
+                WHEN {prov_expr} = 't5_stratified' THEN 2
+                WHEN {prov_expr} = 't2_pilot' THEN 3
+                WHEN {prov_expr} = 'legacy' THEN 4
+                ELSE 1
+            END
+        """
 
     con.execute(f"""
         CREATE OR REPLACE VIEW canonical_events AS
@@ -264,7 +374,9 @@ def build_canonical_events_view(con: duckdb.DuckDBPyConnection, source_table_or_
                 try_cast({inter_expr} AS TIMESTAMPTZ) AS parsed_interaction_at,
                 try_cast({first_seen_expr} AS TIMESTAMPTZ) AS parsed_first_seen,
                 try_cast({timestamp_expr} AS TIMESTAMPTZ) AS parsed_timestamp,
-                try_cast({pub_expr} AS TIMESTAMPTZ) AS parsed_video_published_at
+                try_cast({pub_expr} AS TIMESTAMPTZ) AS parsed_video_published_at,
+                {prov_expr} AS provenance,
+                CAST({prio_expr} AS INT) AS priority
             FROM {source_table_or_view}
             WHERE viewer_hash IS NOT NULL AND viewer_hash != ''
               AND vtuber_channel_id IS NOT NULL AND vtuber_channel_id != ''
@@ -293,27 +405,77 @@ def build_canonical_events_view(con: duckdb.DuckDBPyConnection, source_table_or_
                     WHEN parsed_timestamp IS NOT NULL THEN 'legacy'
                     ELSE 'missing'
                 END AS timestamp_quality,
-                parsed_video_published_at AS raw_video_published_at
+                parsed_video_published_at AS raw_video_published_at,
+                provenance,
+                priority
             FROM raw_data
+        ),
+        normalized AS (
+            SELECT
+                viewer_hash,
+                vtuber_channel_id,
+                video_id,
+                source_type,
+                CASE
+                    WHEN raw_interaction_time IS NOT NULL AND extract(year from raw_interaction_time) > 2500
+                        THEN raw_interaction_time - INTERVAL 543 YEAR
+                    ELSE raw_interaction_time
+                END AS interaction_time,
+                CASE
+                    WHEN raw_video_published_at IS NOT NULL AND extract(year from raw_video_published_at) > 2500
+                        THEN raw_video_published_at - INTERVAL 543 YEAR
+                    ELSE raw_video_published_at
+                END AS video_published_at,
+                interaction_time_source,
+                timestamp_quality,
+                provenance,
+                priority
+            FROM classified
+        ),
+        comment_video_priority AS (
+            SELECT
+                vtuber_channel_id,
+                video_id,
+                MIN(priority) AS best_comment_priority
+            FROM normalized
+            WHERE source_type = 'comment'
+            GROUP BY vtuber_channel_id, video_id
+        ),
+        precedence_filtered AS (
+            SELECT
+                n.*
+            FROM normalized n
+            LEFT JOIN comment_video_priority cvp
+              ON n.vtuber_channel_id = cvp.vtuber_channel_id
+             AND n.video_id = cvp.video_id
+            WHERE (n.source_type != 'comment')
+               OR (n.source_type = 'comment' AND n.priority = cvp.best_comment_priority)
+        ),
+        deduplicated AS (
+            SELECT
+                viewer_hash,
+                vtuber_channel_id,
+                video_id,
+                source_type,
+                MIN(interaction_time) AS interaction_time,
+                MIN(video_published_at) AS video_published_at,
+                FIRST(interaction_time_source) AS interaction_time_source,
+                FIRST(timestamp_quality) AS timestamp_quality,
+                FIRST(provenance) AS provenance
+            FROM precedence_filtered
+            GROUP BY viewer_hash, vtuber_channel_id, video_id, source_type
         )
         SELECT
             viewer_hash,
             vtuber_channel_id,
             video_id,
             source_type,
-            CASE
-                WHEN raw_interaction_time IS NOT NULL AND extract(year from raw_interaction_time) > 2500
-                    THEN raw_interaction_time - INTERVAL 543 YEAR
-                ELSE raw_interaction_time
-            END AS interaction_time,
-            CASE
-                WHEN raw_video_published_at IS NOT NULL AND extract(year from raw_video_published_at) > 2500
-                    THEN raw_video_published_at - INTERVAL 543 YEAR
-                ELSE raw_video_published_at
-            END AS video_published_at,
+            interaction_time,
+            video_published_at,
             interaction_time_source,
-            timestamp_quality
-        FROM classified
+            timestamp_quality,
+            provenance
+        FROM deduplicated
     """)
 
 def compute_window_snapshots(
@@ -574,8 +736,13 @@ def main():
     logger.info(" PHASE T3: DuckDB Temporal Snapshot Engine (Hotfix 1-3)   ")
     logger.info("==========================================================")
 
+    sources_by_prov = get_sources_by_provenance()
     sources = collect_available_parquet_sources()
-    logger.info(f"Found {len(sources)} Parquet observation sources.")
+    logger.info(f"Found {len(sources)} Parquet observation sources across tiers: "
+                f"{len(sources_by_prov['t6_deep'])} T6 deep, "
+                f"{len(sources_by_prov['t5_stratified'])} T5 stratified, "
+                f"{len(sources_by_prov['t2_pilot'])} T2 pilot, "
+                f"{len(sources_by_prov['legacy'])} legacy.")
     if not sources:
         logger.error("No observation sources found! Run Phase T2 Pilot first.")
         sys.exit(1)
@@ -585,15 +752,9 @@ def main():
 
     con = duckdb.connect(":memory:")
 
-    # Build canonical unified events view
-    source_list_sql = ", ".join(f"'{s}'" for s in sources)
-    logger.info(f"Registering Parquet union view from {len(sources)} files...")
-
-    con.execute(f"""
-        CREATE OR REPLACE VIEW unified_raw AS
-        SELECT * FROM read_parquet([{source_list_sql}], union_by_name=True)
-    """)
-
+    # Build canonical unified events view with explicit provenance
+    logger.info(f"Registering Parquet union view from {len(sources)} files with tier provenance...")
+    build_unified_raw_view(con, sources_by_prov)
     build_canonical_events_view(con, "unified_raw")
 
     # Audit loaded events

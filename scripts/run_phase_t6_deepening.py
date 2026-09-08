@@ -182,7 +182,7 @@ def generate_report(output_path: Path = REPORT_PATH, db_path: Path = DEFAULT_DEE
         "1. **Full Temporal Scope:** All comments are retrieved chronologically using `commentThreads.list` with `order=time` and `pageToken` pagination.",
         "2. **Strict Privacy Boundary:** Raw author IDs are immediately hashed using persistent HMAC-SHA256 within the item processing loop. Zero raw commenter names, handles, URLs, or comment texts are ever written to disk or preserved in memory.",
         "3. **Zero Fallback Substitution:** `interaction_at` represents verified comment `publishedAt`. Missing timestamps are never populated with video upload dates.",
-        "4. **Precedence Hierarchy:** In snapshot construction, T6 deep observations strictly supersede T5 shallow observations for the same video (`T6 deep > T5 shallow > T2/legacy`), eliminating double counting."
+        "4. **Explicit Precedence Hierarchy:** In snapshot construction, explicit source provenance precedence (`T6 deep > T5 stratified > T2 pilot > legacy`) excludes lower-priority comment rows for the same video, verified by regression tests."
     ])
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
