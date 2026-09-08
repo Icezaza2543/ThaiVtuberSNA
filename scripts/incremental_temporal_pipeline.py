@@ -47,6 +47,7 @@ STATE_FILE = STATE_DIR / "pipeline_state.json"
 RELEASE_MANIFEST_FILE = STATE_DIR / "release_manifest.json"
 
 sys.path.insert(0, str(BASE_DIR))
+from core.file_transaction import FileTransaction, exclusive_lock
 from core.hasher import load_persistent_secret_key, compute_key_fingerprint, PrivacyHasher
 from scripts.build_duckdb_temporal_snapshots import (
     compute_window_snapshots,
@@ -125,19 +126,6 @@ class IncrementalTemporalPipeline:
         self.state_dir.mkdir(parents=True, exist_ok=True)
         self.incremental_dir.mkdir(parents=True, exist_ok=True)
 
-        # Clean up any leftover uncommitted .tmp files in incremental or snapshots dir
-        for tmp_f in self.incremental_dir.glob("*.tmp"):
-            try:
-                tmp_f.unlink()
-            except Exception:
-                pass
-        if self.snapshots_path.parent.exists():
-            for tmp_s in self.snapshots_path.parent.glob("*.tmp"):
-                try:
-                    tmp_s.unlink()
-                except Exception:
-                    pass
-
         # 1. Load active HMAC secret key and compute fingerprint
         if custom_key is not None:
             self.secret_key = custom_key
@@ -149,7 +137,13 @@ class IncrementalTemporalPipeline:
         # 2. Load or initialize pipeline state
         self.state_file = self.state_dir / "pipeline_state.json"
         self.manifest_file = self.state_dir / "release_manifest.json"
-        self.state = self._load_or_init_state()
+        self.transaction = FileTransaction(self.base_dir, self.state_dir / '.ingestion_transaction')
+        with exclusive_lock(self.state_dir / '.ingestion.lock'):
+            self.transaction.recover()
+            for folder in (self.incremental_dir, self.snapshots_path.parent):
+                for p in folder.glob('*.tmp'):
+                    p.unlink()
+            self.state = self._load_or_init_state()
 
         # 3. Enforce HMAC key continuity
         self._verify_hmac_continuity()
@@ -189,17 +183,28 @@ class IncrementalTemporalPipeline:
         # Atomic rename on POSIX and Windows (Python 3.3+)
         tmp_file.replace(self.state_file)
 
-    def ingest_batch(
+    def ingest_batch(self, *args, **kwargs):
+        with exclusive_lock(self.state_dir / '.ingestion.lock'):
+            self.transaction.recover()
+            self.state = self._load_or_init_state()
+            self._verify_hmac_continuity()
+            return self._ingest_batch(*args, **kwargs)
+
+    def _ingest_batch(
         self,
         batch_id: str,
         events: List[Dict[str, Any]],
         provenance: str = "t16_incremental",
         source_type: str = "comment",
-        simulate_crash_before_commit: bool = False
+        simulate_crash_before_commit: bool = False,
+        crash_at: Optional[str] = None
     ) -> IngestionResult:
         """Ingests a new batch of raw interaction events idempotently."""
         logger.info(f"Processing batch '{batch_id}' with {len(events)} events (provenance={provenance})...")
 
+        import re
+        if not re.fullmatch(r'[A-Za-z0-9_-]{1,128}', batch_id):
+            raise ValueError('Invalid batch ID')
         # 1. Idempotency check
         if batch_id in self.state.get("processed_batches", {}):
             b_info = self.state["processed_batches"][batch_id]
@@ -368,14 +373,16 @@ class IncrementalTemporalPipeline:
                 staged_snapshots_tmp.unlink()
             raise RuntimeError("CRASH_BEFORE_COMMIT")
 
-        # Atomically commit staged parquet files
-        if batch_parquet_tmp.exists():
-            batch_parquet_tmp.replace(batch_parquet)
-            logger.info(f"Committed {records_to_insert} new records to {batch_parquet.name}")
-
-        if staged_snapshots_tmp and staged_snapshots_tmp.exists():
+        self.transaction.prepare([batch_parquet, self.snapshots_path, self.state_file, self.manifest_file])
+        def crash(point):
+            if crash_at == point:
+                raise RuntimeError('CRASH_' + point)
+        crash('A')
+        batch_parquet_tmp.replace(batch_parquet)
+        crash('B')
+        if staged_snapshots_tmp:
             staged_snapshots_tmp.replace(self.snapshots_path)
-            logger.info(f"Updated network snapshots in {self.snapshots_path.name}")
+        crash('C')
 
         # 7. Checkpointed Commit
         new_version = f"v1.{len(self.state.get('processed_batches', {})) + 1}.0"
@@ -392,8 +399,12 @@ class IncrementalTemporalPipeline:
         self.state["last_committed_at"] = datetime.now(timezone.utc).isoformat()
         self.state["active_dataset_version"] = new_version
 
+        crash('D')
         self._save_state(self.state)
         self._update_release_manifest(new_version, affected_years)
+        self.transaction.commit()
+        crash('E')
+        self.transaction.cleanup()
 
         logger.info(f"Committed batch '{batch_id}' successfully (Version: {new_version}).")
         return IngestionResult(
@@ -511,6 +522,7 @@ class IncrementalTemporalPipeline:
 
         # 5. Write to temporary staged parquet file
         staged_snapshots_tmp = self.snapshots_path.parent / f"network_snapshots_{os.getpid()}_{int(datetime.now().timestamp() * 1000)}.parquet.tmp"
+        df_combined = df_combined.sort_values(['window_type','window_start','window_end','vtuber_a','vtuber_b']).reset_index(drop=True)
         tbl = pa.Table.from_pandas(df_combined, schema=NETWORK_SNAPSHOT_SCHEMA, preserve_index=False)
         pq.write_table(tbl, staged_snapshots_tmp, compression="snappy")
 
