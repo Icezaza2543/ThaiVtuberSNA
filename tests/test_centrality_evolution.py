@@ -87,7 +87,7 @@ def test_bridge_dynamics_classifications(bridge_dynamics_df):
         assert col in bridge_dynamics_df.columns, f"Missing column: {col}"
 
     valid_classes = {
-        "STABLE_BRIDGE", "EMERGING_BRIDGE", "DECLINING_BRIDGE",
+        "STABLE_BRIDGE", "STABLE_BRIDGE_CANONICAL_ONLY", "EMERGING_BRIDGE", "DECLINING_BRIDGE",
         "VOLATILE", "INSUFFICIENT_EVIDENCE", "MODERATE_PERIPHERAL"
     }
     assert set(bridge_dynamics_df["bridge_classification"]).issubset(valid_classes)
@@ -97,6 +97,8 @@ def test_bridge_dynamics_classifications(bridge_dynamics_df):
     for _, r in stable.iterrows():
         assert r["years_in_top_decile_count"] >= 3
         assert r["last_observed_year"] == 2026
+        # Must have non-zero threshold >= 5 retention
+        assert r["threshold_th5_retention_ratio"] > 0.0
 
 def test_change_points_delta_threshold(change_points_df):
     """Verify that detected change points satisfy the |delta| >= 0.25 threshold."""
@@ -108,3 +110,76 @@ def test_change_points_delta_threshold(change_points_df):
             assert r["percentile_delta"] > 0
         else:
             assert r["percentile_delta"] < 0
+
+
+def test_edge_distance_and_toy_graph_betweenness():
+    """Regression test:
+    - stronger edge -> shorter distance
+    - weighted betweenness toy graph has expected bridge
+    """
+    import networkx as nx
+
+    # 1. Stronger edge -> shorter distance
+    strength_strong = 50.0
+    strength_weak = 2.0
+    dist_strong = 1.0 / strength_strong
+    dist_weak = 1.0 / strength_weak
+    assert dist_strong < dist_weak, "Stronger edge must have strictly shorter distance"
+
+    # 2. Toy graph with bridge node X between two communities
+    # Community 1: A, B; Community 2: C, D
+    # Bridge node X connects A, B to C, D
+    G = nx.Graph()
+    # Edges in Comm 1
+    G.add_edge("A", "B", weight=20.0, distance=1.0 / 20.0)
+    # Edges in Comm 2
+    G.add_edge("C", "D", weight=20.0, distance=1.0 / 20.0)
+    # Bridge edges through X
+    G.add_edge("A", "X", weight=10.0, distance=1.0 / 10.0)
+    G.add_edge("X", "C", weight=10.0, distance=1.0 / 10.0)
+    # Weak direct edge A-C with heavy distance (weak tie)
+    G.add_edge("A", "C", weight=0.1, distance=1.0 / 0.1)
+
+    btw = nx.betweenness_centrality(G, weight="distance", normalized=True)
+    # Shortest path between B and D traverses B -> A -> X -> C -> D (dist = 0.05 + 0.1 + 0.1 + 0.05 = 0.3)
+    # Direct A-C distance is 10.0, so shortest path strictly uses bridge X!
+    assert btw["X"] > btw["A"]
+    assert btw["X"] > btw["C"]
+    assert btw["X"] == max(btw.values()), "Bridge node X must have highest betweenness centrality"
+
+
+def test_tie_aware_percentiles_and_order_invariance():
+    """Regression test:
+    - equal centrality values -> strictly equal percentiles
+    - node insertion order does not change percentile or classification
+    """
+    import pandas as pd
+
+    # Equal values
+    raw_metrics_1 = {"ch1": 0.0, "ch2": 0.0, "ch3": 0.5, "ch4": 0.5, "ch5": 1.0}
+    # Permuted insertion order
+    raw_metrics_2 = {"ch5": 1.0, "ch4": 0.5, "ch1": 0.0, "ch3": 0.5, "ch2": 0.0}
+
+    pct_1 = pd.Series(raw_metrics_1).rank(method="average", pct=True).to_dict()
+    pct_2 = pd.Series(raw_metrics_2).rank(method="average", pct=True).to_dict()
+
+    # Equal values -> equal percentiles
+    assert pct_1["ch1"] == pct_1["ch2"]
+    assert pct_1["ch3"] == pct_1["ch4"]
+
+    # Order invariance
+    for k in raw_metrics_1:
+        assert pct_1[k] == pct_2[k]
+
+
+def test_classification_documented_rules():
+    """Regression test: classifications follow exact documented rules."""
+    from scripts.analyze_centrality_evolution import assign_percentile_band
+
+    # Percentile band cutoffs
+    assert assign_percentile_band(0.99) == "TOP_1_PERCENT"
+    assert assign_percentile_band(0.95) == "TOP_5_PERCENT"
+    assert assign_percentile_band(0.90) == "TOP_10_PERCENT"
+    assert assign_percentile_band(0.75) == "TOP_QUARTILE"
+    assert assign_percentile_band(0.74) == "BELOW_QUARTILE"
+

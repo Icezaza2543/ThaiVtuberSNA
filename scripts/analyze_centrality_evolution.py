@@ -82,6 +82,33 @@ def assign_percentile_band(pct: float) -> str:
         return "BELOW_QUARTILE"
 
 
+def compute_pagerank(G: nx.Graph, weight: str = "weight", alpha: float = 0.85, max_iter: int = 300, tol: float = 1e-6) -> Dict[str, float]:
+    """Pure-python weighted PageRank implementation to guarantee execution without scipy."""
+    nodes = list(G.nodes())
+    N = len(nodes)
+    if N == 0:
+        return {}
+    if N == 1:
+        return {nodes[0]: 1.0}
+    p = {n: 1.0 / N for n in nodes}
+    out_weights = {n: G.degree(n, weight=weight) for n in nodes}
+    for _ in range(max_iter):
+        new_p = {}
+        dangling_sum = sum(p[n] for n in nodes if out_weights[n] == 0)
+        for n in nodes:
+            in_sum = sum(
+                p[nbr] * G[nbr][n].get(weight, 1.0) / out_weights[nbr]
+                for nbr in G.neighbors(n)
+                if out_weights[nbr] > 0
+            )
+            new_p[n] = (1.0 - alpha) / N + alpha * (in_sum + dangling_sum / N)
+        err = sum(abs(new_p[n] - p[n]) for n in nodes)
+        p = new_p
+        if err < tol:
+            break
+    return p
+
+
 def run_centrality_evolution_analysis() -> None:
     """Computes longitudinal network centrality metrics and bridge dynamics."""
     DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -113,29 +140,27 @@ def run_centrality_evolution_analysis() -> None:
         yr_str = str(yr)
         yr_edges = yearly_snapshots[yearly_snapshots["window_start"].str.startswith(yr_str)]
 
-        # Build graph for thresholds 1, 3, 5
+        # Build graph for thresholds 1, 3, 5 with distance = 1.0 / strength
         for th in [1, 3, 5]:
             G_th = nx.Graph()
             for _, r in yr_edges.iterrows():
-                w = r["shared_any"]
+                w = float(r["shared_any"])
                 if w >= th:
-                    G_th.add_edge(r["vtuber_a"], r["vtuber_b"], weight=w)
+                    G_th.add_edge(r["vtuber_a"], r["vtuber_b"], weight=w, distance=1.0 / w)
 
             if len(G_th) > 1 and G_th.number_of_edges() > 0:
-                btw_th = nx.betweenness_centrality(G_th, weight="weight", normalized=True)
-                # Sort and take top 10%
-                sorted_btw = sorted(btw_th.items(), key=lambda x: -x[1])
-                top_k = max(1, int(len(sorted_btw) * 0.10))
-                threshold_bridges[th][yr] = set(k for k, _ in sorted_btw[:top_k])
+                btw_th = nx.betweenness_centrality(G_th, weight="distance", normalized=True)
+                s_btw = pd.Series(btw_th).rank(method="average", pct=True)
+                threshold_bridges[th][yr] = set(s_btw[s_btw >= 0.90].index)
             else:
                 threshold_bridges[th][yr] = set()
 
-        # Primary analysis is on threshold >= 1
+        # Primary analysis on canonical threshold >= 1
         G = nx.Graph()
         for _, r in yr_edges.iterrows():
-            w = r["shared_any"]
+            w = float(r["shared_any"])
             if w >= 1:
-                G.add_edge(r["vtuber_a"], r["vtuber_b"], weight=w)
+                G.add_edge(r["vtuber_a"], r["vtuber_b"], weight=w, distance=1.0 / w)
 
         if len(G) <= 1:
             continue
@@ -143,11 +168,10 @@ def run_centrality_evolution_analysis() -> None:
         n_nodes = len(G)
         deg_map = dict(G.degree())
         strength_map = dict(G.degree(weight="weight"))
-        btw_map = nx.betweenness_centrality(G, weight="weight", normalized=True)
-        try:
-            pr_map = nx.pagerank(G, weight="weight", alpha=0.85, max_iter=500)
-        except Exception:
-            pr_map = {n: 1.0 / n_nodes for n in G.nodes()}
+        # Betweenness centrality strictly uses distance = 1.0 / strength
+        btw_map = nx.betweenness_centrality(G, weight="distance", normalized=True)
+        # PageRank uses strength weights
+        pr_map = compute_pagerank(G, weight="weight", alpha=0.85)
 
         try:
             eig_map = nx.eigenvector_centrality(G, weight="weight", max_iter=1000)
@@ -175,22 +199,10 @@ def run_centrality_evolution_analysis() -> None:
                 cross_comm_share[n] = 0.0
                 cross_agency_share[n] = 0.0
 
-        # Ranks and percentiles within the year
-        # Sort nodes by betweenness to get betweenness percentile
-        sorted_by_btw = sorted(G.nodes(), key=lambda n: btw_map[n])
-        btw_pct_map = {
-            n: (idx + 1) / n_nodes for idx, n in enumerate(sorted_by_btw)
-        }
-
-        sorted_by_deg = sorted(G.nodes(), key=lambda n: deg_map[n])
-        deg_pct_map = {
-            n: (idx + 1) / n_nodes for idx, n in enumerate(sorted_by_deg)
-        }
-
-        sorted_by_pr = sorted(G.nodes(), key=lambda n: pr_map[n])
-        pr_pct_map = {
-            n: (idx + 1) / n_nodes for idx, n in enumerate(sorted_by_pr)
-        }
+        # Deterministic, tie-aware percentiles within each year
+        btw_pct_map = pd.Series(btw_map).rank(method="average", pct=True).to_dict()
+        deg_pct_map = pd.Series(deg_map).rank(method="average", pct=True).to_dict()
+        pr_pct_map = pd.Series(pr_map).rank(method="average", pct=True).to_dict()
 
         for n in G.nodes():
             btw_pct = btw_pct_map[n]
@@ -263,18 +275,28 @@ def run_centrality_evolution_analysis() -> None:
         if num_years <= 1 or max_btw_pct < 0.75:
             classification = "INSUFFICIENT_EVIDENCE"
             rule_reason = f"Observed in {num_years} year(s) with max percentile {max_btw_pct:.2f} < 0.75"
-        # 2. STABLE_BRIDGE: in top decile >= 3 years and present in 2026 with >= 75th pct
+        # 2. STABLE_BRIDGE: in top decile >= 3 years and present in 2026 with >= 75th pct, AND robust under th>=5
         elif top_decile_count >= 3 and 2026 in years_observed and c_rows[c_rows["year"] == 2026]["betweenness_percentile"].iloc[0] >= 0.75:
-            classification = "STABLE_BRIDGE"
-            rule_reason = f"Top decile in {top_decile_count} years; retained >= 75th percentile in 2026"
-        # 3. EMERGING_BRIDGE: first entered top decile in 2024-2026, ascending trend
-        elif first_year_top_decile and first_year_top_decile >= 2024 and c_rows["betweenness_percentile"].iloc[-1] >= 0.85:
+            if th5_present >= 1:
+                classification = "STABLE_BRIDGE"
+                rule_reason = f"Top decile in {top_decile_count} years; retained >= 75th percentile in 2026; threshold >= 5 retention present ({th5_present} yr(s))"
+            else:
+                classification = "STABLE_BRIDGE_CANONICAL_ONLY"
+                rule_reason = f"Top decile in {top_decile_count} years; retained in 2026 at canonical threshold >= 1, but zero threshold >= 5 retention"
+        # 3. EMERGING_BRIDGE: first entered top decile in 2024-2026 with documented ascending trajectory
+        elif (
+            first_year_top_decile is not None
+            and first_year_top_decile >= 2024
+            and len(btw_pcts) >= 2
+            and btw_pcts[-1] >= btw_pcts[-2]
+            and btw_pcts[-1] >= 0.85
+        ):
             classification = "EMERGING_BRIDGE"
-            rule_reason = f"First entered top decile in {first_year_top_decile}; terminal percentile >= 0.85"
-        # 4. DECLINING_BRIDGE: previously in top decile for >= 1 year, dropped below top decile in 2025/2026
-        elif top_decile_count >= 1 and 2026 in years_observed and c_rows[c_rows["year"] == 2026]["betweenness_percentile"].iloc[0] < 0.75:
+            rule_reason = f"First entered top decile in {first_year_top_decile}; ascending trajectory ({btw_pcts[-2]:.2f} -> {btw_pcts[-1]:.2f}) with terminal percentile >= 0.85"
+        # 4. DECLINING_BRIDGE: previously in top decile for >= 2 years, dropped below top quartile in 2026 or inactive
+        elif top_decile_count >= 2 and (2026 not in years_observed or c_rows[c_rows["year"] == 2026]["betweenness_percentile"].iloc[0] < 0.75):
             classification = "DECLINING_BRIDGE"
-            rule_reason = f"Was in top decile in {top_decile_count} year(s) but dropped below 75th percentile in 2026"
+            rule_reason = f"Previously reached top decile in {top_decile_count} years (>= 2), but declined below top quartile (< 0.75) or inactive in 2026"
         # 5. VOLATILE: has >= 2 years in top quartile with volatility >= 0.15
         elif pct_volatility >= 0.15 and max_btw_pct >= 0.80:
             classification = "VOLATILE"
@@ -348,6 +370,9 @@ def generate_bridge_dynamics_report(
     stable_bridges = df_bridges[df_bridges["bridge_classification"] == "STABLE_BRIDGE"].sort_values(
         "mean_betweenness_percentile", ascending=False
     )
+    canonical_stable = df_bridges[df_bridges["bridge_classification"] == "STABLE_BRIDGE_CANONICAL_ONLY"].sort_values(
+        "mean_betweenness_percentile", ascending=False
+    )
     emerging_bridges = df_bridges[df_bridges["bridge_classification"] == "EMERGING_BRIDGE"].sort_values(
         "mean_betweenness_percentile", ascending=False
     )
@@ -368,25 +393,30 @@ def generate_bridge_dynamics_report(
     lines.append(f"This report tracks the longitudinal evolution of creator structural network roles across the Thai VTuber interaction ecosystem from 2020 through 2026. Across **{len(df_yearly)} channel-year evaluations**, channel centrality is measured via normalized percentile bands to avoid overinterpreting threshold-sensitive ordinal ranks.")
     lines.append("")
     lines.append("### Scientific Framing & Guardrails")
-    lines.append("1. **Structural Position, Not Causal Influence:** Betweenness centrality and bridge metrics quantify topological position on shortest paths between creator communities. They must never be interpreted as personal 'influence' or causal authority.")
-    lines.append("2. **Percentile Bands over Raw Ranks:** In alignment with Phase T10 findings demonstrating rank volatility under edge pruning, channels are classified into standardized percentile bands (`TOP_1_PERCENT`, `TOP_5_PERCENT`, `TOP_10_PERCENT`, `TOP_QUARTILE`).")
-    lines.append("3. **Threshold Sensitivity Testing:** Bridge stability is tested against edge weight thresholds (>= 1, >= 3, >= 5 shared viewers) to quantify peripheral attrition vs structural robustness.")
+    lines.append("1. **Edge Distance vs Strength Semantics:** Betweenness centrality models shortest paths where edge weight represents traversal distance (`distance = 1.0 / strength`, where `strength = shared_any`). Higher co-audience strength creates shorter graph distance. Degree, PageRank, and eigenvector centrality utilize edge strength directly.")
+    lines.append("2. **Deterministic Tie-Aware Percentiles:** Percentiles are computed using average rank (`Series.rank(method='average', pct=True)`), ensuring identical centrality values receive strictly equal percentiles invariant to node insertion order.")
+    lines.append("3. **Structural Position, Not Causal Influence:** Betweenness centrality and bridge metrics quantify topological position on shortest paths between creator communities. They must never be interpreted as personal 'influence' or causal authority.")
+    lines.append("4. **Percentile Bands over Raw Ranks:** In alignment with Phase T10 findings demonstrating rank volatility under edge pruning, channels are classified into standardized percentile bands (`TOP_1_PERCENT`, `TOP_5_PERCENT`, `TOP_10_PERCENT`, `TOP_QUARTILE`).")
+    lines.append("5. **Threshold Sensitivity & Robustness:** Bridge stability is tested against edge weight thresholds (>= 1, >= 3, >= 5 shared viewers) to distinguish multi-viewer structural bridges from single-viewer peripheral ties.")
     lines.append("")
     lines.append("---")
     lines.append("")
     lines.append("## 1. Classification of Creator Structural Roles")
     lines.append("")
-    lines.append(f"- **STABLE_BRIDGE Creators:** {len(stable_bridges)}")
-    lines.append(f"- **EMERGING_BRIDGE Creators:** {len(emerging_bridges)}")
+    lines.append(f"- **STABLE_BRIDGE Creators (Threshold Robust):** {len(stable_bridges)}")
+    if not canonical_stable.empty:
+        lines.append(f"- **STABLE_BRIDGE_CANONICAL_ONLY (Threshold >= 1 Only):** {len(canonical_stable)}")
+    lines.append(f"- **EMERGING_BRIDGE Creators (Ascending 2024–2026):** {len(emerging_bridges)}")
     lines.append(f"- **DECLINING_BRIDGE Creators:** {len(declining_bridges)}")
     lines.append(f"- **VOLATILE Structural Positions:** {len(volatile_channels)}")
     lines.append("")
     lines.append("### 1.1 Stable Bridge Creators (Sustained Cross-Community Integration)")
     lines.append("| Channel Name | Agency | Years Observed | Yrs in Top Decile | Mean Btw Pct | Max Btw Pct | Cross-Comm Share | Cross-Agency Share | Th=5 Retention |")
     lines.append("| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
-    for _, r in stable_bridges.iterrows():
+    for _, r in pd.concat([stable_bridges, canonical_stable]).iterrows():
+        tag = " (Th>=1 only)" if r["bridge_classification"] == "STABLE_BRIDGE_CANONICAL_ONLY" else ""
         lines.append(
-            f"| **{r['channel_name']}** | {r['agency_at_selection']} | {r['years_observed_count']} | "
+            f"| **{r['channel_name']}{tag}** | {r['agency_at_selection']} | {r['years_observed_count']} | "
             f"{r['years_in_top_decile_count']} | {r['mean_betweenness_percentile']:.1%} | {r['max_betweenness_percentile']:.1%} | "
             f"{r['mean_cross_community_share']:.1%} | {r['mean_cross_agency_share']:.1%} | {r['threshold_th5_retention_ratio']:.1%} |"
         )
