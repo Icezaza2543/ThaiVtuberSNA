@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thai VTuber SNA — Research Dashboard</title>
+  <meta name="description" content="Multi-year longitudinal research dashboard for Thai VTuber Social Network Analysis (2020–2026). Ecosystem evolution, community lineage, cohort survival, and evidence quality.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="research_dashboard.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="dash-header" id="dashHeader">
+    <div class="header-left">
+      <div class="logo-mark">SNA</div>
+      <div>
+        <h1 class="header-title">Thai VTuber Research Dashboard</h1>
+        <p class="header-sub">Longitudinal Social Network Analysis · 2020–2026</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="privacy-badge">
+        <span class="privacy-dot"></span>
+        Zero PII · Aggregated Macro Only
+      </span>
+      <span class="version-badge" id="genTimestamp">T8–T16</span>
+    </div>
+  </header>
+
+  <!-- Tab Navigation -->
+  <nav class="tab-nav" id="tabNav">
+    <button class="tab-btn active" data-tab="overview">Overview</button>
+    <button class="tab-btn" data-tab="ecosystem">Ecosystem</button>
+    <button class="tab-btn" data-tab="lineage">Lineage</button>
+    <button class="tab-btn" data-tab="cohorts">Cohorts</button>
+    <button class="tab-btn" data-tab="centrality">Bridges</button>
+    <button class="tab-btn" data-tab="quality">Quality</button>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="dash-main">
+
+    <!-- ═══════════════════ OVERVIEW TAB ═══════════════════ -->
+    <section class="tab-panel active" id="panel-overview">
+      <div class="kpi-strip" id="kpiStrip">
+        <!-- populated dynamically -->
+      </div>
+
+      <div class="panel-grid-2">
+        <div class="card" id="overviewEcosystemChart">
+          <div class="card-header">
+            <h3>Ecosystem Growth</h3>
+            <span class="card-badge">T14</span>
+          </div>
+          <canvas id="canvasEcosystemGrowth" height="260"></canvas>
+        </div>
+
+        <div class="card" id="overviewModularityChart">
+          <div class="card-header">
+            <h3>Modularity & Density</h3>
+            <span class="card-badge">T14</span>
+          </div>
+          <canvas id="canvasModDensity" height="260"></canvas>
+        </div>
+      </div>
+
+      <div class="panel-grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3>Cohort Survival Curve</h3>
+            <span class="card-badge">T12</span>
+          </div>
+          <canvas id="canvasSurvivalOverview" height="240"></canvas>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3>Evidence Quality by Year</h3>
+            <span class="card-badge">T15</span>
+          </div>
+          <canvas id="canvasQualityOverview" height="240"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Structural Break Candidates</h3>
+          <span class="card-badge">T14</span>
+        </div>
+        <div class="scrollable-table" id="breaksTable"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ ECOSYSTEM TAB ═══════════════════ -->
+    <section class="tab-panel" id="panel-ecosystem">
+      <div class="card">
+        <div class="card-header">
+          <h3>Longitudinal Macro Topological Metrics</h3>
+          <span class="card-badge">T14</span>
+        </div>
+        <div class="scrollable-table" id="ecosystemTable"></div>
+      </div>
+
+      <div class="panel-grid-2">
+        <div class="card">
+          <div class="card-header"><h3>Active Channels & Edges</h3></div>
+          <canvas id="canvasEcoFull" height="280"></canvas>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>Modularity Q & Density</h3></div>
+          <canvas id="canvasEcoModDens" height="280"></canvas>
+        </div>
+      </div>
+
+      <div class="panel-grid-2">
+        <div class="card">
+          <div class="card-header"><h3>Agency Assortativity</h3></div>
+          <canvas id="canvasAgencyAssort" height="260"></canvas>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>Cross-Community Share</h3></div>
+          <canvas id="canvasCrossComm" height="260"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ LINEAGE TAB ═══════════════════ -->
+    <section class="tab-panel" id="panel-lineage">
+      <div class="card">
+        <div class="card-header">
+          <h3>Persistent Community Lifecycles</h3>
+          <span class="card-badge">T11</span>
+        </div>
+        <div class="scrollable-table" id="lineageLifecycleTable"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Community Lineage Timeline</h3>
+          <span class="card-badge">T11</span>
+        </div>
+        <canvas id="canvasLineageTimeline" height="350"></canvas>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Genealogical Relations (Adjacent Years)</h3>
+          <span class="card-badge">T11</span>
+        </div>
+        <div class="scrollable-table" id="lineageTransitionsTable"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ COHORTS TAB ═══════════════════ -->
+    <section class="tab-panel" id="panel-cohorts">
+      <div class="card">
+        <div class="card-header">
+          <h3>Cohort Survival & Persistence</h3>
+          <span class="card-badge">T12</span>
+        </div>
+        <canvas id="canvasCohortSurvival" height="320"></canvas>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Retention Matrix</h3>
+          <span class="card-badge">T12</span>
+        </div>
+        <div class="scrollable-table" id="cohortRetentionTable"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Reactivation Dynamics</h3>
+          <span class="card-badge">T12</span>
+        </div>
+        <canvas id="canvasReactivation" height="280"></canvas>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ BRIDGES TAB ═══════════════════ -->
+    <section class="tab-panel" id="panel-centrality">
+      <div class="card">
+        <div class="card-header">
+          <h3>Bridge Dynamics & Structural Classifications</h3>
+          <span class="card-badge">T13</span>
+        </div>
+        <div class="scrollable-table" id="bridgeTable"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Centrality Change-Point Events</h3>
+          <span class="card-badge">T13</span>
+        </div>
+        <canvas id="canvasChangePoints" height="280"></canvas>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ QUALITY TAB ═══════════════════ -->
+    <section class="tab-panel" id="panel-quality">
+      <div class="panel-grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3>Evidence Quality Matrix</h3>
+            <span class="card-badge">T15</span>
+          </div>
+          <div class="scrollable-table" id="qualityTable"></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3>Channel Tier Distribution</h3>
+            <span class="card-badge">T15</span>
+          </div>
+          <canvas id="canvasTierDonut" height="260"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Perturbation Sensitivity Analysis</h3>
+          <span class="card-badge">T15/T10</span>
+        </div>
+        <canvas id="canvasSensitivity" height="320"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="dash-footer">
+    <p>Thai VTuber SNA · Privacy-Preserving Research Dashboard · All data HMAC-SHA256 pseudonymized · <span id="footerGen"></span></p>
+  </footer>
+
+  <script src="research_dashboard.js"></script>
+</body>
+</html>
