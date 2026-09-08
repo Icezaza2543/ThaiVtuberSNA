@@ -1,6 +1,6 @@
 # Appendix: Extended Empirical Data Tables
 
-**Generated:** 2026-09-08T15:45:42.186540+00:00
+**Generated:** 2026-09-08T16:59:48.520504+00:00
 **Privacy Classification:** NO_VIEWER_LEVEL_DATA (All metrics aggregate)
 
 ---

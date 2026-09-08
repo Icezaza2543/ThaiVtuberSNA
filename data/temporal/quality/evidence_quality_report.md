@@ -5,7 +5,7 @@ This report makes the empirical limitations of the Thai VTuber interaction evide
 
 ### Methodological Guardrails
 1. **Rejection of 'Probability of Truth' Indexing:** Observational social media data cannot be assigned frequentist truth probabilities without unverifiable population ground-truth priors. Instead, data quality is decomposed into measurable empirical dimensions: catalog coverage, comment depth, truncation cap exposure, and modality diversity.
-2. **Separation of Modality Concordance from Modularity Values:** Unified 2026 modularity Q (0.508) and comment-only Q (0.325) are not identical because live-chat interactions introduce localized weight concentrations. However, partition concordance (evaluated via T10 NMI = 1.0000 and ARI = 1.0000 at th=1) confirms community boundary consistency.
+2. **Modality concordance:** T10 2026 comment-only versus unified, threshold 1, resolution 1, seed 42: NMI = 0.8733; ARI = 0.8878. Agreement is measured on common nodes; it does not establish identical partitions or causal stability.
 3. **Collection-Level Truncation Tracking:** Tracks T5 `partial_capture` flags and T6 deep-collection resolutions to measure actual unresolved cap exposure.
 4. **Deterministic Multi-Seed Sensitivity:** Includes 10% channel-dropout simulations across 5 fixed seeds reporting mean and standard deviation.
 
@@ -16,12 +16,12 @@ This report makes the empirical limitations of the Thai VTuber interaction evide
 | Year | Catalog Vids | Sampled Vids | Sampling Ratio | Interactions | T6 Share | High-Vol Rate | Partial Vids | T6 Resolved | Unresolved Exposure | Active Chans | Coverage (Cat) | Evidence Tier |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **2020** | 1,897 | 141 | 7.4% | 5,984 | 68.0% | 11.3% | 20 | 20 | 0.0% | 29/36 | 80.6% | `MODERATE` |
-| **2021** | 5,601 | 507 | 9.0% | 14,653 | 62.5% | 8.1% | 60 | 60 | 0.0% | 72/73 | 98.6% | `HIGH` |
-| **2022** | 9,386 | 701 | 7.5% | 14,772 | 56.7% | 3.1% | 74 | 74 | 0.0% | 101/101 | 100.0% | `HIGH` |
-| **2023** | 15,516 | 983 | 6.3% | 23,224 | 64.5% | 3.1% | 99 | 99 | 0.0% | 141/137 | 100.0% | `HIGH` |
-| **2024** | 22,436 | 1,237 | 5.5% | 17,159 | 47.9% | 3.0% | 128 | 128 | 0.0% | 166/160 | 100.0% | `HIGH` |
-| **2025** | 25,246 | 1,366 | 5.4% | 21,812 | 57.1% | 3.7% | 152 | 152 | 0.0% | 173/165 | 100.0% | `HIGH` |
-| **2026 (YTD)** | 16,338 | 1,120 | 6.9% | 17,265 | 41.9% | 3.1% | 142 | 142 | 0.0% | 176/147 | 100.0% | `HIGH` |
+| **2021** | 5,601 | 507 | 9.0% | 14,653 | 62.5% | 8.1% | 60 | 60 | 0.0% | 72/73 | 97.3% | `HIGH` |
+| **2022** | 9,386 | 701 | 7.5% | 14,772 | 56.7% | 3.1% | 74 | 74 | 0.0% | 101/101 | 98.0% | `HIGH` |
+| **2023** | 15,516 | 983 | 6.3% | 23,224 | 64.5% | 3.1% | 99 | 99 | 0.0% | 141/137 | 97.1% | `HIGH` |
+| **2024** | 22,436 | 1,237 | 5.5% | 17,159 | 47.9% | 3.0% | 128 | 128 | 0.0% | 166/160 | 97.5% | `HIGH` |
+| **2025** | 25,246 | 1,366 | 5.4% | 21,812 | 57.1% | 3.7% | 152 | 152 | 0.0% | 173/165 | 98.8% | `HIGH` |
+| **2026 (YTD)** | 16,338 | 1,120 | 6.9% | 17,265 | 41.9% | 3.1% | 142 | 142 | 0.0% | 176/147 | 97.3% | `HIGH` |
 
 ---
 
@@ -105,10 +105,18 @@ Evaluates the sensitivity of macro network metrics across perturbation scenarios
 | 2026 | `DROPOUT_10PCT_SD` | 1.17 | 88.5 | 0.0070 | 1.11 | 1.3% | 0.0364 |
 
 ### Key Methodological Findings
-- **Modality and Modularity Divergence:** Unified 2026 modularity Q (0.5085) and comment-only Q (0.3246) differ because live chat introduces localized interaction weight concentration. Crucially, partition concordance remains concordant across modalities (Phase T10 robustness analysis establishes Normalized Mutual Information NMI = 1.0000 and Adjusted Rand Index ARI = 1.0000 at edge threshold >= 1), proving that community assignments are stable even as scalar modularity varies.
-- **Empirical Truncation Resolution:** Across the corpus, 226 videos were flagged with `partial_capture = True` in T5. Phase T6 deep backfill targeted and deepened all 226 candidate videos (`t6_deepened_resolved_videos = 226`), yielding 0 unresolved cap exposures (`unresolved_cap_exposure_rate = 0.0%`).
-- **10% Channel Dropout Sensitivity:** Multi-seed dropout simulations demonstrate robust stability. Across all mature observation horizons, mean modularity under 10% dropout matches baseline within ~0.02, confirming structural resilience against creator sampling variance.
-- **Threshold Robustness:** Pruning edges below threshold >= 3 and >= 5 reduces edge count while increasing modularity from ~0.31 to ~0.45 across mature years, validating that core community partitions reflect dense co-audience clusters rather than single-viewer peripheral artifacts.
+- **Modality comparison:** T10 2026 comment-only versus unified, threshold 1, resolution 1, seed 42: NMI = 0.8733; ARI = 0.8878. Agreement is measured on common nodes; it does not establish identical partitions or causal stability.
+- Truncation metadata, dropout effects and threshold effects are reported per year above; deepening alone does not prove exhaustive capture.
+
+| Year | Evidence channels | Catalog published channels | Intersection | Catalog active recall | Target manifest coverage |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 2020 | 29 | 36 | 29 | 0.8056 | 0.1503 |
+| 2021 | 72 | 73 | 71 | 0.9726 | 0.3731 |
+| 2022 | 101 | 101 | 99 | 0.9802 | 0.5233 |
+| 2023 | 141 | 137 | 133 | 0.9708 | 0.7306 |
+| 2024 | 166 | 160 | 156 | 0.9750 | 0.8601 |
+| 2025 | 173 | 165 | 163 | 0.9879 | 0.8964 |
+| 2026 | 176 | 147 | 143 | 0.9728 | 0.8601 |
 
 ---
 *Report generated automatically by `scripts/analyze_evidence_quality.py`.*

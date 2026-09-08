@@ -66,6 +66,7 @@ OUTPUT_YEARLY_QUALITY = DATA_DIR / "yearly_evidence_quality.parquet"
 OUTPUT_CHANNEL_QUALITY = DATA_DIR / "channel_evidence_quality.parquet"
 OUTPUT_BIAS_SENSITIVITY = DATA_DIR / "bias_sensitivity.parquet"
 OUTPUT_REPORT_MD = DATA_DIR / "evidence_quality_report.md"
+T10_SENSITIVITY = BASE_DIR / 'data/temporal/robustness/sensitivity_results.parquet'
 
 sys.path.insert(0, str(BASE_DIR))
 from scripts.build_duckdb_temporal_snapshots import build_unified_raw_view, build_canonical_events_view
@@ -77,6 +78,27 @@ def compute_entropy(probs: List[float]) -> float:
     if len(p_arr) <= 1:
         return 0.0
     return float(-np.sum(p_arr * np.log(p_arr)))
+
+
+def channel_recall(evidence, catalog, targets):
+    evidence, catalog, targets = set(evidence), set(catalog), set(targets)
+    return {
+        'interaction_evidence_channel_count': len(evidence),
+        'catalog_published_channel_count': len(catalog),
+        'intersection_count': len(evidence & catalog),
+        'catalog_active_recall': len(evidence & catalog) / len(catalog) if catalog else float('nan'),
+        'target_manifest_coverage': len(evidence & targets) / len(targets) if targets else float('nan'),
+    }
+
+
+def modality_comparison(path=None):
+    df = pd.read_parquet(path or T10_SENSITIVITY)
+    rows = df[(df['slice_type'] == 'yearly') & df['slice_start'].str.startswith('2026') &
+              (df['evidence_mode'] == 'comment_only') & (df['edge_threshold'] == 1) &
+              (df['louvain_resolution'] == 1.0) & (df['random_seed'] == 42)]
+    if len(rows) != 1:
+        raise ValueError(f'T10 modality schema/selection mismatch: expected one row, got {len(rows)}')
+    return rows.iloc[0]
 
 
 def run_evidence_quality_analysis() -> None:
@@ -110,14 +132,14 @@ def run_evidence_quality_analysis() -> None:
     logger.info("Loading T5 and T6 collection metadata for empirical truncation tracking...")
     t5_meta = con.execute("""
         SELECT DISTINCT video_id
-        FROM read_parquet('data/temporal/observations/**/*.parquet', union_by_name=True)
-        WHERE partial_capture = true
+        FROM unified_raw
+        WHERE provenance = 't5_stratified' AND try_cast(partial_capture AS BOOLEAN) = true
     """).df()
     partial_capture_vids = set(t5_meta["video_id"])
 
     t6_meta = con.execute("""
         SELECT DISTINCT video_id
-        FROM read_parquet('data/temporal/deep_observations/**/*.parquet', union_by_name=True)
+        FROM unified_raw WHERE provenance = 't6_deep'
     """).df()
     t6_deepened_vids = set(t6_meta["video_id"])
 
@@ -178,8 +200,9 @@ def run_evidence_quality_analysis() -> None:
         sampling_ratio = float(sampled_vids_count / cat_vids_count) if cat_vids_count > 0 else 0.0
         total_target_channels = len(manifest_df)
         # Proper active-population denominator: active catalog channels in that year
-        cat_chan_cov = float(min(1.0, sampled_chans_count / cat_chans_count)) if cat_chans_count > 0 else 0.0
-        cohort_chan_cov = float(sampled_chans_count / total_target_channels) if total_target_channels > 0 else 0.0
+        recall = channel_recall(yr_vids['vtuber_channel_id'], cat_yr['channel_id'], manifest_df['channel_id'])
+        cat_chan_cov = recall['catalog_active_recall']
+        cohort_chan_cov = recall['target_manifest_coverage']
 
         # Source diversity
         prov_counts = yr_vids.groupby("provenance")["cnt"].sum()
@@ -198,6 +221,7 @@ def run_evidence_quality_analysis() -> None:
             tier_basis = "Constrained sample depth or early pioneer horizon"
 
         yearly_records.append({
+            **recall,
             "year": yr,
             "year_label": f"{yr} (YTD)" if yr == 2026 else str(yr),
             "is_ytd": (yr == 2026),
@@ -499,6 +523,10 @@ def generate_evidence_quality_report(
 ) -> str:
     """Generates evidence_quality_report.md programmatically from data."""
     tier_counts = df_chan["evidence_support_tier"].value_counts().to_dict()
+    modality = modality_comparison()
+    modality_text = (f"T10 2026 comment-only versus unified, threshold 1, resolution 1, seed 42: "
+                     f"NMI = {modality['nmi_to_baseline']:.4f}; ARI = {modality['ari_to_baseline']:.4f}. "
+                     "Agreement is measured on common nodes; it does not establish identical partitions or causal stability.")
 
     lines = []
     lines.append("# Phase T15: Coverage, Bias & Evidence Reliability Report")
@@ -508,7 +536,7 @@ def generate_evidence_quality_report(
     lines.append("")
     lines.append("### Methodological Guardrails")
     lines.append("1. **Rejection of 'Probability of Truth' Indexing:** Observational social media data cannot be assigned frequentist truth probabilities without unverifiable population ground-truth priors. Instead, data quality is decomposed into measurable empirical dimensions: catalog coverage, comment depth, truncation cap exposure, and modality diversity.")
-    lines.append("2. **Separation of Modality Concordance from Modularity Values:** Unified 2026 modularity Q (0.508) and comment-only Q (0.325) are not identical because live-chat interactions introduce localized weight concentrations. However, partition concordance (evaluated via T10 NMI = 1.0000 and ARI = 1.0000 at th=1) confirms community boundary consistency.")
+    lines.append('2. **Modality concordance:** ' + modality_text)
     lines.append("3. **Collection-Level Truncation Tracking:** Tracks T5 `partial_capture` flags and T6 deep-collection resolutions to measure actual unresolved cap exposure.")
     lines.append("4. **Deterministic Multi-Seed Sensitivity:** Includes 10% channel-dropout simulations across 5 fixed seeds reporting mean and standard deviation.")
     lines.append("")
@@ -562,10 +590,13 @@ def generate_evidence_quality_report(
         )
     lines.append("")
     lines.append("### Key Methodological Findings")
-    lines.append("- **Modality and Modularity Divergence:** Unified 2026 modularity Q (0.5085) and comment-only Q (0.3246) differ because live chat introduces localized interaction weight concentration. Crucially, partition concordance remains concordant across modalities (Phase T10 robustness analysis establishes Normalized Mutual Information NMI = 1.0000 and Adjusted Rand Index ARI = 1.0000 at edge threshold >= 1), proving that community assignments are stable even as scalar modularity varies.")
-    lines.append("- **Empirical Truncation Resolution:** Across the corpus, 226 videos were flagged with `partial_capture = True` in T5. Phase T6 deep backfill targeted and deepened all 226 candidate videos (`t6_deepened_resolved_videos = 226`), yielding 0 unresolved cap exposures (`unresolved_cap_exposure_rate = 0.0%`).")
-    lines.append("- **10% Channel Dropout Sensitivity:** Multi-seed dropout simulations demonstrate robust stability. Across all mature observation horizons, mean modularity under 10% dropout matches baseline within ~0.02, confirming structural resilience against creator sampling variance.")
-    lines.append("- **Threshold Robustness:** Pruning edges below threshold >= 3 and >= 5 reduces edge count while increasing modularity from ~0.31 to ~0.45 across mature years, validating that core community partitions reflect dense co-audience clusters rather than single-viewer peripheral artifacts.")
+    lines.append('- **Modality comparison:** ' + modality_text)
+    lines.append('- Truncation metadata, dropout effects and threshold effects are reported per year above; deepening alone does not prove exhaustive capture.')
+    lines.append('')
+    lines.append('| Year | Evidence channels | Catalog published channels | Intersection | Catalog active recall | Target manifest coverage |')
+    lines.append('| --- | ---: | ---: | ---: | ---: | ---: |')
+    for _, r in df_yearly.iterrows():
+        lines.append(f"| {r['year']} | {r['interaction_evidence_channel_count']} | {r['catalog_published_channel_count']} | {r['intersection_count']} | {r['catalog_active_recall']:.4f} | {r['target_manifest_coverage']:.4f} |")
     lines.append("")
     lines.append("---")
     lines.append("*Report generated automatically by `scripts/analyze_evidence_quality.py`.*")

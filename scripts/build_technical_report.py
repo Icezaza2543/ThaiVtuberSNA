@@ -66,264 +66,64 @@ def fmtpct(v, d=1):
     return f"{v:.{d}f}%"
 
 
+def require_columns(df, columns, artifact):
+    missing = set(columns) - set(df.columns)
+    if missing:
+        raise ValueError(f"{artifact}: required columns missing: {sorted(missing)}")
+    return df
+
+
 def build_technical_report() -> str:
-    lines = []
-
-    # 1. Header & Title
-    lines.extend([
-        "# Privacy-Preserving Longitudinal Social Network Analysis",
-        "# of the Thai VTuber Ecosystem (2020–2026)",
-        "",
-        "**Thai VTuber SNA Research Program — Technical Report**",
-        "",
-        f"**Report Date:** {datetime.now(timezone.utc).strftime('%Y-%m-%d')}",
-        "**Phases Covered:** T8–T16 (Comprehensive Longitudinal Synthesis)",
-        "**Privacy Level:** NO_VIEWER_LEVEL_DATA (Zero raw viewer IDs, zero individual viewer records, HMAC-SHA256 pseudonymized)",
-        "",
-        "---",
-        "",
-    ])
-
-    # 2. Dynamic Abstract
-    eco_df = safe_read(ECOSYSTEM_METRICS)
-    lc_df = safe_read(COMMUNITY_LIFECYCLES)
-    surv_df = safe_read(COHORT_SURVIVAL)
-    ret_df = safe_read(COHORT_RETENTION)
-
-    ch_2020 = eco_df[eco_df["year"] == 2020]["active_channels"].iloc[0] if eco_df is not None and not eco_df[eco_df["year"] == 2020].empty else 21
-    ch_2025 = eco_df[eco_df["year"] == 2025]["active_channels"].iloc[0] if eco_df is not None and not eco_df[eco_df["year"] == 2025].empty else 166
-    q_2020 = eco_df[eco_df["year"] == 2020]["modularity"].iloc[0] if eco_df is not None and not eco_df[eco_df["year"] == 2020].empty else 0.197
-    q_2025 = eco_df[eco_df["year"] == 2025]["modularity"].iloc[0] if eco_df is not None and not eco_df[eco_df["year"] == 2025].empty else 0.319
-
-    total_lin = len(lc_df) if lc_df is not None else 15
-    active_lin = len(lc_df[lc_df["lifecycle_status"] == "ACTIVE"]) if lc_df is not None and "lifecycle_status" in lc_df.columns else 12
-
-    p1_rate = surv_df[surv_df["elapsed_years"] == 1]["persistence_rate"].iloc[0] if surv_df is not None and not surv_df[surv_df["elapsed_years"] == 1].empty else 0.088
-
-    lines.extend([
-        "## Abstract",
-        "",
-        "This report presents an empirical, multi-year longitudinal Social Network Analysis (SNA) "
-        "of the Thai Virtual YouTuber (VTuber) ecosystem spanning calendar years 2020 through mid-2026. "
-        "Employing a privacy-preserving cryptographic architecture (RAM-boundary HMAC-SHA256 pseudonymization), "
-        "we construct bipartite-projected audience interaction networks from public YouTube comments and live chat participation evidence. "
-        f"The empirical findings demonstrate an ecosystem scaling from {fmtnum(ch_2020)} active channels in 2020 to {fmtnum(ch_2025)} in 2025, "
-        f"with modularity Q increasing from {q_2020:.3f} to {q_2025:.3f} as distinct audience communities crystallized. "
-        f"Deterministic maximum-weight bipartite matching identifies {total_lin} persistent community lineages across seven observation periods, "
-        f"of which {active_lin} remain actively tracking in the terminal window. "
-        f"Audience cohort tracking reveals a pooled +1 year continuation rate of {fmtpct(p1_rate)}, "
-        "with surviving audience members exhibiting progressive cross-channel dispersion across the creator network. "
-        "Evidence quality audit confirms HIGH-tier observation coverage for all mature annual slices.",
-        "",
-        "---",
-        "",
-    ])
-
-    # 3. Introduction
-    lines.extend([
-        "## 1. Introduction",
-        "",
-        "### 1.1 Research Context",
-        "The Thai VTuber ecosystem has expanded rapidly since 2020, transitioning from a nascent group of independent "
-        "pioneers into a multi-agency, highly specialized creator economy. Understanding the macro structural evolution, "
-        "community persistence, and audience retention dynamics of this digital community requires rigorous longitudinal "
-        "network methods that protect viewer privacy.",
-        "",
-        "### 1.2 Research Objectives",
-        "1. **Macro Structural Topology:** Map the longitudinal expansion, density, and modularity of the audience co-attendance network.",
-        "2. **Community Lineage Genealogy:** Track the multi-year survival, splitting, and merging of audience communities using optimal matching.",
-        "3. **Cohort Survival Dynamics:** Measure empirical viewer retention, churn, and network dispersion across elapsed yearly horizons.",
-        "4. **Structural Bridging:** Identify creators whose audiences bridge distinct communities, evaluating their stability under edge perturbation.",
-        "5. **Evidence Quality & Robustness:** Audit tiered collection coverage, truncation exposure, and parameter sensitivity.",
-        "",
-        "### 1.3 Privacy Architecture & Data Classification",
-        "The analysis enforces a strict privacy contract: `NO_VIEWER_LEVEL_DATA`. "
-        "Viewer identifiers are transformed into keyed HMAC-SHA256 pseudonyms on the RAM boundary at ingestion. "
-        "No raw user IDs, comments, chat messages, or individual viewer records are persisted or published. "
-        "Exported datasets contain exclusively public channel-level creator metadata and aggregate audience metrics.",
-        "",
-        "---",
-        "",
-    ])
-
-    # 4. Methodology
-    lines.extend([
-        "## 2. Methodology",
-        "",
-        "### 2.1 Evidence Collection & Pagination",
-        "Interaction evidence is collected via the YouTube Data API v3 across tiered collection phases: "
-        "T6 exhaustive multi-page comment capture, T5 stratified hash-ranked backfill, T2 exploratory pilot, and T16 append-only incremental batches. "
-        "Historical pagination truncation has been resolved via Phase T6 exhaustive collection, with zero unresolved cap exposures in the canonical dataset.",
-        "",
-        "### 2.2 Network Construction",
-        "An undirected co-attendance edge (A, B) connects VTuber channels A and B if at least one distinct pseudonymized viewer "
-        "interacted on both channels within the observation window. "
-        "Edge weight represents the count of shared distinct viewers (`shared_any`).",
-        "",
-        "### 2.3 Strict Temporal Slicing: Interaction Time Only",
-        "Temporal slicing strictly follows interaction time (`interaction_time`), derived exclusively from interaction timestamps "
-        "(`interaction_at`, `first_seen`, or `timestamp`). "
-        "Video publication date is NEVER used as a fallback for interaction slicing. "
-        "Undated interactions (where interaction_time is NULL) are strictly excluded from all temporal network snapshots.",
-        "",
-        "### 2.4 Community Detection & Optimal Lineage Matching (T11)",
-        "Communities are partitioned via Louvain modularity optimization (NetworkX implementation, resolution=1.0). "
-        "Adjacent-year partitions are linked using global maximum-weight bipartite matching based on the composite score: "
-        "$$W = 0.4 \\times Jaccard + 0.3 \\times Forward + 0.3 \\times Backward$$ "
-        "subject to a strict one-to-one backbone constraint (source <= 1 primary continuation, target <= 1 primary continuation).",
-        "",
-        "### 2.5 Centrality Evolution & Perturbation Stability (T13)",
-        "Betweenness centrality is calculated on weighted shortest paths where distance $d = 1.0 / \\text{shared\\_any}$. "
-        "To filter out spurious or transient bridges, creators are classified as `STABLE_BRIDGE` if and only if "
-        "their degree retention ratio under a threshold-5 perturbation is at least 0.50 (`threshold_th5_retention_ratio >= 0.50`); "
-        "otherwise, they are classified as `STABLE_BRIDGE_CANONICAL_ONLY`.",
-        "",
-        "### 2.6 Methodological Limitations & Non-Causal Scope",
-        "1. **Observational Sampling:** Evidence reflects active commenters and live chatters; passive viewers are unobserved.",
-        "2. **Selection-Time Agency Metadata:** Creator affiliations represent status at the time of study selection (`agency_at_selection`) "
-        "and do NOT imply historical agency membership from channel inception.",
-        "3. **Strictly Non-Causal Interpretation:** Observed network edges and community clusters reflect audience co-attendance patterns; "
-        "they do NOT establish social causality, creator coordination, or inter-agency collusion.",
-        "4. **Partial 2026 Window:** Year 2026 data reflects partial year-to-date observations (2026-01-01 to 2026-09-08) "
-        "and is designated `PARTIAL_WINDOW_DESCRIPTIVE_ONLY` (excluded from full-calendar structural break counts).",
-        "",
-        "---",
-        "",
-    ])
-
-    # 5. Results: Macro Ecosystem
-    lines.extend([
-        "## 3. Empirical Results",
-        "",
-        "### 3.1 Longitudinal Ecosystem Structural Evolution (T14)",
-        "",
-    ])
-
-    if eco_df is not None:
-        lines.append("| Year | Active Channels | Co-Attendance Edges | Density | Avg Degree | Modularity Q | Communities | Selection Agency Assort | Cross-Comm Edge % |")
-        lines.append("| :---: | ---: | ---: | :---: | :---: | :---: | :---: | :---: | :---: |")
-        for _, r in eco_df.iterrows():
-            yr_val = int(r.get("year", 0))
-            yr_str = f"**{yr_val} (YTD)**" if yr_val == 2026 else f"**{yr_val}**"
-            lines.append(
-                f"| {yr_str} | {fmtnum(r.get('active_channels'))} | {fmtnum(r.get('edges'))} | "
-                f"{r.get('density', 0):.4f} | {r.get('average_degree', 0):.1f} | "
-                f"{r.get('modularity', 0):.3f} | {fmtnum(r.get('community_count'))} | "
-                f"{r.get('agency_at_selection_assortativity', 0):.3f} | "
-                f"{fmtpct(r.get('cross_community_edge_share', 0))} |"
-            )
-        lines.append("")
-
-        assort_2020 = eco_df[eco_df["year"] == 2020]["agency_at_selection_assortativity"].iloc[0] if not eco_df[eco_df["year"] == 2020].empty else -0.029
-        assort_2025 = eco_df[eco_df["year"] == 2025]["agency_at_selection_assortativity"].iloc[0] if not eco_df[eco_df["year"] == 2025].empty else 0.130
-
-        lines.extend([
-            "**Key Macro Structural Observations:**",
-            f"- **Channel Population:** Expanded from {fmtnum(ch_2020)} active channels in 2020 to {fmtnum(ch_2025)} in 2025.",
-            f"- **Community Modularity:** Modularity Q rose steadily from {q_2020:.3f} (2020) to {q_2025:.3f} (2025), confirming increasing cluster distinctiveness.",
-            f"- **Selection-Time Agency Assortativity:** Rose from {assort_2020:.3f} in 2020 to {assort_2025:.3f} in 2025. "
-            "Because this metric uses selection-time labels (`agency_at_selection`), it indicates that audiences of creators who belong to agencies "
-            "increasingly co-attend fellow agency peers over time, rather than reflecting historical agency institutional directives.",
-            "",
-        ])
-
-    # 6. Community Lineage (T11)
-    lines.extend([
-        "### 3.2 Community Lineage Genealogy (T11)",
-        "",
-        f"Global maximum-weight bipartite matching identified **{total_lin} persistent community lineages** across 2020–2026. "
-        f"Of these, **{active_lin} lineages remain active** in the terminal window.",
-        "Lineages exhibit strong continuity along primary backbone transitions, with branching splits outnumbering merges, "
-        "reflecting continuous sub-community differentiation as creator rosters expanded.",
-        "",
-    ])
-
-    # 7. Cohort Survival (T12)
-    lines.extend([
-        "### 3.3 Audience Cohort Survival & Network Dispersion (T12)",
-        "",
-    ])
-    if surv_df is not None:
-        lines.append("| Elapsed Horizon | Pooled Cohort Base | Re-Observed Audience | Continuation Rate | Same-Channel Retained | Cross-Channel Broadened |")
-        lines.append("| :---: | ---: | ---: | :---: | :---: | :---: |")
-        for _, r in surv_df.iterrows():
-            el = int(r.get("elapsed_years", 0))
-            lines.append(
-                f"| +{el} Year{'s' if el > 1 else ''} | {fmtnum(r.get('pooled_cohort_base', 0))} | "
-                f"{fmtnum(r.get('pooled_reobserved', 0))} | {fmtpct(r.get('persistence_rate', 0))} | "
-                f"{fmtpct(r.get('same_channel_persistence', 0))} | {fmtpct(r.get('cross_channel_persistence', 0))} |"
-            )
-        lines.append("")
-
-    # 8. Bridge Dynamics (T13)
-    bridge_df = safe_read(BRIDGE_DYNAMICS)
-    lines.extend([
-        "### 3.4 Bridge Dynamics & Centrality Stability (T13)",
-        "",
-    ])
-    if bridge_df is not None and not bridge_df.empty:
-        cls_counts = bridge_df["bridge_classification"].value_counts().to_dict()
-        lines.append("**Perturbation Stability Classifications:**")
-        for cls_name, count in sorted(cls_counts.items()):
-            lines.append(f"- `{cls_name}`: {count} channels")
-        lines.append("")
-
-    # 9. Evidence Quality (T15)
-    yq_df = safe_read(YEARLY_QUALITY)
-    lines.extend([
-        "### 3.5 Evidence Quality & Coverage Auditing (T15)",
-        "",
-    ])
-    if yq_df is not None and not yq_df.empty:
-        lines.append("| Year | Catalog Channels | Channels With Evidence | Channel Coverage Rate | Total Interactions | High Comment Volume Rate (>=95) | Support Tier |")
-        lines.append("| :---: | ---: | ---: | :---: | ---: | :---: | :---: |")
-        for _, r in yq_df.iterrows():
-            y_val = int(r.get("year", 0))
-            y_lbl = f"**{y_val} (YTD)**" if y_val == 2026 else f"**{y_val}**"
-            lines.append(
-                f"| {y_lbl} | {fmtnum(r.get('catalog_channels_active'))} | {fmtnum(r.get('channels_with_evidence'))} | "
-                f"{fmtpct(r.get('channel_coverage_rate'))} | {fmtnum(r.get('total_interactions'))} | "
-                f"{fmtpct(r.get('high_comment_volume_rate'))} | `{r.get('evidence_support_tier')}` |"
-            )
-        lines.append("")
-
-    # 10. Discussion & Rigorous Synthesis
-    lines.extend([
-        "---",
-        "",
-        "## 4. Discussion & Synthesis",
-        "",
-        "### 4.1 Modularity and Audience Clustering",
-        "The empirical evolution demonstrates clear community crystallization. "
-        "Early networks (2020) exhibited high density and low modularity, as viewers sampled across nearly all available channels. "
-        "As the ecosystem scaled beyond 150 channels, audience co-attendance consolidated into distinct modular communities. "
-        "Agency homophily (measured via selection-time metadata) indicates that audiences tend to cluster around agency brands, "
-        "even when accounting for creator turnover.",
-        "",
-        "### 4.2 Audience Retention vs. Network Broadening",
-        "The cohort decay from ~8.8% in year 1 to ~2.0% in year 6 demonstrates the typical power-law turnover of online commentary. "
-        "Crucially, surviving audience members exhibit shifting behavior: while same-channel retention gradually declines, "
-        "cross-channel dispersion increases, proving that long-term VTuber fans become broader ecosystem participants.",
-        "",
-        "### 4.3 Rigorous Methodological Guardrails",
-        "We emphasize that all findings must be interpreted within observational constraints: "
-        "1. Interaction time slicing guarantees that viewer events reflect the actual date of participation rather than upload dates. "
-        "2. Agency assortativity measures selection-time attributes and must not be conflated with historical organizational directives. "
-        "3. Statistical associations reflect audience overlap and do not imply social causality or coordinated creator behavior.",
-        "",
-        "---",
-        "",
-        "## 5. Literature Review & References",
-        "",
-        "> [!NOTE]",
-        "> **Literature Review Status:** PENDING formal academic curation and external bibliography synchronization.",
-        "> In accordance with empirical integrity protocols, no external literature citations have been assumed or synthesized.",
-        "",
-        "---",
-        "",
-        f"*Report generated programmatically via `scripts/build_technical_report.py` on {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}.*",
-    ])
-
+    eco = pd.read_parquet(ECOSYSTEM_METRICS)
+    surv = pd.read_parquet(COHORT_SURVIVAL)
+    quality = pd.read_parquet(YEARLY_QUALITY)
+    lineages = pd.read_parquet(COMMUNITY_LIFECYCLES)
+    bridges = pd.read_parquet(BRIDGE_DYNAMICS)
+    fields = ['elapsed_years', 'pooled_cohort_size', 'pooled_reobserved_viewers',
+              'persistence_rate', 'same_channel_persistence_rate', 'cross_channel_persistence_rate']
+    require_columns(surv, fields, 'cohort_survival.parquet')
+    years = sorted(eco['year'].unique())
+    lines = [
+        '# Privacy-Preserving Longitudinal Social Network Analysis',
+        f'# of the Thai VTuber Ecosystem ({min(years)}–{max(years)})', '',
+        '## Methods and storage architecture', '',
+        'Temporal slices use interaction_time; video publication date is NEVER a fallback. '
+        'Undated events are excluded. Edges measure audience co-attendance and do not establish social causality.',
+        'Agency labels are selection-time metadata (agency_at_selection), not historical affiliations.',
+        'LEVEL A credentials remain local and never enter Git or Google Sheets. '
+        'LEVEL B viewer records are private and stored only in the authorized ThaiVtuber_SNA workbook. '
+        'LEVEL C public artifacts contain creator metadata and aggregate research metrics; NO_VIEWER_LEVEL_DATA applies to public exports.',
+        'Louvain partitions use resolution 1 and seed 42. Lineage matching uses '
+        '0.4 Jaccard + 0.3 forward overlap + 0.3 backward overlap with one-to-one primary matches.',
+        'Observations describe sampled active commenters/chatters, not passive viewers or the complete population. '
+        'The 2026 YTD window is PARTIAL_WINDOW_DESCRIPTIVE_ONLY.', '',
+        '## Ecosystem measurements', '',
+    ]
+    cols = ['year','active_channels','edges','density','modularity','community_count','agency_at_selection_assortativity']
+    require_columns(eco, cols, 'yearly_ecosystem_metrics.parquet')
+    lines.extend(['| ' + ' | '.join(cols) + ' |', '| ' + ' | '.join(['---']*len(cols)) + ' |'])
+    for row in eco[cols].itertuples(index=False, name=None):
+        lines.append('| ' + ' | '.join(str(v) for v in row) + ' |')
+    lines.extend(['', f'Observed persistent lineages: {len(lineages)}. '
+                  f"Terminal-window ACTIVE lineages: {int((lineages['lifecycle_status'] == 'ACTIVE').sum())}.", '',
+                  '## Cohort survival (cohort_survival.parquet)', '',
+                  '| Elapsed Horizon | Pooled Cohort Base | Re-Observed Audience | Continuation Rate | Same-Channel Retained | Cross-Channel Broadened |',
+                  '| --- | ---: | ---: | ---: | ---: | ---: |'])
+    for r in surv[fields].itertuples(index=False, name=None):
+        lines.append(f'| +{int(r[0])} Years | {int(r[1])} | {int(r[2])} | {r[3]} | {r[4]} | {r[5]} |')
+    lines.extend(['', 'Rates above are proportions with the exact stored Parquet precision. '
+                  'Same-channel and cross-channel categories may overlap; neither implies continuous attendance.', '',
+                  '## Evidence quality', ''])
+    cols = ['year','interaction_evidence_channel_count','catalog_published_channel_count','intersection_count',
+            'catalog_active_recall','target_manifest_coverage','total_interactions','evidence_support_tier']
+    require_columns(quality, cols, 'yearly_evidence_quality.parquet')
+    lines.extend(['| ' + ' | '.join(cols) + ' |', '| ' + ' | '.join(['---']*len(cols)) + ' |'])
+    for row in quality[cols].itertuples(index=False, name=None):
+        lines.append('| ' + ' | '.join(str(v) for v in row) + ' |')
+    lines.extend(['', '## Bridge classifications', ''])
+    for label, count in sorted(bridges['bridge_classification'].value_counts().items()):
+        lines.append(f'- {label}: {count} channels')
+    lines.extend(['', '## Literature Review', '', 'PENDING formal bibliography curation; no citations have been invented.', ''])
     return "\n".join(lines)
 
 
