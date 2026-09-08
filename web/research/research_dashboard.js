@@ -1,828 +1,113 @@
-/* ═══════════════════════════════════════════════════════════════
-   Thai VTuber SNA — Research Dashboard JavaScript
-   Pure vanilla JS with Canvas 2D charting
-   ═══════════════════════════════════════════════════════════════ */
-
-(function() {
+(function () {
   'use strict';
-
-  // ── Data ──────────────────────────────────────────────────
-  let DATA = null;
-
-  const COLORS = {
-    cyan: '#62e7ff', blue: '#3b82f6', violet: '#a78bfa',
-    pink: '#ec4899', amber: '#f59e0b', emerald: '#10b981',
-    red: '#ef4444', slate: '#94a3b8',
-    cyanA: 'rgba(6,182,212,0.3)', blueA: 'rgba(59,130,246,0.3)',
-    violetA: 'rgba(139,92,246,0.3)', pinkA: 'rgba(236,72,153,0.3)',
-    amberA: 'rgba(245,158,11,0.3)', emeraldA: 'rgba(16,185,129,0.3)',
-  };
-
-  const YEAR_LABELS = ['2020','2021','2022','2023','2024','2025','2026 YTD'];
-  const COHORT_PALETTE = [COLORS.cyan, COLORS.blue, COLORS.violet, COLORS.pink, COLORS.amber, COLORS.emerald, COLORS.red];
-
-  // ── Initialization ────────────────────────────────────────
-
-  async function init() {
-    try {
-      const resp = await fetch('dashboard_data.json');
-      DATA = await resp.json();
-    } catch(e) {
-      document.querySelector('.dash-main').innerHTML =
-        '<div style="text-align:center;padding:60px;color:#ef4444;">Research evidence could not load. Reload this page or return to the constellation.</div>';
-      return;
-    }
-
-    document.getElementById('footerGen').textContent = 'Generated: ' + (DATA.meta?.generated_at || 'unknown');
-    document.getElementById('genTimestamp').textContent = DATA.meta?.generated_at?.slice(0, 10) || 'Snapshot date unavailable';
-
-    setupTabs();
-    await document.fonts.ready;
-    renderActivePanel();
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(renderActivePanel, 120);
-    });
+  let data;
+  const palette = ['#62e7ff', '#a78bfa', '#ff7ac8', '#6ef0c2', '#ffd16a', '#e6e8f2'];
+  const el = id => document.getElementById(id);
+  const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const num = value => Number.isFinite(value) ? value.toLocaleString('th-TH', {maximumFractionDigits: 2}) : 'ไม่มีข้อมูล';
+  const pct = value => Number.isFinite(value) ? num(value * 100) + '%' : 'ไม่มีข้อมูล';
+  const group = value => value ? 'สายกลุ่ม ' + value.replace('LINEAGE_', '') : 'ไม่ระบุ';
+  const agency = value => value === 'Independent' ? 'อิสระ' : value === 'Unknown' || !value ? 'ไม่ระบุ' : value;
+  const tier = value => ({HIGH:'สูง',MODERATE:'ปานกลาง',LOW:'ต่ำ'}[value] || 'ไม่ระบุ');
+  const year = value => String(value) + (value === data.meta.partial_year ? ' (ยังไม่ครบปี)' : '');
+  function table(target, headings, rows) {
+    target.innerHTML = '<table><thead><tr>' + headings.map(h => '<th scope="col">'+esc(h)+'</th>').join('') + '</tr></thead><tbody>' + (rows.length ? rows.map(row => '<tr>'+row.map(v => '<td>'+esc(v)+'</td>').join('')+'</tr>').join('') : '<tr><td colspan="'+headings.length+'">ไม่พบข้อมูลที่ตรงกัน</td></tr>') + '</tbody></table>';
+    target.tabIndex = 0;
+    target.setAttribute('role', 'region');
+    target.setAttribute('aria-label', target.closest('.card')?.querySelector('h3')?.textContent || 'ตารางข้อมูล');
   }
-
-  function renderActivePanel() {
-    const renderers = { overview: renderOverview, ecosystem: renderEcosystem, lineage: renderLineage,
-      cohorts: renderCohorts, centrality: renderCentrality, quality: renderQuality };
-    const name = document.querySelector('.tab-btn.active')?.dataset.tab;
-    renderers[name]?.();
-    document.querySelectorAll('.scrollable-table').forEach(table => {
-      table.tabIndex = 0;
-      table.setAttribute('role', 'region');
-      table.setAttribute('aria-label', table.closest('.card')?.querySelector('h3')?.textContent || 'Research table');
-    });
-    document.querySelectorAll('canvas').forEach(canvas => {
-      canvas.setAttribute('role', 'img');
-      canvas.setAttribute('aria-label', `${canvas.closest('.card')?.querySelector('h3')?.textContent || 'Research chart'}. Values are available in the associated research tables.`);
-    });
-  }
-
-  function setupTabs() {
-    const buttons = [...document.querySelectorAll('.tab-btn')];
-    buttons.forEach((btn, index) => {
-      btn.id = 'tab-' + btn.dataset.tab;
-      btn.setAttribute('role', 'tab');
-      btn.setAttribute('aria-controls', 'panel-' + btn.dataset.tab);
-      btn.setAttribute('aria-selected', String(btn.classList.contains('active')));
-      btn.tabIndex = btn.classList.contains('active') ? 0 : -1;
-      const panel = document.getElementById('panel-' + btn.dataset.tab);
-      panel.setAttribute('role', 'tabpanel');
-      panel.setAttribute('aria-labelledby', btn.id);
-      btn.addEventListener('click', () => {
-        buttons.forEach(button => {
-          const active = button === btn;
-          button.classList.toggle('active', active);
-          button.setAttribute('aria-selected', String(active));
-          button.tabIndex = active ? 0 : -1;
-        });
-        document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p === panel));
-        renderActivePanel();
-      });
-      btn.addEventListener('keydown', event => {
-        const next = event.key === 'ArrowRight' ? (index + 1) % buttons.length : event.key === 'ArrowLeft' ? (index - 1 + buttons.length) % buttons.length : event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : null;
-        if (next !== null) { event.preventDefault(); buttons[next].focus(); buttons[next].click(); }
-      });
-    });
-  }
-
-  // ── Chart Helpers ─────────────────────────────────────────
-
-  function getCtx(id) {
-    const canvas = document.getElementById(id);
-    if (!canvas) return null;
-    const dpr = window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
+  function chart(id, labels, series, {percent = false, min = 0, ticks = null} = {}) {
+    const canvas = el(id), width = canvas.getBoundingClientRect().width;
     const height = Number(canvas.dataset.chartHeight || canvas.getAttribute('height')) || 260;
     canvas.dataset.chartHeight = height;
-    canvas.width = Math.round(rect.width * dpr);
-    canvas.height = Math.round(height * dpr);
-    canvas.style.height = height + 'px';
-    const ctx = canvas.getContext('2d');
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    return { ctx, w: rect.width, h: height };
-  }
-
-  function drawLineChart(id, datasets, labels, opts = {}) {
-    const c = getCtx(id);
-    if (!c) return;
-    const { ctx, w, h } = c;
-    const pad = { top: 30, right: 20, bottom: 40, left: opts.leftPad || 60 };
-    const plotW = w - pad.left - pad.right;
-    const plotH = h - pad.top - pad.bottom;
-
-    // find y range
-    let yMin = opts.yMin ?? Infinity, yMax = opts.yMax ?? -Infinity;
-    datasets.forEach(ds => {
-      ds.data.forEach(v => {
-        if (v !== null && v !== undefined) {
-          if (v < yMin) yMin = v;
-          if (v > yMax) yMax = v;
-        }
-      });
-    });
-
-    if (yMin === yMax) { yMax = yMin + 1; }
-    const yRange = yMax - yMin;
-    const yPad = yRange * 0.1;
-    yMin = opts.yMin ?? (yMin - yPad);
-    yMax = opts.yMax ?? (yMax + yPad);
-
-    // grid
-    ctx.strokeStyle = 'rgba(148,163,184,0.08)';
-    ctx.lineWidth = 1;
-    const gridLines = 5;
-    for (let i = 0; i <= gridLines; i++) {
-      const y = pad.top + plotH - (plotH * i / gridLines);
-      ctx.beginPath();
-      ctx.moveTo(pad.left, y);
-      ctx.lineTo(pad.left + plotW, y);
-      ctx.stroke();
-
-      // y labels
-      const val = yMin + ((yMax - yMin) * i / gridLines);
-      ctx.fillStyle = '#9298aa';
-      ctx.font = '11px "JetBrains Mono"';
-      ctx.textAlign = 'right';
-      ctx.fillText(opts.yFmt ? opts.yFmt(val) : val.toFixed(opts.yDecimals ?? 1), pad.left - 8, y + 4);
+    const dpr = devicePixelRatio || 1;
+    canvas.width = Math.round(width*dpr); canvas.height = Math.round(height*dpr); canvas.style.height = height+'px';
+    const ctx = canvas.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0);
+    const values = series.flatMap(s => s.values).filter(Number.isFinite);
+    const low = Math.min(min, ...values), high = Math.max(percent ? 1 : 1, ...values);
+    const left = 66, right = 18, top = 22, bottom = 42;
+    const x = i => left + (width-left-right)*i/Math.max(1,labels.length-1);
+    const y = v => top + (height-top-bottom)*(1-(v-low)/(high-low || 1));
+    ctx.font = '12px "Noto Sans Thai", sans-serif';
+    for(const v of (ticks || Array.from({length:5},(_,i)=>low+(high-low)*i/4))) {
+      ctx.strokeStyle = 'rgba(214,216,227,.12)';ctx.beginPath();ctx.moveTo(left,y(v));ctx.lineTo(width-right,y(v));ctx.stroke();
+      ctx.fillStyle='#aeb4c5';ctx.textAlign='right';ctx.fillText(ticks ? String(v).padStart(2,'0') : percent ? num(v*100)+'%' : num(Math.round(v*100)/100),left-10,y(v)+4);
     }
-
-    // x labels
-    ctx.fillStyle = '#9298aa';
-    ctx.font = '11px "JetBrains Mono"';
-    ctx.textAlign = 'center';
-    labels.forEach((lbl, i) => {
-      const x = pad.left + (plotW * i / (labels.length - 1));
-      if (w < 500 && i % 2 && i !== labels.length - 1) return;
-      const label = String(lbl) === '2026' ? '2026 YTD' : String(lbl);
-      const half = ctx.measureText(label).width / 2;
-      ctx.fillText(label, Math.max(half + 4, Math.min(w - half - 4, x)), h - pad.bottom + 20);
+    ctx.textAlign='center';
+    labels.forEach((label,i) => {
+      if(width < 500 && i%2 && i!==labels.length-1) return;
+      const text=String(label), half=ctx.measureText(text).width/2;
+      ctx.fillText(text,Math.max(half+4,Math.min(width-half-4,x(i))),height-15);
     });
-
-    // datasets
-    datasets.forEach(ds => {
-      ctx.strokeStyle = ds.color;
-      ctx.lineWidth = ds.lineWidth || 2;
-      ctx.beginPath();
-      let started = false;
-      ds.data.forEach((v, i) => {
-        if (v === null || v === undefined) return;
-        const x = pad.left + (plotW * i / (labels.length - 1));
-        const y = pad.top + plotH - ((v - yMin) / (yMax - yMin)) * plotH;
-        if (!started) { ctx.moveTo(x, y); started = true; }
-        else { ctx.lineTo(x, y); }
-      });
-      ctx.stroke();
-
-      // fill
-      if (ds.fill) {
-        ctx.globalAlpha = 0.15;
-        ctx.lineTo(pad.left + plotW, pad.top + plotH);
-        ctx.lineTo(pad.left, pad.top + plotH);
-        ctx.closePath();
-        ctx.fillStyle = ds.color;
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      }
-
-      // dots
-      ds.data.forEach((v, i) => {
-        if (v === null || v === undefined) return;
-        const x = pad.left + (plotW * i / (labels.length - 1));
-        const y = pad.top + plotH - ((v - yMin) / (yMax - yMin)) * plotH;
-        ctx.beginPath();
-        ctx.arc(x, y, 4, 0, Math.PI * 2);
-        ctx.fillStyle = ds.color;
-        ctx.fill();
-        ctx.strokeStyle = '#0a0e1a';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-      });
+    series.forEach((s,index) => {
+      ctx.strokeStyle=palette[index%palette.length];ctx.lineWidth=2.5;ctx.setLineDash(index>2 ? [6,4] : []);ctx.beginPath();let started=false;
+      s.values.forEach((v,i) => {if(!Number.isFinite(v)){started=false;return;} if(started)ctx.lineTo(x(i),y(v));else ctx.moveTo(x(i),y(v));started=true;});ctx.stroke();ctx.setLineDash([]);
+      s.values.forEach((v,i) => {if(!Number.isFinite(v))return;ctx.fillStyle=palette[index%palette.length];ctx.beginPath();ctx.arc(x(i),y(v),3.5,0,Math.PI*2);ctx.fill();});
     });
-
-    // legend
-    if (datasets.length > 1) {
-      let lx = pad.left + 8;
-      const ly = pad.top - 10;
-      ctx.font = '11px "Noto Sans Thai"';
-      datasets.forEach(ds => {
-        ctx.fillStyle = ds.color;
-        ctx.fillRect(lx, ly - 6, 12, 3);
-        ctx.fillStyle = '#94a3b8';
-        ctx.textAlign = 'left';
-        ctx.fillText(ds.label, lx + 16, ly);
-        lx += ctx.measureText(ds.label).width + 36;
-      });
-    }
+    if(!values.length){ctx.fillStyle='#d6d8e3';ctx.fillText('ไม่มีข้อมูลสำหรับกราฟนี้',width/2,height/2);}
+    let support=canvas.nextElementSibling;
+    if(!support?.classList.contains('chart-support')) {support=document.createElement('div');support.className='chart-support';canvas.after(support);}
+    const open=support.querySelector('details')?.open;
+    support.innerHTML='<div class="chart-legend">'+series.map((s,i)=>'<span><i style="background:'+palette[i%palette.length]+'"></i>'+esc(s.name)+'</span>').join('')+'</div><details><summary>ดูตัวเลขในตาราง</summary><div class="scrollable-table"></div></details>';
+    support.querySelector('details').open=!!open;
+    table(support.querySelector('.scrollable-table'),['ช่วง / กลุ่ม',...series.map(s=>s.name)],labels.map((label,i)=>[label,...series.map(s=>percent?pct(s.values[i]):num(s.values[i]))]));
+    canvas.setAttribute('role','img');canvas.setAttribute('aria-label',canvas.closest('.card').querySelector('h3').textContent+' มีตัวเลขครบในตารางถัดจากกราฟ');
   }
-
-  function drawBarChart(id, data, labels, opts = {}) {
-    const c = getCtx(id);
-    if (!c) return;
-    const { ctx, w, h } = c;
-    const pad = { top: 30, right: 20, bottom: 40, left: opts.leftPad || 60 };
-    const plotW = w - pad.left - pad.right;
-    const plotH = h - pad.top - pad.bottom;
-
-    let yMax = Math.max(...data.map(d => typeof d === 'object' ? d.value : d)) * 1.15;
-    if (yMax <= 0) yMax = 1;
-
-    const barW = Math.min(plotW / data.length * 0.7, 40);
-    const gap = plotW / data.length;
-
-    data.forEach((d, i) => {
-      const val = typeof d === 'object' ? d.value : d;
-      const color = typeof d === 'object' ? d.color : (opts.color || COLORS.cyan);
-      const barH = (val / yMax) * plotH;
-      const x = pad.left + gap * i + (gap - barW) / 2;
-      const y = pad.top + plotH - barH;
-
-      // glow
-      ctx.shadowColor = color;
-      ctx.shadowBlur = 0;
-      ctx.fillStyle = color;
-      ctx.beginPath();
-      ctx.roundRect(x, y, barW, barH, [4, 4, 0, 0]);
-      ctx.fill();
-      ctx.shadowBlur = 0;
-
-      // value
-      ctx.fillStyle = '#94a3b8';
-      ctx.font = '10px "JetBrains Mono"';
-      ctx.textAlign = 'center';
-      ctx.fillText(opts.valFmt ? opts.valFmt(val) : val.toLocaleString(), x + barW/2, y - 6);
-    });
-
-    // x labels
-    ctx.fillStyle = '#9298aa';
-    ctx.font = '11px "JetBrains Mono"';
-    ctx.textAlign = 'center';
-    labels.forEach((lbl, i) => {
-      const x = pad.left + gap * i + gap / 2;
-      ctx.fillText(lbl, x, h - pad.bottom + 18);
-    });
+  const s = (rows,key,name) => ({name,values:rows.map(r=>r[key])});
+  function annual(id,rows,key,name,percent=false,min=0){chart(id,rows.map(r=>r.year === data.meta.partial_year ? r.year+'*' : r.year),[s(rows,key,name)],{percent,min});}
+  function overview(){
+    const rows=data.ecosystem.yearly_metrics, selected=rows.find(r=>r.year===Number(el('summaryYear').value)) || rows.at(-1);
+    el('periodNote').textContent=selected.is_ytd ? 'ปี '+selected.year+' ยังไม่ครบปี · ข้อมูลถึง '+date((data.meta.caveats?.partial_window_2026_ytd?.match(/to (\d{4}-\d{2}-\d{2})/)?.[1] || data.meta.generated_at))+' · ใช้บรรยายช่วงนี้ ห้ามเทียบกับปีเต็มเพื่อสรุปการเติบโต' : 'สรุปปี '+selected.year+' · จำนวนที่พบในชุดข้อมูล ไม่ใช่จำนวนทั้งหมดของวงการ';
+    el('kpiStrip').innerHTML=[['ช่องในเครือข่าย',selected.active_channels,'ช่องที่พบหลักฐานในปีนี้'],['คู่ช่องที่เชื่อมกัน',selected.edges,'พบผู้มีปฏิสัมพันธ์ร่วมกัน'],['กลุ่มที่คำนวณได้',selected.community_count,'แบ่งจากรูปแบบความสัมพันธ์']].map(([label,value,note])=>'<div class="kpi-card"><div class="kpi-label">'+label+'</div><strong class="kpi-value">'+num(value)+'</strong><div class="kpi-sub">'+note+'</div></div>').join('');
+    el('summaryHeadline').textContent=num(selected.giant_component_nodes)+' จาก '+num(selected.active_channels)+' ช่อง เชื่อมถึงกันในเครือข่ายส่วนใหญ่';
+    el('summaryDetail').textContent='คิดเป็น '+pct(selected.giant_component_share)+' ของช่องในปี '+selected.year+' โดยอาจเชื่อมผ่านช่องอื่น ไม่จำเป็นต้องมีเส้นเชื่อมตรงถึงกันทุกคู่ ตัวเลขนี้บอกโครงสร้างความสัมพันธ์ ไม่ใช่ความนิยม';
+    annual('canvasEcosystemGrowth',rows,'active_channels','ช่อง');annual('canvasModDensity',rows,'edges','คู่ช่อง');
+    chart('canvasSurvivalOverview',data.cohorts.survival_curve.map(r=>r.elapsed_years+' ปี'),[s(data.cohorts.survival_curve,'persistence_rate','ยังพบปฏิสัมพันธ์')],{percent:true});
+    annual('canvasQualityOverview',data.quality.yearly_quality,'total_interactions','รายการปฏิสัมพันธ์');
+    const metrics={active_channels:'จำนวนช่อง',edges:'คู่ช่อง',density:'ความหนาแน่น',modularity:'ความชัดของกลุ่ม',cross_community_edge_share:'เส้นข้ามกลุ่ม',agency_independent_mixing:'การเชื่อมค่ายกับอิสระ',agency_at_selection_independent_mixing:'การเชื่อมค่ายกับอิสระ',agency_assortativity:'ความสัมพันธ์ภายในค่าย',agency_at_selection_assortativity:'ความสัมพันธ์ภายในค่าย'};
+    table(el('breaksTable'),['ช่วงปี','ตัวชี้วัด','ก่อน','หลัง','ขอบเขต'],data.ecosystem.structural_breaks.map(r=>[r.transition.replace('->',' → ').replace('YTD','ยังไม่ครบปี'),metrics[r.metric_dimension] || 'ตัวชี้วัดโครงสร้าง',num(r.from_value),num(r.to_value),r.break_scope==='FULL_CALENDAR'?'ปีเต็ม':'ช่วงที่ยังไม่ครบปี']));
   }
-
-  function drawDonut(id, segments, opts = {}) {
-    const c = getCtx(id);
-    if (!c) return;
-    const { ctx, w, h } = c;
-
-    const cx = w / 2;
-    const cy = h / 2;
-    const R = Math.min(w, h) * 0.35;
-    const r = R * 0.6;
-    const total = segments.reduce((s, seg) => s + seg.value, 0);
-
-    let angle = -Math.PI / 2;
-    segments.forEach(seg => {
-      const sliceAngle = (seg.value / total) * Math.PI * 2;
-      ctx.beginPath();
-      ctx.arc(cx, cy, R, angle, angle + sliceAngle);
-      ctx.arc(cx, cy, r, angle + sliceAngle, angle, true);
-      ctx.closePath();
-      ctx.fillStyle = seg.color;
-      ctx.fill();
-
-      // label
-      const midAngle = angle + sliceAngle / 2;
-      const labelR = R + 16;
-      const lx = cx + Math.cos(midAngle) * labelR;
-      const ly = cy + Math.sin(midAngle) * labelR;
-      ctx.fillStyle = '#94a3b8';
-      ctx.font = '11px "Noto Sans Thai"';
-      ctx.textAlign = midAngle > Math.PI/2 && midAngle < 3*Math.PI/2 ? 'right' : 'left';
-      ctx.fillText(`${seg.label} (${seg.value})`, lx, ly);
-
-      angle += sliceAngle;
-    });
-
-    // center text
-    ctx.fillStyle = var_('--text-primary', '#f1f5f9');
-    ctx.font = 'bold 20px "JetBrains Mono"';
-    ctx.textAlign = 'center';
-    ctx.fillText(total.toString(), cx, cy + 2);
-    ctx.fillStyle = '#9298aa';
-    ctx.font = '11px "Noto Sans Thai"';
-    ctx.fillText(opts.centerLabel || 'Channels', cx, cy + 18);
+  function ecosystem(){const rows=data.ecosystem.yearly_metrics;
+    annual('canvasEcoFull',rows,'active_channels','ช่อง');annual('canvasEcoModDens',rows,'modularity','ความชัดของกลุ่ม');annual('canvasAgencyAssort',rows,'agency_at_selection_assortativity','ความเอนเอียงเข้าค่ายเดียวกัน',false,-1);annual('canvasCrossComm',rows,'cross_community_edge_share','เส้นข้ามกลุ่ม',true);
+    table(el('ecosystemTable'),['ปี','ช่อง','คู่ช่อง','จำนวนกลุ่ม','ความหนาแน่น','เส้นเฉลี่ยต่อช่อง','ช่องในส่วนใหญ่'],rows.map(r=>[year(r.year),num(r.active_channels),num(r.edges),num(r.community_count),pct(r.density),num(r.average_degree),num(r.giant_component_nodes)]));
   }
-
-  function var_(name, fallback) { return fallback; }
-
-  // ── Table Helpers ─────────────────────────────────────────
-
-  function buildTable(headers, rows) {
-    let html = '<table class="data-table"><thead><tr>';
-    headers.forEach(h => html += `<th>${h}</th>`);
-    html += '</tr></thead><tbody>';
-    rows.forEach(row => {
-      html += '<tr>';
-      row.forEach(cell => html += `<td>${cell}</td>`);
-      html += '</tr>';
-    });
-    html += '</tbody></table>';
-    return html;
+  function lineage(){const rows=data.lineage.lifecycles;
+    const years=data.meta.years;
+    chart('canvasLineageTimeline',years,rows.map(r=>({name:group(r.lineage_id),values:years.map(y=>y>=r.birth_year&&y<=r.last_observed_year?Number(r.lineage_id.replace('LINEAGE_','')):null)})),{ticks:rows.map(r=>Number(r.lineage_id.replace('LINEAGE_','')))});
+    table(el('lineageLifecycleTable'),['สายกลุ่ม','พบครั้งแรก','พบล่าสุด','ช่วงที่ติดตาม (ปี)','สถานะ','ค่ายหลัก','ช่องที่ไม่ซ้ำ'],rows.map(r=>[group(r.lineage_id),r.birth_year,r.last_observed_year,num(r.lifespan_years),r.lifecycle_status==='ACTIVE'?'ยังพบอยู่':'ไม่พบต่อ',agency(r.dominant_agency),num(r.total_unique_creators)]));
+    const relation={continuation:'ต่อเนื่อง',merge_tributary:'ส่วนที่มารวม',split_branch:'ส่วนที่แยกออก'};
+    table(el('lineageTransitionsTable'),['ช่วงปี','กลุ่มเดิม','กลุ่มถัดไป','รูปแบบ','ช่องร่วมกัน','ความเหมือน'],data.lineage.transitions.map(r=>[r.from_year+' → '+r.to_year,group(r.from_lineage_id),group(r.to_lineage_id),relation[r.relation_type]||'ไม่ระบุ',num(r.shared_channels),pct(r.jaccard_similarity)]));
   }
-
-  function fmtNum(v, decimals = 0) {
-    if (v === null || v === undefined) return '–';
-    return typeof v === 'number' ? v.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) : v;
+  function cohorts(){const rows=data.cohorts.survival_curve;
+    chart('canvasCohortSurvival',rows.map(r=>r.elapsed_years+' ปี'),[s(rows,'persistence_rate','ยังพบปฏิสัมพันธ์'),s(rows,'same_channel_persistence_rate','พบกับช่องเดิม'),s(rows,'cross_channel_persistence_rate','พบกับช่องอื่น')],{percent:true});
+    table(el('cohortRetentionTable'),['ปีที่พบครั้งแรก','ปีที่ติดตาม','คนในกลุ่มเริ่มต้น','คนที่พบซ้ำ','สัดส่วนที่พบซ้ำ','พบกับช่องเดิม','พบกับช่องอื่น'],data.cohorts.retention_matrix.map(r=>[r.cohort_year,year(r.observation_year),num(r.cohort_size),num(r.reobserved_viewers),pct(r.continuation_rate),pct(r.same_channel_retention_rate),pct(r.cross_channel_rate)]));
+    const gaps=[...new Set(data.cohorts.reactivation.map(r=>r.gap_years))].sort((a,b)=>a-b);
+    chart('canvasReactivation',gaps.map(g=>'ห่าง '+g+' ปี'),[{name:'การกลับมาพบปฏิสัมพันธ์',values:gaps.map(g=>data.cohorts.reactivation.filter(r=>r.gap_years===g).reduce((sum,r)=>sum+r.reactivated_viewers,0))}]);
   }
-
-  function fmtPct(v, decimals = 1) {
-    if (v === null || v === undefined) return '–';
-    return (v * 100).toFixed(decimals) + '%';
+  function centrality(){const labels={DECLINING_BRIDGE:'บทบาทเชื่อมกลุ่มลดลง',EMERGING_BRIDGE:'เริ่มมีบทบาทเชื่อมกลุ่ม',INSUFFICIENT_EVIDENCE:'หลักฐานยังไม่พอ',MODERATE_PERIPHERAL:'บทบาทปานกลางหรือรอบนอก',STABLE_BRIDGE:'เชื่อมกลุ่มต่อเนื่อง',STABLE_BRIDGE_CANONICAL_ONLY:'ต่อเนื่องเฉพาะชุดหลัก',VOLATILE:'บทบาทเปลี่ยนแปลงมาก'};
+    const rows=data.centrality.bridge_dynamics.filter(r=>r.channel_name.toLocaleLowerCase().includes(el('bridgeSearch').value.toLocaleLowerCase()));
+    el('bridgeCount').textContent='พบ '+num(rows.length)+' ช่อง จาก '+num(data.centrality.bridge_dynamics.length)+' ช่อง';
+    table(el('bridgeTable'),['ชื่อช่อง','ค่าย ณ เวลาเลือก','บทบาท','ปีที่พบ','ปีที่อยู่ในกลุ่มบนสุด 10%','อันดับสัมพัทธ์เฉลี่ย'],rows.map(r=>[r.channel_name,agency(r.agency_at_selection),labels[r.bridge_classification]||'ไม่ระบุ',num(r.years_observed_count),num(r.years_in_top_decile_count),pct(r.mean_betweenness_percentile)]));
+    const years=[...new Set(data.centrality.change_points.map(r=>r.to_year))].sort();
+    chart('canvasChangePoints',years.map(year),[1,-1].map((sign)=>({name:sign>0?'ตำแหน่งสูงขึ้น':'ตำแหน่งต่ำลง',values:years.map(y=>data.centrality.change_points.filter(r=>r.to_year===y&&r.percentile_delta*sign>0).length)})));
   }
-
-  function tagify(text, cls) {
-    return `<span class="tag ${cls}">${text}</span>`;
+  function quality(){table(el('qualityTable'),['ปี','รายการปฏิสัมพันธ์','ช่องในบัญชีที่พบหลักฐาน','วิดีโอที่เก็บ / ในบัญชี','สัดส่วนวิดีโอ','ระดับหลักฐาน'],data.quality.yearly_quality.map(r=>[year(r.year),num(r.total_interactions),num(r.intersection_count)+' / '+num(r.catalog_published_channel_count)+' ('+pct(r.catalog_active_recall)+')',num(r.sampled_videos)+' / '+num(r.catalog_videos),pct(r.video_sampling_ratio),tier(r.evidence_support_tier)]));
+    const dist=data.quality.channel_tier_distribution;
+    chart('canvasTierDonut',['สูง','ปานกลาง','ต่ำ'],[{name:'จำนวนช่อง',values:['HIGH','MODERATE','LOW'].map(k=>dist[k])}]);
+    const names={BASELINE_UNIFIED_TH1:'ชุดหลัก',COMMENT_ONLY_TH1:'เฉพาะความคิดเห็น',DROPOUT_10PCT_MEAN:'สุ่มตัดข้อมูล 10% (ค่าเฉลี่ย)',LOW_COVERAGE_EXCLUDED:'ตัดช่องหลักฐานน้อย',THRESHOLD_TH3:'ผู้ร่วมอย่างน้อย 3 คน',THRESHOLD_TH5:'ผู้ร่วมอย่างน้อย 5 คน'};
+    chart('canvasSensitivity',data.meta.years.map(y=>y===data.meta.partial_year?y+'*':y),Object.entries(names).map(([key,name])=>({name,values:data.meta.years.map(y=>data.quality.bias_sensitivity.find(r=>r.year===y&&r.perturbation_scenario===key)?.modularity)})));
   }
-
-  // ── OVERVIEW ──────────────────────────────────────────────
-
-  function renderOverview() {
-    if (!DATA) return;
-    const eco = DATA.ecosystem?.yearly_metrics;
-    if (!eco || eco.length === 0) return;
-
-    const latest = eco[eco.length - 1];
-    const prev = eco.length > 1 ? eco[eco.length - 2] : null;
-
-    const kpis = [
-      {
-        label: 'Active Channels',
-        value: fmtNum(latest.active_channels),
-        color: COLORS.cyan,
-        delta: prev ? `${((latest.active_channels / prev.active_channels - 1) * 100).toFixed(1)}% YoY` : null,
-        deltaDir: prev ? (latest.active_channels >= prev.active_channels ? 'positive' : 'negative') : 'neutral',
-      },
-      {
-        label: 'Edges',
-        value: fmtNum(latest.edges),
-        color: COLORS.blue,
-        delta: prev ? `${((latest.edges / prev.edges - 1) * 100).toFixed(1)}% YoY` : null,
-        deltaDir: prev ? (latest.edges >= prev.edges ? 'positive' : 'negative') : 'neutral',
-      },
-      {
-        label: 'Modularity Q',
-        value: latest.modularity?.toFixed(3) || '–',
-        color: COLORS.violet,
-        delta: prev ? `Δ ${(latest.modularity - prev.modularity).toFixed(3)}` : null,
-        deltaDir: 'neutral',
-      },
-      {
-        label: 'Communities',
-        value: latest.communities || latest.num_communities || '–',
-        color: COLORS.pink,
-      },
-      {
-        label: 'Density',
-        value: latest.density?.toFixed(4) || '–',
-        color: COLORS.amber,
-      },
-      {
-        label: 'Giant Component',
-        value: fmtPct(latest.giant_component_share || latest.giant_share, 1),
-        color: COLORS.emerald,
-      },
-    ];
-
-    const strip = document.getElementById('kpiStrip');
-    strip.innerHTML = kpis.map(k => `
-      <div class="kpi-card">
-        <div class="kpi-label">${k.label}</div>
-        <div class="kpi-value" style="color: ${k.color}">${k.value}</div>
-        ${k.delta ? `<div class="kpi-delta ${k.deltaDir}">${k.delta}</div>` : ''}
-      </div>
-    `).join('');
-
-    // Ecosystem growth chart (overview)
-    const channels = eco.map(r => r.active_channels);
-    const edges = eco.map(r => r.edges);
-    drawLineChart('canvasEcosystemGrowth', [
-      { label: 'Channels', data: channels, color: COLORS.cyan, fill: true },
-      { label: 'Edges', data: edges, color: COLORS.blue, fill: false },
-    ], YEAR_LABELS, { yMin: 0, yDecimals: 0, yFmt: v => Math.round(v).toLocaleString() });
-
-    // Modularity / density chart
-    const mod = eco.map(r => r.modularity);
-    const dens = eco.map(r => r.density);
-    drawLineChart('canvasModDensity', [
-      { label: 'Modularity Q', data: mod, color: COLORS.violet },
-      { label: 'Density', data: dens, color: COLORS.amber },
-    ], YEAR_LABELS, { yDecimals: 3 });
-
-    // Cohort survival overview
-    renderSurvivalOverview();
-
-    // Quality overview
-    renderQualityOverview();
-
-    // Structural breaks table
-    renderBreaksTable();
-  }
-
-  function renderSurvivalOverview() {
-    const surv = DATA.cohorts?.survival_curve;
-    if (!surv) return;
-
-    // Group by elapsed_years
-    const byElapsed = {};
-    surv.forEach(r => {
-      const key = r.elapsed_years ?? r.elapsed_horizon;
-      if (!byElapsed[key]) byElapsed[key] = r;
-    });
-
-    const elapsed = Object.keys(byElapsed).map(Number).sort((a,b) => a-b);
-    const rates = elapsed.map(e => {
-      const r = byElapsed[e];
-      const rate = r.persistence_rate ?? r.pooled_continuation_rate ?? r.continuation_rate;
-      return typeof rate === 'number' ? (rate > 1 ? rate / 100 : rate) : null;
-    });
-
-    drawLineChart('canvasSurvivalOverview', [
-      { label: 'Persistence Rate', data: rates, color: COLORS.emerald, fill: true },
-    ], elapsed.map(e => '+' + e + 'y'), { yMin: 0, yMax: 1, yDecimals: 0, yFmt: v => (v*100).toFixed(0) + '%' });
-  }
-
-  function renderQualityOverview() {
-    const yq = DATA.quality?.yearly_quality;
-    if (!yq) return;
-
-    const years = yq.map(r => String(r.year));
-    const interactions = yq.map(r => r.total_interactions || r.interactions || 0);
-    drawBarChart('canvasQualityOverview', interactions, years, {
-      color: COLORS.cyan,
-      valFmt: v => v.toLocaleString(),
-    });
-  }
-
-  function renderBreaksTable() {
-    const breaks = DATA.ecosystem?.structural_breaks;
-    if (!breaks || breaks.length === 0) return;
-
-    const headers = ['Transition', 'Metric', 'Category', 'Shift'];
-    const rows = breaks.map(b => [
-      b.transition || `${b.from_year || ''}→${b.to_year || ''}`,
-      b.metric_dimension || b.metric || '',
-      tagify(b.category || '', 'tag-mod'),
-      b.relative_shift ? (b.relative_shift > 0 ? '+' : '') + (b.relative_shift * 100).toFixed(1) + '%' : (b.descriptive_context || ''),
-    ]);
-
-    document.getElementById('breaksTable').innerHTML = buildTable(headers, rows);
-  }
-
-  // ── ECOSYSTEM ─────────────────────────────────────────────
-
-  function renderEcosystem() {
-    const eco = DATA.ecosystem?.yearly_metrics;
-    if (!eco) return;
-
-    // Full metrics table
-    const headers = ['Year', 'Channels', 'Edges', 'Density', 'Avg Degree', 'Giant %', 'Q', 'Deg Gini', 'Ag Assort', 'Cross-Comm %'];
-    const rows = eco.map(r => {
-      const yr = r.year === 2026 ? '2026 (YTD)' : String(r.year);
-      return [
-        yr,
-        fmtNum(r.active_channels),
-        fmtNum(r.edges),
-        r.density?.toFixed(4) || '–',
-        r.avg_degree?.toFixed(1) || '–',
-        fmtPct(r.giant_component_share || r.giant_share, 1),
-        r.modularity?.toFixed(3) || '–',
-        r.degree_gini?.toFixed(3) || '–',
-        r.agency_assortativity?.toFixed(3) || '–',
-        fmtPct(r.cross_community_edge_share || r.cross_comm_share, 1),
-      ];
-    });
-    document.getElementById('ecosystemTable').innerHTML = buildTable(headers, rows);
-
-    // Charts
-    const channels = eco.map(r => r.active_channels);
-    const edges = eco.map(r => r.edges);
-    drawLineChart('canvasEcoFull', [
-      { label: 'Channels', data: channels, color: COLORS.cyan, fill: true },
-      { label: 'Edges', data: edges, color: COLORS.blue },
-    ], YEAR_LABELS, { yMin: 0, yDecimals: 0, yFmt: v => Math.round(v).toLocaleString() });
-
-    const mod = eco.map(r => r.modularity);
-    const dens = eco.map(r => r.density);
-    drawLineChart('canvasEcoModDens', [
-      { label: 'Modularity', data: mod, color: COLORS.violet },
-      { label: 'Density', data: dens, color: COLORS.amber },
-    ], YEAR_LABELS, { yDecimals: 3 });
-
-    const assort = eco.map(r => r.agency_assortativity);
-    drawLineChart('canvasAgencyAssort', [
-      { label: 'Agency Assortativity', data: assort, color: COLORS.pink, fill: true },
-    ], YEAR_LABELS, { yDecimals: 3 });
-
-    const crossComm = eco.map(r => r.cross_community_edge_share || r.cross_comm_share);
-    drawLineChart('canvasCrossComm', [
-      { label: 'Cross-Community %', data: crossComm, color: COLORS.emerald, fill: true },
-    ], YEAR_LABELS, { yDecimals: 3, yFmt: v => (v*100).toFixed(1) + '%' });
-  }
-
-  // ── LINEAGE ───────────────────────────────────────────────
-
-  function renderLineage() {
-    const lc = DATA.lineage?.lifecycles;
-    if (!lc) return;
-
-    // Lifecycle table
-    const headers = ['Lineage', 'Birth', 'Last', 'Span', 'Status', 'Dom Agency', 'Share', 'Creators', 'Churn'];
-    const rows = lc.map(r => [
-      r.lineage_id || '',
-      r.birth_year || '',
-      r.last_observed_year || r.last_observed || '',
-      r.lifespan_years || r.lifespan || '',
-      tagify(r.status || '', r.status === 'ACTIVE' ? 'tag-active' : 'tag-disappeared'),
-      r.dominant_agency || '',
-      fmtPct(r.dominant_agency_share || r.agency_share, 1),
-      fmtNum(r.total_unique_creators || r.total_creators || 0),
-      fmtPct(r.mean_churn_rate || r.churn_rate, 1),
-    ]);
-    document.getElementById('lineageLifecycleTable').innerHTML = buildTable(headers, rows);
-
-    // Timeline Gantt
-    renderLineageTimeline(lc);
-
-    // Transitions table
-    const trans = DATA.lineage?.transitions;
-    if (trans && trans.length > 0) {
-      const tHeaders = ['Years', 'From', 'To', 'Relation', 'Shared', 'Jaccard', 'Fwd', 'Bwd'];
-      const tRows = trans.map(t => [
-        `${t.from_year || t.year_from || ''}→${t.to_year || t.year_to || ''}`,
-        t.from_lineage || t.source_lineage || '',
-        t.to_lineage || t.target_lineage || '',
-        tagify(t.relation_type || t.relation || '', getRelationTag(t.relation_type || t.relation)),
-        fmtNum(t.shared_channels || t.shared || 0),
-        (t.jaccard || 0).toFixed(3),
-        fmtPct(t.forward_overlap || t.fwd_overlap, 1),
-        fmtPct(t.backward_overlap || t.bwd_overlap, 1),
-      ]);
-      document.getElementById('lineageTransitionsTable').innerHTML = buildTable(tHeaders, tRows);
-    }
-  }
-
-  function getRelationTag(rel) {
-    if (!rel) return 'tag-mod';
-    if (rel.includes('continuation')) return 'tag-continuation';
-    if (rel.includes('split')) return 'tag-split';
-    if (rel.includes('merge')) return 'tag-merge';
-    return 'tag-mod';
-  }
-
-  function renderLineageTimeline(lifecycles) {
-    const c = getCtx('canvasLineageTimeline');
-    if (!c) return;
-    const { ctx, w, h } = c;
-    const pad = { top: 20, right: 30, bottom: 30, left: 100 };
-    const plotW = w - pad.left - pad.right;
-    const plotH = h - pad.top - pad.bottom;
-
-    const years = [2020, 2021, 2022, 2023, 2024, 2025, 2026];
-    const rowH = Math.min(plotH / lifecycles.length, 22);
-
-    // x axis
-    years.forEach((yr, i) => {
-      const x = pad.left + (plotW * i / (years.length - 1));
-      ctx.fillStyle = '#9298aa';
-      ctx.font = '11px "JetBrains Mono"';
-      ctx.textAlign = 'center';
-      ctx.fillText(String(yr), x, h - pad.bottom + 18);
-
-      ctx.strokeStyle = 'rgba(148,163,184,0.06)';
-      ctx.beginPath();
-      ctx.moveTo(x, pad.top);
-      ctx.lineTo(x, pad.top + plotH);
-      ctx.stroke();
-    });
-
-    // rows
-    lifecycles.forEach((lc, idx) => {
-      const y = pad.top + idx * rowH + rowH / 2;
-      const birth = lc.birth_year || 2020;
-      const last = lc.last_observed_year || lc.last_observed || birth;
-
-      const x1 = pad.left + (plotW * (birth - 2020) / 6);
-      const x2 = pad.left + (plotW * (last - 2020) / 6);
-
-      // label
-      ctx.fillStyle = '#94a3b8';
-      ctx.font = '10px "JetBrains Mono"';
-      ctx.textAlign = 'right';
-      ctx.fillText(lc.lineage_id || `L${idx+1}`, pad.left - 8, y + 4);
-
-      // bar
-      const color = lc.status === 'ACTIVE' ? COLORS.cyan : COLORS.slate;
-      ctx.fillStyle = color;
-      ctx.globalAlpha = 0.7;
-      ctx.beginPath();
-      ctx.roundRect(x1, y - 5, Math.max(x2 - x1, 8), 10, 3);
-      ctx.fill();
-      ctx.globalAlpha = 1;
-
-      // dots at endpoints
-      [x1, x2].forEach(x => {
-        ctx.beginPath();
-        ctx.arc(x, y, 3, 0, Math.PI * 2);
-        ctx.fillStyle = color;
-        ctx.fill();
-      });
-    });
-  }
-
-  // ── COHORTS ───────────────────────────────────────────────
-
-  function renderCohorts() {
-    // Survival chart
-    const surv = DATA.cohorts?.survival_curve;
-    if (surv) {
-      const byElapsed = {};
-      surv.forEach(r => {
-        const key = r.elapsed_years ?? r.elapsed_horizon;
-        if (!byElapsed[key]) byElapsed[key] = r;
-      });
-
-      const elapsed = Object.keys(byElapsed).map(Number).sort((a,b) => a-b);
-      const rates = elapsed.map(e => {
-        const r = byElapsed[e];
-        const rate = r.persistence_rate ?? r.pooled_continuation_rate ?? r.continuation_rate;
-        return typeof rate === 'number' ? (rate > 1 ? rate / 100 : rate) : null;
-      });
-      const sameChannel = elapsed.map(e => {
-        const r = byElapsed[e];
-        const rate = r.same_channel_persistence ?? r.same_channel_rate;
-        return typeof rate === 'number' ? (rate > 1 ? rate / 100 : rate) : null;
-      });
-      const crossChannel = elapsed.map(e => {
-        const r = byElapsed[e];
-        const rate = r.cross_channel_persistence ?? r.cross_channel_rate;
-        return typeof rate === 'number' ? (rate > 1 ? rate / 100 : rate) : null;
-      });
-
-      const datasets = [
-        { label: 'Total Persistence', data: rates, color: COLORS.emerald, fill: true },
-      ];
-      if (sameChannel.some(v => v !== null)) {
-        datasets.push({ label: 'Same-Channel', data: sameChannel, color: COLORS.cyan });
-      }
-      if (crossChannel.some(v => v !== null)) {
-        datasets.push({ label: 'Cross-Channel', data: crossChannel, color: COLORS.violet });
-      }
-
-      drawLineChart('canvasCohortSurvival', datasets,
-        elapsed.map(e => '+' + e + 'y'), { yMin: 0, yMax: 1, yDecimals: 0, yFmt: v => (v*100).toFixed(0) + '%' });
-    }
-
-    // Retention matrix
-    const ret = DATA.cohorts?.retention_matrix;
-    if (ret && ret.length > 0) {
-      const headers = ['Cohort', 'Size', 'Obs Year', 'Elapsed', 'Re-Obs', 'Rate', 'Same-Ch', 'Cross-Ch'];
-      const rows = ret.map(r => [
-        r.cohort_year || r.first_observed_year || '',
-        fmtNum(r.cohort_size || r.cohort_count || 0),
-        r.observation_year || r.obs_year || '',
-        `+${r.elapsed_years ?? r.elapsed ?? 0}`,
-        fmtNum(r.reobserved_viewers || r.re_observed || 0),
-        fmtPct(r.continuation_rate || r.persistence_rate || 0, 1),
-        fmtNum(r.same_channel_retained || r.same_channel || 0),
-        fmtNum(r.cross_channel_viewers || r.cross_channel || 0),
-      ]);
-      document.getElementById('cohortRetentionTable').innerHTML = buildTable(headers, rows);
-    }
-
-    // Reactivation
-    const react = DATA.cohorts?.reactivation;
-    if (react && react.length > 0) {
-      // Group by gap duration
-      const byGap = {};
-      react.forEach(r => {
-        const gap = r.gap_duration || r.gap_years || 0;
-        if (!byGap[gap]) byGap[gap] = 0;
-        byGap[gap] += (r.reactivated_viewers || r.reactivated || 0);
-      });
-
-      const gaps = Object.keys(byGap).map(Number).sort((a,b) => a-b);
-      const counts = gaps.map(g => byGap[g]);
-
-      drawBarChart('canvasReactivation', counts, gaps.map(g => g + 'yr gap'), {
-        color: COLORS.amber,
-        valFmt: v => v.toLocaleString(),
-      });
-    }
-  }
-
-  // ── CENTRALITY ────────────────────────────────────────────
-
-  function renderCentrality() {
-    const bridges = DATA.centrality?.bridge_dynamics;
-    if (bridges && bridges.length > 0) {
-      const headers = ['Channel', 'Classification', 'Years Appeared', 'Peak Year', 'Stability'];
-      const seen = new Set();
-      const uniqueBridges = bridges.filter(b => {
-        const key = b.channel_name || b.channel_id || '';
-        if (seen.has(key)) return false;
-        seen.add(key);
-        return true;
-      });
-
-      const rows = uniqueBridges.slice(0, 50).map(b => [
-        b.channel_name || b.channel_id || '',
-        tagify(b.structural_classification || b.classification || '', 'tag-active'),
-        fmtNum(b.years_appeared || b.appearances || 0),
-        b.peak_year || '–',
-        b.stability_note || b.stability_ratio?.toFixed(2) || '–',
-      ]);
-      document.getElementById('bridgeTable').innerHTML = buildTable(headers, rows);
-    }
-
-    // Change points
-    const cps = DATA.centrality?.change_points;
-    if (cps && cps.length > 0) {
-      // Count ascents vs declines per year
-      const byYear = {};
-      cps.forEach(cp => {
-        const yr = cp.year || cp.to_year || 0;
-        if (!byYear[yr]) byYear[yr] = { ascent: 0, decline: 0 };
-        const delta = cp.delta_pct ?? cp.delta ?? 0;
-        if (delta > 0) byYear[yr].ascent++;
-        else byYear[yr].decline++;
-      });
-
-      const years = Object.keys(byYear).sort();
-      const ascents = years.map(y => byYear[y].ascent);
-      const declines = years.map(y => -byYear[y].decline);
-
-      drawLineChart('canvasChangePoints', [
-        { label: 'Ascents', data: ascents, color: COLORS.emerald },
-        { label: 'Declines', data: declines, color: COLORS.red },
-      ], years, { yDecimals: 0 });
-    }
-  }
-
-  // ── QUALITY ───────────────────────────────────────────────
-
-  function renderQuality() {
-    const yq = DATA.quality?.yearly_quality;
-    if (yq) {
-      const headers = ['Year', 'Catalog', 'Sampled', 'Ratio', 'Interactions', 'Cap≥95 Rate', 'Tier'];
-      const rows = yq.map(r => {
-        const tier = r.evidence_tier || r.yearly_tier || '';
-        const tierCls = tier === 'HIGH' ? 'tag-high' : tier === 'MODERATE' ? 'tag-mod' : 'tag-low';
-        return [
-          r.year === 2026 ? '2026 (YTD)' : String(r.year),
-          fmtNum(r.catalog_videos || r.catalog_vids || 0),
-          fmtNum(r.sampled_videos || r.sampled_vids || 0),
-          fmtPct(r.sampling_ratio || r.sampling_rate || 0, 1),
-          fmtNum(r.total_interactions || r.interactions || 0),
-          fmtPct(r.cap_100_exposure_rate || r.cap_rate || 0, 1),
-          tagify(tier, tierCls),
-        ];
-      });
-      document.getElementById('qualityTable').innerHTML = buildTable(headers, rows);
-    }
-
-    // Tier donut
-    const tierDist = DATA.quality?.channel_tier_distribution;
-    if (tierDist) {
-      const segments = [];
-      if (tierDist.HIGH) segments.push({ label: 'HIGH', value: tierDist.HIGH, color: COLORS.emerald });
-      if (tierDist.MODERATE) segments.push({ label: 'MODERATE', value: tierDist.MODERATE, color: COLORS.amber });
-      if (tierDist.LOW) segments.push({ label: 'LOW', value: tierDist.LOW, color: COLORS.red });
-      drawDonut('canvasTierDonut', segments, { centerLabel: 'Channels' });
-    }
-
-    // Sensitivity chart
-    const sens = DATA.quality?.bias_sensitivity;
-    if (sens && sens.length > 0) {
-      // Group by year, show modularity across scenarios
-      const scenarios = [...new Set(sens.map(s => s.scenario))];
-      const years = [...new Set(sens.map(s => s.year))].sort();
-
-      const datasets = scenarios.slice(0, 5).map((sc, i) => ({
-        label: sc,
-        data: years.map(yr => {
-          const match = sens.find(s => s.year === yr && s.scenario === sc);
-          return match?.modularity ?? null;
-        }),
-        color: COHORT_PALETTE[i % COHORT_PALETTE.length],
-      }));
-
-      drawLineChart('canvasSensitivity', datasets, years.map(String), { yDecimals: 3 });
-    }
-  }
-
-  // ── Boot ──────────────────────────────────────────────────
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  const renderers={overview,ecosystem,lineage,cohorts,centrality,quality};
+  function render(){renderers[document.querySelector('.tab-btn.active').dataset.tab]();}
+  function activate(name){document.querySelectorAll('.tab-btn').forEach(button=>{const active=button.dataset.tab===name;button.classList.toggle('active',active);button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;el('panel-'+button.dataset.tab).classList.toggle('active',active);});render();}
+  function date(value){return new Intl.DateTimeFormat('th-TH-u-ca-gregory',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Bangkok'}).format(new Date(value));}
+  async function init(){try{const response=await fetch('dashboard_data.json');if(!response.ok)throw new Error('load');data=await response.json();
+    el('genTimestamp').textContent='ข้อมูล ณ '+date(data.meta.generated_at);el('footerGen').textContent='จัดทำเมื่อ '+date(data.meta.generated_at);
+    el('summaryYear').innerHTML=data.meta.years.map(y=>'<option value="'+y+'">'+year(y)+'</option>').join('');el('summaryYear').value=data.meta.years.at(-1);
+    const buttons=[...document.querySelectorAll('.tab-btn')];buttons.forEach((button,index)=>{button.id='tab-'+button.dataset.tab;button.setAttribute('role','tab');button.setAttribute('aria-controls','panel-'+button.dataset.tab);const panel=el('panel-'+button.dataset.tab);panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',button.id);button.addEventListener('click',()=>activate(button.dataset.tab));button.addEventListener('keydown',event=>{const next=event.key==='ArrowRight'?(index+1)%buttons.length:event.key==='ArrowLeft'?(index+buttons.length-1)%buttons.length:event.key==='Home'?0:event.key==='End'?buttons.length-1:null;if(next!==null){event.preventDefault();buttons[next].focus();buttons[next].click();}});});
+    document.querySelectorAll('[data-open-tab]').forEach(button=>button.addEventListener('click',()=>{activate(button.dataset.openTab);el('tab-'+button.dataset.openTab).focus();}));
+    el('summaryYear').addEventListener('change',overview);el('bridgeSearch').addEventListener('input',centrality);
+    await document.fonts.ready;el('loadStatus').hidden=true;activate('overview');let timer;window.addEventListener('resize',()=>{clearTimeout(timer);timer=setTimeout(render,120);});
+  }catch(error){el('loadStatus').textContent='โหลดข้อมูลไม่สำเร็จ โปรดลองโหลดหน้านี้ใหม่';el('loadStatus').setAttribute('role','alert');}}
+  init();
 })();
