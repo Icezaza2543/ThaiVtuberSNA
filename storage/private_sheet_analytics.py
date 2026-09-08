@@ -8,7 +8,7 @@ from storage.private_sheet_store import PrivateSheetStore
 
 ARCHIVE_HEADERS = ['source_path', 'source_table', 'row_number', 'record_json']
 RAW_COLUMNS = ['viewer_hash','vtuber_channel_id','video_id','source_type',
-               'interaction_at','first_seen','timestamp','video_published_at','provenance','priority']
+               'interaction_at','first_seen','timestamp','video_published_at','provenance','priority','source_path']
 
 
 def archive_event(record):
@@ -23,7 +23,7 @@ def archive_event(record):
     source = json.loads(record['record_json'])
     result = {k:None for k in RAW_COLUMNS}
     result.update({k:source.get(k) for k in ('viewer_hash','vtuber_channel_id','video_id')})
-    result.update(source_type=source.get('source_type') or 'comment',provenance=tier,priority=priority)
+    result.update(source_type=source.get('source_type') or 'comment',provenance=tier,priority=priority,source_path=path)
     if tier == 'legacy':
         result.update(first_seen=source.get('first_seen'),timestamp=source.get('timestamp'))
     else:

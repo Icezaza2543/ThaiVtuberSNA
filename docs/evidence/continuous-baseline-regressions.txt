@@ -42,19 +42,19 @@ _____________ test_mixed_sources_survive_repeated_batches[False] ______________
 tests\test_collection_correctness.py:64: in test_mixed_sources_survive_repeated_batches
     assert len(decoded(tmp_path/'events')) == 2
 E   AssertionError: assert 1 == 2
-E    +  where 1 = len([{'viewer_hash': 'b7455162589adb0da6bc8f9c7202311b6673e44acba2d25e9a9420f7db8276b6', 'vtuber_channel_id': 'CH', 'video_id': 'VID', 'first_seen': '2026-09-01T00:00:00Z', ...}])
-E    +    where [{'viewer_hash': 'b7455162589adb0da6bc8f9c7202311b6673e44acba2d25e9a9420f7db8276b6', 'vtuber_channel_id': 'CH', 'video_id': 'VID', 'first_seen': '2026-09-01T00:00:00Z', ...}] = decoded((WindowsPath('C:/Users/Icezaza/AppData/Local/Temp/pytest-of-Icezaza/pytest-88/test_mixed_sources_survive_rep0') / 'events'))
+E    +  where 1 = len([{'viewer_hash': '[PRIVATE_PSEUDONYM_REDACTED]', 'vtuber_channel_id': 'CH', 'video_id': 'VID', 'first_seen': '2026-09-01T00:00:00Z', ...}])
+E    +    where [{'viewer_hash': '[PRIVATE_PSEUDONYM_REDACTED]', 'vtuber_channel_id': 'CH', 'video_id': 'VID', 'first_seen': '2026-09-01T00:00:00Z', ...}] = decoded((WindowsPath('C:/Users/Icezaza/AppData/Local/Temp/pytest-of-Icezaza/pytest-88/test_mixed_sources_survive_rep0') / 'events'))
 ______________ test_mixed_sources_survive_repeated_batches[True] ______________
 tests\test_collection_correctness.py:64: in test_mixed_sources_survive_repeated_batches
     assert len(decoded(tmp_path/'events')) == 2
 E   AssertionError: assert 1 == 2
-E    +  where 1 = len([{'viewer_hash': 'b7455162589adb0da6bc8f9c7202311b6673e44acba2d25e9a9420f7db8276b6', 'vtuber_channel_id': 'CH', 'video_id': 'VID', 'first_seen': '2026-09-01T00:00:00Z', ...}])
-E    +    where [{'viewer_hash': 'b7455162589adb0da6bc8f9c7202311b6673e44acba2d25e9a9420f7db8276b6', 'vtuber_channel_id': 'CH', 'video_id': 'VID', 'first_seen': '2026-09-01T00:00:00Z', ...}] = decoded((WindowsPath('C:/Users/Icezaza/AppData/Local/Temp/pytest-of-Icezaza/pytest-88/test_mixed_sources_survive_rep1') / 'events'))
+E    +  where 1 = len([{'viewer_hash': '[PRIVATE_PSEUDONYM_REDACTED]', 'vtuber_channel_id': 'CH', 'video_id': 'VID', 'first_seen': '2026-09-01T00:00:00Z', ...}])
+E    +    where [{'viewer_hash': '[PRIVATE_PSEUDONYM_REDACTED]', 'vtuber_channel_id': 'CH', 'video_id': 'VID', 'first_seen': '2026-09-01T00:00:00Z', ...}] = decoded((WindowsPath('C:/Users/Icezaza/AppData/Local/Temp/pytest-of-Icezaza/pytest-88/test_mixed_sources_survive_rep1') / 'events'))
 ____________ test_month_order_and_restart_do_not_create_partitions ____________
 tests\test_collection_correctness.py:84: in test_month_order_and_restart_do_not_create_partitions
     assert mgr.write_events([event(month='10')]) == first
 E   AssertionError: assert WindowsPath('C:/Users/Icezaza/AppData/Local/Temp/pytest-of-Icezaza/pytest-88/test_month_order_and_restart_d0/2026/10/VID_comment.parquet') == WindowsPath('C:/Users/Icezaza/AppData/Local/Temp/pytest-of-Icezaza/pytest-88/test_month_order_and_restart_d0/2026/09/VID_comment.parquet')
-E    +  where WindowsPath('C:/Users/Icezaza/AppData/Local/Temp/pytest-of-Icezaza/pytest-88/test_month_order_and_restart_d0/2026/10/VID_comment.parquet') = write_events([{'viewer_hash': 'b7455162589adb0da6bc8f9c7202311b6673e44acba2d25e9a9420f7db8276b6', 'vtuber_channel_id': 'CH', 'video_id': 'VID', 'source_type': 'comment', ...}])
+E    +  where WindowsPath('C:/Users/Icezaza/AppData/Local/Temp/pytest-of-Icezaza/pytest-88/test_month_order_and_restart_d0/2026/10/VID_comment.parquet') = write_events([{'viewer_hash': '[PRIVATE_PSEUDONYM_REDACTED]', 'vtuber_channel_id': 'CH', 'video_id': 'VID', 'source_type': 'comment', ...}])
 E    +    where write_events = <storage.parquet_manager.ParquetStorageManager object at 0x00000243A49EBAD0>.write_events
 _____________ test_corrupt_existing_partition_is_not_overwritten ______________
 tests\test_collection_correctness.py:97: in test_corrupt_existing_partition_is_not_overwritten

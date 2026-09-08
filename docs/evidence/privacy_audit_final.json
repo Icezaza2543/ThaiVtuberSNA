@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "checked_files": 143,
+  "failures": [],
+  "classification_counts": {
+    "SECRET_CREDENTIAL": 3,
+    "PUBLIC_RESEARCH_DATA": 140
+  },
+  "canary_passed": true,
+  "scope": "Working public outputs and project data including ignored worktree data; local credentials permitted only if ignored. Git object store is covered separately. No OS backup/swap inspection."
+}

@@ -101,6 +101,9 @@ def run_quality_analysis() -> Dict[str, Any]:
     """Runs longitudinal evidence, stability, and retention diagnostics on canonical events."""
     con = duckdb.connect(":memory:")
     build_unified_raw_view(con)
+    columns={row[0] for row in con.execute('DESCRIBE unified_raw').fetchall()}
+    source_counts=(dict(con.execute('SELECT provenance, COUNT(DISTINCT source_path) FROM unified_raw GROUP BY provenance').fetchall())
+                   if 'source_path' in columns else {})
     for table,condition in [('events_t6', "provenance = 't6_deep'"),
                             ('events_t5', "provenance = 't5_stratified'"),
                             ('events_legacy', "provenance IN ('legacy','t2_pilot')")]:
@@ -157,28 +160,28 @@ def run_quality_analysis() -> Dict[str, Any]:
 
     provenance_summary = {
         "t6_deep": {
-            "source_files": len(t6_sources),
+            "source_files": source_counts.get('t6_deep'),
             "interactions": t6_tot[0],
             "unique_viewers": t6_tot[1],
             "channels": t6_tot[2],
             "videos": t6_tot[3]
         },
         "t5_only": {
-            "source_files": len(t5_sources),
+            "source_files": source_counts.get('t5_stratified'),
             "interactions": t5_tot[0],
             "unique_viewers": t5_tot[1],
             "channels": t5_tot[2],
             "videos": t5_tot[3]
         },
         "legacy_t2": {
-            "source_files": len(legacy_t2_sources),
+            "source_files": sum(source_counts.get(k,0) for k in ('legacy','t2_pilot')) if source_counts else None,
             "interactions": legacy_tot[0],
             "unique_viewers": legacy_tot[1],
             "channels": legacy_tot[2],
             "videos": legacy_tot[3]
         },
         "unified": {
-            "source_files": len(sources),
+            "source_files": sum(source_counts.values()) if source_counts else None,
             "interactions": unified_tot[0],
             "unique_viewers": unified_tot[1],
             "channels": unified_tot[2],
@@ -346,6 +349,10 @@ def run_quality_analysis() -> Dict[str, Any]:
     }
 
 
+def format_source_count(value):
+    return 'unknown' if value is None else f'{value:,}'
+
+
 def generate_markdown_report(analysis: Dict[str, Any], output_path: Path = REPORT_PATH) -> None:
     """Generates the Markdown report summarizing temporal backfill quality with clear provenance."""
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -385,11 +392,11 @@ def generate_markdown_report(analysis: Dict[str, Any], output_path: Path = REPOR
         t5_p = prov.get("t5_only", {})
         leg_p = prov.get("legacy_t2", {})
         uni_p = prov.get("unified", {})
-        if t6_p.get("source_files", 0) > 0:
-            lines.append(f"| **T6 Deepened Comments** | {t6_p.get('source_files', 0):,} | {t6_p.get('interactions', 0):,} | {t6_p.get('unique_viewers', 0):,} | {t6_p.get('channels', 0)} / 193 | {t6_p.get('videos', 0):,} | Exhaustively paginated comments for high-engagement historical videos |")
-        lines.append(f"| **T5 Stratified Backfill** | {t5_p.get('source_files', 0):,} | {t5_p.get('interactions', 0):,} | {t5_p.get('unique_viewers', 0):,} | {t5_p.get('channels', 0)} / 193 | {t5_p.get('videos', 0):,} | Bi-monthly stratified historical comment backfill (2020–2026) |")
-        lines.append(f"| **Legacy / T2 Pilot** | {leg_p.get('source_files', 0):,} | {leg_p.get('interactions', 0):,} | {leg_p.get('unique_viewers', 0):,} | {leg_p.get('channels', 0)} / 193 | {leg_p.get('videos', 0):,} | T2 comment pilot (60 videos) + legacy live-chat / comment archives |")
-        lines.append(f"| **Unified Temporal Network** | {uni_p.get('source_files', 0):,} | {uni_p.get('interactions', 0):,} | {uni_p.get('unique_viewers', 0):,} | {uni_p.get('channels', 0)} / 193 | {uni_p.get('videos', 0):,} | Combined evidence powering the final temporal snapshots & time slider |")
+        if (t6_p.get("source_files") or 0) > 0:
+            lines.append(f"| **T6 Deepened Comments** | {format_source_count(t6_p.get('source_files'))} | {t6_p.get('interactions', 0):,} | {t6_p.get('unique_viewers', 0):,} | {t6_p.get('channels', 0)} / 193 | {t6_p.get('videos', 0):,} | Exhaustively paginated comments for high-engagement historical videos |")
+        lines.append(f"| **T5 Stratified Backfill** | {format_source_count(t5_p.get('source_files'))} | {t5_p.get('interactions', 0):,} | {t5_p.get('unique_viewers', 0):,} | {t5_p.get('channels', 0)} / 193 | {t5_p.get('videos', 0):,} | Bi-monthly stratified historical comment backfill (2020–2026) |")
+        lines.append(f"| **Legacy / T2 Pilot** | {format_source_count(leg_p.get('source_files'))} | {leg_p.get('interactions', 0):,} | {leg_p.get('unique_viewers', 0):,} | {leg_p.get('channels', 0)} / 193 | {leg_p.get('videos', 0):,} | T2 comment pilot (60 videos) + legacy live-chat / comment archives |")
+        lines.append(f"| **Unified Temporal Network** | {format_source_count(uni_p.get('source_files'))} | {uni_p.get('interactions', 0):,} | {uni_p.get('unique_viewers', 0):,} | {uni_p.get('channels', 0)} / 193 | {uni_p.get('videos', 0):,} | Combined evidence powering the final temporal snapshots & time slider |")
 
     lines.extend([
         "",

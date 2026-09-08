@@ -14,6 +14,16 @@ import pyarrow.parquet as pq
 from scripts.analyze_temporal_backfill_quality import run_quality_analysis, generate_markdown_report
 
 
+@pytest.fixture(autouse=True)
+def isolated_quality_sources(tmp_path, synthetic_pipeline_data, monkeypatch):
+    import scripts.analyze_temporal_backfill_quality as quality
+    import scripts.build_duckdb_temporal_snapshots as snapshots
+    root=synthetic_pipeline_data(tmp_path)
+    monkeypatch.setattr(quality,'build_unified_raw_view',lambda con:
+        snapshots.build_unified_raw_view(con,snapshots.get_sources_by_provenance(root)))
+    monkeypatch.setattr(quality,'CHECKPOINT_DB',root/'absent_checkpoint.sqlite3')
+
+
 def test_quality_analysis_structure():
     """Verify run_quality_analysis produces all required analytical dimensions."""
     analysis = run_quality_analysis()

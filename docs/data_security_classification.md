@@ -4887,3 +4887,5 @@ The following paths were decoded, including compressed tables and committed SQLi
 ## Post-migration status
 
 The before-inventory above is retained as an audit record, not a claim that those working files still exist. Full canonical comparison passed; 4,494 verified working-copy files (including the temporary recovery CSV and database sidecars) were removed. Post-cleanup local inventory: SECRET_CREDENTIAL 3 (ignored and authorized locally), PRIVATE_DATA 0, PUBLIC_RESEARCH_DATA 140. Exact paths and verification digests are in `evidence/private_migration_cleanup.json` and `evidence/local_security_after.json`. The tracked pilot is removed from current HEAD. Historical exposure remains; no history rewrite occurred.
+
+The expanded text-output rule also flagged `docs/evidence/continuous-baseline-regressions.txt`: an old synthetic regression failure log with embedded test pseudonyms. Its original bytes were preserved in `PRIVATE_DATA_ARCHIVE!A142186:D142186`, and individual pseudonyms were redacted from the public copy. This is distinct from the real 1,474-row pilot exposure. The archive now contains 142,185 records; canonical analytical rows are unchanged.

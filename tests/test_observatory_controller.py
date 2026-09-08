@@ -33,7 +33,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 @pytest.fixture
-def sandbox_observatory(tmp_path):
+def sandbox_observatory(tmp_path, synthetic_pipeline_data):
     """Sets up an isolated sandbox environment with snapshots, state, and web files."""
     sandbox_data = tmp_path / "data" / "temporal"
     sandbox_snaps = sandbox_data / "snapshots"
@@ -58,7 +58,16 @@ def sandbox_observatory(tmp_path):
     assert real_web_app.exists()
     shutil.copy2(real_web_app, sandbox_web / "app.js")
 
-    return tmp_path
+    return synthetic_pipeline_data(tmp_path)
+
+
+@pytest.fixture(autouse=True)
+def offline_observatory_key(monkeypatch):
+    import scripts.observatory_controller as module
+    from core.hasher import compute_key_fingerprint
+    key=b'offline-observatory-check-key'
+    monkeypatch.setattr(module, 'load_persistent_secret_key', lambda: key)
+    monkeypatch.setattr(module, 'EXPECTED_HMAC_KEY_FINGERPRINT', 'sha256_'+compute_key_fingerprint(key))
 
 
 def test_01_controller_status_healthy():

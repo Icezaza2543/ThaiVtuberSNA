@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "source_path": "docs/evidence/continuous-baseline-regressions.txt",
+  "source_sha256": "6e07bb09f0132d63c05f1894776d5ff938194cbfd7c2034643a33baad64f54f0",
+  "archive_range": "PRIVATE_DATA_ARCHIVE!A142186:D142186",
+  "archive_row_sha256": "98e088a61a224053a11080bf27ce603745999d22d8a8a43de664cce560dbe25c",
+  "total_archive_rows": 142185,
+  "origin": "Synthetic baseline regression test log; conservative viewer-row rule flags embedded pseudonyms. Original preserved privately; public log pseudonyms redacted.",
+  "canonical_scope": "historical_test_log excluded; original 142184 source rows unchanged"
+}

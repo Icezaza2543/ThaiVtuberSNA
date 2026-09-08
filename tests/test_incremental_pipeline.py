@@ -38,23 +38,8 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 @pytest.fixture
-def temp_pipeline_env(tmp_path):
-    """Sets up an isolated sandbox environment with a copy of historical snapshots and state."""
-    sandbox_data = tmp_path / "data" / "temporal"
-    sandbox_state = sandbox_data / "state"
-    sandbox_inc = sandbox_data / "incremental"
-    sandbox_snaps = sandbox_data / "snapshots"
-
-    sandbox_state.mkdir(parents=True)
-    sandbox_inc.mkdir(parents=True)
-    sandbox_snaps.mkdir(parents=True)
-
-    # Copy real snapshots to sandbox for baseline comparison
-    real_snaps = REPO_ROOT / "data" / "temporal" / "snapshots" / "network_snapshots.parquet"
-    assert real_snaps.exists()
-    shutil.copy2(real_snaps, sandbox_snaps / "network_snapshots.parquet")
-
-    return tmp_path
+def temp_pipeline_env(tmp_path, synthetic_pipeline_data):
+    return synthetic_pipeline_data(tmp_path)
 
 
 def test_01_same_viewer_two_channels_creates_or_increments_expected_edge(temp_pipeline_env):
@@ -93,6 +78,7 @@ def test_01_same_viewer_two_channels_creates_or_increments_expected_edge(temp_pi
     m_2026_after = (df_after["window_type"] == "yearly") & (df_after["window_start"].str.startswith("2026"))
     edge_after = df_after[m_2026_after & (df_after["vtuber_a"] == chan_a) & (df_after["vtuber_b"] == chan_b)]
     assert not edge_after.empty
+    assert len(edge_after) == 1, 'A changed observation cutoff must replace the same yearly window'
     shared_after = int(edge_after["shared_any"].iloc[0])
 
     assert shared_after == shared_before + 1, f"Expected {shared_before + 1}, got {shared_after}"
@@ -159,7 +145,7 @@ def test_03_duplicate_rerun_changes_nothing(temp_pipeline_env):
 
 def test_04_duplicate_against_historical_evidence_suppressed(temp_pipeline_env):
     """4. Incoming records matching historical canonical evidence are suppressed."""
-    # Find a real historical event from canonical_events in 2026
+    # Find a synthetic historical event from the isolated canonical fixture
     con = duckdb.connect(":memory:")
     prov = get_sources_by_provenance()
     build_unified_raw_view(con, prov)
