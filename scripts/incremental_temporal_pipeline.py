@@ -48,6 +48,14 @@ RELEASE_MANIFEST_FILE = STATE_DIR / "release_manifest.json"
 
 sys.path.insert(0, str(BASE_DIR))
 from core.hasher import load_persistent_secret_key, compute_key_fingerprint, PrivacyHasher
+from scripts.build_duckdb_temporal_snapshots import (
+    compute_window_snapshots,
+    load_channel_coverage_records,
+    get_sources_by_provenance,
+    build_unified_raw_view,
+    build_canonical_events_view,
+    NETWORK_SNAPSHOT_SCHEMA
+)
 
 # Provenance hierarchy precedence
 PROVENANCE_PRECEDENCE = {
@@ -115,6 +123,19 @@ class IncrementalTemporalPipeline:
         self.state_dir.mkdir(parents=True, exist_ok=True)
         self.incremental_dir.mkdir(parents=True, exist_ok=True)
 
+        # Clean up any leftover uncommitted .tmp files in incremental or snapshots dir
+        for tmp_f in self.incremental_dir.glob("*.tmp"):
+            try:
+                tmp_f.unlink()
+            except Exception:
+                pass
+        if self.snapshots_path.parent.exists():
+            for tmp_s in self.snapshots_path.parent.glob("*.tmp"):
+                try:
+                    tmp_s.unlink()
+                except Exception:
+                    pass
+
         # 1. Load active HMAC secret key and compute fingerprint
         if custom_key is not None:
             self.secret_key = custom_key
@@ -160,7 +181,7 @@ class IncrementalTemporalPipeline:
 
     def _save_state(self, state_dict: Dict[str, Any]) -> None:
         """Atomic, crash-safe state persistence."""
-        tmp_file = self.state_dir / f"pipeline_state_{os.getpid()}_{datetime.now().timestamp()}.tmp"
+        tmp_file = self.state_dir / f"pipeline_state_{os.getpid()}_{int(datetime.now().timestamp() * 1000)}.tmp"
         with open(tmp_file, "w", encoding="utf-8") as f:
             json.dump(state_dict, f, indent=2)
         # Atomic rename on POSIX and Windows (Python 3.3+)
@@ -182,17 +203,20 @@ class IncrementalTemporalPipeline:
             b_info = self.state["processed_batches"][batch_id]
             if b_info.get("status") == "COMMITTED":
                 logger.info(f"Batch '{batch_id}' already COMMITTED. Idempotent no-op.")
+                current_checksum = hashlib.sha256(open(self.snapshots_path, "rb").read()).hexdigest() if self.snapshots_path.exists() else ""
                 return IngestionResult(
                     batch_id=batch_id,
                     status="ALREADY_PROCESSED",
                     records_received=len(events),
                     records_inserted=0,
                     duplicates_suppressed=len(events),
-                    affected_years=[]
+                    affected_years=[],
+                    snapshot_checksum=current_checksum
                 )
 
         if not events:
-            return IngestionResult(batch_id, "SUCCESS_EMPTY", 0, 0, 0, [])
+            current_checksum = hashlib.sha256(open(self.snapshots_path, "rb").read()).hexdigest() if self.snapshots_path.exists() else ""
+            return IngestionResult(batch_id, "SUCCESS_EMPTY", 0, 0, 0, [], current_checksum)
 
         # 2. Pseudonymize raw author IDs on RAM boundary
         processed_rows = []
@@ -200,10 +224,12 @@ class IncrementalTemporalPipeline:
 
         for ev in events:
             raw_author = ev.get("author_channel_id") or ev.get("author_id")
-            if not raw_author:
+            if raw_author:
+                v_hash = self.hasher.hash_viewer_id(str(raw_author))
+            elif "viewer_hash" in ev and ev["viewer_hash"]:
+                v_hash = str(ev["viewer_hash"])
+            else:
                 continue
-            # RAM-only boundary
-            v_hash = self.hasher.hash_viewer_id(str(raw_author))
 
             raw_time = ev.get("interaction_time") or ev.get("interaction_at")
             if isinstance(raw_time, str):
@@ -215,42 +241,63 @@ class IncrementalTemporalPipeline:
 
             yr = dt.year
             affected_years_set.add(yr)
+            s_type = ev.get("source_type", source_type)
 
             processed_rows.append({
                 "viewer_hash": v_hash,
                 "vtuber_channel_id": str(ev["vtuber_channel_id"]),
                 "video_id": str(ev.get("video_id", "unknown")),
                 "interaction_time": dt,
+                "interaction_at": dt.isoformat(),
                 "interaction_year": yr,
-                "source_type": source_type,
+                "source_type": s_type,
                 "provenance": provenance,
                 "provenance_rank": PROVENANCE_PRECEDENCE.get(provenance, 50)
             })
 
         if not processed_rows:
-            return IngestionResult(batch_id, "NO_VALID_RECORDS", len(events), 0, 0, [])
+            current_checksum = hashlib.sha256(open(self.snapshots_path, "rb").read()).hexdigest() if self.snapshots_path.exists() else ""
+            return IngestionResult(batch_id, "NO_VALID_RECORDS", len(events), 0, 0, [], current_checksum)
 
         df_incoming = pd.DataFrame(processed_rows)
 
-        # 3. Deduplication against existing storage
-        # Check existing incremental directory files (ignore uncommitted .tmp files)
+        # 3. Deduplication against existing storage (both historical and incremental)
         existing_keys: Set[Tuple[str, str, str, str]] = set()
 
+        # Check existing incremental directory files (ignore uncommitted .tmp files)
         for f in self.incremental_dir.glob("batch_*.parquet"):
             if f.name.endswith(".tmp"):
                 continue
             try:
-                df_ex = pd.read_parquet(f, columns=["viewer_hash", "vtuber_channel_id", "video_id", "interaction_time"])
+                df_ex = pd.read_parquet(f, columns=["viewer_hash", "vtuber_channel_id", "video_id", "source_type"])
                 for _, r in df_ex.iterrows():
-                    existing_keys.add((r["viewer_hash"], r["vtuber_channel_id"], r["video_id"], str(r["interaction_time"])))
+                    existing_keys.add((r["viewer_hash"], r["vtuber_channel_id"], r["video_id"], r["source_type"]))
             except Exception:
                 pass
 
-        # Deduplicate incoming records
+        # Check historical canonical evidence from DuckDB for affected years
+        try:
+            con_check = duckdb.connect(":memory:")
+            prov_hist = get_sources_by_provenance(base_dir=self.base_dir)
+            build_unified_raw_view(con_check, prov_hist)
+            build_canonical_events_view(con_check, "unified_raw")
+            years_str = ", ".join(str(y) for y in affected_years_set)
+            hist_rows = con_check.execute(f"""
+                SELECT DISTINCT viewer_hash, vtuber_channel_id, video_id, source_type
+                FROM canonical_events
+                WHERE extract(year from interaction_time) IN ({years_str})
+            """).fetchall()
+            for r in hist_rows:
+                existing_keys.add((r[0], r[1], r[2], r[3]))
+            con_check.close()
+        except Exception as e:
+            logger.warning(f"Could not check historical keys from DuckDB: {e}")
+
+        # Deduplicate incoming records (including intra-batch duplicates)
         unique_rows = []
         dups_count = 0
         for _, r in df_incoming.iterrows():
-            k = (r["viewer_hash"], r["vtuber_channel_id"], r["video_id"], str(r["interaction_time"]))
+            k = (r["viewer_hash"], r["vtuber_channel_id"], r["video_id"], r["source_type"])
             if k in existing_keys:
                 dups_count += 1
             else:
@@ -262,36 +309,71 @@ class IncrementalTemporalPipeline:
 
         if self.dry_run:
             logger.info(f"[DRY RUN] Would insert {records_to_insert} rows (suppressed {dups_count} duplicates).")
+            current_checksum = hashlib.sha256(open(self.snapshots_path, "rb").read()).hexdigest() if self.snapshots_path.exists() else ""
             return IngestionResult(
                 batch_id=batch_id,
                 status="DRY_RUN",
                 records_received=len(events),
                 records_inserted=records_to_insert,
                 duplicates_suppressed=dups_count,
-                affected_years=affected_years
+                affected_years=affected_years,
+                snapshot_checksum=current_checksum
+            )
+
+        if records_to_insert == 0:
+            logger.info(f"Batch '{batch_id}' contains 0 new records ({dups_count} duplicates suppressed).")
+            current_checksum = hashlib.sha256(open(self.snapshots_path, "rb").read()).hexdigest() if self.snapshots_path.exists() else ""
+            new_version = f"v1.{len(self.state.get('processed_batches', {})) + 1}.0"
+            self.state["processed_batches"][batch_id] = {
+                "status": "COMMITTED",
+                "committed_at": datetime.now(timezone.utc).isoformat(),
+                "records_received": len(events),
+                "records_inserted": 0,
+                "duplicates_suppressed": dups_count,
+                "affected_years": affected_years,
+                "batch_file": None,
+                "snapshot_checksum": current_checksum
+            }
+            self.state["last_committed_at"] = datetime.now(timezone.utc).isoformat()
+            self._save_state(self.state)
+            return IngestionResult(
+                batch_id=batch_id,
+                status="COMMITTED",
+                records_received=len(events),
+                records_inserted=0,
+                duplicates_suppressed=dups_count,
+                affected_years=affected_years,
+                snapshot_checksum=current_checksum
             )
 
         # 4. Crash-safe staged append-only persistence
         batch_parquet = self.incremental_dir / f"batch_{batch_id}.parquet"
-        batch_parquet_tmp = self.incremental_dir / f"batch_{batch_id}_{os.getpid()}.parquet.tmp"
-        if records_to_insert > 0:
-            df_unique = pd.DataFrame(unique_rows)
-            df_unique.to_parquet(batch_parquet_tmp, index=False)
+        batch_parquet_tmp = self.incremental_dir / f"batch_{batch_id}_{os.getpid()}_{int(datetime.now().timestamp() * 1000)}.parquet.tmp"
+        df_unique = pd.DataFrame(unique_rows)
+        df_unique.to_parquet(batch_parquet_tmp, index=False)
 
-        # 5. Incremental Snapshot Rebuild for Affected Periods ONLY
-        snapshot_checksum = self._rebuild_snapshots_for_affected_years(affected_years)
+        # 5. Incremental Snapshot Rebuild for Affected Periods ONLY (staged file participates!)
+        snapshot_checksum, staged_snapshots_tmp = self._rebuild_snapshots_for_affected_years(
+            affected_years, staged_file=batch_parquet_tmp
+        )
 
         # 6. Simulate crash before checkpoint if requested
         if simulate_crash_before_commit:
             logger.warning(f"Simulating unhandled crash before checkpoint commit for batch {batch_id}!")
             if batch_parquet_tmp.exists():
                 batch_parquet_tmp.unlink()
+            if staged_snapshots_tmp and staged_snapshots_tmp.exists():
+                staged_snapshots_tmp.unlink()
             raise RuntimeError("CRASH_BEFORE_COMMIT")
 
-        # Atomically commit staged parquet
-        if records_to_insert > 0 and batch_parquet_tmp.exists():
+        # Atomically commit staged parquet files
+        if batch_parquet_tmp.exists():
             batch_parquet_tmp.replace(batch_parquet)
             logger.info(f"Committed {records_to_insert} new records to {batch_parquet.name}")
+
+        if staged_snapshots_tmp and staged_snapshots_tmp.exists():
+            staged_snapshots_tmp.replace(self.snapshots_path)
+            logger.info(f"Updated network snapshots in {self.snapshots_path.name}")
 
         # 7. Checkpointed Commit
         new_version = f"v1.{len(self.state.get('processed_batches', {})) + 1}.0"
@@ -302,7 +384,7 @@ class IncrementalTemporalPipeline:
             "records_inserted": records_to_insert,
             "duplicates_suppressed": dups_count,
             "affected_years": affected_years,
-            "batch_file": str(batch_parquet.name) if records_to_insert > 0 else None,
+            "batch_file": str(batch_parquet.name),
             "snapshot_checksum": snapshot_checksum
         }
         self.state["last_committed_at"] = datetime.now(timezone.utc).isoformat()
@@ -322,48 +404,113 @@ class IncrementalTemporalPipeline:
             snapshot_checksum=snapshot_checksum
         )
 
-    def _rebuild_snapshots_for_affected_years(self, affected_years: List[int]) -> str:
+    def _rebuild_snapshots_for_affected_years(
+        self,
+        affected_years: List[int],
+        staged_file: Optional[Path] = None
+    ) -> Tuple[str, Optional[Path]]:
         """Rebuilds network snapshots for affected years only, leaving historical slices untouched."""
         if not self.snapshots_path.exists():
-            return ""
+            return "", None
 
         df_snapshots = pd.read_parquet(self.snapshots_path)
 
-        # Collect any incremental data for affected years
-        inc_files = list(self.incremental_dir.glob("*.parquet"))
-        if not inc_files:
-            return hashlib.sha256(open(self.snapshots_path, "rb").read()).hexdigest()
+        # 1. Connect to DuckDB with all sources + staged file
+        extra_inc = [str(staged_file)] if staged_file and staged_file.exists() else []
+        sources_by_prov = get_sources_by_provenance(base_dir=self.base_dir, extra_incremental_files=extra_inc)
 
-        # Read incremental records
-        inc_dfs = [pd.read_parquet(f) for f in inc_files]
-        df_inc_all = pd.concat(inc_dfs, ignore_index=True)
+        con = duckdb.connect(":memory:")
+        build_unified_raw_view(con, sources_by_prov)
+        build_canonical_events_view(con, "unified_raw")
+        cov_records = load_channel_coverage_records(base_dir=self.base_dir)
 
+        # Determine latest interaction date in canonical events
+        max_inter_row = con.execute("SELECT MAX(interaction_time) FROM canonical_events").fetchone()
+        max_inter_dt = max_inter_row[0] if max_inter_row else None
+        latest_year = max_inter_dt.year if max_inter_dt else max(affected_years)
+        min_affected_year = min(affected_years)
+
+        # 2. Build list of affected windows to recompute
+        windows_to_rebuild = []
+
+        # Yearly windows
         for yr in affected_years:
-            yr_inc = df_inc_all[df_inc_all["interaction_year"] == yr]
-            if yr_inc.empty:
-                continue
+            if yr <= 2025:
+                w_start = f"{yr}-01-01"
+                w_end = f"{yr}-12-31 23:59:59"
+            elif yr == 2026:
+                w_start = "2026-01-01"
+                w_end = "2026-09-08 23:59:59"
+                if max_inter_dt and max_inter_dt.year == 2026:
+                    ts_str = max_inter_dt.strftime("%Y-%m-%d %H:%M:%S")
+                    if ts_str > w_end:
+                        w_end = ts_str
+            else:
+                w_start = f"{yr}-01-01"
+                w_end = f"{yr}-12-31 23:59:59"
+            windows_to_rebuild.append({"type": "yearly", "start": w_start, "end": w_end})
 
-            # Ephemeral co-interaction aggregation for year yr
-            con = duckdb.connect()
-            con.register("yr_inc", yr_inc)
-            pairs_df = con.execute("""
-                SELECT 
-                    a.vtuber_channel_id AS vtuber_a,
-                    b.vtuber_channel_id AS vtuber_b,
-                    COUNT(DISTINCT a.viewer_hash) AS new_shared
-                FROM yr_inc a
-                JOIN yr_inc b ON a.viewer_hash = b.viewer_hash AND a.vtuber_channel_id < b.vtuber_channel_id
-                GROUP BY 1, 2
-            """).df()
+        # Cumulative windows ending in year >= min_affected_year
+        cum_rows = df_snapshots[df_snapshots["window_type"] == "cumulative"]
+        for _, r in cum_rows[["window_start", "window_end"]].drop_duplicates().iterrows():
+            end_yr = int(r["window_end"][:4])
+            if end_yr >= min_affected_year:
+                windows_to_rebuild.append({
+                    "type": "cumulative",
+                    "start": r["window_start"],
+                    "end": r["window_end"]
+                })
 
-            # Merge with existing yearly slice for year yr
-            prefix = f"{yr}-01-01"
-            mask_yr = (df_snapshots["window_type"] == "yearly") & (df_snapshots["window_start"].str.startswith(str(yr)))
-            # Historical slices for other years are guaranteed untouched!
+        # Future-year cumulative windows (e.g. 2027)
+        for yr in affected_years:
+            if yr > 2026:
+                c_start = "2020-01-01"
+                c_end = f"{yr}-12-31 23:59:59"
+                if not any(w["type"] == "cumulative" and w["start"] == c_start and w["end"] == c_end for w in windows_to_rebuild):
+                    windows_to_rebuild.append({"type": "cumulative", "start": c_start, "end": c_end})
 
-        # Save and return checksum
-        df_snapshots.to_parquet(self.snapshots_path, index=False)
-        return hashlib.sha256(open(self.snapshots_path, "rb").read()).hexdigest()
+        # All-time window: always rebuilt when affected
+        all_time_end = "2026-09-08 23:59:59"
+        if max_inter_dt:
+            ts_str = max_inter_dt.strftime("%Y-%m-%d %H:%M:%S")
+            if ts_str > all_time_end:
+                all_time_end = f"{latest_year}-12-31 23:59:59" if latest_year > 2026 else ts_str
+        windows_to_rebuild.append({"type": "all_time", "start": "2020-01-01", "end": all_time_end})
+
+        # 3. Compute new snapshot rows
+        now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+        new_snapshot_rows = []
+        affected_keys = set()
+        for w in windows_to_rebuild:
+            snap_rows = compute_window_snapshots(con, w, cov_records, "canonical_events", now_utc)
+            new_snapshot_rows.extend(snap_rows)
+            affected_keys.add((w["type"], w["start"], w["end"]))
+
+        con.close()
+
+        # 4. Atomically replace matching windows in df_snapshots
+        keep_mask = pd.Series(True, index=df_snapshots.index)
+        for (w_type, w_start, w_end) in affected_keys:
+            if w_type == "all_time":
+                match = (df_snapshots["window_type"] == "all_time")
+            else:
+                match = (df_snapshots["window_type"] == w_type) & (df_snapshots["window_start"] == w_start) & (df_snapshots["window_end"] == w_end)
+            keep_mask = keep_mask & (~match)
+
+        df_kept = df_snapshots[keep_mask].copy()
+        if new_snapshot_rows:
+            df_new = pd.DataFrame(new_snapshot_rows)
+            df_combined = pd.concat([df_kept, df_new], ignore_index=True)
+        else:
+            df_combined = df_kept
+
+        # 5. Write to temporary staged parquet file
+        staged_snapshots_tmp = self.snapshots_path.parent / f"network_snapshots_{os.getpid()}_{int(datetime.now().timestamp() * 1000)}.parquet.tmp"
+        tbl = pa.Table.from_pandas(df_combined, schema=NETWORK_SNAPSHOT_SCHEMA, preserve_index=False)
+        pq.write_table(tbl, staged_snapshots_tmp, compression="snappy")
+
+        checksum = hashlib.sha256(open(staged_snapshots_tmp, "rb").read()).hexdigest()
+        return checksum, staged_snapshots_tmp
 
     def _update_release_manifest(self, version: str, affected_years: List[int]) -> None:
         """Updates release_manifest.json with dataset metadata and audit signatures."""

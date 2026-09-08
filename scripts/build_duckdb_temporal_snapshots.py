@@ -131,48 +131,83 @@ NETWORK_SNAPSHOT_SCHEMA = pa.schema([
     ("calculated_at", pa.string())
 ])
 
-def get_sources_by_provenance() -> Dict[str, List[str]]:
+def get_sources_by_provenance(
+    base_dir: Optional[Path] = None,
+    extra_incremental_files: Optional[List[str]] = None
+) -> Dict[str, List[str]]:
     """
     Categorizes all available event/observation parquet files by explicit provenance tier:
+      - t16_incremental: Incremental append-only batches from Phase T16
       - t6_deep: Exhaustive comments from Phase T6
       - t5_stratified: Stratified comment backfill from Phase T5
       - t2_pilot: Initial temporal pilot dataset
       - legacy: Historical real pipeline and legacy events (comment + live chat)
     """
-    deep_dir = DATA_DIR / "temporal" / "deep_observations"
+    target_data_dir = (base_dir / "data") if base_dir else DATA_DIR
+    fallback_data_dir = DATA_DIR
+
+    def resolve_dir(subpath: str) -> Path:
+        p1 = target_data_dir / subpath
+        if p1.exists():
+            return p1
+        return fallback_data_dir / subpath
+
+    deep_dir = resolve_dir("temporal/deep_observations")
     deep_sources = sorted(str(p).replace("\\", "/") for p in deep_dir.rglob("*.parquet")) if deep_dir.exists() else []
 
-    t5_dir = DATA_DIR / "temporal" / "observations"
+    t5_dir = resolve_dir("temporal/observations")
     t5_sources = sorted(str(p).replace("\\", "/") for p in t5_dir.rglob("*.parquet")) if t5_dir.exists() else []
 
-    pilot_p = DATA_DIR / "temporal" / "pilot" / "temporal_comment_pilot.parquet"
+    pilot_dir = resolve_dir("temporal/pilot")
+    pilot_p = pilot_dir / "temporal_comment_pilot.parquet"
     t2_sources = [str(pilot_p).replace("\\", "/")] if pilot_p.exists() else []
 
-    real_dir = DATA_DIR / "real" / "events"
+    real_dir = resolve_dir("real/events")
     real_sources = sorted(str(p).replace("\\", "/") for p in real_dir.rglob("*.parquet")) if real_dir.exists() else []
 
-    legacy_dir = DATA_DIR / "events"
+    legacy_dir = resolve_dir("events")
     legacy_sources = sorted(str(p).replace("\\", "/") for p in legacy_dir.rglob("*.parquet")) if legacy_dir.exists() else []
 
+    # Incremental sources: only from target incremental dir
+    inc_dir = target_data_dir / "temporal" / "incremental"
+    inc_sources = sorted(str(p).replace("\\", "/") for p in inc_dir.glob("batch_*.parquet") if not p.name.endswith(".tmp")) if inc_dir.exists() else []
+
+    if extra_incremental_files:
+        for ef in extra_incremental_files:
+            ef_str = str(ef).replace("\\", "/")
+            if ef_str not in inc_sources and Path(ef_str).exists():
+                inc_sources.append(ef_str)
+
     return {
+        "t16_incremental": inc_sources,
         "t6_deep": deep_sources,
         "t5_stratified": t5_sources,
         "t2_pilot": t2_sources,
         "legacy": real_sources + legacy_sources,
     }
 
-def collect_available_parquet_sources() -> List[str]:
+def collect_available_parquet_sources(
+    base_dir: Optional[Path] = None,
+    extra_incremental_files: Optional[List[str]] = None
+) -> List[str]:
     """
     Finds all available event/observation parquet files across temporal and legacy directories.
     Returns full list across all provenance tiers.
     """
-    by_prov = get_sources_by_provenance()
-    return by_prov["t6_deep"] + by_prov["t5_stratified"] + by_prov["t2_pilot"] + by_prov["legacy"]
+    by_prov = get_sources_by_provenance(base_dir=base_dir, extra_incremental_files=extra_incremental_files)
+    return (
+        by_prov.get("t16_incremental", []) +
+        by_prov["t6_deep"] +
+        by_prov["t5_stratified"] +
+        by_prov["t2_pilot"] +
+        by_prov["legacy"]
+    )
 
 def build_unified_raw_view(con: duckdb.DuckDBPyConnection, sources_by_prov: Optional[Dict[str, List[str]]] = None) -> None:
     """
     Constructs the unified_raw view from all available parquet sources,
     attaching explicit provenance and priority to each source tier:
+      - t16_incremental (priority 0, additive overlay)
       - t6_deep (priority 1)
       - t5_stratified (priority 2)
       - t2_pilot (priority 3)
@@ -180,6 +215,20 @@ def build_unified_raw_view(con: duckdb.DuckDBPyConnection, sources_by_prov: Opti
     """
     by_prov = sources_by_prov or get_sources_by_provenance()
     union_queries = []
+
+    if by_prov.get("t16_incremental"):
+        t16_list = ", ".join(f"'{s}'" for s in by_prov["t16_incremental"])
+        union_queries.append(f"""
+            SELECT viewer_hash, vtuber_channel_id, video_id,
+                   COALESCE(source_type, 'comment') AS source_type,
+                   COALESCE(try_cast(interaction_time AS TIMESTAMPTZ), try_cast(interaction_at AS TIMESTAMPTZ)) AS interaction_at,
+                   CAST(NULL AS TIMESTAMPTZ) AS first_seen,
+                   CAST(NULL AS TIMESTAMPTZ) AS timestamp,
+                   CAST(NULL AS TIMESTAMPTZ) AS video_published_at,
+                   't16_incremental' AS provenance,
+                   0 AS priority
+            FROM read_parquet([{t16_list}], union_by_name=True)
+        """)
 
     if by_prov.get("t6_deep"):
         t6_list = ", ".join(f"'{s}'" for s in by_prov["t6_deep"])
@@ -243,9 +292,12 @@ def build_unified_raw_view(con: duckdb.DuckDBPyConnection, sources_by_prov: Opti
     full_sql = " UNION ALL ".join(union_queries)
     con.execute(f"CREATE OR REPLACE VIEW unified_raw AS {full_sql}")
 
-def load_channel_coverage_records() -> Dict[str, Dict[str, Any]]:
+def load_channel_coverage_records(base_dir: Optional[Path] = None) -> Dict[str, Dict[str, Any]]:
     """Loads coverage records by channel_id from T1 channel_coverage.parquet."""
-    cov_path = DATA_DIR / "temporal" / "catalog" / "channel_coverage.parquet"
+    target_data_dir = (base_dir / "data") if base_dir else DATA_DIR
+    cov_path = target_data_dir / "temporal" / "catalog" / "channel_coverage.parquet"
+    if not cov_path.exists():
+        cov_path = DATA_DIR / "temporal" / "catalog" / "channel_coverage.parquet"
     if not cov_path.exists():
         return {}
     try:
@@ -355,6 +407,7 @@ def build_canonical_events_view(con: duckdb.DuckDBPyConnection, source_table_or_
     else:
         prio_expr = f"""
             CASE
+                WHEN {prov_expr} = 't16_incremental' THEN 0
                 WHEN {prov_expr} = 't6_deep' THEN 1
                 WHEN {prov_expr} = 't5_stratified' THEN 2
                 WHEN {prov_expr} = 't2_pilot' THEN 3
@@ -438,7 +491,7 @@ def build_canonical_events_view(con: duckdb.DuckDBPyConnection, source_table_or_
                 video_id,
                 MIN(priority) AS best_comment_priority
             FROM normalized
-            WHERE source_type = 'comment'
+            WHERE source_type = 'comment' AND provenance != 't16_incremental'
             GROUP BY vtuber_channel_id, video_id
         ),
         precedence_filtered AS (
@@ -449,6 +502,7 @@ def build_canonical_events_view(con: duckdb.DuckDBPyConnection, source_table_or_
               ON n.vtuber_channel_id = cvp.vtuber_channel_id
              AND n.video_id = cvp.video_id
             WHERE (n.source_type != 'comment')
+               OR (n.provenance = 't16_incremental')
                OR (n.source_type = 'comment' AND n.priority = cvp.best_comment_priority)
         ),
         deduplicated AS (
