@@ -3,24 +3,38 @@
 ## Methodological Stance & Scientific Framing
 
 > [!IMPORTANT]
-> **Non-Causal Epistemic Guardrail:**
+> **Non-Causal Epistemic Guardrail & Formal Metric Definitions:**
 > - All metrics reported represent **observed interaction evidence** from verified public YouTube interactions (comments and live chat).
 > - Transitions indicate that the same pseudonymized commenter (`viewer_hash`) was observed interacting with Channel A in Year $t$ and Channel B in Year $t+1$.
 > - These metrics **MUST NOT** be interpreted as causal 'fan migration' or total population shifts, as passive viewers and non-participating audience segments are unobserved.
 > - Agency groupings reflect frozen `agency_at_selection` metadata from the target cohort manifest.
+>
+> **Formal Metric Definitions:**
+> 1. **`active_viewers_t`**: Total distinct interacting viewers observed in Year $t$.
+> 2. **`active_viewers_t1`**: Total distinct interacting viewers observed in Year $t+1$.
+> 3. **`continuing_viewers_any`**: Distinct viewers observed interacting in both Year $t$ and Year $t+1$.
+> 4. **`same_channel_retained_viewers`**: Distinct viewers observed interacting with the same channel in both Year $t$ and Year $t+1$.
+> 5. **`cross_channel_continuing_viewers`**: Distinct viewers observed interacting with >= 1 different channel in Year $t+1$ relative to Year $t$.
+> 6. **`same_agency_cross_viewers`**: Distinct viewers observed interacting with a different channel in Year $t+1$ sharing the same `agency_at_selection`.
+> 7. **`cross_agency_viewers`**: Distinct viewers observed interacting with a channel in Year $t+1$ under a different `agency_at_selection`.
+> 8. **`continuation_rate`**: $\frac{\text{continuing\_viewers\_any}}{\text{active\_viewers\_t}}$ (overall audience continuation to adjacent year).
+> 9. **`same_channel_retention_rate`**: $\frac{\text{same\_channel\_retained\_viewers}}{\text{active\_viewers\_t}}$ (true audience retention on the same channel).
+> 10. **`conditional_same_channel_rate`**: $\frac{\text{same\_channel\_retained\_viewers}}{\text{continuing\_viewers\_any}}$ (same-channel retention among continuing viewers).
+>
+> *Methodological Requirement:* Do not call `conditional_same_channel_rate` 'audience retention'. True audience retention is `same_channel_retention_rate`.
 
 ---
 
 ## Annual Audience & Transition Overview
 
-| Year Pair | Active Viewers (Year $t$) | Retained Viewers ($t \to t+1$) | Cross-Channel Viewers | Same-Agency Cross | Cross-Agency | Retention Ratio | Coverage Warning |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| 2020 -> 2021 | 509 | 258 | 312 | 237 | 131 | 50.7% | `LOW_COVERAGE` |
-| 2021 -> 2022 | 1,154 | 523 | 870 | 606 | 500 | 45.3% | `NORMAL` |
-| 2022 -> 2023 | 1,173 | 566 | 859 | 602 | 507 | 48.3% | `NORMAL` |
-| 2023 -> 2024 | 1,677 | 763 | 1,255 | 867 | 719 | 45.5% | `NORMAL` |
-| 2024 -> 2025 | 2,090 | 981 | 1,562 | 1,138 | 773 | 46.9% | `NORMAL` |
-| 2025 -> 2026 | 1,947 | 863 | 1,499 | 1,181 | 627 | 44.3% | `NORMAL` |
+| Year Pair | Active Viewers (Yr $t$) | Active Viewers (Yr $t+1$) | Continuing (Any) | Same-Channel Retained | Cross-Channel Continuing | Same-Agency Cross | Cross-Agency | Continuation Rate | Same-Channel Retention Rate | Conditional Same-Channel Rate | Coverage Warning |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 2020 -> 2021 | 5,232 | 11,259 | 509 | 258 | 312 | 237 | 131 | 9.7% | 4.9% | 50.7% | `LOW_COVERAGE` |
+| 2021 -> 2022 | 11,259 | 12,005 | 1,154 | 523 | 870 | 606 | 500 | 10.2% | 4.7% | 45.3% | `NORMAL` |
+| 2022 -> 2023 | 12,005 | 18,646 | 1,173 | 566 | 859 | 602 | 507 | 9.8% | 4.7% | 48.2% | `NORMAL` |
+| 2023 -> 2024 | 18,646 | 13,478 | 1,677 | 763 | 1,255 | 867 | 719 | 9.0% | 4.1% | 45.5% | `NORMAL` |
+| 2024 -> 2025 | 13,478 | 17,119 | 2,090 | 981 | 1,562 | 1,138 | 773 | 15.5% | 7.3% | 46.9% | `NORMAL` |
+| 2025 -> 2026 | 17,119 | 13,259 | 1,947 | 863 | 1,499 | 1,181 | 627 | 11.4% | 5.0% | 44.3% | `NORMAL` |
 
 ---
 
@@ -38,8 +52,8 @@
 | Virtual Zeven (VZ) | Independent | `cross_agency` | 10 |
 | Virtual Zeven (VZ) | Virtual Zeven (VZ) | `within_agency` | 6 |
 | Virtual Zeven (VZ) | Pixela Project | `cross_agency` | 1 |
-| Virtual Zeven (VZ) | Algorhythm Project | `cross_agency` | 1 |
 | Pixela Project | Pixela Project | `within_agency` | 1 |
+| Virtual Zeven (VZ) | Algorhythm Project | `cross_agency` | 1 |
 
 ### Year 2021 -> 2022
 
@@ -127,8 +141,8 @@
 | 久檻夜くぅ / Qualia Qu Ch. (Independent) | Reilim Channel (Independent) | `same_agency_cross_channel` | 22 |
 | 久檻夜くぅ / Qualia Qu Ch. (Independent) | SiamNeko Ch.【ARP】 (Algorhythm Project) | `cross_agency` | 15 |
 | 久檻夜くぅ / Qualia Qu Ch. (Independent) | Pyork The Pork (Independent) | `same_agency_cross_channel` | 13 |
-| 久檻夜くぅ / Qualia Qu Ch. (Independent) | Pixela Official (Pixela Project) | `cross_agency` | 12 |
 | Darin V (Independent) | Reilim Channel (Independent) | `same_agency_cross_channel` | 12 |
+| 久檻夜くぅ / Qualia Qu Ch. (Independent) | Pixela Official (Pixela Project) | `cross_agency` | 12 |
 | 久檻夜くぅ / Qualia Qu Ch. (Independent) | Beariss Beam (Independent) | `same_agency_cross_channel` | 10 |
 | 久檻夜くぅ / Qualia Qu Ch. (Independent) | Laibaht Ch. / หลายบาท (Independent) | `same_agency_cross_channel` | 10 |
 | Nerumi-s (Independent) | Laguna JuJu Ch. Pixela Project (Pixela Project) | `cross_agency` | 10 |
@@ -143,7 +157,7 @@
 | Laguna JuJu Ch. Pixela Project (Pixela Project) | Pixela Official (Pixela Project) | `same_agency_cross_channel` | 27 |
 | Princess Zelina Ch. Pixela Project (Pixela Project) | Pixela Official (Pixela Project) | `same_agency_cross_channel` | 22 |
 | Asteroth Ch.【ARP】 (Algorhythm Project) | Evalia Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 21 |
-| Hinabe HongFei Ch. Pixela Project (Pixela Project) | Aisha Channel (Independent) | `cross_agency` | 19 |
+| Laibaht Ch. / หลายบาท (Independent) | Pixela Official (Pixela Project) | `cross_agency` | 19 |
 | Pyork The Pork (Independent) | Pixela Official (Pixela Project) | `cross_agency` | 19 |
 
 ### Top Cross-Channel Transitions (2022 -> 2023)
@@ -165,8 +179,8 @@
 |:---|:---|:---:|:---:|
 | Schneider Ch.【ARP】 (Algorhythm Project) | Dacapo Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 78 |
 | Baabel Ch.【ARP】 (Algorhythm Project) | Dacapo Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 32 |
-| Schneider Ch.【ARP】 (Algorhythm Project) | Baabel Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 31 |
 | Dacapo Ch.【ARP】 (Algorhythm Project) | Baabel Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 31 |
+| Schneider Ch.【ARP】 (Algorhythm Project) | Baabel Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 31 |
 | Meraki Keimii Ch. Pixela Legends (Pixela Project) | Pixela Official (Pixela Project) | `same_agency_cross_channel` | 28 |
 | Unnämed (Independent) | Dacapo Ch.【ARP】 (Algorhythm Project) | `cross_agency` | 26 |
 | Eileennoir Ch. (Independent) | Dacapo Ch.【ARP】 (Algorhythm Project) | `cross_agency` | 23 |
@@ -182,8 +196,8 @@
 | Dacapo Ch.【ARP】 (Algorhythm Project) | Quentin Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 33 |
 | Baabel Ch.【ARP】 (Algorhythm Project) | Zekai Ch.【ARP】 (Algorhythm Project) | `same_agency_cross_channel` | 32 |
 | Dacapo Ch.【ARP】 (Algorhythm Project) | ดอยล์ (Independent) | `cross_agency` | 29 |
-| MOLLY (Independent) | KAMAI (Independent) | `same_agency_cross_channel` | 20 |
 | KAMAI (Independent) | นานาโฮชิ นานะ / 七星ナナ (Independent) | `same_agency_cross_channel` | 20 |
+| MOLLY (Independent) | โป๊ะโกะ / PoKo ปลวกทูปเบ๋อ (Independent) | `same_agency_cross_channel` | 20 |
 
 ### Top Cross-Channel Transitions (2025 -> 2026)
 

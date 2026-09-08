@@ -179,19 +179,48 @@ def compute_audience_transitions(con: duckdb.DuckDBPyConnection, channel_meta: D
         ORDER BY from_year, observed_transition_viewers DESC
     """).df()
 
-    # 3. Overall transition metrics by year pair
-    transition_totals = con.execute("""
+    # 3. Overall transition metrics by year pair with full denominator accounting
+    con.execute("""
+        CREATE OR REPLACE TEMP TABLE transition_totals_raw AS
         SELECT 
             from_year,
             to_year,
-            COUNT(DISTINCT viewer_hash) AS total_transitioning_viewers,
-            COUNT(DISTINCT CASE WHEN transition_type = 'same_channel_retention' THEN viewer_hash END) AS retained_viewers,
-            COUNT(DISTINCT CASE WHEN transition_type != 'same_channel_retention' THEN viewer_hash END) AS cross_channel_viewers,
+            COUNT(DISTINCT viewer_hash) AS continuing_viewers_any,
+            COUNT(DISTINCT CASE WHEN transition_type = 'same_channel_retention' THEN viewer_hash END) AS same_channel_retained_viewers,
+            COUNT(DISTINCT CASE WHEN transition_type != 'same_channel_retention' THEN viewer_hash END) AS cross_channel_continuing_viewers,
             COUNT(DISTINCT CASE WHEN transition_type = 'same_agency_cross_channel' THEN viewer_hash END) AS same_agency_cross_viewers,
             COUNT(DISTINCT CASE WHEN transition_type = 'cross_agency' THEN viewer_hash END) AS cross_agency_viewers
         FROM adjacent_transitions
         GROUP BY from_year, to_year
         ORDER BY from_year
+    """)
+
+    con.execute("""
+        CREATE OR REPLACE TEMP TABLE yearly_viewer_counts_tbl AS
+        SELECT yr, COUNT(DISTINCT viewer_hash) AS active_viewers, COUNT(*) AS total_channel_viewer_pairs
+        FROM viewer_channel_year
+        GROUP BY yr
+        ORDER BY yr
+    """)
+
+    transition_totals = con.execute("""
+        SELECT 
+            t.from_year,
+            t.to_year,
+            y1.active_viewers AS active_viewers_t,
+            y2.active_viewers AS active_viewers_t1,
+            t.continuing_viewers_any,
+            t.same_channel_retained_viewers,
+            t.cross_channel_continuing_viewers,
+            t.same_agency_cross_viewers,
+            t.cross_agency_viewers,
+            ROUND(CAST(t.continuing_viewers_any AS DOUBLE) / y1.active_viewers, 4) AS continuation_rate,
+            ROUND(CAST(t.same_channel_retained_viewers AS DOUBLE) / y1.active_viewers, 4) AS same_channel_retention_rate,
+            ROUND(CAST(t.same_channel_retained_viewers AS DOUBLE) / t.continuing_viewers_any, 4) AS conditional_same_channel_rate
+        FROM transition_totals_raw t
+        JOIN yearly_viewer_counts_tbl y1 ON t.from_year = y1.yr
+        JOIN yearly_viewer_counts_tbl y2 ON t.to_year = y2.yr
+        ORDER BY t.from_year
     """).df()
 
     return channel_summary_df, agency_matrix_df, transition_totals, yearly_viewer_counts
@@ -253,7 +282,7 @@ def build_yearly_network_metrics(
         flags = []
         node_cnt = int(vm.get("total_channel_viewer_pairs", 0))
         edge_cnt = int(em.get("active_edges", 0))
-        view_cnt = int(vm.get("distinct_viewers", 0))
+        view_cnt = int(vm.get("active_viewers", vm.get("distinct_viewers", 0)))
 
         if edge_cnt < 200:
             flags.append("LOW_EDGE_COUNT")
@@ -275,10 +304,16 @@ def build_yearly_network_metrics(
             "distinct_observed_viewers": view_cnt,
             "total_observed_interactions": int(event_map.get(yr, 0)),
             "adjacent_transition_window": f"{yr}->{yr+1}" if yr < max(years) else "N/A",
-            "observed_retained_viewers": int(tm["retained_viewers"]) if (has_tm and "retained_viewers" in tm) else 0,
-            "observed_cross_channel_viewers": int(tm["cross_channel_viewers"]) if (has_tm and "cross_channel_viewers" in tm) else 0,
-            "observed_same_agency_cross_viewers": int(tm["same_agency_cross_viewers"]) if (has_tm and "same_agency_cross_viewers" in tm) else 0,
-            "observed_cross_agency_viewers": int(tm["cross_agency_viewers"]) if (has_tm and "cross_agency_viewers" in tm) else 0,
+            "active_viewers_t": int(tm["active_viewers_t"]) if (has_tm and "active_viewers_t" in tm) else 0,
+            "active_viewers_t1": int(tm["active_viewers_t1"]) if (has_tm and "active_viewers_t1" in tm) else 0,
+            "continuing_viewers_any": int(tm["continuing_viewers_any"]) if (has_tm and "continuing_viewers_any" in tm) else 0,
+            "same_channel_retained_viewers": int(tm["same_channel_retained_viewers"]) if (has_tm and "same_channel_retained_viewers" in tm) else 0,
+            "cross_channel_continuing_viewers": int(tm["cross_channel_continuing_viewers"]) if (has_tm and "cross_channel_continuing_viewers" in tm) else 0,
+            "same_agency_cross_viewers": int(tm["same_agency_cross_viewers"]) if (has_tm and "same_agency_cross_viewers" in tm) else 0,
+            "cross_agency_viewers": int(tm["cross_agency_viewers"]) if (has_tm and "cross_agency_viewers" in tm) else 0,
+            "continuation_rate": float(tm["continuation_rate"]) if (has_tm and "continuation_rate" in tm) else 0.0,
+            "same_channel_retention_rate": float(tm["same_channel_retention_rate"]) if (has_tm and "same_channel_retention_rate" in tm) else 0.0,
+            "conditional_same_channel_rate": float(tm["conditional_same_channel_rate"]) if (has_tm and "conditional_same_channel_rate" in tm) else 0.0,
             "reliability_flag": flag_str,
             "calculated_at": now_iso,
         })
@@ -299,32 +334,51 @@ def generate_migration_report(
     lines.append("## Methodological Stance & Scientific Framing")
     lines.append("")
     lines.append("> [!IMPORTANT]")
-    lines.append("> **Non-Causal Epistemic Guardrail:**")
+    lines.append("> **Non-Causal Epistemic Guardrail & Formal Metric Definitions:**")
     lines.append("> - All metrics reported represent **observed interaction evidence** from verified public YouTube interactions (comments and live chat).")
     lines.append("> - Transitions indicate that the same pseudonymized commenter (`viewer_hash`) was observed interacting with Channel A in Year $t$ and Channel B in Year $t+1$.")
     lines.append("> - These metrics **MUST NOT** be interpreted as causal 'fan migration' or total population shifts, as passive viewers and non-participating audience segments are unobserved.")
     lines.append("> - Agency groupings reflect frozen `agency_at_selection` metadata from the target cohort manifest.")
+    lines.append(">")
+    lines.append("> **Formal Metric Definitions:**")
+    lines.append("> 1. **`active_viewers_t`**: Total distinct interacting viewers observed in Year $t$.")
+    lines.append("> 2. **`active_viewers_t1`**: Total distinct interacting viewers observed in Year $t+1$.")
+    lines.append("> 3. **`continuing_viewers_any`**: Distinct viewers observed interacting in both Year $t$ and Year $t+1$.")
+    lines.append("> 4. **`same_channel_retained_viewers`**: Distinct viewers observed interacting with the same channel in both Year $t$ and Year $t+1$.")
+    lines.append("> 5. **`cross_channel_continuing_viewers`**: Distinct viewers observed interacting with >= 1 different channel in Year $t+1$ relative to Year $t$.")
+    lines.append("> 6. **`same_agency_cross_viewers`**: Distinct viewers observed interacting with a different channel in Year $t+1$ sharing the same `agency_at_selection`.")
+    lines.append("> 7. **`cross_agency_viewers`**: Distinct viewers observed interacting with a channel in Year $t+1$ under a different `agency_at_selection`.")
+    lines.append("> 8. **`continuation_rate`**: $\\frac{\\text{continuing\\_viewers\\_any}}{\\text{active\\_viewers\\_t}}$ (overall audience continuation to adjacent year).")
+    lines.append("> 9. **`same_channel_retention_rate`**: $\\frac{\\text{same\\_channel\\_retained\\_viewers}}{\\text{active\\_viewers\\_t}}$ (true audience retention on the same channel).")
+    lines.append("> 10. **`conditional_same_channel_rate`**: $\\frac{\\text{same\\_channel\\_retained\\_viewers}}{\\text{continuing\\_viewers\\_any}}$ (same-channel retention among continuing viewers).")
+    lines.append(">")
+    lines.append("> *Methodological Requirement:* Do not call `conditional_same_channel_rate` 'audience retention'. True audience retention is `same_channel_retention_rate`.")
     lines.append("")
     lines.append("---")
     lines.append("")
     lines.append("## Annual Audience & Transition Overview")
     lines.append("")
-    lines.append("| Year Pair | Active Viewers (Year $t$) | Retained Viewers ($t \\to t+1$) | Cross-Channel Viewers | Same-Agency Cross | Cross-Agency | Retention Ratio | Coverage Warning |")
-    lines.append("|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|")
+    lines.append("| Year Pair | Active Viewers (Yr $t$) | Active Viewers (Yr $t+1$) | Continuing (Any) | Same-Channel Retained | Cross-Channel Continuing | Same-Agency Cross | Cross-Agency | Continuation Rate | Same-Channel Retention Rate | Conditional Same-Channel Rate | Coverage Warning |")
+    lines.append("|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|")
 
     for _, r in transition_totals_df.iterrows():
         y_from = int(r["from_year"])
         y_to = int(r["to_year"])
-        tot_trans = int(r["total_transitioning_viewers"])
-        ret = int(r["retained_viewers"])
-        cross = int(r["cross_channel_viewers"])
+        act_t = int(r["active_viewers_t"])
+        act_t1 = int(r["active_viewers_t1"])
+        cont_any = int(r["continuing_viewers_any"])
+        ret_ch = int(r["same_channel_retained_viewers"])
+        cross_ch = int(r["cross_channel_continuing_viewers"])
         same_ag = int(r["same_agency_cross_viewers"])
         diff_ag = int(r["cross_agency_viewers"])
-        ret_pct = f"{ret / tot_trans:.1%}" if tot_trans > 0 else "0.0%"
+
+        cont_rate_str = f"{float(r['continuation_rate']):.1%}"
+        ret_rate_str = f"{float(r['same_channel_retention_rate']):.1%}"
+        cond_rate_str = f"{float(r['conditional_same_channel_rate']):.1%}"
         flag = "LOW_COVERAGE" if y_from == 2020 else "NORMAL"
 
         lines.append(
-            f"| {y_from} -> {y_to} | {tot_trans:,} | {ret:,} | {cross:,} | {same_ag:,} | {diff_ag:,} | {ret_pct} | `{flag}` |"
+            f"| {y_from} -> {y_to} | {act_t:,} | {act_t1:,} | {cont_any:,} | {ret_ch:,} | {cross_ch:,} | {same_ag:,} | {diff_ag:,} | {cont_rate_str} | {ret_rate_str} | {cond_rate_str} | `{flag}` |"
         )
 
     lines.append("")
@@ -437,11 +491,18 @@ def export_web_temporal_communities() -> Path:
             "active_edges": int(met.get("active_edges", 0)),
             "community_count": len(comms),
             "modularity": round(float(met.get("modularity", 0.0)), 4),
-            "distinct_viewers": int(met.get("distinct_observed_viewers", 0)),
-            "observed_retained_viewers": int(met.get("observed_retained_viewers", 0)),
-            "observed_cross_channel_viewers": int(met.get("observed_cross_channel_viewers", 0)),
-            "observed_same_agency_cross_viewers": int(met.get("observed_same_agency_cross_viewers", 0)),
-            "observed_cross_agency_viewers": int(met.get("observed_cross_agency_viewers", 0)),
+            "active_viewers_t": int(met.get("active_viewers_t", 0)),
+            "active_viewers_t1": int(met.get("active_viewers_t1", 0)),
+            "continuing_viewers_any": int(met.get("continuing_viewers_any", 0)),
+            "same_channel_retained_viewers": int(met.get("same_channel_retained_viewers", 0)),
+            "cross_channel_continuing_viewers": int(met.get("cross_channel_continuing_viewers", 0)),
+            "same_agency_cross_viewers": int(met.get("same_agency_cross_viewers", 0)),
+            "cross_agency_viewers": int(met.get("cross_agency_viewers", 0)),
+            "continuation_rate": float(met.get("continuation_rate", 0.0)),
+            "same_channel_retention_rate": float(met.get("same_channel_retention_rate", 0.0)),
+            "conditional_same_channel_rate": float(met.get("conditional_same_channel_rate", 0.0)),
+            "observed_retained_viewers": int(met.get("same_channel_retained_viewers", 0)),
+            "observed_cross_channel_viewers": int(met.get("cross_channel_continuing_viewers", 0)),
             "reliability_flag": str(met.get("reliability_flag", "NORMAL")),
             "events": events_summary,
             "communities": comms
