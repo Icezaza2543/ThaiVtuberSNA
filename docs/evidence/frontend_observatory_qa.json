@@ -1,0 +1,73 @@
+{
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 900,
+      "fontStatus": {
+        "display": true,
+        "body": true,
+        "mono": true
+      },
+      "main": "PASS",
+      "inspector": "PASS",
+      "research": "PASS"
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "fontStatus": {
+        "display": true,
+        "body": true,
+        "mono": true
+      },
+      "main": "PASS",
+      "inspector": "PASS",
+      "research": "PASS"
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "fontStatus": {
+        "display": true,
+        "body": true,
+        "mono": true
+      },
+      "main": "PASS",
+      "inspector": "PASS",
+      "research": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "fontStatus": {
+        "display": true,
+        "body": true,
+        "mono": true
+      },
+      "main": "PASS",
+      "inspector": "PASS",
+      "research": "PASS"
+    }
+  ],
+  "checks": [
+    "touch selection",
+    "embedded fallback labeling",
+    "single-viewer threshold",
+    "period, metric and threshold fixture",
+    "inspector refresh",
+    "search and empty state",
+    "modal focus and Escape",
+    "reduced motion",
+    "idle rendering",
+    "research tabs and DPR"
+  ],
+  "errors": [],
+  "performance": {
+    "nodes": 1370,
+    "samples": 30,
+    "medianMs": 2,
+    "p95Ms": 2.7000000029802322,
+    "idleDraws": 0
+  },
+  "status": "PASS"
+}

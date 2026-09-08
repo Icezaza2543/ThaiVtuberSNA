@@ -10,9 +10,10 @@ function updateSceneStatus() {
   const edges = graphEdges.filter(edge => edge.visible);
   statVtubers.textContent = nodes.length.toLocaleString();
   statEdges.textContent = edges.length.toLocaleString();
+  metricSelect.querySelector('[value="jaccard"]').textContent = graphEdges.some(edge => edge.jaccardScope === 'comment Jaccard') ? 'Comment Jaccard · %' : 'Jaccard similarity · %';
   const message = document.getElementById('graphMessage');
   message.hidden = nodes.length > 0 && edges.length > 0;
-  message.textContent = !nodes.length ? 'No creators match these filters. Try another name or group.' : 'No connections meet this period and threshold. Creators remain visible.';
+  message.textContent = !nodes.length ? 'No creators match these filters. Try another name or group.' : 'No connections at this threshold. Lower the minimum weight or select another period.';
   document.querySelectorAll('.legend-item').forEach(item => {
     const active = item.querySelector('[title]')?.title === selectedAgency;
     item.classList.toggle('active-filter', active);
@@ -24,7 +25,7 @@ function updateSnapshotLabel() {
   const stamp = rawData.metadata?.generated_at || rawData.metadata?.last_updated || rawData.metadata?.updated_at?.slice(0, 10);
   const date = stamp ? new Date(stamp) : null;
   document.getElementById('dataFreshness').textContent = date && !Number.isNaN(date.getTime())
-    ? `Snapshot · ${date.toISOString().slice(0, 10)}` : 'Snapshot date unavailable';
+    ? `${usingEmbeddedSnapshot ? "Embedded snapshot" : "Snapshot"} · ${date.toISOString().slice(0, 10)}` : 'Snapshot date unavailable';
 }
 
 function renderSearchResults() {

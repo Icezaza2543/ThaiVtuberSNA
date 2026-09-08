@@ -460,7 +460,7 @@ h1,h2,h3 { font-family: var(--font-display); font-weight: 400; }
 .data-table thead th { font-family: var(--font-main); text-transform: none; letter-spacing: 0; font-weight: 500; }
 .scrollable-table { scrollbar-width: thin; }
 :focus-visible { outline: 2px solid var(--prism-cyan); outline-offset: 4px; }
-code { font-family: var(--font-mono); font-size: .85em; overflow-wrap: anywhere; }
+code { font-family: var(--font-mono); font-size: max(11px, .85em); overflow-wrap: anywhere; }
 @media (max-width: 900px) { .panel-grid-2 { grid-template-columns: minmax(0,1fr); } .header-right { flex-direction: column; align-items: flex-end; } }
 @media (max-width: 767px) {
   .dash-header { align-items: flex-start; padding: 20px; }

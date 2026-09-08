@@ -1,10 +1,10 @@
 # Thai VTuber SNA — Reproducible Research Dataset Release Notes
 
 **Release Version:** 1.0.0
-**Deterministic Content Hash:** `sha256_4219abc44ddce0cbebe0d3aed1bce709e593fda001837ea608e2db90a663c000`
+**Deterministic Content Hash:** `sha256_4d4f0bb54a0e3b7240cd067bb855ac45a1c53aca825f3f693da5a47ddcf0de0f`
 **Privacy Classification:** `NO_VIEWER_LEVEL_DATA`
-**Documented Artifacts:** 40 files (3.07 MB)
-**Generated Timestamp:** 2026-09-08T17:10:16.000444+00:00
+**Documented Artifacts:** 40 files (3.08 MB)
+**Generated Timestamp:** 2026-09-08T18:04:46.549571+00:00
 
 ---
 
@@ -151,14 +151,14 @@
 ---
 
 ### T17: Dashboard
-**Files:** 4 | **Size:** 2067.0 KB
+**Files:** 4 | **Size:** 2073.2 KB
 
 | File Path | Format | Size | SHA-256 Checksum |
 | :--- | :---: | ---: | :--- |
 | `web/research/dashboard_data.json` | json | 2017.7 KB | `sha256_a3b684a3fc1db7beb...` |
-| `web/research/index.html` | html | 9.7 KB | `sha256_cf4028613a22e1f08...` |
-| `web/research/research_dashboard.css` | css | 10.6 KB | `sha256_6c9751b53b8fec541...` |
-| `web/research/research_dashboard.js` | js | 29.0 KB | `sha256_48a3228efdae9e648...` |
+| `web/research/index.html` | html | 9.7 KB | `sha256_030c8361846e35fc5...` |
+| `web/research/research_dashboard.css` | css | 13.9 KB | `sha256_23aea3484f5c630a3...` |
+| `web/research/research_dashboard.js` | js | 32.0 KB | `sha256_681d752eeccfd47ca...` |
 
 ---
 

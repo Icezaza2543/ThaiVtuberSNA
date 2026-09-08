@@ -3,10 +3,10 @@
     "title": "Thai VTuber SNA — Reproducible Research Dataset",
     "version": "1.0.0",
     "release_id": "thai_vtuber_sna_v1_0_0",
-    "generated_at": "2026-09-08T17:10:16.000444+00:00",
-    "deterministic_content_hash": "sha256_4219abc44ddce0cbebe0d3aed1bce709e593fda001837ea608e2db90a663c000",
+    "generated_at": "2026-09-08T18:04:46.549571+00:00",
+    "deterministic_content_hash": "sha256_4d4f0bb54a0e3b7240cd067bb855ac45a1c53aca825f3f693da5a47ddcf0de0f",
     "total_artifacts": 40,
-    "total_bytes": 3221911,
+    "total_bytes": 3228211,
     "checksum_algorithm": "SHA-256",
     "privacy_level": "NO_VIEWER_LEVEL_DATA"
   },
@@ -3765,25 +3765,25 @@
         },
         {
           "path": "web/research/index.html",
-          "size_bytes": 9956,
-          "checksum": "sha256_cf4028613a22e1f08dced6033216a77c21bdb0997e70f7b404cdb6a96b897ccf",
+          "size_bytes": 9891,
+          "checksum": "sha256_030c8361846e35fc5dcb3fd3e79546486126a6248baf53e1940ea47eea3055d8",
           "format": "html"
         },
         {
           "path": "web/research/research_dashboard.css",
-          "size_bytes": 10856,
-          "checksum": "sha256_6c9751b53b8fec541a21259cedfce692146466ebefceb2385708681abc2d5bdd",
+          "size_bytes": 14211,
+          "checksum": "sha256_23aea3484f5c630a31d3acd17d61594f67c1eeba52ce7348f14f6e74ec1e3780",
           "format": "css"
         },
         {
           "path": "web/research/research_dashboard.js",
-          "size_bytes": 29735,
-          "checksum": "sha256_48a3228efdae9e648a79439876ce41556a39975af575eeb75ef35c21d7524cfa",
+          "size_bytes": 32745,
+          "checksum": "sha256_681d752eeccfd47ca5affef3599f94f44cf7659522ebe03ad113a38bd5c74094",
           "format": "js"
         }
       ],
       "file_count": 4,
-      "total_bytes": 2116629
+      "total_bytes": 2122929
     }
   }
 }

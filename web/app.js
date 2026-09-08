@@ -195,10 +195,11 @@ async function initApp() {
     const res = await fetch("data.json");
     if (res.ok) {
       rawData = await res.json();
-    }
+    } else { usingEmbeddedSnapshot = true; }
   } catch (e) {
     console.log("Using embedded dataset (offline mode)");
     rawData = EMBEDDED_DATA;
+    usingEmbeddedSnapshot = true;
   }
 
   try {
@@ -241,6 +242,7 @@ async function initApp() {
 
 let canvasWidth = 0, canvasHeight = 0;
 let graphFramePending = false;
+let usingEmbeddedSnapshot = false;
 let previousEdges = [];
 let graphTransitionStart = 0;
 const GRAPH_TRANSITION_MS = 480;
@@ -342,6 +344,16 @@ function getCleanShortName(label) {
   return cand.length <= 11 ? cand : parts[0];
 }
 
+function edgeForDisplay(edge) {
+  // Temporal exports provide shared_any and source-specific comment Jaccard.
+  // Keep all raw fields and label the source; never infer an unavailable union metric.
+  return { ...edge,
+    shared_viewers: edge.shared_viewers ?? edge.shared_any ?? null,
+    jaccard: edge.jaccard ?? edge.jaccard_comments ?? null,
+    jaccardScope: edge.jaccard != null ? "Jaccard" : "comment Jaccard"
+  };
+}
+
 function processGraphData() {
   panX = container.clientWidth / 2;
   panY = container.clientHeight / 2;
@@ -435,7 +447,7 @@ function processGraphData() {
   // Initialize edges
   graphEdges = (rawData.edges || []).map(e => {
     return {
-      ...e,
+      ...edgeForDisplay(e),
       sourceNode: nodeMap.get(e.source),
       targetNode: nodeMap.get(e.target),
       visible: true
@@ -529,11 +541,11 @@ function applyFilters() {
 
   graphEdges.forEach(e => {
     const nodesVisible = e.sourceNode.visible && e.targetNode.visible;
-    const weightVal = e[currentMetric] || 0;
+    const weightVal = e[currentMetric];
     if (currentMetric === "shared_viewers") {
-      e.visible = nodesVisible && (weightVal >= minThreshold);
+      e.visible = nodesVisible && Number.isFinite(weightVal) && (weightVal >= minThreshold);
     } else {
-      e.visible = nodesVisible && (weightVal >= (minThreshold / 100));
+      e.visible = nodesVisible && Number.isFinite(weightVal) && (weightVal >= (minThreshold / 100));
     }
   });
 
@@ -730,10 +742,12 @@ function renderCanvas() {
   const focusNode = hoveredNode || selectedNode;
   const visibleNodes = graphNodes.filter(n => n.visible);
   const visibleEdges = graphEdges.filter(e => e.visible);
+  const visibleAgencies = new Set(visibleNodes.map(node => node.agency || "Independent"));
+  const labelBoxes = [];
 
   // Soft agency haze uses the existing anchors and data colors only.
   for (const [name, anchor] of agencySwarmAnchors) {
-    if (name === "Independent" || (selectedAgency !== "ALL" && selectedAgency !== name)) continue;
+    if (!visibleAgencies.has(name) || name === "Independent" || (selectedAgency !== "ALL" && selectedAgency !== name)) continue;
     const radius = Math.max(anchor.radius, 150) * 1.35;
     const haze = ctx.createRadialGradient(anchor.x, anchor.y, 0, anchor.x, anchor.y, radius);
     haze.addColorStop(0, anchor.color + "18");
@@ -767,6 +781,7 @@ function renderCanvas() {
   // Sleek, refined text with dark semi-transparent halo (ZERO clunky boxes, zero collisions!)
   if (selectedAgency === "ALL") {
     for (const [agName, anchor] of agencySwarmAnchors.entries()) {
+      if (!visibleAgencies.has(agName)) continue;
       const count = anchor.memberCount || 0;
 
       // LOD: Don't show micro-agencies (< 4 creators) when zoomed out to keep view pristine
@@ -798,6 +813,18 @@ function renderCanvas() {
       ctx.save();
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
+
+      // Labels may be omitted at wide zoom; nodes and threshold-qualified edges never are.
+      ctx.font = `700 ${worldFontSize}px 'Noto Sans Thai', sans-serif`;
+      const labelWidth = ctx.measureText(displayName).width * zoom;
+      const box = { x: anchor.x * zoom + panX - labelWidth / 2 - 6,
+        y: labelY * zoom + panY - targetScreenPx / 2 - 3,
+        w: labelWidth + 12, h: targetScreenPx * 2.3 + 6 };
+      const collides = labelBoxes.some(other => box.x < other.x + other.w && box.x + box.w > other.x && box.y < other.y + other.h && box.y + box.h > other.y);
+      if (collides || box.x < 8 || box.x + box.w > width - 8 || box.y < (mobileLayout.matches ? 145 : 105) || box.y + box.h > height - 70) {
+        ctx.restore(); continue;
+      }
+      labelBoxes.push(box);
 
       // 1. Clean Title with Dark Contrast Halo (NO giant opaque pill boxes!)
       ctx.font = `700 ${worldFontSize}px 'Noto Sans Thai', sans-serif`;
@@ -1033,10 +1060,12 @@ function setupEventListeners() {
   metricSelect.addEventListener("change", e => {
     currentMetric = e.target.value;
     if (currentMetric === "shared_viewers") {
+      thresholdSlider.min = 1;
       thresholdSlider.max = 150;
       thresholdSlider.value = 5;
       sliderValue.textContent = "5";
     } else {
+      thresholdSlider.min = 0;
       thresholdSlider.max = 100;
       thresholdSlider.value = 5;
       sliderValue.textContent = "5%";
@@ -1167,7 +1196,7 @@ function updateTimelineSlice(step) {
 
   if (slice && slice.edges && slice.edges.length > 0) {
     graphEdges = slice.edges.map(e => ({
-      ...e,
+      ...edgeForDisplay(e),
       sourceNode: nodeMap.get(e.source),
       targetNode: nodeMap.get(e.target),
       visible: true
@@ -1175,7 +1204,7 @@ function updateTimelineSlice(step) {
   } else if (isAllTime && (!temporalSnapshotsData || !temporalSnapshotsData.slices)) {
     // Fallback to static rawData edges ONLY if no temporal snapshot data is loaded
     graphEdges = (rawData.edges || []).map(e => ({
-      ...e,
+      ...edgeForDisplay(e),
       sourceNode: nodeMap.get(e.source),
       targetNode: nodeMap.get(e.target),
       visible: true
@@ -1430,9 +1459,9 @@ function openInspector(node, focus = true) {
   const connections = [];
   graphEdges.forEach(e => {
     if (e.sourceNode.id === node.id) {
-      connections.push({ partner: e.targetNode, shared: e.shared_viewers, jaccard: e.jaccard });
+      connections.push({ partner: e.targetNode, shared: e.shared_viewers, jaccard: e.jaccard, jaccardScope: e.jaccardScope });
     } else if (e.targetNode.id === node.id) {
-      connections.push({ partner: e.sourceNode, shared: e.shared_viewers, jaccard: e.jaccard });
+      connections.push({ partner: e.sourceNode, shared: e.shared_viewers, jaccard: e.jaccard, jaccardScope: e.jaccardScope });
     }
   });
 
@@ -1455,7 +1484,7 @@ function openInspector(node, focus = true) {
       name.textContent = c.partner.label;
       const shared = document.createElement("span");
       shared.className = "connection-shared";
-      shared.textContent = `${c.shared} shared · ${((c.jaccard || 0) * 100).toFixed(1)}% Jaccard`;
+      shared.textContent = `${c.shared} shared · ${Number.isFinite(c.jaccard) ? (c.jaccard * 100).toFixed(1) + "% " + c.jaccardScope : "Jaccard unavailable"}`;
       head.append(name, shared);
       const bar = document.createElement("span");
       bar.className = "progress-bar-bg";
