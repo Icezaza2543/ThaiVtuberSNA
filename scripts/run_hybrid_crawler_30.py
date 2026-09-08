@@ -90,44 +90,11 @@ def get_or_create_worksheet(spreadsheet, title, rows=1000, cols=10):
         logger.info(f"Creating worksheet: {title}")
         return spreadsheet.add_worksheet(title=title, rows=rows, cols=cols)
 
-def safe_update_sheet(ws, data_rows: List[List[Any]], batch_size: int = 2000):
-    """Safely updates a worksheet with resizing and rate-limit compliant chunking."""
-    if not data_rows:
-        return
+def safe_update_sheet(ws, data_rows, batch_size=2000):
+    from storage.private_sheet_store import PrivateSheetStore
+    if not data_rows: return
+    return PrivateSheetStore(ws.spreadsheet).write_verified_table(ws.title, data_rows[0], data_rows[1:], batch_size=batch_size)
 
-    needed_rows = max(100, len(data_rows) + 50)
-    needed_cols = max(10, max(len(r) for r in data_rows))
-
-    current_rows = ws.row_count
-    current_cols = ws.col_count
-
-    if current_rows < needed_rows or current_cols < needed_cols:
-        target_r = max(current_rows, needed_rows)
-        target_c = max(current_cols, needed_cols)
-        logger.info(f"Resizing worksheet '{ws.title}' to {target_r} rows, {target_c} cols...")
-        ws.resize(rows=target_r, cols=target_c)
-        time.sleep(1)
-
-    ws.clear()
-    time.sleep(0.5)
-
-    num_cols = len(data_rows[0])
-    end_col_str = col_to_letter(num_cols)
-    total_chunks = (len(data_rows) + batch_size - 1) // batch_size
-    logger.info(f"Writing {len(data_rows)} rows to '{ws.title}' in {total_chunks} chunks...")
-
-    for i, b in enumerate(range(0, len(data_rows), batch_size)):
-        chunk = data_rows[b:b + batch_size]
-        range_label = f"A{b+1}:{end_col_str}{b+len(chunk)}"
-        ws.update(range_name=range_label, values=chunk)
-        if total_chunks > 1 and i < total_chunks - 1:
-            time.sleep(0.8)
-
-    ws.format(f"A1:{end_col_str}1", {"textFormat": {"bold": True}})
-
-# =========================================================================
-# Phase 1: Video Discovery (30 Uploads / Channel) - API + yt-dlp Fallback
-# =========================================================================
 
 def fetch_channel_videos_api(channel_id: str, session: requests.Session, max_videos: int = 30) -> Tuple[List[Dict[str, Any]], bool]:
     """Fetches up to 30 latest uploads via playlistItems (1 quota unit). Returns (videos, is_quota_exhausted)."""
@@ -430,6 +397,7 @@ def sync_to_google_sheets(sh, unique_viewer_hashes: set, in_memory_events: List[
 # =========================================================================
 
 def main():
+    raise RuntimeError("Legacy crawler retired: use the authorized private Sheet ingestion interface; T20 is on hold.")
     logger.info("=" * 65)
     logger.info(" Thai VTuber SNA: Hybrid 30-Video Crawler (API + yt-dlp) ")
     logger.info(" Storage Policy: ZERO Local Disk Storage (100% In-Memory) ")

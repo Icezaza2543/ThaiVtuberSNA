@@ -108,6 +108,7 @@ def fetch_sampled_comments(video_id: str, session: requests.Session, hasher: Pri
         return []
 
 def main():
+    raise RuntimeError('Legacy local private pilot storage retired. Use PrivateSheetStore; T20 remains on hold.')
     logger.info("==========================================================")
     logger.info(" PHASE T2: Temporal Comment Pilot (5–10 Channels)         ")
     logger.info("==========================================================")

@@ -3,7 +3,7 @@ import hashlib
 import json
 import time
 from core.data_security import (SPREADSHEET_ID, SPREADSHEET_TITLE, PRIVATE_TABS,
-                                CONTROL_TABS, assert_sheet_rows)
+                                CONTROL_TABS, assert_sheet_rows, assert_public)
 
 
 def column_name(number):
@@ -63,12 +63,18 @@ class PrivateSheetStore:
         if not headers or any(len(row) != len(headers) for row in rows):
             raise ValueError('Table rows must match the declared schema')
         assert_sheet_rows(headers, rows, self.known_secrets)
+        if title in CONTROL_TABS:
+            for row in rows: assert_public(dict(zip(headers,row)), self.known_secrets)
         ws = self.ensure_tab(title, len(headers), len(rows)+1)
         end = column_name(len(headers))
         existing_header = self._write(ws.get_values, f'A1:{end}1')
         if existing_header and any(existing_header[0]) and existing_header[0] != headers:
             raise RuntimeError('Existing worksheet schema differs; preserve it for explicit migration')
         values = [headers] + rows
+        if ws.row_count > len(values):
+            extra = self._write(ws.get_values, f'A{len(values)+1}:{end}{ws.row_count}')
+            if any(any(cell for cell in row) for row in extra):
+                raise RuntimeError('Additional existing records beyond proposed table; preserve them')
         for start in range(0, len(values), batch_size):
             chunk = values[start:start+batch_size]
             a1 = f'A{start+1}:{end}{start+len(chunk)}'

@@ -368,8 +368,10 @@ def run_robustness_sweep() -> Tuple[pd.DataFrame, pd.DataFrame]:
     build_canonical_events_view(con_t6)
 
     con_t5 = duckdb.connect(":memory:")
-    build_unified_raw_view(con_t5, by_prov_t5)
-    build_canonical_events_view(con_t5)
+    from storage.private_sheet_analytics import build_sheet_unified_raw
+    build_sheet_unified_raw(con_t5)
+    con_t5.execute("CREATE OR REPLACE VIEW t5_private_subset AS SELECT * FROM unified_raw WHERE provenance != 't6_deep'")
+    build_canonical_events_view(con_t5, "t5_private_subset")
 
     comparison_years = [2021, 2022, 2023, 2024]
     real_depth_comparisons: List[Dict[str, Any]] = []

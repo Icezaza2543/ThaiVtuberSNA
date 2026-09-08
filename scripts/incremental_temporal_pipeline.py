@@ -113,6 +113,8 @@ class IncrementalTemporalPipeline:
         mode: str = "incremental",
         custom_key: Optional[bytes] = None
     ):
+        from core.storage_boundary import require_t20_sandbox
+        require_t20_sandbox(base_dir or BASE_DIR)
         self.base_dir = base_dir or BASE_DIR
         self.state_dir = self.base_dir / "data" / "temporal" / "state"
         self.incremental_dir = self.base_dir / "data" / "temporal" / "incremental"
@@ -493,8 +495,11 @@ class IncrementalTemporalPipeline:
         for (w_type, w_start, w_end) in affected_keys:
             if w_type == "all_time":
                 match = (df_snapshots["window_type"] == "all_time")
+            elif w_type == 'yearly':
+                match = (df_snapshots['window_type'] == w_type) & (df_snapshots['window_start'] == w_start)
             else:
-                match = (df_snapshots["window_type"] == w_type) & (df_snapshots["window_start"] == w_start) & (df_snapshots["window_end"] == w_end)
+                match = ((df_snapshots['window_type'] == w_type) & (df_snapshots['window_start'] == w_start)
+                         & (df_snapshots['window_end'].str[:4] == w_end[:4]))
             keep_mask = keep_mask & (~match)
 
         df_kept = df_snapshots[keep_mask].copy()

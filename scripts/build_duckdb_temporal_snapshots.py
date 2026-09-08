@@ -213,7 +213,11 @@ def build_unified_raw_view(con: duckdb.DuckDBPyConnection, sources_by_prov: Opti
       - t2_pilot (priority 3)
       - legacy (priority 4)
     """
-    by_prov = sources_by_prov or get_sources_by_provenance()
+    if sources_by_prov is None:
+        from storage.private_sheet_analytics import build_sheet_unified_raw
+        build_sheet_unified_raw(con)
+        return
+    by_prov = sources_by_prov
     union_queries = []
 
     if by_prov.get("t16_incremental"):
@@ -790,16 +794,7 @@ def main():
     logger.info(" PHASE T3: DuckDB Temporal Snapshot Engine (Hotfix 1-3)   ")
     logger.info("==========================================================")
 
-    sources_by_prov = get_sources_by_provenance()
-    sources = collect_available_parquet_sources()
-    logger.info(f"Found {len(sources)} Parquet observation sources across tiers: "
-                f"{len(sources_by_prov['t6_deep'])} T6 deep, "
-                f"{len(sources_by_prov['t5_stratified'])} T5 stratified, "
-                f"{len(sources_by_prov['t2_pilot'])} T2 pilot, "
-                f"{len(sources_by_prov['legacy'])} legacy.")
-    if not sources:
-        logger.error("No observation sources found! Run Phase T2 Pilot first.")
-        sys.exit(1)
+    sources = []  # Private observations are read from the workbook, never local files.
 
     cov_records = load_channel_coverage_records()
     logger.info(f"Loaded coverage records for {len(cov_records)} channels.")
@@ -808,7 +803,8 @@ def main():
 
     # Build canonical unified events view with explicit provenance
     logger.info(f"Registering Parquet union view from {len(sources)} files with tier provenance...")
-    build_unified_raw_view(con, sources_by_prov)
+    from storage.private_sheet_analytics import build_sheet_unified_raw
+    build_sheet_unified_raw(con)
     build_canonical_events_view(con, "unified_raw")
 
     # Audit loaded events

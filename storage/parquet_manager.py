@@ -80,6 +80,8 @@ def _merge(current, incoming):
 
 class ParquetStorageManager:
     def __init__(self, base_dir=None):
+        from core.storage_boundary import require_synthetic_local_path
+        require_synthetic_local_path(base_dir or EVENTS_DIR)
         self.base_dir = Path(base_dir or EVENTS_DIR)
         self.base_dir.mkdir(parents=True, exist_ok=True)
 

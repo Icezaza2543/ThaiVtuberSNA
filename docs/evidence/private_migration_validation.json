@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "local_baseline": {
+    "rows": 114869,
+    "canonical_sha256": "9e502a23f6a9f83fd2a85d6934c080dae1e50c26b55ba61bb1bbe75bffa28b76",
+    "unique_hashes": 79718
+  },
+  "private_sheet_canonical": {
+    "rows": 114869,
+    "canonical_sha256": "9e502a23f6a9f83fd2a85d6934c080dae1e50c26b55ba61bb1bbe75bffa28b76",
+    "unique_hashes": 79718
+  },
+  "archive_rows_verified": 142184,
+  "archive_sha256_verified": "86471ba793c831ad4d47ad6c7f23e74aa877c1318d5e312a7adadc2296283869",
+  "scope": "Full private archive readback and exact sorted canonical row comparison in RAM; no T20 ingestion/publish"
+}

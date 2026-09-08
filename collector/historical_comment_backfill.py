@@ -86,6 +86,8 @@ class HistoricalCommentBackfiller:
         session: Optional[requests.Session] = None,
         use_ytdlp_fallback: bool = False
     ):
+        from core.storage_boundary import require_synthetic_local_path
+        require_synthetic_local_path(observations_dir)
         self.db_path = Path(db_path)
         self.observations_dir = Path(observations_dir)
         self.quota_budget = int(quota_budget)

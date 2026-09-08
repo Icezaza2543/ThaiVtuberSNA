@@ -51,8 +51,13 @@ def contains_secret(value, known_secrets=()):
 
 
 def contains_private(value):
+    if isinstance(value, str) and value.lstrip().startswith(('{', '[')):
+        try: return contains_private(json.loads(value))
+        except ValueError: return False
     if isinstance(value, dict):
         if any(k in PRIVATE_FIELDS and v not in (None, '') for k, v in value.items()):
+            return True
+        if value.get('channel_url') and value.get('display_name') and not value.get('vtuber_channel_id'):
             return True
         return any(contains_private(v) for v in value.values())
     if isinstance(value, (list, tuple)):
@@ -66,7 +71,12 @@ def assert_sheet_rows(headers, rows, known_secrets=()):
     if set(headers) & TEXT_FIELDS:
         raise ValueError('MESSAGE_TEXT_FORBIDDEN')
     for row in rows:
+        if len(row) > len(headers):
+            # Unknown cells must still pass value-level credential checks.
+            if contains_secret(row, known_secrets): raise ValueError('LEVEL_A_VALUE_FORBIDDEN')
         record = dict(zip(headers, row))
+        if len(row) >= 2 and str(row[0]).strip().lower() in SECRET_FIELDS and row[1]:
+            raise ValueError('LEVEL_A_METRIC_FORBIDDEN')
         if contains_secret(record, known_secrets):
             raise ValueError('LEVEL_A_VALUE_FORBIDDEN')
         for cell in row:
@@ -99,13 +109,25 @@ def inspect_blob(path, data, known_secrets=()):
         if suffix == 'parquet':
             import pyarrow.parquet as pq
             table = pq.read_table(io.BytesIO(data))
+            if contains_secret(table.to_pylist(), known_secrets):
+                return Classification.SECRET_CREDENTIAL.value, 'Credential material in decoded table'
             if set(table.column_names) & PRIVATE_FIELDS and table.num_rows:
                 return Classification.PRIVATE_DATA.value, f'Viewer-level table ({table.num_rows} rows)'
             return Classification.PUBLIC_RESEARCH_DATA.value, f'Public/aggregate table ({table.num_rows} rows)'
+        if suffix in ('duckdb', 'sqlite', 'sqlite3', 'db'):
+            import tempfile
+            from pathlib import Path
+            with tempfile.TemporaryDirectory() as directory:
+                temporary = Path(directory) / ('audit.'+suffix)
+                temporary.write_bytes(data)
+                return inspect_database(temporary, known_secrets)
         if suffix == 'json': value = json.loads(text)
         elif suffix == 'jsonl': value = [json.loads(line) for line in text.splitlines() if line.strip()]
         elif suffix == 'csv': value = list(csv.DictReader(io.StringIO(text.lstrip('\ufeff'))))
-        else: value = None
+        else:
+            value = None
+            if suffix in ('js', 'html', 'txt', 'log') and re.search(r'''["']viewer_hash["']\s*:\s*["'][a-f0-9]{64}["']''', text):
+                return Classification.PRIVATE_DATA.value, 'Embedded individual viewer pseudonym'
         if contains_secret(value, known_secrets):
             return Classification.SECRET_CREDENTIAL.value, 'Credential field in structured artifact'
         if contains_private(value):
@@ -113,3 +135,32 @@ def inspect_blob(path, data, known_secrets=()):
     except Exception:
         return Classification.PUBLIC_RESEARCH_DATA.value, 'UNREADABLE: manual review required'
     return Classification.PUBLIC_RESEARCH_DATA.value, 'Source/schema/methodology or public channel/aggregate data'
+
+
+def inspect_database(path, known_secrets=()):
+    """Scan durable tables, including committed SQLite WAL data; never print cells."""
+    if path.suffix == '.duckdb':
+        import duckdb
+        con = duckdb.connect(str(path), read_only=True)
+        names = con.execute("SELECT table_schema,table_name FROM information_schema.tables WHERE table_type='BASE TABLE'").fetchall()
+        qualified = ['.'.join('"'+x.replace('"','""')+'"' for x in row) for row in names]
+    else:
+        import sqlite3
+        con = sqlite3.connect(path.resolve().as_uri()+'?mode=ro', uri=True)
+        con.execute('BEGIN')
+        qualified = ['"'+r[0].replace('"','""')+'"' for r in con.execute("SELECT name FROM sqlite_master WHERE type='table'")]
+    private = False
+    count = 0
+    try:
+        for name in qualified:
+            cur = con.execute('SELECT * FROM '+name)
+            columns = [d[0] for d in cur.description]
+            while rows := cur.fetchmany(4096):
+                count += len(rows)
+                records = [dict(zip(columns, row)) for row in rows]
+                if contains_secret(records, known_secrets):
+                    return Classification.SECRET_CREDENTIAL.value, 'Credential in decoded database'
+                private |= contains_private(records)
+    finally: con.close()
+    return (Classification.PRIVATE_DATA.value if private else Classification.PUBLIC_RESEARCH_DATA.value,
+            f'Durable database rows scanned: {count}')

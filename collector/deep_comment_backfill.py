@@ -90,6 +90,9 @@ class DeepCommentBackfiller:
         hasher: Optional[PrivacyHasher] = None,
         session: Optional[requests.Session] = None
     ):
+        from core.storage_boundary import require_synthetic_local_path
+        require_synthetic_local_path(observations_dir)
+        require_synthetic_local_path(db_path)
         self.db_path = Path(db_path)
         self.observations_dir = Path(observations_dir)
         self.quota_budget = int(quota_budget)

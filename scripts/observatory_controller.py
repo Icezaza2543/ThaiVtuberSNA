@@ -335,6 +335,8 @@ class ObservatoryController:
         auto_publish: bool = True
     ) -> Dict[str, Any]:
         """Ingests new events, rebuilds affected layers, enforces quality gates, and publishes."""
+        from core.storage_boundary import require_t20_sandbox
+        require_t20_sandbox(self.base_dir)
         run_id = f"run_{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')}_{batch_id}"
         logger.info(f"Starting observatory update '{run_id}' with {len(events)} events...")
 
@@ -487,6 +489,8 @@ class ObservatoryController:
 
     def publish(self, target_version: Optional[str] = None) -> Dict[str, Any]:
         """Publishes the current dataset state under an explicit version pointer."""
+        from core.storage_boundary import require_t20_sandbox
+        require_t20_sandbox(self.base_dir)
         gate_res = self.validate_quality_gates()
         if not gate_res["all_passed"]:
             raise RuntimeError(f"Cannot publish: Quality gates failed: {gate_res['gates']}")

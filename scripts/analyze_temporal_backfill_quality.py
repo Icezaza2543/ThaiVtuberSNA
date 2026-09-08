@@ -99,59 +99,17 @@ def _compute_retention_metrics(con: duckdb.DuckDBPyConnection, table_name: str) 
 
 def run_quality_analysis() -> Dict[str, Any]:
     """Runs longitudinal evidence, stability, and retention diagnostics on canonical events."""
-    sources_by_prov = get_sources_by_provenance()
-    sources = collect_available_parquet_sources()
-    if not sources:
-        raise RuntimeError("No observation sources found for analysis.")
-
-    t6_sources = sources_by_prov.get("t6_deep", [])
-    t5_sources = sources_by_prov.get("t5_stratified", [])
-    legacy_t2_sources = sources_by_prov.get("t2_pilot", []) + sources_by_prov.get("legacy", [])
-
     con = duckdb.connect(":memory:")
-
-    # 1. T6 Deep events
-    if t6_sources:
-        t6_list_sql = ", ".join(f"'{s}'" for s in t6_sources)
-        con.execute(f"""
-            CREATE OR REPLACE VIEW t6_raw AS
-            SELECT * FROM read_parquet([{t6_list_sql}], union_by_name=True)
-        """)
-        build_canonical_events_view(con, "t6_raw")
-        con.execute("CREATE TABLE events_t6 AS SELECT * FROM canonical_events")
-    else:
-        con.execute("CREATE TABLE events_t6 AS SELECT * FROM canonical_events WHERE 1=0")
-
-    # 2. T5 Stratified events
-    if t5_sources:
-        t5_list_sql = ", ".join(f"'{s}'" for s in t5_sources)
-        con.execute(f"""
-            CREATE OR REPLACE VIEW t5_raw AS
-            SELECT * FROM read_parquet([{t5_list_sql}], union_by_name=True)
-        """)
-        build_canonical_events_view(con, "t5_raw")
-        con.execute("CREATE TABLE events_t5 AS SELECT * FROM canonical_events")
-    else:
-        con.execute("CREATE TABLE events_t5 AS SELECT * FROM canonical_events WHERE 1=0")
-
-    # 3. Legacy / T2 events
-    if legacy_t2_sources:
-        legacy_list_sql = ", ".join(f"'{s}'" for s in legacy_t2_sources)
-        con.execute(f"""
-            CREATE OR REPLACE VIEW legacy_raw AS
-            SELECT * FROM read_parquet([{legacy_list_sql}], union_by_name=True)
-        """)
-        build_canonical_events_view(con, "legacy_raw")
-        con.execute("CREATE TABLE events_legacy AS SELECT * FROM canonical_events")
-    else:
-        con.execute("CREATE TABLE events_legacy AS SELECT * FROM canonical_events WHERE 1=0")
-
-    # 4. Unified events (all sources with T6 > T5 > T2 > Legacy precedence)
-    build_unified_raw_view(con, sources_by_prov)
-    build_canonical_events_view(con, "unified_raw")
-    con.execute("CREATE TABLE events_unified AS SELECT * FROM canonical_events")
-    # Restore canonical_events view pointing to events_unified
-    con.execute("CREATE OR REPLACE VIEW canonical_events AS SELECT * FROM events_unified")
+    build_unified_raw_view(con)
+    for table,condition in [('events_t6', "provenance = 't6_deep'"),
+                            ('events_t5', "provenance = 't5_stratified'"),
+                            ('events_legacy', "provenance IN ('legacy','t2_pilot')")]:
+        con.execute('CREATE OR REPLACE VIEW source_subset AS SELECT * FROM unified_raw WHERE '+condition)
+        build_canonical_events_view(con, 'source_subset')
+        con.execute('CREATE TABLE '+table+' AS SELECT * FROM canonical_events')
+    build_canonical_events_view(con, 'unified_raw')
+    con.execute('CREATE TABLE events_unified AS SELECT * FROM canonical_events')
+    con.execute('CREATE OR REPLACE VIEW canonical_events AS SELECT * FROM events_unified')
 
     years = [2020, 2021, 2022, 2023, 2024, 2025, 2026]
 

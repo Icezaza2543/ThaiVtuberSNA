@@ -161,6 +161,14 @@ def run_canary_leakage_test():
 
 
 def run_full_privacy_audit(roots=None):
+    if roots is None:
+        from scripts.audit_data_security import audit_local
+        report = audit_local()
+        canary = run_canary_leakage_test()
+        print(json.dumps({'status':report['status'], 'checked_files':len(report['inventory']),
+                          'failures':report['findings'], 'classification_counts':report['classification_counts'],
+                          'canary_passed':canary, 'scope':report['scope']},indent=2))
+        return report['status']=='PASS' and canary
     roots = roots if roots is not None else [BASE_DIR / 'data', BASE_DIR / 'web', BASE_DIR / 'logs']
     supported = {'.parquet', '.duckdb', '.json', '.csv', '.log', '.txt', '.jsonl', '.sqlite', '.sqlite3', '.db'}
     results = [audit_file(p) for root in roots if root.exists() for p in sorted(root.rglob('*')) if p.is_file() and p.suffix.lower() in supported]

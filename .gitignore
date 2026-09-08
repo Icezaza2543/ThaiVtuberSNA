@@ -45,3 +45,11 @@ data/private_archive/
 data/reilim_commenters*.csv
 data/all_commenters*.csv
 data/temporal/pilot/temporal_comment_pilot.parquet
+data/temporal/incremental/*.parquet
+data/**/viewer*.parquet
+data/**/viewer*.csv
+data/**/viewer*.json
+data/**/raw_comment*.json
+data/**/raw_comment*.csv
+*.sqlite
+*.db

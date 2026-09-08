@@ -1,8 +1,10 @@
+> **Storage policy:** [Single-sheet private data plane](docs/data_storage_architecture.md). Real viewer identities, pseudonyms and event rows belong only in the existing private ThaiVtuber_SNA workbook. Credentials remain external. Public artifacts contain channel/video metadata and aggregates. Legacy local ingestion is disabled; T20 has not been started.
+
 # ThaiVtuberSNA
 
 Experimental Thai VTuber audience-overlap analysis using HMAC-SHA256 pseudonyms,
-Parquet, DuckDB, and NetworkX. Google Sheets is a lightweight registry/control
-plane. Greedy is the default scheduler; PSO is optional. UI work is out of scope
+in-memory DuckDB and NetworkX. Google Sheets is the authoritative private/control
+data plane; Parquet exports are public aggregates only. Greedy is the default scheduler; PSO is optional. UI work is out of scope
 for the evidence/continuity milestone.
 
 ## Evidence contract
@@ -26,7 +28,8 @@ for the evidence/continuity milestone.
 python -m pip install -r requirements.txt
 python -m pytest -v
 python scripts/privacy_audit.py
-python scripts/benchmark_suite.py
+python scripts/audit_data_security.py
+python scripts/audit_sheets_privacy.py --verify
 ```
 
 Tests use synthetic identities and mocked network boundaries. They do not replace
@@ -49,7 +52,7 @@ ordinary new tracking, not previously tracked secrets or arbitrary ZIP exports.
 
 ```bash
 python -m core.hasher --verify-key
-python scripts/run_real_pilot.py
+# Legacy real-pilot/local collection commands are retired.
 ```
 
 `python -m core.hasher --init-key` is only for a genuinely new identity with no
