@@ -1,6 +1,6 @@
 # Phase T5 Historical Backfill Report
 
-- **Generated at:** 2026-09-08 05:07:16 UTC
+- **Generated at:** 2026-09-08 05:10:26 UTC
 - **Scope:** Full Stratified Historical Cohort
 - **Dataset Stage:** `historical_stratified_backfill_partial`
 - **Sampling Strategy:** deterministic SHA-256 hash ranking; first-ranked candidate per temporal bin
@@ -14,14 +14,14 @@
 | :--- | :---: | :--- |
 | **Dataset Maturity Stage** | **`historical_stratified_backfill_partial`** | Explicit partial vs complete gate |
 | **Sampling Manifest Total** | **4,630** | Total stratified videos queued |
-| **Terminal Jobs** | **3,350** | Completed, empty, disabled, unavailable, or failed |
-| **Pending Jobs** | **1,280** | Remaining jobs to process |
-| **Completion Ratio** | **72.4%** | Terminal jobs / manifest videos |
-| **Completed with Observations** | **2,702** | Parquet observations successfully written |
-| **Total Comment Observations** | **51,556** | Deduplicated presence records |
-| **Partial Captures (hit 100 cap)** | **185** | Videos where $>100$ comments exist |
-| **Comments Disabled** | **35** | YouTube comments disabled by creator |
-| **No Comments Found** | **613** | Video with 0 comments posted |
+| **Terminal Jobs** | **4,350** | Completed, empty, disabled, unavailable, or failed |
+| **Pending Jobs** | **280** | Remaining jobs to process |
+| **Completion Ratio** | **94.0%** | Terminal jobs / manifest videos |
+| **Completed with Observations** | **3,480** | Parquet observations successfully written |
+| **Total Comment Observations** | **63,250** | Deduplicated presence records |
+| **Partial Captures (hit 100 cap)** | **215** | Videos where $>100$ comments exist |
+| **Comments Disabled** | **41** | YouTube comments disabled by creator |
+| **No Comments Found** | **829** | Video with 0 comments posted |
 | **Video Unavailable / 404** | **0** | Private, deleted, or unlisted |
 | **Failed Jobs** | **0** | Network or unexpected API errors |
 
@@ -39,8 +39,8 @@
 | 2022 | 576 | 576 | 441 | 129 | 6 | 0 | 0 | 0 | 98 | 8,513 | 22 |
 | 2023 | 788 | 788 | 622 | 157 | 9 | 0 | 0 | 0 | 134 | 11,420 | 37 |
 | 2024 | 930 | 930 | 762 | 157 | 11 | 0 | 0 | 0 | 155 | 11,694 | 34 |
-| 2025 | 962 | 509 | 417 | 91 | 1 | 0 | 0 | 453 | 86 | 7,158 | 32 |
-| 2026 | 827 | 0 | 0 | 0 | 0 | 0 | 0 | 827 | 0 | 0 | 0 |
+| 2025 | 962 | 962 | 778 | 179 | 5 | 0 | 0 | 0 | 162 | 12,394 | 46 |
+| 2026 | 827 | 547 | 417 | 128 | 2 | 0 | 0 | 280 | 93 | 6,458 | 16 |
 
 ---
 
@@ -50,26 +50,26 @@
 
 | Tier | Manifest Videos | Completed | Comment Observations |
 | :--- | :---: | :---: | :---: |
-| A | 1,867 | 1,150 | 17,706 |
-| B | 1,399 | 686 | 7,900 |
-| C | 89 | 44 | 224 |
+| A | 1,867 | 1,461 | 21,836 |
+| B | 1,399 | 912 | 9,982 |
+| C | 89 | 49 | 249 |
 | D | 1 | 0 | 0 |
-| S | 1,274 | 822 | 25,726 |
+| S | 1,274 | 1,058 | 31,183 |
 
 ### By Agency Group
 
 | Agency | Manifest Videos | Completed | Comment Observations |
 | :--- | :---: | :---: | :---: |
-| AStars Production | 27 | 13 | 79 |
-| Algorhythm Project | 812 | 439 | 6,106 |
-| Euphora Project | 48 | 31 | 439 |
-| Independent | 2,845 | 1,629 | 36,197 |
-| Lumina Live | 204 | 111 | 1,385 |
-| Pixela Project | 522 | 367 | 4,980 |
-| Polygon Official | 24 | 12 | 103 |
+| AStars Production | 27 | 21 | 154 |
+| Algorhythm Project | 812 | 579 | 7,460 |
+| Euphora Project | 48 | 43 | 716 |
+| Independent | 2,845 | 2,083 | 44,798 |
+| Lumina Live | 204 | 170 | 1,638 |
+| Pixela Project | 522 | 439 | 5,490 |
+| Polygon Official | 24 | 23 | 183 |
 | RPG | 1 | 0 | 0 |
-| Ti19t | 37 | 20 | 241 |
-| Virtual Zeven (VZ) | 110 | 80 | 2,026 |
+| Ti19t | 37 | 23 | 244 |
+| Virtual Zeven (VZ) | 110 | 99 | 2,567 |
 
 ---
 
