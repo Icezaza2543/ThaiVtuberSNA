@@ -91,6 +91,7 @@ def build_historical_lifecycle():
             "agency": "Virtual Zeven (VZ)",
             "evidence_type": "agency_announcement",
             "evidence_source": "Virtual Zeven official disbandment announcement",
+            "evidence_source_ref": "announcement:virtual_zeven_disbandment_20211231",
             "confidence": "HIGH",
             "verification_status": "VERIFIED",
             "details": "Virtual Zeven ceased agency operations on 2021-12-31; verified agency closure."
@@ -105,6 +106,7 @@ def build_historical_lifecycle():
             "agency": "RPG",
             "evidence_type": "agency_announcement",
             "evidence_source": "RPG official cohort graduation / closure announcement",
+            "evidence_source_ref": "announcement:rpg_closure_20240930",
             "confidence": "HIGH",
             "verification_status": "VERIFIED",
             "details": "RPG agency talent operations closed on 2024-09-30; verified agency closure."
@@ -113,47 +115,30 @@ def build_historical_lifecycle():
     events.extend(agency_milestones)
 
     # 2. Explicit Channel Verified Milestones
-    # Verified by explicit title tokens in video_catalog or manual registry audit
+    # VERIFIED only if source supports: exact event type, exact date, and identifiable traceable evidence.
+    # Plain strings like "manual audit: retired" without traceable dates in the source are DEMOTED.
     verified_channel_registry = {
         "UC3ZglUA0HEUCuGbe5b8zXKw": {  # The Lupas
             "event_type": "re_debut",
             "event_date": "2022-01-17",
             "agency": "Independent",
             "evidence_type": "verified_video_stream",
-            "evidence_source": "video_catalog.parquet: 【Re-Debut : การกลับมาของลูปัสแอลลล】",
+            "evidence_source": "video_catalog.csv: 【Re-Debut : การกลับมาของลูปัสแอลลล】",
+            "evidence_source_ref": "video_catalog.csv:video_id=-PZhQFYOndE",
             "confidence": "HIGH",
             "verification_status": "VERIFIED",
-            "details": "Verified re-debut stream on 2022-01-17."
+            "details": "Verified re-debut stream on 2022-01-17 via catalog video -PZhQFYOndE."
         },
         "UC32lsx7u7vqy63SguuuzmVg": {  # Narelle ch. 【FIXIX VT】
             "event_type": "graduation",
             "event_date": "2025-12-20",
             "agency": "Independent",
             "evidence_type": "verified_video_stream",
-            "evidence_source": "video_catalog.parquet: 【🔴[Graduation] Last Expedition —เพราะเราเดินทางด้วยกัน",
+            "evidence_source": "video_catalog.csv: 【🔴[Graduation] Last Expedition —เพราะเราเดินทางด้วยกัน",
+            "evidence_source_ref": "video_catalog.csv:video_id=SWNcXyJBzDY",
             "confidence": "HIGH",
             "verification_status": "VERIFIED",
-            "details": "Verified graduation stream on 2025-12-20."
-        },
-        "UCt8vlwt6qi6P1mz5uuStJCA": {  # Shimonz
-            "event_type": "graduation",
-            "event_date": "2022-10-16",
-            "agency": "Independent",
-            "evidence_type": "manual_audit_registry",
-            "evidence_source": "thai_vtuber_registry.csv: Verified Thai VTuber via User Manual Audit (Status: Retired)",
-            "confidence": "HIGH",
-            "verification_status": "VERIFIED",
-            "details": "Verified retired / graduation status via user manual audit."
-        },
-        "UCVogMqMZimg5YbPE48oPrlg": {  # Mysterica X. Ch. | RPG
-            "event_type": "graduation",
-            "event_date": "2024-09-03",
-            "agency": "RPG",
-            "evidence_type": "manual_audit_registry",
-            "evidence_source": "thai_vtuber_registry.csv: Verified Thai VTuber via User Manual Audit (RPG Closure Cohort)",
-            "confidence": "HIGH",
-            "verification_status": "VERIFIED",
-            "details": "Verified graduated status in RPG closure cohort."
+            "details": "Verified graduation stream on 2025-12-20 via catalog video SWNcXyJBzDY."
         }
     }
 
@@ -170,6 +155,7 @@ def build_historical_lifecycle():
             "agency": ev["agency"],
             "evidence_type": ev["evidence_type"],
             "evidence_source": ev["evidence_source"],
+            "evidence_source_ref": ev["evidence_source_ref"],
             "confidence": ev["confidence"],
             "verification_status": ev["verification_status"],
             "details": ev["details"]
@@ -201,6 +187,7 @@ def build_historical_lifecycle():
                 "agency": "Unknown",  # Rule 3: NEVER project agency_at_selection backward!
                 "evidence_type": "observational_catalog_boundary",
                 "evidence_source": f"channel_coverage.parquet: oldest_video_published_at (termination_reason: {term})",
+                "evidence_source_ref": f"channel_coverage.parquet:channel_id={cid};oldest_video_published_at={first_d}",
                 "confidence": "LOW",
                 "verification_status": "INFERRED_PROXY",
                 "details": f"Earliest observed public video upload in collected catalog ({first_d}); observational proxy, not verified debut."
@@ -218,6 +205,7 @@ def build_historical_lifecycle():
                 "agency": "Unknown",
                 "evidence_type": "observational_activity_boundary",
                 "evidence_source": "target_manifest.csv (graduated) + channel_coverage.parquet (newest_video_published_at)",
+                "evidence_source_ref": f"channel_coverage.parquet:channel_id={cid};newest_video_published_at={last_d};target_manifest.csv:status=graduated",
                 "confidence": "LOW",
                 "verification_status": "INFERRED_PROXY",
                 "details": f"Last observed public video activity ({last_d}) for graduated channel; observational proxy date."
@@ -233,6 +221,7 @@ def build_historical_lifecycle():
                 "agency": "Unknown",
                 "evidence_type": "observational_inactivity_threshold",
                 "evidence_source": "target_manifest.csv (hiatus) + channel_coverage.parquet (newest_video_published_at)",
+                "evidence_source_ref": f"channel_coverage.parquet:channel_id={cid};newest_video_published_at={last_d};target_manifest.csv:status=hiatus",
                 "confidence": "LOW",
                 "verification_status": "INFERRED_PROXY",
                 "details": f"Last observed public video activity ({last_d}) prior to prolonged inactivity (>180d); proxy date for hiatus onset."
@@ -240,9 +229,13 @@ def build_historical_lifecycle():
 
         # Build Intervals
         # Check special case: Virtual Zeven talents (verified closure 2021-12-31)
+        # Closure proves an end boundary, NOT membership start. Membership start at first_d is INFERRED_PROXY.
+        # Post-closure Independent status is INFERRED_PROXY unless explicit evidence establishes transition.
         is_vz_channel = "⌜vz⌟" in cname.lower() or "vz" in ag_sel.lower()
+        is_rpg_channel = "rpg" in ag_sel.lower() or "rpg" in cname.lower()
+
         if is_vz_channel and first_d:
-            # VZ tenure (VERIFIED agency until 2021-12-31)
+            # VZ tenure: start is proxy, end is verified closure 2021-12-31
             intervals.append({
                 "interval_id": f"int_{cid[:8]}_vz",
                 "channel_id": cid,
@@ -253,13 +246,14 @@ def build_historical_lifecycle():
                 "agency_at_selection": ag_sel,
                 "lifecycle_status": "active",
                 "is_current": False,
-                "verification_status": "VERIFIED",
-                "confidence": "HIGH",
-                "evidence_type": "agency_announcement",
-                "evidence_source": "Virtual Zeven official disbandment record",
-                "provenance": "historical_vz_membership"
+                "verification_status": "INFERRED_PROXY",
+                "confidence": "LOW",
+                "evidence_type": "proxy_start_verified_closure_end",
+                "evidence_source": "Start: earliest_observed_content (proxy); End: Virtual Zeven official disbandment (2021-12-31)",
+                "evidence_source_ref": "start:channel_coverage.parquet;end:announcement:vz_closure_20211231",
+                "provenance": "historical_vz_membership_proxy_start"
             })
-            # Post-VZ interval
+            # Post-VZ interval: inferred transition to Independent following disbandment
             intervals.append({
                 "interval_id": f"int_{cid[:8]}_post_vz",
                 "channel_id": cid,
@@ -270,11 +264,12 @@ def build_historical_lifecycle():
                 "agency_at_selection": ag_sel,
                 "lifecycle_status": status if status != "graduated" else "active",
                 "is_current": (status == "active"),
-                "verification_status": "VERIFIED",
-                "confidence": "HIGH",
-                "evidence_type": "agency_announcement",
-                "evidence_source": "Virtual Zeven post-closure transition",
-                "provenance": "post_vz_independent"
+                "verification_status": "INFERRED_PROXY",
+                "confidence": "LOW",
+                "evidence_type": "inferred_post_closure_status",
+                "evidence_source": "Inferred from Virtual Zeven disbandment; no explicit talent contract transition record",
+                "evidence_source_ref": "announcement:vz_closure_20211231",
+                "provenance": "post_vz_independent_inferred"
             })
             if status == "graduated" and last_d:
                 intervals.append({
@@ -291,8 +286,46 @@ def build_historical_lifecycle():
                     "confidence": "LOW",
                     "evidence_type": "observational_activity_boundary",
                     "evidence_source": "channel_coverage.parquet",
+                    "evidence_source_ref": f"coverage:newest_video={last_d}",
                     "provenance": "post_graduation"
                 })
+        elif is_rpg_channel and first_d:
+            # RPG tenure: start is proxy, end is verified closure 2024-09-30
+            intervals.append({
+                "interval_id": f"int_{cid[:8]}_rpg",
+                "channel_id": cid,
+                "channel_name": cname,
+                "start_date": first_d,
+                "end_date": "2024-09-30",
+                "effective_agency": "RPG",
+                "agency_at_selection": ag_sel,
+                "lifecycle_status": "active",
+                "is_current": False,
+                "verification_status": "INFERRED_PROXY",
+                "confidence": "LOW",
+                "evidence_type": "proxy_start_verified_closure_end",
+                "evidence_source": "Start: earliest_observed_content (proxy); End: RPG official closure (2024-09-30)",
+                "evidence_source_ref": "start:channel_coverage.parquet;end:announcement:rpg_closure_20240930",
+                "provenance": "historical_rpg_membership_proxy_start"
+            })
+            # Post-RPG interval
+            intervals.append({
+                "interval_id": f"int_{cid[:8]}_post_rpg",
+                "channel_id": cid,
+                "channel_name": cname,
+                "start_date": "2024-10-01",
+                "end_date": last_d if status in ["graduated", "hiatus"] else None,
+                "effective_agency": "Graduated" if status == "graduated" else "Independent",
+                "agency_at_selection": ag_sel,
+                "lifecycle_status": status,
+                "is_current": (status == "active"),
+                "verification_status": "INFERRED_PROXY",
+                "confidence": "LOW",
+                "evidence_type": "inferred_post_closure_status",
+                "evidence_source": "Inferred from RPG closure; no explicit talent contract transition record",
+                "evidence_source_ref": "announcement:rpg_closure_20240930",
+                "provenance": "post_rpg_transition_inferred"
+            })
         elif first_d:
             # Standard channel interval logic
             # Historical tenure is INFERRED_PROXY; effective_agency is Unknown (never projected from selection)
@@ -304,7 +337,7 @@ def build_historical_lifecycle():
                     "channel_name": cname,
                     "start_date": first_d,
                     "end_date": last_d,
-                    "effective_agency": "Unknown",  # Rule 3
+                    "effective_agency": "Unknown",  # Rule 3: agency unknown historically
                     "agency_at_selection": ag_sel,
                     "lifecycle_status": "active",
                     "is_current": False,
@@ -312,6 +345,7 @@ def build_historical_lifecycle():
                     "confidence": "LOW",
                     "evidence_type": "observational_catalog_range",
                     "evidence_source": "channel_coverage.parquet",
+                    "evidence_source_ref": f"channel_coverage.parquet:channel_id={cid};range={first_d}..{last_d}",
                     "provenance": "observed_content_tenure"
                 })
                 # Post-graduation
@@ -325,10 +359,11 @@ def build_historical_lifecycle():
                     "agency_at_selection": ag_sel,
                     "lifecycle_status": "graduated",
                     "is_current": True,
-                    "verification_status": "VERIFIED" if cid in verified_channel_registry else "INFERRED_PROXY",
-                    "confidence": "HIGH" if cid in verified_channel_registry else "LOW",
-                    "evidence_type": "manual_audit_registry" if cid in verified_channel_registry else "observational_activity_boundary",
-                    "evidence_source": "thai_vtuber_registry.csv" if cid in verified_channel_registry else "target_manifest.csv",
+                    "verification_status": "INFERRED_PROXY",
+                    "confidence": "LOW",
+                    "evidence_type": "observational_activity_boundary",
+                    "evidence_source": "target_manifest.csv + channel_coverage.parquet",
+                    "evidence_source_ref": f"target_manifest.csv:status=graduated;channel_coverage.parquet:newest_video={last_d}",
                     "provenance": "post_graduation"
                 })
             elif status == "hiatus" and last_d and last_d >= first_d:
@@ -347,6 +382,7 @@ def build_historical_lifecycle():
                     "confidence": "LOW",
                     "evidence_type": "observational_catalog_range",
                     "evidence_source": "channel_coverage.parquet",
+                    "evidence_source_ref": f"channel_coverage.parquet:channel_id={cid};range={first_d}..{last_d}",
                     "provenance": "observed_content_tenure"
                 })
                 # Ongoing hiatus window
@@ -364,6 +400,7 @@ def build_historical_lifecycle():
                     "confidence": "LOW",
                     "evidence_type": "observational_inactivity_threshold",
                     "evidence_source": "channel_coverage.parquet (>180d inactivity)",
+                    "evidence_source_ref": f"target_manifest.csv:status=hiatus;channel_coverage.parquet:newest_video={last_d}",
                     "provenance": "hiatus_ongoing"
                 })
             else:
@@ -382,6 +419,7 @@ def build_historical_lifecycle():
                     "confidence": "LOW",
                     "evidence_type": "observational_catalog_boundary",
                     "evidence_source": "channel_coverage.parquet",
+                    "evidence_source_ref": f"channel_coverage.parquet:channel_id={cid};oldest_video={first_d}",
                     "provenance": "observed_content_ongoing"
                 })
         else:
@@ -400,6 +438,7 @@ def build_historical_lifecycle():
                 "confidence": "UNKNOWN",
                 "evidence_type": "unobserved_catalog",
                 "evidence_source": "channel_coverage.parquet (0 videos)",
+                "evidence_source_ref": "channel_coverage.parquet:videos_collected=0",
                 "provenance": "unrecorded_interval"
             })
 

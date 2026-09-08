@@ -21,16 +21,15 @@ This report documents the historical lifecycle timeline for the **193** Thai VTu
 | Verification Status | Event Type | Count | Evidence Basis | Confidence |
 | :--- | :--- | :---: | :--- | :---: |
 | **`INFERRED_PROXY`** | `earliest_observed_content` | 182 | `observational_catalog_boundary` | `LOW` |
-| **`INFERRED_PROXY`** | `graduation_proxy` | 6 | `observational_activity_boundary` | `LOW` |
+| **`INFERRED_PROXY`** | `graduation_proxy` | 8 | `observational_activity_boundary` | `LOW` |
 | **`INFERRED_PROXY`** | `hiatus_proxy` | 32 | `observational_inactivity_threshold` | `LOW` |
 | **`VERIFIED`** | `agency_closure` | 2 | `agency_announcement` | `HIGH` |
-| **`VERIFIED`** | `graduation` | 2 | `manual_audit_registry` | `HIGH` |
 | **`VERIFIED`** | `graduation` | 1 | `verified_video_stream` | `HIGH` |
 | **`VERIFIED`** | `re_debut` | 1 | `verified_video_stream` | `HIGH` |
 
 **Total Lifecycle Events:** 226
-- **Verified Events:** 6
-- **Inferred Proxy Events:** 220
+- **Verified Events:** 4
+- **Inferred Proxy Events:** 222
 
 ---
 
@@ -40,10 +39,8 @@ This report documents the historical lifecycle timeline for the **193** Thai VTu
 | :--- | :--- | :---: | :--- | :--- | :---: |
 | **Virtual Zeven (VZ)** | `agency_closure` | 2021-12-31 | Virtual Zeven (VZ) | Virtual Zeven official disbandment announcement | `VERIFIED` |
 | **RPG** | `agency_closure` | 2024-09-30 | RPG | RPG official cohort graduation / closure announcement | `VERIFIED` |
-| **UC3ZglUA0HEUCuGbe5b8zXKw** | `re_debut` | 2022-01-17 | Independent | video_catalog.parquet: 【Re-Debut : การกลับมาของลูปัสแอลลล】 | `VERIFIED` |
-| **UC32lsx7u7vqy63SguuuzmVg** | `graduation` | 2025-12-20 | Independent | video_catalog.parquet: 【🔴[Graduation] Last Expedition —เพราะเราเดินทางด้วยกัน | `VERIFIED` |
-| **Shimonz** | `graduation` | 2022-10-16 | Independent | thai_vtuber_registry.csv: Verified Thai VTuber via User Manual Audit (Status: Retired) | `VERIFIED` |
-| **Mysterica X. Ch. | RPG** | `graduation` | 2024-09-03 | RPG | thai_vtuber_registry.csv: Verified Thai VTuber via User Manual Audit (RPG Closure Cohort) | `VERIFIED` |
+| **UC3ZglUA0HEUCuGbe5b8zXKw** | `re_debut` | 2022-01-17 | Independent | video_catalog.csv: 【Re-Debut : การกลับมาของลูปัสแอลลล】 | `VERIFIED` |
+| **UC32lsx7u7vqy63SguuuzmVg** | `graduation` | 2025-12-20 | Independent | video_catalog.csv: 【🔴[Graduation] Last Expedition —เพราะเราเดินทางด้วยกัน | `VERIFIED` |
 
 ---
 
@@ -55,15 +52,12 @@ This report documents the historical lifecycle timeline for the **193** Thai VTu
 
 | Lifecycle Status | Verification Status | Interval Count | Effective Agency Assignment |
 | :--- | :--- | :---: | :--- |
-| `active` | `INFERRED_PROXY` | 177 | Unknown (Agency not projected backward) |
+| `active` | `INFERRED_PROXY` | 186 | Unknown (Agency not projected backward) |
 | `active` | `UNKNOWN` | 1 | Unknown (Agency not projected backward) |
-| `active` | `VERIFIED` | 9 | Verified Agency (or Retired) |
-| `graduated` | `INFERRED_PROXY` | 6 | Unknown (Agency not projected backward) |
+| `graduated` | `INFERRED_PROXY` | 8 | Unknown (Agency not projected backward) |
 | `graduated` | `UNKNOWN` | 4 | Unknown (Agency not projected backward) |
-| `graduated` | `VERIFIED` | 2 | Verified Agency (or Retired) |
-| `hiatus` | `INFERRED_PROXY` | 31 | Unknown (Agency not projected backward) |
+| `hiatus` | `INFERRED_PROXY` | 32 | Unknown (Agency not projected backward) |
 | `hiatus` | `UNKNOWN` | 1 | Unknown (Agency not projected backward) |
-| `hiatus` | `VERIFIED` | 1 | Verified Agency (or Retired) |
 | `unknown` | `UNKNOWN` | 5 | Unknown (Agency not projected backward) |
 
 ---
