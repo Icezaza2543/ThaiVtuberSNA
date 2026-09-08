@@ -1,0 +1,8 @@
+candidate_url,publisher,rejection_reason,details,audited_at
+https://shop.realic.net/products/donk-collection-standee,Realic Official Shop,URL_NOT_FOUND_404,Item unlisted or removed from store (HTTP 404 response on audit).,2026-09-08T20:25:58.344740+00:00
+https://shop.realic.net/products/random-photocard-arp,Realic Official Shop,URL_NOT_FOUND_404,Item unlisted or removed from store (HTTP 404 response on audit).,2026-09-08T20:25:58.344740+00:00
+https://www.depa.or.th/th/depa-knowledge-management,Digital Economy Promotion Agency (depa),SERVER_ERROR_OR_TRANSIENT_FAILURE,Server returned HTTP 520; primary source endpoint inaccessible without human challenge bypass.,2026-09-08T20:25:58.344740+00:00
+https://playboard.co/en/youtube-ranking/most-superchatted-all-channels-in-thailand-total,PLAYBOARD,UNVERIFIED_THIRD_PARTY_METHODOLOGY,"Third-party scraper with undisclosed exchange rates, currency conversion discrepancies, and missing channel coverage.",2026-09-08T20:25:58.344740+00:00
+https://v-tuber.fandom.com/th/wiki/,Thai VTuber Wiki (Fandom),GENERIC_HOMEPAGE,Portal page without specific quantitative economic metrics or citations.,2026-09-08T20:25:58.344740+00:00
+https://pantip.com/tag/VTuber,Pantip,UNSTRUCTURED_FORUM_OPINION,Public forum discussions; lacking audited commercial metrics or financial disclosures.,2026-09-08T20:25:58.344740+00:00
+https://twitter.com/search?q=vtuberth%20market,X / Twitter,NO_QUANTITATIVE_VALUE,Social search feed without verifiable methodology or audited financial values.,2026-09-08T20:25:58.344740+00:00

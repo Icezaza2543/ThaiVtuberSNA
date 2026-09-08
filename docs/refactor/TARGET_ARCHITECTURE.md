@@ -128,7 +128,7 @@ Every current script and data asset is assigned an explicit migration dispositio
 | `storage/private_sheet_store.py` | `src/storage/private_sheet_store.py` | **MOVE** | Google Sheets authenticated adapter. |
 | `storage/private_sheet_analytics.py` | `src/storage/private_sheet_analytics.py` | **MOVE** | Google Sheets analytics extractor. |
 | `core/storage_boundary.py` | `src/storage/storage_boundary.py` | **MOVE** | Privacy plane boundary enforcement. |
-| `data/temporal/catalog/target_manifest.csv` | `data/public/catalog/target_manifest.csv` | **MOVE** | 100 core target channels. |
+| `data/temporal/catalog/target_manifest.csv` | `data/public/catalog/target_manifest.csv` | **MOVE** | 193 frozen target channels. |
 | `data/video_catalog.csv` | — | **DELETE_AFTER_VALIDATION** | Partial 581-video slice superseded by full 96k catalog. |
 | `web/app.js` | `web/observatory/src/*.js` | **MERGE / SPLIT** | Decompose 3,500-line monolith while sealing coordinate hash. |
 | `web/research/index_v2.html` | `web/research/index_v2.html` | **KEEP** | Promoted to primary canonical research portal. |
@@ -136,11 +136,56 @@ Every current script and data asset is assigned an explicit migration dispositio
 | `scripts/build_research_dashboard_data.py` | `src/research/legacy_v1_builder.py` | **DEPRECATE** | Legacy Research v1 generator. |
 | `tests/test_data_dictionary_semantics.py` | `tests/test_data_dictionary_semantics.py` | **KEEP** | 14 sealed semantic regression tests. |
 | `tests/test_research_v2_data_contract.py` | `tests/test_research_v2_data_contract.py` | **KEEP** | 10 sealed Research v2 contract tests. |
+| `tests/test_evidence_authenticity.py` | `tests/test_evidence_authenticity.py` | **KEEP** | Sealed authenticity & anti-fabrication tests. |
 | `scratch/` | — | **KEEP (GITIGNORED)** | Temporary local workspace. Never committed. |
 
 ---
 
-## 3. Implementation Guardrails
+## 3. Overnight Research Discoveries & Inventory Governance
+
+### DATASETS_TO_KEEP (Audited & Verified Source of Truth)
+- `data/temporal/catalog/target_manifest.csv`: 193 frozen target creators. Must never be altered or expanded to ensure longitudinal comparability.
+- `data/temporal/catalog/video_catalog.parquet`: 96,420 cataloged videos spanning 2020–2026 across 184 channels.
+- `data/industry/creator_status_events.parquet`: 231 audited events (33 verified external/local, 198 observational proxies).
+- `data/industry/creator_evidence_coverage.parquet`: 193 rows assessing verified vs proxy evidence gaps per creator.
+- `data/industry/collab_candidates.parquet`: 54 keyword-detected candidate collab videos.
+- `data/industry/collab_events.parquet`: 12 pairwise verified collab events from resolved @handles.
+- `data/industry/collab_verification_audit.parquet`: 54 verification audit logs.
+- `data/industry/agency_history.parquet`: 12 agencies cataloged with parent companies and founding dates.
+- `data/industry/agency_events.parquet`: 19 verified agency launch, unit, and restructuring milestones.
+- `data/market/market_evidence.parquet`: 27 accepted public unit prices with zero-revenue summation guards.
+- `data/market/rejected_sources.csv`: 7 logged rejected sources with explicit failure reasons.
+- `data/industry/discovery_universe.parquet`: 1,370 total discoverable Thai VTuber channels (193 frozen + 1,177 broader ecosystem).
+- `data/industry/audience_behavior_yearly.parquet`: Independently audited annual behavioral segments across 2020–2026 YTD.
+- `data/temporal/analysis/yearly_network_metrics.parquet`: 7 annual network snapshots.
+- `data/temporal/cohorts/cohort_retention_matrix.parquet`: 7-year pooled retention matrix.
+
+### DATASETS_TO_REBUILD
+- `data/industry/collab_event_effects.parquet`: Rebuild using only the 12 strictly verified collab events.
+- `data/industry/collab_event_summary.parquet`: Rebuild from verified collab events.
+- `web/research/data/research_v2.json`: Rebuild after tomorrow's refactor to bind newly verified creator coverage and agency milestones.
+
+### LEGACY_ARTIFACTS (Marked for Sunset / Archival)
+- `data/industry/quarantine/collab_events_unverified.csv`: 42 quarantined pseudo collab IDs.
+- `data/historical_unverified/`: Deprecated unverified legacy files.
+- `web/research/dashboard_data.json`: Legacy v1 data blob.
+
+### NEW_SOURCE_OF_TRUTH ARCHITECTURE
+- **Creator Identity & Manifest**: `data/temporal/catalog/target_manifest.csv` (Frozen 193) + `data/industry/discovery_universe.parquet` (Discovered 1,370).
+- **Creator Events**: `data/industry/creator_status_events.parquet`.
+- **Collaborations**: `data/industry/collab_events.parquet` (Verified) + `data/industry/collab_candidates.parquet` (Candidates).
+- **Agencies**: `data/industry/agency_history.parquet` + `data/industry/agency_events.parquet`.
+- **Market & Commercial**: `data/market/market_evidence.parquet`.
+- **Audience Behavioral Segments**: `data/industry/audience_behavior_yearly.parquet`.
+
+### MIGRATION_RISKS & MITIGATIONS
+1. **Coordinate Hash Invariance**: Moving `AGENCY_ISLAND_COORDINATES` to `coordinates.js` must preserve SHA-256 `47a63e3160c1b1282fe0ceb997f08ef6ae5beec584771c237bb11d50fab83adc`. Automated test in `tests/test_frontend_public_boundary.py` must run continuously.
+2. **Fail-Closed Revenue Invariant**: Any script consuming `market_evidence.parquet` must check `can_be_summed == False` and refuse to compute a naive sum of unit prices.
+3. **Cohort Isolation Invariant**: Discovery universe channels (1,177) must NEVER be mixed into the frozen analytical cohort (193).
+
+---
+
+## 4. Implementation Guardrails
 
 1. **Hash Invariance**:
    - `AGENCY_ISLAND_COORDINATES` in `web/observatory/src/coordinates.js` must produce exact SHA-256: `47a63e3160c1b1282fe0ceb997f08ef6ae5beec584771c237bb11d50fab83adc`.
