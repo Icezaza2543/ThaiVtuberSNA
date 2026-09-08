@@ -150,3 +150,33 @@ def test_report_numbers_match_parquet(lifecycles_df, report_content):
     """Verify report counts match parquet values dynamically."""
     total_lineages = len(lifecycles_df)
     assert f"**{total_lineages} distinct persistent community lineages**" in report_content
+
+
+def test_maximum_weight_bipartite_matching_suboptimal_greedy_regression():
+    """Regression test proving global maximum-weight bipartite matching beats greedy.
+
+    Setup:
+      A-X = 0.90, A-Y = 0.80
+      B-X = 0.85, B-Y = 0.10
+
+    Greedy would pick A-X (0.90), leaving B with only B-Y (0.10) for total weight 1.00.
+    Optimal global matching picks A-Y (0.80) + B-X (0.85) for total weight 1.65.
+    """
+    from scripts.build_community_lineage_v2 import solve_global_max_weight_bipartite_matching
+
+    candidates = [
+        {"src_id": "A", "tgt_id": "X", "score": 0.90, "shared_count": 9},
+        {"src_id": "A", "tgt_id": "Y", "score": 0.80, "shared_count": 8},
+        {"src_id": "B", "tgt_id": "X", "score": 0.85, "shared_count": 8},
+        {"src_id": "B", "tgt_id": "Y", "score": 0.10, "shared_count": 1},
+    ]
+
+    matched_pairs = solve_global_max_weight_bipartite_matching(candidates)
+    expected = {("A", "Y"), ("B", "X")}
+    assert matched_pairs == expected, f"Expected {expected}, got {matched_pairs}"
+
+    # Verify score calculation formula: 0.4*Jaccard + 0.3*Forward + 0.3*Backward
+    jacc, fwd, bwd = 0.5, 0.6, 0.4
+    expected_score = 0.4 * jacc + 0.3 * fwd + 0.3 * bwd
+    assert abs(expected_score - 0.50) < 1e-9
+

@@ -32,6 +32,7 @@ from pathlib import Path
 from typing import Dict, Any, List, Set, Tuple
 from collections import Counter
 
+import networkx as nx
 import duckdb
 import pandas as pd
 import numpy as np
@@ -49,6 +50,44 @@ TARGET_MANIFEST_CSV = BASE_DIR / "data" / "temporal" / "catalog" / "target_manif
 OUTPUT_LINEAGE_V2_PARQUET = DATA_DIR / "community_lineage_v2.parquet"
 OUTPUT_LIFECYCLES_PARQUET = DATA_DIR / "community_lifecycles.parquet"
 OUTPUT_REPORT_MD = DATA_DIR / "community_lineage_v2_report.md"
+
+
+def solve_global_max_weight_bipartite_matching(
+    candidates: List[Dict[str, Any]]
+) -> Set[Tuple[str, str]]:
+    """Solves deterministic true global maximum-weight bipartite matching.
+
+    Given candidate edges between source and target communities with weights:
+      W = 0.4 * Jaccard + 0.3 * Forward + 0.3 * Backward
+    Finds a 1-to-1 matching maximizing total score globally.
+    Deterministic tie handling: edges added in sorted order with deterministic keys.
+    """
+    if not candidates:
+        return set()
+
+    G = nx.Graph()
+    # Sort candidates deterministically before building graph
+    sorted_candidates = sorted(
+        candidates,
+        key=lambda c: (-c["score"], -c.get("shared_count", 0), c["src_id"], c["tgt_id"])
+    )
+    for c in sorted_candidates:
+        s = c["src_id"]
+        t = c["tgt_id"]
+        u = f"src:{s}"
+        v = f"tgt:{t}"
+        G.add_edge(u, v, weight=float(c["score"]))
+
+    raw_matching = nx.max_weight_matching(G, maxcardinality=False, weight="weight")
+
+    matched_pairs: Set[Tuple[str, str]] = set()
+    for u, v in raw_matching:
+        if u.startswith("src:"):
+            matched_pairs.add((u[4:], v[4:]))
+        else:
+            matched_pairs.add((v[4:], u[4:]))
+
+    return matched_pairs
 
 
 def load_snapshots() -> pd.DataFrame:
@@ -112,33 +151,29 @@ def build_community_lineage_v2() -> Tuple[pd.DataFrame, pd.DataFrame]:
                             "score": score
                         })
 
-        # Deterministic 1-to-1 matching: sort by descending score, descending shared, ascending ids
-        all_candidates.sort(key=lambda x: (-x["score"], -x["shared_count"], x["src_id"], x["tgt_id"]))
+        # Deterministic True Global Maximum-Weight Bipartite Matching
+        # Solves 1-to-1 matching maximizing total score: W = 0.4*Jaccard + 0.3*Forward + 0.3*Backward
+        cand_by_pair = {(cand["src_id"], cand["tgt_id"]): cand for cand in all_candidates}
+        
+        pair_matches = solve_global_max_weight_bipartite_matching(all_candidates)
+        matched_sources: Set[str] = {s for s, t in pair_matches}
+        matched_targets: Set[str] = {t for s, t in pair_matches}
 
-        matched_sources: Set[str] = set()
-        matched_targets: Set[str] = set()
-        pair_matches: Set[Tuple[str, str]] = set()
-
-        for cand in all_candidates:
-            s = cand["src_id"]
-            t = cand["tgt_id"]
-            if s not in matched_sources and t not in matched_targets:
-                matched_sources.add(s)
-                matched_targets.add(t)
-                pair_matches.add((s, t))
-                primary_continuations.add((s, t))
-                relation_edges.append({
-                    "from_year": y_from,
-                    "to_year": y_to,
-                    "from_community_id": s,
-                    "to_community_id": t,
-                    "relation_type": "continuation",
-                    "shared_channels": cand["shared_count"],
-                    "jaccard_similarity": round(cand["jaccard"], 4),
-                    "forward_overlap": round(cand["fwd"], 4),
-                    "backward_overlap": round(cand["bwd"], 4),
-                    "is_primary_backbone": True
-                })
+        for s, t in sorted(pair_matches):
+            cand = cand_by_pair[(s, t)]
+            primary_continuations.add((s, t))
+            relation_edges.append({
+                "from_year": y_from,
+                "to_year": y_to,
+                "from_community_id": s,
+                "to_community_id": t,
+                "relation_type": "continuation",
+                "shared_channels": cand["shared_count"],
+                "jaccard_similarity": round(cand["jaccard"], 4),
+                "forward_overlap": round(cand["fwd"], 4),
+                "backward_overlap": round(cand["bwd"], 4),
+                "is_primary_backbone": True
+            })
 
         # Secondary relations: split_branch and merge_tributary
         # Split branch: source sends >= 20% to additional target with shared >= 2
