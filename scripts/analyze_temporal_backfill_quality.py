@@ -27,7 +27,9 @@ sys.path.insert(0, str(BASE_DIR))
 
 from config.settings import DATA_DIR
 from scripts.build_duckdb_temporal_snapshots import (
+    get_sources_by_provenance,
     collect_available_parquet_sources,
+    build_unified_raw_view,
     build_canonical_events_view
 )
 
@@ -97,13 +99,14 @@ def _compute_retention_metrics(con: duckdb.DuckDBPyConnection, table_name: str) 
 
 def run_quality_analysis() -> Dict[str, Any]:
     """Runs longitudinal evidence, stability, and retention diagnostics on canonical events."""
+    sources_by_prov = get_sources_by_provenance()
     sources = collect_available_parquet_sources()
     if not sources:
         raise RuntimeError("No observation sources found for analysis.")
 
-    t6_sources = [s for s in sources if "deep_observations" in s]
-    t5_sources = [s for s in sources if "deep_observations" not in s and "observations" in s]
-    legacy_t2_sources = [s for s in sources if "observations" not in s]
+    t6_sources = sources_by_prov.get("t6_deep", [])
+    t5_sources = sources_by_prov.get("t5_stratified", [])
+    legacy_t2_sources = sources_by_prov.get("t2_pilot", []) + sources_by_prov.get("legacy", [])
 
     con = duckdb.connect(":memory:")
 
@@ -143,12 +146,8 @@ def run_quality_analysis() -> Dict[str, Any]:
     else:
         con.execute("CREATE TABLE events_legacy AS SELECT * FROM canonical_events WHERE 1=0")
 
-    # 4. Unified events (all sources with T6 > T5 precedence)
-    source_list_sql = ", ".join(f"'{s}'" for s in sources)
-    con.execute(f"""
-        CREATE OR REPLACE VIEW unified_raw AS
-        SELECT * FROM read_parquet([{source_list_sql}], union_by_name=True)
-    """)
+    # 4. Unified events (all sources with T6 > T5 > T2 > Legacy precedence)
+    build_unified_raw_view(con, sources_by_prov)
     build_canonical_events_view(con, "unified_raw")
     con.execute("CREATE TABLE events_unified AS SELECT * FROM canonical_events")
     # Restore canonical_events view pointing to events_unified

@@ -1,6 +1,6 @@
 # Phase T6: Deep Comment History & Bias Correction Analysis
 
-- **Generated at:** 2026-09-08 05:52:20 UTC
+- **Generated at:** 2026-09-08 06:32:40 UTC
 - **Target Population:** All 226 Partial-Capture Historical Videos from Phase T5
 - **Scope:** Exhaustive Pagination of Top-Level Comment Threads (`nextPageToken` loop)
 - **Dataset Maturity:** Deep Historical Sampling Bias Correction Complete
@@ -57,6 +57,6 @@ The videos that benefited most significantly from full comment pagination:
 ## 4. Methodological & Scientific Bounds
 
 1. **Measured Empirical Scope:** These measurements document the precise difference between a 100-comment ceiling and full `commentThreads` exhaustion across the 226 target videos.
-2. **Non-Assumption of Total Elimination:** While full pagination eliminates the 100-comment truncation boundary for these specific videos, YouTube's native moderation and user deletions still mean unmoderated or deleted historical comments cannot be recovered.
-3. **Strict Precedence:** T6 deep observations strictly supersede T5 shallow observations in the temporal snapshot engine without double counting.
+2. **Truncation Boundary Removal:** The 100-comment truncation boundary was removed for the 226 exhaustively paginated T6 target videos. YouTube's native moderation and user deletions still mean unmoderated or deleted historical comments cannot be recovered.
+3. **Explicit Source Provenance Precedence:** In snapshot construction, explicit source provenance precedence (`T6 deep > T5 stratified > T2 pilot > legacy`) excludes lower-priority comment rows for the same video, verified by regression tests.
 4. **Zero PII Exposure:** All analysis was performed on irreversibly pseudonymized `viewer_hash` tokens. All audited surfaces conform to configured privacy checks.
