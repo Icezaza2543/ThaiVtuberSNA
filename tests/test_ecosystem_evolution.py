@@ -52,6 +52,7 @@ def test_yearly_ecosystem_metrics_schema_and_bounds(ecosystem_metrics_df):
         "weighted_edge_strength", "average_degree", "connected_components",
         "giant_component_nodes", "giant_component_share", "community_count",
         "modularity", "degree_concentration_gini", "strength_concentration_gini",
+        "agency_at_selection_assortativity", "agency_at_selection_independent_mixing",
         "agency_assortativity", "agency_independent_mixing", "cross_community_edge_share"
     ]
     for col in expected_cols:
@@ -69,14 +70,14 @@ def test_yearly_ecosystem_metrics_schema_and_bounds(ecosystem_metrics_df):
     assert (ecosystem_metrics_df["giant_component_share"] >= 0.0).all() and (ecosystem_metrics_df["giant_component_share"] <= 1.0).all()
     assert (ecosystem_metrics_df["degree_concentration_gini"] >= 0.0).all() and (ecosystem_metrics_df["degree_concentration_gini"] <= 1.0).all()
     assert (ecosystem_metrics_df["strength_concentration_gini"] >= 0.0).all() and (ecosystem_metrics_df["strength_concentration_gini"] <= 1.0).all()
-    assert (ecosystem_metrics_df["agency_independent_mixing"] >= 0.0).all() and (ecosystem_metrics_df["agency_independent_mixing"] <= 1.0).all()
+    assert (ecosystem_metrics_df["agency_at_selection_independent_mixing"] >= 0.0).all() and (ecosystem_metrics_df["agency_at_selection_independent_mixing"] <= 1.0).all()
     assert (ecosystem_metrics_df["cross_community_edge_share"] >= 0.0).all() and (ecosystem_metrics_df["cross_community_edge_share"] <= 1.0).all()
 
 def test_structural_breaks_detection(structural_breaks_df):
     """Verify detected structural breaks have deterministic categorization and non-zero deltas."""
     assert len(structural_breaks_df) > 0
     expected_cols = [
-        "transition", "metric_dimension", "from_value", "to_value",
+        "transition", "break_scope", "metric_dimension", "from_value", "to_value",
         "absolute_delta", "relative_change_pct", "break_category", "descriptive_note"
     ]
     for col in expected_cols:
@@ -85,3 +86,11 @@ def test_structural_breaks_detection(structural_breaks_df):
     for _, r in structural_breaks_df.iterrows():
         assert r["absolute_delta"] != 0.0
         assert len(r["descriptive_note"]) > 10
+
+    # Verify 2025->2026 YTD is explicitly PARTIAL_WINDOW_DESCRIPTIVE_ONLY
+    ytd_breaks = structural_breaks_df[structural_breaks_df["transition"].str.contains("2026")]
+    assert len(ytd_breaks) > 0, "Expected at least one 2025->2026 YTD observation"
+    for _, r in ytd_breaks.iterrows():
+        assert r["break_scope"] == "PARTIAL_WINDOW_DESCRIPTIVE_ONLY"
+        assert r["break_category"] == "PARTIAL_WINDOW_DESCRIPTIVE_ONLY"
+

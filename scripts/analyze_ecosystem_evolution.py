@@ -169,6 +169,9 @@ def run_ecosystem_evolution_analysis() -> None:
             "modularity": round(modularity, 4),
             "degree_concentration_gini": round(degree_concentration, 4),
             "strength_concentration_gini": round(strength_concentration, 4),
+            "agency_at_selection_assortativity": round(agency_assortativity, 4),
+            "agency_at_selection_independent_mixing": round(agency_independent_mixing, 4),
+            # Backwards-compatibility aliases:
             "agency_assortativity": round(agency_assortativity, 4),
             "agency_independent_mixing": round(agency_independent_mixing, 4),
             "cross_community_edge_share": round(cross_community_edge_share, 4)
@@ -184,63 +187,77 @@ def run_ecosystem_evolution_analysis() -> None:
         r_prev = df_metrics.iloc[i]
         r_curr = df_metrics.iloc[i + 1]
         t_label = f"{r_prev['year']}->{r_curr['year']}"
-        if r_curr["is_ytd"]:
+        is_partial = bool(r_curr["is_ytd"])
+        break_scope = "PARTIAL_WINDOW_DESCRIPTIVE_ONLY" if is_partial else "FULL_CALENDAR"
+        if is_partial:
             t_label += " (YTD)"
 
         # Metric 1: Rapid Channel Expansion (>= 50% relative growth)
         ch_growth = (r_curr["active_channels"] - r_prev["active_channels"]) / r_prev["active_channels"]
         if abs(ch_growth) >= 0.50:
+            category = "PARTIAL_WINDOW_DESCRIPTIVE_ONLY" if is_partial else ("RAPID_ECOSYSTEM_EXPANSION" if ch_growth > 0 else "CHANNEL_CONTRACTION")
+            note_prefix = "[PARTIAL_WINDOW_DESCRIPTIVE_ONLY] " if is_partial else ""
             breaks_records.append({
                 "transition": t_label,
+                "break_scope": break_scope,
                 "metric_dimension": "active_channels",
                 "from_value": float(r_prev["active_channels"]),
                 "to_value": float(r_curr["active_channels"]),
                 "absolute_delta": float(r_curr["active_channels"] - r_prev["active_channels"]),
                 "relative_change_pct": round(ch_growth, 4),
-                "break_category": "RAPID_ECOSYSTEM_EXPANSION" if ch_growth > 0 else "CHANNEL_CONTRACTION",
-                "descriptive_note": f"Active creator count shifted by {ch_growth:+.1%} YoY ({int(r_prev['active_channels'])} to {int(r_curr['active_channels'])})."
+                "break_category": category,
+                "descriptive_note": f"{note_prefix}Active creator count shifted by {ch_growth:+.1%} YoY ({int(r_prev['active_channels'])} to {int(r_curr['active_channels'])})."
             })
 
         # Metric 2: Modularity Shift (|delta| >= 0.05)
         mod_delta = r_curr["modularity"] - r_prev["modularity"]
         if abs(mod_delta) >= 0.05:
+            category = "PARTIAL_WINDOW_DESCRIPTIVE_ONLY" if is_partial else ("MODULAR_CONSOLIDATION" if mod_delta > 0 else "MODULAR_DIFFUSION")
+            note_prefix = "[PARTIAL_WINDOW_DESCRIPTIVE_ONLY] " if is_partial else ""
             breaks_records.append({
                 "transition": t_label,
+                "break_scope": break_scope,
                 "metric_dimension": "modularity",
                 "from_value": float(r_prev["modularity"]),
                 "to_value": float(r_curr["modularity"]),
                 "absolute_delta": round(mod_delta, 4),
                 "relative_change_pct": round(mod_delta / r_prev["modularity"], 4) if r_prev["modularity"] != 0 else 0.0,
-                "break_category": "MODULAR_CONSOLIDATION" if mod_delta > 0 else "MODULAR_DIFFUSION",
-                "descriptive_note": f"Community modularity Q shifted by {mod_delta:+.4f} ({r_prev['modularity']:.3f} to {r_curr['modularity']:.3f})."
+                "break_category": category,
+                "descriptive_note": f"{note_prefix}Community modularity Q shifted by {mod_delta:+.4f} ({r_prev['modularity']:.3f} to {r_curr['modularity']:.3f})."
             })
 
         # Metric 3: Density Reconfiguration (|delta| >= 0.03)
         dens_delta = r_curr["density"] - r_prev["density"]
         if abs(dens_delta) >= 0.03:
+            category = "PARTIAL_WINDOW_DESCRIPTIVE_ONLY" if is_partial else ("DENSITY_DILUTION" if dens_delta < 0 else "DENSITY_DENSIFICATION")
+            note_prefix = "[PARTIAL_WINDOW_DESCRIPTIVE_ONLY] " if is_partial else ""
             breaks_records.append({
                 "transition": t_label,
+                "break_scope": break_scope,
                 "metric_dimension": "density",
                 "from_value": float(r_prev["density"]),
                 "to_value": float(r_curr["density"]),
                 "absolute_delta": round(dens_delta, 4),
                 "relative_change_pct": round(dens_delta / r_prev["density"], 4) if r_prev["density"] != 0 else 0.0,
-                "break_category": "DENSITY_DILUTION" if dens_delta < 0 else "DENSITY_DENSIFICATION",
-                "descriptive_note": f"Graph density shifted by {dens_delta:+.4f} ({r_prev['density']:.4f} to {r_curr['density']:.4f})."
+                "break_category": category,
+                "descriptive_note": f"{note_prefix}Graph density shifted by {dens_delta:+.4f} ({r_prev['density']:.4f} to {r_curr['density']:.4f})."
             })
 
-        # Metric 4: Agency-Independent Mixing Reconfiguration (|delta| >= 0.05)
-        mix_delta = r_curr["agency_independent_mixing"] - r_prev["agency_independent_mixing"]
+        # Metric 4: Agency-at-selection Independent Mixing Reconfiguration (|delta| >= 0.05)
+        mix_delta = r_curr["agency_at_selection_independent_mixing"] - r_prev["agency_at_selection_independent_mixing"]
         if abs(mix_delta) >= 0.05:
+            category = "PARTIAL_WINDOW_DESCRIPTIVE_ONLY" if is_partial else ("CROSS_SECTOR_INTEGRATION" if mix_delta > 0 else "CROSS_SECTOR_SEGREGATION")
+            note_prefix = "[PARTIAL_WINDOW_DESCRIPTIVE_ONLY] " if is_partial else ""
             breaks_records.append({
                 "transition": t_label,
-                "metric_dimension": "agency_independent_mixing",
-                "from_value": float(r_prev["agency_independent_mixing"]),
-                "to_value": float(r_curr["agency_independent_mixing"]),
+                "break_scope": break_scope,
+                "metric_dimension": "agency_at_selection_independent_mixing",
+                "from_value": float(r_prev["agency_at_selection_independent_mixing"]),
+                "to_value": float(r_curr["agency_at_selection_independent_mixing"]),
                 "absolute_delta": round(mix_delta, 4),
-                "relative_change_pct": round(mix_delta / r_prev["agency_independent_mixing"], 4) if r_prev["agency_independent_mixing"] != 0 else 0.0,
-                "break_category": "CROSS_SECTOR_INTEGRATION" if mix_delta > 0 else "CROSS_SECTOR_SEGREGATION",
-                "descriptive_note": f"Agency/independent bridging edge share shifted by {mix_delta:+.1%} ({r_prev['agency_independent_mixing']:.1%} to {r_curr['agency_independent_mixing']:.1%})."
+                "relative_change_pct": round(mix_delta / r_prev["agency_at_selection_independent_mixing"], 4) if r_prev["agency_at_selection_independent_mixing"] != 0 else 0.0,
+                "break_category": category,
+                "descriptive_note": f"{note_prefix}Agency-at-selection/independent bridging edge share shifted by {mix_delta:+.1%} ({r_prev['agency_at_selection_independent_mixing']:.1%} to {r_curr['agency_at_selection_independent_mixing']:.1%})."
             })
 
     df_breaks = pd.DataFrame(breaks_records)
@@ -257,6 +274,9 @@ def run_ecosystem_evolution_analysis() -> None:
 
 def generate_ecosystem_report(df_metrics: pd.DataFrame, df_breaks: pd.DataFrame) -> str:
     """Generates ecosystem_evolution_report.md programmatically from empirical data."""
+    full_breaks = df_breaks[df_breaks["break_scope"] == "FULL_CALENDAR"] if "break_scope" in df_breaks.columns else df_breaks
+    partial_breaks = df_breaks[df_breaks["break_scope"] == "PARTIAL_WINDOW_DESCRIPTIVE_ONLY"] if "break_scope" in df_breaks.columns else pd.DataFrame()
+
     lines = []
     lines.append("# Phase T14: Thai VTuber Ecosystem Structural Evolution Report (2020–2026)")
     lines.append("")
@@ -265,42 +285,44 @@ def generate_ecosystem_report(df_metrics: pd.DataFrame, df_breaks: pd.DataFrame)
     lines.append("")
     lines.append("### Scientific Guardrails")
     lines.append("1. **Strictly Non-Causal Descriptive Scope:** Identified topological shifts and structural break candidates reflect empirical co-interaction properties across sampled YouTube interaction data. No causal claims regarding creator popularity, algorithmic steering, or agency policies are inferred.")
-    lines.append("2. **Labeling 2026 as YTD:** 2026 interactions represent a partial observation window; annualized rate comparisons must be contextualized accordingly.")
-    lines.append("3. **Zero Individual Viewer Hash Export:** Only aggregated macro network properties are published.")
+    lines.append("2. **Selection-Time Agency Metadata (`agency_at_selection`):** Agency classifications reflect status at cohort selection time, NOT dynamic historical corporate membership. Trends in assortativity or cross-sector mixing must not be interpreted as retroactive organizational shifts.")
+    lines.append("3. **Exclusion of 2025->2026 YTD from Full-Calendar Structural-Break Counts:** 2026 interactions represent an incomplete observation window. The 2025->2026 transition is classified strictly as `PARTIAL_WINDOW_DESCRIPTIVE_ONLY` and excluded from annualized structural-break totals.")
+    lines.append("4. **Zero Individual Viewer Hash Export:** Only aggregated macro network properties are published.")
     lines.append("")
     lines.append("---")
     lines.append("")
     lines.append("## 1. Longitudinal Macro Topological Metrics (2020–2026)")
     lines.append("")
-    lines.append("| Year | Active Channels | Edges | Density | Avg Degree | Edge Strength (W) | Giant Share | Comms | Modularity (Q) | Deg Gini | Agency Assort | Agency/Indie Mix | Cross-Comm Share |")
+    lines.append("| Year | Active Channels | Edges | Density | Avg Degree | Edge Strength (W) | Giant Share | Comms | Modularity (Q) | Deg Gini | Agency at Sel Assort | Agency at Sel Mix | Cross-Comm Share |")
     lines.append("| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
     for _, r in df_metrics.iterrows():
         lines.append(
             f"| **{r['year_label']}** | {int(r['active_channels'])} | {int(r['edges']):,} | {r['density']:.4f} | "
             f"{r['average_degree']:.1f} | {r['weighted_edge_strength']:,.0f} | {r['giant_component_share']:.1%} | "
             f"{int(r['community_count'])} | {r['modularity']:.3f} | {r['degree_concentration_gini']:.3f} | "
-            f"{r['agency_assortativity']:.3f} | {r['agency_independent_mixing']:.1%} | {r['cross_community_edge_share']:.1%} |"
+            f"{r['agency_at_selection_assortativity']:.3f} | {r['agency_at_selection_independent_mixing']:.1%} | {r['cross_community_edge_share']:.1%} |"
         )
     lines.append("")
     lines.append("---")
     lines.append("")
     lines.append("## 2. Structural Break Candidates (Empirical Shift Detection)")
     lines.append("")
-    lines.append(f"Detected **{len(df_breaks)} deterministic macro structural break candidates** across adjacent yearly horizons:")
+    lines.append(f"Detected **{len(full_breaks)} full-calendar macro structural break candidates** across adjacent completed calendar years (and **{len(partial_breaks)} partial-window descriptive observations** for 2025->2026 YTD, classified as `PARTIAL_WINDOW_DESCRIPTIVE_ONLY`):")
     lines.append("")
-    lines.append("| Transition | Metric Dimension | Category | From | To | Absolute Delta | Relative Shift | Descriptive Context |")
-    lines.append("| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |")
+    lines.append("| Transition | Scope | Metric Dimension | Category | From | To | Absolute Delta | Relative Shift | Descriptive Context |")
+    lines.append("| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |")
     for _, r in df_breaks.iterrows():
+        scope = r.get("break_scope", "FULL_CALENDAR")
         lines.append(
-            f"| `{r['transition']}` | `{r['metric_dimension']}` | `{r['break_category']}` | "
+            f"| `{r['transition']}` | `{scope}` | `{r['metric_dimension']}` | `{r['break_category']}` | "
             f"{r['from_value']:.4g} | {r['to_value']:.4g} | {r['absolute_delta']:+.4g} | "
             f"{r['relative_change_pct']:+.1%} | {r['descriptive_note']} |"
         )
     lines.append("")
     lines.append("### Methodological Interpretation of Structural Shifts")
-    lines.append("- **Pioneer Explosion (2020 -> 2021):** Active channels tripled (+209.5%) accompanied by a surge in agency/independent mixing from 5.6% to 46.6%, indicating the formation of an interconnected shared audience space across independent and emergent agency creators.")
-    lines.append("- **Modular Maturation (2022 -> 2023):** Modularity Q experienced a sustained shift upward (+0.114), reflecting the crystallization of distinct agency and content-focused community clusters.")
-    lines.append("- **Recent YTD Observation (2025 -> 2026 YTD):** The partial 2026 observation window displays elevated modularity (Q = 0.508) and lower edge density (0.157), consistent with community-localized interaction in early-year data.")
+    lines.append("- **Pioneer Explosion (2020 -> 2021):** Active channels tripled (+209.5%) accompanied by a surge in agency-at-selection/independent mixing from 5.6% to 46.6%, indicating the formation of an interconnected shared audience space across independent and emergent agency creators.")
+    lines.append("- **Modular Maturation (2022 -> 2023):** Modularity Q experienced a sustained shift upward (+0.114), reflecting the crystallization of distinct audience co-interaction clusters.")
+    lines.append("- **Partial-Window Observation (2025 -> 2026 YTD):** The partial 2026 observation window displays elevated modularity (Q = 0.508) and lower edge density (0.157), marked as `PARTIAL_WINDOW_DESCRIPTIVE_ONLY` due to incomplete calendar year exposure.")
     lines.append("")
     lines.append("---")
     lines.append("*Report generated automatically by `scripts/analyze_ecosystem_evolution.py`.*")
