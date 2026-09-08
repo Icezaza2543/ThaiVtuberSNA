@@ -101,12 +101,25 @@ def run_quality_analysis() -> Dict[str, Any]:
     if not sources:
         raise RuntimeError("No observation sources found for analysis.")
 
-    t5_sources = [s for s in sources if "observations" in s]
+    t6_sources = [s for s in sources if "deep_observations" in s]
+    t5_sources = [s for s in sources if "deep_observations" not in s and "observations" in s]
     legacy_t2_sources = [s for s in sources if "observations" not in s]
 
     con = duckdb.connect(":memory:")
 
-    # 1. T5-only events
+    # 1. T6 Deep events
+    if t6_sources:
+        t6_list_sql = ", ".join(f"'{s}'" for s in t6_sources)
+        con.execute(f"""
+            CREATE OR REPLACE VIEW t6_raw AS
+            SELECT * FROM read_parquet([{t6_list_sql}], union_by_name=True)
+        """)
+        build_canonical_events_view(con, "t6_raw")
+        con.execute("CREATE TABLE events_t6 AS SELECT * FROM canonical_events")
+    else:
+        con.execute("CREATE TABLE events_t6 AS SELECT * FROM canonical_events WHERE 1=0")
+
+    # 2. T5 Stratified events
     if t5_sources:
         t5_list_sql = ", ".join(f"'{s}'" for s in t5_sources)
         con.execute(f"""
@@ -118,7 +131,7 @@ def run_quality_analysis() -> Dict[str, Any]:
     else:
         con.execute("CREATE TABLE events_t5 AS SELECT * FROM canonical_events WHERE 1=0")
 
-    # 2. Legacy / T2 events
+    # 3. Legacy / T2 events
     if legacy_t2_sources:
         legacy_list_sql = ", ".join(f"'{s}'" for s in legacy_t2_sources)
         con.execute(f"""
@@ -130,7 +143,7 @@ def run_quality_analysis() -> Dict[str, Any]:
     else:
         con.execute("CREATE TABLE events_legacy AS SELECT * FROM canonical_events WHERE 1=0")
 
-    # 3. Unified events (all sources)
+    # 4. Unified events (all sources with T6 > T5 precedence)
     source_list_sql = ", ".join(f"'{s}'" for s in sources)
     con.execute(f"""
         CREATE OR REPLACE VIEW unified_raw AS
@@ -180,11 +193,19 @@ def run_quality_analysis() -> Dict[str, Any]:
             }
 
     # Provenance summary
+    t6_tot = con.execute("SELECT COUNT(*), COUNT(DISTINCT viewer_hash), COUNT(DISTINCT vtuber_channel_id), COUNT(DISTINCT video_id) FROM events_t6").fetchone()
     t5_tot = con.execute("SELECT COUNT(*), COUNT(DISTINCT viewer_hash), COUNT(DISTINCT vtuber_channel_id), COUNT(DISTINCT video_id) FROM events_t5").fetchone()
     legacy_tot = con.execute("SELECT COUNT(*), COUNT(DISTINCT viewer_hash), COUNT(DISTINCT vtuber_channel_id), COUNT(DISTINCT video_id) FROM events_legacy").fetchone()
     unified_tot = con.execute("SELECT COUNT(*), COUNT(DISTINCT viewer_hash), COUNT(DISTINCT vtuber_channel_id), COUNT(DISTINCT video_id) FROM events_unified").fetchone()
 
     provenance_summary = {
+        "t6_deep": {
+            "source_files": len(t6_sources),
+            "interactions": t6_tot[0],
+            "unique_viewers": t6_tot[1],
+            "channels": t6_tot[2],
+            "videos": t6_tot[3]
+        },
         "t5_only": {
             "source_files": len(t5_sources),
             "interactions": t5_tot[0],
@@ -403,9 +424,12 @@ def generate_markdown_report(analysis: Dict[str, Any], output_path: Path = REPOR
     ]
 
     if prov:
+        t6_p = prov.get("t6_deep", {})
         t5_p = prov.get("t5_only", {})
         leg_p = prov.get("legacy_t2", {})
         uni_p = prov.get("unified", {})
+        if t6_p.get("source_files", 0) > 0:
+            lines.append(f"| **T6 Deepened Comments** | {t6_p.get('source_files', 0):,} | {t6_p.get('interactions', 0):,} | {t6_p.get('unique_viewers', 0):,} | {t6_p.get('channels', 0)} / 193 | {t6_p.get('videos', 0):,} | Exhaustively paginated comments for high-engagement historical videos |")
         lines.append(f"| **T5 Stratified Backfill** | {t5_p.get('source_files', 0):,} | {t5_p.get('interactions', 0):,} | {t5_p.get('unique_viewers', 0):,} | {t5_p.get('channels', 0)} / 193 | {t5_p.get('videos', 0):,} | Bi-monthly stratified historical comment backfill (2020–2026) |")
         lines.append(f"| **Legacy / T2 Pilot** | {leg_p.get('source_files', 0):,} | {leg_p.get('interactions', 0):,} | {leg_p.get('unique_viewers', 0):,} | {leg_p.get('channels', 0)} / 193 | {leg_p.get('videos', 0):,} | T2 comment pilot (60 videos) + legacy live-chat / comment archives |")
         lines.append(f"| **Unified Temporal Network** | {uni_p.get('source_files', 0):,} | {uni_p.get('interactions', 0):,} | {uni_p.get('unique_viewers', 0):,} | {uni_p.get('channels', 0)} / 193 | {uni_p.get('videos', 0):,} | Combined evidence powering the final temporal snapshots & time slider |")

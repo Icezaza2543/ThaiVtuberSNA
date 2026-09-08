@@ -367,7 +367,11 @@ def test_real_t5_schema_and_dataset_maturity_metadata():
         data = json.load(f)
 
     meta = data.get("metadata", {})
-    assert meta.get("temporal_dataset_stage") in ["historical_stratified_backfill_partial", "historical_stratified_backfill_complete"]
+    assert meta.get("temporal_dataset_stage") in [
+        "historical_stratified_backfill_partial",
+        "historical_stratified_backfill_complete",
+        "deep_historical_backfill_complete",
+    ]
     assert meta.get("sampling_strategy") == "deterministic SHA-256 hash ranking; first-ranked candidate per temporal bin"
     assert meta.get("sampling_manifest_total") == 4630
     assert meta.get("terminal_jobs", 0) >= 1103

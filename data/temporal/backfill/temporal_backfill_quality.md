@@ -1,6 +1,6 @@
 # Phase T5 Temporal Backfill Quality & Diagnostics Report
 
-- **Generated at:** 2026-09-08 05:16:46 UTC
+- **Generated at:** 2026-09-08 05:53:40 UTC
 - **Cohort Scope:** Frozen T1 Research Cohort (193 VTuber Channels)
 - **Sampling Manifest:** 4,630 videos (deterministic SHA-256 hash ranking; first-ranked candidate per temporal bin)
 - **Dataset Stage:** `historical_stratified_backfill_complete` (100% Terminal Execution)
@@ -13,9 +13,10 @@ This longitudinal network unifies newly captured Phase T5 stratified historical 
 
 | Evidence Layer | Parquet Sources | Dated Interactions | Unique Viewer Hashes | Channels Represented | Videos Represented | Primary Scope |
 | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **T5 Stratified Backfill** | 3,675 | 66,167 | 45,844 | 180 / 193 | 3,675 | Bi-monthly stratified historical comment backfill (2020–2026) |
+| **T6 Deepened Comments** | 226 | 64,504 | 53,612 | 71 / 193 | 226 | Exhaustively paginated comments for high-engagement historical videos |
+| **T5 Stratified Backfill** | 3,449 | 44,459 | 30,286 | 180 / 193 | 3,449 | Bi-monthly stratified historical comment backfill (2020–2026) |
 | **Legacy / T2 Pilot** | 567 | 6,647 | 3,990 | 19 / 193 | 617 | T2 comment pilot (60 videos) + legacy live-chat / comment archives |
-| **Unified Temporal Network** | 4,242 | 72,814 | 48,546 | 190 / 193 | 4,260 | Combined evidence powering the final temporal snapshots & time slider |
+| **Unified Temporal Network** | 4,242 | 115,610 | 79,718 | 190 / 193 | 4,260 | Combined evidence powering the final temporal snapshots & time slider |
 
 ---
 
@@ -44,13 +45,13 @@ The table below details annual evidence for the **Unified Temporal Network**, wi
 
 | Year | Unified Channels | T5 Channels | Unified Videos | T5 Videos | Unique Viewers (Unified) | Pairwise Edges | Strong Overlap Edges | Median Audience / Ch | Median Videos / Ch | Sampling Completeness |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| 2020 | 28 / 193 | 28 / 193 | 135 | 121 | 2,649 | 53 | 0 | 45.5 | 5.0 | 100.0% |
-| 2021 | 72 / 193 | 72 / 193 | 503 | 378 | 6,817 | 512 | 51 | 53.0 | 6.0 | 100.0% |
-| 2022 | 100 / 193 | 100 / 193 | 697 | 589 | 6,294 | 857 | 99 | 34.0 | 5.5 | 100.0% |
-| 2023 | 140 / 193 | 140 / 193 | 975 | 844 | 8,446 | 1,252 | 94 | 42.5 | 6.0 | 100.0% |
-| 2024 | 166 / 193 | 166 / 193 | 1231 | 1136 | 10,009 | 2,387 | 669 | 32.5 | 6.0 | 100.0% |
-| 2025 | 173 / 193 | 173 / 193 | 1365 | 1228 | 11,350 | 2,805 | 583 | 35 | 6 | 100.0% |
-| 2026 | 176 / 193 | 165 / 193 | 1121 | 1010 | 10,482 | 1,876 | 264 | 23.0 | 6.0 | 100.0% |
+| 2020 | 29 / 193 | 28 / 193 | 141 | 107 | 5,232 | 72 | 6 | 39 | 5 | 100.0% |
+| 2021 | 72 / 193 | 71 / 193 | 507 | 322 | 11,259 | 625 | 98 | 57.0 | 6.0 | 100.0% |
+| 2022 | 101 / 193 | 99 / 193 | 701 | 519 | 12,005 | 965 | 121 | 36 | 5 | 100.0% |
+| 2023 | 141 / 193 | 138 / 193 | 983 | 753 | 18,646 | 1,503 | 127 | 43 | 6 | 100.0% |
+| 2024 | 166 / 193 | 163 / 193 | 1237 | 1014 | 13,478 | 2,547 | 690 | 35.0 | 6.0 | 100.0% |
+| 2025 | 173 / 193 | 172 / 193 | 1366 | 1077 | 17,121 | 3,168 | 613 | 36 | 6 | 100.0% |
+| 2026 | 176 / 193 | 164 / 193 | 1121 | 868 | 13,261 | 1,999 | 275 | 23.0 | 6.0 | 100.0% |
 
 > [!NOTE]
 > `Strong Overlap Edges` count channel pairs connected by commenters seen across $\ge 2$ distinct videos in both channels within that year.
@@ -63,12 +64,12 @@ Dynamic transitions between adjacent calendar years measure the continuity of au
 
 | Year-over-Year | Prior Year Edges | Next Year Edges | Persisting Edges | Edge Births | Edge Disappearances | Persistence Rate |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| 2020 -> 2021 | 53 | 512 | 22 | 490 | 31 | 41.5% |
-| 2021 -> 2022 | 512 | 857 | 199 | 658 | 313 | 38.9% |
-| 2022 -> 2023 | 857 | 1,252 | 316 | 936 | 541 | 36.9% |
-| 2023 -> 2024 | 1,252 | 2,387 | 590 | 1,797 | 662 | 47.1% |
-| 2024 -> 2025 | 2,387 | 2,805 | 1,243 | 1,562 | 1,144 | 52.1% |
-| 2025 -> 2026 | 2,805 | 1,876 | 1,000 | 876 | 1,805 | 35.7% |
+| 2020 -> 2021 | 72 | 625 | 34 | 591 | 38 | 47.2% |
+| 2021 -> 2022 | 625 | 965 | 268 | 697 | 357 | 42.9% |
+| 2022 -> 2023 | 965 | 1,503 | 383 | 1,120 | 582 | 39.7% |
+| 2023 -> 2024 | 1,503 | 2,547 | 703 | 1,844 | 800 | 46.8% |
+| 2024 -> 2025 | 2,547 | 3,168 | 1,339 | 1,829 | 1,208 | 52.6% |
+| 2025 -> 2026 | 3,168 | 1,999 | 1,122 | 877 | 2,046 | 35.4% |
 
 > [!IMPORTANT]
 > Edge persistence measures observed commenter co-presence across adjacent calendar years.
@@ -82,10 +83,10 @@ Longitudinal engagement and migration metrics separated by data provenance layer
 
 | Analytical Metric | T5-Only Stratified Backfill | Legacy / T2 Pilot | Unified Temporal Network | Analytical Definition |
 | :--- | :---: | :---: | :---: | :--- |
-| **Total Observed Pseudonymous Viewers** | **45,844** (100%) | **3,990** (100%) | **48,546** (100%) | Unique `viewer_hash` with dated interaction evidence |
-| **Cross-Channel Migration Evidence** | **5,664** (12.4%) | **407** (10.2%) | **6,375** (13.1%) | Observed commenting on $\ge 2$ distinct VTuber channels |
-| **Long-Term Engagement ($\ge 3$ Years)** | **1,298** (2.8%) | **45** (1.1%) | **1,404** (2.9%) | Observed commenting across $\ge 3$ distinct calendar years |
-| **Adjacent-Year Channel Retention** | **1,927** (4.2%) | **141** (3.5%) | **2,067** (4.3%) | Observed in the *same* channel across adjacent years ($t$ and $t+1$) |
+| **Total Observed Pseudonymous Viewers** | **30,286** (100%) | **3,990** (100%) | **79,718** (100%) | Unique `viewer_hash` with dated interaction evidence |
+| **Cross-Channel Migration Evidence** | **3,637** (12.0%) | **407** (10.2%) | **9,695** (12.2%) | Observed commenting on $\ge 2$ distinct VTuber channels |
+| **Long-Term Engagement ($\ge 3$ Years)** | **908** (3.0%) | **45** (1.1%) | **2,047** (2.6%) | Observed commenting across $\ge 3$ distinct calendar years |
+| **Adjacent-Year Channel Retention** | **1,392** (4.6%) | **141** (3.5%) | **3,148** (3.9%) | Observed in the *same* channel across adjacent years ($t$ and $t+1$) |
 
 > [!CAUTION]
 > These statistics represent **observed interaction evidence** within the stratified comment sample.
@@ -97,12 +98,12 @@ Longitudinal engagement and migration metrics separated by data provenance layer
 
 | Year | Active Flags | Sampled Videos | Channel Coverage | Status Assessment |
 | :---: | :--- | :---: | :---: | :--- |
-| 2020 | `LOW_CHANNEL_COVERAGE` | 135 | 28 / 193 | ⚠️ Sparse sample — interpret cautiously |
-| 2021 | `ADEQUATE` | 503 | 72 / 193 | ✅ Broad multi-channel coverage |
-| 2022 | `ADEQUATE` | 697 | 100 / 193 | ✅ Broad multi-channel coverage |
-| 2023 | `ADEQUATE` | 975 | 140 / 193 | ✅ Broad multi-channel coverage |
-| 2024 | `ADEQUATE` | 1231 | 166 / 193 | ✅ Broad multi-channel coverage |
-| 2025 | `ADEQUATE` | 1365 | 173 / 193 | ✅ Broad multi-channel coverage |
+| 2020 | `LOW_CHANNEL_COVERAGE` | 141 | 29 / 193 | ⚠️ Sparse sample — interpret cautiously |
+| 2021 | `ADEQUATE` | 507 | 72 / 193 | ✅ Broad multi-channel coverage |
+| 2022 | `ADEQUATE` | 701 | 101 / 193 | ✅ Broad multi-channel coverage |
+| 2023 | `ADEQUATE` | 983 | 141 / 193 | ✅ Broad multi-channel coverage |
+| 2024 | `ADEQUATE` | 1237 | 166 / 193 | ✅ Broad multi-channel coverage |
+| 2025 | `ADEQUATE` | 1366 | 173 / 193 | ✅ Broad multi-channel coverage |
 | 2026 | `ADEQUATE` | 1121 | 176 / 193 | ✅ Broad multi-channel coverage |
 
 ### Diagnostic Rules:
