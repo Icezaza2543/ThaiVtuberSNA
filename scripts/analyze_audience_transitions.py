@@ -242,17 +242,40 @@ def build_yearly_network_metrics(
                 "modularity": float(group["yearly_modularity"].iloc[0]),
             }
 
-    # Load edge counts and active channels from network_snapshots
+    # Load edge counts and true distinct active channels from network_snapshots
     edge_stats = con.execute("""
+        WITH yearly_edges AS (
+            SELECT 
+                CAST(window_start[:4] AS INT) AS yr,
+                vtuber_a,
+                vtuber_b,
+                shared_any
+            FROM read_parquet('data/temporal/snapshots/network_snapshots.parquet')
+            WHERE window_type = 'yearly'
+        ),
+        yearly_channels AS (
+            SELECT yr, vtuber_a AS channel_id FROM yearly_edges
+            UNION
+            SELECT yr, vtuber_b AS channel_id FROM yearly_edges
+        ),
+        channel_counts AS (
+            SELECT yr, COUNT(DISTINCT channel_id) AS active_channels
+            FROM yearly_channels
+            GROUP BY yr
+        ),
+        edge_counts AS (
+            SELECT yr, COUNT(*) AS active_edges, SUM(shared_any) AS total_shared_weight
+            FROM yearly_edges
+            GROUP BY yr
+        )
         SELECT 
-            CAST(window_start[:4] AS INT) AS yr,
-            COUNT(*) AS active_edges,
-            COUNT(DISTINCT vtuber_a) + COUNT(DISTINCT vtuber_b) AS approx_channels,
-            SUM(shared_any) AS total_shared_weight
-        FROM read_parquet('data/temporal/snapshots/network_snapshots.parquet')
-        WHERE window_type = 'yearly'
-        GROUP BY yr
-        ORDER BY yr
+            e.yr,
+            e.active_edges,
+            c.active_channels,
+            e.total_shared_weight
+        FROM edge_counts e
+        JOIN channel_counts c ON e.yr = c.yr
+        ORDER BY e.yr
     """).df()
 
     edge_map = {r["yr"]: r for _, r in edge_stats.iterrows()}
@@ -297,7 +320,7 @@ def build_yearly_network_metrics(
 
         rows.append({
             "year": yr,
-            "active_channels": int(em["approx_channels"]) if (em is not None and "approx_channels" in em) else 0,
+            "active_channels": int(em["active_channels"]) if (em is not None and "active_channels" in em) else 0,
             "active_edges": edge_cnt,
             "community_count": cm["communities"],
             "modularity": cm["modularity"],

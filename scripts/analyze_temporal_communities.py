@@ -117,6 +117,20 @@ def compute_lineage_events(
     - birth: target community has max backward overlap < 0.25
     - disappearance: source community has max forward overlap < 0.25
     """
+def compute_lineage_events(
+    yearly_communities: Dict[int, Dict[str, Set[str]]]
+) -> List[Dict[str, Any]]:
+    """Calculates conflict-free lineage events across adjacent years (t -> t+1).
+
+    Semantics:
+    1. Relation Events (between pairs with >= 2 shared nodes):
+       - persistent: dominant continuous backbone with J >= 0.35 or (F >= 0.40 and B >= 0.40)
+       - split_branch: source divides into >= 2 target communities with F >= 0.20 and shared >= 2
+       - merge_tributary: target formed from >= 2 source communities with B >= 0.20 and shared >= 2
+    2. Community Lifecycle States:
+       - birth: target community has NO significant predecessor relation (not target of split/merge/persistent, max B < 0.20)
+       - disappearance: source community has NO significant successor relation (not source of split/merge/persistent, max F < 0.20)
+    """
     years = sorted(yearly_communities.keys())
     lineage_records = []
 
@@ -148,43 +162,36 @@ def compute_lineage_events(
                     src_overlaps[src_id].append(rec)
                     tgt_overlaps[tgt_id].append(rec)
 
-        # 1. Check births on target communities
-        for tgt_id, tgt_nodes in c_to.items():
-            incoming = tgt_overlaps[tgt_id]
-            max_bwd = max([r["bwd"] for r in incoming]) if incoming else 0.0
-            if max_bwd < 0.25:
-                lineage_records.append({
-                    "from_year": y_from,
-                    "to_year": y_to,
-                    "from_community_id": "NEW",
-                    "to_community_id": tgt_id,
-                    "event_type": "birth",
-                    "shared_channel_count": 0,
-                    "jaccard_similarity": 0.0,
-                    "forward_overlap_ratio": 0.0,
-                    "backward_overlap_ratio": max_bwd,
-                    "details": f"New community in {y_to} ({len(tgt_nodes)} nodes), max predecessor overlap={max_bwd:.1%}",
-                })
+        related_sources: Set[str] = set()
+        related_targets: Set[str] = set()
 
-        # 2. Check disappearances on source communities
+        # 1. Relation Events: persistent (dominant backbone)
         for src_id, src_nodes in c_from.items():
-            outgoing = src_overlaps[src_id]
-            max_fwd = max([r["fwd"] for r in outgoing]) if outgoing else 0.0
-            if max_fwd < 0.25:
-                lineage_records.append({
-                    "from_year": y_from,
-                    "to_year": y_to,
-                    "from_community_id": src_id,
-                    "to_community_id": "NONE",
-                    "event_type": "disappearance",
-                    "shared_channel_count": 0,
-                    "jaccard_similarity": 0.0,
-                    "forward_overlap_ratio": max_fwd,
-                    "backward_overlap_ratio": 0.0,
-                    "details": f"Community from {y_from} ({len(src_nodes)} nodes) dissolved/dispersed, max successor overlap={max_fwd:.1%}",
-                })
+            outgoing = sorted(src_overlaps[src_id], key=lambda x: -x["jaccard"])
+            if outgoing:
+                best = outgoing[0]
+                is_persistent = (
+                    best["jaccard"] >= 0.35
+                    or (best["fwd"] >= 0.40 and best["bwd"] >= 0.40)
+                )
+                if is_persistent and best["shared_count"] >= 2:
+                    lineage_records.append({
+                        "from_year": y_from,
+                        "to_year": y_to,
+                        "from_community_id": src_id,
+                        "to_community_id": best["tgt_id"],
+                        "event_category": "relation",
+                        "event_type": "persistent",
+                        "shared_channel_count": best["shared_count"],
+                        "jaccard_similarity": best["jaccard"],
+                        "forward_overlap_ratio": best["fwd"],
+                        "backward_overlap_ratio": best["bwd"],
+                        "details": f"Persistent backbone: {src_id} -> {best['tgt_id']} (J={best['jaccard']:.2f}, shared={best['shared_count']})",
+                    })
+                    related_sources.add(src_id)
+                    related_targets.add(best["tgt_id"])
 
-        # 3. Check splits from source communities
+        # 2. Relation Events: split_branch
         for src_id, src_nodes in c_from.items():
             outgoing = src_overlaps[src_id]
             significant_branches = [
@@ -197,15 +204,18 @@ def compute_lineage_events(
                         "to_year": y_to,
                         "from_community_id": src_id,
                         "to_community_id": b["tgt_id"],
-                        "event_type": "split",
+                        "event_category": "relation",
+                        "event_type": "split_branch",
                         "shared_channel_count": b["shared_count"],
                         "jaccard_similarity": b["jaccard"],
                         "forward_overlap_ratio": b["fwd"],
                         "backward_overlap_ratio": b["bwd"],
                         "details": f"Split branch: {src_id} -> {b['tgt_id']} ({b['shared_count']} nodes, {b['fwd']:.1%} of source)",
                     })
+                    related_sources.add(src_id)
+                    related_targets.add(b["tgt_id"])
 
-        # 4. Check merges into target communities
+        # 3. Relation Events: merge_tributary
         for tgt_id, tgt_nodes in c_to.items():
             incoming = tgt_overlaps[tgt_id]
             significant_tributaries = [
@@ -218,36 +228,60 @@ def compute_lineage_events(
                         "to_year": y_to,
                         "from_community_id": t["src_id"],
                         "to_community_id": tgt_id,
-                        "event_type": "merge",
+                        "event_category": "relation",
+                        "event_type": "merge_tributary",
                         "shared_channel_count": t["shared_count"],
                         "jaccard_similarity": t["jaccard"],
                         "forward_overlap_ratio": t["fwd"],
                         "backward_overlap_ratio": t["bwd"],
                         "details": f"Merge tributary: {t['src_id']} -> {tgt_id} ({t['shared_count']} nodes, {t['bwd']:.1%} of target)",
                     })
+                    related_sources.add(t["src_id"])
+                    related_targets.add(tgt_id)
 
-        # 5. Check persistent communities (dominant continuous lineage)
+        # 4. Community Lifecycle States: birth
+        # A target is birth ONLY if it has no significant predecessor relation
+        for tgt_id, tgt_nodes in c_to.items():
+            if tgt_id in related_targets:
+                continue
+            incoming = [r for r in tgt_overlaps[tgt_id] if r["shared_count"] >= 2]
+            max_bwd = max([r["bwd"] for r in incoming]) if incoming else 0.0
+            if max_bwd < 0.20:
+                lineage_records.append({
+                    "from_year": y_from,
+                    "to_year": y_to,
+                    "from_community_id": "NEW",
+                    "to_community_id": tgt_id,
+                    "event_category": "lifecycle",
+                    "event_type": "birth",
+                    "shared_channel_count": 0,
+                    "jaccard_similarity": 0.0,
+                    "forward_overlap_ratio": 0.0,
+                    "backward_overlap_ratio": max_bwd,
+                    "details": f"New community birth in {y_to} ({len(tgt_nodes)} nodes), zero significant predecessor relations (max overlap={max_bwd:.1%})",
+                })
+
+        # 5. Community Lifecycle States: disappearance
+        # A source is disappearance ONLY if it has no significant successor relation
         for src_id, src_nodes in c_from.items():
-            outgoing = sorted(src_overlaps[src_id], key=lambda x: -x["jaccard"])
-            if outgoing:
-                best = outgoing[0]
-                is_persistent = (
-                    best["jaccard"] >= 0.35
-                    or (best["fwd"] >= 0.40 and best["bwd"] >= 0.40)
-                )
-                if is_persistent:
-                    lineage_records.append({
-                        "from_year": y_from,
-                        "to_year": y_to,
-                        "from_community_id": src_id,
-                        "to_community_id": best["tgt_id"],
-                        "event_type": "persistent",
-                        "shared_channel_count": best["shared_count"],
-                        "jaccard_similarity": best["jaccard"],
-                        "forward_overlap_ratio": best["fwd"],
-                        "backward_overlap_ratio": best["bwd"],
-                        "details": f"Persistent backbone: {src_id} -> {best['tgt_id']} (J={best['jaccard']:.2f}, F={best['fwd']:.1%}, B={best['bwd']:.1%})",
-                    })
+            if src_id in related_sources:
+                continue
+            outgoing = [r for r in src_overlaps[src_id] if r["shared_count"] >= 2]
+            max_fwd = max([r["fwd"] for r in outgoing]) if outgoing else 0.0
+            if max_fwd < 0.20:
+                lineage_records.append({
+                    "from_year": y_from,
+                    "to_year": y_to,
+                    "from_community_id": src_id,
+                    "to_community_id": "NONE",
+                    "event_category": "lifecycle",
+                    "event_type": "disappearance",
+                    "shared_channel_count": 0,
+                    "jaccard_similarity": 0.0,
+                    "forward_overlap_ratio": max_fwd,
+                    "backward_overlap_ratio": 0.0,
+                    "details": f"Community disappearance from {y_from} ({len(src_nodes)} nodes), zero significant successor relations (max overlap={max_fwd:.1%})",
+                })
 
     return lineage_records
 
@@ -270,6 +304,7 @@ def generate_community_report(
     lines.append("> - Communities are detected purely through observed interaction overlap (`shared_any` viewers). They do **NOT** equate to agencies.")
     lines.append("> - Agency labels reflect `agency_at_selection` (frozen target cohort metadata) and are not assumed to be historically dynamic agency timelines.")
     lines.append("> - Year 2020 carries a `LOW_CHANNEL_COVERAGE` and `LOW_EDGE_COUNT` flag and should be interpreted as an early pioneer cluster.")
+    lines.append("> - 2026 is an in-progress calendar year and is explicitly labeled **2026 YTD**.")
     lines.append("")
     lines.append("---")
     lines.append("")
@@ -280,9 +315,10 @@ def generate_community_report(
 
     for yr in sorted(yearly_meta.keys()):
         m = yearly_meta[yr]
+        yr_label = f"{yr} YTD" if yr == 2026 else str(yr)
         flag = "LOW_CHANNEL_COVERAGE / LOW_EDGE_COUNT" if yr == 2020 else "NORMAL"
         lines.append(
-            f"| {yr} | {m['node_count']} | {m['edge_count']} | {m['community_count']} | {m['modularity']:.4f} | {m['dominant_agency']} | `{flag}` |"
+            f"| {yr_label} | {m['node_count']} | {m['edge_count']} | {m['community_count']} | {m['modularity']:.4f} | {m['dominant_agency']} | `{flag}` |"
         )
 
     lines.append("")
@@ -293,11 +329,14 @@ def generate_community_report(
 
     for yr in sorted(yearly_meta.keys()):
         m = yearly_meta[yr]
-        lines.append(f"### Year {yr}")
+        yr_title = f"Year {yr} YTD" if yr == 2026 else f"Year {yr}"
+        lines.append(f"### {yr_title}")
         lines.append(f"- **Active Channels:** {m['node_count']}")
         lines.append(f"- **Observed Edges:** {m['edge_count']}")
         lines.append(f"- **Communities Detected:** {m['community_count']}")
         lines.append(f"- **Weighted Modularity (Q):** {m['modularity']:.4f}")
+        flag = "LOW_CHANNEL_COVERAGE / LOW_EDGE_COUNT" if yr == 2020 else "NORMAL"
+        lines.append(f"- **Reliability Flag:** `{flag}`")
         lines.append("")
         lines.append("| Community ID | Channels | Top Agencies at Selection | Key Anchor Channels |")
         lines.append("|:---|:---:|:---|:---|")
@@ -314,31 +353,35 @@ def generate_community_report(
     lines.append("")
     lines.append("## Community Lineage Transitions (Adjacent Years)")
     lines.append("")
-    lines.append("| Year Transition | Event Type | Source Community | Target Community | Shared Nodes | Jaccard | Forward % | Backward % | Details |")
-    lines.append("|:---:|:---:|:---|:---|:---:|:---:|:---:|:---:|:---|")
+    lines.append("| Year Transition | Category | Event Type | Source Community | Target Community | Shared Nodes | Jaccard | Forward % | Backward % | Details |")
+    lines.append("|:---:|:---:|:---:|:---|:---|:---:|:---:|:---:|:---:|:---|")
 
     for r in lineage_records:
+        cat = r.get("event_category", "relation")
         lines.append(
-            f"| {r['from_year']} -> {r['to_year']} | **{r['event_type'].upper()}** | `{r['from_community_id']}` | `{r['to_community_id']}` | {r['shared_channel_count']} | {r['jaccard_similarity']:.2f} | {r['forward_overlap_ratio']:.1%} | {r['backward_overlap_ratio']:.1%} | {r['details']} |"
+            f"| {r['from_year']} -> {r['to_year']} | `{cat}` | **{r['event_type'].upper()}** | `{r['from_community_id']}` | `{r['to_community_id']}` | {r['shared_channel_count']} | {r['jaccard_similarity']:.2f} | {r['forward_overlap_ratio']:.1%} | {r['backward_overlap_ratio']:.1%} | {r['details']} |"
         )
 
     lines.append("")
     lines.append("---")
     lines.append("")
-    lines.append("## Research Insights & Structural Dynamics")
+    lines.append("## Research Insights & Modularity Interpretation")
     lines.append("")
-    lines.append("1. **Early Phase (2020–2021): Rapid Network Expansion & Community Births**")
-    lines.append("   - 2020 represents the initial cohort of early VTubers (21 active nodes, 72 edges). Modularity is moderate (0.1968).")
-    lines.append("   - By 2021, the network triples in size to 65 active channels and 625 edges. This influx creates multiple new community births (`comm_2021_01` to `comm_2021_04`), reflecting independent and pioneering group formations.")
+    lines.append("> [!NOTE]")
+    lines.append("> **Bounded Modularity Interpretation:**")
+    lines.append("> Modularity varies across years under the same Louvain configuration. Higher values indicate stronger separation in the observed yearly network, but cross-year comparisons may be affected by network size, density, coverage, and 2026 YTD sampling.")
     lines.append("")
-    lines.append("2. **Consolidation Phase (2022–2023): Structural Differentiation & Modularity Growth**")
-    lines.append("   - As new agencies debuted cohorts (Algorhythm Project, Pixela Project, Lumina Live), community modularity steadily increased from 0.2007 (2022) to 0.3146 (2023).")
-    lines.append("   - Communities differentiated along agency clusters while retaining cross-agency collaborative bridges.")
+    lines.append("1. **Early Network Formation (2020–2021):**")
+    lines.append("   - 2020 represents the initial cohort of early VTubers (21 active nodes, 72 edges, Q=0.1968, flag: `LOW_CHANNEL_COVERAGE / LOW_EDGE_COUNT`).")
+    lines.append("   - By 2021, the network expanded to 65 active channels (625 edges, Q=0.1333). This influx created new community births (`comm_2021_01`, `comm_2021_02`, `comm_2021_03`), reflecting independent and pioneering group formations.")
     lines.append("")
-    lines.append("3. **Mature Phase (2024–2026): High Modularity & Persistent Backbones**")
-    lines.append("   - In 2024–2026, network scale peaked (>150 channels, >2,500 edges).")
-    lines.append("   - Communities exhibited robust stability with Jaccard persistence reaching 0.55–0.60 across major clusters.")
-    lines.append("   - In 2026, modularity reached 0.5085, indicating strongly defined audience sub-ecosystems.")
+    lines.append("2. **Cohort Differentiation & Agency Clustering (2022–2025):**")
+    lines.append("   - Between 2022 (92 channels, Q=0.2007) and 2025 (166 channels, Q=0.3189), modularity reflected higher partition structure as agency rosters (Algorhythm Project, Pixela Project, Lumina Live) formed distinct core audiences while maintaining collaborative bridges.")
+    lines.append("   - Lineage events during this period exhibited split branches and merge tributaries as cohorts expanded, crossed over, and regrouped.")
+    lines.append("")
+    lines.append("3. **Mature Network & 2026 YTD Sampling:**")
+    lines.append("   - In 2026 YTD, modularity measured 0.5085 across 160 active channels (1,997 edges). Persistent backbones remained stable across core agency clusters.")
+    lines.append("   - Higher modularity in 2026 YTD reflects denser intra-community interactions in the available sample; cross-year comparisons should consider that 2026 is an in-progress sampling window.")
     lines.append("")
     return "\n".join(lines)
 

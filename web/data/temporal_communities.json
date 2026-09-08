@@ -1,7 +1,7 @@
 {
   "2020": {
     "year": 2020,
-    "active_channels": 36,
+    "active_channels": 21,
     "active_edges": 72,
     "community_count": 3,
     "modularity": 0.1968,
@@ -73,7 +73,7 @@
   },
   "2021": {
     "year": 2021,
-    "active_channels": 114,
+    "active_channels": 65,
     "active_edges": 625,
     "community_count": 5,
     "modularity": 0.1333,
@@ -91,9 +91,9 @@
     "observed_cross_channel_viewers": 870,
     "reliability_flag": "NORMAL",
     "events": {
-      "births": 4,
+      "births": 2,
       "disappearances": 0,
-      "splits": 9,
+      "splits": 0,
       "merges": 0,
       "persistent": 1
     },
@@ -179,7 +179,7 @@
   },
   "2022": {
     "year": 2022,
-    "active_channels": 165,
+    "active_channels": 92,
     "active_edges": 965,
     "community_count": 4,
     "modularity": 0.2007,
@@ -197,10 +197,10 @@
     "observed_cross_channel_viewers": 859,
     "reliability_flag": "NORMAL",
     "events": {
-      "births": 1,
+      "births": 0,
       "disappearances": 0,
-      "splits": 7,
-      "merges": 7,
+      "splits": 0,
+      "merges": 0,
       "persistent": 0
     },
     "communities": [
@@ -270,7 +270,7 @@
   },
   "2023": {
     "year": 2023,
-    "active_channels": 230,
+    "active_channels": 129,
     "active_edges": 1503,
     "community_count": 5,
     "modularity": 0.3146,
@@ -290,8 +290,8 @@
     "events": {
       "births": 0,
       "disappearances": 0,
-      "splits": 4,
-      "merges": 4,
+      "splits": 0,
+      "merges": 0,
       "persistent": 1
     },
     "communities": [
@@ -380,7 +380,7 @@
   },
   "2024": {
     "year": 2024,
-    "active_channels": 282,
+    "active_channels": 157,
     "active_edges": 2547,
     "community_count": 4,
     "modularity": 0.3106,
@@ -400,8 +400,8 @@
     "events": {
       "births": 0,
       "disappearances": 0,
-      "splits": 5,
-      "merges": 2,
+      "splits": 0,
+      "merges": 0,
       "persistent": 2
     },
     "communities": [
@@ -476,7 +476,7 @@
   },
   "2025": {
     "year": 2025,
-    "active_channels": 301,
+    "active_channels": 166,
     "active_edges": 3168,
     "community_count": 4,
     "modularity": 0.3189,
@@ -496,7 +496,7 @@
     "events": {
       "births": 0,
       "disappearances": 0,
-      "splits": 2,
+      "splits": 0,
       "merges": 0,
       "persistent": 3
     },
@@ -575,7 +575,7 @@
   },
   "2026": {
     "year": 2026,
-    "active_channels": 279,
+    "active_channels": 160,
     "active_edges": 1997,
     "community_count": 4,
     "modularity": 0.5085,
