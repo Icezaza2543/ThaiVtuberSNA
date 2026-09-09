@@ -2,7 +2,7 @@ from copy import deepcopy
 import pytest
 from scripts.build_creator_lifecycle_evidence import VERIFIED_CREATOR_INTEL
 from scripts.audit_creator_identity_mapping import audit_identity
-from scripts.research_integrity_contract import validate_scope
+from analytics.research_integrity import validate_scope
 from scripts.audit_research_source_integrity import audit_source_integrity
 
 @pytest.mark.parametrize('wrong,right', [('UC_nmh9XycGlquouvai2UC6g','UCuZ1ajvlGFUMCHZAPdetKHw'),('UCpGtwNmbOtgmcKIY81MIX_w','UCNTEr2_96vJnXNazr5MwNLA')])

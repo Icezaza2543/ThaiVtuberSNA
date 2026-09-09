@@ -2,8 +2,10 @@
 import json
 import re
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import pandas as pd
-from research_integrity_contract import reactivation_series
+from analytics.research_integrity import reactivation_series
 ROOT = Path(__file__).resolve().parents[1]
 
 def refresh():

@@ -3,7 +3,7 @@ import json
 import re
 from pathlib import Path
 import pandas as pd
-from scripts.research_integrity_contract import validate_scope, reactivation_series, is_ratio_key
+from analytics.research_integrity import validate_scope, reactivation_series, is_ratio_key
 ROOT = Path(__file__).resolve().parents[1]
 
 def audit_source_integrity():

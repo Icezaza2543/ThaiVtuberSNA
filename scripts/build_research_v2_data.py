@@ -18,6 +18,8 @@ Strict Contract Requirements:
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from typing import Dict, Any, List
 
 import pandas as pd
@@ -396,7 +398,7 @@ def generate_v2_data_contract():
         "methodology": methodology_chapter
     }
 
-    from research_integrity_contract import annotate_scopes, integrity_payload
+    from analytics.research_integrity import annotate_scopes, integrity_payload
     annotate_scopes(contract_payload)
     contract_payload["source_integrity"] = integrity_payload()
     OUT_JSON_PATH.write_text(json.dumps(contract_payload, indent=2, ensure_ascii=False), encoding="utf-8")
