@@ -130,11 +130,14 @@ let searchQuery = "";
 // Dynamic Temporal Timeline State (PR-6)
 let temporalSnapshotsData = typeof EMBEDDED_TEMPORAL_SLICES !== "undefined" ? EMBEDDED_TEMPORAL_SLICES : null;
 let temporalCommunitiesData = typeof EMBEDDED_TEMPORAL_COMMUNITIES !== "undefined" ? EMBEDDED_TEMPORAL_COMMUNITIES : null;
-let currentTimelineStep = 7; // 0: '20, 1: '21, 2: '22, 3: '23, 4: '24, 5: '25, 6: '26, 7: ALL
+let currentTimelineStep = 0;
+let selectedSnapshot = null;
+let timelinePeriods = [];
+let legacyRoster = [];
 let isCumulativeTimeline = true;
 let isPlayingTimeline = false;
 let timelinePlayTimer = null;
-const TIMELINE_STEPS = ["2020", "2021", "2022", "2023", "2024", "2025", "2026 YTD", "All-Time (Dated)"];
+let TIMELINE_STEPS = [];
 
 // Physics Settings (Obsidian-Style Calm Physics with Quick Settling)
 let alpha = 1.0;
@@ -225,6 +228,25 @@ async function initApp() {
     temporalCommunitiesData = typeof EMBEDDED_TEMPORAL_COMMUNITIES !== "undefined" ? EMBEDDED_TEMPORAL_COMMUNITIES : null;
   }
 
+  legacyRoster = rawData.nodes.map(n => ({...n}));
+  const requested = new URLSearchParams(location.search).get('snapshot');
+  if (requested) {
+    try {
+      if (!/^data\/expanded-v1\/[a-zA-Z0-9_-]+\.json$/.test(requested)) throw new Error('Invalid snapshot path');
+      const response = await fetch(requested);
+      if (!response.ok) throw new Error('Snapshot unavailable');
+      const bundle = await response.json();
+      const syntheticAllowed = ['127.0.0.1', 'localhost', '[::1]'].includes(location.hostname)
+        && new URLSearchParams(location.search).get('synthetic') === '1';
+      if (bundle.dataset_version !== 'expanded-v1' || !Array.isArray(bundle.snapshots)
+          || (bundle.synthetic && !syntheticAllowed)) throw new Error('Unapproved snapshot');
+      temporalSnapshotsData = bundle;
+    } catch (error) {
+      temporalSnapshotsData = {dataset_version: 'expanded-v1', snapshots: []};
+      console.warn('Requested expanded snapshot unavailable; no legacy substitution.');
+    }
+  }
+  configureTimeline();
   setupAgencyAnchors();
   populateAgencyFilter();
   populateDynamicLegend();
@@ -232,7 +254,6 @@ async function initApp() {
   setupObservatoryUI();
   processGraphData();
   updateTimelineSlice(currentTimelineStep);
-  updateKPIs();
   updateSceneStatus();
   updateSnapshotLabel();
   fitConstellation();
@@ -381,7 +402,7 @@ function processGraphData() {
 
   // Place nodes on clean, non-overlapping coordinates from Frame 0
   graphNodes = rawData.nodes.map((n) => {
-    const ag = n.agency || "Independent";
+    const ag = n.agency || "Unknown";
     let initialX = 0;
     let initialY = 0;
 
@@ -577,7 +598,7 @@ function resolveCollisions(iterations = 10, padding = 4.0) {
   // Group by agency for intra-cluster collision resolution (Zero cross-agency displacement!)
   const byAgency = new Map();
   visible.forEach(n => {
-    const ag = n.agency || "Independent";
+    const ag = n.agency || "Unknown";
     if (!byAgency.has(ag)) byAgency.set(ag, []);
     byAgency.get(ag).push(n);
   });
@@ -1139,9 +1160,9 @@ function setupEventListeners() {
       else if (!reducedMotion.matches) {
         isPlayingTimeline = true;
         updatePlaybackButton();
-        if (currentTimelineStep >= 6) updateTimelineSlice(0);
+        if (currentTimelineStep >= timelinePeriods.length - 2) updateTimelineSlice(0);
         timelinePlayTimer = setInterval(() => {
-          if (currentTimelineStep < 6) updateTimelineSlice(currentTimelineStep + 1);
+          if (currentTimelineStep < timelinePeriods.length - 2) updateTimelineSlice(currentTimelineStep + 1);
           else stopTimeline();
         }, 3000);
       }
@@ -1172,66 +1193,48 @@ function setupEventListeners() {
 // ==========================================================
 // 8. Temporal Dynamic Timeline Slice Dispatcher (PR-6)
 // ==========================================================
+function configureTimeline() {
+  timelinePeriods = TemporalState.periods(temporalSnapshotsData);
+  TIMELINE_STEPS = timelinePeriods.map(p => p.label);
+  currentTimelineStep = timelinePeriods.length - 1;
+  const slider = document.getElementById('timeSlider');
+  slider.max = String(currentTimelineStep);
+  const ticks = document.querySelector('.timeline-ticks');
+  ticks.replaceChildren();
+  timelinePeriods.forEach((period, index) => {
+    const button = document.createElement('button');
+    button.dataset.step = index;
+    button.textContent = period.label;
+    ticks.append(button);
+  });
+}
+
 function updateTimelineSlice(step) {
-  previousEdges = reducedMotion.matches ? [] : graphEdges.filter(edge => edge.visible);
-  graphTransitionStart = reducedMotion.matches ? 0 : performance.now();
   currentTimelineStep = step;
-  const label = TIMELINE_STEPS[step] || "All-Time (Dated)";
-  const labelEl = document.getElementById("temporalCurrentLabel");
-  if (labelEl) labelEl.textContent = label;
+  const period = timelinePeriods[step];
+  selectedSnapshot = period ? TemporalState.select(temporalSnapshotsData, period.year,
+    isCumulativeTimeline, legacyRoster) : {nodes: [], edges: [], unknown_history: [], coverage_state: 'NO_SNAPSHOT'};
+  previousEdges = [];
+  graphTransitionStart = 0;
+  const oldSelection = selectedNode?.id;
+  rawData = {...rawData, nodes: selectedSnapshot.nodes, edges: selectedSnapshot.edges};
+  const groups = new Map();
+  rawData.nodes.forEach(n => { const group = n.agency || 'Unknown'; groups.set(group, (groups.get(group) || 0) + 1); });
+  rawData.agencies = [...groups].map(([name, member_count]) => ({name, member_count, color: AGENCY_COLORS[name] || '#64748b'}));
+  populateAgencyFilter();
+  if (!groups.has(selectedAgency)) selectedAgency = 'ALL';
+  agencyFilter.value = selectedAgency;
+  populateDynamicLegend();
+  processGraphData();
+  graphNodes.forEach(n => { n.activeConnections = graphEdges.filter(e => e.source === n.id || e.target === n.id).length; });
+  if (oldSelection && nodeMap.has(oldSelection) && nodeMap.get(oldSelection).visible) openInspector(nodeMap.get(oldSelection), false);
+  else if (selectedNode) closeInspector(false);
+  document.getElementById('temporalCurrentLabel').textContent = TIMELINE_STEPS[step] || 'No snapshot';
   updatePeriodControls();
-
-  const isAllTime = (step === 7);
-  let slice = null;
-
-  if (temporalSnapshotsData && temporalSnapshotsData.slices) {
-    if (isAllTime) {
-      slice = temporalSnapshotsData.slices["all_time"];
-    } else {
-      const yearStr = (step === 6) ? "2026" : (2020 + step).toString();
-      const sliceKey = isCumulativeTimeline ? `cumulative_${yearStr}` : `yearly_${yearStr}`;
-      slice = temporalSnapshotsData.slices[sliceKey];
-    }
-  }
-
-  if (slice && slice.edges && slice.edges.length > 0) {
-    graphEdges = slice.edges.map(e => ({
-      ...edgeForDisplay(e),
-      sourceNode: nodeMap.get(e.source),
-      targetNode: nodeMap.get(e.target),
-      visible: true
-    })).filter(e => e.sourceNode && e.targetNode);
-  } else if (isAllTime && (!temporalSnapshotsData || !temporalSnapshotsData.slices)) {
-    // Fallback to static rawData edges ONLY if no temporal snapshot data is loaded
-    graphEdges = (rawData.edges || []).map(e => ({
-      ...edgeForDisplay(e),
-      sourceNode: nodeMap.get(e.source),
-      targetNode: nodeMap.get(e.target),
-      visible: true
-    })).filter(e => e.sourceNode && e.targetNode);
-  } else {
-    // If snapshot is empty or early year before channels existed, display empty active edges cleanly
-    graphEdges = [];
-  }
-
-  // Recalculate dynamic node connections
-  const degreeCounts = new Map();
-  graphEdges.forEach(e => {
-    if (e.sourceNode && e.targetNode) {
-      degreeCounts.set(e.source, (degreeCounts.get(e.source) || 0) + 1);
-      degreeCounts.set(e.target, (degreeCounts.get(e.target) || 0) + 1);
-    }
-  });
-
-  graphNodes.forEach(n => {
-    n.activeConnections = degreeCounts.get(n.id) || 0;
-  });
-
-  applyFilters();
-  updateSceneStatus();
-  if (selectedNode) openInspector(selectedNode, false);
   updateTemporalAnalyticsPanel(step);
-  reheatSimulation(0.35);
+  updateSceneStatus();
+  updateSnapshotLabel();
+  fitConstellation();
   renderCanvas();
 }
 
@@ -1240,13 +1243,13 @@ function updateTemporalAnalyticsPanel(step) {
   const panel = document.getElementById("temporalAnalyticsPanel");
   if (!panel) return;
 
-  const isAllTime = (step === 7);
-  if (isAllTime || !temporalCommunitiesData) {
+  const isAllTime = !timelinePeriods[step]?.year;
+  if (isAllTime || !temporalCommunitiesData || selectedSnapshot?.coverage_state !== 'LEGACY_UNVERIFIED') {
     panel.style.display = "none";
     return;
   }
 
-  const yearStr = (step === 6) ? "2026" : (2020 + step).toString();
+  const yearStr = timelinePeriods[step]?.year;
   const yearData = temporalCommunitiesData[yearStr];
   if (!yearData) {
     panel.style.display = "none";
@@ -1255,7 +1258,7 @@ function updateTemporalAnalyticsPanel(step) {
 
   panel.style.display = "block";
   const yrLabel = document.getElementById("analyticsYearLabel");
-  if (yrLabel) yrLabel.textContent = (step === 6) ? "2026 YTD" : yearStr;
+  if (yrLabel) yrLabel.textContent = yearStr;
 
   const flagBadge = document.getElementById("analyticsFlagBadge");
   if (flagBadge) {
@@ -1447,13 +1450,13 @@ function openInspector(node, focus = true) {
   selectedNode = node;
   inspName.textContent = node.label;
   inspHandle.textContent = node.handle || `@${node.id}`;
-  inspTier.textContent = `Tier ${node.priority}`;
-  inspAgency.textContent = node.agency;
-  inspSubs.textContent = `${node.subscribers.toLocaleString()} Subs`;
+  inspTier.textContent = node.priority ? `Tier ${node.priority}` : 'Tier unknown';
+  inspAgency.textContent = node.agency || 'Agency unknown in this period';
+  inspSubs.textContent = Number.isFinite(node.subscribers) ? `${node.subscribers.toLocaleString()} Subs` : 'Unknown in this period';
 
-  inspDegree.textContent = (node.degree || 0).toFixed(3);
-  inspBetweenness.textContent = (node.betweenness || 0).toFixed(4);
-  inspPageRank.textContent = node.pagerank ? node.pagerank.toFixed(3) : "0.000";
+  inspDegree.textContent = Number.isFinite(node.degree) ? node.degree.toFixed(3) : 'Unknown';
+  inspBetweenness.textContent = Number.isFinite(node.betweenness) ? node.betweenness.toFixed(4) : 'Unknown';
+  inspPageRank.textContent = Number.isFinite(node.pagerank) ? node.pagerank.toFixed(3) : 'Unknown';
 
   // Find all overlaps connected to this VTuber
   const connections = [];

@@ -56,7 +56,7 @@
           <button data-step="0">2020</button><button data-step="1">2021</button><button data-step="2">2022</button><button data-step="3">2023</button><button data-step="4">2024</button><button data-step="5">2025</button><button data-step="6">2026 <small>YTD</small></button><button data-step="7" aria-pressed="true">All</button>
         </div>
         <div class="timeline-actions"><button id="btnPlayTimeline" class="btn-info" aria-pressed="false"><svg id="playIcon" class="icon" aria-hidden="true"><use href="#i-play"/></svg><span id="playText">Play</span></button><button id="btnToggleTimeMode" class="btn-info" aria-pressed="true"><span id="timeModeText">Cumulative</span></button></div>
-        <p class="note">Dated public interactions only. 2026 is YTD; undated observations are excluded.</p>
+        <p class="note" id="temporalCoverage" role="status">Unknown history is not confirmed absence.</p>
         <div id="temporalAnalyticsPanel" class="temporal-analytics" style="display:none">
           <h3>Community evolution · <span id="analyticsYearLabel">—</span></h3><span id="analyticsFlagBadge" class="badge">—</span>
           <dl><dt>Communities / modularity</dt><dd id="analyticsCommsVal">—</dd><dt>Observed retention (t → t+1)</dt><dd id="analyticsRetainedVal">—</dd></dl>
@@ -94,14 +94,15 @@
       <p>เส้นเชื่อมแสดงผู้มีปฏิสัมพันธ์สาธารณะที่พบร่วมกันระหว่างช่องในตัวอย่างที่เก็บได้ ไม่ใช่ผู้ชมทั้งหมด และไม่ใช่หลักฐานความสัมพันธ์เชิงเหตุผล</p>
       <ul>
         <li><strong>Observed overlap:</strong> Shared viewers is an intersection count; overlap coefficient divides by the smaller observed set, and Jaccard divides by the union. Temporal snapshots report comment Jaccard separately; the metric menu and profile identify that source. The threshold controls which edges are visible.</li>
-        <li><strong>Time:</strong> Slices use dated interaction evidence. Cumulative includes observations up to the selected year; yearly uses that year alone. 2026 is a partial YTD window.</li>
-        <li><strong>Identity:</strong> Node size reflects public subscriber metadata. Colors show <code>agency_at_selection</code>, not verified historical affiliation. Independent creators are a rendering group, not an agency.</li>
+        <li><strong>Time:</strong> Slices use dated interaction evidence. Cumulative includes observations up to the selected year; yearly uses that year alone. Available years follow supplied snapshots; missing periods have no invented observations.</li>
+        <li><strong>Identity:</strong> Expanded snapshots use date-qualified subscriber and agency evidence; unknown attributes stay unknown. Legacy roster metadata is context only, not historical identity evidence.</li>
         <li><strong>Centrality:</strong> Profile metrics describe structural position in the supplied dataset, not influence or causal migration. The profile overlap list follows the chosen period and includes connections below the graph threshold.</li>
         <li><strong>Privacy:</strong> This public view contains creator metadata and aggregate metrics. It does not expose viewer-level rows or interaction logs.</li>
       </ul>
       <a href="research/" class="text-link">Explore research evidence and limitations</a><button class="btn-primary" id="btnCloseModal">กลับไปสำรวจ / Back to graph</button>
     </section>
   </div>
+  <script src="temporal-state.js"></script>
   <script src="app.js"></script>
   <script src="observatory-ui.js"></script>
 </body>

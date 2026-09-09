@@ -54,3 +54,15 @@ def test_estimates_do_not_certify_unmeasured_capacity():
 def test_mismatched_edge_window_fails():
     with pytest.raises(ValueError, match='window'):
         snapshot(evidence=[activity()], edges=[dict(source='synthetic-a', target='synthetic-a', edge_type='audience_overlap')])
+
+
+def test_expanded_export_is_explicit_and_immutable(tmp_path):
+    from scripts.build_duckdb_temporal_snapshots import export_expanded_snapshots
+    path = tmp_path / 'expanded-v1' / 'synthetic-snapshot.json'
+    s = snapshot(evidence=[activity()])
+    assert export_expanded_snapshots([s], path, synthetic=True)['synthetic']
+    original = path.read_bytes()
+    export_expanded_snapshots([s], path, synthetic=True)
+    assert path.read_bytes() == original
+    with pytest.raises(ValueError): export_expanded_snapshots([s], tmp_path / 'data.json')
+    with pytest.raises(ValueError): export_expanded_snapshots([snapshot()], path, synthetic=True)

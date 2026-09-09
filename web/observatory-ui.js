@@ -11,9 +11,21 @@ function updateSceneStatus() {
   statVtubers.textContent = nodes.length.toLocaleString();
   statEdges.textContent = edges.length.toLocaleString();
   metricSelect.querySelector('[value="jaccard"]').textContent = graphEdges.some(edge => edge.jaccardScope === 'comment Jaccard') ? 'Comment Jaccard · %' : 'Jaccard similarity · %';
+  statCommunities.textContent = new Set(nodes.map(n => n.agency).filter(Boolean)).size.toLocaleString();
+  const bridge = [...nodes].filter(n => Number.isFinite(n.betweenness)).sort((a,b) => b.betweenness-a.betweenness)[0];
+  statTopBridge.textContent = bridge?.betweenness > 0 ? bridge.label : 'Unknown';
   const message = document.getElementById('graphMessage');
   message.hidden = nodes.length > 0 && edges.length > 0;
   message.textContent = !nodes.length ? 'No creators match these filters. Try another name or group.' : 'No connections at this threshold. Lower the minimum weight or select another period.';
+  if (selectedSnapshot?.coverage_state === 'NO_SNAPSHOT') {
+    message.hidden = false;
+    message.textContent = 'ไม่มี snapshot ของช่วงนี้ — ไม่ใช่หลักฐานว่าไม่มีผู้สร้าง';
+  } else if (selectedSnapshot?.coverage_state === 'IDENTITY_NOT_REVIEWED') {
+    message.hidden = false;
+    message.textContent = `ประวัติอัตลักษณ์ยังไม่ผ่านการทบทวน ${selectedSnapshot.unknown_history.length} ราย — ไม่ใช่การยืนยันว่าไม่มีอยู่`;
+  }
+  const coverage = document.getElementById('temporalCoverage');
+  if (coverage) coverage.textContent = `${selectedSnapshot?.coverage_state || 'Unknown'} · ประวัติยังไม่ทราบ ${selectedSnapshot?.unknown_history?.length || 0} ราย${temporalSnapshotsData?.synthetic ? ' · SYNTHETIC TEST DATA' : ''}`;
   document.querySelectorAll('.legend-item').forEach(item => {
     const active = item.querySelector('[title]')?.title === selectedAgency;
     item.classList.toggle('active-filter', active);
@@ -22,10 +34,9 @@ function updateSceneStatus() {
 }
 
 function updateSnapshotLabel() {
-  const stamp = rawData.metadata?.generated_at || rawData.metadata?.last_updated || rawData.metadata?.updated_at?.slice(0, 10);
-  const date = stamp ? new Date(stamp) : null;
-  document.getElementById('dataFreshness').textContent = date && !Number.isNaN(date.getTime())
-    ? `${usingEmbeddedSnapshot ? "Embedded snapshot" : "Snapshot"} · ${date.toISOString().slice(0, 10)}` : 'Snapshot date unavailable';
+  const stamp = selectedSnapshot?.collected_through;
+  document.getElementById('dataFreshness').textContent = stamp
+    ? `Present = latest collected snapshot · ${stamp}` : 'Collection cutoff not supplied · legacy context';
 }
 
 function renderSearchResults() {
@@ -89,10 +100,10 @@ function setMethodologyOpen(open) {
 }
 
 function updatePeriodControls() {
-  const label = TIMELINE_STEPS[currentTimelineStep];
+  const label = TIMELINE_STEPS[currentTimelineStep] || 'No snapshot';
   document.getElementById('timeSlider').value = currentTimelineStep;
   document.getElementById('timeSlider').setAttribute('aria-valuetext', label);
-  document.getElementById('scenePeriod').textContent = label.startsWith('All-Time') ? 'All-Time · dated evidence' : `${label} · ${isCumulativeTimeline ? 'cumulative' : 'yearly'}`;
+  document.getElementById('scenePeriod').textContent = selectedSnapshot?.coverage_state === 'LEGACY_UNVERIFIED' ? 'Legacy roster · identity history unverified' : label.startsWith('All-Time') ? 'All-Time · dated evidence' : `${label} · ${isCumulativeTimeline ? 'cumulative' : 'yearly'}`;
   document.querySelectorAll('[data-step]').forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.step) === currentTimelineStep)));
 }
 
