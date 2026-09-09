@@ -40,6 +40,55 @@ COLLAB_KEYWORDS = [
 ]
 
 
+STRONG_COLLAB_MARKERS = [
+    r"#collab",
+    r"\bcollab\b",
+    r"คอลแลบ",
+    r"w\s*/\s*@",
+    r"with\s+@",
+    r"ft\.?\s*@",
+    r"feat\.?\s*@",
+    r"ร่วมกับ",
+    r"เล่นกับ",
+    r"กับ\s*@"
+]
+
+NON_COLLAB_MARKERS = [
+    r"hbd",
+    r"happy\s+birthday",
+    r"art\s+by",
+    r"fanart\s+by",
+    r"illustration\s+by",
+    r"thanks",
+    r"thank\s+you",
+    r"ขอบคุณ"
+]
+
+
+def verify_collab_context(title: str, handle: str) -> tuple[bool, str]:
+    """
+    Verifies if a title provides strong collaboration context linked to a participant handle.
+    Bare @mention or generic event/game keywords alone do not verify collaboration.
+    """
+    t_lower = title.lower()
+    h_clean = handle.lower().replace("@", "").strip()
+
+    # 1. Check negative attribution/greeting markers
+    for n_pat in NON_COLLAB_MARKERS:
+        full_n_pat = rf"{n_pat}\s*@?{re.escape(h_clean)}"
+        if re.search(full_n_pat, t_lower):
+            return False, f"REJECTED_NON_COLLAB_CONTEXT:{n_pat}"
+        if re.search(rf"\b{n_pat}\b", t_lower) and not any(re.search(s_pat, t_lower) for s_pat in STRONG_COLLAB_MARKERS):
+            return False, f"REJECTED_NON_COLLAB_CONTEXT:{n_pat}"
+
+    # 2. Check strong collab markers
+    for s_pat in STRONG_COLLAB_MARKERS:
+        if re.search(s_pat, t_lower):
+            return True, "STRONG_COLLAB_CONTEXT_VERIFIED"
+
+    return False, "REJECTED_BARE_MENTION_OR_GENERIC_KEYWORD_ONLY"
+
+
 def build_collab_registries():
     # 1. Load root catalog containing titles
     catalog_df = pd.read_parquet(CATALOG_PATH)
@@ -124,13 +173,25 @@ def build_collab_registries():
         
         exact_verified_participants = []
         unresolved_mentions = []
+        rejected_mentions = []
+
+        identity_verification = "UNRESOLVED_HANDLE"
+        collab_context_verification = "NONE"
 
         for m in mentions:
             ml = m.lower().strip()
             if ml in exact_handle_map:
                 p_cid, p_name, p_ag = exact_handle_map[ml]
                 if p_cid != host_cid:  # Disallow self-collab
-                    exact_verified_participants.append((p_cid, p_name, p_ag, f"@{m}"))
+                    identity_verification = "EXACT_HANDLE_MATCH"
+                    is_collab, context_reason = verify_collab_context(title, f"@{m}")
+                    collab_context_verification = context_reason
+                    if is_collab:
+                        exact_verified_participants.append((p_cid, p_name, p_ag, f"@{m}", context_reason))
+                    else:
+                        rejected_mentions.append(f"@{m}({context_reason})")
+                else:
+                    rejected_mentions.append(f"@{m}(SELF_REFERENCE)")
             else:
                 unresolved_mentions.append(m)
 
@@ -139,8 +200,16 @@ def build_collab_registries():
 
         if distinct_verified:
             verification_level = "EXACT_HANDLE_VERIFIED"
-            audit_verdict = "PASSED_EXACT_HANDLE_VERIFICATION"
-            audit_reason = f"Explicit handle(s) {[p[3] for p in distinct_verified]} matched canonical registry handle exactly."
+            audit_verdict = "PASSED_EXACT_HANDLE_AND_CONTEXT_VERIFICATION"
+            audit_reason = (
+                f"Identity: EXACT_HANDLE_MATCH {[p[3] for p in distinct_verified]}. "
+                f"Context: STRONG_COLLAB_CONTEXT_VERIFIED."
+            )
+        elif identity_verification == "EXACT_HANDLE_MATCH":
+            # Exact handle match, but failed collab context check
+            verification_level = "CANDIDATE_UNRESOLVED"
+            audit_verdict = "REJECTED_COLLAB_CONTEXT"
+            audit_reason = f"Handle matched registry, but collab context check failed: {rejected_mentions}."
         else:
             verification_level = "CANDIDATE_UNRESOLVED"
             audit_verdict = "CANDIDATE_UNRESOLVED_REQUIRES_DESCRIPTION"
@@ -156,6 +225,8 @@ def build_collab_registries():
             "extracted_mentions": ",".join(mentions) if mentions else "NONE",
             "exact_resolved_count": len(distinct_verified),
             "unresolved_mentions_count": len(unresolved_mentions),
+            "identity_verification": identity_verification if distinct_verified else ("EXACT_HANDLE_MATCH" if rejected_mentions else "UNRESOLVED_HANDLE"),
+            "collab_context_verification": "STRONG_COLLAB_CONTEXT_VERIFIED" if distinct_verified else collab_context_verification,
             "verification_level": verification_level,
             "exists_in_temporal_catalog": vid in temp_vids,
             "retrieved_at": retrieved_at
@@ -181,6 +252,8 @@ def build_collab_registries():
             "host_channel_id": host_cid,
             "title": title,
             "published_at": pub,
+            "identity_verification": candidate_record["identity_verification"],
+            "collab_context_verification": candidate_record["collab_context_verification"],
             "verification_level": verification_level,
             "audit_verdict": audit_verdict,
             "resolved_participants": ";".join([f"{p[1]}({p[0]})" for p in distinct_verified]) if distinct_verified else "NONE",
@@ -188,9 +261,9 @@ def build_collab_registries():
             "audited_at": retrieved_at
         })
 
-        # Emit pairwise collab event records ONLY for EXACT_HANDLE_VERIFIED
+        # Emit pairwise collab event records ONLY when BOTH handle resolves exactly AND strong context passes
         if distinct_verified:
-            for p_cid, p_name, p_agency, p_mention in distinct_verified:
+            for p_cid, p_name, p_agency, p_mention, p_ctx in distinct_verified:
                 collab_id = f"collab_{vid}_{p_cid[:8]}"
                 verified_events.append({
                     "collab_id": collab_id,
@@ -204,6 +277,8 @@ def build_collab_registries():
                     "event_date": pub[:10],
                     "event_year": pub_year,
                     "evidence_source": f"video_catalog.parquet:title={title}",
+                    "identity_verification": "EXACT_HANDLE_MATCH",
+                    "collab_context_verification": "STRONG_COLLAB_CONTEXT_VERIFIED",
                     "verification_level": "EXACT_HANDLE_VERIFIED",
                     "verification_status": "VERIFIED_LOCAL_PUBLIC_ARTIFACT",
                     "host_in_target_cohort": host_cid in target_ids,

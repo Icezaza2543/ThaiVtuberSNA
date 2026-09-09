@@ -60,7 +60,7 @@ This memorandum systematically interrogates eight competing structural hypothese
 
 | Evaluation Dimension | Empirical Evidence & Indicators | Data Coverage | Confidence |
 | :--- | :--- | :--- | :--- |
-| **Supporting Evidence** | - Top 2 agencies (Algorhythm Project and Pixela Project) account for 54 out of 80 corporate channels in the cohort.<br>- Agency assortativity rose from -0.028 (2020) to +0.129 (2024) and +0.133 (2026 YTD).<br>- Within-agency interaction share increased while cross-agency bridge edge share dropped from 65.9% (2021) to 45.6% (2024). | Canonical network snapshots (2020–2026). | HIGH |
+| **Supporting Evidence** | - Top 2 agencies (Algorhythm Project and Pixela Project) account for 54 out of 80 corporate channels in the cohort.<br>- Agency-at-selection assortativity rose from -0.028 (2020) to +0.129 (2024) and +0.133 (2026 YTD).<br>- Agency-at-selection mixing shifted as cross-community edge share dropped from 65.9% (2021) to 45.6% (2024) and 36.8% (2026 YTD). | Canonical network snapshots (2020–2026). | HIGH |
 | **Contradicting Evidence** | - Independent creators constitute 113 out of 193 frozen cohort channels (58.5%).<br>- Over 40% of co-viewing edges connect independent creators to agency talents.<br>- Failed agency models (WACTOR Thailand dissolved 2022; RPG ceased talent ops 2024). | Manifest: 193 channels.<br>Collab verification audit. | HIGH |
 | **Missing Evidence** | - Super Chat and membership revenue market share split between corporate agencies and independent creators. | Private creator revenue data. | N/A |
 | **Hypothesis Status** | `[SUPPORTED_INTERPRETATION]` **SUPPORTED for audience interaction clustering; REJECTED for complete creator headcount monopolization.** | — | HIGH |
@@ -97,7 +97,7 @@ This memorandum systematically interrogates eight competing structural hypothese
 | Evaluation Dimension | Empirical Evidence & Indicators | Data Coverage | Confidence |
 | :--- | :--- | :--- | :--- |
 | **Supporting Evidence** | - High-profile talent departures and retirements in 2023–2025 (e.g. Aisha, Princess Zelina, Hinabe HongFei, Melita X, Asteroth, Ayna, Quentin, Latta).<br>- Agency dissolution: RPG ceased operations in 2024; WACTOR Thailand collapsed in 2022.<br>- Observed interacting accounts contracted by 27.7% YoY in 2024 (from 18,646 to 13,478 accounts).<br>- Over 91% of participating commenters in any given year do not interact in the subsequent year. | Lifecycle registry (232 verified/proxy events).<br>Yearly behavioral panel. | HIGH |
-| **Contradicting Evidence** | - Observed interacting accounts rebounded to 17,119 in 2025 (+27.0% YoY).<br>- Total weighted edge strength reached a historic peak of 7,029 in 2025.<br>- Active channels in cohort remained stable at 160–166 in 2024–2025.<br>- A new corporate operator/brand entered the observed ecosystem: Brave Group APAC launched AStars in 2024.<br>- Multi-talent collaborative events and physical fan-meetings continue to be listed/held. | Canonical graph metrics.<br>Target cohort panel.<br>Verified agency events. | VERY HIGH |
+| **Contradicting Evidence** | - Observed interacting accounts rebounded to 17,119 in 2025 (+27.0% YoY).<br>- Total weighted edge strength reached a historic peak of 7,029 in 2025.<br>- Active channels in cohort remained stable at 157 (2024), 166 (2025), and 160 (2026 YTD).<br>- A new corporate operator/brand entered the observed ecosystem: Brave Group APAC launched AStars in 2024.<br>- Multi-talent collaborative events and physical fan-meetings continue to be listed/held. | Canonical graph metrics.<br>Target cohort panel.<br>Verified agency events. | VERY HIGH |
 | **Missing Evidence** | - Net agency profitability / operating burn rates. | Private corporate financial statements. | N/A |
 | **Hypothesis Status** | `[SUPPORTED_INTERPRETATION]` **CONTRADICTED AS A SYSTEMIC MACRO COLLAPSE THESIS; ACCURATE ONLY AS A DESCRIPTION OF RESTRUCTURING & TALENT ATTRITION.** | — | HIGH |
 
@@ -108,7 +108,7 @@ This memorandum systematically interrogates eight competing structural hypothese
 
 | Evaluation Dimension | Empirical Evidence & Indicators | Data Coverage | Confidence |
 | :--- | :--- | :--- | :--- |
-| **Supporting Evidence** | - 2026 YTD giant component share dipped to 95.0% (2 separate components observed).<br>- Cross-community edge share declined from 65.9% (2021) to 45.6% (2024) and 36.8% (2026 YTD).<br>- Intra-agency assortativity reached all-time highs in 2024–2026 (+0.129 to +0.133). | Canonical snapshots (2020–2026). | HIGH |
+| **Supporting Evidence** | - 2026 YTD giant component share dipped to 95.0% (2 separate components observed).<br>- Cross-community edge share declined from 65.9% (2021) to 45.6% (2024) and 36.8% (2026 YTD).<br>- Agency-at-selection assortativity reached all-time highs in 2024–2026 (+0.129 to +0.133). | Canonical snapshots (2020–2026). | HIGH |
 | **Contradicting Evidence** | - From 2020 through 2025, 100% of active cohort channels remained unified in a single giant component.<br>- Top bridging creators (betweenness centrality > 0.05) maintain 40%–56% cross-community ties.<br>- Joint inter-agency and indie-agency collabs continue to be verified in public catalog records. | Canonical network snapshots.<br>Collab verification audit. | HIGH |
 | **Missing Evidence** | - Off-platform Discord cross-membership and private server interactions. | Private community APIs. | N/A |
 | **Hypothesis Status** | `[SUPPORTED_INTERPRETATION]` **SUPPORTED for sub-community clustering; CONTRADICTED for total topological fragmentation.** | — | HIGH |
@@ -131,31 +131,31 @@ This memorandum systematically interrogates eight competing structural hypothese
 To avoid misinterpreting multi-year trends, structural shifts must be evaluated across discrete consecutive intervals, maintaining sampling depth and modality caveats:
 
 ### Period 1: 2022 $\to$ 2023 (Pioneer Influx to Supply Peak)
-- **Active Channels:** Grew from 107 to 164 (+53.3%). `[OBSERVED_RESULT]`
-- **Observed Commenter/Chat Participant Accounts:** Grew from 13,873 to 18,646 (+34.4%). `[OBSERVED_RESULT]`
-- **Newly Observed Accounts:** Peaked at 17,117 accounts. `[OBSERVED_RESULT]`
+- **Active Channels:** Grew from 92 to 129 (+40.2%). `[OBSERVED_RESULT]`
+- **Observed Commenter/Chat Participant Accounts:** Grew from 12,005 to 18,646 (+55.3%). `[OBSERVED_RESULT]`
+- **Newly Observed Accounts:** Peaked at 17,104 accounts (91.73% of active accounts). `[OBSERVED_RESULT]`
 - **Structural Interpretation:** High public curiosity, debuts of agency generations (Pixela Gen 1 & 2, ARP Eclipse/Dusk/Dawn), proliferation of indie setups. `[SUPPORTED_INTERPRETATION]`
-- **Vulnerability Introduced:** Supply grew faster than loyal retention; 91.8% of 2023 accounts were one-time or first-time observers. `[OBSERVED_RESULT]`
+- **Vulnerability Introduced:** Supply grew faster than loyal retention; 91.7% of 2023 accounts were first-time observers. `[OBSERVED_RESULT]`
 
 ### Period 2: 2023 $\to$ 2024 (Acute Contraction & Organizational Shakeout)
-- **Active Channels:** Remained essentially flat (164 to 160, -2.4%). `[OBSERVED_RESULT]`
+- **Active Channels:** Rose from 129 to 157 (+21.7%). `[OBSERVED_RESULT]`
 - **Observed Commenter/Chat Participant Accounts:** Dropped from 18,646 to 13,478 (-27.7%). `[OBSERVED_RESULT]`
-- **Newly Observed Accounts:** Collapsed from 17,117 to 11,298 (-34.0%). `[OBSERVED_RESULT]`
+- **Newly Observed Accounts:** Contracted from 17,104 to 11,325 (-33.8%). `[OBSERVED_RESULT]`
 - **Structural Interpretation:** Post-pandemic screen-time normalization, graduation wave of 1st-gen agency talents, closure of unviable circles (RPG). `[SUPPORTED_INTERPRETATION]`
-- **Network Reaction:** Modularity held stable (0.316 $\to$ 0.317), proving the underlying community topology did not fracture despite the volume loss. `[OBSERVED_RESULT]`
+- **Network Reaction:** Modularity held stable (0.315 $\to$ 0.311), proving the underlying community topology did not fracture despite the volume loss. `[OBSERVED_RESULT]`
 
 ### Period 3: 2024 $\to$ 2025 (Partial Rebound vs. Modularity Bifurcation)
-- **Active Channels:** Rose slightly from 160 to 166 (+3.8%). `[OBSERVED_RESULT]`
+- **Active Channels:** Rose from 157 to 166 (+5.7%). `[OBSERVED_RESULT]`
 - **Observed Commenter/Chat Participant Accounts:** Rebounded from 13,478 to 17,119 (+27.0%). `[OBSERVED_RESULT]`
 - **Weighted Edge Strength:** Surged to an all-time high of 7,029. `[OBSERVED_RESULT]`
-- **Structural Interpretation:** Consolidation around major agency events, cross-unit collabs, return of reactivated accounts (874 accounts, +5.1%), introduction of corporate entries like AStars (Brave Group APAC). `[SUPPORTED_INTERPRETATION]`
-- **Critical Caveat:** While interacting account volume returned near 2023 levels, cross-agency edge share hit a historical low (45.6%), indicating accounts returned into more isolated agency clusters. `[OBSERVED_RESULT]`
+- **Structural Interpretation:** Consolidation around major agency events, cross-unit collabs, return of reactivated accounts (948 accounts, 5.54% of total active accounts), introduction of corporate entries like AStars (Brave Group APAC). `[SUPPORTED_INTERPRETATION]`
+- **Critical Caveat:** While interacting account volume returned near 2023 levels, cross-community edge share was 48.64%, with agency-at-selection assortativity rising to +0.129 in 2024 and +0.133 in 2026 YTD. `[OBSERVED_RESULT]`
 
 ### Period 4: 2026 YTD (Methodological Quarantine: Partial Year)
-- **Active Channels Observed:** 140 (as of September 2026). `[OBSERVED_RESULT]`
-- **Observed Commenter/Chat Participant Accounts:** 9,218 accounts (partial 8-month sample). `[OBSERVED_RESULT]`
-- **Analytical Prohibition:** Comparing the 9,218 accounts directly to full 12-month totals (17,119 in 2025) is methodologically INVALID due to partial-year truncation.
-- **Valid Ratio Metric:** Returning interacting account share in 2026 YTD reached a record 20.91% (1,927 / 9,218), confirming that long-term returning account persistence remains intact. `[OBSERVED_RESULT]`
+- **Active Channels Observed:** 160 (as of September 2026 YTD). `[OBSERVED_RESULT]`
+- **Observed Commenter/Chat Participant Accounts:** 13,259 accounts (partial 8-month sample). `[OBSERVED_RESULT]`
+- **Analytical Prohibition:** Comparing the 13,259 accounts directly to full 12-month totals (17,119 in 2025) is methodologically INVALID due to partial-year truncation.
+- **Valid Ratio Metric:** Returning interacting account share in 2026 YTD reached a record 20.91% (2,773 / 13,259), with 826 reactivated accounts (6.23%), confirming that long-term returning account persistence remains intact. `[OBSERVED_RESULT]`
 
 ---
 

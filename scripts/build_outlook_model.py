@@ -40,18 +40,40 @@ def build_outlook_model():
     aud_df = pd.read_parquet(AUDIENCE_BEHAVIOR_PARQUET)
     evt_df = pd.read_parquet(CREATOR_EVENTS_PARQUET)
     
+    manifest_df = pd.read_csv(ROOT / "data/temporal/catalog/target_manifest.csv")
+    target_cohort_total = len(manifest_df)
+
     # We focus on the most recent full comparison years: 2024 vs 2025 (and 2026 YTD with caveat)
     eco_2024 = eco_df[eco_df["year"] == 2024].iloc[0]
     eco_2025 = eco_df[eco_df["year"] == 2025].iloc[0]
     eco_2026 = eco_df[eco_df["year"] == 2026].iloc[0]
     
+    aud_2021 = aud_df[aud_df["year"] == 2021].iloc[0]
     aud_2024 = aud_df[aud_df["year"] == 2024].iloc[0]
     aud_2025 = aud_df[aud_df["year"] == 2025].iloc[0]
     aud_2026 = aud_df[aud_df["year"] == 2026].iloc[0]
     
-    # Calculate graduation counts per year from verified/proxy events
-    evt_2024 = len(evt_df[(evt_df["event_year"] == 2024) & (evt_df["event_type"].str.contains("GRADUATION|CHANNEL_UNAVAILABLE", case=False))])
-    evt_2025 = len(evt_df[(evt_df["event_year"] == 2025) & (evt_df["event_type"].str.contains("GRADUATION|CHANNEL_UNAVAILABLE", case=False))])
+    # Calculate graduation counts per year strictly separated by evidence tier
+    evt_primary_2024 = len(evt_df[
+        (evt_df["event_year"] == 2024) & 
+        (evt_df["evidence_tier"] == "PRIMARY_EVENT_SPECIFIC") & 
+        (evt_df["event_type"].isin(["GRADUATION", "GRADUATION_OR_DEPARTURE"]))
+    ])
+    evt_primary_2025 = len(evt_df[
+        (evt_df["event_year"] == 2025) & 
+        (evt_df["evidence_tier"] == "PRIMARY_EVENT_SPECIFIC") & 
+        (evt_df["event_type"].isin(["GRADUATION", "GRADUATION_OR_DEPARTURE"]))
+    ])
+    evt_proxy_2024 = len(evt_df[
+        (evt_df["event_year"] == 2024) & 
+        (evt_df["evidence_tier"].isin(["INFERRED_PROXY", "PROXIMAL_COMMUNITY_PROXY"])) & 
+        (evt_df["event_type"].str.contains("GRADUATION"))
+    ])
+    evt_proxy_2025 = len(evt_df[
+        (evt_df["event_year"] == 2025) & 
+        (evt_df["evidence_tier"].isin(["INFERRED_PROXY", "PROXIMAL_COMMUNITY_PROXY"])) & 
+        (evt_df["event_type"].str.contains("GRADUATION"))
+    ])
     
     # Load actual data confidence from quality artifact
     qual_df = pd.read_parquet(ROOT / "data/temporal/quality/yearly_evidence_quality.parquet")
@@ -67,7 +89,7 @@ def build_outlook_model():
             "value": float(eco_2025["active_channels"]),
             "previous_comparable_value": float(eco_2024["active_channels"]),
             "direction": "EXPANDING" if eco_2025["active_channels"] > eco_2024["active_channels"] * 1.05 else ("CONTRACTING" if eco_2025["active_channels"] < eco_2024["active_channels"] * 0.95 else "STABLE"),
-            "coverage": "193 target cohort channels (166 active in 2025)",
+            "coverage": f"{target_cohort_total} target cohort channels ({int(eco_2025['active_channels'])} active in 2025)",
             "confidence": "HIGH",
             "source_artifact": "yearly_ecosystem_metrics.parquet",
             "limitation": "Restricted to target research cohort channels with active interaction in window."
@@ -90,13 +112,13 @@ def build_outlook_model():
             "dimension": "EXIT_PRESSURE",
             "metric": "verified_graduations_and_closures",
             "period": "2025",
-            "value": float(evt_2025),
-            "previous_comparable_value": float(evt_2024),
-            "direction": "CONTRACTING" if evt_2025 < evt_2024 else ("EXPANDING" if evt_2025 > evt_2024 else "STABLE"),
-            "coverage": "Verified and proxy lifecycle milestones in target cohort",
-            "confidence": "MEDIUM",
+            "value": float(evt_primary_2025),
+            "previous_comparable_value": float(evt_primary_2024),
+            "direction": "CONTRACTING" if evt_primary_2025 < evt_primary_2024 else ("EXPANDING" if evt_primary_2025 > evt_primary_2024 else "STABLE"),
+            "coverage": "Primary verified lifecycle milestones in target cohort",
+            "confidence": "HIGH",
             "source_artifact": "creator_status_events.parquet",
-            "limitation": "Official graduations and agency closures only. Excludes silent hiatuses."
+            "limitation": f"Primary verified events only (2024: {evt_primary_2024} primary, {evt_proxy_2024} proxy; 2025: {evt_primary_2025} primary, {evt_proxy_2025} proxy). Proxies excluded."
         },
         # 4. AUDIENCE_ACTIVITY
         {
@@ -253,11 +275,11 @@ def build_outlook_model():
         "",
         "### Observed Empirical Patterns",
         "1. **Creator Activity in Target Cohort**:",
-        "   - Active channels in our target research cohort numbered **166 channels in 2025** (out of 193 total cohort channels).",
-        "   - Annual interacting audience volume in 2025 reached **17,119 active accounts**.",
+        f"   - Active channels in our target research cohort numbered **{int(eco_2025['active_channels'])} channels in 2025** (out of {target_cohort_total} total cohort channels).",
+        f"   - Annual interacting audience volume in 2025 reached **{int(aud_2025['population_observed_accounts']):,} active accounts**.",
         "2. **Audience Account Persistence**:",
-        "   - Re-observed accounts accounted for **58.7% of all active interacting accounts in 2025** (up from 15.3% in 2021).",
-        "   - The proportion of newly observed interacting accounts decreased from 84.7% (2021) to 41.3% (2025), reflecting cohort maturation.",
+        f"   - Re-observed accounts accounted for **{aud_2025['pct_re_observed']:.1f}% of all active interacting accounts in 2025** (up from {aud_2021['pct_re_observed']:.1f}% in 2021).",
+        f"   - The proportion of newly observed interacting accounts decreased from {aud_2021['pct_newly_observed']:.1f}% (2021) to {aud_2025['pct_newly_observed']:.1f}% (2025), reflecting cohort maturation.",
         "3. **Monetization & Commercial Transparency Boundary**:",
         "   - While non-summable public price signals exist (e.g. ticket prices, retail merchandise unit prices), private agency disclosures and transaction volumes remain undisclosed.",
         "   - Under the fail-closed epistemic policy, overall industry financial outlook remains **`INSUFFICIENT_EVIDENCE`**.",
@@ -267,7 +289,7 @@ def build_outlook_model():
         "## 2. The 11-Dimension Outlook Scorecard",
         "",
         "| Dimension | Metric | 2024 Value | 2025 Value | Observed Trajectory | Confidence | Source Artifact |",
-        "|---|---|---|---|---|---|---|"
+        "|---|---|---|---|---|---|---|",
     ]
     
     for it in indicators:
@@ -327,7 +349,7 @@ def build_outlook_model():
         "## 4. Sensitivity Analysis",
         "",
         "- **Test 1: Excluding 2026 YTD**: 2026 represents an incomplete annual window. Analysis focuses on completed calendar years 2020 through 2025.",
-        "- **Test 2: Modality Sensitivity**: Comment-only and live-chat accounts show consistent re-observation trends across the target cohort.",
+        "- **Test 2: Modality Sensitivity**: **INSUFFICIENT_EVIDENCE**. Longitudinal modality breakdowns lack multi-year historical depth for separate comment-only vs live-chat re-observation trend claims.",
         "- **Test 3: Commercial Disclosure Gate**: Without auditable revenue statements, economic viability cannot be inferred solely from audience participation.",
         "",
         "---",

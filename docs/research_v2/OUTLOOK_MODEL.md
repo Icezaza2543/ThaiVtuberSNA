@@ -14,8 +14,8 @@ Public commentary frequently poses questions regarding ecosystem contraction or 
    - Active channels in our target research cohort numbered **166 channels in 2025** (out of 193 total cohort channels).
    - Annual interacting audience volume in 2025 reached **17,119 active accounts**.
 2. **Audience Account Persistence**:
-   - Re-observed accounts accounted for **58.7% of all active interacting accounts in 2025** (up from 15.3% in 2021).
-   - The proportion of newly observed interacting accounts decreased from 84.7% (2021) to 41.3% (2025), reflecting cohort maturation.
+   - Re-observed accounts accounted for **17.8% of all active interacting accounts in 2025** (up from 4.5% in 2021).
+   - The proportion of newly observed interacting accounts decreased from 95.5% (2021) to 82.2% (2025), reflecting cohort maturation.
 3. **Monetization & Commercial Transparency Boundary**:
    - While non-summable public price signals exist (e.g. ticket prices, retail merchandise unit prices), private agency disclosures and transaction volumes remain undisclosed.
    - Under the fail-closed epistemic policy, overall industry financial outlook remains **`INSUFFICIENT_EVIDENCE`**.
@@ -28,7 +28,7 @@ Public commentary frequently poses questions regarding ecosystem contraction or 
 |---|---|---|---|---|---|---|
 | **`CREATOR_SUPPLY`** | `active_channels_count` | `157.00` | `166.00` | **`EXPANDING`** | `HIGH` | `yearly_ecosystem_metrics.parquet` |
 | **`ENTRY_RATE`** | `pct_new_interacting_audience` | `84.03%` | `82.25%` | **`CONTRACTING`** | `HIGH` | `audience_behavior_yearly.parquet` |
-| **`EXIT_PRESSURE`** | `verified_graduations_and_closures` | `2.00` | `9.00` | **`EXPANDING`** | `MEDIUM` | `creator_status_events.parquet` |
+| **`EXIT_PRESSURE`** | `verified_graduations_and_closures` | `0.00` | `6.00` | **`EXPANDING`** | `HIGH` | `creator_status_events.parquet` |
 | **`AUDIENCE_ACTIVITY`** | `annual_active_interaction_accounts` | `13,478` | `17,119` | **`EXPANDING`** | `HIGH` | `audience_behavior_yearly.parquet` |
 | **`AUDIENCE_PERSISTENCE`** | `pct_re_observed_accounts` | `15.97%` | `17.75%` | **`EXPANDING`** | `HIGH` | `audience_behavior_yearly.parquet` |
 | **`AUDIENCE_BREADTH`** | `pct_multi_channel_observed` | `8.90%` | `9.92%` | **`EXPANDING`** | `HIGH` | `audience_behavior_yearly.parquet` |
@@ -68,7 +68,7 @@ Public commentary frequently poses questions regarding ecosystem contraction or 
 ## 4. Sensitivity Analysis
 
 - **Test 1: Excluding 2026 YTD**: 2026 represents an incomplete annual window. Analysis focuses on completed calendar years 2020 through 2025.
-- **Test 2: Modality Sensitivity**: Comment-only and live-chat accounts show consistent re-observation trends across the target cohort.
+- **Test 2: Modality Sensitivity**: **INSUFFICIENT_EVIDENCE**. Longitudinal modality breakdowns lack multi-year historical depth for separate comment-only vs live-chat re-observation trend claims.
 - **Test 3: Commercial Disclosure Gate**: Without auditable revenue statements, economic viability cannot be inferred solely from audience participation.
 
 ---

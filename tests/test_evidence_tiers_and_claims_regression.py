@@ -384,3 +384,66 @@ def test_high_level_hypothesis_verdicts_are_not_mislabeled_observed_result():
     ]:
         assert not re.search(prohibited, outlook_text), f"Prohibited pattern '{prohibited}' found in OUTLOOK_HYPOTHESES.md"
         assert not re.search(prohibited, report_text), f"Prohibited pattern '{prohibited}' found in LONG_RUNNING_RESEARCH_REPORT.md"
+
+
+def test_single_canonical_writer_regression():
+    """Mission 1: Regress that only build_creator_lifecycle_evidence.py writes creator_status_events.*."""
+    eco_file = REPO_ROOT / "scripts/build_creator_ecosystem_data.py"
+    life_file = REPO_ROOT / "scripts/build_creator_lifecycle_evidence.py"
+    
+    eco_src = eco_file.read_text(encoding="utf-8")
+    life_src = life_file.read_text(encoding="utf-8")
+    
+    # build_creator_ecosystem_data must not contain to_parquet/to_csv targeting creator_status_events
+    assert "creator_status_events" not in eco_src or "to_parquet" not in eco_src.split("creator_status_events")[1][:100], (
+        "build_creator_ecosystem_data.py must not write creator_status_events!"
+    )
+    
+    # Canonical writer must be build_creator_lifecycle_evidence
+    assert "to_parquet" in life_src and "creator_status_events" in life_src
+
+
+def test_collab_context_negative_regressions():
+    """Mission 7: Collab verification negative regressions (bare mentions, generic keywords, attributions)."""
+    import sys
+    if str(REPO_ROOT) not in sys.path:
+        sys.path.insert(0, str(REPO_ROOT))
+    from scripts.build_collab_registries import verify_collab_context
+    
+    # Negative cases
+    ok1, r1 = verify_collab_context("HBD @KnownHandle", "@KnownHandle")
+    assert not ok1
+    assert "NON_COLLAB_CONTEXT" in r1
+    
+    ok2, r2 = verify_collab_context("art by @KnownHandle", "@KnownHandle")
+    assert not ok2
+    assert "NON_COLLAB_CONTEXT" in r2
+    
+    ok3, r3 = verify_collab_context("thanks @KnownHandle", "@KnownHandle")
+    assert not ok3
+    assert "NON_COLLAB_CONTEXT" in r3
+    
+    ok4, r4 = verify_collab_context("Minecraft stream @KnownHandle", "@KnownHandle")
+    assert not ok4
+    assert "BARE_MENTION_OR_GENERIC_KEYWORD" in r4
+
+    # Positive cases
+    ok5, r5 = verify_collab_context("🔴｢LIVE｣#COLLAB PACIFY @Mallow_Ham", "@Mallow_Ham")
+    assert ok5
+    assert r5 == "STRONG_COLLAB_CONTEXT_VERIFIED"
+
+
+def test_modality_claim_downgraded_regression():
+    """Mission 4: Test 2 Modality Sensitivity must be INSUFFICIENT_EVIDENCE."""
+    outlook_model_path = REPO_ROOT / "docs/research_v2/OUTLOOK_MODEL.md"
+    content = outlook_model_path.read_text(encoding="utf-8")
+    assert "- **Test 2: Modality Sensitivity**: **INSUFFICIENT_EVIDENCE**" in content
+
+
+def test_research_v2_consistency_audit_script():
+    """Mission 9: Run scripts/audit_research_v2_consistency.py and ensure 100% pass."""
+    import sys
+    if str(REPO_ROOT) not in sys.path:
+        sys.path.insert(0, str(REPO_ROOT))
+    from scripts.audit_research_v2_consistency import main as run_audit
+    assert run_audit() == 0

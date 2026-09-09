@@ -11,8 +11,8 @@
 - **Pass 4 (Research Integrity Hotfix):** Started 2026-09-09T10:55:00+07:00, Ended 2026-09-09T11:06:00+07:00 (11 wall-clock minutes).  
 - **Pre-Hotfix Cumulative Wall-Clock Runtime:** **32 minutes**.  
 - **Hotfix Runtime:** **11 minutes**.  
-- **Total Recorded Cumulative Wall-Clock Runtime:** **43 minutes**.  
-*(Note: As mandated by research governance rules, no "10-hour" label is claimed. All execution durations and record counts are derived strictly from [`docs/research_v2/RUNTIME_LEDGER.md`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/docs/research_v2/RUNTIME_LEDGER.md).)*
+- **Total Recorded Cumulative Wall-Clock Runtime:** 43 minutes mechanically recorded through Batch 4; subsequent hotfix runtime was not mechanically captured.  
+*(Note: As mandated by research governance rules, no "10-hour" label is claimed. Current ledger records 43 minutes through Batch 4 ending 11:06; subsequent integrity commits were not mechanically captured and timestamps are not invented. Derivation from [`docs/research_v2/RUNTIME_LEDGER.md`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/docs/research_v2/RUNTIME_LEDGER.md).)*
 
 ---
 
@@ -23,7 +23,7 @@
 | **Passes Completed** | **4 (Pass 1–3 + Hotfix)** | Sequential execution pipeline with calibrated integrity audit |
 | **Pre-Hotfix Wall-Clock Runtime** | **32 minutes** | `RUNTIME_LEDGER.md` (Batch 1: 18m, Batch 2: 11m, Batch 3: 3m) |
 | **Hotfix Wall-Clock Runtime** | **11 minutes** | `RUNTIME_LEDGER.md` (Batch 4: 11m) |
-| **Total Recorded Runtime** | **43 minutes** | `RUNTIME_LEDGER.md` (18 + 11 + 3 + 11 = 43 minutes) |
+| **Total Recorded Runtime** | **43 minutes recorded through Batch 4; subsequent hotfix runtime uncaptured** | `RUNTIME_LEDGER.md` |
 | **Queries Attempted** | **342** | MediaWiki API crawls, YouTube API catalog queries, DuckDB snapshots |
 | **Unique Inspected URLs** | **250 unique URLs** | Mechanically deduplicated in `docs/research_v2/SOURCE_LEDGER.csv` |
 | **Sources Accepted (External Evidence)** | **243 URLs** | Verified official announcements, event tickets, products, and wiki records |
@@ -189,5 +189,5 @@ A 2025 rebound (+27.0% interacting accounts) **does NOT disprove long-term struc
 - [x] **Denominator Invariant:** Exactly 193 frozen target cohort channels maintained.
 - [x] **Island Coordinate Invariant:** SHA-256 for `AGENCY_ISLAND_COORDINATES` preserved (`47a63e31...`).
 - [x] **No Refactoring Rule:** Zero source code moved to `src/`.
-- [x] **Truthful Runtime:** Exactly 43 wall-clock minutes recorded (32m pre-hotfix + 11m hotfix); zero "10-hour" fabrication.
+- [x] **Truthful Runtime:** 43 minutes mechanically recorded through Batch 4 (32m pre-hotfix + 11m hotfix); subsequent hotfix runtime was not mechanically captured; zero "10-hour" fabrication.
 - [x] **Evidence Tiers Calibrated:** Strict separation of `PRIMARY_EVENT_SPECIFIC`, `PRIMARY_ENTITY_GENERAL`, `SECONDARY_DOCUMENTED`, and `INFERRED_PROXY`.

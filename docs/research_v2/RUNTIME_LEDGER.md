@@ -11,4 +11,7 @@ All session metrics, elapsed wall-clock minutes, page inspection counts, and dat
 | `SESSION-MARATHON-01` | 3 | `BATCH-03A-TRIANGULATION` | 2026-09-09T04:03:00+07:00 | 2026-09-09T04:06:00+07:00 | 3 | 35 | 246 | 239 | 7 | 1400 | 251 | `EXHAUSTION-COMPLETE` |
 | `SESSION-MARATHON-01` | 4 | `BATCH-04-INTEGRITY-HOTFIX` | 2026-09-09T10:55:00+07:00 | 2026-09-09T11:06:00+07:00 | 11 | 48 | 250 | 243 | 7 | 232 | 193 | `RESEARCH-INTEGRITY-CALIBRATED` |
 
+> [!NOTE]
+> **Runtime Status**: 43 minutes mechanically recorded through Batch 4; subsequent hotfix runtime was not mechanically captured. Timestamps are never invented.
+
 

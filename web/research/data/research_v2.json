@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Thai VTuber Industry Intelligence v2 Aggregate Data Contract",
-    "generated_at": "2026-09-09T04:37:21.906530+00:00",
+    "generated_at": "2026-09-09T05:33:19.841103+00:00",
     "version": "2.0.0",
     "privacy_class": "PUBLIC_RESEARCH_DATA",
     "target_cohort": "193 Target Thai VTuber Channels (Frozen Longitudinal Cohort)",
@@ -26,43 +26,50 @@
     "yearly_coverage_chart": [
       {
         "year": 2020,
-        "videos": 5984,
+        "videos": 1897,
+        "observed_interactions": 5984,
         "accounts": 5232,
         "channels": 21
       },
       {
         "year": 2021,
-        "videos": 14653,
+        "videos": 5601,
+        "observed_interactions": 14653,
         "accounts": 11259,
         "channels": 65
       },
       {
         "year": 2022,
-        "videos": 14772,
+        "videos": 9386,
+        "observed_interactions": 14772,
         "accounts": 12005,
         "channels": 92
       },
       {
         "year": 2023,
-        "videos": 23224,
+        "videos": 15516,
+        "observed_interactions": 23224,
         "accounts": 18646,
         "channels": 129
       },
       {
         "year": 2024,
-        "videos": 17159,
+        "videos": 22436,
+        "observed_interactions": 17159,
         "accounts": 13478,
         "channels": 157
       },
       {
         "year": 2025,
-        "videos": 21812,
+        "videos": 25246,
+        "observed_interactions": 21812,
         "accounts": 17119,
         "channels": 166
       },
       {
         "year": 2026,
-        "videos": 17265,
+        "videos": 16338,
+        "observed_interactions": 17265,
         "accounts": 13259,
         "channels": 160,
         "note": "YTD partial"
@@ -116,8 +123,11 @@
     "active_observed": 166,
     "target_cohort_total": 193,
     "first_observed": 150,
-    "inactive_unavailable": 33,
-    "verified_graduations": 0,
+    "inactive_unavailable": 24,
+    "verified_graduations": 12,
+    "primary_verified_graduations": 12,
+    "secondary_documented_graduations": 3,
+    "proxy_graduation_boundaries": 5,
     "growth_chart": [
       {
         "year": 2020,

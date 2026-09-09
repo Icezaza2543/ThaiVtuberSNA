@@ -905,6 +905,19 @@ def build_creator_datasets():
     logger.info(f"Saved {len(coverage_df)} creator coverage rows to {cov_parquet} and {cov_csv}")
     logger.info(f"Remaining gap breakdown: {coverage_df['remaining_gap'].value_counts().to_dict()}")
 
+    # Regenerate creator_public_snapshot from newly built canonical evidence
+    try:
+        try:
+            from scripts.build_creator_ecosystem_data import build_creator_public_snapshot
+        except ImportError:
+            import sys
+            sys.path.insert(0, str(Path(__file__).resolve().parent))
+            from build_creator_ecosystem_data import build_creator_public_snapshot
+        build_creator_public_snapshot()
+        logger.info("Successfully updated creator_public_snapshot.parquet from canonical lifecycle evidence.")
+    except Exception as e:
+        logger.warning(f"Could not build creator_public_snapshot: {e}")
+
 
 if __name__ == "__main__":
     build_creator_datasets()

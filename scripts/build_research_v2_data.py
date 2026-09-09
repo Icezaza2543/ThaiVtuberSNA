@@ -63,6 +63,9 @@ def generate_v2_data_contract():
     video_catalog_df = pd.read_parquet(TEMPORAL_DIR / "catalog/video_catalog.parquet")
     quality_df = pd.read_parquet(TEMPORAL_DIR / "quality/yearly_evidence_quality.parquet")
     target_manifest_df = pd.read_csv(TEMPORAL_DIR / "catalog/target_manifest.csv")
+    with open(ROOT / "data/thai_vtuber_registry.json", "r", encoding="utf-8") as f:
+        registry_data = json.load(f)
+    registered_channels_count = len(registry_data)
     
     # 2. Extract dynamic baseline numbers
     eco_2024 = eco_df[eco_df["year"] == 2024].iloc[0]
@@ -80,6 +83,9 @@ def generate_v2_data_contract():
     total_observed_accounts_all = int(aud_df["population_observed_accounts"].sum())
     
     # Yearly coverage chart dynamically built
+    # True distinct cataloged videos per year
+    video_catalog_years = video_catalog_df["video_published_at"].astype(str).str[:4]
+
     yearly_cov_chart = []
     for yr in sorted(eco_df["year"].unique()):
         sub_eco = eco_df[eco_df["year"] == yr]
@@ -89,10 +95,12 @@ def generate_v2_data_contract():
         c_active = int(sub_eco.iloc[0]["active_channels"]) if not sub_eco.empty else 0
         a_obs = int(sub_aud.iloc[0]["population_observed_accounts"]) if not sub_aud.empty else 0
         v_obs = int(sub_net.iloc[0]["total_observed_interactions"]) if not sub_net.empty else 0
+        v_catalog = int((video_catalog_years == str(int(yr))).sum())
         
         item = {
             "year": int(yr),
-            "videos": v_obs,
+            "videos": v_catalog,
+            "observed_interactions": v_obs,
             "accounts": a_obs,
             "channels": c_active
         }
@@ -119,7 +127,7 @@ def generate_v2_data_contract():
         "target_cohort": target_cohort_total,
         "target_cohort_universe": target_cohort_total,
         "active_cohort_channels_2025": int(eco_2025["active_channels"]),
-        "registered_channels": 1370,
+        "registered_channels": registered_channels_count,
         "cataloged_videos": total_cataloged_vids,
         "evidence_channels": len(coverage_df[coverage_df["status"] == "completed"]),
         "observed_accounts": int(aud_2025["population_observed_accounts"]),
@@ -175,12 +183,28 @@ def generate_v2_data_contract():
     }
 
     # Creator Ecosystem Chapter
+    primary_graduations = len(creator_events_df[
+        (creator_events_df["event_type"].isin(["GRADUATION", "GRADUATION_OR_DEPARTURE"])) &
+        (creator_events_df["evidence_tier"] == "PRIMARY_EVENT_SPECIFIC")
+    ])
+    secondary_graduations = len(creator_events_df[
+        (creator_events_df["event_type"].isin(["GRADUATION", "GRADUATION_OR_DEPARTURE"])) &
+        (creator_events_df["evidence_tier"] == "SECONDARY_DOCUMENTED")
+    ])
+    proxy_graduations = len(creator_events_df[
+        (creator_events_df["event_type"].str.contains("GRADUATION")) &
+        (creator_events_df["evidence_tier"].isin(["INFERRED_PROXY", "PROXIMAL_COMMUNITY_PROXY"]))
+    ])
+
     creators_chapter = {
         "active_observed": int(eco_2025["active_channels"]),
         "target_cohort_total": target_cohort_total,
         "first_observed": len(creator_events_df[creator_events_df["event_type"] == "FIRST_OBSERVED"]),
         "inactive_unavailable": len(creator_snap_df[creator_snap_df["activity_status"] == "HIATUS"]),
-        "verified_graduations": len(creator_events_df[creator_events_df["event_type"] == "GRADUATION_VERIFIED"]),
+        "verified_graduations": primary_graduations,
+        "primary_verified_graduations": primary_graduations,
+        "secondary_documented_graduations": secondary_graduations,
+        "proxy_graduation_boundaries": proxy_graduations,
         "growth_chart": [
             {"year": int(r["year"]), "active_channels": int(r["active_channels"])} for _, r in eco_df.iterrows()
         ],
