@@ -160,7 +160,7 @@ class JobJournal:
                  outcome, job_id, claim_token))
             return True
 
-    def fail_job(self, job_id, error_reason, retryable=True, backoff_seconds=30, *, claim_token):
+    def fail_job(self, job_id, error_reason, retryable=True, backoff_seconds=30, *, claim_token, publish=None):
         if error_reason not in OUTCOMES:
             error_reason = 'EXTRACTION_FAILURE'
         dt = self.clock()
@@ -172,6 +172,8 @@ class JobJournal:
                 (job_id, claim_token, now)).fetchone()
             if row is None:
                 return False
+            if publish is not None:
+                publish()
             retry = retryable and row['attempts'] < row['max_attempts']
             delay = min(3600, max(0, backoff_seconds) * 2**min(row['attempts']-1, 10))
             con.execute("""UPDATE collection_jobs SET state=?, error_reason=?, last_outcome=?,

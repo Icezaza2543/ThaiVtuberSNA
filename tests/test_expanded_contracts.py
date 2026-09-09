@@ -66,3 +66,50 @@ def test_expanded_export_is_explicit_and_immutable(tmp_path):
     assert path.read_bytes() == original
     with pytest.raises(ValueError): export_expanded_snapshots([s], tmp_path / 'data.json')
     with pytest.raises(ValueError): export_expanded_snapshots([snapshot()], path, synthetic=True)
+
+
+def test_expanded_builder_reuses_interaction_metrics_and_preserves_isolated():
+    import duckdb
+    import pyarrow as pa
+    from scripts.build_duckdb_temporal_snapshots import build_canonical_events_view, build_expanded_window
+    con=duckdb.connect(':memory:')
+    rows=[dict(viewer_hash='synthetic-shared',vtuber_channel_id=cid,video_id='synthetic-'+cid,
+               source_type=source,interaction_at='2020-06-01T00:00:00Z',video_published_at='2018-01-01T00:00:00Z')
+          for cid in ['synthetic-a','synthetic-b'] for source in ['comment','live_chat']]
+    con.register('synthetic_raw',pa.Table.from_pylist(rows))
+    build_canonical_events_view(con,'synthetic_raw')
+    creators=[dict(id=cid,label=cid,review_status='approved') for cid in ['synthetic-a','synthetic-b','synthetic-isolated']]
+    evidence=[activity(creator_id=c['id'],evidence_id=c['id']+'-e') for c in creators]
+    s=build_expanded_window(con,dict(type='yearly',start='2020-01-01T00:00:00Z',end='2020-12-31T23:59:59Z'),
+        creators,evidence,snapshot_id='yearly_2020',cohort_version='synthetic-1',
+        collected_through='2026-01-01T00:00:00Z',collected_at='2026-01-02T00:00:00Z',generated_at='2026-01-03T00:00:00Z')
+    assert len(s['nodes'])==3 and len(s['edges'])==1
+    edge=s['edges'][0]
+    assert (edge['shared_any'],edge['shared_comments'],edge['shared_live_chat'])==(1,1,1)
+    assert edge['coverage_a'] is None and s['nodes'][0]['coverage']['comment_status']=='UNKNOWN'
+    con.close()
+
+
+def test_attributes_require_effective_bounds_and_dated_evidence():
+    attr=activity(evidence_id='attr',evidence_kind='attribute',attribute='subscribers',value=12,
+                  effective_from='2020-01-01T00:00:00Z',effective_to='2020-12-31T23:59:59Z')
+    assert snapshot(evidence=[activity(),attr])['nodes'][0]['subscribers']==12
+    attr.pop('effective_to')
+    assert snapshot(evidence=[activity(),attr])['nodes'][0]['subscribers'] is None
+
+
+def test_multiple_public_epochs_are_not_conflicting_dates():
+    a=activity(evidence_kind='identity_start')
+    b=activity('2023-01-01T00:00:00Z',evidence_id='new-epoch',identity_epoch_id='epoch-2',evidence_kind='identity_start')
+    assert len(snapshot(evidence=[a,b])['nodes'])==1
+    b['identity_epoch_id']=a['identity_epoch_id']
+    assert snapshot(evidence=[a,b])['unknown_history']==['synthetic-a']
+
+
+def test_current_credit_is_not_projected_into_a_past_window():
+    edge=dict(source='synthetic-a',target='synthetic-a',edge_type='production_credit',credit_role='rigger',
+              source_ref='synthetic:credit',review_status='approved',event_time='2026-01-01T00:00:00Z',
+              window_start='2020-01-01T00:00:00Z',window_end='2020-12-31T23:59:59Z')
+    assert snapshot(evidence=[activity()],edges=[edge])['edges']==[]
+    edge.pop('event_time')
+    with pytest.raises(ValueError,match='own date'): snapshot(evidence=[activity()],edges=[edge])

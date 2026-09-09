@@ -73,6 +73,14 @@ def test_inaccessible_duplicate_and_persistent_budget(tmp_path):
     with pytest.raises(ValueError): RequestLedger(tmp_path/'quota.sqlite',{'catalog':2})
 
 
+def test_accessible_video_with_unknown_date_still_counts_toward_cap(tmp_path):
+    item=video(0);item['contentDetails'].pop('videoPublishedAt')
+    engine,_=catalog(tmp_path,[item])
+    assert engine.step()[1]['accessible_count']==1
+    row=engine.records(CID)[0]
+    assert row['video_published_at'] is None and row['timestamp_quality']=='missing'
+
+
 def setup_interactions(tmp_path, session, cap=500, allocated=0):
     book=FakeBook(); batches=ExpandedSheetBatches(store(book),measured_allocated_cells=allocated)
     ledger=RequestLedger(tmp_path/'quota.sqlite',{'interactions':10})
@@ -167,14 +175,17 @@ def test_extraction_failure_is_retryable_not_empty(tmp_path):
         def get(self,*a,**kw): return Response({},500)
     engine,job,journal,jid,book=setup_interactions(tmp_path,Failed())
     assert engine.step(job=job,journal=journal,claim=next_claim(journal,jid))=='EXTRACTION_FAILURE'
-    assert journal.get_job(jid)['state']=='RETRY' and not book.tabs
+    assert journal.get_job(jid)['state']=='RETRY'
+    state,_=engine.batches.load(hashlib.sha256(encode(job).encode()).hexdigest())
+    assert state['comment_status']=='EXTRACTION_FAILURE' and state['count']==0
 
 
 def test_quota_stops_before_request_and_chat_remains_unavailable(tmp_path):
     engine,job,journal,jid,book=setup_interactions(tmp_path,Comments())
     for _ in range(10): engine.transport.ledger.debit('interactions')
     assert engine.step(job=job,journal=journal,claim=next_claim(journal,jid))=='BUDGET_STOP'
-    assert not book.tabs
+    state,_=engine.batches.load(hashlib.sha256(encode(job).encode()).hexdigest())
+    assert state['comment_status']=='BUDGET_STOP' and state['count']==0
     assert engine.transport.historical_chat_capability()=={'status':'LIVE_CHAT_UNAVAILABLE','reason':'ARCHIVED_REPLAY_NOT_IMPLEMENTED','requests':0}
 
 
@@ -193,3 +204,43 @@ def test_hmac_key_change_fails_before_request(tmp_path):
     with pytest.raises(RuntimeError,match='identity mismatch'):
         engine.step(job=job,journal=journal,claim=next_claim(journal,jid))
     assert engine.transport.ledger.spent('interactions')==spent
+
+
+def test_reply_unavailable_preserves_top_level_completion(tmp_path):
+    class Unavailable(Comments):
+        def get(self,url,params,timeout):
+            if url.endswith('/comments'): return Response({},404)
+            return super().get(url,params,timeout)
+    engine,job,journal,jid,_=setup_interactions(tmp_path,Unavailable())
+    engine.step(job=job,journal=journal,claim=next_claim(journal,jid))
+    state=engine.step(job=job,journal=journal,claim=next_claim(journal,jid))
+    assert state['comment_status']=='EXHAUSTED' and state['reply_status']=='REPLIES_UNAVAILABLE'
+    assert state['count']==3 and state['live_chat_status']=='NOT_REQUESTED'
+
+
+def test_expired_comment_token_resume_deduplicates_records(tmp_path):
+    class Expired:
+        def __init__(self): self.expired=False
+        def get(self,url,params,timeout):
+            if params.get('pageToken')=='old':
+                self.expired=True
+                response=Response({},400);response.text='invalidPageToken';return response
+            items=[{'snippet':{'topLevelComment':comment(i),'totalReplyCount':0}} for i in range(2 if self.expired else 1)]
+            return Response({'items':items, **({} if self.expired else {'nextPageToken':'old'})})
+    engine,job,journal,jid,_=setup_interactions(tmp_path,Expired())
+    first=engine.step(job=job,journal=journal,claim=next_claim(journal,jid))
+    assert first['comment_token']=='old'
+    second=engine.step(job=job,journal=journal,claim=next_claim(journal,jid))
+    assert second['comment_token'] is None
+    third=engine.step(job=job,journal=journal,claim=next_claim(journal,jid))
+    assert third['count']==2 and third['comment_status']=='EXHAUSTED'
+
+
+def test_crash_before_ack_leaves_cursor_and_data_unchanged(tmp_path):
+    engine,job,journal,jid,book=setup_interactions(tmp_path,Comments())
+    original=engine.batches.commit
+    engine.batches.commit=lambda *a: (_ for _ in ()).throw(RuntimeError('synthetic before write'))
+    with pytest.raises(RuntimeError): engine.step(job=job,journal=journal,claim=next_claim(journal,jid))
+    assert not book.tabs
+    engine.batches.commit=original
+    assert engine.step(job=job,journal=journal,claim=next_claim(journal,jid))['count']==3

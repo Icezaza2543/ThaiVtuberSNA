@@ -74,6 +74,6 @@ def approved_manifest(items, cohort_version):
     reviewed = deduplicate_reviewed(items)
     return {'dataset_version': DATASET_VERSION, 'cohort_version': cohort_version,
             'channels': [deepcopy(i) for i in reviewed if i['review_status'] == 'approved'
-                         and i.get('channel_id') and i.get('is_virtual_creator') is True],
+                         and i.get('channel_id')],
             'production_entities': [deepcopy(i) for i in reviewed if i['review_status'] == 'approved'
                                     and i.get('is_virtual_creator') is False]}

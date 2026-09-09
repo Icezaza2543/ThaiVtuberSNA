@@ -82,6 +82,7 @@ function closeInspector(returnFocus = true) {
   inspectorPanel.classList.remove('open');
   inspectorPanel.inert = true;
   selectedNode = null;
+  inspConnectionsList.replaceChildren();
   if (returnFocus) {
     const target = inspectorReturnFocus?.isConnected && !inspectorReturnFocus.closest('[inert]') ? inspectorReturnFocus : canvas;
     target.focus({ preventScroll: true });

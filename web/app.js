@@ -1242,6 +1242,7 @@ function updateTimelineSlice(step) {
   previousEdges = [];
   graphTransitionStart = 0;
   const oldSelection = selectedNode?.id;
+  hoveredNode = null;
   rawData = {...rawData, nodes: selectedSnapshot.nodes, edges: selectedSnapshot.edges};
   const groups = new Map();
   rawData.nodes.forEach(n => { const group = n.agency || 'Unknown'; groups.set(group, (groups.get(group) || 0) + 1); });

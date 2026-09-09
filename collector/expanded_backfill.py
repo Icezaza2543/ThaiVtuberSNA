@@ -8,6 +8,7 @@ from copy import deepcopy
 from datetime import datetime, timezone
 import hashlib
 import json
+import re
 from pathlib import Path
 import sqlite3
 from types import SimpleNamespace
@@ -30,9 +31,12 @@ def encode(value):
 class RequestLedger:
     """Durable debit before I/O, shared across stages and restarts; never refunds failures."""
     def __init__(self, path, budgets):
+        if not set(budgets).issubset({'catalog', 'interactions', 'discovery', 'live_chat'}):
+            raise ValueError('Unknown request stage')
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with self.connection() as con:
+            con.execute('BEGIN IMMEDIATE')
             con.execute('CREATE TABLE IF NOT EXISTS budgets(stage TEXT PRIMARY KEY, ceiling INTEGER, spent INTEGER)')
             for stage, limit in budgets.items():
                 count(limit)
@@ -79,13 +83,14 @@ class ExpandedCatalog:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.transport = SimpleNamespace(session=session, api_key=api_key)
         channels = manifest['channels']
-        if any(c.get('review_status') != 'approved' or not c.get('channel_id') for c in channels):
+        if any(c.get('review_status') != 'approved' or not re.fullmatch(r'UC[A-Za-z0-9_-]{22}', c.get('channel_id', '')) for c in channels):
             raise ValueError('Every channel must be explicitly approved with a stable ID')
         if len({c['channel_id'] for c in channels}) != len(channels):
             raise ValueError('Deduplicate approved channel IDs before collection')
         self.identity = encode({'version': DATASET_VERSION, 'cohort': manifest['cohort_version'],
                                 'channels': sorted(c['channel_id'] for c in channels), 'cap': cap})
         with self.connection() as con:
+            con.execute('BEGIN IMMEDIATE')
             con.execute('CREATE TABLE IF NOT EXISTS identity(value TEXT PRIMARY KEY)')
             old = con.execute('SELECT value FROM identity').fetchone()
             if old and old[0] != self.identity:
@@ -93,6 +98,7 @@ class ExpandedCatalog:
             con.execute('INSERT OR IGNORE INTO identity VALUES (?)', (self.identity,))
             con.execute('CREATE TABLE IF NOT EXISTS channels(id TEXT PRIMARY KEY, state TEXT)')
             con.execute('CREATE TABLE IF NOT EXISTS videos(channel TEXT, video TEXT, metadata TEXT, PRIMARY KEY(channel,video))')
+            con.execute('CREATE TABLE IF NOT EXISTS unavailable(channel TEXT, item TEXT, metadata TEXT, PRIMARY KEY(channel,item))')
             for c in channels:
                 state = dict(token=None, offset=0, catalog_status='PENDING', comment_status='NOT_STARTED',
                              reply_status='NOT_STARTED', live_chat_status='NOT_STARTED', turns=0,
@@ -148,28 +154,35 @@ class ExpandedCatalog:
                     snippet, details = item.get('snippet', {}), item.get('contentDetails', {})
                     vid = details.get('videoId') or snippet.get('resourceId', {}).get('videoId')
                     title = snippet.get('title', '')
-                    accessible = bool(vid and details.get('videoPublishedAt') and title not in {'Private video', 'Deleted video'})
+                    accessible = bool(vid and title and title not in {'Private video', 'Deleted video'})
                     state['offset'] = offset + 1
                     if not accessible:
                         state['inaccessible'] += 1
+                        key = vid or f'page:{state["token"] or "first"}:{offset}'
+                        metadata = dict(channel_id=cid, video_id=vid, title=title,
+                                        availability='private_or_deleted_or_unresolved',
+                                        source='playlistItems', fetched_at=now, dataset_version=DATASET_VERSION)
+                        con.execute('INSERT OR REPLACE INTO unavailable VALUES (?,?,?)', (cid, key, encode(metadata)))
                         continue
                     if con.execute('SELECT 1 FROM videos WHERE channel=? AND video=?', (cid, vid)).fetchone():
                         state['duplicates'] += 1
                         continue
-                    date = details['videoPublishedAt']
+                    date = details.get('videoPublishedAt')
                     parsed = HistoricalCatalogBuilder.parse_iso_datetime(date)
-                    if parsed is None:
+                    if date and parsed is None:
                         raise ValueError('Ambiguous video date; preserve checkpoint for review')
-                    date = parsed.isoformat()
-                    if state['last_date'] and date > state['last_date']:
+                    date = parsed.isoformat() if parsed else None
+                    if date and state['last_date'] and date > state['last_date']:
                         state['ordering'] = 'NON_MONOTONIC'
-                    state['last_date'] = date
-                    state['oldest'] = min(state['oldest'] or date, date)
+                    if date:
+                        state['last_date'] = date
+                        state['oldest'] = min(state['oldest'] or date, date)
                     metadata = dict(channel_id=cid, video_id=vid, title=title, title_source='playlistItems.snippet',
                                     title_fetched_at=now, video_published_at=date,
+                                    timestamp_quality='exact' if date else 'missing',
                                     playlist_added_at=snippet.get('publishedAt'), fetched_at=now,
                                     availability='accessible', dataset_version=DATASET_VERSION,
-                                    source='youtube_api_v3', cohort_policy=self.identity)
+                                    source='youtube_api_v3', cohort_policy=hashlib.sha256(self.identity.encode()).hexdigest())
                     con.execute('INSERT INTO videos VALUES (?,?,?)', (cid, vid, encode(metadata)))
                     state['accessible_count'] += 1
                 else:
@@ -209,6 +222,8 @@ class InteractionTransport:
             return body.get('items', []), body.get('nextPageToken'), None, None
         if response.status_code == 400 and token: return [], None, 'TOKEN_EXPIRED', None
         if response.status_code == 404: return [], None, 'REPLIES_UNAVAILABLE', None
+        if response.status_code == 429 or (response.status_code == 403 and 'quotaExceeded' in response.text):
+            raise BudgetExhaustedException('Reply quota unavailable')
         return [], None, None, 'REQUEST_FAILED'
 
     @staticmethod
@@ -248,13 +263,21 @@ class ExpandedInteractions:
                          reply_status='PENDING', live_chat_status='NOT_REQUESTED', parents=[],
                          reply_token=None, reply_offset=0, count=0, sequence=0)
         def stop(reason, outcome='EXTRACTION_FAILURE'):
-            journal.fail_job(claim['job_id'], outcome, claim_token=claim['claim_token'])
+            failed = deepcopy(state)
+            failed[source + '_status'] = reason
+            failed['sequence'] += 1
+            # Capacity remains fail-closed. Without measured capacity only the public
+            # journal outcome is recorded, never a speculative private write.
+            publish = None
+            if self.batches.measured_allocated_cells is not None:
+                publish = lambda: self.batches.commit(expected, state['sequence'], [], failed)
+            journal.fail_job(claim['job_id'], outcome, claim_token=claim['claim_token'], publish=publish)
             return reason
         if state['count'] >= self.cap:
             journal.commit_job(claim['job_id'], state['count'], claim_token=claim['claim_token'], outcome='PARTIAL_CAPTURE')
-            return 'CAP_REACHED'
+            return 'EXHAUSTED' if state['comment_status'] == state['reply_status'] == 'EXHAUSTED' else 'CAP_REACHED'
         source = 'reply' if state['parents'] else 'comment'
-        if source == 'comment' and state['comment_status'] not in {'PENDING', 'PARTIAL_ERROR', 'BUDGET_STOP'}:
+        if source == 'comment' and state['comment_status'] not in {'PENDING', 'PARTIAL_ERROR', 'BUDGET_STOP', 'EXTRACTION_FAILURE', 'IDENTITY_UNAVAILABLE'}:
             journal.commit_job(claim['job_id'], state['count'], claim_token=claim['claim_token'],
                                outcome='PARTIAL_CAPTURE')
             return state['comment_status']
@@ -277,9 +300,11 @@ class ExpandedInteractions:
         elif terminal:
             working[source + '_status'] = terminal
             if source == 'reply':
+                working['unavailable_replies'] = working.get('unavailable_replies', 0) + 1
                 working['parents'].pop(0)
                 working['reply_token'], working['reply_offset'] = None, 0
         else:
+            working[source + '_status'] = 'PENDING'
             offset_key = source + '_offset'
             for index, item in enumerate(items[working[offset_key]:], working[offset_key]):
                 if working['count'] >= self.cap: break
@@ -309,7 +334,7 @@ class ExpandedInteractions:
             if working['count'] >= self.cap and (working[source + '_token'] or working[offset_key] or working['parents']):
                 working[source + '_status'] = 'PARTIAL_CAP'
             elif not working['parents'] and working['comment_status'] == 'EXHAUSTED':
-                working['reply_status'] = 'EXHAUSTED'
+                working['reply_status'] = 'PARTIAL_UNAVAILABLE' if working.get('unavailable_replies') else 'EXHAUSTED'
         working['sequence'] += 1
         publish = lambda: self.batches.commit(expected, state['sequence'], rows, working)
         accepted = journal.commit_job(claim['job_id'], working['count'], claim_token=claim['claim_token'],

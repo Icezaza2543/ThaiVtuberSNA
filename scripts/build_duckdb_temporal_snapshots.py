@@ -548,12 +548,19 @@ def build_expanded_window(con, window, creators, identity_evidence, *, snapshot_
                                     canonical_view=canonical_view, calculated_at=generated_at)
     edges = [{**row, 'source': row['vtuber_a'], 'target': row['vtuber_b'],
               'edge_type': 'audience_overlap', 'window_start': window['start'],
-              'window_end': window['end']} for row in rows]
-    return build_snapshot(creators=creators, evidence=identity_evidence, edges=edges,
+              'window_end': window['end'], 'coverage_a': None, 'coverage_b': None} for row in rows]
+    snapshot = build_snapshot(creators=creators, evidence=identity_evidence, edges=edges,
                           snapshot_id=snapshot_id, cohort_version=cohort_version,
                           window_start=window['start'], window_end=window['end'],
                           collected_through=collected_through, collected_at=collected_at,
                           generated_at=generated_at)
+    # Legacy numerical catalog coverage is not interaction completion. Preserve the
+    # existing metric calculation but expose independent expanded source states.
+    for node in snapshot['nodes']:
+        coverage = (coverage_by_cid or {}).get(node['id'], {})
+        node['coverage'] = {name + '_status': coverage.get(name + '_status', 'UNKNOWN')
+                            for name in ('catalog', 'comment', 'reply', 'live_chat')}
+    return snapshot
 
 
 def export_expanded_snapshots(snapshots, output_path, *, synthetic=False):

@@ -49,11 +49,18 @@ def test_review_rejects_ambiguity_and_fabricated_ids():
     with pytest.raises(ValueError): deduplicate_reviewed([approve(),approve(is_virtual_creator=False)])
 
 
+def test_approved_production_channel_can_be_catalogued_without_vtuber_label():
+    item=approve(is_virtual_creator=False,roles=['rigger'])
+    manifest=approved_manifest([item],'synthetic-production-1')
+    assert manifest['channels'][0]['channel_id']==CID
+    assert manifest['channels'][0]['is_virtual_creator'] is False
+
+
 def test_typed_edges_do_not_gain_audience_metrics():
     from tests.test_expanded_contracts import snapshot, activity
     edges=[dict(source='synthetic-a',target='synthetic-a',edge_type=t,
                 window_start='2020-01-01T00:00:00Z',window_end='2020-12-31T23:59:59Z',
-                source_ref='synthetic:credit',review_status='approved')
+                source_ref='synthetic:credit',review_status='approved',event_time='2020-06-01T00:00:00Z',credit_role='rigger')
            for t in ['audience_overlap','collaboration','production_credit']]
     edges[0]['shared_any']=3
     s=snapshot(evidence=[activity()],edges=edges)

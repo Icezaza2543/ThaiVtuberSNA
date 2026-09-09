@@ -30,10 +30,10 @@ try {
     page.on('pageerror', error => report.errors.push(error.message));
     page.on('console', message => { if (message.type() === 'error') report.errors.push(message.text()); });
     await ready(page);
-    assert.equal(await page.locator('#scenePeriod').textContent(), 'All-Time · dated evidence');
+    assert.equal(await page.locator('#scenePeriod').textContent(), 'Legacy roster · identity history unverified');
     if (width < 1200) await page.locator('#btnControls').click();
     await page.locator('#btnToggleTimeMode').click();
-    assert.equal(await page.locator('#scenePeriod').textContent(), 'All-Time · dated evidence');
+    assert.equal(await page.locator('#scenePeriod').textContent(), 'Legacy roster · identity history unverified');
     await page.locator('#btnToggleTimeMode').click();
     if (width < 1200) await page.locator('#btnCloseControls').click();
     await overflow(page);
@@ -78,14 +78,17 @@ try {
     assert.match(await page.locator('#searchResults').textContent(), /No matching/);
     await page.locator('#searchInput').fill('');
     await page.locator('[data-step="6"]').click();
-    assert.match(await page.locator('#temporalCurrentLabel').textContent(), /2026 YTD/);
-    assert.match(await page.locator('#scenePeriod').textContent(), /2026 YTD · cumulative/);
+    assert.match(await page.locator('#temporalCurrentLabel').textContent(), /2026/);
+    assert.match(await page.locator('#scenePeriod').textContent(), /2026 · cumulative/);
     await page.locator('#btnPlayTimeline').click();
     await page.locator('#btnPlayTimeline').click();
     assert.equal(await page.evaluate(() => isPlayingTimeline), false);
     await page.locator('#btnToggleTimeMode').click();
     assert.equal(await page.evaluate(() => isCumulativeTimeline), false);
     assert.match(await page.locator('#scenePeriod').textContent(), /202[0-6]( YTD)? · yearly/);
+    assert.equal(await page.locator('#statVtubers').textContent(), '0');
+    assert.match(await page.locator('#graphMessage').textContent(), /review|ทบทวน/);
+    await page.locator('[data-step="7"]').click();
     await page.locator('#agencyFilter').selectOption('Algorhythm Project');
     assert.ok(await page.evaluate(() => graphNodes.filter(node => node.visible).every(node => node.agency === 'Algorhythm Project')));
     if (width < 1200) await page.locator('#btnCloseControls').click();
@@ -151,9 +154,12 @@ try {
     { source: ids[1], target: ids[2], shared_any: 30, jaccard_comments: .6, overlap_coefficient: .8 },
     { source: ids[0], target: ids[2], shared_any: 1, jaccard_comments: .01, overlap_coefficient: .02 }
   ];
-  await page.route('**/data/temporal_snapshots.json', route => route.fulfill({ json: { slices: {
-    all_time: { edges }, cumulative_2026: { edges }, yearly_2026: { edges: edges.slice(0, 1) }, cumulative_2020: { edges: [] }
-  } } }));
+  const nodes = ids.map(id => ({id,label:id,visibility_state:'EVIDENCED',membership_evidence_refs:['synthetic:review']}));
+  const slice = (snapshot_id, edges) => ({snapshot_id, nodes, edges, coverage_state:'PARTIAL'});
+  await page.route('**/data/temporal_snapshots.json', route => route.fulfill({ json: {
+    dataset_version:'expanded-v1', snapshots:[slice('all_time',edges),slice('cumulative_2026',edges),
+      slice('yearly_2026',edges.slice(0,1)),slice('cumulative_2020',[])]
+  } }));
   await ready(page);
   assert.equal(await page.locator('#statEdges').textContent(), '2');
   await page.locator('#thresholdSlider').fill('1');
@@ -163,7 +169,7 @@ try {
   await page.locator('#metricSelect').selectOption('jaccard');
   await page.locator('#thresholdSlider').fill('40');
   assert.equal(await page.locator('#statEdges').textContent(), '1');
-  await page.locator('[data-step="6"]').click();
+  await page.locator('[data-step="1"]').click();
   await page.locator('#btnToggleTimeMode').click();
   assert.equal(await page.locator('#statEdges').textContent(), '0');
   await page.locator('#thresholdSlider').fill('5');
@@ -174,7 +180,7 @@ try {
   assert.equal(await page.locator('#inspConnectionsList button').count(), 0, 'Inspector retained stale period edges');
   await page.route('**/data.json', route => route.fulfill({ status: 503, body: 'Unavailable' }));
   await ready(page);
-  assert.match(await page.locator('#dataFreshness').textContent(), /Embedded snapshot/);
+  assert.match(await page.locator('#dataFreshness').textContent(), /Embedded snapshot|Collection cutoff/);
   report.checks.push('touch selection', 'embedded fallback labeling', 'single-viewer threshold', 'period, metric and threshold fixture', 'inspector refresh', 'search and empty state', 'modal focus and Escape', 'reduced motion', 'idle rendering', 'research tabs and DPR');
   assert.deepEqual(report.errors, []);
   report.status = 'PASS';

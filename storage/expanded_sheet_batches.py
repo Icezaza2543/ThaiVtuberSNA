@@ -30,6 +30,11 @@ class ExpandedSheetBatches:
         header = self.store._write(ws.get_values, 'A1:D1')
         if header and header != [ARCHIVE_HEADERS]:
             raise RuntimeError('Preserve existing archive schema; migration not authorized')
+        if not header:
+            for start in range(2, ws.row_count + 1, 500):
+                if any(any(row) for row in self.store._write(ws.get_values, f'A{start}:D{min(start+499, ws.row_count)}')):
+                    raise RuntimeError('Populated archive with missing header; explicit reconciliation required')
+            return ws, []
         # Generator keeps scanning memory bounded; no workbook data is written locally.
         return ws, self.store.read_records(TAB, ARCHIVE_HEADERS)
 

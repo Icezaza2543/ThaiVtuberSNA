@@ -33,14 +33,19 @@ def build_snapshot(*, creators, evidence, edges, snapshot_id, cohort_version,
         if creator.get('review_status') != 'approved':
             continue
         relevant = [e for e in evidence if e['creator_id'] == creator['id'] and e.get('review_status') == 'approved']
-        starts = [instant(e['effective_from']) for e in relevant
-                  if e.get('evidence_kind') == 'identity_start' and e.get('date_precision') == 'exact'
-                  and e.get('effective_from')]
+        starts_by_epoch = {}
+        for e in relevant:
+            if (e.get('evidence_kind') == 'identity_start' and e.get('date_precision') == 'exact'
+                    and e.get('effective_from') and e.get('identity_epoch_id') and e.get('source_ref')):
+                starts_by_epoch.setdefault(e['identity_epoch_id'], set()).add(instant(e['effective_from']))
         # Contradictory exact starts require review, never choose a convenient date.
-        if len(set(starts)) > 1:
+        if any(len(dates) > 1 for dates in starts_by_epoch.values()):
             result['unknown_history'].append(creator['id'])
             continue
-        if starts and starts[0] > end:
+        starts = [next(iter(dates)) for dates in starts_by_epoch.values()]
+        activity_epochs = {e.get('identity_epoch_id') for e in relevant
+                           if e.get('evidence_kind') in {'virtual_activity', 'identity_start'}}
+        if starts and min(starts) > end and activity_epochs.issubset(starts_by_epoch):
             result['confirmed_not_started'].append(creator['id'])
             continue
         members = []
@@ -53,7 +58,8 @@ def build_snapshot(*, creators, evidence, edges, snapshot_id, cohort_version,
             hi = instant(e.get('effective_to') or e['effective_from'])
             if hi < lo:
                 raise ValueError('Reversed evidence interval')
-            if starts and lo < starts[0]:
+            epoch_starts = starts_by_epoch.get(e['identity_epoch_id'])
+            if epoch_starts and lo < next(iter(epoch_starts)):
                 continue
             if lo <= end and hi >= start:
                 members.append(e)
@@ -72,6 +78,7 @@ def build_snapshot(*, creators, evidence, edges, snapshot_id, cohort_version,
             if len(observations) == 1:
                 node[attr] = observations[0]['value']
         node.update(degree=None, betweenness=None, pagerank=None)
+        node['coverage'] = {s + '_status': 'UNKNOWN' for s in ('catalog', 'comment', 'reply', 'live_chat')}
         result['nodes'].append(node)
     ids = {n['id'] for n in result['nodes']}
     for edge in edges:
@@ -85,6 +92,12 @@ def build_snapshot(*, creators, evidence, edges, snapshot_id, cohort_version,
         if edge['edge_type'] != 'audience_overlap':
             if not edge.get('source_ref') or edge.get('review_status') != 'approved':
                 raise ValueError('Relationship evidence must be reviewed')
+            if not edge.get('event_time'):
+                raise ValueError('Relationship evidence requires its own date')
+            if not start <= instant(edge['event_time']) <= end:
+                continue
+            if edge['edge_type'] == 'production_credit' and not edge.get('credit_role'):
+                raise ValueError('Production credit requires a credited role')
             if any(k.startswith(('shared_', 'jaccard', 'overlap')) for k in edge):
                 raise ValueError('Relationship evidence cannot contain audience metrics')
         result['edges'].append(deepcopy(edge))

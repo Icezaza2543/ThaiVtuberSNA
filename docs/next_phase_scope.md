@@ -1,6 +1,6 @@
 # Bounded plan: Temporal UI, Historical Backfill, Discovery
 
-Status: planning only; reviewed against `a81a9295ed74e63abad92972cd2fb5dac8068d93`. The previous consolidation remains closed. This document is not authorization for implementation, live execution, workbook access, bulk collection or publication. Astra owns the plan; Luna supplied read-only navigation; Astra checked the UI, catalog, criteria and storage code directly. The scout report is not correctness certification. Existing evidence gaps remain limitations.
+Status: approved offline implementation completed (see execution record below); original plan reviewed against `a81a9295ed74e63abad92972cd2fb5dac8068d93`. The previous consolidation remains closed. The subsequent user instruction authorized offline implementation only; live execution, workbook access, bulk collection and publication remain unapproved. Astra owns the plan; Luna supplied read-only navigation; Astra checked the UI, catalog, criteria and storage code directly. The scout report is not correctness certification. Existing evidence gaps remain limitations.
 
 ## Reuse and bounded changes
 
@@ -89,3 +89,42 @@ This is a source-mapped, internally reviewed plan, not an executed implementatio
 - [commentThreads.list](https://developers.google.com/youtube/v3/docs/commentThreads/list), [comments.list](https://developers.google.com/youtube/v3/docs/comments/list), [API reference](https://developers.google.com/youtube/v3/docs): budget thread and reply retrieval separately; thread responses need not include all replies.
 - [Quota calculator](https://developers.google.com/youtube/v3/determine_quota_cost): verify method costs and the project's actual allowance before execution; do not assume a shared daily allocation is free for this job.
 - [Google Drive spreadsheet limits](https://support.google.com/drive/answer/37603): up to 10 million cells per spreadsheet. Capacity here remains unknown until separately authorized inspection.
+
+
+## Offline execution record (2026-09-09)
+
+Actual implementation start: `f6158fc9827c64aa9d8159f7641970eda72dfe51` on current `main`; no reset to the older planning baseline. The user subsequently authorized steps 1–5 offline, including tested milestone commits and pushes. Live execution and promotion remain unapproved. The preceding planning text remains the scope, not a second roadmap.
+
+Implemented modules:
+
+- `core/expanded_contracts.py`, `analytics/expanded_snapshot.py`: expanded-v1 contracts, request/capacity estimates, reviewed dated identity membership, explicit unknown coverage, isolated nodes, bounded attribute validity and typed edges. Open-ended attributes remain unknown: an unspecified end does not license carrying a current observation into another period. Distinct public identity epochs are supported; conflicting dates within one epoch require review.
+- `scripts/build_duckdb_temporal_snapshots.py`: additive `build_expanded_window` reuses canonical interaction-time calculations; `export_expanded_snapshots` writes only explicit immutable expanded-v1 outputs. Legacy numerical catalog coverage is not reused as interaction completeness. Frozen exports and embedded payloads remain unchanged.
+- `web/temporal-state.js`, `web/app.js`, `web/observatory-ui.js`, `web/index.html`: selected snapshot supplies membership, edges, counts, filters, search and inspector; missing modes/periods show `NO_SNAPSHOT`; years extend from supplied metadata. Relationship filters, colors, credit arrows and inspector descriptions distinguish all three edge types. Null historical metrics stay unknown with neutral node size/placement.
+- `core/discovery_review.py`, `collector/discovery_adapter.py`: injected source queue, evidence-linked review history, multiple roles/presentation formats, unresolved candidate IDs, stable reviewed channel deduplication and versioned approved manifest. Production-role entities are not automatically VTubers; every approved channel can enter the catalog irrespective of tier or role.
+- `collector/expanded_backfill.py`: existing catalog/T6 HTTP seams with injected clients, a persistent request ledger, fair channel turns, atomic catalog/checkpoint updates, title provenance, unavailable-item records, mid-page offsets and stale-token deduplication. Comment/reply cursors and shared record cap remain distinct from catalog/chat completion.
+- `storage/expanded_sheet_batches.py`, additive `core/job_journal.py` failure-publication callback: injected authorized Sheet store, bounded in-memory batches, digest/readback reconciliation, claim-fenced success/failure publication, HMAC fingerprint binding, cell-size/capacity rejection before writes. Local checkpoints contain public catalog/job/budget metadata only. Production T20 update/publish guards remain enabled.
+
+Offline exercises (no live API/workbook required):
+
+```powershell
+python -m pytest tests/test_expanded_contracts.py tests/test_expanded_discovery.py tests/test_expanded_backfill.py -q
+python -m tests.expanded_fixture .tmp/expanded-v1/synthetic-review.json
+node tests/temporal_state.cjs
+python -m http.server 5537 --bind 127.0.0.1 --directory web
+# In another terminal, using an installed Playwright runtime:
+$env:QA_URL='http://127.0.0.1:5537'
+# Set PLAYWRIGHT_MODULE to your installed Playwright module URL if needed.
+node tests/frontend_temporal_expanded.mjs
+```
+
+The browser regression injects the Python-generated synthetic bundle over a localhost route and exercises the actual main slider, mode switch, search, inspector and edge filters. Screenshots/results stay under `.tmp/expanded-browser/`; no synthetic file is installed as default public research data. Expanded opt-in URLs accept only `data/expanded-v1/<name>.json`; a bundle marked synthetic additionally requires loopback hosting and `synthetic=1`. On the unchanged public legacy dataset, All-Time is explicitly `Legacy roster · identity history unverified`; historical years report identity review unavailable rather than showing today's roster as past VTubers. Preparing reviewed real membership remains necessary before real historical views can be populated.
+
+Validation: final `python -m pytest tests/ -q`: **432 passed**, 120 existing NetworkX constant-input warnings, 126.62 s. The new synthetic acceptance files contain 35 tests (10 contracts, 6 discovery, 19 backfill). `node tests/temporal_state.cjs`: 5 assertions passed. Main/legacy research browser suite: 4 viewports passed, zero errors, 1,370 legacy-context nodes, idle draws 0, median draw 2.2 ms / p95 2.9 ms. Expanded browser suite: 1440×900 and 390×844 passed with Python-generated snapshots and zero page errors. Research v2: 4 viewports, 193 fields / 7 charts / 9 sections, zero data requests/errors and no-JavaScript navigation passed. Thai research: 24 viewport/tab checks plus seven-year KPI, search, keyboard and chart-table checks passed. Python compile/import checks and Node syntax checks for changed JS plus both research scripts passed; `git diff --check` passed. Existing offline dispatcher: research consistency PASS, synthetic privacy canary PASS, Git security PASS, 0 findings. An intermediate browser run caught stale hidden inspector links; clearing them fixed the regression and the full browser suite passed. No unrelated warnings were suppressed or legacy tests removed.
+
+Preservation: 179 protected file comparisons passed with zero mismatches; the three embedded payload strings matched the actual starting commit. Coordinate block SHA-256 remains `47a63e3160c1b1282fe0ceb997f08ef6ae5beec584771c237bb11d50fab83adc`. Frozen data/releases, curated evidence, provenance IDs and the existing HMAC fingerprint are unchanged. QA images and temporary SQLite/JSON fixtures are not committed.
+
+Milestones pushed to main: `a89de10` contracts/estimates; `6bb8d87` snapshot/slider; `a784902` reviewed discovery/typed edges; `f007e11` resumable catalog/workbook batch seams. The subsequent integrated-validation commit contains final regression corrections and this execution record.
+
+Live blockers and approval inputs: archived replay is not implemented by the existing active-chat adapter; its offline capability result is `LIVE_CHAT_UNAVAILABLE`, with zero live requests. Reviewed real identity windows/cohort selection, actual project quota, workbook allocated/occupied cells and schemas, write/retry latency, memory/row sizes and multi-writer operational controls have not been measured. Production orchestration is deliberately still guarded; no live capacity result is PASS. A catalog exhaustion result means only the accessible playlist was exhausted, not complete history or complete interactions.
+
+Proposed approval envelope remains 12 reviewed approved channels spanning all tiers/date/cap cases; up to 12,000 accessible catalog videos, 303 catalog units including reserve; 48 interaction videos, 500 combined comment/reply records each, 24,000 records maximum and 550 interaction units including reply/retry reserve. Catalog estimate is 6–24 MB; archive minimum 96,000 cells plus index/presence/control/growth allocations and 20% workbook headroom. Discovery proposal remains 30 reviewed candidates / 60 public pages / 30 channel lookups. Chat budget stays zero until a separate capability probe is approved. Exact real channel IDs and live measured capacity require approved selection/access; no fabricated pilot manifest is supplied. All live reads, writes, collection, scheduling, capacity inspection and publication still require explicit approval.
