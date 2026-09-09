@@ -8,11 +8,15 @@ let modalReturnFocus = null;
 function updateSceneStatus() {
   const nodes = graphNodes.filter(node => node.visible);
   const edges = graphEdges.filter(edge => edge.visible);
-  statVtubers.textContent = nodes.length.toLocaleString();
+  const virtualNodes = nodes.filter(n => n.entity_type !== 'production_only');
+  const productionCount = nodes.length - virtualNodes.length;
+  statVtubers.textContent = virtualNodes.length.toLocaleString();
+  document.getElementById('productionCount').textContent = `${productionCount} production personas`;
+  document.getElementById('productionCount').hidden = productionCount === 0;
   statEdges.textContent = edges.length.toLocaleString();
   metricSelect.querySelector('[value="jaccard"]').textContent = graphEdges.some(edge => edge.jaccardScope === 'comment Jaccard') ? 'Comment Jaccard · %' : 'Jaccard similarity · %';
-  statCommunities.textContent = new Set(nodes.map(n => n.agency).filter(Boolean)).size.toLocaleString();
-  const bridge = [...nodes].filter(n => Number.isFinite(n.betweenness)).sort((a,b) => b.betweenness-a.betweenness)[0];
+  statCommunities.textContent = new Set(virtualNodes.map(n => n.agency).filter(Boolean)).size.toLocaleString();
+  const bridge = [...virtualNodes].filter(n => Number.isFinite(n.betweenness)).sort((a,b) => b.betweenness-a.betweenness)[0];
   statTopBridge.textContent = bridge?.betweenness > 0 ? bridge.label : 'Unknown';
   const message = document.getElementById('graphMessage');
   message.hidden = nodes.length > 0 && edges.length > 0;

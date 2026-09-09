@@ -96,3 +96,17 @@ def test_conflicting_or_incomplete_batches_are_not_exposed(tmp_path,damage):
     else: records[-2]['record_json']=encode({'sequence':99})
     accepted,rejected=validated_expanded_batches(records)
     assert not accepted and len(rejected)==1
+
+
+def test_production_credit_endpoint_has_no_virtual_identity_or_audience_metrics():
+    from tests.production_credit_fixture import snapshots
+    old,dated,all_time=snapshots()
+    assert old['nodes']==[] and old['edges']==[]
+    assert dated['entity_counts']=={'virtual_creator':1,'production_only':1}
+    assert dated['edge_counts']['audience_overlap']==0 and dated['edge_counts']['production_credit']==1
+    rigger=next(n for n in dated['nodes'] if n['id']=='synthetic-portfolio')
+    assert rigger['channel_id'] is None and rigger['entity_type']=='production_only'
+    assert rigger['visibility_state']=='CREDIT_EVIDENCED' and rigger['membership_evidence_refs']==['synthetic-credit']
+    assert rigger['subscribers'] is None and rigger['degree'] is None
+    assert 'identity_epoch_id' not in rigger
+    assert not any(k.startswith(('shared_', 'jaccard', 'overlap')) for k in dated['edges'][0])

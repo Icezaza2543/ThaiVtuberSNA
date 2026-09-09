@@ -32,6 +32,8 @@ def build_snapshot(*, creators, evidence, edges, snapshot_id, cohort_version,
     for creator in creators:
         if creator.get('review_status') != 'approved':
             continue
+        if creator.get('is_virtual_creator') is False or creator.get('entity_type') == 'production_only':
+            continue  # dated credit presence is handled separately below
         relevant = [e for e in evidence if e['creator_id'] == creator['id'] and e.get('review_status') == 'approved']
         starts_by_epoch = {}
         for e in relevant:
@@ -68,7 +70,7 @@ def build_snapshot(*, creators, evidence, edges, snapshot_id, cohort_version,
             continue
         node = {k: creator[k] for k in ('id', 'label', 'handle') if k in creator}
         node.update(membership_evidence_refs=[e['evidence_id'] for e in members],
-                    visibility_state='EVIDENCED', **{k: None for k in PERIOD_ATTRIBUTES})
+                    visibility_state='EVIDENCED', entity_type='virtual_creator', **{k: None for k in PERIOD_ATTRIBUTES})
         # Only explicit reviewed effective intervals qualify attributes, no carry-forward.
         for attr in PERIOD_ATTRIBUTES:
             observations = [e for e in relevant if e.get('evidence_kind') == 'attribute'
@@ -80,11 +82,34 @@ def build_snapshot(*, creators, evidence, edges, snapshot_id, cohort_version,
         node.update(degree=None, betweenness=None, pagerank=None)
         node['coverage'] = {s + '_status': 'UNKNOWN' for s in ('catalog', 'comment', 'reply', 'live_chat')}
         result['nodes'].append(node)
+    virtual_ids = {n['id'] for n in result['nodes']}
+    production = {}
+    roster = {c['id']: c for c in creators}
+    for edge in edges:
+        target = roster.get(edge.get('target'), {})
+        if (edge.get('edge_type') != 'production_credit' or edge.get('source') not in virtual_ids
+                or target.get('review_status') != 'approved'
+                or not (target.get('is_virtual_creator') is False or target.get('entity_type') == 'production_only')
+                or edge.get('credit_role') not in set(target.get('roles', [])) & {'artist', 'rigger'}
+                or edge.get('review_status') != 'approved' or not edge.get('source_ref')
+                or not edge.get('evidence_id') or not edge.get('event_time')
+                or edge.get('window_start') != window_start or edge.get('window_end') != window_end
+                or not start <= instant(edge['event_time']) <= end):
+            continue
+        node = production.setdefault(target['id'], dict(id=target['id'], label=target.get('label', target['id']),
+            channel_id=target.get('channel_id'), entity_type='production_only', is_virtual_creator=False,
+            visibility_state='CREDIT_EVIDENCED', membership_evidence_refs=[], roles=[],
+            **{k: None for k in (*PERIOD_ATTRIBUTES, 'degree', 'betweenness', 'pagerank')}))
+        node['membership_evidence_refs'] = sorted(set(node['membership_evidence_refs']) | {edge['evidence_id']})
+        node['roles'] = sorted(set(node['roles']) | {edge['credit_role']})
+    result['nodes'].extend(production.values())
     ids = {n['id'] for n in result['nodes']}
     for edge in edges:
         if edge.get('edge_type') not in EDGE_TYPES:
             raise ValueError('Unknown relationship type')
         if edge['source'] not in ids or edge['target'] not in ids:
+            continue
+        if edge['edge_type'] != 'production_credit' and (edge['source'] not in virtual_ids or edge['target'] not in virtual_ids):
             continue
         # Aggregate edges are accepted only for this exact window, not upload dates.
         if edge.get('window_start') != window_start or edge.get('window_end') != window_end:
@@ -101,6 +126,8 @@ def build_snapshot(*, creators, evidence, edges, snapshot_id, cohort_version,
             if any(k.startswith(('shared_', 'jaccard', 'overlap')) for k in edge):
                 raise ValueError('Relationship evidence cannot contain audience metrics')
         result['edges'].append(deepcopy(edge))
+    result['entity_counts'] = {'virtual_creator': len(virtual_ids), 'production_only': len(production)}
+    result['edge_counts'] = {kind: sum(e['edge_type'] == kind for e in result['edges']) for kind in EDGE_TYPES}
     assert_public(result, known_secrets)
     return result
 

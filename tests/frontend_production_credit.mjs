@@ -1,0 +1,51 @@
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import {mkdir,readFile,writeFile} from 'node:fs/promises';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const out=process.env.QA_OUTPUT || '.tmp/credit-integration';await mkdir(out,{recursive:true});
+const file=`${out}/expanded-v1/synthetic-credit-${Date.now()}.json`;
+execFileSync('python',['-m','tests.production_credit_fixture',file]);
+const data=JSON.parse(await readFile(file,'utf8'));
+const browser=await chromium.launch();const report=[];
+try {
+ for(const width of [1440,390]) {
+  const page=await browser.newPage({viewport:{width,height:900},reducedMotion:'reduce'});const errors=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  await page.route('**/data/expanded-v1/synthetic-credit.json',r=>r.fulfill({json:data}));
+  await page.goto((process.env.QA_URL||'http://127.0.0.1:5537')+'/?snapshot=data/expanded-v1/synthetic-credit.json&synthetic=1');
+  await page.waitForFunction(()=>selectedSnapshot?.snapshot_id==='all_time');
+  assert.equal(await page.locator('#statVtubers').textContent(),'1');
+  assert.equal(await page.locator('#statEdges').textContent(),'0');
+  assert.equal(await page.evaluate(()=>nodeMap.get('synthetic-portfolio').visible),false);
+  if(width<1200) await page.locator('#btnControls').click();
+  await page.locator('#edgeTypeFilter').selectOption('production_credit');
+  await page.locator('#btnToggleTimeMode').click();
+  await page.locator('[data-step="1"]').click();
+  assert.equal(await page.locator('#statEdges').textContent(),'1');
+  assert.equal(await page.locator('#statVtubers').textContent(),'1');
+  assert.equal(await page.locator('#productionCount').textContent(),'1 production personas');
+  assert.equal(await page.evaluate(()=>nodeMap.get('synthetic-portfolio').channel_id),null);
+  await page.locator('#searchInput').fill('portfolio');
+  assert.match(await page.locator('#searchResults').textContent(),/Synthetic portfolio/);
+  await page.locator('#searchInput').fill('');
+  await page.evaluate(()=>openInspector(nodeMap.get('synthetic-portfolio'),false));
+  assert.match(await page.locator('#inspTier').textContent(),/Production.*rigger/);
+  assert.match(await page.locator('#inspConnectionsList').textContent(),/production_credit.*incoming/);
+  await page.evaluate(()=>closeInspector(false));
+  if(width<1200) await page.locator('#btnCloseControls').click();
+  await page.screenshot({path:`${out}/credit-${width}.png`});
+  if(width<1200) await page.locator('#btnControls').click();
+  await page.locator('#edgeTypeFilter').selectOption('audience_overlap');
+  assert.equal(await page.locator('#statEdges').textContent(),'0');
+  assert.equal(await page.locator('#statVtubers').textContent(),'1');
+  assert.equal(await page.evaluate(()=>nodeMap.get('synthetic-portfolio').visible),false);
+  await page.locator('#edgeTypeFilter').selectOption('production_credit');
+  await page.locator('[data-step="0"]').click();
+  assert.equal(await page.locator('#statEdges').textContent(),'0');
+  assert.equal(await page.locator('#statVtubers').textContent(),'0');
+  assert.equal(await page.evaluate(()=>nodeMap.has('synthetic-portfolio')),false);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  assert.deepEqual(errors,[]);report.push({width,status:'PASS',errors});await page.close();
+ }
+ await writeFile(`${out}/results.json`,JSON.stringify(report,null,2));console.log(JSON.stringify(report));
+}finally{await browser.close();}

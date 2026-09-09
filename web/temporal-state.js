@@ -11,7 +11,9 @@
     if (data?.dataset_version === 'expanded-v1') {
       const s = data.snapshots?.find(s => s.snapshot_id === key);
       if (!s || s.coverage_state === 'NO_SNAPSHOT') return {snapshot_id: key, nodes: [], edges: [], unknown_history: [], coverage_state: 'NO_SNAPSHOT'};
-      const nodes = (s.nodes || []).filter(n => n.visibility_state === 'EVIDENCED' && n.membership_evidence_refs?.length)
+      const nodes = (s.nodes || []).filter(n => n.membership_evidence_refs?.length &&
+        (n.visibility_state === 'EVIDENCED' && n.entity_type !== 'production_only' ||
+         n.visibility_state === 'CREDIT_EVIDENCED' && n.entity_type === 'production_only'))
         .map(n => ({...n, ...Object.fromEntries(attributes.map(a => [a, n[a] ?? null]))}));
       const ids = new Set(nodes.map(n => n.id));
       return {...s, nodes, edges: (s.edges || []).filter(e => ids.has(e.source) && ids.has(e.target))};

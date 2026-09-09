@@ -557,7 +557,8 @@ function applyFilters() {
       n.label.toLowerCase().includes(searchQuery) ||
       (n.handle && n.handle.toLowerCase().includes(searchQuery));
 
-    n.visible = matchAgency && matchTier && matchSearch;
+    const matchLayer = n.entity_type !== 'production_only' || selectedEdgeType === 'production_credit';
+    n.visible = matchAgency && matchTier && matchSearch && matchLayer;
     if (n.visible) activeNodesCount++;
   });
 
@@ -574,7 +575,7 @@ function applyFilters() {
     }
   });
 
-  activeCount.textContent = `${activeNodesCount}/${graphNodes.length} creators match filters`;
+  activeCount.textContent = `${activeNodesCount}/${graphNodes.length} entities match filters`;
   updateSceneStatus();
   renderSearchResults();
   if (selectedNode && !selectedNode.visible) closeInspector(false);
@@ -1475,8 +1476,8 @@ function onWheel(e) {
 function openInspector(node, focus = true) {
   selectedNode = node;
   inspName.textContent = node.label;
-  inspHandle.textContent = node.handle || `@${node.id}`;
-  inspTier.textContent = node.priority ? `Tier ${node.priority}` : 'Tier unknown';
+  inspHandle.textContent = node.entity_type === 'production_only' ? 'Production persona · public portfolio' : node.handle || `@${node.id}`;
+  inspTier.textContent = node.entity_type === 'production_only' ? `Production · ${(node.roles || []).join(', ')}` : node.priority ? `Tier ${node.priority}` : 'Tier unknown';
   inspAgency.textContent = node.agency || 'Agency unknown in this period';
   inspSubs.textContent = Number.isFinite(node.subscribers) ? `${node.subscribers.toLocaleString()} Subs` : 'Unknown in this period';
 
