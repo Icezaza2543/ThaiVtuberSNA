@@ -85,8 +85,10 @@ AGENCY_METADATA = [
         "agency_name": "AStars Production",
         "brand_name": "AStars Production",
         "parent_company_claim": "Brave group APAC (Thailand) Co., Ltd. / Brave group Inc. (Tokyo)",
-        "corporate_entity_status": "AUTHORITATIVE_CORPORATE_DISCLOSURE",
-        "corporate_registration_status": "CORPORATE_DISCLOSURE_VERIFIED",
+        "corporate_entity_status": "OFFICIAL_BRAND_ENTITY",
+        "corporate_registration_status": "CORPORATE_REGISTRATION_UNVERIFIED",
+        "corporate_evidence_url": "",
+        "corporate_evidence_class": "UNVERIFIED",
         "founding_date": "2024-07-16",
         "status": "ACTIVE",
         "headquarters": "Thailand / Japan",
@@ -181,8 +183,10 @@ AGENCY_METADATA = [
         "agency_name": "WACTOR",
         "brand_name": "WACTOR",
         "parent_company_claim": "WACTOR Co., Ltd. (Japan)",
-        "corporate_entity_status": "AUTHORITATIVE_CORPORATE_DISCLOSURE",
-        "corporate_registration_status": "CORPORATE_DISCLOSURE_VERIFIED",
+        "corporate_entity_status": "OFFICIAL_BRAND_ENTITY",
+        "corporate_registration_status": "CORPORATE_REGISTRATION_UNVERIFIED",
+        "corporate_evidence_url": "",
+        "corporate_evidence_class": "UNVERIFIED",
         "founding_date": "2019-06-01",
         "status": "CLOSED",
         "headquarters": "Japan",
@@ -199,6 +203,8 @@ AGENCY_METADATA = [
         "parent_company_claim": "Independent / Ti19t Community",
         "corporate_entity_status": "OFFICIAL_BRAND_ENTITY",
         "corporate_registration_status": "CORPORATE_REGISTRATION_UNVERIFIED",
+        "corporate_evidence_url": "",
+        "corporate_evidence_class": "UNVERIFIED",
         "founding_date": "2020-12-01",
         "status": "ACTIVE",
         "headquarters": "Thailand",
@@ -213,8 +219,10 @@ AGENCY_METADATA = [
         "agency_name": "Independent",
         "brand_name": "Independent Creators",
         "parent_company_claim": "Self-Managed / Individual Creators",
-        "corporate_entity_status": "OFFICIAL_BRAND_ENTITY",
+        "corporate_entity_status": "INDEPENDENT_COLLECTIVE",
         "corporate_registration_status": "NOT_APPLICABLE",
+        "corporate_evidence_url": "",
+        "corporate_evidence_class": "NOT_APPLICABLE",
         "founding_date": "2017-01-01",
         "status": "ACTIVE",
         "headquarters": "Thailand",
@@ -475,6 +483,31 @@ def build_agency_datasets():
     history_rows = []
     for ag in AGENCY_METADATA:
         r = dict(ag)
+        corp_url = str(r.get("corporate_evidence_url") or "").strip()
+        corp_class = str(r.get("corporate_evidence_class") or "UNVERIFIED").strip()
+        reg_status = r.get("corporate_registration_status", "CORPORATE_REGISTRATION_UNVERIFIED")
+
+        # Invariant 4: For every CORPORATE_DISCLOSURE_VERIFIED record require:
+        # - non-empty corporate_evidence_url
+        # - corporate_evidence_class in: GOVERNMENT_REGISTRY, OFFICIAL_CORPORATE_DISCLOSURE
+        # - source explicitly supports the named legal entity
+        # Do NOT hardcode agency names as proof.
+        if reg_status == "CORPORATE_DISCLOSURE_VERIFIED":
+            if not corp_url or corp_class not in ["GOVERNMENT_REGISTRY", "OFFICIAL_CORPORATE_DISCLOSURE"]:
+                r["corporate_registration_status"] = "CORPORATE_REGISTRATION_UNVERIFIED"
+                r["corporate_entity_status"] = "OFFICIAL_BRAND_ENTITY"
+                r["corporate_evidence_class"] = "UNVERIFIED"
+                r["corporate_evidence_url"] = ""
+
+        # Independent must match NOT_APPLICABLE where applicable
+        if r.get("agency_name") == "Independent":
+            r["corporate_entity_status"] = "INDEPENDENT_COLLECTIVE"
+            r["corporate_registration_status"] = "NOT_APPLICABLE"
+            r["corporate_evidence_class"] = "NOT_APPLICABLE"
+            r["corporate_evidence_url"] = ""
+
+        r["corporate_evidence_url"] = r.get("corporate_evidence_url", "")
+        r["corporate_evidence_class"] = r.get("corporate_evidence_class", "UNVERIFIED")
         r["retrieved_at"] = retrieved_at
         history_rows.append(r)
     history_df = pd.DataFrame(history_rows)

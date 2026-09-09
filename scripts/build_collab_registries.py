@@ -41,7 +41,7 @@ COLLAB_KEYWORDS = [
 
 
 def build_collab_registries():
-    # 1. Load catalog containing titles
+    # 1. Load root catalog containing titles
     catalog_df = pd.read_parquet(CATALOG_PATH)
     logger.info(f"Loaded {len(catalog_df)} titles from root catalog {CATALOG_PATH}")
 
@@ -49,6 +49,21 @@ def build_collab_registries():
     temp_df = pd.read_parquet(TEMPORAL_CATALOG_PATH)
     temp_vids = set(temp_df["video_id"])
     logger.info(f"Loaded {len(temp_df)} temporal catalog records ({len(temp_vids)} distinct video IDs)")
+
+    # Check if temporal catalog has titles
+    temp_has_titles = "title" in temp_df.columns and temp_df["title"].notna().any()
+    
+    # Join title metadata by video_id where possible
+    # Detector input: exact set of records with inspectable titles
+    if temp_has_titles:
+        detector_input_df = temp_df[temp_df["title"].notna()].copy()
+    else:
+        # Temporal catalog lacks titles; join available title metadata from catalog_df
+        detector_input_df = catalog_df[catalog_df["title"].notna()].copy()
+
+    total_videos_scanned = len(detector_input_df)
+    title_covered_in_temporal = sum(temp_df["video_id"].isin(set(detector_input_df["video_id"])))
+    logger.info(f"Detector evaluated {total_videos_scanned} records with title metadata ({title_covered_in_temporal} overlap with temporal catalog).")
 
     with open(REGISTRY_PATH, "r", encoding="utf-8") as f:
         reg = json.load(f)
@@ -75,7 +90,7 @@ def build_collab_registries():
     target_ids = set(manifest_df["channel_id"])
 
     pattern = "|".join([re.escape(k) for k in COLLAB_KEYWORDS])
-    matches = catalog_df[catalog_df["title"].str.lower().str.contains(pattern, na=False)].copy()
+    matches = detector_input_df[detector_input_df["title"].str.lower().str.contains(pattern, na=False)].copy()
     logger.info(f"Found {len(matches)} collab candidate videos by keyword matching.")
 
     candidates_full = []
@@ -214,42 +229,83 @@ def build_collab_registries():
     audit_df.to_csv(INDUSTRY_DIR / "collab_verification_audit.csv", index=False)
     logger.info(f"Saved {len(audit_df)} audit records to collab_verification_audit.*")
 
-    # 5. Deterministic Stratified Validation Sample & Recall Calibration
-    sample_rows = []
+    # 5. Deterministic Stratified Validation Sample & Metrics Calibration
+    sample_candidate_rows = []
     for y, ygroup in candidates_df.groupby("event_year"):
-        s = ygroup.sample(n=min(len(ygroup), 5), random_state=42)
-        sample_rows.append(s)
-    val_sample = pd.concat(sample_rows, ignore_index=True) if sample_rows else pd.DataFrame()
-    val_sample.to_csv(INDUSTRY_DIR / "collab_stratified_validation_sample.csv", index=False)
+        s = ygroup.sample(n=min(len(ygroup), 5), random_state=42).copy()
+        sample_candidate_rows.append(s)
+    candidates_sampled = pd.concat(sample_candidate_rows, ignore_index=True) if sample_candidate_rows else pd.DataFrame()
+    candidates_sampled["stratified_class"] = "CANDIDATE_STRATIFIED"
 
-    verified_in_sample = sum(val_sample["verification_level"] == "EXACT_HANDLE_VERIFIED")
-    sample_precision = (verified_in_sample / len(val_sample)) if len(val_sample) > 0 else 0.0
+    # Deterministic negative control sample (non-candidate videos from evaluated catalog)
+    non_candidates = detector_input_df[~detector_input_df["video_id"].isin(set(candidates_df["video_id"]))].copy()
+    controls_sampled = non_candidates.sample(n=min(len(non_candidates), 10), random_state=42).copy()
+    controls_sampled["stratified_class"] = "NON_CANDIDATE_CONTROL"
+    controls_sampled["host_channel_id"] = controls_sampled.get("channel_id", "")
+    controls_sampled["host_channel_name"] = controls_sampled.get("channel_name", "")
+    controls_sampled["video_title"] = controls_sampled.get("title", "")
+    controls_sampled["event_year"] = controls_sampled["published_at"].astype(str).str[:4].astype(int)
+    controls_sampled["extracted_mentions"] = "NONE"
+    controls_sampled["exact_resolved_count"] = 0
+    controls_sampled["unresolved_mentions_count"] = 0
+    controls_sampled["verification_level"] = "NON_CANDIDATE_UNFLAGGED"
+    controls_sampled["exists_in_temporal_catalog"] = controls_sampled["video_id"].isin(temp_vids)
+    controls_sampled["retrieved_at"] = retrieved_at
+
+    sample_cols = [
+        "video_id", "host_channel_id", "host_channel_name", "video_title",
+        "published_at", "event_year", "extracted_mentions", "exact_resolved_count",
+        "unresolved_mentions_count", "verification_level", "exists_in_temporal_catalog",
+        "stratified_class", "retrieved_at"
+    ]
+    val_sample = pd.concat([candidates_sampled[sample_cols], controls_sampled[sample_cols]], ignore_index=True)
+    val_sample["ground_truth_collab"] = "UNLABELED"
+    val_sample["label_provenance"] = "NO_INDEPENDENT_GROUND_TRUTH"
+
+    val_sample.to_csv(INDUSTRY_DIR / "collab_stratified_validation_sample.csv", index=False)
+    logger.info(f"Saved {len(val_sample)} rows to collab_stratified_validation_sample.csv")
+
+    verified_in_sample = int(sum(val_sample["verification_level"] == "EXACT_HANDLE_VERIFIED"))
+    sample_exact_match_rate = (verified_in_sample / len(val_sample)) if len(val_sample) > 0 else 0.0
+    candidate_resolution_rate = (len(verified_df) / len(candidates_df)) if len(candidates_df) > 0 else 0.0
 
     validation_metrics = {
-        "catalog_scan_type": "full historical catalog scan",
-        "total_videos_scanned": len(catalog_df),
+        "catalog_scan_type": "title-covered subset scan",
+        "temporal_catalog_total_records": len(temp_df),
+        "temporal_catalog_title_covered_records": int(title_covered_in_temporal),
+        "total_videos_scanned": total_videos_scanned,
         "detected_subset_label": "verified observed collaboration subset",
         "verified_collab_events_count": len(verified_df),
         "candidate_videos_count": len(candidates_df),
+        "description_queue_count": len(queue_df),
         "stratified_sample_size": len(val_sample),
-        "stratified_sample_precision_estimate": round(sample_precision, 4),
-        "catalog_wide_recall": "INSUFFICIENT_EVIDENCE",
+        "sample_verified_in_sample": verified_in_sample,
+        "sample_exact_handle_match_rate": round(sample_exact_match_rate, 4),
+        "exact_handle_resolution_rate": round(candidate_resolution_rate, 4),
+        "precision": "INSUFFICIENT_EVIDENCE",
+        "precision_status": "INSUFFICIENT_EVIDENCE",
+        "precision_limitation_rationale": (
+            "Cannot compute precision without an independently labeled ground-truth collaboration dataset. "
+            "Ratio of handle-verified rows in candidate sample is a heuristic match rate, not empirical precision."
+        ),
+        "recall": "INSUFFICIENT_EVIDENCE",
         "recall_status": "INSUFFICIENT_EVIDENCE",
         "recall_limitation_rationale": (
-            "Cannot compute catalog-wide recall across 96,420 historical videos because video "
-            "descriptions are unindexed in root catalog and unflagged streams lack ground-truth "
-            "participant rosters. Stating completeness is scientifically invalid without full-catalog labels."
+            f"Cannot compute catalog-wide recall across {len(temp_df)} historical videos because titles are available "
+            f"for only {total_videos_scanned} records, video descriptions remain unindexed, and unflagged streams lack "
+            "ground-truth participant rosters. Stating completeness is scientifically invalid without full-catalog labels."
         ),
         "forbidden_claim_audit": {
             "complete_collaboration_network": False,
-            "full_historical_catalog_scan": True,
+            "full_historical_catalog_scan": False,
+            "full_catalog_all_videos_title_inspected": False,
             "verified_observed_collaboration_subset": True
         },
         "calibrated_at": retrieved_at
     }
     with open(INDUSTRY_DIR / "collab_validation_metrics.json", "w", encoding="utf-8") as f:
         json.dump(validation_metrics, f, indent=2, ensure_ascii=False)
-    logger.info(f"Saved collab validation metrics (Recall: INSUFFICIENT_EVIDENCE) to collab_validation_metrics.json")
+    logger.info(f"Saved collab validation metrics (Precision: INSUFFICIENT_EVIDENCE, Recall: INSUFFICIENT_EVIDENCE) to collab_validation_metrics.json")
 
 
 if __name__ == "__main__":

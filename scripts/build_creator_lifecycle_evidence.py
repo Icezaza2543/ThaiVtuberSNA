@@ -703,8 +703,35 @@ def build_creator_datasets():
             ref_lower = ref.lower()
             st = ve.get("source_type", "")
 
-            # Strict evidence tier assignment
-            if ("status/" in ref_lower or "twitter.com/eileennoir" in ref_lower) and not any(h in ref_lower for h in ["fandom.com"]):
+            # Explicit curated source authority metadata check
+            is_curated_primary = (
+                ve.get("verification_status") == "PRIMARY_EVENT_SPECIFIC"
+                or ve.get("creator_source_class") in ["PRIMARY_OFFICIAL_ANNOUNCEMENT", "CREATOR_PRIMARY_STATEMENT"]
+                or st in ["OFFICIAL_AGENCY_ANNOUNCEMENT", "PUBLIC_TALENT_STATEMENT"]
+            )
+            is_official_source_type = st in ["OFFICIAL_AGENCY_ANNOUNCEMENT", "PUBLIC_TALENT_STATEMENT"]
+            
+            # Authoritative publisher handles: must match verified official agency or talent account
+            is_recognized_authority = any(
+                auth in ref_lower for auth in [
+                    "x.com/astars", "twitter.com/astars",
+                    "x.com/pixela", "twitter.com/pixela",
+                    "x.com/arp_vtuber", "twitter.com/arp_vtuber",
+                    "x.com/polygonofficial", "twitter.com/polygonofficial",
+                    "twitter.com/miraismaid", "x.com/miraismaid",
+                    "twitter.com/eileennoir", "x.com/eileennoir"
+                ]
+            )
+
+            # Strict evidence tier assignment: requires curated authority metadata AND specific event URL
+            # A random third-party X status must not auto-upgrade
+            if (
+                is_curated_primary
+                and is_official_source_type
+                and is_recognized_authority
+                and ("status/" in ref_lower or "twitter.com/eileennoir" in ref_lower)
+                and not any(h in ref_lower for h in ["fandom.com"])
+            ):
                 evidence_tier = "PRIMARY_EVENT_SPECIFIC"
                 creator_source_class = "CREATOR_PRIMARY_STATEMENT" if st == "PUBLIC_TALENT_STATEMENT" else "PRIMARY_OFFICIAL_ANNOUNCEMENT"
             elif "fandom.com" in ref_lower:

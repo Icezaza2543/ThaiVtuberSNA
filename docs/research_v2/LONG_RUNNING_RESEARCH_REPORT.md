@@ -8,7 +8,10 @@
 - **Initial Pass 1:** Started 2026-09-09T03:12:19+07:00, Ended 2026-09-09T03:30:20+07:00 (18 wall-clock minutes).  
 - **Pass 2 (Systematic Audit):** Started 2026-09-09T03:52:00+07:00, Ended 2026-09-09T04:03:00+07:00 (11 wall-clock minutes).  
 - **Pass 3 (Triangulation & Hardening):** Started 2026-09-09T04:03:00+07:00, Ended 2026-09-09T04:06:00+07:00 (3 wall-clock minutes).  
-- **Total Cumulative Wall-Clock Runtime:** **32 minutes**.  
+- **Pass 4 (Research Integrity Hotfix):** Started 2026-09-09T10:55:00+07:00, Ended 2026-09-09T11:06:00+07:00 (11 wall-clock minutes).  
+- **Pre-Hotfix Cumulative Wall-Clock Runtime:** **32 minutes**.  
+- **Hotfix Runtime:** **11 minutes**.  
+- **Total Recorded Cumulative Wall-Clock Runtime:** **43 minutes**.  
 *(Note: As mandated by research governance rules, no "10-hour" label is claimed. All execution durations and record counts are derived strictly from [`docs/research_v2/RUNTIME_LEDGER.md`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/docs/research_v2/RUNTIME_LEDGER.md).)*
 
 ---
@@ -17,9 +20,11 @@
 
 | Metric Dimension | Mechanical Value | Derivation Source / Invariant |
 | :--- | :---: | :--- |
-| **Passes Completed** | **3 + Hotfix** | Sequential execution pipeline with calibrated integrity audit |
-| **Total Wall-Clock Minutes** | **32 minutes** | `RUNTIME_LEDGER.md` (Batch 1: 18m, Batch 2: 11m, Batch 3: 3m) |
-| **Queries Attempted** | **294** | MediaWiki API crawls, YouTube API catalog queries, DuckDB snapshots |
+| **Passes Completed** | **4 (Pass 1–3 + Hotfix)** | Sequential execution pipeline with calibrated integrity audit |
+| **Pre-Hotfix Wall-Clock Runtime** | **32 minutes** | `RUNTIME_LEDGER.md` (Batch 1: 18m, Batch 2: 11m, Batch 3: 3m) |
+| **Hotfix Wall-Clock Runtime** | **11 minutes** | `RUNTIME_LEDGER.md` (Batch 4: 11m) |
+| **Total Recorded Runtime** | **43 minutes** | `RUNTIME_LEDGER.md` (18 + 11 + 3 + 11 = 43 minutes) |
+| **Queries Attempted** | **342** | MediaWiki API crawls, YouTube API catalog queries, DuckDB snapshots |
 | **Unique Inspected URLs** | **250 unique URLs** | Mechanically deduplicated in `docs/research_v2/SOURCE_LEDGER.csv` |
 | **Sources Accepted (External Evidence)** | **243 URLs** | Verified official announcements, event tickets, products, and wiki records |
 | **Sources Rejected (Documented Failure)** | **7 URLs** | Explicitly recorded in `data/market/rejected_sources.csv` |
@@ -54,35 +59,37 @@ pie title Creator Lifecycle Verification Status (N=193 Cohort)
 
 ---
 
-## 3. Collaboration Network: Full Historical Catalog Scan
+## 3. Collaboration Network: Title-Covered Catalog Scan
 
-The catalog scope scans the complete historical archive rather than an isolated sample:
-- **Historical Temporal Catalog:** [`data/temporal/catalog/video_catalog.parquet`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/data/temporal/catalog/video_catalog.parquet) containing **96,420 videos** across 2020–2026.
-- **Terminology Invariant:** The 96,420-video scan is designated as a **"full historical catalog scan"**. It **MUST NOT** be described as a "complete collaboration network".
+The collaboration detector evaluates records with available title metadata rather than unindexed catalog IDs:
+- **Catalog Scope & Title Coverage:** While the historical archive contains **96,420 playlist video records** ([`data/temporal/catalog/video_catalog.parquet`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/data/temporal/catalog/video_catalog.parquet)), video titles are available and inspectable for **581 videos** ([`data/video_catalog.parquet`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/data/video_catalog.parquet)).
+- **Scan Invariant:** Exactly **581 videos scanned** (`total_videos_scanned == 581`, matching the exact number of rows actually evaluated by the collab detector). It **MUST NOT** be described as a "96,420-video collaboration scan" because unindexed rows lack inspectable title text.
 - **Verified Observed Collaboration Subset:** The detected subset of **11 pairwise events** (from 54 keyword candidate videos and 45 queued for description enrichment) is designated strictly as the **"verified observed collaboration subset"**.
-- **Catalog-Wide Recall:** Mathematically recorded as **`INSUFFICIENT_EVIDENCE`** in [`data/industry/collab_validation_metrics.json`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/data/industry/collab_validation_metrics.json). Full-catalog recall cannot be computed without video descriptions or ground-truth participant rosters for all 96,420 videos; zero recall fabrication is strictly enforced.
-- **Stratified Validation Sample:** Evaluated across years (seed=42) in [`data/industry/collab_stratified_validation_sample.csv`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/data/industry/collab_stratified_validation_sample.csv) yielding an empirical precision estimate of 0.1667 on title keyword candidates.
+- **Precision & Recall Governance:**
+  - `precision`: Recorded as **`INSUFFICIENT_EVIDENCE`** in [`data/industry/collab_validation_metrics.json`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/data/industry/collab_validation_metrics.json). Without an independent ground-truth collaboration dataset, heuristic handle resolution cannot be labeled empirical precision (exact handle resolution rate across candidates is 0.2037 / 20.37%).
+  - `recall`: Recorded as **`INSUFFICIENT_EVIDENCE`**. Full catalog-wide recall cannot be computed without video descriptions or ground-truth participant rosters for all 96,420 videos; zero recall fabrication is strictly enforced.
+- **Stratified Validation Sample:** Exactly **28 rows** (stratified candidate videos across years plus random negative control videos from evaluated catalog) generated deterministically in [`data/industry/collab_stratified_validation_sample.csv`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/data/industry/collab_stratified_validation_sample.csv) with explicit `ground_truth_collab: UNLABELED` provenance.
 
 ---
 
 ## 4. Agency Institutional History & Corporate Backing
 
-All 12 agency organizations represented in the frozen cohort were audited with primary and secondary documentation. Organizations are NOT called "registered corporate entities" unless supported by authoritative corporate disclosures or official registry extracts:
+All 12 agency organizations represented in the frozen cohort were audited with primary and secondary documentation. Organizations are NOT called "registered corporate entities" unless supported by authoritative corporate disclosures or official registry extracts explicitly naming the legal entity. Per data-driven verification rules, agencies without such registry evidence are classified as `OFFICIAL_BRAND_ENTITY` with `CORPORATE_REGISTRATION_UNVERIFIED`:
 
 | Agency Name | Corporate Entity Status | Corporate Registration Status | Primary / Secondary Source | Evidence Tier |
 | :--- | :--- | :--- | :--- | :--- |
 | **Algorhythm Project (ARP)** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | `https://x.com/ARP_Vtuber/status/1897988102767231056` | `PRIMARY_EVENT_SPECIFIC` (Events) / `PRIMARY_ENTITY_GENERAL` (Profile) |
 | **Pixela Project** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | `https://x.com/PixelaProject/status/1723657388706857187` | `PRIMARY_EVENT_SPECIFIC` (Events) / `PRIMARY_ENTITY_GENERAL` (Profile) |
-| **AStars Production** | `AUTHORITATIVE_CORPORATE_DISCLOSURE` | `CORPORATE_DISCLOSURE_VERIFIED` | `https://x.com/AStarsofficial/status/1815726053744328971` (Brave group APAC) | `PRIMARY_EVENT_SPECIFIC` |
+| **AStars Production** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | `https://x.com/AStarsofficial/status/1815726053744328971` (Portal / Brand) | `PRIMARY_EVENT_SPECIFIC` (Events) / `PRIMARY_ENTITY_GENERAL` (Profile) |
 | **Virtual Zeven (VZ)** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | `https://virtualyoutuber.fandom.com/wiki/Virtual_Zeven` | `SECONDARY_DOCUMENTED` (Events) / `PRIMARY_ENTITY_GENERAL` (Profile) |
 | **Polygon Official** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | `https://x.com/PolygonOfficial/status/2001594838520779264` | `PRIMARY_EVENT_SPECIFIC` (Events) / `PRIMARY_ENTITY_GENERAL` (Profile) |
 | **Lumina Live** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | `https://x.com/LuminaLive_TH` | `PRIMARY_ENTITY_GENERAL` |
 | **Euphora Project** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | `https://x.com/EuphoraProject` | `PRIMARY_ENTITY_GENERAL` |
 | **Flora Project** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | Fandom Wiki (Category:Thai) | `SECONDARY_DOCUMENTED` |
 | **RPG** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | Fandom Wiki / Activity cessation | `INFERRED_PROXY` |
-| **WACTOR** | `AUTHORITATIVE_CORPORATE_DISCLOSURE` | `CORPORATE_DISCLOSURE_VERIFIED` | WACTOR Co., Ltd. (Japan) / Fandom Wiki | `PRIMARY_EVENT_SPECIFIC` (Events) |
+| **WACTOR** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | Fandom Wiki (Secondary only) | `SECONDARY_DOCUMENTED` |
 | **Ti19t** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | Thai VTuber Registry | `SECONDARY_DOCUMENTED` |
-| **Independent** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | Thai VTuber Registry Catalog | `INFERRED_PROXY` |
+| **Independent** | `INDEPENDENT_COLLECTIVE` | `NOT_APPLICABLE` | Thai VTuber Registry Catalog | `INFERRED_PROXY` |
 
 ---
 
@@ -149,14 +156,14 @@ In [`docs/research_v2/OUTLOOK_HYPOTHESES.md`](file:///c:/Users/Icezaza/Documents
 
 | Hypothesis | Evaluation Status | Epistemic Class | Primary Empirical Basis |
 | :--- | :--- | :--- | :--- |
-| **H1 EXPANSION** | **CONTRADICTED for audience volume; PARTIALLY SUPPORTED for supply** | `[OBSERVED_RESULT]` | Interacting accounts peaked at 18.6k in 2023; annual repeat-interaction retention is ~8.75%. |
+| **H1 EXPANSION** | **CONTRADICTED for audience volume; PARTIALLY SUPPORTED for supply** | `[SUPPORTED_INTERPRETATION]` | Interacting accounts peaked at 18.6k in 2023; annual repeat-interaction retention is ~8.75%. |
 | **H2 MATURATION** | **STRONGLY SUPPORTED** | `[SUPPORTED_INTERPRETATION]` | Returning accounts rose to 20.91%; modularity stabilized at 0.31–0.32; corporate infrastructure formalized. |
 | **H3 CONSOLIDATION** | **SUPPORTED for attention clustering; REJECTED for headcount** | `[SUPPORTED_INTERPRETATION]` | Top 2 agencies capture large attention share, but indies represent 58.5% of cohort channels. |
 | **H4 SUPPLY SATURATION** | **STRONGLY SUPPORTED** | `[SUPPORTED_INTERPRETATION]` | 1,370+ discoverable channels compete for 13k–18k commenters; network density compressed to 0.157. |
 | **H5 NICHE STABILITY** | **STRONGLY SUPPORTED** | `[SUPPORTED_INTERPRETATION]` | Giant connected component retained 95%–100% across all 7 years; stable pricing tiers across 2022–2026. |
-| **H6 CONTRACTION / COLLAPSE** | **CONTRADICTED AS A SYSTEMIC MACRO THESIS** | `[OBSERVED_RESULT]` | 2025 population rebounded +27.0% YoY; weighted edges hit 7,029 all-time peak; new capital entered (Brave Group). |
+| **H6 CONTRACTION / COLLAPSE** | **CONTRADICTED AS A SYSTEMIC MACRO THESIS** | `[SUPPORTED_INTERPRETATION]` | 2025 population rebounded +27.0% YoY; weighted edges hit 7,029 all-time peak; new capital entered (Brave Group). |
 | **H7 FRAGMENTATION** | **SUPPORTED for intra-agency clustering; CONTRADICTED for graph severance** | `[SUPPORTED_INTERPRETATION]` | Giant component held 100% through 2025 (95% in 2026 YTD); top bridging creators maintain 40%–56% cross-ties. |
-| **H8 INSUFFICIENT EVIDENCE** | **STRONGLY SUPPORTED for macro valuation; REJECTED for SNA topology** | `[OBSERVED_RESULT]` | Public data cannot resolve total THB revenue without private telemetry, but topology and retention are resolved. |
+| **H8 INSUFFICIENT EVIDENCE** | **STRONGLY SUPPORTED for macro valuation; REJECTED for SNA topology** | `[SUPPORTED_INTERPRETATION]` | Public data cannot resolve total THB revenue without private telemetry, but topology and retention are resolved. |
 
 ### Critical Self-Falsification Caveats:
 A 2025 rebound (+27.0% interacting accounts) **does NOT disprove long-term structural contraction**. The ecosystem exhibits:
@@ -181,5 +188,5 @@ A 2025 rebound (+27.0% interacting accounts) **does NOT disprove long-term struc
 - [x] **Denominator Invariant:** Exactly 193 frozen target cohort channels maintained.
 - [x] **Island Coordinate Invariant:** SHA-256 for `AGENCY_ISLAND_COORDINATES` preserved (`47a63e31...`).
 - [x] **No Refactoring Rule:** Zero source code moved to `src/`.
-- [x] **Truthful Runtime:** Exactly 32 wall-clock minutes recorded; zero "10-hour" fabrication.
+- [x] **Truthful Runtime:** Exactly 43 wall-clock minutes recorded (32m pre-hotfix + 11m hotfix); zero "10-hour" fabrication.
 - [x] **Evidence Tiers Calibrated:** Strict separation of `PRIMARY_EVENT_SPECIFIC`, `PRIMARY_ENTITY_GENERAL`, `SECONDARY_DOCUMENTED`, and `INFERRED_PROXY`.
