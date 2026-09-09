@@ -34,18 +34,35 @@ def archive_event(record):
     return result
 
 
-def build_sheet_unified_raw(con, store=None):
+def build_sheet_unified_raw(con, store=None, *, include_expanded=False):
+    """Opt-in expanded batches supplement legacy selection; defaults remain frozen."""
     if any(row[2] for row in con.execute('PRAGMA database_list').fetchall()):
         raise ValueError('Private analytics requires an in-memory DuckDB connection')
     con.execute("SET temp_directory = ''")
     store = store or PrivateSheetStore()
-    rows = [event for row in store.read_records('PRIVATE_DATA_ARCHIVE', ARCHIVE_HEADERS)
-            if (event := archive_event(row)) is not None]
+    records = store.read_records('PRIVATE_DATA_ARCHIVE', ARCHIVE_HEADERS)
+    if include_expanded:
+        records = list(records)  # authorized private RAM, DuckDB spill already disabled
+    rows = [event for row in records if (event := archive_event(row)) is not None]
+    columns = RAW_COLUMNS
+    if include_expanded:
+        from storage.expanded_sheet_batches import validated_expanded_batches
+        batches, rejected = validated_expanded_batches(records)
+        for row in rows: row['append_only'] = False
+        for path, batch in batches.items():
+            for event in batch['events']:
+                row = {k: None for k in RAW_COLUMNS}
+                row.update({k: event[k] for k in ('viewer_hash','vtuber_channel_id','video_id','source_type','provenance')})
+                row.update(interaction_at=event.get('interaction_time'),
+                           video_published_at=event.get('video_published_at'), source_path=path,
+                           priority=0, partial_capture='true', append_only=True)
+                rows.append(row)
+        columns = RAW_COLUMNS + ['append_only']
     if not rows: raise RuntimeError('No canonical private observations in the authorized workbook')
-    schema = pa.schema([(k,pa.int64() if k=='priority' else pa.string()) for k in RAW_COLUMNS])
+    schema = pa.schema([(k,pa.int64() if k=='priority' else pa.bool_() if k=='append_only' else pa.string()) for k in columns])
     table = pa.Table.from_pylist(rows,schema=schema)
     con.register('_private_sheet_raw',table)
     projections = [f'try_cast("{k}" AS TIMESTAMPTZ) AS "{k}"' if k in
-                   ('interaction_at','first_seen','timestamp','video_published_at') else f'"{k}"' for k in RAW_COLUMNS]
+                   ('interaction_at','first_seen','timestamp','video_published_at') else f'"{k}"' for k in columns]
     con.execute('CREATE OR REPLACE VIEW unified_raw AS SELECT '+','.join(projections)+' FROM _private_sheet_raw')
     return len(rows)

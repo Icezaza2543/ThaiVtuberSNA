@@ -384,6 +384,7 @@ def build_canonical_events_view(con: duckdb.DuckDBPyConnection, source_table_or_
     con.execute("SET Calendar = 'gregorian'")
     cols = {r[0] for r in con.execute(f"DESCRIBE {source_table_or_view}").fetchall()}
 
+    append_expr = "COALESCE(append_only, FALSE)" if "append_only" in cols else "FALSE"
     inter_expr = "interaction_at" if "interaction_at" in cols else "NULL"
     first_seen_expr = "first_seen" if "first_seen" in cols else "NULL"
     timestamp_expr = "timestamp" if "timestamp" in cols else "NULL"
@@ -433,7 +434,8 @@ def build_canonical_events_view(con: duckdb.DuckDBPyConnection, source_table_or_
                 try_cast({timestamp_expr} AS TIMESTAMPTZ) AS parsed_timestamp,
                 try_cast({pub_expr} AS TIMESTAMPTZ) AS parsed_video_published_at,
                 {prov_expr} AS provenance,
-                CAST({prio_expr} AS INT) AS priority
+                CAST({prio_expr} AS INT) AS priority,
+                {append_expr} AS append_only
             FROM {source_table_or_view}
             WHERE viewer_hash IS NOT NULL AND viewer_hash != ''
               AND vtuber_channel_id IS NOT NULL AND vtuber_channel_id != ''
@@ -464,7 +466,8 @@ def build_canonical_events_view(con: duckdb.DuckDBPyConnection, source_table_or_
                 END AS timestamp_quality,
                 parsed_video_published_at AS raw_video_published_at,
                 provenance,
-                priority
+                priority,
+                append_only
             FROM raw_data
         ),
         normalized AS (
@@ -486,7 +489,8 @@ def build_canonical_events_view(con: duckdb.DuckDBPyConnection, source_table_or_
                 interaction_time_source,
                 timestamp_quality,
                 provenance,
-                priority
+                priority,
+                append_only
             FROM classified
         ),
         comment_video_priority AS (
@@ -495,7 +499,7 @@ def build_canonical_events_view(con: duckdb.DuckDBPyConnection, source_table_or_
                 video_id,
                 MIN(priority) AS best_comment_priority
             FROM normalized
-            WHERE source_type = 'comment' AND provenance != 't16_incremental'
+            WHERE source_type = 'comment' AND provenance != 't16_incremental' AND NOT append_only
             GROUP BY vtuber_channel_id, video_id
         ),
         precedence_filtered AS (
@@ -507,6 +511,7 @@ def build_canonical_events_view(con: duckdb.DuckDBPyConnection, source_table_or_
              AND n.video_id = cvp.video_id
             WHERE (n.source_type != 'comment')
                OR (n.provenance = 't16_incremental')
+               OR n.append_only
                OR (n.source_type = 'comment' AND n.priority = cvp.best_comment_priority)
         ),
         deduplicated AS (

@@ -6,12 +6,76 @@ production orchestration remains disabled until live capacity/transaction review
 """
 import hashlib
 import json
+import re
 from core.expanded_contracts import capacity_estimate
 from core.data_security import assert_sheet_rows
 from storage.private_sheet_analytics import ARCHIVE_HEADERS
 from collector.expanded_backfill import encode
 
 TAB = 'PRIVATE_DATA_ARCHIVE'
+
+
+def validated_expanded_batches(records, *, max_batch_records=502):
+    """Validate whole batches before exposing any row; quarantine conflicts by batch ID.
+
+    RAM only. Scan the whole input before returning so a later conflicting copy
+    cannot invalidate events already exposed to analytics. Return only batch IDs
+    for rejected groups, never private contents in diagnostics.
+    """
+    groups, rejected = {}, set()
+    for record in records:
+        path = record.get('source_path', '')
+        if not path.startswith('expanded-v1/'):
+            continue
+        if path in rejected:
+            continue
+        rows = groups.setdefault(path, [])
+        rows.append([record.get(k, '') for k in ARCHIVE_HEADERS])
+        if len(rows) > max_batch_records:
+            rejected.add(path)
+            del groups[path]
+    accepted = {}
+    for path, rows in groups.items():
+        try:
+            match = re.fullmatch(r'expanded-v1/([a-f0-9]{64})/([1-9][0-9]*)', path)
+            if not match or len(rows) < 2:
+                raise ValueError()
+            if [r[2] for r in rows] != [str(i) for i in range(len(rows))]:
+                raise ValueError()
+            if rows[-1][1] != 'batch_manifest' or rows[-2][1] != 'state':
+                raise ValueError()
+            if any(r[1] != 'event' for r in rows[:-2]):
+                raise ValueError()
+            manifest = json.loads(rows[-1][3])
+            digest = hashlib.sha256(encode(rows[:-1]).encode()).hexdigest()
+            if (set(manifest) != {'sha256', 'rows'} or type(manifest['rows']) is not int
+                    or manifest['rows'] != len(rows)-1 or manifest['sha256'] != digest):
+                raise ValueError()
+            state = json.loads(rows[-2][3])
+            if type(state.get('sequence')) is not int or state['sequence'] != int(match[2]):
+                raise ValueError()
+            events = [json.loads(r[3]) for r in rows[:-2]]
+            allowed = {'record_id', 'viewer_hash', 'vtuber_channel_id', 'video_id', 'source_type',
+                       'interaction_kind', 'interaction_time', 'provenance', 'video_published_at'}
+            for event in events:
+                if (not isinstance(event, dict) or set(event)-allowed
+                        or any(not isinstance(event.get(k), str) or not event[k]
+                               for k in ('record_id','viewer_hash','vtuber_channel_id','video_id','provenance'))
+                        or event.get('source_type') not in {'comment', 'live_chat'}):
+                    raise ValueError()
+            accepted[path] = {'events': events, 'state': state, 'digest': digest}
+        except (ValueError, TypeError, KeyError, AttributeError):
+            rejected.add(path)
+    identities = {}
+    for path, batch in accepted.items():
+        for event in batch['events']:
+            key = tuple(event[k] for k in ('vtuber_channel_id', 'video_id', 'source_type', 'record_id'))
+            payload = encode(event)
+            if key in identities and identities[key][1] != payload:
+                rejected.update((path, identities[key][0]))
+            else:
+                identities[key] = (path, payload)
+    return {p: b for p, b in accepted.items() if p not in rejected}, sorted(rejected)
 
 
 class ExpandedSheetBatches:
