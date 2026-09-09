@@ -68,18 +68,23 @@ class ExpandedSheetBatches:
             raise RuntimeError('NOT_MEASURED: capacity approval required before writing')
         if len(events) > self.max_buffer_records:
             raise RuntimeError('Memory bound reached; no local private spill')
-        current, _ = self.load(job_id)
-        # Crash after remote commit/before local acknowledgement is reconciled by content.
-        if current.get('sequence', 0) == state['sequence']:
-            if current != state: raise RuntimeError('Conflicting replay state')
-            return {'verified': True, 'reconciled': True}
-        if current.get('sequence', 0) != expected_sequence:
-            raise RuntimeError('Stale workbook sequence')
+        if type(state.get('sequence')) is not int or state['sequence'] != expected_sequence + 1:
+            raise ValueError('Batch sequence must follow expected sequence')
         batch_id = f'expanded-v1/{job_id}/{state["sequence"]}'
         rows = [[batch_id, 'event', str(i), encode(event)] for i, event in enumerate(events)]
         rows.append([batch_id, 'state', str(len(rows)), encode(state)])
         digest = hashlib.sha256(encode(rows).encode()).hexdigest()
         rows.append([batch_id, 'batch_manifest', str(len(rows)), encode({'sha256': digest, 'rows': len(rows)})])
+        current, _ = self.load(job_id)
+        if current.get('sequence', 0) == state['sequence']:
+            _, records = self._scan()
+            committed = [[r.get(k, '') for k in ARCHIVE_HEADERS] for r in records
+                         if r.get('source_path') == batch_id]
+            if current != state or committed != rows:
+                raise RuntimeError('Conflicting replay content; preserve committed batch')
+            return {'verified': True, 'reconciled': True, 'content_sha256': digest}
+        if current.get('sequence', 0) != expected_sequence:
+            raise RuntimeError('Stale workbook sequence')
         if any(len(str(cell)) > self.max_cell_chars for row in rows for cell in row):
             raise RuntimeError('Cell limit exceeded; pause without truncating')
         assert_sheet_rows(ARCHIVE_HEADERS, rows, self.store.known_secrets)
