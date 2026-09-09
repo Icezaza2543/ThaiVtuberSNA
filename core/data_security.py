@@ -50,14 +50,41 @@ def contains_secret(value, known_secrets=()):
     return False
 
 
+# Fields of the completeness summary, not a filename/path exemption.
+FIELD_COUNT_FIELDS = frozenset({
+    'viewer_hash', 'raw_channel_id', 'display_name', 'channel_url',
+    'first_seen', 'last_seen', 'total_interactions', 'channels_observed_count',
+    'recovery_source', 'recovery_status',
+})
+FIELD_COUNT_KEYS = frozenset({'TOTAL_ROWS', 'NON_EMPTY', 'MISSING', 'INVALID'})
+
+
+def is_field_count_summary(value):
+    """Recognize only a nonempty field-to-counter map, never sample/identity payloads.
+
+    bool is an int subclass, so counters require exact integer types. Every field
+    must have the complete counter schema; no filename or directory exemptions.
+    """
+    return (
+        isinstance(value, dict) and bool(value)
+        and all(
+            isinstance(field, str) and field in FIELD_COUNT_FIELDS
+            and isinstance(counts, dict) and set(counts) == FIELD_COUNT_KEYS
+            and all(type(count) is int and count >= 0 for count in counts.values())
+            for field, counts in value.items()
+        )
+    )
+
+
 def contains_private(value):
     if isinstance(value, str) and value.lstrip().startswith(('{', '[')):
         try: return contains_private(json.loads(value))
         except ValueError: return False
     if isinstance(value, dict):
-        if any(k in PRIVATE_FIELDS and v not in (None, '') for k, v in value.items()):
+        summary = is_field_count_summary(value)
+        if not summary and any(k in PRIVATE_FIELDS and v not in (None, '') for k, v in value.items()):
             return True
-        if value.get('channel_url') and value.get('display_name') and not value.get('vtuber_channel_id'):
+        if not summary and value.get('channel_url') and value.get('display_name') and not value.get('vtuber_channel_id'):
             return True
         return any(contains_private(v) for v in value.values())
     if isinstance(value, (list, tuple)):

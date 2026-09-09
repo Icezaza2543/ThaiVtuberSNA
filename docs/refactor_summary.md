@@ -36,7 +36,7 @@ A three-creator synthetic fixture was executed by the baseline snapshot writer b
 
 Batch 2 targeted tests: **13 passed in 2.91s**. Integrated offline suite: **366 passed, 120 warnings in 119.95s (0:01:59)**, versus 362 baseline tests. All original scenarios/assertions and pytest discovery are retained; four tests add characterization and offline dispatch checks. The 120 existing warnings are NetworkX assortativity warnings.
 
-Research consistency (including identity), synthetic privacy canary and module/CLI smoke checks PASS. Git security **FAILS at both baseline and milestone 27c2aaf**, with the same single finding: `docs/evidence/viewer_index_after_summary.json`, classified `PRIVATE_DATA` / `Individual viewer identity records`. The protected artifact was not inspected manually, edited, deleted or exempted; the consolidated command correctly returns nonzero. This is an existing audit limitation/finding, not a refactor regression or a claim of confirmed leakage. No live/local private-data audit was run.
+Research consistency (including identity), synthetic privacy canary and module/CLI smoke checks PASS. At consolidation, Git security **failed at both baseline and milestone 27c2aaf**, with the same single finding: `docs/evidence/viewer_index_after_summary.json`, classified `PRIVATE_DATA` / `Individual viewer identity records`. The protected artifact was not edited, deleted or exempted; the consolidated command correctly returned nonzero at that time. The subsequent bounded correction below identifies and resolves this false positive without changing the artifact. No live/local private-data audit was run.
 
 Existing DAG functions are AST-identical to baseline. All 182 protected files remain byte-identical, including public frontend assets and frozen data. Existing reproduction tests retain their existing normalization of `generated_at` and `calculated_at`; this refactor adds no exclusions. The new snapshot fixture comparison excludes no fields.
 
@@ -60,3 +60,20 @@ Luna's post-change reference review found no stale imports or lost supported cal
 ## Retained limitations
 
 Identity quarantine and historical affiliation questions remain unresolved; full-registry audience denominators and authoritative organizational closure evidence remain unavailable. Existing analysis_context rebinding is retained to avoid an orchestration rewrite. Assertions and research rules retain their current semantics. Production collection/publishing remain on hold. Prior broader src/ architecture plans are historical proposals, not authorization to expand this phase.
+
+
+## Bounded field-count audit correction
+
+The previous Git finding was a classifier false positive: `viewer_index_after_summary.json` contains per-field completeness counters, not individual identities. The old nonempty-private-field rule treated the counter dictionary under `viewer_hash` as a viewer value.
+
+`core/data_security.py` now recognizes only a nonempty mapping of known completeness-summary fields to exactly `TOTAL_ROWS`, `NON_EMPTY`, `MISSING`, `INVALID`, each an exact non-negative integer (booleans, floats, strings and nested payloads are rejected). Unknown fields/sample containers cannot enter the exception by containing counters. No filename/directory exemption is used. Credential detection remains first; recursive inspection is retained. Actual identity records, mixed summary/identity payloads and malformed counters remain private.
+
+The protected summary remains byte-identical: SHA-256 `5ed9a60af0c5f7b331accbd47050a118b27e34bff97fd5bcb3fa14d5d70928ad`. This changes only classification of the validated aggregate shape, not research outputs, workbook data or unrelated audit rules. The earlier modular consolidation and conservative pruning claims/counts above remain historical facts; this correction is not additional refactoring.
+
+Validation of the bounded correction:
+
+- Targeted security/public-boundary tests: **69 passed in 9.05s**.
+- Existing offline dispatcher: **research_consistency PASS; synthetic_privacy_canary PASS; git_security PASS; git_findings 0**.
+- Full `python -m pytest`: **397 passed, 120 warnings in 124.96s (0:02:04)**. The 120 existing NetworkX warnings remain; test discovery and earlier assertions are unchanged.
+- Protected summary byte comparison and `git diff --check`: **PASS**.
+- No remaining findings from these audits. No workbook access, local private-dataset scan, collection or research-output regeneration was performed.

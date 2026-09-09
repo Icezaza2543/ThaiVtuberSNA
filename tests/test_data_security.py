@@ -175,3 +175,64 @@ def test_legacy_purge_and_merge_entrypoints_cannot_delete_tabs():
     for name in ('purge_sheets_pii.py','merge_reilim_into_all_commenters.py','sync_to_google_sheets.py'):
         source=(REPO_ROOT/'scripts'/name).read_text()
         assert 'del_worksheet' not in source and '.clear(' not in source
+
+
+def field_counts():
+    return {'TOTAL_ROWS': 3, 'NON_EMPTY': 2, 'MISSING': 1, 'INVALID': 0}
+
+
+def classify_summary_fixture(value):
+    return inspect_blob('arbitrary/location.json', json.dumps(value).encode())[0]
+
+
+@pytest.mark.parametrize('value', [
+    {'viewer_hash': field_counts()},
+    {'viewer_hash': field_counts(), 'raw_channel_id': field_counts(),
+     'display_name': field_counts(), 'channel_url': field_counts()},
+    {'summary': {'viewer_hash': field_counts()}},
+])
+def test_strict_field_count_summary_is_public(value):
+    assert classify_summary_fixture(value) == 'PUBLIC_RESEARCH_DATA'
+    assert_public(value)
+
+
+@pytest.mark.parametrize('value', [
+    {'viewer_hash': 'synthetic-viewer'},
+    {'raw_channel_id': 'synthetic-channel'},
+    {'display_name': 'Synthetic', 'channel_url': 'https://example.test/viewer'},
+    {'viewer_hash': {**field_counts(), 'sample': 'synthetic-viewer'}},
+    {'viewer_hash': field_counts(), 'sample': 'synthetic-viewer'},
+    {'viewer_hash': field_counts(), 'samples': field_counts()},
+    {'viewer_hash': field_counts(), 'synthetic-identity-as-field': field_counts()},
+    {'viewer_hash': field_counts(), 'raw_channel_id': 'synthetic-channel'},
+    {'viewer_hash': field_counts(), 'rows': [{'viewer_hash': 'synthetic-viewer'}]},
+    {'summary': {'viewer_hash': field_counts()}, 'rows': [{'raw_channel_id': 'synthetic-channel'}]},
+    {'summary': {'viewer_hash': field_counts()}, 'nested': json.dumps({'viewer_hash': 'synthetic-viewer'})},
+])
+def test_summary_does_not_hide_identity_payloads(value):
+    assert classify_summary_fixture(value) == 'PRIVATE_DATA'
+    with pytest.raises(ValueError, match='LEVEL_B'): assert_public(value)
+
+
+@pytest.mark.parametrize('counts', [
+    {}, {'TOTAL_ROWS': 3}, {**field_counts(), 'EXTRA': 0},
+    {**field_counts(), 'INVALID': True}, {**field_counts(), 'INVALID': False},
+    {**field_counts(), 'INVALID': -1}, {**field_counts(), 'INVALID': 0.0},
+    {**field_counts(), 'INVALID': '0'}, {**field_counts(), 'INVALID': None},
+    {**field_counts(), 'INVALID': []}, {**field_counts(), 'INVALID': {'viewer_hash': 'synthetic'}},
+    [field_counts()],
+])
+def test_ambiguous_field_counts_remain_private(counts):
+    assert classify_summary_fixture({'viewer_hash': counts}) == 'PRIVATE_DATA'
+
+
+@pytest.mark.parametrize('value', [
+    {'viewer_hash': field_counts(), 'api_key': 'synthetic-credential'},
+    {'viewer_hash': {**field_counts(), 'secret_key': 'synthetic-credential'}},
+    {'summary': {'viewer_hash': field_counts()}, 'nested': {'refresh_token': 'synthetic-credential'}},
+    {'api_key': field_counts()},
+    {'viewer_hash': 'synthetic-viewer', 'private_key': 'synthetic-credential'},
+])
+def test_summary_never_overrides_credential_priority(value):
+    assert classify_summary_fixture(value) == 'SECRET_CREDENTIAL'
+    with pytest.raises(ValueError, match='LEVEL_A'): assert_public(value)
