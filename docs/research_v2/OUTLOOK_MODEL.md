@@ -28,7 +28,7 @@ Public commentary frequently poses questions regarding ecosystem contraction or 
 |---|---|---|---|---|---|---|
 | **`CREATOR_SUPPLY`** | `active_channels_count` | `157.00` | `166.00` | **`EXPANDING`** | `HIGH` | `yearly_ecosystem_metrics.parquet` |
 | **`ENTRY_RATE`** | `pct_new_interacting_audience` | `84.03%` | `82.25%` | **`CONTRACTING`** | `HIGH` | `audience_behavior_yearly.parquet` |
-| **`EXIT_PRESSURE`** | `verified_graduations_and_closures` | `10.00` | `2.00` | **`CONTRACTING`** | `MEDIUM` | `creator_status_events.parquet` |
+| **`EXIT_PRESSURE`** | `verified_graduations_and_closures` | `2.00` | `9.00` | **`EXPANDING`** | `MEDIUM` | `creator_status_events.parquet` |
 | **`AUDIENCE_ACTIVITY`** | `annual_active_interaction_accounts` | `13,478` | `17,119` | **`EXPANDING`** | `HIGH` | `audience_behavior_yearly.parquet` |
 | **`AUDIENCE_PERSISTENCE`** | `pct_re_observed_accounts` | `15.97%` | `17.75%` | **`EXPANDING`** | `HIGH` | `audience_behavior_yearly.parquet` |
 | **`AUDIENCE_BREADTH`** | `pct_multi_channel_observed` | `8.90%` | `9.92%` | **`EXPANDING`** | `HIGH` | `audience_behavior_yearly.parquet` |

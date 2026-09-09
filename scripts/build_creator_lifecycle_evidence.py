@@ -73,9 +73,11 @@ VERIFIED_CREATOR_INTEL = {
             "event_type": "GRADUATION",
             "event_date": "2025-04-30",
             "event_year": 2025,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "verification_status": "PRIMARY_EVENT_SPECIFIC",
+            "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
+            "creator_source_class": "PRIMARY_OFFICIAL_ANNOUNCEMENT",
             "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/AStars",
+            "source_reference": "https://x.com/AStarsofficial/status/1888528955219968470",
             "notes": "Official graduation announced on 2025-04-16; farewell stream held 2025-04-26; effective 2025-04-30."
         }
     ],
@@ -94,9 +96,11 @@ VERIFIED_CREATOR_INTEL = {
             "event_type": "GRADUATION",
             "event_date": "2025-02-14",
             "event_year": 2025,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "verification_status": "PRIMARY_EVENT_SPECIFIC",
+            "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
+            "creator_source_class": "PRIMARY_OFFICIAL_ANNOUNCEMENT",
             "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/AStars",
+            "source_reference": "https://x.com/AStarsofficial/status/1888528955219968470",
             "notes": "Graduation announced 2025-02-06 due to health; early graduation stream held 2025-02-14."
         }
     ],
@@ -136,9 +140,11 @@ VERIFIED_CREATOR_INTEL = {
             "event_type": "GRADUATION",
             "event_date": "2025-05-09",
             "event_year": 2025,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "verification_status": "PRIMARY_EVENT_SPECIFIC",
+            "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
+            "creator_source_class": "PRIMARY_OFFICIAL_ANNOUNCEMENT",
             "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Princess_Zelina",
+            "source_reference": "https://x.com/PixelaProject/status/1920783180422176880",
             "notes": "Graduation announced by Pixela on 2025-03-07; final activities completed on 2025-05-09."
         }
     ],
@@ -157,9 +163,11 @@ VERIFIED_CREATOR_INTEL = {
             "event_type": "GRADUATION",
             "event_date": "2023-11-28",
             "event_year": 2023,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "verification_status": "PRIMARY_EVENT_SPECIFIC",
+            "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
+            "creator_source_class": "PRIMARY_OFFICIAL_ANNOUNCEMENT",
             "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Hinabe_HongFei",
+            "source_reference": "https://x.com/PixelaProject/status/1723657388706857187",
             "notes": "Retired on 2023-11-28."
         }
     ],
@@ -178,9 +186,11 @@ VERIFIED_CREATOR_INTEL = {
             "event_type": "GRADUATION",
             "event_date": "2023-11-30",
             "event_year": 2023,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "verification_status": "PRIMARY_EVENT_SPECIFIC",
+            "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
+            "creator_source_class": "PRIMARY_OFFICIAL_ANNOUNCEMENT",
             "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Melita_X",
+            "source_reference": "https://x.com/PixelaProject/status/1723657388706857187",
             "notes": "Retired on 2023-11-30."
         }
     ],
@@ -199,9 +209,11 @@ VERIFIED_CREATOR_INTEL = {
             "event_type": "GRADUATION",
             "event_date": "2023-11-29",
             "event_year": 2023,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+            "verification_status": "PRIMARY_EVENT_SPECIFIC",
+            "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
+            "creator_source_class": "PRIMARY_OFFICIAL_ANNOUNCEMENT",
             "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Laguna_Juju",
+            "source_reference": "https://x.com/PixelaProject/status/1723657388706857187",
             "notes": "Retired on 2023-11-29."
         }
     ],
@@ -355,9 +367,11 @@ VERIFIED_CREATOR_INTEL = {
             "event_type": "GRADUATION",
             "event_date": "2025-12-18",
             "event_year": 2025,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_ANNOUNCEMENT",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Aisha",
+            "verification_status": "PRIMARY_EVENT_SPECIFIC",
+            "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
+            "creator_source_class": "PRIMARY_OFFICIAL_ANNOUNCEMENT",
+            "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
+            "source_reference": "https://x.com/PolygonOfficial/status/2001594838520779264",
             "notes": "Graduated and retired on 2025-12-18."
         }
     ],
@@ -681,13 +695,30 @@ def build_creator_datasets():
         reg_item = reg_by_id.get(cid, {})
 
         verified_events = VERIFIED_CREATOR_INTEL.get(cid, [])
-        num_verified = len(verified_events)
-        num_proxy = 0
+        creator_events = []
 
-        # Add verified events if any
+        # Add audited verified/documented events
         for ve in verified_events:
+            ref = str(ve.get("source_reference", "")).strip()
+            ref_lower = ref.lower()
+            st = ve.get("source_type", "")
+
+            # Strict evidence tier assignment
+            if ("status/" in ref_lower or "twitter.com/eileennoir" in ref_lower) and not any(h in ref_lower for h in ["fandom.com"]):
+                evidence_tier = "PRIMARY_EVENT_SPECIFIC"
+                creator_source_class = "CREATOR_PRIMARY_STATEMENT" if st == "PUBLIC_TALENT_STATEMENT" else "PRIMARY_OFFICIAL_ANNOUNCEMENT"
+            elif "fandom.com" in ref_lower:
+                evidence_tier = "SECONDARY_DOCUMENTED"
+                creator_source_class = "SECONDARY_DOCUMENTED"
+            elif "video_catalog" in ref_lower:
+                evidence_tier = "INFERRED_PROXY"
+                creator_source_class = "INFERRED_PROXY"
+            else:
+                evidence_tier = ve.get("evidence_tier", "SECONDARY_DOCUMENTED")
+                creator_source_class = ve.get("creator_source_class", "SECONDARY_DOCUMENTED")
+
             event_id = f"evt_{ve['event_type'].lower()}_{cid[:10]}_{ve['event_date'].replace('-', '')}"
-            all_events.append({
+            event_obj = {
                 "event_id": event_id,
                 "creator_channel_id": cid,
                 "creator_name": name,
@@ -695,12 +726,16 @@ def build_creator_datasets():
                 "event_type": ve["event_type"],
                 "event_date": ve["event_date"],
                 "event_year": ve["event_year"],
-                "verification_status": ve["verification_status"],
+                "evidence_tier": evidence_tier,
+                "creator_source_class": creator_source_class,
+                "verification_status": evidence_tier,
                 "source_type": ve["source_type"],
-                "source_reference": ve["source_reference"],
+                "source_reference": ref,
                 "retrieved_at": retrieved_at,
                 "notes": ve["notes"]
-            })
+            }
+            all_events.append(event_obj)
+            creator_events.append(event_obj)
 
         # If no verified debut/first appearance, emit observational first observed proxy
         has_verified_start = any(e["event_type"] in ["DEBUT", "FIRST_APPEARANCE", "RE_DEBUT"] for e in verified_events)
@@ -709,7 +744,7 @@ def build_creator_datasets():
             if pd.notna(oldest_vid_ts):
                 dt_str = str(oldest_vid_ts)[:10]
                 event_id = f"evt_first_observed_{cid[:10]}_{dt_str.replace('-', '')}"
-                all_events.append({
+                proxy_obj = {
                     "event_id": event_id,
                     "creator_channel_id": cid,
                     "creator_name": name,
@@ -717,13 +752,16 @@ def build_creator_datasets():
                     "event_type": "FIRST_OBSERVED",
                     "event_date": dt_str,
                     "event_year": int(dt_str[:4]),
+                    "evidence_tier": "INFERRED_PROXY",
+                    "creator_source_class": "INFERRED_PROXY",
                     "verification_status": "INFERRED_PROXY",
                     "source_type": "CATALOG_TIMESTAMP_PROXY",
                     "source_reference": f"channel_coverage.parquet:oldest_video_published_at={oldest_vid_ts}",
                     "retrieved_at": retrieved_at,
                     "notes": f"Earliest cataloged public video upload in research dataset ({oldest_vid_ts}). Not verified debut stream."
-                })
-                num_proxy += 1
+                }
+                all_events.append(proxy_obj)
+                creator_events.append(proxy_obj)
 
         # Hiatus or graduation proxy for unverified inactive channels
         has_verified_end = any(e["event_type"] in ["GRADUATION", "TERMINATION", "GRADUATION_OR_DEPARTURE"] for e in verified_events)
@@ -733,7 +771,7 @@ def build_creator_datasets():
                 dt_str = str(last_pub)[:10]
                 event_type = "GRADUATION_PROXY" if status == "graduated" else "HIATUS_OBSERVED_PROXY"
                 event_id = f"evt_{event_type.lower()}_{cid[:10]}_{dt_str.replace('-', '')}"
-                all_events.append({
+                proxy_obj = {
                     "event_id": event_id,
                     "creator_channel_id": cid,
                     "creator_name": name,
@@ -741,19 +779,29 @@ def build_creator_datasets():
                     "event_type": event_type,
                     "event_date": dt_str,
                     "event_year": int(dt_str[:4]),
+                    "evidence_tier": "INFERRED_PROXY",
+                    "creator_source_class": "INFERRED_PROXY",
                     "verification_status": "INFERRED_PROXY",
                     "source_type": "REGISTRY_INACTIVITY_PROXY",
                     "source_reference": f"thai_vtuber_registry.json:last_video_published_at={last_pub}",
                     "retrieved_at": retrieved_at,
                     "notes": f"Observed {status} boundary based on last public activity recorded on {dt_str} (>180d inactive)."
-                })
-                num_proxy += 1
+                }
+                all_events.append(proxy_obj)
+                creator_events.append(proxy_obj)
 
-        # Determine coverage metrics
-        ext_sources = 2 if num_verified > 0 else 1
+        # Count events by evidence tier
+        primary_specific_count = sum(1 for e in creator_events if e["creator_source_class"] == "PRIMARY_OFFICIAL_ANNOUNCEMENT")
+        creator_primary_count = sum(1 for e in creator_events if e["creator_source_class"] == "CREATOR_PRIMARY_STATEMENT")
+        secondary_doc_count = sum(1 for e in creator_events if e["evidence_tier"] == "SECONDARY_DOCUMENTED")
+        inferred_proxy_count = sum(1 for e in creator_events if e["evidence_tier"] == "INFERRED_PROXY")
         start_known = True if (has_verified_start or pd.notna(cov.get("oldest_video_published_at"))) else False
         end_known = True if (status in ["graduated"] or has_verified_end) else False
         agency_known = True if (agency and agency != "Unknown") else False
+        unknown_count = 1 if (status in ["hiatus", "unknown"] and not end_known) else 0
+
+        num_verified = primary_specific_count + creator_primary_count + secondary_doc_count
+        ext_sources = 2 if num_verified > 0 else 1
 
         if num_verified > 0:
             remaining_gap = "NONE" if (end_known or status == "active") else "LIFECYCLE_END_UNCERTAIN"
@@ -769,8 +817,13 @@ def build_creator_datasets():
             "creator_name": name,
             "agency": agency,
             "lifecycle_status": status,
+            "events_primary_event_specific": primary_specific_count,
+            "events_creator_primary": creator_primary_count,
+            "events_secondary_documented": secondary_doc_count,
+            "events_inferred_proxy": inferred_proxy_count,
+            "events_unknown": unknown_count,
             "events_verified": num_verified,
-            "events_proxy": num_proxy,
+            "events_proxy": inferred_proxy_count,
             "external_sources_checked": ext_sources,
             "lifecycle_start_known": start_known,
             "lifecycle_end_known": end_known,
@@ -788,7 +841,8 @@ def build_creator_datasets():
     events_df.to_parquet(events_parquet, index=False)
     events_df.to_csv(events_csv, index=False)
     logger.info(f"Saved {len(events_df)} status events to {events_parquet} and {events_csv}")
-    logger.info(f"Events verification breakdown: {events_df['verification_status'].value_counts().to_dict()}")
+    logger.info(f"Events evidence_tier breakdown: {events_df['evidence_tier'].value_counts().to_dict()}")
+    logger.info(f"Events creator_source_class breakdown: {events_df['creator_source_class'].value_counts().to_dict()}")
 
     # Save creator_evidence_coverage
     cov_parquet = INDUSTRY_DIR / "creator_evidence_coverage.parquet"

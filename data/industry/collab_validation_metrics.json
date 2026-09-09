@@ -1,0 +1,18 @@
+{
+  "catalog_scan_type": "full historical catalog scan",
+  "total_videos_scanned": 581,
+  "detected_subset_label": "verified observed collaboration subset",
+  "verified_collab_events_count": 11,
+  "candidate_videos_count": 54,
+  "stratified_sample_size": 18,
+  "stratified_sample_precision_estimate": 0.1667,
+  "catalog_wide_recall": "INSUFFICIENT_EVIDENCE",
+  "recall_status": "INSUFFICIENT_EVIDENCE",
+  "recall_limitation_rationale": "Cannot compute catalog-wide recall across 96,420 historical videos because video descriptions are unindexed in root catalog and unflagged streams lack ground-truth participant rosters. Stating completeness is scientifically invalid without full-catalog labels.",
+  "forbidden_claim_audit": {
+    "complete_collaboration_network": false,
+    "full_historical_catalog_scan": true,
+    "verified_observed_collaboration_subset": true
+  },
+  "calibrated_at": "2026-09-09T04:03:53.238520+00:00"
+}

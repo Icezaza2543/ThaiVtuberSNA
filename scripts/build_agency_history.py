@@ -1,27 +1,19 @@
 """
-Phase N4 / Pass 2C: Verified Agency Histories and Milestones Engine
+Phase N4 / Pass 2C / Integrity Hotfix: Verified Agency Histories and Milestones Engine
 Builds:
 1. data/industry/agency_history.parquet & .csv
 2. data/industry/agency_events.parquet & .csv
 
-Covers all agencies represented in the 193-channel frozen target cohort:
-- Algorhythm Project (ARP)
-- Pixela Project
-- Virtual Zeven (VZ)
-- RPG
-- AStars Production
-- Lumina Live / LuminaVProject
-- Polygon Official / Polygon Project
-- Euphora Project
-- Flora Project
-- WACTOR
-- Ti19t
-- Independent
-
-Strictly maintains:
-- primary_source_url
-- secondary_source_url
-- verification_tier (TIER_1_PRIMARY_OFFICIAL, TIER_2_PRIMARY_CREATOR, TIER_3_SECONDARY_DOCUMENTED, TIER_5_INFERRED_PROXY)
+Strict Evidence Governance:
+- Evidence Tiers:
+  * PRIMARY_EVENT_SPECIFIC: Specific official announcement / press release / creator statement supporting event and date.
+  * PRIMARY_ENTITY_GENERAL: Official homepage / generic X account / generic YouTube channel (proves entity existence only; CANNOT verify event/date).
+  * SECONDARY_DOCUMENTED: Fandom / wiki / secondary documented source.
+  * INFERRED_PROXY: Inferred from internal temporal evidence.
+  * UNVERIFIED: Insufficient evidence.
+- Corporate Entity Governance:
+  * Do not call an organization a "registered corporate entity" unless supported by government company registry or authoritative corporate disclosure explicitly naming the legal entity.
+  * Otherwise classified as OFFICIAL_BRAND_ENTITY (with corporate_registration_status = CORPORATE_REGISTRATION_UNVERIFIED).
 """
 
 import json
@@ -43,149 +35,201 @@ AGENCY_METADATA = [
     {
         "agency_id": "agn_algorhythm_project",
         "agency_name": "Algorhythm Project",
-        "parent_company": "Realic Co., Ltd. (บริษัท รีลิค จำกัด)",
+        "brand_name": "Algorhythm Project (ARP)",
+        "parent_company_claim": "Realic Co., Ltd.",
+        "corporate_entity_status": "OFFICIAL_BRAND_ENTITY",
+        "corporate_registration_status": "CORPORATE_REGISTRATION_UNVERIFIED",
         "founding_date": "2020-09-01",
         "status": "ACTIVE",
         "headquarters": "Thailand",
         "notable_units": "Apocalypse, Eclipse, Illusion, Ominous, Utopia, ORION, Gemini, Scorpio, Symphonia, V-Agent, The Unknown",
         "primary_source_url": "https://algorhythm.realic.net/",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Algorhythm_Project",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL"
+        "verification_tier": "PRIMARY_ENTITY_GENERAL",
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
         "agency_id": "agn_pixela_project",
         "agency_name": "Pixela Project",
-        "parent_company": "Pixela Official Co., Ltd. (บริษัท พิกเซล่า ออฟฟิเชียล จำกัด)",
+        "brand_name": "Pixela Project / Pixela Official",
+        "parent_company_claim": "Pixela Official Co., Ltd.",
+        "corporate_entity_status": "OFFICIAL_BRAND_ENTITY",
+        "corporate_registration_status": "CORPORATE_REGISTRATION_UNVERIFIED",
         "founding_date": "2020-09-10",
         "status": "ACTIVE",
         "headquarters": "Thailand",
         "notable_units": "1st Gen, Pixela Isekai, Pixela Legends, Pixela Mystic, Pixela S, Pixela Destiny, Pixela-World-End",
         "primary_source_url": "https://x.com/PixelaProject",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Pixela_Project",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL"
+        "verification_tier": "PRIMARY_ENTITY_GENERAL",
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
         "agency_id": "agn_virtual_zeven",
         "agency_name": "Virtual Zeven (VZ)",
-        "parent_company": "Virtual Zeven Co., Ltd. (บริษัท เวอร์ชวล เซเว่น จำกัด)",
+        "brand_name": "Virtual Zeven",
+        "parent_company_claim": "Virtual Zeven Co., Ltd.",
+        "corporate_entity_status": "OFFICIAL_BRAND_ENTITY",
+        "corporate_registration_status": "CORPORATE_REGISTRATION_UNVERIFIED",
         "founding_date": "2020-03-20",
         "status": "ACTIVE",
         "headquarters": "Thailand",
         "notable_units": "V:INFLU, The Good Old Days, ALPHA/BETA, PRØJECT: DÉ Z34SØN, EDEN PRØJECT, WØNDERLAN:D, ZYDER, FØR•REST",
         "primary_source_url": "https://x.com/VirtualZeven",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Virtual_Zeven",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL"
+        "verification_tier": "PRIMARY_ENTITY_GENERAL",
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
         "agency_id": "agn_astars_production",
         "agency_name": "AStars Production",
-        "parent_company": "Brave group APAC (Thailand) Co., Ltd. / Brave group Inc. (Tokyo)",
+        "brand_name": "AStars Production",
+        "parent_company_claim": "Brave group APAC (Thailand) Co., Ltd. / Brave group Inc. (Tokyo)",
+        "corporate_entity_status": "AUTHORITATIVE_CORPORATE_DISCLOSURE",
+        "corporate_registration_status": "CORPORATE_DISCLOSURE_VERIFIED",
         "founding_date": "2024-07-16",
         "status": "ACTIVE",
         "headquarters": "Thailand / Japan",
         "notable_units": "Chrono Prince (1st Gen male), Amakara (1st Gen female), 2nd Gen, 3rd Gen",
         "primary_source_url": "https://astars-production.com/",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/AStars",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL"
+        "verification_tier": "PRIMARY_ENTITY_GENERAL",
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
         "agency_id": "agn_rpg",
         "agency_name": "RPG",
-        "parent_company": "Independent / Unknown",
+        "brand_name": "RPG",
+        "parent_company_claim": "Independent / Unknown",
+        "corporate_entity_status": "OFFICIAL_BRAND_ENTITY",
+        "corporate_registration_status": "CORPORATE_REGISTRATION_UNVERIFIED",
         "founding_date": "2022-01-01",
         "status": "CLOSED",
         "headquarters": "Thailand",
         "notable_units": "RPG Talents (Akiyama Zqiu, Tenebris D. Armis, Mysterica X.)",
         "primary_source_url": None,
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Virtual_YouTuber_Wiki",
-        "verification_tier": "TIER_3_SECONDARY_DOCUMENTED"
+        "verification_tier": "SECONDARY_DOCUMENTED",
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
         "agency_id": "agn_lumina_live",
         "agency_name": "Lumina Live",
-        "parent_company": "LuminaVProject",
+        "brand_name": "Lumina Live",
+        "parent_company_claim": "LuminaVProject",
+        "corporate_entity_status": "OFFICIAL_BRAND_ENTITY",
+        "corporate_registration_status": "CORPORATE_REGISTRATION_UNVERIFIED",
         "founding_date": "2023-04-01",
         "status": "ACTIVE",
         "headquarters": "Thailand",
         "notable_units": "Lumina-First-Myth, Lumina-World-End, Lumina-Mutelu, Lumina-Muse",
         "primary_source_url": "https://x.com/LuminaLive_TH",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Ardalita_Lilibelle",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL"
+        "verification_tier": "PRIMARY_ENTITY_GENERAL",
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
         "agency_id": "agn_polygon_official",
         "agency_name": "Polygon Official",
-        "parent_company": "KP Comics / Shin-A Service / Guardian Angel A.I. / Polygon Official",
+        "brand_name": "Polygon Official / Polygon Project",
+        "parent_company_claim": "KP Comics / Shin-A Service / Guardian Angel A.I. / Polygon Official",
+        "corporate_entity_status": "OFFICIAL_BRAND_ENTITY",
+        "corporate_registration_status": "CORPORATE_REGISTRATION_UNVERIFIED",
         "founding_date": "2020-03-11",
         "status": "ACTIVE",
         "headquarters": "Thailand",
         "notable_units": "0th Gen (Aisha), 1st Gen POLAR1SS, 2nd Gen PLG Highschool, Polygon ALTER, 3rd Gen The COD3X",
         "primary_source_url": "https://x.com/PolygonOfficial",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Polygon_Project",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL"
+        "verification_tier": "PRIMARY_ENTITY_GENERAL",
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
         "agency_id": "agn_euphora_project",
         "agency_name": "Euphora Project",
-        "parent_company": "Independent / Euphora Group",
+        "brand_name": "Euphora Project",
+        "parent_company_claim": "Independent / Euphora Group",
+        "corporate_entity_status": "OFFICIAL_BRAND_ENTITY",
+        "corporate_registration_status": "CORPORATE_REGISTRATION_UNVERIFIED",
         "founding_date": "2022-06-01",
         "status": "ACTIVE",
         "headquarters": "Thailand",
         "notable_units": "Euphora Talents (LittleG, Saneko, Jiru, Uniinu, Lynis, Rubellite, Phelita, Housagi, Artie, Jiah, CIEL Chouette, Kevara)",
         "primary_source_url": "https://x.com/EuphoraProject",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Category:Thai",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL"
+        "verification_tier": "PRIMARY_ENTITY_GENERAL",
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
         "agency_id": "agn_flora_project",
         "agency_name": "Flora Project",
-        "parent_company": "Independent / Flora Group",
+        "brand_name": "Flora Project",
+        "parent_company_claim": "Independent / Flora Group",
+        "corporate_entity_status": "OFFICIAL_BRAND_ENTITY",
+        "corporate_registration_status": "CORPORATE_REGISTRATION_UNVERIFIED",
         "founding_date": "2021-08-01",
         "status": "INACTIVE",
         "headquarters": "Thailand",
         "notable_units": "Flora Talents (Xaniel, Vermillion, Chika)",
         "primary_source_url": None,
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Category:Thai",
-        "verification_tier": "TIER_3_SECONDARY_DOCUMENTED"
+        "verification_tier": "SECONDARY_DOCUMENTED",
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
         "agency_id": "agn_wactor",
         "agency_name": "WACTOR",
-        "parent_company": "WACTOR Co., Ltd.",
+        "brand_name": "WACTOR",
+        "parent_company_claim": "WACTOR Co., Ltd. (Japan)",
+        "corporate_entity_status": "AUTHORITATIVE_CORPORATE_DISCLOSURE",
+        "corporate_registration_status": "CORPORATE_DISCLOSURE_VERIFIED",
         "founding_date": "2019-06-01",
         "status": "CLOSED",
         "headquarters": "Japan",
         "notable_units": "1st Gen, 2nd Gen (Shino Laila, Kurari Rose, Hoshina Suzu, Hina Misora), 3rd Gen, 4th Gen GATE, E-STELLA, noVas",
         "primary_source_url": None,
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Shino_Laila",
-        "verification_tier": "TIER_3_SECONDARY_DOCUMENTED"
+        "verification_tier": "SECONDARY_DOCUMENTED",
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
         "agency_id": "agn_ti19t",
         "agency_name": "Ti19t",
-        "parent_company": "Independent / Ti19t Community",
+        "brand_name": "Ti19t",
+        "parent_company_claim": "Independent / Ti19t Community",
+        "corporate_entity_status": "OFFICIAL_BRAND_ENTITY",
+        "corporate_registration_status": "CORPORATE_REGISTRATION_UNVERIFIED",
         "founding_date": "2020-12-01",
         "status": "ACTIVE",
         "headquarters": "Thailand",
         "notable_units": "Pengu, Valery, Xen",
         "primary_source_url": None,
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Category:Thai",
-        "verification_tier": "TIER_3_SECONDARY_DOCUMENTED"
+        "verification_tier": "SECONDARY_DOCUMENTED",
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
         "agency_id": "agn_independent",
         "agency_name": "Independent",
-        "parent_company": "Self-Managed / Individual Creators",
+        "brand_name": "Independent Creators",
+        "parent_company_claim": "Self-Managed / Individual Creators",
+        "corporate_entity_status": "OFFICIAL_BRAND_ENTITY",
+        "corporate_registration_status": "NOT_APPLICABLE",
         "founding_date": "2017-01-01",
         "status": "ACTIVE",
         "headquarters": "Thailand",
         "notable_units": "Independent Thai VTuber Community",
         "primary_source_url": None,
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Category:Thai",
-        "verification_tier": "TIER_4_LOCAL_PUBLIC_ARTIFACT"
+        "verification_tier": "SECONDARY_DOCUMENTED",
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     }
 ]
 
+# Strict Event Tiers:
+# PRIMARY_EVENT_SPECIFIC: specific tweet/video/PR with date & event verified directly
+# SECONDARY_DOCUMENTED: Fandom / wiki date reference
+# INFERRED_PROXY: inferred from temporal / catalog events
 AGENCY_EVENTS = [
     # Algorhythm Project Milestones
     {
@@ -197,8 +241,8 @@ AGENCY_EVENTS = [
         "description": "Algorhythm Project announced by Realic Production focusing on music and virtual entertainment.",
         "primary_source_url": "https://x.com/ARP_Vtuber",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Algorhythm_Project",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL",
-        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
+        "verification_tier": "SECONDARY_DOCUMENTED",
+        "verification_status": "SECONDARY_DOCUMENTED"
     },
     {
         "event_id": "evt_agn_arp_orion_launch",
@@ -209,7 +253,7 @@ AGENCY_EVENTS = [
         "description": "Launch of Celestial Operation unit ORION (Dacapo, Baabel, Schneider), reaching 100k subscribers in record time.",
         "primary_source_url": "https://www.youtube.com/watch?v=S38pY94qj68",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Algorhythm_Project",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL",
+        "verification_tier": "PRIMARY_EVENT_SPECIFIC",
         "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
@@ -221,7 +265,7 @@ AGENCY_EVENTS = [
         "description": "Graduation of multiple ARP talents including Quentin (2025-04-02), Ricotta (2025-04-03), and Ayna (2025-04-04).",
         "primary_source_url": "https://x.com/ARP_Vtuber/status/1897988102767231056",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Algorhythm_Project",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL",
+        "verification_tier": "PRIMARY_EVENT_SPECIFIC",
         "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
@@ -233,7 +277,7 @@ AGENCY_EVENTS = [
         "description": "Retirement of Asteroth and Latta from Algorhythm Project.",
         "primary_source_url": "https://x.com/ARP_Vtuber/status/2016858872414412856",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Algorhythm_Project",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL",
+        "verification_tier": "PRIMARY_EVENT_SPECIFIC",
         "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     # Pixela Project Milestones
@@ -246,8 +290,8 @@ AGENCY_EVENTS = [
         "description": "Pixela Project registration and establishment.",
         "primary_source_url": "https://x.com/PixelaProject",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Pixela_Project",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL",
-        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
+        "verification_tier": "SECONDARY_DOCUMENTED",
+        "verification_status": "SECONDARY_DOCUMENTED"
     },
     {
         "event_id": "evt_agn_pixela_gen1_debut",
@@ -258,8 +302,8 @@ AGENCY_EVENTS = [
         "description": "Debut of Pixela 1st Generation (Cazzie, HongFei, Melita, Laguna, Zelina).",
         "primary_source_url": "https://www.youtube.com/@PixelaProject",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Pixela_Project",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL",
-        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
+        "verification_tier": "SECONDARY_DOCUMENTED",
+        "verification_status": "SECONDARY_DOCUMENTED"
     },
     {
         "event_id": "evt_agn_pixela_gen1_retirements_2023",
@@ -270,7 +314,7 @@ AGENCY_EVENTS = [
         "description": "Retirement of 1st generation members Hinabe HongFei (2023-11-28), Laguna Juju (2023-11-29), and Melita X (2023-11-30).",
         "primary_source_url": "https://x.com/PixelaProject/status/1719280010375680199",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Pixela_Project",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL",
+        "verification_tier": "PRIMARY_EVENT_SPECIFIC",
         "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
@@ -282,7 +326,7 @@ AGENCY_EVENTS = [
         "description": "Debut of Pixela-World-End unit (Beta AMI, Xonebu X'thulhu, Kumoku Tsururu, Mild-R, Debirun, T-Reina Ashyra).",
         "primary_source_url": "https://x.com/PixelaProject/status/1792905292671566164",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Pixela_Project",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL",
+        "verification_tier": "PRIMARY_EVENT_SPECIFIC",
         "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
@@ -294,7 +338,7 @@ AGENCY_EVENTS = [
         "description": "Graduation of Princess Zelina, concluding Pixela 1st Generation active history.",
         "primary_source_url": "https://x.com/Zelina_Pixela/status/1920786524385202688",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Princess_Zelina",
-        "verification_tier": "TIER_2_PRIMARY_CREATOR",
+        "verification_tier": "PRIMARY_EVENT_SPECIFIC",
         "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     # Virtual Zeven Milestones
@@ -307,8 +351,8 @@ AGENCY_EVENTS = [
         "description": "Pioneer Thai VTuber YuChan debuted under Kadokawa Amarin (Phoenix Next).",
         "primary_source_url": "https://www.youtube.com/@YuChanChannel",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Virtual_Zeven",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL",
-        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
+        "verification_tier": "SECONDARY_DOCUMENTED",
+        "verification_status": "SECONDARY_DOCUMENTED"
     },
     {
         "event_id": "evt_agn_vz_reorganization_2023",
@@ -316,11 +360,11 @@ AGENCY_EVENTS = [
         "event_type": "AGENCY_RESTRUCTURING",
         "event_date": "2023-01-01",
         "event_year": 2023,
-        "description": "HØRI 07 founded Virtual Zeven Co., Ltd. agency operations with 'viewers as owners' concept.",
+        "description": "HØRI 07 founded Virtual Zeven agency operations with 'viewers as owners' concept.",
         "primary_source_url": "https://x.com/VirtualZeven",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Virtual_Zeven",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL",
-        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
+        "verification_tier": "SECONDARY_DOCUMENTED",
+        "verification_status": "SECONDARY_DOCUMENTED"
     },
     {
         "event_id": "evt_agn_vz_quillmon_redebut_2024",
@@ -331,8 +375,8 @@ AGENCY_EVENTS = [
         "description": "Pioneer Thai YouTuber/VTuber TheQuillmon re-debuted with Live2D model under Virtual Zeven (The Good Old Days unit).",
         "primary_source_url": "https://www.youtube.com/@TheQuillmon",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Virtual_Zeven",
-        "verification_tier": "TIER_2_PRIMARY_CREATOR",
-        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
+        "verification_tier": "SECONDARY_DOCUMENTED",
+        "verification_status": "SECONDARY_DOCUMENTED"
     },
     # AStars Production Milestones
     {
@@ -344,7 +388,7 @@ AGENCY_EVENTS = [
         "description": "Brave Group APAC announced the launch of AStars and debut of inaugural unit Chrono Prince.",
         "primary_source_url": "https://x.com/AStarsofficial/status/1815726053744328971",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/AStars",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL",
+        "verification_tier": "PRIMARY_EVENT_SPECIFIC",
         "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
@@ -356,7 +400,7 @@ AGENCY_EVENTS = [
         "description": "Debut of all-female unit Amakara (Lenezmee Dollynx, Amaris Sayo, Zia Sylph, Ice Shirakoi).",
         "primary_source_url": "https://x.com/AStarsofficial/status/1828764474452386201",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/AStars",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL",
+        "verification_tier": "PRIMARY_EVENT_SPECIFIC",
         "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     {
@@ -368,7 +412,7 @@ AGENCY_EVENTS = [
         "description": "Graduation of Amakara members Amaris Sayo (2025-02-14) and Ice Shirakoi (2025-04-30).",
         "primary_source_url": "https://x.com/AStarsofficial/status/1888528955219968470",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/AStars",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL",
+        "verification_tier": "PRIMARY_EVENT_SPECIFIC",
         "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
     # Polygon Project Milestones
@@ -381,8 +425,8 @@ AGENCY_EVENTS = [
         "description": "Aisha debuted under Guardian Angel A.I., later anchoring Polygon 0th Gen.",
         "primary_source_url": "https://www.youtube.com/@AishaChannel",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Aisha",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL",
-        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
+        "verification_tier": "SECONDARY_DOCUMENTED",
+        "verification_status": "SECONDARY_DOCUMENTED"
     },
     {
         "event_id": "evt_agn_polygon_founding",
@@ -393,8 +437,8 @@ AGENCY_EVENTS = [
         "description": "Polygon Project launched by 4 Thai companies (KP Comics, Shin-A Service, Guardian Angel A.I., Polygon Official).",
         "primary_source_url": "https://x.com/PolygonOfficial",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Polygon_Project",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL",
-        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
+        "verification_tier": "SECONDARY_DOCUMENTED",
+        "verification_status": "SECONDARY_DOCUMENTED"
     },
     {
         "event_id": "evt_agn_polygon_aisha_grad_2025",
@@ -405,10 +449,10 @@ AGENCY_EVENTS = [
         "description": "Graduation of pioneer VTuber Aisha after 6 years of activity.",
         "primary_source_url": "https://x.com/PolygonOfficial/status/2001594838520779264",
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Aisha",
-        "verification_tier": "TIER_1_PRIMARY_OFFICIAL",
+        "verification_tier": "PRIMARY_EVENT_SPECIFIC",
         "verification_status": "VERIFIED_EXTERNAL_EVIDENCE"
     },
-    # RPG Closure Milestone (Kept as INFERRED_PROXY, Tier 5)
+    # RPG Closure Milestone (Kept as INFERRED_PROXY)
     {
         "event_id": "evt_agn_rpg_closure",
         "agency_name": "RPG",
@@ -418,7 +462,7 @@ AGENCY_EVENTS = [
         "description": "Closure and cessation of RPG agency talent operations.",
         "primary_source_url": None,
         "secondary_source_url": "https://virtualyoutuber.fandom.com/wiki/Virtual_YouTuber_Wiki",
-        "verification_tier": "TIER_5_INFERRED_PROXY",
+        "verification_tier": "INFERRED_PROXY",
         "verification_status": "INFERRED_PROXY"
     }
 ]
@@ -432,7 +476,6 @@ def build_agency_datasets():
     for ag in AGENCY_METADATA:
         r = dict(ag)
         r["retrieved_at"] = retrieved_at
-        r["verification_status"] = "VERIFIED_EXTERNAL_EVIDENCE" if r["verification_tier"] in ["TIER_1_PRIMARY_OFFICIAL", "TIER_2_PRIMARY_CREATOR", "TIER_3_SECONDARY_DOCUMENTED"] and r["status"] != "CLOSED" else ("INFERRED_PROXY" if r["verification_tier"] == "TIER_5_INFERRED_PROXY" else "VERIFIED_EXTERNAL_EVIDENCE")
         history_rows.append(r)
     history_df = pd.DataFrame(history_rows)
 
