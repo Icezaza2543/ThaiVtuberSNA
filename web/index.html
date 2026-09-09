@@ -64,7 +64,8 @@
         </div>
       </section>
       <div class="filter-group"><label for="agencyFilter" class="filter-label">Agency / group at selection</label><select id="agencyFilter" class="filter-select"><option value="ALL">All groups</option></select></div>
-      <div class="filter-group"><label for="metricSelect" class="filter-label">Connection metric</label><select id="metricSelect" class="filter-select"><option value="shared_viewers">Shared viewers · count</option><option value="overlap_coefficient">Overlap coefficient · %</option><option value="jaccard">Jaccard similarity · %</option></select></div>
+      <div class="filter-group"><label for="edgeTypeFilter" class="filter-label">Relationship evidence</label><select id="edgeTypeFilter" class="filter-select"><option value="audience_overlap">Audience overlap · white</option><option value="collaboration">Collaboration · violet</option><option value="production_credit">Production credit → · amber dashed</option></select></div>
+        <div class="filter-group"><label for="metricSelect" class="filter-label">Connection metric</label><select id="metricSelect" class="filter-select"><option value="shared_viewers">Shared viewers · count</option><option value="overlap_coefficient">Overlap coefficient · %</option><option value="jaccard">Jaccard similarity · %</option></select></div>
       <div class="slider-container"><label for="thresholdSlider" class="filter-label">Minimum connection weight <output id="sliderValue">5</output></label><input type="range" id="thresholdSlider" class="slider" min="1" max="100" value="5"></div>
       <button id="btnToggleBridges" class="btn-toggle-bridge" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>Spotlight bridge creators</button>
       <details class="advanced"><summary>Advanced controls</summary><div class="advanced-content">

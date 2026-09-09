@@ -30,6 +30,16 @@ NORMALIZED_KEYS = [
 
 
 class DiscoveryAdapter:
+    @staticmethod
+    def prepare_review_queue(raw_sources, *, candidate_ids, discovered_at):
+        """Offline additive review seam; does not fetch or auto-approve directory entries."""
+        from core.discovery_review import candidate
+        records = [r for source in raw_sources for r in source]
+        if len(records) != len(candidate_ids) or len(set(candidate_ids)) != len(candidate_ids):
+            raise ValueError('Supply one unique stable candidate ID per source record')
+        return [candidate(raw, candidate_id=cid, discovered_at=discovered_at)
+                for raw, cid in zip(records, candidate_ids)]
+
     def __init__(self, seed_file_path: Path = None):
         self.seed_file_path = seed_file_path
         self.ranking_adapter = ThaiVtuberRankingAdapter()

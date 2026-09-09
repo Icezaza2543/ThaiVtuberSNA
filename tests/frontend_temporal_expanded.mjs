@@ -12,7 +12,10 @@ const bundle={dataset_version:'expanded-v1',synthetic:true,snapshots:[
   slice('yearly_2023',[n('synthetic-start-2023')]),
   slice('cumulative_2023',[n('synthetic-start-2023')]),
   slice('yearly_2027',[n('synthetic-latest')]),
-  slice('all_time',[n('synthetic-start-2023'),n('synthetic-discovered-2026'),n('synthetic-isolated')])
+  slice('all_time',[n('synthetic-start-2023'),n('synthetic-discovered-2026'),n('synthetic-isolated')],
+    ['audience_overlap','collaboration','production_credit'].map(edge_type=>({
+      source:'synthetic-start-2023',target:'synthetic-discovered-2026',edge_type,
+      ...(edge_type==='audience_overlap'?{shared_any:9,jaccard_comments:.2}:{credit_role:'rigger'})})))
 ]};
 const browser=await chromium.launch();
 const results=[];
@@ -24,6 +27,12 @@ try {
   await page.route('**/data/expanded-v1/synthetic.json',r=>r.fulfill({json:bundle}));
   await page.goto(`${base}/?snapshot=data/expanded-v1/synthetic.json&synthetic=1`);
   await page.waitForFunction(()=>selectedSnapshot?.snapshot_id==='all_time');
+  assert.equal(await page.locator('#statEdges').textContent(),'1');
+  await page.evaluate(()=>{selectedEdgeType='production_credit';applyFilters();openInspector(nodeMap.get('synthetic-start-2023'),false);});
+  assert.equal(await page.locator('#statEdges').textContent(),'1');
+  assert.match(await page.locator('#inspConnectionsList').textContent(),/production_credit.*outgoing/);
+  assert.equal(await page.evaluate(()=>graphEdges.filter(e=>e.visible)[0].shared_any),undefined);
+  await page.evaluate(()=>{selectedEdgeType='audience_overlap';closeInspector(false);});
   await page.evaluate(()=>updateTimelineSlice(0));
   assert.equal(await page.locator('#statVtubers').textContent(),'2');
   assert.deepEqual(await page.evaluate(()=>graphNodes.filter(n=>n.visible).map(n=>n.id)),['synthetic-discovered-2026','synthetic-isolated']);

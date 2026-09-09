@@ -122,6 +122,7 @@ let dragStartY = 0;
 
 let spotlightBridges = false;
 let currentMetric = "shared_viewers";
+let selectedEdgeType = "audience_overlap";
 let minThreshold = 5;
 let selectedAgency = "ALL";
 let selectedTier = "ALL";
@@ -562,6 +563,9 @@ function applyFilters() {
 
   graphEdges.forEach(e => {
     const nodesVisible = e.sourceNode.visible && e.targetNode.visible;
+    const type = e.edge_type || 'audience_overlap';
+    if (type !== selectedEdgeType) { e.visible = false; return; }
+    if (type !== 'audience_overlap') { e.visible = nodesVisible; return; }
     const weightVal = e[currentMetric];
     if (currentMetric === "shared_viewers") {
       e.visible = nodesVisible && Number.isFinite(weightVal) && (weightVal >= minThreshold);
@@ -912,10 +916,24 @@ function renderCanvas() {
     ctx.moveTo(edge.sourceNode.x, edge.sourceNode.y);
     ctx.lineTo(edge.targetNode.x, edge.targetNode.y);
     ctx.lineWidth = isHovered ? baseWidth + 1.5 : baseWidth;
-    ctx.strokeStyle = isHovered ? `rgba(98,231,255,${alphaVal})` : `rgba(200,215,235,${alphaVal})`;
+    const relation = edge.edge_type || 'audience_overlap';
+    ctx.setLineDash(relation === 'production_credit' ? [4 / zoom, 3 / zoom] : []);
+    ctx.strokeStyle = relation === 'production_credit' ? `rgba(245,158,11,${alphaVal})`
+      : relation === 'collaboration' ? `rgba(167,139,250,${alphaVal})`
+      : isHovered ? `rgba(98,231,255,${alphaVal})` : `rgba(200,215,235,${alphaVal})`;
     ctx.stroke();
   }
 
+  ctx.setLineDash([]);
+  for (const edge of visibleEdges.filter(e => e.edge_type === 'production_credit')) {
+    const angle = Math.atan2(edge.targetNode.y - edge.sourceNode.y, edge.targetNode.x - edge.sourceNode.x);
+    const x = edge.targetNode.x - Math.cos(angle) * (edge.targetNode.radius + 2);
+    const y = edge.targetNode.y - Math.sin(angle) * (edge.targetNode.radius + 2);
+    ctx.beginPath(); ctx.moveTo(x, y);
+    ctx.lineTo(x - Math.cos(angle - .45) * 8 / zoom, y - Math.sin(angle - .45) * 8 / zoom);
+    ctx.lineTo(x - Math.cos(angle + .45) * 8 / zoom, y - Math.sin(angle + .45) * 8 / zoom);
+    ctx.closePath(); ctx.fillStyle = 'rgba(245,158,11,.65)'; ctx.fill();
+  }
   // 3. Draw 2D Flat Circles ("แบบ Obsidian ไม่หลอกตา")
   for (const node of visibleNodes) {
     const isHovered = (focusNode && focusNode.id === node.id);
@@ -1021,6 +1039,13 @@ function renderCanvas() {
 // 7. Mouse & Touch Event Listeners (Safe Click vs Drag)
 // ==========================================================
 function setupEventListeners() {
+  document.getElementById('edgeTypeFilter').addEventListener('change', event => {
+    selectedEdgeType = event.target.value;
+    metricSelect.disabled = selectedEdgeType !== 'audience_overlap';
+    thresholdSlider.disabled = selectedEdgeType !== 'audience_overlap';
+    applyFilters();
+    if (selectedNode) openInspector(selectedNode, false);
+  });
   canvas.addEventListener("pointerdown", e => {
     if (!e.isPrimary || e.button !== 0) return;
     canvas.setPointerCapture(e.pointerId);
@@ -1461,10 +1486,11 @@ function openInspector(node, focus = true) {
   // Find all overlaps connected to this VTuber
   const connections = [];
   graphEdges.forEach(e => {
+    if ((e.edge_type || 'audience_overlap') !== selectedEdgeType) return;
     if (e.sourceNode.id === node.id) {
-      connections.push({ partner: e.targetNode, shared: e.shared_viewers, jaccard: e.jaccard, jaccardScope: e.jaccardScope });
+      connections.push({ partner: e.targetNode, relationship: e.edge_type, creditRole: e.credit_role, direction: 'outgoing', shared: e.shared_viewers, jaccard: e.jaccard, jaccardScope: e.jaccardScope });
     } else if (e.targetNode.id === node.id) {
-      connections.push({ partner: e.sourceNode, shared: e.shared_viewers, jaccard: e.jaccard, jaccardScope: e.jaccardScope });
+      connections.push({ partner: e.sourceNode, relationship: e.edge_type, creditRole: e.credit_role, direction: 'incoming', shared: e.shared_viewers, jaccard: e.jaccard, jaccardScope: e.jaccardScope });
     }
   });
 
@@ -1472,7 +1498,7 @@ function openInspector(node, focus = true) {
 
   inspConnectionsList.innerHTML = "";
   if (connections.length === 0) {
-    inspConnectionsList.innerHTML = `<div style="font-size:0.8rem; color: var(--text-muted);">No recorded overlap in this observation period.</div>`;
+    inspConnectionsList.innerHTML = `<div style="font-size:0.8rem; color: var(--text-muted);">No recorded evidence of this relationship type in this period.</div>`;
   } else {
     const maxShared = connections[0].shared || 1;
     connections.slice(0, 6).forEach(c => {
@@ -1487,7 +1513,7 @@ function openInspector(node, focus = true) {
       name.textContent = c.partner.label;
       const shared = document.createElement("span");
       shared.className = "connection-shared";
-      shared.textContent = `${c.shared} shared · ${Number.isFinite(c.jaccard) ? (c.jaccard * 100).toFixed(1) + "% " + c.jaccardScope : "Jaccard unavailable"}`;
+      shared.textContent = c.relationship && c.relationship !== 'audience_overlap' ? `${c.relationship} · ${c.direction}${c.creditRole ? ' · ' + c.creditRole : ''}` : `${c.shared} shared · ${Number.isFinite(c.jaccard) ? (c.jaccard * 100).toFixed(1) + "% " + c.jaccardScope : "Jaccard unavailable"}`;
       head.append(name, shared);
       const bar = document.createElement("span");
       bar.className = "progress-bar-bg";
@@ -1509,7 +1535,7 @@ function openInspector(node, focus = true) {
 
   inspectorPanel.inert = false;
   inspectorPanel.classList.add("open");
-  document.getElementById("connectionPeriod").textContent = `${TIMELINE_STEPS[currentTimelineStep]} · all recorded connections`;
+  document.getElementById("connectionPeriod").textContent = `${TIMELINE_STEPS[currentTimelineStep]} · ${selectedEdgeType} · all recorded connections`;
   if (focus) {
     inspectorReturnFocus = document.activeElement;
     setControlsOpen(false, false);
