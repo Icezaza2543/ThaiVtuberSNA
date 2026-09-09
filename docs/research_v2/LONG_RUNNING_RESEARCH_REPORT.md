@@ -40,22 +40,22 @@
 In Pass 2 and Pass 3, the entire frozen cohort ($N=193$) was systematically audited against the MediaWiki API crawl of 151 Fandom Thai VTuber pages and official primary agency announcements.
 
 ```mermaid
-pie title Creator Lifecycle Verification Status (N=193 Cohort)
+pie title Manifest activity observations at selection (N=193 Cohort)
     "Active Channels (Ongoing Observation)" : 139
-    "Hiatus / Inactive (Verified or Proxy)" : 33
-    "Graduated / Retired (Formally Closed)" : 12
-    "Unknown / Inferred Active" : 9
+    "Hiatus at selection (observed)" : 33
+    "Graduated label at selection (not legal closure)" : 12
+    "Unknown at selection" : 9
 ```
 
 ### Key Lifecycle Findings:
 1. **Target Cohort Denominator Invariant:** Verified at exactly **193 channels** in [`data/temporal/catalog/target_manifest.csv`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/data/temporal/catalog/target_manifest.csv).
-2. **Calibrated Status Events Ledger:** Exactly **232 status events** in [`data/industry/creator_status_events.parquet`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/data/industry/creator_status_events.parquet):
-   - `PRIMARY_EVENT_SPECIFIC`: **13 events** (12 official agency announcements with exact tweet URLs, 1 talent statement).
-   - `SECONDARY_DOCUMENTED`: **40 events** (Fandom wiki documentation; secondary-only dates are strictly classified as secondary and NOT described as strictly verified).
-   - `INFERRED_PROXY`: **179 events** (temporal catalog earliest upload and registry inactivity proxies).
+2. **Calibrated Status Events Ledger:** Exactly **229 status events** in [`data/industry/creator_status_events.parquet`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/data/industry/creator_status_events.parquet):
+   - `PRIMARY_EVENT_SPECIFIC`: **12 events** (11 official agency announcements with exact tweet URLs, 1 talent statement).
+   - `SECONDARY_DOCUMENTED`: **32 events** (Fandom wiki documentation; secondary-only dates are strictly classified as secondary and NOT described as strictly verified).
+   - `INFERRED_PROXY`: **185 events** (temporal catalog earliest upload and registry inactivity proxies).
    - `PRIMARY_ENTITY_GENERAL`: **0 events** (generic profile URLs are strictly rejected as event evidence).
    - `UNVERIFIED`: **0 events**.
-3. **Coverage Metrics:** In [`data/industry/creator_evidence_coverage.parquet`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/data/industry/creator_evidence_coverage.parquet), channels with `NONE` remaining gaps stand at **35**, with distinct per-creator counts for `events_primary_event_specific`, `events_creator_primary`, `events_secondary_documented`, and `events_inferred_proxy`.
+3. **Coverage Metrics:** In [`data/industry/creator_evidence_coverage.parquet`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/data/industry/creator_evidence_coverage.parquet), channels with `NONE` remaining gaps stand at **28**, with distinct per-creator counts for `events_primary_event_specific`, `events_creator_primary`, `events_secondary_documented`, and `events_inferred_proxy`.
 
 ---
 
@@ -65,7 +65,7 @@ The collaboration detector evaluates records with available title metadata from 
 - **Catalog Scope & Title Coverage:** While the historical temporal archive contains **96,420 playlist video records** ([`data/temporal/catalog/video_catalog.parquet`](data/temporal/catalog/video_catalog.parquet)), the detector operates on the auxiliary root catalog of **581 title-bearing records** ([`data/video_catalog.parquet`](data/video_catalog.parquet)). The overlap between the auxiliary root catalog and the historical temporal catalog is exactly **81 video IDs** (a temporal title coverage rate of 81 / 96,420 ≈ 0.084%), leaving **96,339 historical temporal records title-uncovered**. The 581 auxiliary records **MUST NOT** be described as title-covered rows "out of" the 96,420 archive.
 - **Scan Invariant:** Exactly **581 videos scanned** (`total_videos_scanned == 581`, `detector_input_records == 581`, `detector_input_source == "data/video_catalog.parquet"`). It **MUST NOT** be described as historical collaboration coverage or a "96,420-video collaboration scan".
 - **Auxiliary Collab Observation:** The study is labeled strictly as an **"AUXILIARY TITLE-CATALOG COLLAB OBSERVATION"**. The detected subset consists of **11 pairwise events** across **9 unique verified candidate videos** (from 54 keyword candidate videos, leaving 45 candidate videos queued for description enrichment in [`data/industry/collab_description_queue.parquet`](data/industry/collab_description_queue.parquet)).
-- **Candidate-Video Resolution Rate:** The candidate-video resolution rate is strictly computed using unique candidate video IDs: **9 verified candidate videos / 54 candidate videos = 0.1667 (16.67%)**. A video resolution percentage is **NEVER** derived from the 11 pairwise event rows (11 / 54).
+- **Candidate-Video Resolution Rate:** numerator_scope=AUXILIARY_TITLE_CATALOG; denominator_scope=AUXILIARY_TITLE_CATALOG. The candidate-video resolution rate is strictly computed using unique candidate video IDs: **9 verified candidate videos / 54 candidate videos = 0.1667 (16.67%)**. A video resolution percentage is **NEVER** derived from the 11 pairwise event rows (11 / 54).
 - **Precision & Recall Governance:**
   - `precision`: Recorded as **`INSUFFICIENT_EVIDENCE`** in [`data/industry/collab_validation_metrics.json`](data/industry/collab_validation_metrics.json). Without an independent ground-truth collaboration dataset, heuristic handle matching cannot be labeled empirical precision.
   - `recall`: Recorded as **`INSUFFICIENT_EVIDENCE`**. Full catalog-wide recall cannot be computed across 96,420 historical temporal videos when only 81 overlap with title metadata, video descriptions remain unindexed, and unflagged streams lack ground-truth participant rosters; zero recall fabrication is strictly enforced.
@@ -160,7 +160,7 @@ In [`docs/research_v2/OUTLOOK_HYPOTHESES.md`](file:///c:/Users/Icezaza/Documents
 | **H1 EXPANSION** | **CONTRADICTED for audience volume; PARTIALLY SUPPORTED for supply** | `[SUPPORTED_INTERPRETATION]` | Interacting accounts peaked at 18.6k in 2023; annual repeat-interaction retention is ~8.75%. |
 | **H2 MATURATION** | **STRONGLY SUPPORTED** | `[SUPPORTED_INTERPRETATION]` | Returning accounts rose to 20.91%; modularity stabilized at 0.31–0.32; corporate infrastructure formalized. |
 | **H3 CONSOLIDATION** | **SUPPORTED for attention clustering; REJECTED for headcount** | `[SUPPORTED_INTERPRETATION]` | Top 2 agencies capture large attention share, but indies represent 58.5% of cohort channels. |
-| **H4 SUPPLY SATURATION** | **STRONGLY SUPPORTED** | `[SUPPORTED_INTERPRETATION]` | 1,370+ discoverable channels compete for 13k–18k commenters; network density compressed to 0.157. |
+| **H4 SUPPLY SATURATION** | **INSUFFICIENT_EVIDENCE** | `[HYPOTHESIS]` | Full-registry audience coverage is missing; cohort density is not evidence of full-ecosystem saturation. |
 | **H5 NICHE STABILITY** | **STRONGLY SUPPORTED** | `[SUPPORTED_INTERPRETATION]` | Giant connected component retained 95%–100% across all 7 years; stable pricing tiers across 2022–2026. |
 | **H6 CONTRACTION / COLLAPSE** | **CONTRADICTED AS A SYSTEMIC MACRO THESIS** | `[SUPPORTED_INTERPRETATION]` | 2025 population rebounded +27.0% YoY; weighted edges hit 7,029 all-time peak; a new corporate operator/brand entered the observed ecosystem: Brave Group APAC launched AStars. |
 | **H7 FRAGMENTATION** | **SUPPORTED for intra-agency clustering; CONTRADICTED for graph severance** | `[SUPPORTED_INTERPRETATION]` | Giant component held 100% through 2025 (95% in 2026 YTD); top bridging creators maintain 40%–56% cross-ties. |
@@ -191,3 +191,30 @@ A 2025 rebound (+27.0% interacting accounts) **does NOT disprove long-term struc
 - [x] **No Refactoring Rule:** Zero source code moved to `src/`.
 - [x] **Truthful Runtime:** 43 minutes mechanically recorded through Batch 4 (32m pre-hotfix + 11m hotfix); subsequent hotfix runtime was not mechanically captured; zero "10-hour" fabrication.
 - [x] **Evidence Tiers Calibrated:** Strict separation of `PRIMARY_EVENT_SPECIFIC`, `PRIMARY_ENTITY_GENERAL`, `SECONDARY_DOCUMENTED`, and `INFERRED_PROXY`.
+
+<!-- source-integrity:start -->
+## Canonical source integrity
+
+Ratio universe: numerator_scope=FROZEN_COHORT_193; denominator_scope=FROZEN_COHORT_193 unless a local table declares another scope. Registry headcounts are inventory only; they are not a denominator for cohort audience competition. Market scenarios have ILLUSTRATIVE_MARKET_SCENARIO scopes and are not observed ratios.
+
+Supply saturation: HYPOTHESIS / INSUFFICIENT_EVIDENCE. numerator_scope=FULL_REGISTRY; denominator_scope=FROZEN_COHORT_193; scope_caveat: incompatible coverage, competition ratio withheld.
+
+Reactivated accounts: 2022: 111; 2023: 369; 2024: 476; 2025: 948; 2026 YTD: 826. Counts increased across the completed 2022–2025 windows; 2026 is partial and is not compared as a full year. No stability rule has been established.
+
+WACTOR: SECONDARY_DOCUMENTED; CORPORATE_REGISTRATION_UNVERIFIED. RPG: INFERRED_PROXY activity boundary; legal closure is unverified.
+
+Lifecycle events: 229. Evidence tiers: {"INFERRED_PROXY": 185, "PRIMARY_EVENT_SPECIFIC": 12, "SECONDARY_DOCUMENTED": 32}.
+
+Exit events by event type and evidence tier:
+
+| Event | Evidence tier | Count |
+|---|---|---:|
+| GRADUATION | PRIMARY_EVENT_SPECIFIC | 10 |
+| GRADUATION | SECONDARY_DOCUMENTED | 3 |
+| GRADUATION_OR_DEPARTURE | PRIMARY_EVENT_SPECIFIC | 1 |
+| GRADUATION_PROXY | INFERRED_PROXY | 5 |
+| HIATUS | SECONDARY_DOCUMENTED | 1 |
+| HIATUS_OBSERVED_PROXY | INFERRED_PROXY | 24 |
+
+Snapshot: activity_status is an observation at MANIFEST_AT_SELECTION; lifecycle_evidence_tier describes available event evidence, not verification of present activity.
+<!-- source-integrity:end -->

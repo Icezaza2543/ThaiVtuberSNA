@@ -1,0 +1,214 @@
+[
+  {
+    "reason": "AGENCY_AT_SELECTION_CONFLICT; historical affiliation requires explicit verification",
+    "original_channel_id": "UC-qBbCCqtD2H4WSs9m978Ow",
+    "events": [
+      {
+        "event_type": "DEBUT",
+        "event_date": "2021-03-08",
+        "event_year": 2021,
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+        "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+        "source_reference": "https://virtualyoutuber.fandom.com/wiki/Cazzie_K._Monie",
+        "notes": "Debuted on 2021-03-08 as Pixela 1st Generation member.",
+        "subject_channel_id": "UC-qBbCCqtD2H4WSs9m978Ow",
+        "subject_name": "Cazzie K. Monie",
+        "source_subject": "Cazzie K. Monie",
+        "source_agency": "Pixela Project"
+      },
+      {
+        "event_type": "TERMINATION",
+        "event_date": "2021-10-14",
+        "event_year": 2021,
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+        "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
+        "source_reference": "https://virtualyoutuber.fandom.com/wiki/Cazzie_K._Monie",
+        "notes": "Contract terminated on 2021-10-14.",
+        "subject_channel_id": "UC-qBbCCqtD2H4WSs9m978Ow",
+        "subject_name": "Cazzie K. Monie",
+        "source_subject": "Cazzie K. Monie",
+        "source_agency": "Pixela Project"
+      }
+    ]
+  },
+  {
+    "reason": "CONFLICT: registry owner The Lupas, curated subject Baabel; outside frozen manifest",
+    "original_channel_id": "UC3ZglUA0HEUCuGbe5b8zXKw",
+    "events": [
+      {
+        "event_type": "RE_DEBUT",
+        "event_date": "2022-01-17",
+        "event_year": 2022,
+        "verification_status": "VERIFIED_LOCAL_PUBLIC_ARTIFACT",
+        "source_type": "CATALOG_VIDEO_EVIDENCE",
+        "source_reference": "video_catalog.csv:video_id=-PZhQFYOndE",
+        "notes": "Re-debut stream on 2022-01-17 via catalog video -PZhQFYOndE.",
+        "subject_channel_id": "UC3ZglUA0HEUCuGbe5b8zXKw",
+        "subject_name": "Baabel",
+        "source_subject": "Baabel",
+        "source_agency": "Algorhythm Project"
+      },
+      {
+        "event_type": "ORION_DEBUT",
+        "event_date": "2023-03-25",
+        "event_year": 2023,
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+        "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+        "source_reference": "https://virtualyoutuber.fandom.com/wiki/Algorhythm_Project",
+        "notes": "Debuted on 2023-03-25 as member of Algorhythm Project ORION unit.",
+        "subject_channel_id": "UC3ZglUA0HEUCuGbe5b8zXKw",
+        "subject_name": "Baabel",
+        "source_subject": "Baabel",
+        "source_agency": "Algorhythm Project"
+      }
+    ]
+  },
+  {
+    "reason": "AGENCY_AT_SELECTION_CONFLICT; historical affiliation requires explicit verification",
+    "original_channel_id": "UCqhhWjpw23dWhJ5rRwCCrMA",
+    "events": [
+      {
+        "event_type": "DEBUT",
+        "event_date": "2019-07-29",
+        "event_year": 2019,
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+        "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+        "source_reference": "https://virtualyoutuber.fandom.com/wiki/Aisha",
+        "notes": "Debuted on 2019-07-29 as pioneer Thai VTuber under Guardian Angel A.I. / Polygon 0th Gen.",
+        "subject_channel_id": "UCqhhWjpw23dWhJ5rRwCCrMA",
+        "subject_name": "Aisha",
+        "source_subject": "Aisha",
+        "source_agency": "Polygon / ALT Belief"
+      },
+      {
+        "event_type": "GRADUATION",
+        "event_date": "2025-12-18",
+        "event_year": 2025,
+        "verification_status": "PRIMARY_EVENT_SPECIFIC",
+        "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
+        "creator_source_class": "PRIMARY_OFFICIAL_ANNOUNCEMENT",
+        "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
+        "source_reference": "https://x.com/PolygonOfficial/status/2001594838520779264",
+        "notes": "Graduated and retired on 2025-12-18.",
+        "subject_channel_id": "UCqhhWjpw23dWhJ5rRwCCrMA",
+        "subject_name": "Aisha",
+        "source_subject": "Aisha",
+        "source_agency": "Polygon / ALT Belief"
+      }
+    ]
+  },
+  {
+    "reason": "OUTSIDE_FROZEN_MANIFEST; source identity not verified",
+    "original_channel_id": "UC32lsx7u7vqy63SguuuzmVg",
+    "events": [
+      {
+        "event_type": "GRADUATION",
+        "event_date": "2025-12-20",
+        "event_year": 2025,
+        "verification_status": "VERIFIED_LOCAL_PUBLIC_ARTIFACT",
+        "source_type": "CATALOG_VIDEO_EVIDENCE",
+        "source_reference": "video_catalog.csv:video_id=SWNcXyJBzDY",
+        "notes": "Verified graduation stream on 2025-12-20 via catalog video SWNcXyJBzDY.",
+        "subject_channel_id": "UC32lsx7u7vqy63SguuuzmVg",
+        "subject_name": "Catalog-verified graduation",
+        "source_subject": "Catalog-verified graduation",
+        "source_agency": ""
+      }
+    ]
+  },
+  {
+    "reason": "AGENCY_AT_SELECTION_CONFLICT; historical affiliation requires explicit verification",
+    "original_channel_id": "UC25e5qEqvVaG_VKrkTmJBmw",
+    "events": [
+      {
+        "event_type": "DEBUT",
+        "event_date": "2020-10-25",
+        "event_year": 2020,
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+        "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+        "source_reference": "https://virtualyoutuber.fandom.com/wiki/Lucene",
+        "notes": "Debuted on 2020-10-25 as member of Polygon Project 1st Gen (POLAR1SS).",
+        "subject_channel_id": "UC25e5qEqvVaG_VKrkTmJBmw",
+        "subject_name": "Lucene",
+        "source_subject": "Lucene",
+        "source_agency": "Polygon Project - POLAR1SS"
+      }
+    ]
+  },
+  {
+    "reason": "AGENCY_AT_SELECTION_CONFLICT; historical affiliation requires explicit verification",
+    "original_channel_id": "UCRG5fX1v4b-3sUyKfAAtxxA",
+    "events": [
+      {
+        "event_type": "DEBUT",
+        "event_date": "2020-10-20",
+        "event_year": 2020,
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+        "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+        "source_reference": "https://virtualyoutuber.fandom.com/wiki/Luxia",
+        "notes": "Debuted on 2020-10-20 as member of Polygon Project 1st Gen (POLAR1SS).",
+        "subject_channel_id": "UCRG5fX1v4b-3sUyKfAAtxxA",
+        "subject_name": "Luxia",
+        "source_subject": "Luxia",
+        "source_agency": "Polygon Project - POLAR1SS"
+      }
+    ]
+  },
+  {
+    "reason": "AGENCY_AT_SELECTION_CONFLICT; historical affiliation requires explicit verification",
+    "original_channel_id": "UCC5q6CpuDflPvO7pNn52RGQ",
+    "events": [
+      {
+        "event_type": "DEBUT",
+        "event_date": "2020-10-02",
+        "event_year": 2020,
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+        "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+        "source_reference": "https://virtualyoutuber.fandom.com/wiki/Lapine",
+        "notes": "Debuted on 2020-10-02 as member of Polygon Project 1st Gen (POLAR1SS).",
+        "subject_channel_id": "UCC5q6CpuDflPvO7pNn52RGQ",
+        "subject_name": "Lapine",
+        "source_subject": "Lapine",
+        "source_agency": "Polygon Project - POLAR1SS"
+      }
+    ]
+  },
+  {
+    "reason": "AGENCY_AT_SELECTION_CONFLICT; historical affiliation requires explicit verification",
+    "original_channel_id": "UCZilc7jP-X_92Fii1uTIs0Q",
+    "events": [
+      {
+        "event_type": "DEBUT",
+        "event_date": "2020-10-14",
+        "event_year": 2020,
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+        "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+        "source_reference": "https://virtualyoutuber.fandom.com/wiki/Hoku",
+        "notes": "Debuted on 2020-10-14 as member of Polygon Project 1st Gen (POLAR1SS).",
+        "subject_channel_id": "UCZilc7jP-X_92Fii1uTIs0Q",
+        "subject_name": "Hoku",
+        "source_subject": "Hoku",
+        "source_agency": "Polygon Project - POLAR1SS"
+      }
+    ]
+  },
+  {
+    "reason": "AGENCY_AT_SELECTION_CONFLICT; historical affiliation requires explicit verification",
+    "original_channel_id": "UCR1Htb-H1-tus7UPotPh69A",
+    "events": [
+      {
+        "event_type": "DEBUT",
+        "event_date": "2021-05-15",
+        "event_year": 2021,
+        "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
+        "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
+        "source_reference": "https://virtualyoutuber.fandom.com/wiki/Laibaht",
+        "notes": "Debuted on 2021-05-15 as member of Algorhythm Project (Eclipse unit).",
+        "subject_channel_id": "UCR1Htb-H1-tus7UPotPh69A",
+        "subject_name": "Laibaht",
+        "source_subject": "Laibaht",
+        "source_agency": "Algorhythm Project"
+      }
+    ]
+  }
+]

@@ -2,22 +2,22 @@ creator_channel_id,creator_name,agency,lifecycle_status,events_primary_event_spe
 UCdlpXdGT3nGDTqIlxUcufCQ,Doyser,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCGBkYTR4tMKS38TQHGWWLjg,Aito LH,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCompe4fS2oUss8CGTuhOSxA,Gibpuri Ch,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
-UC_nmh9XycGlquouvai2UC6g,Newzkung Raccoonza,Independent,active,0,0,1,0,0,1,0,2,True,False,True,NONE
-UCpGtwNmbOtgmcKIY81MIX_w,Nongwan TV,Independent,active,0,0,1,0,0,1,0,2,True,False,True,NONE
-UCqhhWjpw23dWhJ5rRwCCrMA,Aisha Channel,Independent,active,1,0,1,0,0,2,0,2,True,True,True,NONE
+UC_nmh9XycGlquouvai2UC6g,Newzkung Raccoonza,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
+UCpGtwNmbOtgmcKIY81MIX_w,Nongwan TV,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
+UCqhhWjpw23dWhJ5rRwCCrMA,Aisha Channel,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCC4Wb_x57Ks43GRJ6x_wT5Q,Choya Ch.,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCrIs26bEKOvA_lRnO2Hgscw,Unnämed,Independent,unknown,0,0,0,1,1,0,1,1,True,False,True,UNCERTAIN_DATES
-UCuZ1ajvlGFUMCHZAPdetKHw,Dacapo Ch.【ARP】,Algorhythm Project,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
+UCuZ1ajvlGFUMCHZAPdetKHw,Dacapo Ch.【ARP】,Algorhythm Project,active,0,0,1,0,0,1,0,2,True,False,True,NONE
 UCJ6HUQOWSjCHHdOgz13zFlA,TheQuillmon ⌜VZ⌟,Virtual Zeven (VZ),active,0,0,2,0,0,2,0,2,True,False,True,NONE
 UCDSn4Ql7fuyjxsSNOws81iQ,BorntoDev,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCyA1KEXjcq2za_bsJp9KmZQ,RAF4EL,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCMvc8BlQ7r5gRbz-D2EY0LA,HØRI 07 ⌜VZ⌟,Virtual Zeven (VZ),active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCPtSgQ5-yCPl9wbo5w7tmWQ,Evalia Ch.【ARP】,Algorhythm Project,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
-UCR1Htb-H1-tus7UPotPh69A,Laibaht Ch. / หลายบาท,Independent,active,0,0,1,0,0,1,0,2,True,False,True,NONE
+UCR1Htb-H1-tus7UPotPh69A,Laibaht Ch. / หลายบาท,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCAr4U_HGMYXn1EZjdWiGSLQ,Baabel Ch.【ARP】,Algorhythm Project,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCdYlA3Qi1TnZwThS9Rb7dog,JayloNy,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCg53fzp6UNYvsyAg8UoNXCA,Draki Kona Ch. Lumina-First-Myth,Lumina Live,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
-UCNTEr2_96vJnXNazr5MwNLA,Schneider Ch.【ARP】,Algorhythm Project,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
+UCNTEr2_96vJnXNazr5MwNLA,Schneider Ch.【ARP】,Algorhythm Project,active,0,0,1,0,0,1,0,2,True,False,True,NONE
 UCi2T9exDdJRTsxL1vnNV9gQ,Nanino Channel,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCrYkQnbL_OiYyGuiZyvcO7g,Hey Solly,Independent,hiatus,0,0,1,1,1,1,1,2,True,False,True,LIFECYCLE_END_UNCERTAIN
 UCeijqgCP9z3zLJ-uwQzvFtQ,Sora A.C.G.,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
@@ -44,7 +44,7 @@ UCutz6S1DcEHPnEb_r9ztkzg,Hinabe HongFei Ch. Pixela Project,Pixela Project,hiatus
 UCni4SBfvmKlD7bu_ZWDmKiQ,CoolRin CH,Independent,hiatus,0,0,0,2,1,0,2,1,True,False,True,UNCERTAIN_DATES
 UCpWF1pMyJtMvlynspGnThdw,MamMam Ch. 真夢マム,Independent,hiatus,0,0,0,2,1,0,2,1,True,False,True,UNCERTAIN_DATES
 UCDCOWpzyBFsavT-K7AmN3MQ,Azato Stacia Ch.,Independent,active,0,0,1,0,0,1,0,2,True,False,True,NONE
-UCZilc7jP-X_92Fii1uTIs0Q,Hoku Ch.,Independent,active,0,0,1,0,0,1,0,2,True,False,True,NONE
+UCZilc7jP-X_92Fii1uTIs0Q,Hoku Ch.,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCWU7kvLd_JBaBqO_ilTYd_A,Zekai Ch.【ARP】,Algorhythm Project,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UC0Ky1U__7T2Z5SOZCvNlJ-Q,Beariss Beam,Independent,hiatus,0,0,1,1,1,1,1,2,True,False,True,LIFECYCLE_END_UNCERTAIN
 UC7iCSRt7Jej2XE0MaM9gPgg,YuChan Channel ⌜VZ⌟,Virtual Zeven (VZ),hiatus,0,0,2,1,1,2,1,2,True,False,True,LIFECYCLE_END_UNCERTAIN
@@ -62,7 +62,7 @@ UCtGhO6z6GxqtBZ4gP-3rUpA,TakumaRei「บ่นไปเรื่อย」,Indepe
 UCLNBff3KDEUxdfH_lkvyOKQ,Kamiyu Reirin Ch. Lumina-First-Myth,Lumina Live,active,0,0,1,0,0,1,0,2,True,False,True,NONE
 UCWM76ZPAZqDNOAp5AKn9uIw,JueBigHead,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCvob8U-yjPS-fSf5bq7jvGw,Umino Ciala Ch. Pixela Legends,Pixela Project,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
-UC25e5qEqvVaG_VKrkTmJBmw,Lucene Ch.,Independent,active,0,0,1,0,0,1,0,2,True,False,True,NONE
+UC25e5qEqvVaG_VKrkTmJBmw,Lucene Ch.,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UC3O5wAgEVyNA1Jw3gyi-_jA,MOLLY,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCJcfB-86rWM0NF2li1CqNNw,NutsuruSama,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCaCZ78DoDsPxejb_azg1hog,ITsMeYao,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
@@ -83,7 +83,7 @@ UCfiD6DpIwPP4lQ4NPqZNOHg,Solar Ch.【ARP】,Algorhythm Project,active,0,0,0,1,0,
 UCikyhPyuEu3rn1izGOGxZcg,Aranis Elvene Ch. Pixela-Isekai,Pixela Project,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCUaWCz3UX9XNdA97qPHuAYg,MamiMumei,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCx5NsY_dUUU2NHK2P8u10xQ,Ngerntong-เงินทอง,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
-UCC5q6CpuDflPvO7pNn52RGQ,Lapine Ch.,Independent,active,0,0,1,0,0,1,0,2,True,False,True,NONE
+UCC5q6CpuDflPvO7pNn52RGQ,Lapine Ch.,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCNDYUXSVC7ffBAGEktilzUQ,Hanami Lay CH.,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UC1W2400L97Bwe2leu7eXEzA,Khaojao,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCjr1VnM1LBRp9Ez2JGNndaA,Aosora Popo Ch.,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
@@ -102,7 +102,7 @@ UCS9vgAEQSQDhgTRIskKA2tA,Ark Ch.【ARP】,Algorhythm Project,active,0,0,0,1,0,0,
 UCZYTMrnVmu1iUVyGeqB6zJQ,T-Reina Ashyra Ch. Lumina-World-End,Lumina Live,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCjrs5Sse402rafaOP-k37Xw,Sisira Hydrangea Ch. Pixela S,Pixela Project,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCIMFIkXOGA7dWA903WdRKKg,Nezumi Elze Ch. Pixela Legends,Pixela Project,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
-UCRG5fX1v4b-3sUyKfAAtxxA,Luxia Ch.,Independent,active,0,0,1,0,0,1,0,2,True,False,True,NONE
+UCRG5fX1v4b-3sUyKfAAtxxA,Luxia Ch.,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCGo7fnmWfGQewxZVDmC3iJQ,Xonebu X'thulhu Ch. Lumina-World-End,Lumina Live,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCbEkHjG43yPMGq5W08jq1TQ,ChaAYM,Independent,active,0,0,1,0,0,1,0,2,True,False,True,NONE
 UCEk6QSUJhVf56A_VznMpKpg,PeachiView,Independent,hiatus,0,0,0,2,1,0,2,1,True,False,True,UNCERTAIN_DATES
@@ -156,7 +156,7 @@ UCGofntRkNUAgXGqimLtLy4g,Reilim Channel,Independent,active,0,0,0,1,0,0,1,1,True,
 UCwtyxO7B0xIv3XdtSvdnYgQ,Aoi Crescent Ch.,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCM96L0HabMkeIGyBViLZ4YQ,Cynthia Rowena Ch.,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCwKydIfpAlllZap4K7dzJ4g,HyougaAlpha Ch.【ARP】,Algorhythm Project,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
-UC-qBbCCqtD2H4WSs9m978Ow,Cazzie K. Monie,Independent,unknown,0,0,2,0,0,2,0,2,True,True,True,NONE
+UC-qBbCCqtD2H4WSs9m978Ow,Cazzie K. Monie,Independent,unknown,0,0,0,0,1,0,0,1,False,False,True,UNCERTAIN_DATES
 UCjpsxqVVjdZWy5eW5-ZkbcA,Amnuai CH,Independent,active,0,0,0,1,0,0,1,1,True,False,True,LIFECYCLE_END_UNKNOWN
 UCnvBsJQ0TztZ4Mq7qDaL_FA,Xaniel Ch. Flora Project,Flora Project,unknown,0,0,0,0,1,0,0,1,False,False,True,UNCERTAIN_DATES
 UCBLV-Zv25LzajWyKEofqvVQ,[ปิดตัว],Independent,unknown,0,0,0,0,1,0,0,1,False,False,True,UNCERTAIN_DATES

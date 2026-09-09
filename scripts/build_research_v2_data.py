@@ -200,7 +200,7 @@ def generate_v2_data_contract():
         "active_observed": int(eco_2025["active_channels"]),
         "target_cohort_total": target_cohort_total,
         "first_observed": len(creator_events_df[creator_events_df["event_type"] == "FIRST_OBSERVED"]),
-        "inactive_unavailable": len(creator_snap_df[creator_snap_df["activity_status"] == "HIATUS"]),
+        "inactive_unavailable": len(creator_snap_df[creator_snap_df["activity_status"] == "HIATUS_OBSERVED"]),
         "verified_graduations": primary_graduations,
         "primary_verified_graduations": primary_graduations,
         "secondary_documented_graduations": secondary_graduations,
@@ -396,6 +396,9 @@ def generate_v2_data_contract():
         "methodology": methodology_chapter
     }
 
+    from research_integrity_contract import annotate_scopes, integrity_payload
+    annotate_scopes(contract_payload)
+    contract_payload["source_integrity"] = integrity_payload()
     OUT_JSON_PATH.write_text(json.dumps(contract_payload, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"Successfully generated Research v2 contract at {OUT_JSON_PATH} ({OUT_JSON_PATH.stat().st_size:,} bytes).")
 

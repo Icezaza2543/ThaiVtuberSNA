@@ -61,7 +61,7 @@ This memorandum systematically interrogates eight competing structural hypothese
 | Evaluation Dimension | Empirical Evidence & Indicators | Data Coverage | Confidence |
 | :--- | :--- | :--- | :--- |
 | **Supporting Evidence** | - Top 2 agencies (Algorhythm Project and Pixela Project) account for 54 out of 80 corporate channels in the cohort.<br>- Agency-at-selection assortativity rose from -0.028 (2020) to +0.129 (2024) and +0.133 (2026 YTD).<br>- Agency-at-selection mixing shifted as cross-community edge share dropped from 65.9% (2021) to 45.6% (2024) and 36.8% (2026 YTD). | Canonical network snapshots (2020–2026). | HIGH |
-| **Contradicting Evidence** | - Independent creators constitute 113 out of 193 frozen cohort channels (58.5%).<br>- Over 40% of co-viewing edges connect independent creators to agency talents.<br>- Failed agency models (WACTOR Thailand dissolved 2022; RPG ceased talent ops 2024). | Manifest: 193 channels.<br>Collab verification audit. | HIGH |
+| **Contradicting Evidence** | - Independent creators constitute 113 out of 193 frozen cohort channels (58.5%).<br>- Over 40% of co-viewing edges connect independent creators to agency talents.<br>- WACTOR has secondary documentation and unverified corporate registration; RPG activity cessation is an INFERRED_PROXY, not verified closure. | Manifest: 193 channels.<br>Collab verification audit. | HIGH |
 | **Missing Evidence** | - Super Chat and membership revenue market share split between corporate agencies and independent creators. | Private creator revenue data. | N/A |
 | **Hypothesis Status** | `[SUPPORTED_INTERPRETATION]` **SUPPORTED for audience interaction clustering; REJECTED for complete creator headcount monopolization.** | — | HIGH |
 
@@ -72,10 +72,10 @@ This memorandum systematically interrogates eight competing structural hypothese
 
 | Evaluation Dimension | Empirical Evidence & Indicators | Data Coverage | Confidence |
 | :--- | :--- | :--- | :--- |
-| **Supporting Evidence** | - 1,370+ discoverable channels in registry competing for ~13,000–18,000 annual observed commenter/chat participant accounts.<br>- Network density compressed from 0.342 (2020) to 0.157 (2026 YTD) as new nodes expanded faster than links.<br>- In the frozen cohort of 193 channels, 33 have entered inactive/hiatus status and 12 have formally graduated.<br>- Long-tail independent channels frequently exhibit zero co-viewing bridge edges in temporal snapshots. | Universe: 1,370 channels.<br>Cohort: 193 channels.<br>Historical catalog: 96,420 playlist records (81 title-overlapping records; 96,339 title-uncovered records; auxiliary title-bearing catalog: 581 records). | HIGH |
+| **Supporting Evidence** | - Registry inventory and frozen-cohort audience have incompatible scopes; no competition ratio is reported.<br>- Network density compressed from 0.342 (2020) to 0.157 (2026 YTD) as new nodes expanded faster than links.<br>- In the frozen cohort of 193 channels, activity and lifecycle evidence are separated in the canonical snapshot.<br>- Long-tail independent channels frequently exhibit zero co-viewing bridge edges in temporal snapshots. | Universe: 1,370 channels.<br>Cohort: 193 channels.<br>Historical catalog: 96,420 playlist records (81 title-overlapping records; 96,339 title-uncovered records; auxiliary title-bearing catalog: 581 records). | HIGH |
 | **Contradicting Evidence** | - Average degree per active channel rose from 6.86 (2020) to 38.17 (2025).<br>- Giant connected component retained 95%–100% of all active cohort channels throughout 2020–2026. | Canonical network snapshots. | MODERATE |
 | **Missing Evidence** | - Distribution of median concurrent viewers (CCV) across long-tail indie channels outside the cohort.<br>- Number of zero-comment streams in the broader registry. | Unindexed long-tail stream archives. | N/A |
-| **Hypothesis Status** | `[SUPPORTED_INTERPRETATION]` **STRONGLY SUPPORTED by channel inactivity rates, registry-to-interacting-account ratios, and network density compression.** | — | HIGH |
+| **Hypothesis Status** | `[SUPPORTED_INTERPRETATION]` **HYPOTHESIS / INSUFFICIENT_EVIDENCE: incompatible population scopes.** | — | HIGH |
 
 ---
 
@@ -84,7 +84,7 @@ This memorandum systematically interrogates eight competing structural hypothese
 
 | Evaluation Dimension | Empirical Evidence & Indicators | Data Coverage | Confidence |
 | :--- | :--- | :--- | :--- |
-| **Supporting Evidence** | - Connected giant component consistently captures 95%–100% of the active cohort across all 7 years.<br>- Multi-channel co-commenting core remains steady between 7.5% and 9.8% across years.<br>- Annual reactivated account inflow consistently delivers 700–950 returning accounts per year.<br>- Stable commercial price points across 2022–2026: digital voice packs (399–599 THB), membership tiers (25–150 THB), physical event tickets (500–1,200 THB). | All canonical snapshots (2020–2026).<br>69 verified commercial product pages. | VERY HIGH |
+| **Supporting Evidence** | - Connected giant component consistently captures 95%–100% of the active cohort across all 7 years.<br>- Multi-channel co-commenting core remains steady between 7.5% and 9.8% across years.<br>- Reactivated account yearly series is generated in the canonical source integrity section; stability is not established.<br>- Stable commercial price points across 2022–2026: digital voice packs (399–599 THB), membership tiers (25–150 THB), physical event tickets (500–1,200 THB). | All canonical snapshots (2020–2026).<br>69 verified commercial product pages. | VERY HIGH |
 | **Contradicting Evidence** | - The 2024 contraction (-27.7% observed interacting accounts) indicates vulnerability to macro shifts and user fatigue.<br>- High sensitivity to the health and activity of the top 5 flagship creators. | Audience yearly panel. | MODERATE |
 | **Missing Evidence** | - Off-platform fan community retention (Discord servers, private fan clubs, X engagement). | Closed platform telemetry. | N/A |
 | **Hypothesis Status** | `[SUPPORTED_INTERPRETATION]` **STRONGLY SUPPORTED by topological resilience, recurring reactivations, and pricing consistency.** | — | VERY HIGH |
@@ -96,7 +96,7 @@ This memorandum systematically interrogates eight competing structural hypothese
 
 | Evaluation Dimension | Empirical Evidence & Indicators | Data Coverage | Confidence |
 | :--- | :--- | :--- | :--- |
-| **Supporting Evidence** | - High-profile talent departures and retirements in 2023–2025 (e.g. Aisha, Princess Zelina, Hinabe HongFei, Melita X, Asteroth, Ayna, Quentin, Latta).<br>- Agency dissolution: RPG ceased operations in 2024; WACTOR Thailand collapsed in 2022.<br>- Observed interacting accounts contracted by 27.7% YoY in 2024 (from 18,646 to 13,478 accounts).<br>- Over 91% of participating commenters in any given year do not interact in the subsequent year. | Lifecycle registry (232 verified/proxy events).<br>Yearly behavioral panel. | HIGH |
+| **Supporting Evidence** | - High-profile talent departures and retirements in 2023–2025 (e.g. Aisha, Princess Zelina, Hinabe HongFei, Melita X, Asteroth, Ayna, Quentin, Latta).<br>- Organizational boundaries: RPG INFERRED_PROXY; WACTOR SECONDARY_DOCUMENTED with corporate registration UNVERIFIED.<br>- Observed interacting accounts contracted by 27.7% YoY in 2024 (from 18,646 to 13,478 accounts).<br>- Over 91% of participating commenters in any given year do not interact in the subsequent year. | Lifecycle registry (229 verified/proxy events).<br>Yearly behavioral panel. | HIGH |
 | **Contradicting Evidence** | - Observed interacting accounts rebounded to 17,119 in 2025 (+27.0% YoY).<br>- Total weighted edge strength reached a historic peak of 7,029 in 2025.<br>- Active channels in cohort remained stable at 157 (2024), 166 (2025), and 160 (2026 YTD).<br>- A new corporate operator/brand entered the observed ecosystem: Brave Group APAC launched AStars in 2024.<br>- Multi-talent collaborative events and physical fan-meetings continue to be listed/held. | Canonical graph metrics.<br>Target cohort panel.<br>Verified agency events. | VERY HIGH |
 | **Missing Evidence** | - Net agency profitability / operating burn rates. | Private corporate financial statements. | N/A |
 | **Hypothesis Status** | `[SUPPORTED_INTERPRETATION]` **CONTRADICTED AS A SYSTEMIC MACRO COLLAPSE THESIS; ACCURATE ONLY AS A DESCRIPTION OF RESTRUCTURING & TALENT ATTRITION.** | — | HIGH |
@@ -141,7 +141,7 @@ To avoid misinterpreting multi-year trends, structural shifts must be evaluated 
 - **Active Channels:** Rose from 129 to 157 (+21.7%). `[OBSERVED_RESULT]`
 - **Observed Commenter/Chat Participant Accounts:** Dropped from 18,646 to 13,478 (-27.7%). `[OBSERVED_RESULT]`
 - **Newly Observed Accounts:** Contracted from 17,104 to 11,325 (-33.8%). `[OBSERVED_RESULT]`
-- **Structural Interpretation:** Post-pandemic screen-time normalization, graduation wave of 1st-gen agency talents, closure of unviable circles (RPG). `[SUPPORTED_INTERPRETATION]`
+- **Structural Interpretation:** Post-pandemic screen-time normalization, graduation wave of 1st-gen agency talents, RPG activity boundary (INFERRED_PROXY; organizational closure unverified). `[SUPPORTED_INTERPRETATION]`
 - **Network Reaction:** Modularity held stable (0.315 $\to$ 0.311), proving the underlying community topology did not fracture despite the volume loss. `[OBSERVED_RESULT]`
 
 ### Period 3: 2024 $\to$ 2025 (Partial Rebound vs. Modularity Bifurcation)
@@ -188,3 +188,30 @@ The Thai VTuber ecosystem is best characterized as `[SUPPORTED_INTERPRETATION]` 
 - **It is NOT collapsing:** `[SUPPORTED_INTERPRETATION]` The network remains 95%–100% topologically connected in a giant component; returning accounts are expanding in percentage terms (20.91% in 2026 YTD); corporate agencies continue to organize ticketed physical events; and total interaction connectivity hit all-time highs in 2025.
 - **It is NOT effortlessly expanding:** `[SUPPORTED_INTERPRETATION]` Observed commenter/chat participant volume is volatile and churns rapidly (~91% annual turnover); indie creators face severe visibility constraints; and cross-agency interaction has clustered into agency silos.
 - **Future Viability Depends On:** Deepening per-account retention and monetizable loyalty rather than pursuing indiscriminate creator recruitment. `[SUPPORTED_INTERPRETATION]`
+
+<!-- source-integrity:start -->
+## Canonical source integrity
+
+Ratio universe: numerator_scope=FROZEN_COHORT_193; denominator_scope=FROZEN_COHORT_193 unless a local table declares another scope. Registry headcounts are inventory only; they are not a denominator for cohort audience competition. Market scenarios have ILLUSTRATIVE_MARKET_SCENARIO scopes and are not observed ratios.
+
+Supply saturation: HYPOTHESIS / INSUFFICIENT_EVIDENCE. numerator_scope=FULL_REGISTRY; denominator_scope=FROZEN_COHORT_193; scope_caveat: incompatible coverage, competition ratio withheld.
+
+Reactivated accounts: 2022: 111; 2023: 369; 2024: 476; 2025: 948; 2026 YTD: 826. Counts increased across the completed 2022–2025 windows; 2026 is partial and is not compared as a full year. No stability rule has been established.
+
+WACTOR: SECONDARY_DOCUMENTED; CORPORATE_REGISTRATION_UNVERIFIED. RPG: INFERRED_PROXY activity boundary; legal closure is unverified.
+
+Lifecycle events: 229. Evidence tiers: {"INFERRED_PROXY": 185, "PRIMARY_EVENT_SPECIFIC": 12, "SECONDARY_DOCUMENTED": 32}.
+
+Exit events by event type and evidence tier:
+
+| Event | Evidence tier | Count |
+|---|---|---:|
+| GRADUATION | PRIMARY_EVENT_SPECIFIC | 10 |
+| GRADUATION | SECONDARY_DOCUMENTED | 3 |
+| GRADUATION_OR_DEPARTURE | PRIMARY_EVENT_SPECIFIC | 1 |
+| GRADUATION_PROXY | INFERRED_PROXY | 5 |
+| HIATUS | SECONDARY_DOCUMENTED | 1 |
+| HIATUS_OBSERVED_PROXY | INFERRED_PROXY | 24 |
+
+Snapshot: activity_status is an observation at MANIFEST_AT_SELECTION; lifecycle_evidence_tier describes available event evidence, not verification of present activity.
+<!-- source-integrity:end -->

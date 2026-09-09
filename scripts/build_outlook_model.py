@@ -110,7 +110,7 @@ def build_outlook_model():
         # 3. EXIT_PRESSURE
         {
             "dimension": "EXIT_PRESSURE",
-            "metric": "verified_graduations_and_closures",
+            "metric": "primary_verified_graduations",
             "period": "2025",
             "value": float(evt_primary_2025),
             "previous_comparable_value": float(evt_primary_2024),
@@ -226,6 +226,9 @@ def build_outlook_model():
         }
     ]
     
+    for indicator in indicators:
+        indicator["numerator_scope"] = "FROZEN_COHORT_193"
+        indicator["denominator_scope"] = "FROZEN_COHORT_193"
     ind_df = pd.DataFrame(indicators)
     ind_df.to_parquet(OUT_INDICATORS_PARQUET, index=False)
     print(f"Saved {OUT_INDICATORS_PARQUET} ({len(ind_df)} outlook indicators).")

@@ -28,7 +28,7 @@ Public commentary frequently poses questions regarding ecosystem contraction or 
 |---|---|---|---|---|---|---|
 | **`CREATOR_SUPPLY`** | `active_channels_count` | `157.00` | `166.00` | **`EXPANDING`** | `HIGH` | `yearly_ecosystem_metrics.parquet` |
 | **`ENTRY_RATE`** | `pct_new_interacting_audience` | `84.03%` | `82.25%` | **`CONTRACTING`** | `HIGH` | `audience_behavior_yearly.parquet` |
-| **`EXIT_PRESSURE`** | `verified_graduations_and_closures` | `0.00` | `6.00` | **`EXPANDING`** | `HIGH` | `creator_status_events.parquet` |
+| **`EXIT_PRESSURE`** | `primary_verified_graduations` | `0.00` | `5.00` | **`EXPANDING`** | `HIGH` | `creator_status_events.parquet` |
 | **`AUDIENCE_ACTIVITY`** | `annual_active_interaction_accounts` | `13,478` | `17,119` | **`EXPANDING`** | `HIGH` | `audience_behavior_yearly.parquet` |
 | **`AUDIENCE_PERSISTENCE`** | `pct_re_observed_accounts` | `15.97%` | `17.75%` | **`EXPANDING`** | `HIGH` | `audience_behavior_yearly.parquet` |
 | **`AUDIENCE_BREADTH`** | `pct_multi_channel_observed` | `8.90%` | `9.92%` | **`EXPANDING`** | `HIGH` | `audience_behavior_yearly.parquet` |
@@ -73,3 +73,30 @@ Public commentary frequently poses questions regarding ecosystem contraction or 
 
 ---
 *Report generated automatically by `scripts/build_outlook_model.py`.*
+
+<!-- source-integrity:start -->
+## Canonical source integrity
+
+Ratio universe: numerator_scope=FROZEN_COHORT_193; denominator_scope=FROZEN_COHORT_193 unless a local table declares another scope. Registry headcounts are inventory only; they are not a denominator for cohort audience competition. Market scenarios have ILLUSTRATIVE_MARKET_SCENARIO scopes and are not observed ratios.
+
+Supply saturation: HYPOTHESIS / INSUFFICIENT_EVIDENCE. numerator_scope=FULL_REGISTRY; denominator_scope=FROZEN_COHORT_193; scope_caveat: incompatible coverage, competition ratio withheld.
+
+Reactivated accounts: 2022: 111; 2023: 369; 2024: 476; 2025: 948; 2026 YTD: 826. Counts increased across the completed 2022–2025 windows; 2026 is partial and is not compared as a full year. No stability rule has been established.
+
+WACTOR: SECONDARY_DOCUMENTED; CORPORATE_REGISTRATION_UNVERIFIED. RPG: INFERRED_PROXY activity boundary; legal closure is unverified.
+
+Lifecycle events: 229. Evidence tiers: {"INFERRED_PROXY": 185, "PRIMARY_EVENT_SPECIFIC": 12, "SECONDARY_DOCUMENTED": 32}.
+
+Exit events by event type and evidence tier:
+
+| Event | Evidence tier | Count |
+|---|---|---:|
+| GRADUATION | PRIMARY_EVENT_SPECIFIC | 10 |
+| GRADUATION | SECONDARY_DOCUMENTED | 3 |
+| GRADUATION_OR_DEPARTURE | PRIMARY_EVENT_SPECIFIC | 1 |
+| GRADUATION_PROXY | INFERRED_PROXY | 5 |
+| HIATUS | SECONDARY_DOCUMENTED | 1 |
+| HIATUS_OBSERVED_PROXY | INFERRED_PROXY | 24 |
+
+Snapshot: activity_status is an observation at MANIFEST_AT_SELECTION; lifecycle_evidence_tier describes available event evidence, not verification of present activity.
+<!-- source-integrity:end -->

@@ -7,6 +7,8 @@ Ensures zero fabrication, explicit separation of VERIFIED vs INFERRED_PROXY,
 and systematic coverage review across all 193 frozen target creators.
 """
 
+import sys
+sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parent.parent))
 import csv
 import json
 import logging
@@ -56,651 +58,517 @@ MANIFEST_PATH = DATA_DIR / "temporal" / "catalog" / "target_manifest.csv"
 REGISTRY_PATH = DATA_DIR / "thai_vtuber_registry.json"
 COVERAGE_PATH = DATA_DIR / "temporal" / "catalog" / "channel_coverage.parquet"
 
-# Explicit, externally audited intelligence database for target creators
-VERIFIED_CREATOR_INTEL = {
-    # 1. Shino Laila (WACTOR)
-    "UCFSkExeBcqI4nb_ArHeByNw": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2021-05-09",
-            "event_year": 2021,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Shino_Laila",
-            "notes": "Debuted on 2021-05-09 as WACTOR 2nd Gen member."
-        },
-        {
-            "event_type": "SUSPENSION",
-            "event_date": "2021-11-28",
-            "event_year": 2021,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://twitter.com/MiraisMaid/status/1464928236165509121",
-            "notes": "Suspension notice issued by WACTOR management on 2021-11-28."
-        },
-        {
-            "event_type": "GRADUATION_OR_DEPARTURE",
-            "event_date": "2022-04-16",
-            "event_year": 2022,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "PUBLIC_TALENT_STATEMENT",
-            "source_reference": "https://twitter.com/Eileennoir/status/1515286596886499330",
-            "notes": "Public announcement of departure and agency dissociation on 2022-04-16."
-        }
-    ],
-    # 2. Ice Shirakoi (AStars)
-    "UCgLadXz0sJbHQL98eoAd9ag": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2024-09-13",
-            "event_year": 2024,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_ANNOUNCEMENT",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/AStars",
-            "notes": "Debuted on 2024-09-13 as member of AStars Amakara unit under Brave Group APAC."
-        },
-        {
-            "event_type": "GRADUATION",
-            "event_date": "2025-04-30",
-            "event_year": 2025,
-            "verification_status": "PRIMARY_EVENT_SPECIFIC",
-            "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
-            "creator_source_class": "PRIMARY_OFFICIAL_ANNOUNCEMENT",
-            "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://x.com/AStarsofficial/status/1888528955219968470",
-            "notes": "Official graduation announced on 2025-04-16; farewell stream held 2025-04-26; effective 2025-04-30."
-        }
-    ],
-    # 3. Amaris Sayo (AStars)
-    "UCfe7Lxdn2PDp_xnnrC_RSzA": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2024-09-13",
-            "event_year": 2024,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_ANNOUNCEMENT",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/AStars",
-            "notes": "Debuted on 2024-09-13 as member of AStars Amakara unit."
-        },
-        {
-            "event_type": "GRADUATION",
-            "event_date": "2025-02-14",
-            "event_year": 2025,
-            "verification_status": "PRIMARY_EVENT_SPECIFIC",
-            "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
-            "creator_source_class": "PRIMARY_OFFICIAL_ANNOUNCEMENT",
-            "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://x.com/AStarsofficial/status/1888528955219968470",
-            "notes": "Graduation announced 2025-02-06 due to health; early graduation stream held 2025-02-14."
-        }
-    ],
-    # 4. Shimonz (Independent)
-    "UCt8vlwt6qi6P1mz5uuStJCA": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2021-04-03",
-            "event_year": 2021,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Shimonz",
-            "notes": "Debuted on 2021-04-03 as independent Thai VTuber."
-        },
-        {
-            "event_type": "GRADUATION",
-            "event_date": "2022-12-22",
-            "event_year": 2022,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Shimonz",
-            "notes": "Retired on 2022-12-22."
-        }
-    ],
-    # 5. Princess Zelina (Pixela Project)
-    "UCOaTgKPjI9cgXLoDW7XFDDw": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2021-03-16",
-            "event_year": 2021,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Princess_Zelina",
-            "notes": "Debuted on 2021-03-16 as Pixela 1st Generation member."
-        },
-        {
-            "event_type": "GRADUATION",
-            "event_date": "2025-05-09",
-            "event_year": 2025,
-            "verification_status": "PRIMARY_EVENT_SPECIFIC",
-            "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
-            "creator_source_class": "PRIMARY_OFFICIAL_ANNOUNCEMENT",
-            "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://x.com/PixelaProject/status/1920783180422176880",
-            "notes": "Graduation announced by Pixela on 2025-03-07; final activities completed on 2025-05-09."
-        }
-    ],
-    # 6. Hinabe HongFei (Pixela Project)
-    "UCutz6S1DcEHPnEb_r9ztkzg": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2021-03-10",
-            "event_year": 2021,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Hinabe_HongFei",
-            "notes": "Debuted on 2021-03-10 as Pixela 1st Generation member."
-        },
-        {
-            "event_type": "GRADUATION",
-            "event_date": "2023-11-28",
-            "event_year": 2023,
-            "verification_status": "PRIMARY_EVENT_SPECIFIC",
-            "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
-            "creator_source_class": "PRIMARY_OFFICIAL_ANNOUNCEMENT",
-            "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://x.com/PixelaProject/status/1723657388706857187",
-            "notes": "Retired on 2023-11-28."
-        }
-    ],
-    # 7. Melita X (Pixela Project)
-    "UCpNkVsMlsJRF792H-1_1vPA": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2021-03-12",
-            "event_year": 2021,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Melita_X",
-            "notes": "Debuted on 2021-03-12 as Pixela 1st Generation member."
-        },
-        {
-            "event_type": "GRADUATION",
-            "event_date": "2023-11-30",
-            "event_year": 2023,
-            "verification_status": "PRIMARY_EVENT_SPECIFIC",
-            "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
-            "creator_source_class": "PRIMARY_OFFICIAL_ANNOUNCEMENT",
-            "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://x.com/PixelaProject/status/1723657388706857187",
-            "notes": "Retired on 2023-11-30."
-        }
-    ],
-    # 8. Laguna Juju (Pixela Project)
-    "UCMUtWzsjAQJgp6UlkbVSo1w": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2021-03-14",
-            "event_year": 2021,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Laguna_Juju",
-            "notes": "Debuted on 2021-03-14 as Pixela 1st Generation member."
-        },
-        {
-            "event_type": "GRADUATION",
-            "event_date": "2023-11-29",
-            "event_year": 2023,
-            "verification_status": "PRIMARY_EVENT_SPECIFIC",
-            "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
-            "creator_source_class": "PRIMARY_OFFICIAL_ANNOUNCEMENT",
-            "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://x.com/PixelaProject/status/1723657388706857187",
-            "notes": "Retired on 2023-11-29."
-        }
-    ],
-    # 9. Meraki Keimii (Pixela Project)
-    "UCSXwfOj8mTDxE1ZaIEHXN2w": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2022-01-06",
-            "event_year": 2022,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Meraki_Keimii",
-            "notes": "Debuted on 2022-01-06 as Pixela Legends member."
-        },
-        {
-            "event_type": "GRADUATION",
-            "event_date": "2023-01-08",
-            "event_year": 2023,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Meraki_Keimii",
-            "notes": "Retired on 2023-01-08."
-        }
-    ],
-    # 10. Cazzie K. Monie (Pixela Project)
-    "UC-qBbCCqtD2H4WSs9m978Ow": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2021-03-08",
-            "event_year": 2021,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Cazzie_K._Monie",
-            "notes": "Debuted on 2021-03-08 as Pixela 1st Generation member."
-        },
-        {
-            "event_type": "TERMINATION",
-            "event_date": "2021-10-14",
-            "event_year": 2021,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Cazzie_K._Monie",
-            "notes": "Contract terminated on 2021-10-14."
-        }
-    ],
-    # 11. Asteroth (Algorhythm Project)
-    "UCOVpD7MesZKe44ZvLVuwXvA": [
-        {
-            "event_type": "GRADUATION",
-            "event_date": "2026-01-30",
-            "event_year": 2026,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://x.com/ARP_Vtuber/status/2016858872414412856",
-            "notes": "Official retirement from Algorhythm Project on 2026-01-30."
-        }
-    ],
-    # 12. Ayna (Algorhythm Project)
-    "UCJdXesaZYrQVSjhlYhme8rQ": [
-        {
-            "event_type": "GRADUATION",
-            "event_date": "2025-04-04",
-            "event_year": 2025,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://x.com/ARP_Vtuber/status/1897988102767231056",
-            "notes": "Official graduation from Algorhythm Project on 2025-04-04."
-        }
-    ],
-    # 13. Quentin (Algorhythm Project)
-    "UCQs4BC3S0KSw7i0ggHXn8TA": [
-        {
-            "event_type": "GRADUATION",
-            "event_date": "2025-04-02",
-            "event_year": 2025,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://x.com/ARP_Vtuber/status/1897988102767231056",
-            "notes": "Official graduation from Algorhythm Project on 2025-04-02."
-        }
-    ],
-    # 14. Latta (Algorhythm Project)
-    "UCeLJ2rBYZwPrb5hbKY5X5eg": [
-        {
-            "event_type": "GRADUATION",
-            "event_date": "2026-01-30",
-            "event_year": 2026,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://x.com/ARP_Vtuber/status/2016858872414412856",
-            "notes": "Official retirement from Algorhythm Project on 2026-01-30."
-        }
-    ],
-    # 15. Dacapo (Algorhythm Project)
-    "UC_nmh9XycGlquouvai2UC6g": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2023-03-25",
-            "event_year": 2023,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Dacapo",
-            "notes": "Debuted on 2023-03-25 as member of Algorhythm Project ORION unit."
-        }
-    ],
-    # 16. Baabel (Algorhythm Project)
-    "UC3ZglUA0HEUCuGbe5b8zXKw": [
-        {
-            "event_type": "RE_DEBUT",
-            "event_date": "2022-01-17",
-            "event_year": 2022,
-            "verification_status": "VERIFIED_LOCAL_PUBLIC_ARTIFACT",
-            "source_type": "CATALOG_VIDEO_EVIDENCE",
-            "source_reference": "video_catalog.csv:video_id=-PZhQFYOndE",
-            "notes": "Re-debut stream on 2022-01-17 via catalog video -PZhQFYOndE."
-        },
-        {
-            "event_type": "ORION_DEBUT",
-            "event_date": "2023-03-25",
-            "event_year": 2023,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Algorhythm_Project",
-            "notes": "Debuted on 2023-03-25 as member of Algorhythm Project ORION unit."
-        }
-    ],
-    # 17. Schneider (Algorhythm Project)
-    "UCpGtwNmbOtgmcKIY81MIX_w": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2023-03-25",
-            "event_year": 2023,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Algorhythm_Project",
-            "notes": "Debuted on 2023-03-25 as member of Algorhythm Project ORION unit."
-        }
-    ],
-    # 18. Aisha (Polygon / ALT Belief)
-    "UCqhhWjpw23dWhJ5rRwCCrMA": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2019-07-29",
-            "event_year": 2019,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Aisha",
-            "notes": "Debuted on 2019-07-29 as pioneer Thai VTuber under Guardian Angel A.I. / Polygon 0th Gen."
-        },
-        {
-            "event_type": "GRADUATION",
-            "event_date": "2025-12-18",
-            "event_year": 2025,
-            "verification_status": "PRIMARY_EVENT_SPECIFIC",
-            "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
-            "creator_source_class": "PRIMARY_OFFICIAL_ANNOUNCEMENT",
-            "source_type": "OFFICIAL_AGENCY_ANNOUNCEMENT",
-            "source_reference": "https://x.com/PolygonOfficial/status/2001594838520779264",
-            "notes": "Graduated and retired on 2025-12-18."
-        }
-    ],
-    # 19. YuChan (Kadokawa Amarin -> Virtual Zeven)
-    "UC7iCSRt7Jej2XE0MaM9gPgg": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2020-03-20",
-            "event_year": 2020,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_ANNOUNCEMENT",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Virtual_Zeven",
-            "notes": "Pioneer Thai VTuber under Kadokawa Amarin (Phoenix Next) debuted 2020-03-20."
-        },
-        {
-            "event_type": "HIATUS",
-            "event_date": "2021-12-09",
-            "event_year": 2021,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_ANNOUNCEMENT",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Virtual_Zeven",
-            "notes": "Last live stream on 2021-12-09 before hiatus."
-        }
-    ],
-    # 20. TheQuillmon (Virtual Zeven)
-    "UCJ6HUQOWSjCHHdOgz13zFlA": [
-        {
-            "event_type": "FIRST_APPEARANCE",
-            "event_date": "2017-11-06",
-            "event_year": 2017,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_ANNOUNCEMENT",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Virtual_Zeven",
-            "notes": "First VTuber appearance on 2017-11-06; pioneer Thai VTuber."
-        },
-        {
-            "event_type": "RE_DEBUT",
-            "event_date": "2024-04-27",
-            "event_year": 2024,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_ANNOUNCEMENT",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Virtual_Zeven",
-            "notes": "Re-debuted with Live2D model under Virtual Zeven (The Good Old Days unit)."
-        }
-    ],
-    # 21. Catalog-verified graduation
-    "UC32lsx7u7vqy63SguuuzmVg": [
-        {
-            "event_type": "GRADUATION",
-            "event_date": "2025-12-20",
-            "event_year": 2025,
-            "verification_status": "VERIFIED_LOCAL_PUBLIC_ARTIFACT",
-            "source_type": "CATALOG_VIDEO_EVIDENCE",
-            "source_reference": "video_catalog.csv:video_id=SWNcXyJBzDY",
-            "notes": "Verified graduation stream on 2025-12-20 via catalog video SWNcXyJBzDY."
-        }
-    ],
-    # 22. Qualia Qu (Independent / Former Vtuber)
-    "UCXtQTtPJedfjqEPysorbsMg": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2020-06-29",
-            "event_year": 2020,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Qualia_Qu",
-            "notes": "Debuted on 2020-06-29 as Thai/Japanese bilingual independent VTuber."
-        },
-        {
-            "event_type": "GRADUATION",
-            "event_date": "2022-03-31",
-            "event_year": 2022,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_ANNOUNCEMENT",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Qualia_Qu",
-            "notes": "Official retirement and graduation on 2022-03-31."
-        }
-    ],
-    # 23. Beariss Beam (Independent)
-    "UC0Ky1U__7T2Z5SOZCvNlJ-Q": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2021-08-15",
-            "event_year": 2021,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Beariss_Beam",
-            "notes": "Debuted as independent Thai VTuber illustrated by Jimo."
-        }
-    ],
-    # 24. Hey Solly (Independent)
-    "UCrYkQnbL_OiYyGuiZyvcO7g": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2021-08-26",
-            "event_year": 2021,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Solly",
-            "notes": "Debuted on 2021-08-26 as independent Thai VTuber."
-        }
-    ],
-    # 25. Lucene (Polygon Project - POLAR1SS)
-    "UC25e5qEqvVaG_VKrkTmJBmw": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2020-10-25",
-            "event_year": 2020,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Lucene",
-            "notes": "Debuted on 2020-10-25 as member of Polygon Project 1st Gen (POLAR1SS)."
-        }
-    ],
-    # 26. Luxia (Polygon Project - POLAR1SS)
-    "UCRG5fX1v4b-3sUyKfAAtxxA": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2020-10-20",
-            "event_year": 2020,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Luxia",
-            "notes": "Debuted on 2020-10-20 as member of Polygon Project 1st Gen (POLAR1SS)."
-        }
-    ],
-    # 27. Lapine (Polygon Project - POLAR1SS)
-    "UCC5q6CpuDflPvO7pNn52RGQ": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2020-10-02",
-            "event_year": 2020,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Lapine",
-            "notes": "Debuted on 2020-10-02 as member of Polygon Project 1st Gen (POLAR1SS)."
-        }
-    ],
-    # 28. Hoku (Polygon Project - POLAR1SS)
-    "UCZilc7jP-X_92Fii1uTIs0Q": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2020-10-14",
-            "event_year": 2020,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Hoku",
-            "notes": "Debuted on 2020-10-14 as member of Polygon Project 1st Gen (POLAR1SS)."
-        }
-    ],
-    # 29. Zona (Polygon Project - POLAR1SS)
-    "UCafG1bj6Qtcbn4bozcicWfA": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2020-10-08",
-            "event_year": 2020,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Zona",
-            "notes": "Debuted on 2020-10-08 as member of Polygon Project 1st Gen (POLAR1SS)."
-        }
-    ],
-    # 30. Laibaht (Algorhythm Project)
-    "UCR1Htb-H1-tus7UPotPh69A": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2021-05-15",
-            "event_year": 2021,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Laibaht",
-            "notes": "Debuted on 2021-05-15 as member of Algorhythm Project (Eclipse unit)."
-        }
-    ],
-    # 31. Schneider / S1R (Algorhythm Project)
-    "UCiYFmDfFBoAP2yk9yuXBTTg": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2021-04-09",
-            "event_year": 2021,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/S1R",
-            "notes": "Debuted on 2021-04-09 as member of Algorhythm Project."
-        }
-    ],
-    # 32. Selene (Algorhythm Project)
-    "UChBuxXl8poN1Jz8kZDdsfhw": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2021-08-06",
-            "event_year": 2021,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Selene",
-            "notes": "Debuted on 2021-08-06 as member of Algorhythm Project."
-        }
-    ],
-    # 33. Hanabi Lafy (Pixela Legends)
-    "UCVAsOHcLLGVQq6aOpesOwBQ": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2022-01-25",
-            "event_year": 2022,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Hanabi_Lafy",
-            "notes": "Debuted on 2022-01-25 as member of Pixela Legends."
-        }
-    ],
-    # 34. Kamiyu Reirin (Pixela Legends)
-    "UCLNBff3KDEUxdfH_lkvyOKQ": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2022-01-27",
-            "event_year": 2022,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Kamiyu_Reirin",
-            "notes": "Debuted on 2022-01-27 as member of Pixela Legends."
-        }
-    ],
-    # 35. Kitsuneko Mewten (Pixela Legends)
-    "UCPMOk4hbIh5A-_6uNhzAvDg": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2022-01-27",
-            "event_year": 2022,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Kitsuneko_Mewten",
-            "notes": "Debuted on 2022-01-27 as member of Pixela Legends."
-        }
-    ],
-    # 36. Superpretty TAKOPERO (Pixela Legends)
-    "UCktUGMC7AKl1e8n20Ys8w0Q": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2022-01-06",
-            "event_year": 2022,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Superpretty_TAKOPERO",
-            "notes": "Debuted on 2022-01-06 as member of Pixela Legends."
-        }
-    ],
-    # 37. Jolly Estaa (Pixela Legends)
-    "UCkEcY4RbLYs2AF45nhkyjtw": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2022-01-25",
-            "event_year": 2022,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Jolly_Estaa",
-            "notes": "Debuted on 2022-01-25 as member of Pixela Legends."
-        }
-    ],
-    # 38. Azato Stacia (Independent)
-    "UCDCOWpzyBFsavT-K7AmN3MQ": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2022-02-19",
-            "event_year": 2022,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Azato_Stacia",
-            "notes": "Debuted on 2022-02-19 as independent Thai VTuber."
-        }
-    ],
-    # 39. Fumi Hausu (Independent)
-    "UCE010cVAgWFD24wIJ95sDKw": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2022-02-10",
-            "event_year": 2022,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/Fumi_Hausu",
-            "notes": "Debuted on 2022-02-10 as independent Thai VTuber."
-        }
-    ],
-    # 40. ChaAYM (Independent)
-    "UCbEkHjG43yPMGq5W08jq1TQ": [
-        {
-            "event_type": "DEBUT",
-            "event_date": "2021-11-05",
-            "event_year": 2021,
-            "verification_status": "VERIFIED_EXTERNAL_EVIDENCE",
-            "source_type": "EXTERNAL_WIKI_AND_YOUTUBE",
-            "source_reference": "https://virtualyoutuber.fandom.com/wiki/ChaAYM",
-            "notes": "Debuted on 2021-11-05 as independent Thai VTuber."
-        }
-    ]
-}
-
+# Curated identity fields are checked against both independent local identity catalogs.
+VERIFIED_CREATOR_INTEL = {'UCFSkExeBcqI4nb_ArHeByNw': [{'event_type': 'DEBUT',
+                               'event_date': '2021-05-09',
+                               'event_year': 2021,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Shino_Laila',
+                               'notes': 'Debuted on 2021-05-09 as WACTOR 2nd Gen member.',
+                               'subject_channel_id': 'UCFSkExeBcqI4nb_ArHeByNw',
+                               'subject_name': 'Shino Laila',
+                               'source_subject': 'Shino Laila',
+                               'source_agency': 'WACTOR'},
+                              {'event_type': 'SUSPENSION',
+                               'event_date': '2021-11-28',
+                               'event_year': 2021,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'OFFICIAL_AGENCY_ANNOUNCEMENT',
+                               'source_reference': 'https://twitter.com/MiraisMaid/status/1464928236165509121',
+                               'notes': 'Suspension notice issued by WACTOR management on 2021-11-28.',
+                               'subject_channel_id': 'UCFSkExeBcqI4nb_ArHeByNw',
+                               'subject_name': 'Shino Laila',
+                               'source_subject': 'Shino Laila',
+                               'source_agency': 'WACTOR'},
+                              {'event_type': 'GRADUATION_OR_DEPARTURE',
+                               'event_date': '2022-04-16',
+                               'event_year': 2022,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'PUBLIC_TALENT_STATEMENT',
+                               'source_reference': 'https://twitter.com/Eileennoir/status/1515286596886499330',
+                               'notes': 'Public announcement of departure and agency dissociation on '
+                                        '2022-04-16.',
+                               'subject_channel_id': 'UCFSkExeBcqI4nb_ArHeByNw',
+                               'subject_name': 'Shino Laila',
+                               'source_subject': 'Shino Laila',
+                               'source_agency': 'WACTOR'}],
+ 'UCgLadXz0sJbHQL98eoAd9ag': [{'event_type': 'DEBUT',
+                               'event_date': '2024-09-13',
+                               'event_year': 2024,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_ANNOUNCEMENT',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/AStars',
+                               'notes': 'Debuted on 2024-09-13 as member of AStars Amakara unit under Brave '
+                                        'Group APAC.',
+                               'subject_channel_id': 'UCgLadXz0sJbHQL98eoAd9ag',
+                               'subject_name': 'Ice Shirakoi',
+                               'source_subject': 'Ice Shirakoi',
+                               'source_agency': 'AStars'},
+                              {'event_type': 'GRADUATION',
+                               'event_date': '2025-04-30',
+                               'event_year': 2025,
+                               'verification_status': 'PRIMARY_EVENT_SPECIFIC',
+                               'evidence_tier': 'PRIMARY_EVENT_SPECIFIC',
+                               'creator_source_class': 'PRIMARY_OFFICIAL_ANNOUNCEMENT',
+                               'source_type': 'OFFICIAL_AGENCY_ANNOUNCEMENT',
+                               'source_reference': 'https://x.com/AStarsofficial/status/1888528955219968470',
+                               'notes': 'Official graduation announced on 2025-04-16; farewell stream held '
+                                        '2025-04-26; effective 2025-04-30.',
+                               'subject_channel_id': 'UCgLadXz0sJbHQL98eoAd9ag',
+                               'subject_name': 'Ice Shirakoi',
+                               'source_subject': 'Ice Shirakoi',
+                               'source_agency': 'AStars'}],
+ 'UCfe7Lxdn2PDp_xnnrC_RSzA': [{'event_type': 'DEBUT',
+                               'event_date': '2024-09-13',
+                               'event_year': 2024,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_ANNOUNCEMENT',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/AStars',
+                               'notes': 'Debuted on 2024-09-13 as member of AStars Amakara unit.',
+                               'subject_channel_id': 'UCfe7Lxdn2PDp_xnnrC_RSzA',
+                               'subject_name': 'Amaris Sayo',
+                               'source_subject': 'Amaris Sayo',
+                               'source_agency': 'AStars'},
+                              {'event_type': 'GRADUATION',
+                               'event_date': '2025-02-14',
+                               'event_year': 2025,
+                               'verification_status': 'PRIMARY_EVENT_SPECIFIC',
+                               'evidence_tier': 'PRIMARY_EVENT_SPECIFIC',
+                               'creator_source_class': 'PRIMARY_OFFICIAL_ANNOUNCEMENT',
+                               'source_type': 'OFFICIAL_AGENCY_ANNOUNCEMENT',
+                               'source_reference': 'https://x.com/AStarsofficial/status/1888528955219968470',
+                               'notes': 'Graduation announced 2025-02-06 due to health; early graduation '
+                                        'stream held 2025-02-14.',
+                               'subject_channel_id': 'UCfe7Lxdn2PDp_xnnrC_RSzA',
+                               'subject_name': 'Amaris Sayo',
+                               'source_subject': 'Amaris Sayo',
+                               'source_agency': 'AStars'}],
+ 'UCt8vlwt6qi6P1mz5uuStJCA': [{'event_type': 'DEBUT',
+                               'event_date': '2021-04-03',
+                               'event_year': 2021,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Shimonz',
+                               'notes': 'Debuted on 2021-04-03 as independent Thai VTuber.',
+                               'subject_channel_id': 'UCt8vlwt6qi6P1mz5uuStJCA',
+                               'subject_name': 'Shimonz',
+                               'source_subject': 'Shimonz',
+                               'source_agency': 'Independent'},
+                              {'event_type': 'GRADUATION',
+                               'event_date': '2022-12-22',
+                               'event_year': 2022,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Shimonz',
+                               'notes': 'Retired on 2022-12-22.',
+                               'subject_channel_id': 'UCt8vlwt6qi6P1mz5uuStJCA',
+                               'subject_name': 'Shimonz',
+                               'source_subject': 'Shimonz',
+                               'source_agency': 'Independent'}],
+ 'UCOaTgKPjI9cgXLoDW7XFDDw': [{'event_type': 'DEBUT',
+                               'event_date': '2021-03-16',
+                               'event_year': 2021,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Princess_Zelina',
+                               'notes': 'Debuted on 2021-03-16 as Pixela 1st Generation member.',
+                               'subject_channel_id': 'UCOaTgKPjI9cgXLoDW7XFDDw',
+                               'subject_name': 'Princess Zelina',
+                               'source_subject': 'Princess Zelina',
+                               'source_agency': 'Pixela Project'},
+                              {'event_type': 'GRADUATION',
+                               'event_date': '2025-05-09',
+                               'event_year': 2025,
+                               'verification_status': 'PRIMARY_EVENT_SPECIFIC',
+                               'evidence_tier': 'PRIMARY_EVENT_SPECIFIC',
+                               'creator_source_class': 'PRIMARY_OFFICIAL_ANNOUNCEMENT',
+                               'source_type': 'OFFICIAL_AGENCY_ANNOUNCEMENT',
+                               'source_reference': 'https://x.com/PixelaProject/status/1920783180422176880',
+                               'notes': 'Graduation announced by Pixela on 2025-03-07; final activities '
+                                        'completed on 2025-05-09.',
+                               'subject_channel_id': 'UCOaTgKPjI9cgXLoDW7XFDDw',
+                               'subject_name': 'Princess Zelina',
+                               'source_subject': 'Princess Zelina',
+                               'source_agency': 'Pixela Project'}],
+ 'UCutz6S1DcEHPnEb_r9ztkzg': [{'event_type': 'DEBUT',
+                               'event_date': '2021-03-10',
+                               'event_year': 2021,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Hinabe_HongFei',
+                               'notes': 'Debuted on 2021-03-10 as Pixela 1st Generation member.',
+                               'subject_channel_id': 'UCutz6S1DcEHPnEb_r9ztkzg',
+                               'subject_name': 'Hinabe HongFei',
+                               'source_subject': 'Hinabe HongFei',
+                               'source_agency': 'Pixela Project'},
+                              {'event_type': 'GRADUATION',
+                               'event_date': '2023-11-28',
+                               'event_year': 2023,
+                               'verification_status': 'PRIMARY_EVENT_SPECIFIC',
+                               'evidence_tier': 'PRIMARY_EVENT_SPECIFIC',
+                               'creator_source_class': 'PRIMARY_OFFICIAL_ANNOUNCEMENT',
+                               'source_type': 'OFFICIAL_AGENCY_ANNOUNCEMENT',
+                               'source_reference': 'https://x.com/PixelaProject/status/1723657388706857187',
+                               'notes': 'Retired on 2023-11-28.',
+                               'subject_channel_id': 'UCutz6S1DcEHPnEb_r9ztkzg',
+                               'subject_name': 'Hinabe HongFei',
+                               'source_subject': 'Hinabe HongFei',
+                               'source_agency': 'Pixela Project'}],
+ 'UCpNkVsMlsJRF792H-1_1vPA': [{'event_type': 'DEBUT',
+                               'event_date': '2021-03-12',
+                               'event_year': 2021,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Melita_X',
+                               'notes': 'Debuted on 2021-03-12 as Pixela 1st Generation member.',
+                               'subject_channel_id': 'UCpNkVsMlsJRF792H-1_1vPA',
+                               'subject_name': 'Melita X',
+                               'source_subject': 'Melita X',
+                               'source_agency': 'Pixela Project'},
+                              {'event_type': 'GRADUATION',
+                               'event_date': '2023-11-30',
+                               'event_year': 2023,
+                               'verification_status': 'PRIMARY_EVENT_SPECIFIC',
+                               'evidence_tier': 'PRIMARY_EVENT_SPECIFIC',
+                               'creator_source_class': 'PRIMARY_OFFICIAL_ANNOUNCEMENT',
+                               'source_type': 'OFFICIAL_AGENCY_ANNOUNCEMENT',
+                               'source_reference': 'https://x.com/PixelaProject/status/1723657388706857187',
+                               'notes': 'Retired on 2023-11-30.',
+                               'subject_channel_id': 'UCpNkVsMlsJRF792H-1_1vPA',
+                               'subject_name': 'Melita X',
+                               'source_subject': 'Melita X',
+                               'source_agency': 'Pixela Project'}],
+ 'UCMUtWzsjAQJgp6UlkbVSo1w': [{'event_type': 'DEBUT',
+                               'event_date': '2021-03-14',
+                               'event_year': 2021,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Laguna_Juju',
+                               'notes': 'Debuted on 2021-03-14 as Pixela 1st Generation member.',
+                               'subject_channel_id': 'UCMUtWzsjAQJgp6UlkbVSo1w',
+                               'subject_name': 'Laguna Juju',
+                               'source_subject': 'Laguna Juju',
+                               'source_agency': 'Pixela Project'},
+                              {'event_type': 'GRADUATION',
+                               'event_date': '2023-11-29',
+                               'event_year': 2023,
+                               'verification_status': 'PRIMARY_EVENT_SPECIFIC',
+                               'evidence_tier': 'PRIMARY_EVENT_SPECIFIC',
+                               'creator_source_class': 'PRIMARY_OFFICIAL_ANNOUNCEMENT',
+                               'source_type': 'OFFICIAL_AGENCY_ANNOUNCEMENT',
+                               'source_reference': 'https://x.com/PixelaProject/status/1723657388706857187',
+                               'notes': 'Retired on 2023-11-29.',
+                               'subject_channel_id': 'UCMUtWzsjAQJgp6UlkbVSo1w',
+                               'subject_name': 'Laguna Juju',
+                               'source_subject': 'Laguna Juju',
+                               'source_agency': 'Pixela Project'}],
+ 'UCSXwfOj8mTDxE1ZaIEHXN2w': [{'event_type': 'DEBUT',
+                               'event_date': '2022-01-06',
+                               'event_year': 2022,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Meraki_Keimii',
+                               'notes': 'Debuted on 2022-01-06 as Pixela Legends member.',
+                               'subject_channel_id': 'UCSXwfOj8mTDxE1ZaIEHXN2w',
+                               'subject_name': 'Meraki Keimii',
+                               'source_subject': 'Meraki Keimii',
+                               'source_agency': 'Pixela Project'},
+                              {'event_type': 'GRADUATION',
+                               'event_date': '2023-01-08',
+                               'event_year': 2023,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'OFFICIAL_AGENCY_ANNOUNCEMENT',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Meraki_Keimii',
+                               'notes': 'Retired on 2023-01-08.',
+                               'subject_channel_id': 'UCSXwfOj8mTDxE1ZaIEHXN2w',
+                               'subject_name': 'Meraki Keimii',
+                               'source_subject': 'Meraki Keimii',
+                               'source_agency': 'Pixela Project'}],
+ 'UCOVpD7MesZKe44ZvLVuwXvA': [{'event_type': 'GRADUATION',
+                               'event_date': '2026-01-30',
+                               'event_year': 2026,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'OFFICIAL_AGENCY_ANNOUNCEMENT',
+                               'source_reference': 'https://x.com/ARP_Vtuber/status/2016858872414412856',
+                               'notes': 'Official retirement from Algorhythm Project on 2026-01-30.',
+                               'subject_channel_id': 'UCOVpD7MesZKe44ZvLVuwXvA',
+                               'subject_name': 'Asteroth',
+                               'source_subject': 'Asteroth',
+                               'source_agency': 'Algorhythm Project'}],
+ 'UCJdXesaZYrQVSjhlYhme8rQ': [{'event_type': 'GRADUATION',
+                               'event_date': '2025-04-04',
+                               'event_year': 2025,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'OFFICIAL_AGENCY_ANNOUNCEMENT',
+                               'source_reference': 'https://x.com/ARP_Vtuber/status/1897988102767231056',
+                               'notes': 'Official graduation from Algorhythm Project on 2025-04-04.',
+                               'subject_channel_id': 'UCJdXesaZYrQVSjhlYhme8rQ',
+                               'subject_name': 'Ayna',
+                               'source_subject': 'Ayna',
+                               'source_agency': 'Algorhythm Project'}],
+ 'UCQs4BC3S0KSw7i0ggHXn8TA': [{'event_type': 'GRADUATION',
+                               'event_date': '2025-04-02',
+                               'event_year': 2025,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'OFFICIAL_AGENCY_ANNOUNCEMENT',
+                               'source_reference': 'https://x.com/ARP_Vtuber/status/1897988102767231056',
+                               'notes': 'Official graduation from Algorhythm Project on 2025-04-02.',
+                               'subject_channel_id': 'UCQs4BC3S0KSw7i0ggHXn8TA',
+                               'subject_name': 'Quentin',
+                               'source_subject': 'Quentin',
+                               'source_agency': 'Algorhythm Project'}],
+ 'UCeLJ2rBYZwPrb5hbKY5X5eg': [{'event_type': 'GRADUATION',
+                               'event_date': '2026-01-30',
+                               'event_year': 2026,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'OFFICIAL_AGENCY_ANNOUNCEMENT',
+                               'source_reference': 'https://x.com/ARP_Vtuber/status/2016858872414412856',
+                               'notes': 'Official retirement from Algorhythm Project on 2026-01-30.',
+                               'subject_channel_id': 'UCeLJ2rBYZwPrb5hbKY5X5eg',
+                               'subject_name': 'Latta',
+                               'source_subject': 'Latta',
+                               'source_agency': 'Algorhythm Project'}],
+ 'UCuZ1ajvlGFUMCHZAPdetKHw': [{'event_type': 'DEBUT',
+                               'event_date': '2023-03-25',
+                               'event_year': 2023,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Dacapo',
+                               'notes': 'Debuted on 2023-03-25 as member of Algorhythm Project ORION unit.',
+                               'subject_channel_id': 'UCuZ1ajvlGFUMCHZAPdetKHw',
+                               'subject_name': 'Dacapo',
+                               'source_subject': 'Dacapo',
+                               'source_agency': 'Algorhythm Project'}],
+ 'UCNTEr2_96vJnXNazr5MwNLA': [{'event_type': 'DEBUT',
+                               'event_date': '2023-03-25',
+                               'event_year': 2023,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Algorhythm_Project',
+                               'notes': 'Debuted on 2023-03-25 as member of Algorhythm Project ORION unit.',
+                               'subject_channel_id': 'UCNTEr2_96vJnXNazr5MwNLA',
+                               'subject_name': 'Schneider',
+                               'source_subject': 'Schneider',
+                               'source_agency': 'Algorhythm Project'}],
+ 'UC7iCSRt7Jej2XE0MaM9gPgg': [{'event_type': 'DEBUT',
+                               'event_date': '2020-03-20',
+                               'event_year': 2020,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_ANNOUNCEMENT',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Virtual_Zeven',
+                               'notes': 'Pioneer Thai VTuber under Kadokawa Amarin (Phoenix Next) debuted '
+                                        '2020-03-20.',
+                               'subject_channel_id': 'UC7iCSRt7Jej2XE0MaM9gPgg',
+                               'subject_name': 'YuChan',
+                               'source_subject': 'YuChan',
+                               'source_agency': 'Kadokawa Amarin -> Virtual Zeven'},
+                              {'event_type': 'HIATUS',
+                               'event_date': '2021-12-09',
+                               'event_year': 2021,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_ANNOUNCEMENT',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Virtual_Zeven',
+                               'notes': 'Last live stream on 2021-12-09 before hiatus.',
+                               'subject_channel_id': 'UC7iCSRt7Jej2XE0MaM9gPgg',
+                               'subject_name': 'YuChan',
+                               'source_subject': 'YuChan',
+                               'source_agency': 'Kadokawa Amarin -> Virtual Zeven'}],
+ 'UCJ6HUQOWSjCHHdOgz13zFlA': [{'event_type': 'FIRST_APPEARANCE',
+                               'event_date': '2017-11-06',
+                               'event_year': 2017,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_ANNOUNCEMENT',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Virtual_Zeven',
+                               'notes': 'First VTuber appearance on 2017-11-06; pioneer Thai VTuber.',
+                               'subject_channel_id': 'UCJ6HUQOWSjCHHdOgz13zFlA',
+                               'subject_name': 'TheQuillmon',
+                               'source_subject': 'TheQuillmon',
+                               'source_agency': 'Virtual Zeven'},
+                              {'event_type': 'RE_DEBUT',
+                               'event_date': '2024-04-27',
+                               'event_year': 2024,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_ANNOUNCEMENT',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Virtual_Zeven',
+                               'notes': 'Re-debuted with Live2D model under Virtual Zeven (The Good Old Days '
+                                        'unit).',
+                               'subject_channel_id': 'UCJ6HUQOWSjCHHdOgz13zFlA',
+                               'subject_name': 'TheQuillmon',
+                               'source_subject': 'TheQuillmon',
+                               'source_agency': 'Virtual Zeven'}],
+ 'UCXtQTtPJedfjqEPysorbsMg': [{'event_type': 'DEBUT',
+                               'event_date': '2020-06-29',
+                               'event_year': 2020,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Qualia_Qu',
+                               'notes': 'Debuted on 2020-06-29 as Thai/Japanese bilingual independent '
+                                        'VTuber.',
+                               'subject_channel_id': 'UCXtQTtPJedfjqEPysorbsMg',
+                               'subject_name': 'Qualia Qu',
+                               'source_subject': 'Qualia Qu',
+                               'source_agency': 'Independent / Former Vtuber'},
+                              {'event_type': 'GRADUATION',
+                               'event_date': '2022-03-31',
+                               'event_year': 2022,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_ANNOUNCEMENT',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Qualia_Qu',
+                               'notes': 'Official retirement and graduation on 2022-03-31.',
+                               'subject_channel_id': 'UCXtQTtPJedfjqEPysorbsMg',
+                               'subject_name': 'Qualia Qu',
+                               'source_subject': 'Qualia Qu',
+                               'source_agency': 'Independent / Former Vtuber'}],
+ 'UC0Ky1U__7T2Z5SOZCvNlJ-Q': [{'event_type': 'DEBUT',
+                               'event_date': '2021-08-15',
+                               'event_year': 2021,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Beariss_Beam',
+                               'notes': 'Debuted as independent Thai VTuber illustrated by Jimo.',
+                               'subject_channel_id': 'UC0Ky1U__7T2Z5SOZCvNlJ-Q',
+                               'subject_name': 'Beariss Beam',
+                               'source_subject': 'Beariss Beam',
+                               'source_agency': 'Independent'}],
+ 'UCrYkQnbL_OiYyGuiZyvcO7g': [{'event_type': 'DEBUT',
+                               'event_date': '2021-08-26',
+                               'event_year': 2021,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Solly',
+                               'notes': 'Debuted on 2021-08-26 as independent Thai VTuber.',
+                               'subject_channel_id': 'UCrYkQnbL_OiYyGuiZyvcO7g',
+                               'subject_name': 'Hey Solly',
+                               'source_subject': 'Hey Solly',
+                               'source_agency': 'Independent'}],
+ 'UCafG1bj6Qtcbn4bozcicWfA': [{'event_type': 'DEBUT',
+                               'event_date': '2020-10-08',
+                               'event_year': 2020,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Zona',
+                               'notes': 'Debuted on 2020-10-08 as member of Polygon Project 1st Gen '
+                                        '(POLAR1SS).',
+                               'subject_channel_id': 'UCafG1bj6Qtcbn4bozcicWfA',
+                               'subject_name': 'Zona',
+                               'source_subject': 'Zona',
+                               'source_agency': 'Polygon Project - POLAR1SS'}],
+ 'UCiYFmDfFBoAP2yk9yuXBTTg': [{'event_type': 'DEBUT',
+                               'event_date': '2021-04-09',
+                               'event_year': 2021,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/S1R',
+                               'notes': 'Debuted on 2021-04-09 as member of Algorhythm Project.',
+                               'subject_channel_id': 'UCiYFmDfFBoAP2yk9yuXBTTg',
+                               'subject_name': 'S1R',
+                               'source_subject': 'S1R',
+                               'source_agency': 'Algorhythm Project'}],
+ 'UChBuxXl8poN1Jz8kZDdsfhw': [{'event_type': 'DEBUT',
+                               'event_date': '2021-08-06',
+                               'event_year': 2021,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Selene',
+                               'notes': 'Debuted on 2021-08-06 as member of Algorhythm Project.',
+                               'subject_channel_id': 'UChBuxXl8poN1Jz8kZDdsfhw',
+                               'subject_name': 'Selene',
+                               'source_subject': 'Selene',
+                               'source_agency': 'Algorhythm Project'}],
+ 'UCVAsOHcLLGVQq6aOpesOwBQ': [{'event_type': 'DEBUT',
+                               'event_date': '2022-01-25',
+                               'event_year': 2022,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Hanabi_Lafy',
+                               'notes': 'Debuted on 2022-01-25 as member of Pixela Legends.',
+                               'subject_channel_id': 'UCVAsOHcLLGVQq6aOpesOwBQ',
+                               'subject_name': 'Hanabi Lafy',
+                               'source_subject': 'Hanabi Lafy',
+                               'source_agency': 'Pixela Legends'}],
+ 'UCLNBff3KDEUxdfH_lkvyOKQ': [{'event_type': 'DEBUT',
+                               'event_date': '2022-01-27',
+                               'event_year': 2022,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Kamiyu_Reirin',
+                               'notes': 'Debuted on 2022-01-27 as member of Pixela Legends.',
+                               'subject_channel_id': 'UCLNBff3KDEUxdfH_lkvyOKQ',
+                               'subject_name': 'Kamiyu Reirin',
+                               'source_subject': 'Kamiyu Reirin',
+                               'source_agency': 'Pixela Legends'}],
+ 'UCPMOk4hbIh5A-_6uNhzAvDg': [{'event_type': 'DEBUT',
+                               'event_date': '2022-01-27',
+                               'event_year': 2022,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Kitsuneko_Mewten',
+                               'notes': 'Debuted on 2022-01-27 as member of Pixela Legends.',
+                               'subject_channel_id': 'UCPMOk4hbIh5A-_6uNhzAvDg',
+                               'subject_name': 'Kitsuneko Mewten',
+                               'source_subject': 'Kitsuneko Mewten',
+                               'source_agency': 'Pixela Legends'}],
+ 'UCktUGMC7AKl1e8n20Ys8w0Q': [{'event_type': 'DEBUT',
+                               'event_date': '2022-01-06',
+                               'event_year': 2022,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Superpretty_TAKOPERO',
+                               'notes': 'Debuted on 2022-01-06 as member of Pixela Legends.',
+                               'subject_channel_id': 'UCktUGMC7AKl1e8n20Ys8w0Q',
+                               'subject_name': 'Superpretty TAKOPERO',
+                               'source_subject': 'Superpretty TAKOPERO',
+                               'source_agency': 'Pixela Legends'}],
+ 'UCkEcY4RbLYs2AF45nhkyjtw': [{'event_type': 'DEBUT',
+                               'event_date': '2022-01-25',
+                               'event_year': 2022,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Jolly_Estaa',
+                               'notes': 'Debuted on 2022-01-25 as member of Pixela Legends.',
+                               'subject_channel_id': 'UCkEcY4RbLYs2AF45nhkyjtw',
+                               'subject_name': 'Jolly Estaa',
+                               'source_subject': 'Jolly Estaa',
+                               'source_agency': 'Pixela Legends'}],
+ 'UCDCOWpzyBFsavT-K7AmN3MQ': [{'event_type': 'DEBUT',
+                               'event_date': '2022-02-19',
+                               'event_year': 2022,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Azato_Stacia',
+                               'notes': 'Debuted on 2022-02-19 as independent Thai VTuber.',
+                               'subject_channel_id': 'UCDCOWpzyBFsavT-K7AmN3MQ',
+                               'subject_name': 'Azato Stacia',
+                               'source_subject': 'Azato Stacia',
+                               'source_agency': 'Independent'}],
+ 'UCE010cVAgWFD24wIJ95sDKw': [{'event_type': 'DEBUT',
+                               'event_date': '2022-02-10',
+                               'event_year': 2022,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/Fumi_Hausu',
+                               'notes': 'Debuted on 2022-02-10 as independent Thai VTuber.',
+                               'subject_channel_id': 'UCE010cVAgWFD24wIJ95sDKw',
+                               'subject_name': 'Fumi Hausu',
+                               'source_subject': 'Fumi Hausu',
+                               'source_agency': 'Independent'}],
+ 'UCbEkHjG43yPMGq5W08jq1TQ': [{'event_type': 'DEBUT',
+                               'event_date': '2021-11-05',
+                               'event_year': 2021,
+                               'verification_status': 'VERIFIED_EXTERNAL_EVIDENCE',
+                               'source_type': 'EXTERNAL_WIKI_AND_YOUTUBE',
+                               'source_reference': 'https://virtualyoutuber.fandom.com/wiki/ChaAYM',
+                               'notes': 'Debuted on 2021-11-05 as independent Thai VTuber.',
+                               'subject_channel_id': 'UCbEkHjG43yPMGq5W08jq1TQ',
+                               'subject_name': 'ChaAYM',
+                               'source_subject': 'ChaAYM',
+                               'source_agency': 'Independent'}]}
 
 
 def build_creator_datasets():
+    from scripts.audit_creator_identity_mapping import audit_identity
+    audit_identity(VERIFIED_CREATOR_INTEL)
     manifest_df = pd.read_csv(MANIFEST_PATH)
     logger.info(f"Loaded {len(manifest_df)} channels from {MANIFEST_PATH}")
 
@@ -772,6 +640,9 @@ def build_creator_datasets():
 
             event_id = f"evt_{ve['event_type'].lower()}_{cid[:10]}_{ve['event_date'].replace('-', '')}"
             event_obj = {
+                "subject_channel_id": ve["subject_channel_id"],
+                "subject_name": ve["subject_name"],
+                "source_subject": ve["source_subject"],
                 "event_id": event_id,
                 "creator_channel_id": cid,
                 "creator_name": name,

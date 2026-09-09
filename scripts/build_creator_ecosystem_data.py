@@ -98,21 +98,10 @@ def build_creator_public_snapshot() -> pd.DataFrame:
         cov_entry = canonical_cov_map.get(cid, {})
         canonical_status = cov_entry.get("lifecycle_status", manifest_status)
 
-        if cid in unavail_cids or canonical_status == "unavailable":
-            act_state = "CHANNEL_UNAVAILABLE"
-            verif_stat = "VERIFIED" if cid in verified_cids else "INFERRED_PROXY"
-        elif cid in grad_cids or canonical_status == "graduated":
-            act_state = "GRADUATED"
-            verif_stat = "VERIFIED" if cid in verified_cids else "INFERRED_PROXY"
-        elif canonical_status == "hiatus":
-            act_state = "HIATUS"
-            verif_stat = "INFERRED_PROXY"
-        elif canonical_status == "active":
-            act_state = "ACTIVE"
-            verif_stat = "VERIFIED"
-        else:
-            act_state = str(canonical_status).upper()
-            verif_stat = "INFERRED_PROXY"
+        # Activity is a frozen selection observation, never evidence of legal lifecycle status.
+        act_state = "ACTIVE_OBSERVED" if canonical_status == "active" else str(canonical_status).upper() + "_OBSERVED"
+        tiers = set(canonical_events_df.loc[canonical_events_df.creator_channel_id == cid, "evidence_tier"])
+        verif_stat = next((t for t in ("PRIMARY_EVENT_SPECIFIC", "SECONDARY_DOCUMENTED", "INFERRED_PROXY") if t in tiers), "UNKNOWN")
 
         snapshot_records.append({
             "channel_id": cid,
@@ -126,6 +115,8 @@ def build_creator_public_snapshot() -> pd.DataFrame:
             "latest_observed_date": newest,
             "activity_status": act_state,
             "verification_status": verif_stat,
+            "activity_status_source": "MANIFEST_AT_SELECTION",
+            "lifecycle_evidence_tier": verif_stat,
             "subscriber_count": sub_count,
             "video_count": vid_count,
             "view_count": view_count,

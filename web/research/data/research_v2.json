@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Thai VTuber Industry Intelligence v2 Aggregate Data Contract",
-    "generated_at": "2026-09-09T05:33:19.841103+00:00",
+    "generated_at": "2026-09-09T07:07:55.705293+00:00",
     "version": "2.0.0",
     "privacy_class": "PUBLIC_RESEARCH_DATA",
     "target_cohort": "193 Target Thai VTuber Channels (Frozen Longitudinal Cohort)",
@@ -74,7 +74,9 @@
         "channels": 160,
         "note": "YTD partial"
       }
-    ]
+    ],
+    "numerator_scope": "FROZEN_COHORT_193",
+    "denominator_scope": "FROZEN_COHORT_193"
   },
   "industry_pulse": {
     "creators": {
@@ -122,10 +124,10 @@
   "creator_ecosystem": {
     "active_observed": 166,
     "target_cohort_total": 193,
-    "first_observed": 150,
-    "inactive_unavailable": 24,
-    "verified_graduations": 12,
-    "primary_verified_graduations": 12,
+    "first_observed": 156,
+    "inactive_unavailable": 33,
+    "verified_graduations": 11,
+    "primary_verified_graduations": 11,
     "secondary_documented_graduations": 3,
     "proxy_graduation_boundaries": 5,
     "growth_chart": [
@@ -160,7 +162,9 @@
     ],
     "composition_chart": {
       "agency_percentage": 35.8,
-      "indie_percentage": 58.5
+      "indie_percentage": 58.5,
+      "numerator_scope": "FROZEN_COHORT_193",
+      "denominator_scope": "FROZEN_COHORT_193"
     },
     "size_distribution_chart": {
       "p25_subscribers": 40500,
@@ -259,7 +263,9 @@
         "pct_accounts_exclusive_rank21plus": 1.43,
         "privacy_class": "PUBLIC_RESEARCH_DATA",
         "k_anonymity_threshold_met": true,
-        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time."
+        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       },
       {
         "year": 2021,
@@ -339,7 +345,9 @@
         "pct_accounts_exclusive_rank21plus": 15.61,
         "privacy_class": "PUBLIC_RESEARCH_DATA",
         "k_anonymity_threshold_met": true,
-        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time."
+        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       },
       {
         "year": 2022,
@@ -419,7 +427,9 @@
         "pct_accounts_exclusive_rank21plus": 19.13,
         "privacy_class": "PUBLIC_RESEARCH_DATA",
         "k_anonymity_threshold_met": true,
-        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time."
+        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       },
       {
         "year": 2023,
@@ -499,7 +509,9 @@
         "pct_accounts_exclusive_rank21plus": 21.86,
         "privacy_class": "PUBLIC_RESEARCH_DATA",
         "k_anonymity_threshold_met": true,
-        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time."
+        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       },
       {
         "year": 2024,
@@ -579,7 +591,9 @@
         "pct_accounts_exclusive_rank21plus": 36.47,
         "privacy_class": "PUBLIC_RESEARCH_DATA",
         "k_anonymity_threshold_met": true,
-        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time."
+        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       },
       {
         "year": 2025,
@@ -659,7 +673,9 @@
         "pct_accounts_exclusive_rank21plus": 32.57,
         "privacy_class": "PUBLIC_RESEARCH_DATA",
         "k_anonymity_threshold_met": true,
-        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time."
+        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       },
       {
         "year": 2026,
@@ -739,7 +755,9 @@
         "pct_accounts_exclusive_rank21plus": 39.05,
         "privacy_class": "PUBLIC_RESEARCH_DATA",
         "k_anonymity_threshold_met": true,
-        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time."
+        "limitation": "Measures pseudonymous accounts with recorded interaction in sampled content. Not unique human demographics. Not watch-time.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       }
     ],
     "segment_breadth": {
@@ -747,18 +765,24 @@
       "multi_channel_pct": 9.92,
       "same_community_pct": 6.69,
       "cross_community_pct": 3.22,
-      "cross_agency_pct": 4.04
+      "cross_agency_pct": 4.04,
+      "numerator_scope": "FROZEN_COHORT_193",
+      "denominator_scope": "FROZEN_COHORT_193"
     },
     "segment_modality": {
       "comment_only_pct": 100.0,
       "live_chat_only_pct": 0.0,
-      "mixed_modality_pct": 0.0
+      "mixed_modality_pct": 0.0,
+      "numerator_scope": "FROZEN_COHORT_193",
+      "denominator_scope": "FROZEN_COHORT_193"
     },
     "segment_time": {
       "new_pct": 82.25,
       "returning_pct": 17.75,
       "multiyear_pct": 24.26,
-      "reactivated_pct": 5.54
+      "reactivated_pct": 5.54,
+      "numerator_scope": "FROZEN_COHORT_193",
+      "denominator_scope": "FROZEN_COHORT_193"
     },
     "evolution": {
       "new_returning": "การเปลี่ยนแปลงของสัดส่วนบัญชีที่สังเกตใหม่ (จาก 95.5% ในปี 2021 สู่ 82.2% ในปี 2025) สอดคล้องกับการเพิ่มขึ้นของบัญชีที่สังเกตซ้ำข้ามปีเป็น 17.8%",
@@ -778,7 +802,9 @@
       "density": 0.3005,
       "modularity_q": 0.1333,
       "cross_community_edge_share": 0.6592,
-      "degree_gini": 0.3991
+      "degree_gini": 0.3991,
+      "numerator_scope": "FROZEN_COHORT_193",
+      "denominator_scope": "FROZEN_COHORT_193"
     },
     "metrics_2025": {
       "observed_creators": 166,
@@ -786,7 +812,9 @@
       "density": 0.2313,
       "modularity_q": 0.3189,
       "cross_community_edge_share": 0.4864,
-      "degree_gini": 0.4265
+      "degree_gini": 0.4265,
+      "numerator_scope": "FROZEN_COHORT_193",
+      "denominator_scope": "FROZEN_COHORT_193"
     }
   },
   "mobility": {
@@ -823,7 +851,9 @@
         "arpu_thb_annual": 1200,
         "arpu_thb_monthly": 100,
         "estimated_annual_market_thb": 1027140,
-        "label": "1.03M THB / year"
+        "label": "1.03M THB / year",
+        "numerator_scope": "ILLUSTRATIVE_MARKET_SCENARIO",
+        "denominator_scope": "ILLUSTRATIVE_MARKET_SCENARIO"
       },
       "base": {
         "payer_conversion_pct": 10.0,
@@ -831,7 +861,9 @@
         "arpu_thb_annual": 3600,
         "arpu_thb_monthly": 300,
         "estimated_annual_market_thb": 6162840,
-        "label": "6.16M THB / year"
+        "label": "6.16M THB / year",
+        "numerator_scope": "ILLUSTRATIVE_MARKET_SCENARIO",
+        "denominator_scope": "ILLUSTRATIVE_MARKET_SCENARIO"
       },
       "upside": {
         "payer_conversion_pct": 18.0,
@@ -839,7 +871,9 @@
         "arpu_thb_annual": 8400,
         "arpu_thb_monthly": 700,
         "estimated_annual_market_thb": 25883928,
-        "label": "25.88M THB / year"
+        "label": "25.88M THB / year",
+        "numerator_scope": "ILLUSTRATIVE_MARKET_SCENARIO",
+        "denominator_scope": "ILLUSTRATIVE_MARKET_SCENARIO"
       }
     }
   },
@@ -856,7 +890,9 @@
         "coverage": "193 target cohort channels (166 active in 2025)",
         "confidence": "HIGH",
         "source_artifact": "yearly_ecosystem_metrics.parquet",
-        "limitation": "Restricted to target research cohort channels with active interaction in window."
+        "limitation": "Restricted to target research cohort channels with active interaction in window.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       },
       {
         "dimension": "ENTRY_RATE",
@@ -868,19 +904,23 @@
         "coverage": "Canonical audience interaction accounts",
         "confidence": "HIGH",
         "source_artifact": "audience_behavior_yearly.parquet",
-        "limitation": "Measures new account discovery in sampled videos, not total internet reach."
+        "limitation": "Measures new account discovery in sampled videos, not total internet reach.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       },
       {
         "dimension": "EXIT_PRESSURE",
-        "metric": "verified_graduations_and_closures",
+        "metric": "primary_verified_graduations",
         "period": "2025",
-        "value": 9.0,
-        "previous_comparable_value": 2.0,
+        "value": 5.0,
+        "previous_comparable_value": 0.0,
         "direction": "EXPANDING",
-        "coverage": "Verified and proxy lifecycle milestones in target cohort",
-        "confidence": "MEDIUM",
+        "coverage": "Primary verified lifecycle milestones in target cohort",
+        "confidence": "HIGH",
         "source_artifact": "creator_status_events.parquet",
-        "limitation": "Official graduations and agency closures only. Excludes silent hiatuses."
+        "limitation": "Primary verified events only (2024: 0 primary, 2 proxy; 2025: 5 primary, 3 proxy). Proxies excluded.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       },
       {
         "dimension": "AUDIENCE_ACTIVITY",
@@ -892,7 +932,9 @@
         "coverage": "Total canonical interaction accounts active in year",
         "confidence": "HIGH",
         "source_artifact": "audience_behavior_yearly.parquet",
-        "limitation": "Active commenting and chat accounts; does not measure silent passive viewers."
+        "limitation": "Active commenting and chat accounts; does not measure silent passive viewers.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       },
       {
         "dimension": "AUDIENCE_PERSISTENCE",
@@ -904,7 +946,9 @@
         "coverage": "Canonical audience interaction accounts",
         "confidence": "HIGH",
         "source_artifact": "audience_behavior_yearly.parquet",
-        "limitation": "Reflects account persistence across calendar years."
+        "limitation": "Reflects account persistence across calendar years.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       },
       {
         "dimension": "AUDIENCE_BREADTH",
@@ -916,7 +960,9 @@
         "coverage": "Canonical audience interaction accounts",
         "confidence": "HIGH",
         "source_artifact": "audience_behavior_yearly.parquet",
-        "limitation": "Cross-channel co-interaction within the annual sampling window."
+        "limitation": "Cross-channel co-interaction within the annual sampling window.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       },
       {
         "dimension": "NETWORK_INTEGRATION",
@@ -928,7 +974,9 @@
         "coverage": "Temporal Louvain network partitions",
         "confidence": "HIGH",
         "source_artifact": "yearly_ecosystem_metrics.parquet",
-        "limitation": "48.6% of network edges span community boundaries in 2025."
+        "limitation": "48.6% of network edges span community boundaries in 2025.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       },
       {
         "dimension": "NETWORK_CONCENTRATION",
@@ -940,7 +988,9 @@
         "coverage": "All active network nodes in 2025",
         "confidence": "HIGH",
         "source_artifact": "yearly_ecosystem_metrics.parquet",
-        "limitation": "Gini ~0.42-0.43 reflects moderate concentration without extreme monopoly."
+        "limitation": "Gini ~0.42-0.43 reflects moderate concentration without extreme monopoly.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       },
       {
         "dimension": "COMMUNITY_STRUCTURE",
@@ -952,7 +1002,9 @@
         "coverage": "Temporal Louvain network partitions",
         "confidence": "HIGH",
         "source_artifact": "yearly_ecosystem_metrics.parquet",
-        "limitation": "Modularity Q ~0.31-0.32 reflects robust community sub-clusters."
+        "limitation": "Modularity Q ~0.31-0.32 reflects robust community sub-clusters.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       },
       {
         "dimension": "MONETIZATION_EVIDENCE",
@@ -964,7 +1016,9 @@
         "coverage": "Public verified price signals only (can_be_summed=False)",
         "confidence": "LOW",
         "source_artifact": "market_evidence.parquet",
-        "limitation": "Individual unit prices cannot be summed without private sales volumes; aggregate financial size is unverified."
+        "limitation": "Individual unit prices cannot be summed without private sales volumes; aggregate financial size is unverified.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       },
       {
         "dimension": "DATA_CONFIDENCE",
@@ -976,7 +1030,9 @@
         "coverage": "Target research cohort coverage rate",
         "confidence": "HIGH",
         "source_artifact": "yearly_evidence_quality.parquet",
-        "limitation": "Derived from yearly_evidence_quality.parquet catalog coverage rate."
+        "limitation": "Derived from yearly_evidence_quality.parquet catalog coverage rate.",
+        "numerator_scope": "FROZEN_COHORT_193",
+        "denominator_scope": "FROZEN_COHORT_193"
       }
     ],
     "structural_state": {
@@ -1005,5 +1061,41 @@
       "privacy": "docs/data_security_migration_report.md",
       "authenticity_audit": "docs/research_v2/EVIDENCE_AUTHENTICITY_AUDIT.md"
     }
+  },
+  "source_integrity": {
+    "supply_saturation": {
+      "status": "INSUFFICIENT_EVIDENCE",
+      "claim_class": "HYPOTHESIS",
+      "numerator_scope": "FULL_REGISTRY",
+      "denominator_scope": "FROZEN_COHORT_193",
+      "scope_caveat": "Audience coverage exists only for the frozen cohort. No registry-to-cohort competition ratio is valid."
+    },
+    "reactivation_series": [
+      {
+        "year": 2022,
+        "accounts": 111,
+        "partial_window": false
+      },
+      {
+        "year": 2023,
+        "accounts": 369,
+        "partial_window": false
+      },
+      {
+        "year": 2024,
+        "accounts": 476,
+        "partial_window": false
+      },
+      {
+        "year": 2025,
+        "accounts": 948,
+        "partial_window": false
+      },
+      {
+        "year": 2026,
+        "accounts": 826,
+        "partial_window": true
+      }
+    ]
   }
 }

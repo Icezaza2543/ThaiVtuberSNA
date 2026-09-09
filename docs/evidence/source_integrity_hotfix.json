@@ -1,0 +1,421 @@
+{
+  "baseline_commit": "d71738070f7e17c017aab2260f393a54e169ea1e",
+  "before": {
+    "total": 232,
+    "tiers": {
+      "INFERRED_PROXY": 179,
+      "SECONDARY_DOCUMENTED": 40,
+      "PRIMARY_EVENT_SPECIFIC": 13
+    },
+    "events": "{('DEBUT', 'SECONDARY_DOCUMENTED'): 33, ('FIRST_APPEARANCE', 'SECONDARY_DOCUMENTED'): 1, ('FIRST_OBSERVED', 'INFERRED_PROXY'): 150, ('GRADUATION', 'PRIMARY_EVENT_SPECIFIC'): 11, ('GRADUATION', 'SECONDARY_DOCUMENTED'): 3, ('GRADUATION_OR_DEPARTURE', 'PRIMARY_EVENT_SPECIFIC'): 1, ('GRADUATION_PROXY', 'INFERRED_PROXY'): 5, ('HIATUS', 'SECONDARY_DOCUMENTED'): 1, ('HIATUS_OBSERVED_PROXY', 'INFERRED_PROXY'): 24, ('RE_DEBUT', 'SECONDARY_DOCUMENTED'): 1, ('SUSPENSION', 'PRIMARY_EVENT_SPECIFIC'): 1, ('TERMINATION', 'SECONDARY_DOCUMENTED'): 1}"
+  },
+  "after": {
+    "total": 229,
+    "tiers": {
+      "INFERRED_PROXY": 185,
+      "SECONDARY_DOCUMENTED": 32,
+      "PRIMARY_EVENT_SPECIFIC": 12
+    },
+    "exit_events": [
+      {
+        "event_type": "GRADUATION",
+        "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
+        "count": 10
+      },
+      {
+        "event_type": "GRADUATION",
+        "evidence_tier": "SECONDARY_DOCUMENTED",
+        "count": 3
+      },
+      {
+        "event_type": "GRADUATION_OR_DEPARTURE",
+        "evidence_tier": "PRIMARY_EVENT_SPECIFIC",
+        "count": 1
+      },
+      {
+        "event_type": "GRADUATION_PROXY",
+        "evidence_tier": "INFERRED_PROXY",
+        "count": 5
+      },
+      {
+        "event_type": "HIATUS",
+        "evidence_tier": "SECONDARY_DOCUMENTED",
+        "count": 1
+      },
+      {
+        "event_type": "HIATUS_OBSERVED_PROXY",
+        "evidence_tier": "INFERRED_PROXY",
+        "count": 24
+      }
+    ]
+  },
+  "identity_review": [
+    {
+      "original_channel_id": "UCFSkExeBcqI4nb_ArHeByNw",
+      "subject_channel_id": "UCFSkExeBcqI4nb_ArHeByNw",
+      "subject_name": "Shino Laila",
+      "manifest_name": "シノライラ - Shino Laila【WACTOR】",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 3
+    },
+    {
+      "original_channel_id": "UCgLadXz0sJbHQL98eoAd9ag",
+      "subject_channel_id": "UCgLadXz0sJbHQL98eoAd9ag",
+      "subject_name": "Ice Shirakoi",
+      "manifest_name": "【graduated】Ice Shirakoi Ch. / AStars Amakara",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 2
+    },
+    {
+      "original_channel_id": "UCfe7Lxdn2PDp_xnnrC_RSzA",
+      "subject_channel_id": "UCfe7Lxdn2PDp_xnnrC_RSzA",
+      "subject_name": "Amaris Sayo",
+      "manifest_name": "【graduated】Amaris Sayo Ch. / AStars Amakara",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 2
+    },
+    {
+      "original_channel_id": "UCt8vlwt6qi6P1mz5uuStJCA",
+      "subject_channel_id": "UCt8vlwt6qi6P1mz5uuStJCA",
+      "subject_name": "Shimonz",
+      "manifest_name": "Shimonz",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 2
+    },
+    {
+      "original_channel_id": "UCOaTgKPjI9cgXLoDW7XFDDw",
+      "subject_channel_id": "UCOaTgKPjI9cgXLoDW7XFDDw",
+      "subject_name": "Princess Zelina",
+      "manifest_name": "Princess Zelina Ch. Pixela Project",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 2
+    },
+    {
+      "original_channel_id": "UCutz6S1DcEHPnEb_r9ztkzg",
+      "subject_channel_id": "UCutz6S1DcEHPnEb_r9ztkzg",
+      "subject_name": "Hinabe HongFei",
+      "manifest_name": "Hinabe HongFei Ch. Pixela Project",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 2
+    },
+    {
+      "original_channel_id": "UCpNkVsMlsJRF792H-1_1vPA",
+      "subject_channel_id": "UCpNkVsMlsJRF792H-1_1vPA",
+      "subject_name": "Melita X",
+      "manifest_name": "Melita X Ch. Pixela Project",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 2
+    },
+    {
+      "original_channel_id": "UCMUtWzsjAQJgp6UlkbVSo1w",
+      "subject_channel_id": "UCMUtWzsjAQJgp6UlkbVSo1w",
+      "subject_name": "Laguna Juju",
+      "manifest_name": "Laguna JuJu Ch. Pixela Project",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 2
+    },
+    {
+      "original_channel_id": "UCSXwfOj8mTDxE1ZaIEHXN2w",
+      "subject_channel_id": "UCSXwfOj8mTDxE1ZaIEHXN2w",
+      "subject_name": "Meraki Keimii",
+      "manifest_name": "Meraki Keimii Ch. Pixela Legends",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 2
+    },
+    {
+      "original_channel_id": "UC-qBbCCqtD2H4WSs9m978Ow",
+      "subject_channel_id": "UC-qBbCCqtD2H4WSs9m978Ow",
+      "subject_name": "Cazzie K. Monie",
+      "manifest_name": "Cazzie K. Monie",
+      "decision": "QUARANTINED",
+      "reason": "AGENCY_AT_SELECTION_CONFLICT; historical affiliation requires explicit verification",
+      "events": 2
+    },
+    {
+      "original_channel_id": "UCOVpD7MesZKe44ZvLVuwXvA",
+      "subject_channel_id": "UCOVpD7MesZKe44ZvLVuwXvA",
+      "subject_name": "Asteroth",
+      "manifest_name": "Asteroth Ch.【ARP】",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCJdXesaZYrQVSjhlYhme8rQ",
+      "subject_channel_id": "UCJdXesaZYrQVSjhlYhme8rQ",
+      "subject_name": "Ayna",
+      "manifest_name": "Ayna Ch.【ARP】",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCQs4BC3S0KSw7i0ggHXn8TA",
+      "subject_channel_id": "UCQs4BC3S0KSw7i0ggHXn8TA",
+      "subject_name": "Quentin",
+      "manifest_name": "Quentin Ch.【ARP】",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCeLJ2rBYZwPrb5hbKY5X5eg",
+      "subject_channel_id": "UCeLJ2rBYZwPrb5hbKY5X5eg",
+      "subject_name": "Latta",
+      "manifest_name": "Latta Ch.【ARP】",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UC_nmh9XycGlquouvai2UC6g",
+      "subject_channel_id": "UCuZ1ajvlGFUMCHZAPdetKHw",
+      "subject_name": "Dacapo",
+      "manifest_name": "Dacapo Ch.【ARP】",
+      "decision": "CORRECTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UC3ZglUA0HEUCuGbe5b8zXKw",
+      "subject_channel_id": "UC3ZglUA0HEUCuGbe5b8zXKw",
+      "subject_name": "Baabel",
+      "manifest_name": null,
+      "decision": "QUARANTINED",
+      "reason": "CONFLICT: registry owner The Lupas, curated subject Baabel; outside frozen manifest",
+      "events": 2
+    },
+    {
+      "original_channel_id": "UCpGtwNmbOtgmcKIY81MIX_w",
+      "subject_channel_id": "UCNTEr2_96vJnXNazr5MwNLA",
+      "subject_name": "Schneider",
+      "manifest_name": "Schneider Ch.【ARP】",
+      "decision": "CORRECTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCqhhWjpw23dWhJ5rRwCCrMA",
+      "subject_channel_id": "UCqhhWjpw23dWhJ5rRwCCrMA",
+      "subject_name": "Aisha",
+      "manifest_name": "Aisha Channel",
+      "decision": "QUARANTINED",
+      "reason": "AGENCY_AT_SELECTION_CONFLICT; historical affiliation requires explicit verification",
+      "events": 2
+    },
+    {
+      "original_channel_id": "UC7iCSRt7Jej2XE0MaM9gPgg",
+      "subject_channel_id": "UC7iCSRt7Jej2XE0MaM9gPgg",
+      "subject_name": "YuChan",
+      "manifest_name": "YuChan Channel ⌜VZ⌟",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 2
+    },
+    {
+      "original_channel_id": "UCJ6HUQOWSjCHHdOgz13zFlA",
+      "subject_channel_id": "UCJ6HUQOWSjCHHdOgz13zFlA",
+      "subject_name": "TheQuillmon",
+      "manifest_name": "TheQuillmon ⌜VZ⌟",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 2
+    },
+    {
+      "original_channel_id": "UC32lsx7u7vqy63SguuuzmVg",
+      "subject_channel_id": "UC32lsx7u7vqy63SguuuzmVg",
+      "subject_name": "Catalog-verified graduation",
+      "manifest_name": null,
+      "decision": "QUARANTINED",
+      "reason": "OUTSIDE_FROZEN_MANIFEST; source identity not verified",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCXtQTtPJedfjqEPysorbsMg",
+      "subject_channel_id": "UCXtQTtPJedfjqEPysorbsMg",
+      "subject_name": "Qualia Qu",
+      "manifest_name": "久檻夜くぅ / Qualia Qu Ch.",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 2
+    },
+    {
+      "original_channel_id": "UC0Ky1U__7T2Z5SOZCvNlJ-Q",
+      "subject_channel_id": "UC0Ky1U__7T2Z5SOZCvNlJ-Q",
+      "subject_name": "Beariss Beam",
+      "manifest_name": "Beariss Beam",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCrYkQnbL_OiYyGuiZyvcO7g",
+      "subject_channel_id": "UCrYkQnbL_OiYyGuiZyvcO7g",
+      "subject_name": "Hey Solly",
+      "manifest_name": "Hey Solly",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UC25e5qEqvVaG_VKrkTmJBmw",
+      "subject_channel_id": "UC25e5qEqvVaG_VKrkTmJBmw",
+      "subject_name": "Lucene",
+      "manifest_name": "Lucene Ch.",
+      "decision": "QUARANTINED",
+      "reason": "AGENCY_AT_SELECTION_CONFLICT; historical affiliation requires explicit verification",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCRG5fX1v4b-3sUyKfAAtxxA",
+      "subject_channel_id": "UCRG5fX1v4b-3sUyKfAAtxxA",
+      "subject_name": "Luxia",
+      "manifest_name": "Luxia Ch.",
+      "decision": "QUARANTINED",
+      "reason": "AGENCY_AT_SELECTION_CONFLICT; historical affiliation requires explicit verification",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCC5q6CpuDflPvO7pNn52RGQ",
+      "subject_channel_id": "UCC5q6CpuDflPvO7pNn52RGQ",
+      "subject_name": "Lapine",
+      "manifest_name": "Lapine Ch.",
+      "decision": "QUARANTINED",
+      "reason": "AGENCY_AT_SELECTION_CONFLICT; historical affiliation requires explicit verification",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCZilc7jP-X_92Fii1uTIs0Q",
+      "subject_channel_id": "UCZilc7jP-X_92Fii1uTIs0Q",
+      "subject_name": "Hoku",
+      "manifest_name": "Hoku Ch.",
+      "decision": "QUARANTINED",
+      "reason": "AGENCY_AT_SELECTION_CONFLICT; historical affiliation requires explicit verification",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCafG1bj6Qtcbn4bozcicWfA",
+      "subject_channel_id": "UCafG1bj6Qtcbn4bozcicWfA",
+      "subject_name": "Zona",
+      "manifest_name": "ZONA Ch.",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCR1Htb-H1-tus7UPotPh69A",
+      "subject_channel_id": "UCR1Htb-H1-tus7UPotPh69A",
+      "subject_name": "Laibaht",
+      "manifest_name": "Laibaht Ch. / หลายบาท",
+      "decision": "QUARANTINED",
+      "reason": "AGENCY_AT_SELECTION_CONFLICT; historical affiliation requires explicit verification",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCiYFmDfFBoAP2yk9yuXBTTg",
+      "subject_channel_id": "UCiYFmDfFBoAP2yk9yuXBTTg",
+      "subject_name": "S1R",
+      "manifest_name": "S1R Ch.【ARP】",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UChBuxXl8poN1Jz8kZDdsfhw",
+      "subject_channel_id": "UChBuxXl8poN1Jz8kZDdsfhw",
+      "subject_name": "Selene",
+      "manifest_name": "Selene Ch.【ARP】",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCVAsOHcLLGVQq6aOpesOwBQ",
+      "subject_channel_id": "UCVAsOHcLLGVQq6aOpesOwBQ",
+      "subject_name": "Hanabi Lafy",
+      "manifest_name": "Hanabi Lafy Ch. Pixela-Isekai",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCLNBff3KDEUxdfH_lkvyOKQ",
+      "subject_channel_id": "UCLNBff3KDEUxdfH_lkvyOKQ",
+      "subject_name": "Kamiyu Reirin",
+      "manifest_name": "Kamiyu Reirin Ch. Lumina-First-Myth",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCPMOk4hbIh5A-_6uNhzAvDg",
+      "subject_channel_id": "UCPMOk4hbIh5A-_6uNhzAvDg",
+      "subject_name": "Kitsuneko Mewten",
+      "manifest_name": "Kitsuneko Mewten Ch. Pixela-Isekai",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCktUGMC7AKl1e8n20Ys8w0Q",
+      "subject_channel_id": "UCktUGMC7AKl1e8n20Ys8w0Q",
+      "subject_name": "Superpretty TAKOPERO",
+      "manifest_name": "Superpretty TAKOPERO Ch. Pixela Legends",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCkEcY4RbLYs2AF45nhkyjtw",
+      "subject_channel_id": "UCkEcY4RbLYs2AF45nhkyjtw",
+      "subject_name": "Jolly Estaa",
+      "manifest_name": "Jolly Estaa Ch. Pixela-Isekai",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCDCOWpzyBFsavT-K7AmN3MQ",
+      "subject_channel_id": "UCDCOWpzyBFsavT-K7AmN3MQ",
+      "subject_name": "Azato Stacia",
+      "manifest_name": "Azato Stacia Ch.",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCE010cVAgWFD24wIJ95sDKw",
+      "subject_channel_id": "UCE010cVAgWFD24wIJ95sDKw",
+      "subject_name": "Fumi Hausu",
+      "manifest_name": "Fumi Hausu",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    },
+    {
+      "original_channel_id": "UCbEkHjG43yPMGq5W08jq1TQ",
+      "subject_channel_id": "UCbEkHjG43yPMGq5W08jq1TQ",
+      "subject_name": "ChaAYM",
+      "manifest_name": "ChaAYM",
+      "decision": "ACCEPTED",
+      "reason": "",
+      "events": 1
+    }
+  ],
+  "validation": {
+    "identity_audit": "PASS: 44 curated events",
+    "consistency_audit": "PASS",
+    "pytest": "362 passed, 120 warnings in 108.70s (0:01:48)",
+    "hotfix_regressions": "9 passed in 0.78s",
+    "coordinate_sha256": "47a63e3160c1b1282fe0ceb997f08ef6ae5beec584771c237bb11d50fab83adc"
+  }
+}

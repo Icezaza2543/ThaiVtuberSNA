@@ -154,9 +154,9 @@ def audit_outlook_model():
     )
     
     # 4. Exit pressure in scorecard must not include proxies (2024: 0.00, 2025: 6.00)
-    assert "| **`EXIT_PRESSURE`** | `verified_graduations_and_closures` | `0.00` | `6.00` |" in content, (
-        "EXIT_PRESSURE scorecard row in OUTLOOK_MODEL.md includes unverified proxies!"
-    )
+    events = pd.read_parquet(ROOT / "data/industry/creator_status_events.parquet")
+    counts = [len(events[(events.event_year == year) & (events.evidence_tier == "PRIMARY_EVENT_SPECIFIC") & events.event_type.isin(["GRADUATION", "GRADUATION_OR_DEPARTURE"])]) for year in (2024, 2025)]
+    assert f"| **`EXIT_PRESSURE`** | `primary_verified_graduations` | `{counts[0]:.2f}` | `{counts[1]:.2f}` |" in content
     print("  [PASS] docs/research_v2/OUTLOOK_MODEL.md verified.")
 
 
@@ -258,6 +258,10 @@ def audit_collab_regressions():
 def main():
     print("=== STARTING RESEARCH V2 CONSISTENCY AUDIT ===")
     try:
+        from scripts.audit_creator_identity_mapping import audit_identity
+        from scripts.audit_research_source_integrity import audit_source_integrity
+        audit_identity()
+        audit_source_integrity()
         audit_single_canonical_writer()
         audit_research_v2_json()
         audit_outlook_model()
