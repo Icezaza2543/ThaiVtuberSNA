@@ -1,6 +1,8 @@
 # Step-by-Step Refactor Execution Roadmap (Phases R0–R10)
 
-> **Execution Window**: Post-Overnight Phase  
+> **Historical proposal — execution superseded by phase closure.** Preserve for architectural context; the current bounded implementation is documented in [refactor_summary.md](../refactor_summary.md). The proposed src/ rewrite and R0–R10 roadmap are not active tasks.
+
+> **Execution Window**: Historical proposal; no active execution window
 > **Guiding Principle**: Each phase is independently executable, verifiable, and rollback-safe. Analytical results must remain identical.
 
 ---

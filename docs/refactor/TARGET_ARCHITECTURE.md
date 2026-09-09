@@ -1,6 +1,8 @@
 # Target Architecture Proposal & Module Migration Map
 
-> **Status**: APPROVED BLUEPRINT (Execution Deferred to Post-Overnight Phase)  
+> **Historical proposal — execution superseded by phase closure.** Preserve for architectural context; the current bounded implementation is documented in [refactor_summary.md](../refactor_summary.md). The proposed src/ rewrite and R0–R10 roadmap are not active tasks.
+
+> **Status**: HISTORICAL BLUEPRINT (not the current execution contract)
 > **Rule**: Do NOT mechanically move files tonight. This document defines the target structural end-state.
 
 ---

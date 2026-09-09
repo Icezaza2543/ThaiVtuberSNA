@@ -1,5 +1,7 @@
 # Comprehensive Repository Architecture & Codebase Refactor Audit
 
+> **Historical proposal — execution superseded by phase closure.** Preserve for architectural context; the current bounded implementation is documented in [refactor_summary.md](../refactor_summary.md). The proposed src/ rewrite and R0–R10 roadmap are not active tasks.
+
 > **Document Status**: SEALED ARCHITECTURAL AUDIT  
 > **Repository**: `C:\Users\Icezaza\Documents\GitHub\ThaiVtuberSNA`  
 > **Focus**: Pipeline Complexity, Technical Debt, Coupling Points, and Security Boundaries

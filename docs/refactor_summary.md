@@ -8,7 +8,7 @@ The research phase is closed in scope. Ecosystem integration, new research, feat
 - Remote recovery tag: `pre-refactor-20260909-83e9762-145346` (new tag; no replacement).
 - Offline suite: **362 passed, 120 warnings in 127.75s (0:02:07)**.
 - 400 tracked files; 120 production code files; 32,286 production code lines. Counting rule: tracked `.py`, `.js`, `.mjs` under core/, analytics/, storage/, collector/, scripts/, web/, config/; physical lines including comments/blanks. Tests/docs excluded from production count.
-- Protected set: all 182 baseline tracked files under data/, web/, docs/evidence/, config/. SHA-256 of sorted JSON `{relative_path: file_SHA256}`: `8851626a45634c5b114cc3ac92b55efa9c755a554f808b532f96559d7659388b`. Compare every file before/after, not just aggregate counts.
+- Protected set: all 182 baseline tracked files under data/, web/, docs/evidence/, config/. SHA-256 of sorted JSON `{relative_path: file_SHA256}`: `8851626a45634c5b114cc3ac92b55efa9c755a554f808b532f96559d7659388b`. Compare every file before/after, not just aggregate counts. [Per-file baseline hashes](refactor_protected_hashes.json) are retained as machine-readable evidence.
 - Coordinate block SHA-256: `47a63e3160c1b1282fe0ceb997f08ef6ae5beec584771c237bb11d50fab83adc`.
 
 ## Decisions and structure
@@ -34,7 +34,28 @@ Batch 1: **20 passed in 1.37s** (snapshot characterization, existing source inte
 
 A three-creator synthetic fixture was executed by the baseline snapshot writer before refactoring. The committed expected records are compared field-for-field after extraction; the persisted temporary Parquet is also compared with the returned DataFrame. No timestamp exclusion is used. No production rebuild or private-input validation is claimed.
 
-Integration validation and final counts are recorded here after the remaining entry-point/documentation batch.
+Batch 2 targeted tests: **13 passed in 2.91s**. Integrated offline suite: **366 passed, 120 warnings in 119.95s (0:01:59)**, versus 362 baseline tests. All original scenarios/assertions and pytest discovery are retained; four tests add characterization and offline dispatch checks. The 120 existing warnings are NetworkX assortativity warnings.
+
+Research consistency (including identity), synthetic privacy canary and module/CLI smoke checks PASS. Git security **FAILS at both baseline and milestone 27c2aaf**, with the same single finding: `docs/evidence/viewer_index_after_summary.json`, classified `PRIVATE_DATA` / `Individual viewer identity records`. The protected artifact was not inspected manually, edited, deleted or exempted; the consolidated command correctly returns nonzero. This is an existing audit limitation/finding, not a refactor regression or a claim of confirmed leakage. No live/local private-data audit was run.
+
+Existing DAG functions are AST-identical to baseline. All 182 protected files remain byte-identical, including public frontend assets and frozen data. Existing reproduction tests retain their existing normalization of `generated_at` and `calculated_at`; this refactor adds no exclusions. The new snapshot fixture comparison excludes no fields.
+
+Final structure/counts: **408 tracked files, 122 production code files, 32,342 production code lines** (same counting rule), versus 400 / 120 / 32,286. This is not a claim of net repository shrinkage: reusable module boundaries, the audit dispatcher and regression evidence add files; the supported snapshot script shrinks **138 → 60 lines** and the old dead classification loop is removed. No dependency was proven unused, so requirements are unchanged.
+
+Milestone 1: `27c2aaf` — extracted identity/snapshot/integrity domain logic, tested and pushed. Milestone 2 consolidates offline checks and current navigation; its commit is identified in the final handoff.
+
+Browser validation: existing `frontend_observatory.mjs` and `research_v2.mjs` PASS at 1440×900, 1280×800, 1024×768 and 390×844, with zero page errors. Main/inspector/Research v1 pass their existing behavior checks; v2 retains 193 fields, 7 charts and 9 sections, with zero fetch/XHR requests and working no-JavaScript navigation. Four JavaScript syntax checks PASS (`app.js`, `observatory-ui.js`, `research_dashboard.js`, `research_v2.js`). Browser images/logs remain temporary, not added to Git. `git diff --check`, navigation links, nine module imports, reproduction `--help` and both DAG list CLI forms PASS.
+
+## Canonical commands and navigation
+
+- `python -m scripts.analysis_dag --list`: lists the existing DAG, no execution. Direct-script form is equivalent.
+- `python -m scripts.analysis_dag --audit`: existing research consistency + Git security + synthetic privacy canary; preserves failures. Never calls run_dag, audit_local, collection or a workbook.
+- `python scripts/audit_creator_identity_mapping.py` and `python scripts/audit_research_v2_consistency.py`: existing supported CLI wrappers.
+- `python scripts/reproduce_temporal_dataset.py --help`: existing guarded reproduction interface; help only was smoke-tested. Actual production rebuild remains out of scope.
+- `python -m pytest`: full offline suite, unchanged test discovery.
+- [Documentation index](README.md): current contracts/results separated from historical milestone proposals. Previous src/ migration plans are retained with superseded-execution notices.
+
+Luna's post-change reference review found no stale imports or lost supported callers. Old standalone collab/market writers, historical provenance identifiers, quarantine writer and operator utilities were retained rather than deleting unique behavior based on reference searches alone.
 
 ## Retained limitations
 

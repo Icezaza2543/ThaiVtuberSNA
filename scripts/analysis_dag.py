@@ -168,3 +168,50 @@ def run_dag(root=ROOT, rebuild_snapshots=True, canonical_table=None):
                         pq.write_table(pa.Table.from_pylist(rows,schema=table.schema),path)
             done.add(name)
     return [step[0] for step in DAG]
+
+
+def run_offline_audits():
+    """Existing read-only research/Git audits plus the isolated synthetic privacy canary.
+
+    Deliberately excludes audit_local, live Sheets audits, collection and run_dag.
+    Git audit can read local secret values in memory for detection; never reports them.
+    """
+    from scripts.audit_research_v2_consistency import main as audit_research
+    from scripts.audit_data_security import audit_git
+    from scripts.privacy_audit import run_canary_leakage_test
+
+    research_ok = audit_research() == 0
+    canary_ok = run_canary_leakage_test()
+    git_report = audit_git()
+    return {
+        'research_consistency': 'PASS' if research_ok else 'FAIL',
+        'synthetic_privacy_canary': 'PASS' if canary_ok else 'FAIL',
+        'git_security': git_report['status'],
+        'git_findings': len(git_report['findings']),
+    }
+
+
+def main(argv=None):
+    """Navigation/audits only; production rebuild remains with existing guarded callers."""
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--list', action='store_true', help='List the existing rebuild DAG without executing it')
+    mode.add_argument('--audit', action='store_true', help='Run existing offline audits; no workbook or rebuild')
+    args = parser.parse_args(argv)
+    if args.list:
+        print(json.dumps([{'step': name, 'depends_on': parents, 'module': module, 'function': function}
+                          for name, parents, module, function in DAG], indent=2))
+    elif args.audit:
+        results = run_offline_audits()
+        print(json.dumps(results, indent=2))
+        return int('FAIL' in results.values())
+    else:
+        parser.print_help()
+    return 0
+
+
+if __name__ == '__main__':
+    import sys
+    sys.path.insert(0, str(ROOT))
+    sys.exit(main())

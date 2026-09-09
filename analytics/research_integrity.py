@@ -31,3 +31,15 @@ def annotate_scopes(value, path=''):
 
 def integrity_payload():
     return {'supply_saturation': {'status': 'INSUFFICIENT_EVIDENCE', 'claim_class': 'HYPOTHESIS', 'numerator_scope': 'FULL_REGISTRY', 'denominator_scope': COHORT, 'scope_caveat': 'Audience coverage exists only for the frozen cohort. No registry-to-cohort competition ratio is valid.'}, 'reactivation_series': reactivation_series()}
+
+
+def validate_scopes(value):
+    """Check every declared or ratio-bearing object in the public payload."""
+    if isinstance(value, list):
+        for child in value:
+            validate_scopes(child)
+    elif isinstance(value, dict):
+        if any(is_ratio_key(k) for k in value) or is_ratio_key(str(value.get('metric', ''))) or 'numerator_scope' in value:
+            validate_scope(value)
+        for child in value.values():
+            validate_scopes(child)

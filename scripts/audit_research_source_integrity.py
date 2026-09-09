@@ -3,19 +3,12 @@ import json
 import re
 from pathlib import Path
 import pandas as pd
-from analytics.research_integrity import validate_scope, reactivation_series, is_ratio_key
+from analytics.research_integrity import validate_scope, reactivation_series, validate_scopes
 ROOT = Path(__file__).resolve().parents[1]
 
 def audit_source_integrity():
     data=json.loads((ROOT/'web/research/data/research_v2.json').read_text(encoding='utf8'))
-    def walk(value):
-        if isinstance(value,list):
-            for child in value: walk(child)
-        elif isinstance(value,dict):
-            if any(is_ratio_key(k) for k in value) or is_ratio_key(str(value.get('metric', ''))) or 'numerator_scope' in value:
-                validate_scope(value)
-            for child in value.values(): walk(child)
-    walk(data)
+    validate_scopes(data)
     assert data['source_integrity']['reactivation_series']==reactivation_series()
     assert data['source_integrity']['supply_saturation']['status']=='INSUFFICIENT_EVIDENCE'
     for row in pd.read_parquet(ROOT/'data/industry/outlook_indicators.parquet').to_dict('records'): validate_scope(row)
