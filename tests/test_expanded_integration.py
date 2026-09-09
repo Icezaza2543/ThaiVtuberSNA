@@ -34,9 +34,11 @@ def test_replay_compares_events_not_only_state(tmp_path):
 def test_backfill_workbook_canonical_snapshot_end_to_end(tmp_path):
     class Shared:
         def get(self, url, params, timeout):
-            return Response({'items':[{'snippet':{'topLevelComment':comment('shared'), 'totalReplyCount':0}}]})
+            entry=comment('shared')
+            entry['id']=params['videoId']+'-comment'
+            return Response({'items':[{'snippet':{'topLevelComment':entry, 'totalReplyCount':0}}]})
     engine, job, journal, jid, book = setup_interactions(tmp_path, Shared())
-    second = {**job, 'channel_id':'UC'+'b'*22}
+    second = {**job, 'channel_id':'UC'+'b'*22, 'video_id':'synthetic-video-b'}
     # Existing evidence for the SAME video must survive the additive expanded path.
     legacy = dict(viewer_hash='synthetic-historical-only', vtuber_channel_id=job['channel_id'],
                   video_id=job['video_id'], source_type='comment', first_seen='2020-01-01T00:00:00Z')
@@ -110,3 +112,36 @@ def test_production_credit_endpoint_has_no_virtual_identity_or_audience_metrics(
     assert rigger['subscribers'] is None and rigger['degree'] is None
     assert 'identity_epoch_id' not in rigger
     assert not any(k.startswith(('shared_', 'jaccard', 'overlap')) for k in dated['edges'][0])
+
+
+def test_production_endpoint_cannot_enter_audience_metrics():
+    from tests.test_expanded_contracts import snapshot, activity
+    creators=[dict(id='synthetic-a',label='Virtual',review_status='approved'),
+              dict(id='portfolio',label='Rigger',review_status='approved',roles=['rigger'],is_virtual_creator=False)]
+    credit=dict(source='synthetic-a',target='portfolio',edge_type='production_credit',credit_role='rigger',
+                evidence_id='credit',source_ref='synthetic:portfolio',review_status='approved',
+                event_time='2020-06-01T00:00:00Z',window_start='2020-01-01T00:00:00Z',window_end='2020-12-31T23:59:59Z')
+    overlap={**credit,'edge_type':'audience_overlap','shared_any':99}
+    s=snapshot(creators=creators,evidence=[activity()],edges=[credit,overlap])
+    assert len(s['nodes'])==2 and s['edges']==[credit]
+    creators[1]['review_status']='needs-evidence'
+    s=snapshot(creators=creators,evidence=[activity()],edges=[credit])
+    assert len(s['nodes'])==1 and s['edges']==[]
+
+
+def test_conflicts_across_complete_batches_quarantine_all_copies(tmp_path):
+    from storage.expanded_sheet_batches import validated_expanded_batches
+    engine,job,journal,jid,book=setup_interactions(tmp_path,Comments())
+    engine.step(job=job,journal=journal,claim=next_claim(journal,jid))
+    first=list(engine.batches.store.read_records('PRIVATE_DATA_ARCHIVE',ARCHIVE_HEADERS))
+    def copy_batch(sequence, changed=False):
+        rows=deepcopy(first)
+        for row in rows: row['source_path']=row['source_path'].rsplit('/',1)[0]+'/'+str(sequence)
+        state=json.loads(rows[-2]['record_json']);state['sequence']=sequence;rows[-2]['record_json']=encode(state)
+        if changed:
+            event=json.loads(rows[0]['record_json']);event['viewer_hash']='synthetic-conflict';rows[0]['record_json']=encode(event)
+        digest=hashlib.sha256(encode([[r[k] for k in ARCHIVE_HEADERS] for r in rows[:-1]]).encode()).hexdigest()
+        rows[-1]['record_json']=encode({'sha256':digest,'rows':len(rows)-1})
+        return rows
+    accepted,rejected=validated_expanded_batches(first+copy_batch(2,True)+copy_batch(3))
+    assert not accepted and len(rejected)==3

@@ -24,9 +24,13 @@ try {
   assert.equal(await page.locator('#statEdges').textContent(),'1');
   assert.equal(await page.locator('#statVtubers').textContent(),'1');
   assert.equal(await page.locator('#productionCount').textContent(),'1 production personas');
+  assert.equal(await page.evaluate(()=>rawData.agencies.reduce((sum,a)=>sum+a.member_count,0)),1);
   assert.equal(await page.evaluate(()=>nodeMap.get('synthetic-portfolio').channel_id),null);
   await page.locator('#searchInput').fill('portfolio');
   assert.match(await page.locator('#searchResults').textContent(),/Synthetic portfolio/);
+  const countBox=await page.locator('#productionCount').boundingBox();
+  const messageBox=await page.locator('#graphMessage').boundingBox();
+  assert.ok(countBox.y+countBox.height<=messageBox.y,'Production count overlaps empty-state message');
   await page.locator('#searchInput').fill('');
   await page.evaluate(()=>openInspector(nodeMap.get('synthetic-portfolio'),false));
   assert.match(await page.locator('#inspTier').textContent(),/Production.*rigger/);

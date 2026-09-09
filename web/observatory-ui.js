@@ -19,6 +19,7 @@ function updateSceneStatus() {
   const bridge = [...virtualNodes].filter(n => Number.isFinite(n.betweenness)).sort((a,b) => b.betweenness-a.betweenness)[0];
   statTopBridge.textContent = bridge?.betweenness > 0 ? bridge.label : 'Unknown';
   const message = document.getElementById('graphMessage');
+  message.style.transform = productionCount ? 'translateY(20px)' : '';
   message.hidden = nodes.length > 0 && edges.length > 0;
   message.textContent = !nodes.length ? 'No creators match these filters. Try another name or group.' : 'No connections at this threshold. Lower the minimum weight or select another period.';
   if (selectedSnapshot?.coverage_state === 'NO_SNAPSHOT') {

@@ -71,10 +71,12 @@ def validated_expanded_batches(records, *, max_batch_records=502):
         for event in batch['events']:
             key = tuple(event[k] for k in ('vtuber_channel_id', 'video_id', 'source_type', 'record_id'))
             payload = encode(event)
-            if key in identities and identities[key][1] != payload:
-                rejected.update((path, identities[key][0]))
-            else:
-                identities[key] = (path, payload)
+            identity = identities.setdefault(key, {'payload': payload, 'paths': set(), 'conflict': False})
+            identity['paths'].add(path)
+            identity['conflict'] |= identity['payload'] != payload
+    for identity in identities.values():
+        if identity['conflict']:
+            rejected.update(identity['paths'])
     return {p: b for p, b in accepted.items() if p not in rejected}, sorted(rejected)
 
 

@@ -1246,7 +1246,7 @@ function updateTimelineSlice(step) {
   hoveredNode = null;
   rawData = {...rawData, nodes: selectedSnapshot.nodes, edges: selectedSnapshot.edges};
   const groups = new Map();
-  rawData.nodes.forEach(n => { const group = n.agency || 'Unknown'; groups.set(group, (groups.get(group) || 0) + 1); });
+  rawData.nodes.forEach(n => { if (n.entity_type === 'production_only') return; const group = n.agency || 'Unknown'; groups.set(group, (groups.get(group) || 0) + 1); });
   rawData.agencies = [...groups].map(([name, member_count]) => ({name, member_count, color: AGENCY_COLORS[name] || '#64748b'}));
   populateAgencyFilter();
   if (!groups.has(selectedAgency)) selectedAgency = 'ALL';
