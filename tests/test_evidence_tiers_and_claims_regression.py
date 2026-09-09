@@ -98,8 +98,12 @@ def test_secondary_source_cannot_become_strict_primary():
 
 
 def test_creator_primary_evidence_requires_curated_authority_metadata():
-    """Rule 6: A random third-party X status must NOT auto-upgrade to PRIMARY_EVENT_SPECIFIC."""
-    from scripts.build_creator_lifecycle_evidence import VERIFIED_CREATOR_INTEL
+    """Rule 6: A random third-party X status or fake handle must NOT auto-upgrade to PRIMARY_EVENT_SPECIFIC."""
+    from scripts.build_creator_lifecycle_evidence import (
+        VERIFIED_CREATOR_INTEL,
+        parse_authority_handle,
+        RECOGNIZED_AUTHORITY_HANDLES,
+    )
 
     # 1. Assert all existing PRIMARY_EVENT_SPECIFIC in database have curated authority metadata
     assert CREATOR_EVENTS_PARQUET.exists()
@@ -111,9 +115,10 @@ def test_creator_primary_evidence_requires_curated_authority_metadata():
         sclass = r["creator_source_class"]
         assert st in ["OFFICIAL_AGENCY_ANNOUNCEMENT", "PUBLIC_TALENT_STATEMENT"]
         assert sclass in ["PRIMARY_OFFICIAL_ANNOUNCEMENT", "CREATOR_PRIMARY_STATEMENT"]
-        # Must be from an official or talent verified handle, not a random user
-        sref = r["source_reference"].lower()
-        assert any(auth in sref for auth in ["astars", "pixela", "arp_vtuber", "polygonofficial", "miraismaid", "eileennoir"])
+        # Must match recognized exact authority handle
+        sref = r["source_reference"]
+        handle = parse_authority_handle(sref)
+        assert handle in RECOGNIZED_AUTHORITY_HANDLES, f"Handle '{handle}' for URL '{sref}' not recognized"
 
     # 2. Assert uncurated third-party status mock fails auto-upgrade
     uncurated_mock = {
@@ -125,10 +130,23 @@ def test_creator_primary_evidence_requires_curated_authority_metadata():
         "notes": "Fan claiming graduation."
     }
     # Test our classifier logic on uncurated mock
-    ref_lower = uncurated_mock["source_reference"].lower()
+    ref = uncurated_mock["source_reference"]
     is_official = uncurated_mock.get("source_type") in ["OFFICIAL_AGENCY_ANNOUNCEMENT", "PUBLIC_TALENT_STATEMENT"]
-    is_recognized = any(auth in ref_lower for auth in ["astars", "pixela", "arp_vtuber", "polygonofficial", "miraismaid", "eileennoir"])
+    is_recognized = parse_authority_handle(ref) in RECOGNIZED_AUTHORITY_HANDLES
     assert not (is_official and is_recognized), "Random third-party X status must not qualify for primary event tier"
+
+    # 3. Regression: Fake prefix/suffix social handles cannot qualify as recognized authority
+    fake_urls = [
+        "https://x.com/astars_fake/status/1888528955219968470",
+        "https://x.com/fake_astars/status/1888528955219968470",
+        "https://x.com/astars/status/1888528955219968470",
+        "https://twitter.com/pixela_scam/status/1920783180422176880",
+        "https://x.com/arp_vtuber_parody/status/1897988102767231056",
+        "https://x.com/polygonofficial_news/status/2001594838520779264",
+    ]
+    for fake_url in fake_urls:
+        fake_handle = parse_authority_handle(fake_url)
+        assert fake_handle not in RECOGNIZED_AUTHORITY_HANDLES, f"Fake handle '{fake_handle}' must NOT qualify as recognized authority"
 
 
 def test_registered_company_claim_requires_appropriate_evidence():
@@ -235,6 +253,97 @@ def test_report_runtime_totals_reconcile_with_ledger():
     assert "43 minutes" in report_text
     assert "32 minutes" in report_text
     assert "11 minutes" in report_text
+
+
+def test_collab_catalog_separation_and_resolution_rate_semantics():
+    """Round 3 Integrity Seal:
+    1. Root catalog (581) is separate from historical temporal catalog (96,420); overlap == 81.
+    2. Reports never say 581 is a subset of 96,420 historical coverage.
+    3. Candidate-video resolution uses unique video IDs: 9 verified videos / 54 candidate videos = 0.1667.
+    4. 11 pairwise rows / 9 unique verified videos are distinguished.
+    5. UNLABELED controls are NON_CANDIDATE_UNLABELED and never called negative ground truth.
+    6. Historical title-uncovered count derives from temporal overlap (96,420 - 81 = 96,339).
+    7. listing != attendance/revenue/capital claim.
+    """
+    assert ROOT_CATALOG_PARQUET.exists()
+    assert TEMPORAL_CATALOG_PARQUET.exists()
+    assert COLLAB_METRICS_JSON.exists()
+    assert COLLAB_SAMPLE_CSV.exists()
+    assert RESEARCH_REPORT_MD.exists()
+    assert OUTLOOK_HYPOTHESES_MD.exists()
+    
+    root_df = pd.read_parquet(ROOT_CATALOG_PARQUET)
+    temp_df = pd.read_parquet(TEMPORAL_CATALOG_PARQUET)
+    collab_events_df = pd.read_parquet(REPO_ROOT / "data/industry/collab_events.parquet")
+    collab_candidates_df = pd.read_parquet(REPO_ROOT / "data/industry/collab_candidates.parquet")
+    val_sample_df = pd.read_csv(COLLAB_SAMPLE_CSV)
+    
+    with open(COLLAB_METRICS_JSON, "r", encoding="utf-8") as f:
+        metrics = json.load(f)
+        
+    report_text = RESEARCH_REPORT_MD.read_text(encoding="utf-8")
+    outlook_text = OUTLOOK_HYPOTHESES_MD.read_text(encoding="utf-8")
+    
+    # 1. Temporal title overlap == 81
+    actual_overlap = int(temp_df["video_id"].isin(set(root_df["video_id"])).sum())
+    assert actual_overlap == 81, f"Expected 81 temporal title overlap records, got {actual_overlap}"
+    assert metrics["temporal_title_overlap_records"] == 81
+    assert metrics["root_title_catalog_records"] == 581
+    assert metrics["temporal_catalog_records"] == 96420
+    assert metrics["temporal_title_coverage_rate"] == round(81 / 96420, 6)
+    assert metrics["detector_input_records"] == 581
+    assert metrics["detector_input_source"] == "data/video_catalog.parquet"
+    assert metrics["catalog_scan_type"] == "AUXILIARY TITLE-CATALOG COLLAB OBSERVATION"
+    
+    # 2. Reports never say 581 is a subset of 96,420 historical coverage
+    for prohibited in [
+        r"581\s*(?:title-covered\s*)?(?:videos|records|rows)?\s*(?:scanned\s*)?\(?out of (?:the\s*)?96,?420",
+        r"581\s*title-covered\s*records\s*from\s*historical\s*catalog",
+        r"95,839\s*temporal\s*rows\s*uncovered",
+        r"95,839\s*historical",
+        r"95839",
+    ]:
+        assert not re.search(prohibited, report_text, re.IGNORECASE), f"Prohibited pattern '{prohibited}' found in report"
+        assert not re.search(prohibited, outlook_text, re.IGNORECASE), f"Prohibited pattern '{prohibited}' found in outlook"
+
+    # 3. Candidate-video resolution uses unique video IDs (9 unique verified videos / 54 candidate videos = 0.1667)
+    assert metrics["candidate_video_count"] == 54
+    assert metrics["verified_candidate_video_count"] == 9
+    assert metrics["candidate_video_resolution_rate"] == 0.1667
+    assert metrics["candidate_video_resolution_rate"] == round(9 / 54, 4)
+    # Ensure never derived from pairwise event count
+    assert metrics["candidate_video_resolution_rate"] != round(11 / 54, 4)
+    
+    # 4. 11 pairwise rows / 9 unique verified videos are distinguished
+    assert len(collab_events_df) == 11
+    assert collab_events_df["video_id"].nunique() == 9
+    assert metrics["verified_pairwise_event_count"] == 11
+    assert metrics["verified_pairwise_event_count"] != metrics["verified_candidate_video_count"]
+    
+    # 5. UNLABELED controls are NON_CANDIDATE_UNLABELED and never called negative ground truth
+    assert "NON_CANDIDATE_CONTROL" not in set(val_sample_df["stratified_class"])
+    assert "NON_CANDIDATE_UNLABELED" in set(val_sample_df["stratified_class"])
+    for _, r in val_sample_df.iterrows():
+        assert r["ground_truth_collab"] == "UNLABELED"
+        assert "NEGATIVE" not in str(r["ground_truth_collab"]).upper()
+    assert "negative control videos" not in report_text
+    assert "negative ground truth" not in report_text
+    assert "unflagged control sample" in report_text
+
+    # 6. Historical uncovered count derives from temporal overlap (96,420 - 81 = 96,339)
+    assert metrics["temporal_title_uncovered_records"] == 96420 - 81
+    assert metrics["temporal_title_uncovered_records"] == 96339
+    assert "96,339" in report_text or "96339" in report_text
+    assert "96,339" in outlook_text or "96339" in outlook_text
+
+    # 7. Listing != attendance/revenue/capital claim
+    for text in [report_text, outlook_text]:
+        assert "high attendance" not in text, "Unsupported attendance claim found"
+        assert "New institutional capital entered" not in text, "Unsupported capital entry claim found"
+        assert "new capital entered" not in text, "Unsupported capital entry claim found"
+    assert "A new corporate operator/brand entered the observed ecosystem: Brave Group APAC launched AStars" in outlook_text
+    assert "a new corporate operator/brand entered the observed ecosystem: Brave Group APAC launched AStars" in report_text
+    assert "physical fan-meetings continue to be listed/held" in outlook_text
 
 
 def test_public_audience_wording_uses_observed_interaction_semantics():

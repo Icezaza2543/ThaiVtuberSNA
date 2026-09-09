@@ -12,6 +12,7 @@ import json
 import logging
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 import pandas as pd
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -21,6 +22,35 @@ BASE_DIR = Path(".")
 DATA_DIR = BASE_DIR / "data"
 INDUSTRY_DIR = DATA_DIR / "industry"
 INDUSTRY_DIR.mkdir(parents=True, exist_ok=True)
+
+RECOGNIZED_AUTHORITY_HANDLES = {
+    "astarsofficial",
+    "pixelaproject",
+    "arp_vtuber",
+    "polygonofficial",
+    "miraismaid",
+    "eileennoir",
+}
+
+
+def parse_authority_handle(url: str) -> str:
+    """Extract exact lowercase account handle from an X or Twitter URL.
+    
+    Ensures exact parsed identity match so that fake prefix/suffix accounts
+    (e.g., x.com/astars_fake/status/...) cannot match recognized authorities.
+    """
+    if not url:
+        return ""
+    try:
+        parsed = urlparse(url.strip())
+        host = (parsed.netloc or "").lower()
+        if host in ["x.com", "www.x.com", "twitter.com", "www.twitter.com"]:
+            parts = [p for p in parsed.path.strip("/").split("/") if p]
+            if parts:
+                return parts[0].lower()
+    except Exception:
+        pass
+    return ""
 
 MANIFEST_PATH = DATA_DIR / "temporal" / "catalog" / "target_manifest.csv"
 REGISTRY_PATH = DATA_DIR / "thai_vtuber_registry.json"
@@ -711,20 +741,16 @@ def build_creator_datasets():
             )
             is_official_source_type = st in ["OFFICIAL_AGENCY_ANNOUNCEMENT", "PUBLIC_TALENT_STATEMENT"]
             
-            # Authoritative publisher handles: must match verified official agency or talent account
-            is_recognized_authority = any(
-                auth in ref_lower for auth in [
-                    "x.com/astars", "twitter.com/astars",
-                    "x.com/pixela", "twitter.com/pixela",
-                    "x.com/arp_vtuber", "twitter.com/arp_vtuber",
-                    "x.com/polygonofficial", "twitter.com/polygonofficial",
-                    "twitter.com/miraismaid", "x.com/miraismaid",
-                    "twitter.com/eileennoir", "x.com/eileennoir"
-                ]
+            # Authoritative publisher handles: must match exact verified official agency or talent account handle
+            parsed_handle = parse_authority_handle(ref)
+            curated_auth_id = str(ve.get("source_authority_id", "")).lower().strip()
+            is_recognized_authority = (
+                parsed_handle in RECOGNIZED_AUTHORITY_HANDLES
+                or curated_auth_id in RECOGNIZED_AUTHORITY_HANDLES
             )
 
             # Strict evidence tier assignment: requires curated authority metadata AND specific event URL
-            # A random third-party X status must not auto-upgrade
+            # A random third-party X status or fake prefix/suffix handle must not auto-upgrade
             if (
                 is_curated_primary
                 and is_official_source_type

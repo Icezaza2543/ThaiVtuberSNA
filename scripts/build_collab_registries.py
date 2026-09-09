@@ -53,17 +53,28 @@ def build_collab_registries():
     # Check if temporal catalog has titles
     temp_has_titles = "title" in temp_df.columns and temp_df["title"].notna().any()
     
-    # Join title metadata by video_id where possible
-    # Detector input: exact set of records with inspectable titles
+    # Detector input: exact set of records with inspectable titles from root catalog
     if temp_has_titles:
         detector_input_df = temp_df[temp_df["title"].notna()].copy()
+        detector_input_source = "data/temporal/catalog/video_catalog.parquet"
     else:
-        # Temporal catalog lacks titles; join available title metadata from catalog_df
+        # Temporal catalog lacks titles; detector evaluates auxiliary title-bearing catalog
         detector_input_df = catalog_df[catalog_df["title"].notna()].copy()
+        detector_input_source = "data/video_catalog.parquet"
 
+    root_title_catalog_records = len(catalog_df[catalog_df["title"].notna()])
+    temporal_catalog_records = len(temp_df)
+    temporal_title_overlap_records = int(temp_df["video_id"].isin(set(detector_input_df["video_id"])).sum())
+    temporal_title_coverage_rate = temporal_title_overlap_records / temporal_catalog_records
+    temporal_title_uncovered_records = temporal_catalog_records - temporal_title_overlap_records
     total_videos_scanned = len(detector_input_df)
-    title_covered_in_temporal = sum(temp_df["video_id"].isin(set(detector_input_df["video_id"])))
-    logger.info(f"Detector evaluated {total_videos_scanned} records with title metadata ({title_covered_in_temporal} overlap with temporal catalog).")
+
+    logger.info(
+        f"Collab study: AUXILIARY TITLE-CATALOG COLLAB OBSERVATION. "
+        f"Detector evaluated {total_videos_scanned} records from {detector_input_source} "
+        f"({temporal_title_overlap_records} overlap with {temporal_catalog_records} temporal records; "
+        f"{temporal_title_uncovered_records} temporal records uncovered)."
+    )
 
     with open(REGISTRY_PATH, "r", encoding="utf-8") as f:
         reg = json.load(f)
@@ -237,10 +248,10 @@ def build_collab_registries():
     candidates_sampled = pd.concat(sample_candidate_rows, ignore_index=True) if sample_candidate_rows else pd.DataFrame()
     candidates_sampled["stratified_class"] = "CANDIDATE_STRATIFIED"
 
-    # Deterministic negative control sample (non-candidate videos from evaluated catalog)
+    # Deterministic unflagged control sample (non-candidate videos from evaluated catalog)
     non_candidates = detector_input_df[~detector_input_df["video_id"].isin(set(candidates_df["video_id"]))].copy()
     controls_sampled = non_candidates.sample(n=min(len(non_candidates), 10), random_state=42).copy()
-    controls_sampled["stratified_class"] = "NON_CANDIDATE_CONTROL"
+    controls_sampled["stratified_class"] = "NON_CANDIDATE_UNLABELED"
     controls_sampled["host_channel_id"] = controls_sampled.get("channel_id", "")
     controls_sampled["host_channel_name"] = controls_sampled.get("channel_name", "")
     controls_sampled["video_title"] = controls_sampled.get("title", "")
@@ -267,33 +278,54 @@ def build_collab_registries():
 
     verified_in_sample = int(sum(val_sample["verification_level"] == "EXACT_HANDLE_VERIFIED"))
     sample_exact_match_rate = (verified_in_sample / len(val_sample)) if len(val_sample) > 0 else 0.0
-    candidate_resolution_rate = (len(verified_df) / len(candidates_df)) if len(candidates_df) > 0 else 0.0
+
+    # Separate candidate-video resolution count from pairwise event rows
+    verified_pairwise_event_count = len(verified_df)
+    candidate_video_count = len(candidates_df)
+    verified_candidate_vids = set(candidates_df[candidates_df["verification_level"] == "EXACT_HANDLE_VERIFIED"]["video_id"])
+    verified_candidate_video_count = len(verified_candidate_vids)
+    candidate_video_resolution_rate = (verified_candidate_video_count / candidate_video_count) if candidate_video_count > 0 else 0.0
 
     validation_metrics = {
-        "catalog_scan_type": "title-covered subset scan",
-        "temporal_catalog_total_records": len(temp_df),
-        "temporal_catalog_title_covered_records": int(title_covered_in_temporal),
+        "catalog_scan_type": "AUXILIARY TITLE-CATALOG COLLAB OBSERVATION",
+        "collab_study_label": "AUXILIARY TITLE-CATALOG COLLAB OBSERVATION",
+        "root_title_catalog_records": root_title_catalog_records,
+        "temporal_catalog_records": temporal_catalog_records,
+        "temporal_title_overlap_records": temporal_title_overlap_records,
+        "temporal_title_coverage_rate": round(temporal_title_coverage_rate, 6),
+        "temporal_title_uncovered_records": temporal_title_uncovered_records,
+        "detector_input_records": total_videos_scanned,
+        "detector_input_source": detector_input_source,
+        "verified_pairwise_event_count": verified_pairwise_event_count,
+        "candidate_video_count": candidate_video_count,
+        "verified_candidate_video_count": verified_candidate_video_count,
+        "candidate_video_resolution_rate": round(candidate_video_resolution_rate, 4),
+        # Backward-compatible fields
+        "temporal_catalog_total_records": temporal_catalog_records,
+        "temporal_catalog_title_covered_records": temporal_title_overlap_records,
         "total_videos_scanned": total_videos_scanned,
         "detected_subset_label": "verified observed collaboration subset",
-        "verified_collab_events_count": len(verified_df),
-        "candidate_videos_count": len(candidates_df),
+        "verified_collab_events_count": verified_pairwise_event_count,
+        "candidate_videos_count": candidate_video_count,
+        "exact_handle_resolution_rate": round(candidate_video_resolution_rate, 4),
         "description_queue_count": len(queue_df),
         "stratified_sample_size": len(val_sample),
         "sample_verified_in_sample": verified_in_sample,
         "sample_exact_handle_match_rate": round(sample_exact_match_rate, 4),
-        "exact_handle_resolution_rate": round(candidate_resolution_rate, 4),
         "precision": "INSUFFICIENT_EVIDENCE",
         "precision_status": "INSUFFICIENT_EVIDENCE",
         "precision_limitation_rationale": (
             "Cannot compute precision without an independently labeled ground-truth collaboration dataset. "
-            "Ratio of handle-verified rows in candidate sample is a heuristic match rate, not empirical precision."
+            "Ratio of handle-verified candidate videos is an exact-handle match resolution rate, not empirical precision."
         ),
         "recall": "INSUFFICIENT_EVIDENCE",
         "recall_status": "INSUFFICIENT_EVIDENCE",
         "recall_limitation_rationale": (
-            f"Cannot compute catalog-wide recall across {len(temp_df)} historical videos because titles are available "
-            f"for only {total_videos_scanned} records, video descriptions remain unindexed, and unflagged streams lack "
-            "ground-truth participant rosters. Stating completeness is scientifically invalid without full-catalog labels."
+            f"Cannot compute catalog-wide recall across {temporal_catalog_records} historical temporal records because "
+            f"only {temporal_title_overlap_records} temporal records overlap with available title metadata "
+            f"({root_title_catalog_records} records in auxiliary root catalog), leaving {temporal_title_uncovered_records} "
+            "historical temporal records without inspectable title text. In addition, video descriptions remain unindexed, "
+            "and unflagged streams lack ground-truth participant rosters. Stating completeness is scientifically invalid without full-catalog labels."
         ),
         "forbidden_claim_audit": {
             "complete_collaboration_network": False,
