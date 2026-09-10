@@ -157,12 +157,7 @@ class ExpandedSheetBatches:
         ws, records = self._scan()
         # Find occupied extent, not a count that could overwrite a sparse row.
         # Scan physical ranges in bounded chunks through the existing store transport.
-        end = 1
-        if ws:
-            for start in range(2, ws.row_count + 1, 500):
-                values = self.store._write(ws.get_values, f'A{start}:D{min(start+499, ws.row_count)}')
-                for offset, row in enumerate(values):
-                    if any(row): end = start + offset
+        end = self._occupied_extent(ws)
         required_rows = end + len(rows)
         existing_alloc = sum(w.row_count * w.col_count for w in self.store.spreadsheet.worksheets())
         growth = max(0, required_rows * max(4, ws.col_count) - ws.row_count * ws.col_count) if ws else required_rows * 4
@@ -180,3 +175,12 @@ class ExpandedSheetBatches:
         if self.store._write(ws.get_values, target) != rows:
             raise RuntimeError('Ambiguous acknowledgement; reconcile batch before retry')
         return {'verified': True, 'content_sha256': digest, 'rows': len(events)}
+
+    def _occupied_extent(self, ws):
+        end = 1
+        if ws:
+            for start in range(2, ws.row_count + 1, 500):
+                values = self.store._write(ws.get_values, f'A{start}:D{min(start+499, ws.row_count)}')
+                for offset, row in enumerate(values):
+                    if any(row): end = start + offset
+        return end

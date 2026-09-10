@@ -108,7 +108,7 @@ class JobJournal:
                 (job_id, vtuber_channel_id, video_id, source_type, max_attempts, priority, now, now))
         return job_id
 
-    def claim_next_job(self, worker_id, lease_seconds=300):
+    def claim_next_job(self, worker_id, lease_seconds=300, *, job_id=None):
         if lease_seconds <= 0:
             raise ValueError('Lease must be positive')
         dt = self.clock()
@@ -117,10 +117,10 @@ class JobJournal:
         with self._get_connection() as con:
             con.execute('BEGIN IMMEDIATE')
             row = con.execute("""SELECT * FROM collection_jobs
-                WHERE state='PENDING'
+                WHERE (? IS NULL OR job_id=?) AND (state='PENDING'
                 OR (state='RETRY' AND next_retry_at<=?)
-                OR (state='COMPLETED' AND next_collection_at<=?)
-                ORDER BY priority DESC, created_at, job_id LIMIT 1""", (now, now)).fetchone()
+                OR (state='COMPLETED' AND next_collection_at<=?))
+                ORDER BY priority DESC, created_at, job_id LIMIT 1""", (job_id, job_id, now, now)).fetchone()
             if row is None:
                 return None
             fresh = row['state'] == 'COMPLETED'
