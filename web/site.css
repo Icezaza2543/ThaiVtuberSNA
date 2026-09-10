@@ -1,0 +1,12 @@
+body { margin: 0; background: #080b14; color: #e6e8f2; }
+.site-nav { display: flex; flex: none; gap: 8px; align-items: center; padding: 8px 20px; background: #101421; border-bottom: 1px solid #30384d; font: 14px/1.5 system-ui, sans-serif; }
+.site-nav a { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 6px; color: #d0d5e4; text-decoration: none; }
+.site-nav a:hover { background: #242b40; }
+.site-nav a[aria-current="page"] { background: #253447; color: #8eecff; box-shadow: inset 0 -2px #8eecff; }
+.site-nav a:focus-visible { outline: 2px solid #8eecff; outline-offset: 2px; }
+.site-nav small { font-size: 11px; color: #e1d3ff; }
+#site-status { padding: 20px; }
+@media (max-width: 480px) {
+  .site-nav { padding: 6px 8px; gap: 4px; }
+  .site-nav a { flex: 1; padding: 0 6px; font-size: 13px; gap: 4px; }
+}

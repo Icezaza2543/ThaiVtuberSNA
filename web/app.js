@@ -1546,4 +1546,4 @@ function openInspector(node, focus = true) {
 }
 
 // Launch app on load
-window.addEventListener("DOMContentLoaded", initApp);
+// The shared site entry initializes the graph after its scripts are loaded.
