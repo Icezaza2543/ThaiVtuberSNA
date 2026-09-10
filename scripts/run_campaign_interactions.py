@@ -71,14 +71,20 @@ the index and stops this worker, so stale state is never used to retry publicati
             raise
 
 
-def choose_video(records, completed):
+def choose_video(records, completed, *, prepared_path=None, channel_id=None):
     """One stable representative per known year, then deepen by stable video ID."""
     done = {r['video'] for r in completed}
+    if prepared_path is not None and prepared_path.exists():
+        with sqlite3.connect('file:'+prepared_path.as_posix()+'?mode=ro',uri=True) as prepared:
+            by_id={r['video_id']:r for r in records}
+            for (video,) in prepared.execute('SELECT video FROM prepared WHERE channel=? ORDER BY rank',(channel_id,)):
+                if video not in done and video in by_id:
+                    return by_id[video]
     years = {r['year'] for r in completed}
     available = [r for r in records if r['video_id'] not in done]
     def key(r):
         year = (r.get('video_published_at') or 'unknown')[:4]
-        return (year in years, year == 'unkn', year, r['video_id'])
+        return (not bool(r.get('video_published_at')), year in years, year, r['video_id'])
     return min(available, key=key) if available else None
 
 
@@ -130,7 +136,8 @@ def run(root=ROOT):
                 break
             done = list(con.execute('SELECT video,year FROM jobs WHERE channel=?',(cid,)))
             records = [json.loads(r[0]) for r in catalog.execute('SELECT metadata FROM videos WHERE channel=?',(cid,))]
-            video = choose_video(records,done)
+            video = choose_video(records,done,channel_id=cid,
+                prepared_path=root/'expanded-v1'/'downtime-2026-09-10'/'prepared_interactions.sqlite3')
             if video:
                 job = interaction_job(cohort_version=manifest['cohort_version'],channel_id=cid,video_id=video['video_id'],
                     window_start=None,window_end=None,policy_version='bulk-fair-channel-year-v1',

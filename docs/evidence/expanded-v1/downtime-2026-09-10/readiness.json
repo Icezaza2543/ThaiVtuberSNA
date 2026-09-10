@@ -1,0 +1,82 @@
+{
+  "recorded_at": "2026-09-10T10:04:38.441059+00:00",
+  "youtube_requests_this_processing_run": 0,
+  "ledger_debits": [
+    [
+      "2026-09-10",
+      "catalog",
+      8461
+    ],
+    [
+      "2026-09-10",
+      "interactions",
+      539
+    ]
+  ],
+  "new_jobs": 385187,
+  "eligible_channels_with_new_jobs": 1310,
+  "not_found_suppressed": 49,
+  "next_provider_window_bangkok": "2026-09-11T14:00:00+07:00",
+  "catalog_resume_command": "python -m scripts.run_expanded_campaign",
+  "interaction_resume_command": "python -m scripts.run_campaign_interactions",
+  "precomputed_queue_wired_to_worker": true,
+  "private_storage": "existing authorized workbook only; analytics in RAM",
+  "identity_candidates": "UNREVIEWED; no identity dates assigned",
+  "snapshot_scope": "observed channel audience; virtual identity membership remains unknown",
+  "checkpoint_hashes": {
+    "catalog.sqlite3": "10b7c87e9120de5a6bc830da6ad55193010fb6dbe5ab5165db148ec669dac758",
+    "quota.sqlite3": "062d335946c314dbc85cb93ceaa93505985624a42616c0b1b532a9483ff922ba",
+    "interaction_queue.sqlite3": "10d5b2c20cbeb4382263cc31f577af578823dabb9363048823d48264fcdf1c4a",
+    "interaction_journal.sqlite3": "3fa0ebd92c2b7c0bb85c1d1c33e11c9827d1af768167842e4f7a58ac8c4d046d"
+  },
+  "files": {
+    "analytics_summary.json": {
+      "bytes": 2806,
+      "sha256": "6d91f3ad4db5dc905818219f36084f98a42d295f60605d9941038647fb4843f5"
+    },
+    "audience_snapshots.json": {
+      "bytes": 44572952,
+      "sha256": "a123f211055c8b2c600c3eb7cd7d4d55407a557c2de34833cf8356063cc5c394"
+    },
+    "catalog_summary.json": {
+      "bytes": 2113,
+      "sha256": "90da23534005999591caf212a42ca75dc2bb545101480e27288ba03f7fd75835"
+    },
+    "channel_coverage.csv": {
+      "bytes": 208753,
+      "sha256": "fae9c855d9ec21d22bd85ef888cd6f82af74eed82f6d17274d55bb6f53260b4b"
+    },
+    "channel_year_coverage.csv": {
+      "bytes": 167115,
+      "sha256": "8e2dfa66dfb7df85b2c3f68b3bc889bc0e2a5dc90256e687a42804cd1bb529aa"
+    },
+    "channel_year_coverage_dense.csv": {
+      "bytes": 909747,
+      "sha256": "7b71c5a7bdc11b5e2265682fd7737d70740da68378e1cb18f2ebb730098834eb"
+    },
+    "identity_priority_review.csv": {
+      "bytes": 977562,
+      "sha256": "169da5e50e6d7e655cba8cbfba8e35343cb42734bb2e323fb8ffb241c8c1bb1d"
+    },
+    "identity_review_queue.csv": {
+      "bytes": 14180903,
+      "sha256": "f6a43568b8c3a26455794e363ebe9dec14875a9de5f2454494def30a8543314b"
+    },
+    "prepared_interactions.sqlite3": {
+      "bytes": 44412928,
+      "sha256": "437b34a7a36720c89cafeaebcb7e1fe5f68d3f02ef12d95078da9fb32a15a02b"
+    },
+    "preview.html": {
+      "bytes": 2978,
+      "sha256": "aad88fb0f2a377fb55cffc4001a1834667d73a1d5d7c49773be888b3e1673cc2"
+    },
+    "resume_existing_jobs.json": {
+      "bytes": 36998,
+      "sha256": "123e275a52799e0c886008897925a098d92989d5ff5787b527129182f816a888"
+    },
+    "role_review_queue.csv": {
+      "bytes": 403053,
+      "sha256": "0275f2ddba1e4e672d0f64bbb82889ee5554dd7419acd4df38ad3924921b0884"
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "canonical_interactions": 117418,
+  "unique_pseudonyms": 81182,
+  "channels": 425,
+  "videos": 4540,
+  "undated_interactions": 0,
+  "raw_records": 140384,
+  "validated_expanded_batches": 539,
+  "rejected_expanded_batches": 0,
+  "baseline_without_expanded": {
+    "canonical_interactions": 114869,
+    "unique_pseudonyms": 79718,
+    "channels": 190,
+    "videos": 4260,
+    "undated_interactions": 0
+  },
+  "delta": {
+    "canonical_interactions": 2549,
+    "unique_pseudonyms": 1464,
+    "channels": 235,
+    "videos": 280,
+    "undated_interactions": 0
+  },
+  "yearly_coverage": [
+    {
+      "year": 2014,
+      "interactions": 2,
+      "channels": 1,
+      "videos": 1
+    },
+    {
+      "year": 2015,
+      "interactions": 3,
+      "channels": 2,
+      "videos": 2
+    },
+    {
+      "year": 2016,
+      "interactions": 31,
+      "channels": 5,
+      "videos": 5
+    },
+    {
+      "year": 2017,
+      "interactions": 55,
+      "channels": 7,
+      "videos": 7
+    },
+    {
+      "year": 2018,
+      "interactions": 25,
+      "channels": 5,
+      "videos": 5
+    },
+    {
+      "year": 2019,
+      "interactions": 48,
+      "channels": 7,
+      "videos": 7
+    },
+    {
+      "year": 2020,
+      "interactions": 6082,
+      "channels": 40,
+      "videos": 152
+    },
+    {
+      "year": 2021,
+      "interactions": 15022,
+      "channels": 96,
+      "videos": 538
+    },
+    {
+      "year": 2022,
+      "interactions": 15191,
+      "channels": 141,
+      "videos": 748
+    },
+    {
+      "year": 2023,
+      "interactions": 23571,
+      "channels": 186,
+      "videos": 1038
+    },
+    {
+      "year": 2024,
+      "interactions": 17412,
+      "channels": 221,
+      "videos": 1307
+    },
+    {
+      "year": 2025,
+      "interactions": 22369,
+      "channels": 254,
+      "videos": 1462
+    },
+    {
+      "year": 2026,
+      "interactions": 17607,
+      "channels": 223,
+      "videos": 1177
+    }
+  ],
+  "source_counts": {
+    "comment": 115863,
+    "live_chat": 1555
+  },
+  "edge_count": 12305,
+  "strong_edge_count": 2724,
+  "strong_comment_edges": 2724,
+  "baseline_edge_count": 8980,
+  "edge_count_delta": 3325,
+  "snapshots": 27,
+  "snapshot_identity_limitation": "Channel audience previews; no automatic virtual identity membership",
+  "acknowledged_expanded_events": 3066,
+  "frozen_comparison": {
+    "source": "data\\temporal\\snapshots\\network_snapshots.parquet",
+    "sha256": "4ba8560db946ff4930323308db54df695840bf4da3ac80bfc0de25508cc8e7ee",
+    "previous_edges": 8980,
+    "added_pairs": 3325,
+    "removed_pairs": 0,
+    "previous_strong_edges": 2706,
+    "caveat": "Expanded collection changes coverage; this is not a temporal growth inference."
+  }
+}
