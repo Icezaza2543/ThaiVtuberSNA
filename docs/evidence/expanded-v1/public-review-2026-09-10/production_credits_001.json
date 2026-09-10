@@ -1,0 +1,256 @@
+[
+  {
+    "entity_id": "public-profile:https://twitter.com/minjiharu_owo",
+    "entity_label": "Minjiharu",
+    "entity_type": "production_only",
+    "classification_scope": "credited production endpoint only; virtual-performer status not assessed",
+    "roles": [
+      "artist",
+      "rigger"
+    ],
+    "source_channel_id": "UCompe4fS2oUss8CGTuhOSxA",
+    "source_video_id": "kz6FFZHvZ7I",
+    "source_url": "https://www.youtube.com/watch?v=kz6FFZHvZ7I",
+    "source_title": "🔴 DEBUT Gibpuri l Virtual Maid มาเปิดประตูสู่ความหวานกันเถอะค่ะ !",
+    "public_profile_url": "https://twitter.com/minjiharu_owo",
+    "review_status": "SUPPORTED",
+    "evidence_summary": "Description explicitly credits this separate public profile for the listed production role(s). No role transfer to uploader.",
+    "event_time": "2021-02-15T11:59:52+00:00",
+    "date_precision": "exact",
+    "retrieved_at": "2026-09-10T13:10:27.773194+00:00",
+    "edge_type": "production_credit",
+    "identity_continuity": "not inferred"
+  },
+  {
+    "entity_id": "public-profile:https://twitter.com/minjiharu_owo",
+    "entity_label": "Minjiharu",
+    "entity_type": "production_only",
+    "classification_scope": "credited production endpoint only; virtual-performer status not assessed",
+    "roles": [
+      "artist",
+      "rigger"
+    ],
+    "source_channel_id": "UCjGGp-gPhMgxgIKxjShbYtA",
+    "source_video_id": "gedldStKjpE",
+    "source_url": "https://www.youtube.com/watch?v=gedldStKjpE",
+    "source_title": "🔴DEBUT Terios D. l Virtual Demon | การปรากฏกายครั้งแรกของราชาปีศาจ",
+    "public_profile_url": "https://twitter.com/minjiharu_owo",
+    "review_status": "SUPPORTED",
+    "evidence_summary": "Description explicitly credits this separate public profile for the listed production role(s). No role transfer to uploader.",
+    "event_time": "2021-02-17T12:30:49+00:00",
+    "date_precision": "exact",
+    "retrieved_at": "2026-09-10T13:10:30.958019+00:00",
+    "edge_type": "production_credit",
+    "identity_continuity": "not inferred"
+  },
+  {
+    "entity_id": "public-profile:https://www.youtube.com/channel/UCodUFi7Eukmx8vJ1fXGQ2dQ",
+    "entity_label": "Asuka111",
+    "entity_type": "production_only",
+    "classification_scope": "credited production endpoint only; virtual-performer status not assessed",
+    "roles": [
+      "artist"
+    ],
+    "source_channel_id": "UC4zIwNmfURhIO5Pj-ccmKBA",
+    "source_video_id": "CqfUqjcOe1M",
+    "source_url": "https://www.youtube.com/watch?v=CqfUqjcOe1M",
+    "source_title": "【DEBUT STREAM】เอ็ม แนะนำตัวครับ! | AmuVCh",
+    "public_profile_url": "https://www.youtube.com/channel/UCodUFi7Eukmx8vJ1fXGQ2dQ",
+    "review_status": "SUPPORTED",
+    "evidence_summary": "Description explicitly credits this separate public profile for the listed production role(s). No role transfer to uploader.",
+    "event_time": "2021-04-24T14:59:28+00:00",
+    "date_precision": "exact",
+    "retrieved_at": "2026-09-10T13:11:00.645613+00:00",
+    "edge_type": "production_credit",
+    "identity_continuity": "not inferred"
+  },
+  {
+    "entity_id": "public-profile:https://twitter.com/seesonggao429",
+    "entity_label": "seesonggao429",
+    "entity_type": "production_only",
+    "classification_scope": "credited production endpoint only; virtual-performer status not assessed",
+    "roles": [
+      "artist"
+    ],
+    "source_channel_id": "UCJNuYG7F5YzslTSYChWcKBw",
+    "source_video_id": "uZ34UnCLtnU",
+    "source_url": "https://www.youtube.com/watch?v=uZ34UnCLtnU",
+    "source_title": "【DEBUT STREAM 】It's Kouwinkle time!【Amanogawa Kousei🌠 ✨】",
+    "public_profile_url": "https://twitter.com/seesonggao429",
+    "review_status": "SUPPORTED",
+    "evidence_summary": "Description explicitly credits this separate public profile for the listed production role(s). No role transfer to uploader.",
+    "event_time": "2021-04-26T09:56:26+00:00",
+    "date_precision": "exact",
+    "retrieved_at": "2026-09-10T13:11:02.400230+00:00",
+    "edge_type": "production_credit",
+    "identity_continuity": "not inferred"
+  },
+  {
+    "entity_id": "public-profile:https://twitter.com/AlUkUs_EE",
+    "entity_label": "AlUkUs",
+    "entity_type": "production_only",
+    "classification_scope": "credited production endpoint only; virtual-performer status not assessed",
+    "roles": [
+      "rigger"
+    ],
+    "source_channel_id": "UCJNuYG7F5YzslTSYChWcKBw",
+    "source_video_id": "uZ34UnCLtnU",
+    "source_url": "https://www.youtube.com/watch?v=uZ34UnCLtnU",
+    "source_title": "【DEBUT STREAM 】It's Kouwinkle time!【Amanogawa Kousei🌠 ✨】",
+    "public_profile_url": "https://twitter.com/AlUkUs_EE",
+    "review_status": "SUPPORTED",
+    "evidence_summary": "Description explicitly credits this separate public profile for the listed production role(s). No role transfer to uploader.",
+    "event_time": "2021-04-26T09:56:26+00:00",
+    "date_precision": "exact",
+    "retrieved_at": "2026-09-10T13:11:02.400230+00:00",
+    "edge_type": "production_credit",
+    "identity_continuity": "not inferred"
+  },
+  {
+    "entity_id": "public-profile:https://twitter.com/mjlb_ll",
+    "entity_label": "MJ",
+    "entity_type": "production_only",
+    "classification_scope": "credited production endpoint only; virtual-performer status not assessed",
+    "roles": [
+      "artist"
+    ],
+    "source_channel_id": "UCNEjPeYZ1R9xQEjHFU__Nhw",
+    "source_video_id": "jpqEhUJ9zfs",
+    "source_url": "https://www.youtube.com/watch?v=jpqEhUJ9zfs",
+    "source_title": "【DEBUT】ในที่สุดก็ได้ออกมาดูโลกภายนอกสักที(🌊Inochizuna Ruka🐬)",
+    "public_profile_url": "https://twitter.com/mjlb_ll",
+    "review_status": "SUPPORTED",
+    "evidence_summary": "Description explicitly credits this separate public profile for the listed production role(s). No role transfer to uploader.",
+    "event_time": "2021-06-08T14:01:28+00:00",
+    "date_precision": "exact",
+    "retrieved_at": "2026-09-10T13:11:14.958962+00:00",
+    "edge_type": "production_credit",
+    "identity_continuity": "not inferred"
+  },
+  {
+    "entity_id": "public-profile:https://twitter.com/RokuOz1",
+    "entity_label": "ろく",
+    "entity_type": "production_only",
+    "classification_scope": "credited production endpoint only; virtual-performer status not assessed",
+    "roles": [
+      "rigger"
+    ],
+    "source_channel_id": "UCNEjPeYZ1R9xQEjHFU__Nhw",
+    "source_video_id": "jpqEhUJ9zfs",
+    "source_url": "https://www.youtube.com/watch?v=jpqEhUJ9zfs",
+    "source_title": "【DEBUT】ในที่สุดก็ได้ออกมาดูโลกภายนอกสักที(🌊Inochizuna Ruka🐬)",
+    "public_profile_url": "https://twitter.com/RokuOz1",
+    "review_status": "SUPPORTED",
+    "evidence_summary": "Description explicitly credits this separate public profile for the listed production role(s). No role transfer to uploader.",
+    "event_time": "2021-06-08T14:01:28+00:00",
+    "date_precision": "exact",
+    "retrieved_at": "2026-09-10T13:11:14.958962+00:00",
+    "edge_type": "production_credit",
+    "identity_continuity": "not inferred"
+  },
+  {
+    "entity_id": "public-profile:https://twitter.com/Nojo_moojum",
+    "entity_label": "Nojo",
+    "entity_type": "production_only",
+    "classification_scope": "credited production endpoint only; virtual-performer status not assessed",
+    "roles": [
+      "artist"
+    ],
+    "source_channel_id": "UCmmq-jL8gjo_J-KHYIXcLMQ",
+    "source_video_id": "cg9iJQOYjaM",
+    "source_url": "https://www.youtube.com/watch?v=cg9iJQOYjaM",
+    "source_title": "🐾【DEBUT】ตื่นเต้นจังเล้ย !!! [TingTing]🎋",
+    "public_profile_url": "https://twitter.com/Nojo_moojum",
+    "review_status": "SUPPORTED",
+    "evidence_summary": "Description explicitly credits this separate public profile for the listed production role(s). No role transfer to uploader.",
+    "event_time": "2021-07-08T13:04:53+00:00",
+    "date_precision": "exact",
+    "retrieved_at": "2026-09-10T13:11:27.764295+00:00",
+    "edge_type": "production_credit",
+    "identity_continuity": "not inferred"
+  },
+  {
+    "entity_id": "public-profile:https://twitter.com/RokuOz1",
+    "entity_label": "ろく",
+    "entity_type": "production_only",
+    "classification_scope": "credited production endpoint only; virtual-performer status not assessed",
+    "roles": [
+      "rigger"
+    ],
+    "source_channel_id": "UCmmq-jL8gjo_J-KHYIXcLMQ",
+    "source_video_id": "cg9iJQOYjaM",
+    "source_url": "https://www.youtube.com/watch?v=cg9iJQOYjaM",
+    "source_title": "🐾【DEBUT】ตื่นเต้นจังเล้ย !!! [TingTing]🎋",
+    "public_profile_url": "https://twitter.com/RokuOz1",
+    "review_status": "SUPPORTED",
+    "evidence_summary": "Description explicitly credits this separate public profile for the listed production role(s). No role transfer to uploader.",
+    "event_time": "2021-07-08T13:04:53+00:00",
+    "date_precision": "exact",
+    "retrieved_at": "2026-09-10T13:11:27.764295+00:00",
+    "edge_type": "production_credit",
+    "identity_continuity": "not inferred"
+  },
+  {
+    "entity_id": "public-profile:https://x.com/aka_sl2",
+    "entity_label": "Scal2leT",
+    "entity_type": "production_only",
+    "classification_scope": "credited production endpoint only; virtual-performer status not assessed",
+    "roles": [
+      "artist"
+    ],
+    "source_channel_id": "UCP8tsYT8efX32P4WUlNrFOA",
+    "source_video_id": "liZYK3IFRz4",
+    "source_url": "https://www.youtube.com/watch?v=liZYK3IFRz4",
+    "source_title": "Workflow | Full Live2D mouth rigging",
+    "public_profile_url": "https://x.com/aka_sl2",
+    "review_status": "SUPPORTED",
+    "evidence_summary": "Description explicitly credits this separate public profile for the listed production role(s). No role transfer to uploader.",
+    "event_time": null,
+    "date_precision": "unknown",
+    "retrieved_at": "2026-09-10T13:15:18.949686+00:00",
+    "edge_type": "production_credit",
+    "identity_continuity": "not inferred"
+  },
+  {
+    "entity_id": "public-profile:https://twitter.com/KrirkvitS",
+    "entity_label": "KrirkvitS",
+    "entity_type": "production_only",
+    "classification_scope": "credited production endpoint only; virtual-performer status not assessed",
+    "roles": [
+      "artist"
+    ],
+    "source_channel_id": "UCySlA9Pv5IVXvkW_lN_NXRw",
+    "source_video_id": "cDUBachOK8o",
+    "source_url": "https://www.youtube.com/watch?v=cDUBachOK8o",
+    "source_title": "🔴 LIVE DEBUT | มาเยี่ยมคุกกันมั่งดีกว่า [Tequila]",
+    "public_profile_url": "https://twitter.com/KrirkvitS",
+    "review_status": "SUPPORTED",
+    "evidence_summary": "Description explicitly credits this separate public profile for the listed production role(s). No role transfer to uploader.",
+    "event_time": "2022-01-19T11:54:22+00:00",
+    "date_precision": "exact",
+    "retrieved_at": "2026-09-10T13:17:44.196109+00:00",
+    "edge_type": "production_credit",
+    "identity_continuity": "not inferred"
+  },
+  {
+    "entity_id": "public-profile:https://twitter.com/Bunrily",
+    "entity_label": "Bunrily",
+    "entity_type": "production_only",
+    "classification_scope": "credited production endpoint only; virtual-performer status not assessed",
+    "roles": [
+      "rigger"
+    ],
+    "source_channel_id": "UCySlA9Pv5IVXvkW_lN_NXRw",
+    "source_video_id": "cDUBachOK8o",
+    "source_url": "https://www.youtube.com/watch?v=cDUBachOK8o",
+    "source_title": "🔴 LIVE DEBUT | มาเยี่ยมคุกกันมั่งดีกว่า [Tequila]",
+    "public_profile_url": "https://twitter.com/Bunrily",
+    "review_status": "SUPPORTED",
+    "evidence_summary": "Description explicitly credits this separate public profile for the listed production role(s). No role transfer to uploader.",
+    "event_time": "2022-01-19T11:54:22+00:00",
+    "date_precision": "exact",
+    "retrieved_at": "2026-09-10T13:17:44.196109+00:00",
+    "edge_type": "production_credit",
+    "identity_continuity": "not inferred"
+  }
+]
