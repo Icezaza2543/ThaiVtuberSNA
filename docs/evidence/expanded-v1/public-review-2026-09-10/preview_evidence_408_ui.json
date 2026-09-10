@@ -1,0 +1,99 @@
+{
+  "identity_groups_reviewed": 408,
+  "status_counts": {
+    "VERIFIED": 38,
+    "SUPPORTED": 235,
+    "AMBIGUOUS": 45,
+    "REJECTED_AS_IDENTITY_EVENT": 90
+  },
+  "event_counts": {
+    "identity_start": 264,
+    "unknown": 45,
+    "not_identity_event": 90,
+    "redebut": 5,
+    "model_change": 4
+  },
+  "historical_membership_creators": 271,
+  "day_precision_events_not_promoted_to_exact": 2,
+  "preview_path": "scratch/expanded-v1-campaign/expanded-v1/downtime-2026-09-10/public-review-2026-09-10/reviewed_temporal_preview_408_ui.json",
+  "preview_sha256": "dd53e9655bfc43b400267d855ee3fea0a3328dd2966b571b669cbe8d4226deea",
+  "preview_bytes": 4360551,
+  "yearly": [
+    {
+      "year": "2014",
+      "nodes": 0,
+      "edges": 0
+    },
+    {
+      "year": "2015",
+      "nodes": 0,
+      "edges": 0
+    },
+    {
+      "year": "2016",
+      "nodes": 0,
+      "edges": 0
+    },
+    {
+      "year": "2017",
+      "nodes": 0,
+      "edges": 0
+    },
+    {
+      "year": "2018",
+      "nodes": 0,
+      "edges": 0
+    },
+    {
+      "year": "2019",
+      "nodes": 0,
+      "edges": 0
+    },
+    {
+      "year": "2020",
+      "nodes": 4,
+      "edges": 1
+    },
+    {
+      "year": "2021",
+      "nodes": 68,
+      "edges": 41
+    },
+    {
+      "year": "2022",
+      "nodes": 53,
+      "edges": 1
+    },
+    {
+      "year": "2023",
+      "nodes": 57,
+      "edges": 56
+    },
+    {
+      "year": "2024",
+      "nodes": 89,
+      "edges": 16
+    },
+    {
+      "year": "2025",
+      "nodes": 0,
+      "edges": 0
+    },
+    {
+      "year": "2026",
+      "nodes": 0,
+      "edges": 0
+    }
+  ],
+  "all_time": {
+    "nodes": 271,
+    "edges": 663
+  },
+  "limitations": [
+    "Public metadata/description review, not full audiovisual verification.",
+    "Event-scoped membership does not establish complete lifetime histories.",
+    "Existing audience aggregates remain channel scoped, not filtered to identity epochs.",
+    "Day-precision dates retained in evidence but excluded from exact-time snapshot builder."
+  ],
+  "youtube_data_api_requests": 0
+}

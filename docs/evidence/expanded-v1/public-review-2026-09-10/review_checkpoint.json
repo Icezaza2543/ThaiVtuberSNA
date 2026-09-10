@@ -1,0 +1,41 @@
+{
+  "reviewed_identity_groups": 408,
+  "source_owner_title_consistency": true,
+  "exact_dates_match_observed_stream_start": true,
+  "unresolved_dates_unassigned": true,
+  "public_security_classifier": "PASS",
+  "coordinate_sha256": "47a63e3160c1b1282fe0ceb997f08ef6ae5beec584771c237bb11d50fab83adc",
+  "frozen_network_sha256": "4ba8560db946ff4930323308db54df695840bf4da3ac80bfc0de25508cc8e7ee",
+  "browser": {
+    "local_url": "http://127.0.0.1:5501/?snapshot=data/expanded-v1/public-review-408.json",
+    "threshold": 5,
+    "all_time_visible_nodes": 271,
+    "all_time_visible_edges": 208,
+    "cumulative_2020_visible_nodes": 4,
+    "cumulative_2020_visible_edges": 0,
+    "yearly_2024_visible_nodes": 89,
+    "yearly_2024_visible_edges": 4,
+    "yearly_2025_visible_nodes": 0,
+    "yearly_2025_unknown_history": 271
+  },
+  "stop": {
+    "candidate_index": 408,
+    "channel_label": "Zayn Ch【 HZ 】",
+    "video_id": "kEjHLSbalxk",
+    "source_url": "https://www.youtube.com/watch?v=kEjHLSbalxk",
+    "availability": "LIVE_STREAM_OFFLINE",
+    "actual_stream_start": null,
+    "scope": "source-specific; other remaining candidates not claimed unavailable",
+    "next_unreviewed_index": 409
+  },
+  "remaining": {
+    "main_identity_groups": 600,
+    "strong_score_at_least_90": 532,
+    "lower_score_main_groups": 68,
+    "weak_appendix_untouched": 313,
+    "role_groups_unreviewed": 309
+  },
+  "youtube_data_api_requests": 0,
+  "production_campaign": "not accessed or changed",
+  "publication": "local preview only; frozen release unchanged"
+}
