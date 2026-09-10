@@ -121,10 +121,11 @@ class ExpandedCatalog:
         with self.connection() as con:
             return [json.loads(r[0]) for r in con.execute('SELECT metadata FROM videos WHERE channel=? ORDER BY video', (channel,))]
 
-    def step(self):
+    def step(self, *, eligible=None):
         with file_lock(self.path.with_suffix('.lock')):
             pending = [(cid, s) for cid, s in self.states().items()
-                       if s['catalog_status'] in {'PENDING', 'PARTIAL_ERROR', 'BUDGET_STOP'}]
+                       if s['catalog_status'] in {'PENDING', 'PARTIAL_ERROR', 'BUDGET_STOP'}
+                       and (eligible is None or eligible(cid, s))]
             if not pending: return None
             cid, state = min(pending, key=lambda pair: (pair[1]['turns'], pair[0]))
             try:
