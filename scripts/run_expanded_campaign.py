@@ -58,7 +58,8 @@ class CampaignLedger:
             total = con.execute('SELECT COALESCE(SUM(units),0) FROM debits').fetchone()[0]
             stopped = bool(con.execute('SELECT stopped FROM windows WHERE day=?', (self.window,)).fetchone()[0])
         return {'window_pacific': self.window, 'window_units': sum(stages.values()), 'by_stage': stages,
-                'all_windows_units': total, 'provider_stopped': stopped, 'ceiling': 9000}
+                'all_windows_units': total, 'provider_stopped': stopped, 'ceiling': 9000,
+                'window_closed': self.clock().astimezone(ZoneInfo('America/Los_Angeles')).date().isoformat() != self.window}
 
 
 class MeteredSession:
@@ -138,7 +139,7 @@ def run(root=ROOT):
     status = 'RUNNING'
     while True:
         quota = ledger.summary()
-        if quota['provider_stopped'] or quota['window_units'] >= 9000:
+        if quota['provider_stopped'] or quota['window_closed'] or quota['window_units'] >= 9000:
             status = 'QUOTA_STOP'
             break
         with catalog.connection() as con:

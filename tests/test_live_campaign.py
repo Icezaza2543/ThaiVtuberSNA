@@ -33,6 +33,16 @@ def test_provider_quota_error_is_durable(tmp_path):
     assert CampaignLedger(tmp_path/'q.sqlite').summary()['provider_stopped']
 
 
+def test_running_window_closes_without_reset(tmp_path):
+    current=[datetime(2026,9,10,8,tzinfo=timezone.utc)]
+    ledger=CampaignLedger(tmp_path/'q.sqlite',clock=lambda:current[0])
+    ledger.debit('catalog')
+    current[0]+=timedelta(days=1)
+    assert ledger.summary()['window_closed']
+    with pytest.raises(BudgetExhaustedException): ledger.debit('interactions')
+    assert ledger.summary()['window_units']==1
+
+
 def test_ram_archive_replay_and_restart(tmp_path):
     engine,job,journal,jid,book=setup_interactions(tmp_path,Comments())
     engine.batches=CampaignBatches(store(book),measured_allocated_cells=0)

@@ -72,7 +72,7 @@ the index and stops this worker, so stale state is never used to retry publicati
 
 
 def choose_video(records, completed):
-    """One newest representative per known year, then deepen by stable video ID."""
+    """One stable representative per known year, then deepen by stable video ID."""
     done = {r['video'] for r in completed}
     years = {r['year'] for r in completed}
     available = [r for r in records if r['video_id'] not in done]
@@ -108,10 +108,13 @@ def run(root=ROOT):
     con.execute('CREATE TABLE IF NOT EXISTS jobs (channel TEXT, video TEXT, year TEXT, job TEXT, digest TEXT UNIQUE, status TEXT, turns INTEGER DEFAULT 0, PRIMARY KEY(channel,video))')
     con.commit()
     status = 'RUNNING'
-    baseline = None
+    accepted_at_start, _ = validated_expanded_batches(batches.records)
+    initial_digests = {r[0] for r in con.execute('SELECT digest FROM jobs')}
+    baseline = sum(len(b['events']) for path,b in accepted_at_start.items()
+                   if path.split('/')[1] in initial_digests)
     while True:
         quota = ledger.summary()
-        if quota['provider_stopped'] or quota['window_units'] >= 9000:
+        if quota['provider_stopped'] or quota['window_closed'] or quota['window_units'] >= 9000:
             status = 'QUOTA_STOP'
             break
         # Channels with fewer distinct attempted videos go first, then page turns.
@@ -169,8 +172,6 @@ def run(root=ROOT):
         digests = {r[0] for r in con.execute('SELECT digest FROM jobs')}
         events = [e for path,b in accepted.items() if path.split('/')[1] in digests for e in b['events']]
         totals = Counter(e.get('interaction_kind') for e in events)
-        if baseline is None:
-            baseline = 0
         allocated = sum(w.row_count*w.col_count for w in store.spreadsheet.worksheets())
         elapsed = time.monotonic()-started
         public = {'at':now().isoformat(),'status':status,'videos_processed':con.execute('SELECT COUNT(*) FROM jobs WHERE turns>0').fetchone()[0],
@@ -178,7 +179,7 @@ def run(root=ROOT):
                   'comments':totals['comment'],'replies':totals['reply'],'records_acknowledged':len(events),
                   'distinct_pseudonyms':len({e['viewer_hash'] for e in events}),
                   'workbook_allocated_cells':allocated,'safe_remaining_cells':max(0,8000000-allocated),
-                  'elapsed_seconds':round(elapsed,2),'records_per_minute':round(len(events)*60/max(elapsed,.001),2),
+                  'elapsed_seconds':round(elapsed,2),'records_per_minute':round((len(events)-baseline)*60/max(elapsed,.001),2),
                   'quota':ledger.summary(),'selection_policy':'bulk-fair-channel-year-v1',
                   'resume_command':'python -m scripts.run_campaign_interactions'}
         save_json(root/'interactions_progress.json',public)

@@ -160,3 +160,25 @@ Live read-only startup measurement of the existing authorized workbook succeeded
 Campaign-specific results: YouTube units 0; videos 0; oldest date unavailable; channels reaching <=2020 0; cap/exhaustion/error counts 0; interaction videos/comments/replies/acknowledged records 0. Collection runtime 0; throughput and ETA are not measured. Campaign state is `BLOCKED_QUOTA_CONFIRMATION`, not complete. No scheduled collection was activated. There is no validated combined live campaign resume command yet: the existing injected engines still require quota-window and fair interaction orchestration; do not mistake their offline tests or this initialized queue for a running campaign. Subsequent implementation must preserve this checkpoint and must not reset API accounting or promote frozen outputs.
 
 Validation of this documentation-only checkpoint: git diff --check passed; the existing offline dispatcher passed research_consistency, synthetic_privacy_canary and git_security with 0 findings. Its first sandboxed invocation could not access a temporary canary directory; the permitted rerun passed. No collector implementation or frozen research artifact changed.
+
+
+### Live campaign underway — 2026-09-10T08:44:17.811563+00:00
+
+The user resolved quota introspection manually for the same YouTube project: 10,000 general units/day, 1,000 reserve, **9,000 collection units per Pacific quota day**, confirmed initial usage zero. Search has a separate allowance but is unused. The Cloud Quotas `SERVICE_DISABLED` result is no longer a collection blocker.
+
+Real collection started at 2026-09-10 08:37 UTC. At this checkpoint, catalog has processed **814 / 1,370 channels**, with **103 terminal**, **1267 remaining**, and **35,655 distinct videos saved** in the existing local public catalog database. Status counts: `{"PENDING": 1233, "PLAYLIST_EXHAUSTED": 103, "PARTIAL_ERROR": 34}`. Oldest video publication: **2014-09-24T13:24:22+00:00**; **20 channels** have video evidence at or before 2020. Video publication is not virtual-identity start evidence. Measured catalog rate: **5420.56 videos/minute** across 394.66 seconds. Complete-history ETA is not established.
+
+Interactions as of 2026-09-10T08:44:42.556279+00:00: **27 videos processed**, **203 comments**, **0 replies**, **203 records acknowledged** in the existing authorized workbook after readback. Job states: `{"EXHAUSTED": 21, "RUNNING": 6}`. Workbook allocation **2,968,625 cells**; safe remaining **5,031,375 cells**. Interaction rate **53.01 acknowledged records/minute**, including startup archive loading. These are partial campaign results, not completion.
+
+Durable quota ledger at this checkpoint: **904 general units** in Pacific window `2026-09-10`; stage totals `{"catalog": 876, "interactions": 28}`. Debit occurs before I/O, including failed attempts, and is conservatively retained after ambiguous transport failures. Provider quotaExceeded persists an immediate stop. Restart retains all windows. Catalog and interactions use the same SQLite ledger and separate process locks. Capacity or persistence failure stops private writes while catalog continues. No search requests, historical chat, scraping, second workbook, private local event persistence or release publication were introduced.
+
+Exact resume commands, from the repository root (one instance of each):
+
+```powershell
+python -m scripts.run_expanded_campaign
+python -m scripts.run_campaign_interactions
+```
+
+Public/control checkpoints: `scratch/expanded-v1-campaign/catalog.sqlite3`, `quota.sqlite3`, `interaction_queue.sqlite3`, `interaction_journal.sqlite3`, `progress.json`, and `interactions_progress.json`. Private event rows, parent cursors and dedup identities remain in the existing workbook; the interaction worker uses an exclusive-writer RAM index rebuilt from validated batches on restart, preserving remote target/readback checks. The deterministic interaction policy first spreads across channels, then uncovered years, then additional videos. Three failed catalog attempts are retained in the error queue; they are not falsely counted as exhaustion. A desktop heartbeat `thaivtubersna-bulk-campaign-resume` checks hourly for meaningful progress and authorized resumption without duplicate workers or quota resets; the host must be available.
+
+Validation relevant to the live paths: **33 targeted tests passed**, including shared daily debit, provider stop persistence, quota-window closure, archive restart/replay, fair year selection, targeted job claims and existing expanded backfill/integration regressions. Coordinate SHA-256 remains `47a63e3160c1b1282fe0ceb997f08ef6ae5beec584771c237bb11d50fab83adc`. Initial live runner commits pushed: `0d04bff` (catalog/ledger) and `c92ca21` (workbook-only interaction consumer). Both workers were still running when this checkpoint was recorded.
