@@ -18,6 +18,14 @@ from storage.expanded_sheet_batches import ExpandedSheetBatches, TAB, validated_
 from storage.private_sheet_analytics import ARCHIVE_HEADERS
 from scripts.run_expanded_campaign import ROOT, CampaignLedger, MeteredSession, now, save_json
 
+FIRST_PASS_CAP = 15
+FIRST_PASS_POLICY = 'bulk-fair-channel-year-sample15-v2'
+
+
+def first_pass_active(job):
+    """Keep legacy checkpoints intact for a later deep pass."""
+    return json.loads(job['job']).get('policy_version') == FIRST_PASS_POLICY
+
 
 class CampaignBatches(ExpandedSheetBatches):
     """Exclusive writer RAM index; remote target/readback checks remain mandatory.
@@ -106,7 +114,8 @@ def run(root=ROOT):
         return
     batches = CampaignBatches(store, measured_allocated_cells=allocated)
     transport = InteractionTransport(session=MeteredSession(ledger), api_key=YOUTUBE_API_KEY, ledger=ledger)
-    engine = ExpandedInteractions(transport=transport,batches=batches,hasher=hasher)
+    engine = ExpandedInteractions(transport=transport,batches=batches,hasher=hasher,
+                                  record_cap=FIRST_PASS_CAP)
     journal = JobJournal(root/'interaction_journal.sqlite3',poll_interval_seconds=.01)
     journal.recover_abandoned_jobs()
     con = sqlite3.connect(root/'interaction_queue.sqlite3')
@@ -130,7 +139,9 @@ def run(root=ROOT):
         available_channels.sort(key=lambda c:(*counters.get(c,(0,0)),c))
         selected = None
         for cid in available_channels:
-            active = con.execute("SELECT * FROM jobs WHERE channel=? AND status='RUNNING' ORDER BY turns,video LIMIT 1",(cid,)).fetchone()
+            active = next((row for row in con.execute(
+                "SELECT * FROM jobs WHERE channel=? AND status='RUNNING' ORDER BY turns,video", (cid,))
+                if first_pass_active(row)), None)
             if active:
                 selected = active
                 break
@@ -140,8 +151,9 @@ def run(root=ROOT):
                 prepared_path=root/'expanded-v1'/'downtime-2026-09-10'/'prepared_interactions.sqlite3')
             if video:
                 job = interaction_job(cohort_version=manifest['cohort_version'],channel_id=cid,video_id=video['video_id'],
-                    window_start=None,window_end=None,policy_version='bulk-fair-channel-year-v1',
-                    provenance='expanded-v1/bulk-history-2026-09-10/youtube-api')
+                    window_start=None,window_end=None,policy_version=FIRST_PASS_POLICY,
+                    provenance='expanded-v1/bulk-history-2026-09-10/youtube-api/sample15-v2',
+                    combined_record_cap=FIRST_PASS_CAP)
                 digest = hashlib.sha256(encode(job).encode()).hexdigest()
                 con.execute('INSERT INTO jobs(channel,video,year,job,digest,status) VALUES (?,?,?,?,?,?)',
                             (cid,video['video_id'],(video.get('video_published_at') or 'unknown')[:4],encode(job),digest,'RUNNING'))
@@ -169,7 +181,7 @@ def run(root=ROOT):
             status = 'STORAGE_CAPACITY_STOP' if 'INSUFFICIENT' in str(error) else 'PERSISTENCE_STOP'
             break
         state, _ = batches.load(selected['digest'])
-        terminal = ('CAP_REACHED' if state.get('count',0)>=500 else
+        terminal = ('CAP_REACHED' if state.get('count',0)>=FIRST_PASS_CAP else
                     'EXHAUSTED' if state.get('comment_status')==state.get('reply_status')=='EXHAUSTED' else
                     'PARTIAL_UNAVAILABLE' if state.get('reply_status')=='PARTIAL_UNAVAILABLE' else
                     'UNAVAILABLE' if state.get('comment_status') in {'COMMENTS_DISABLED','VIDEO_UNAVAILABLE','VIDEO_NOT_FOUND'} else 'RUNNING')
@@ -187,7 +199,9 @@ def run(root=ROOT):
                   'distinct_pseudonyms':len({e['viewer_hash'] for e in events}),
                   'workbook_allocated_cells':allocated,'safe_remaining_cells':max(0,8000000-allocated),
                   'elapsed_seconds':round(elapsed,2),'records_per_minute':round((len(events)-baseline)*60/max(elapsed,.001),2),
-                  'quota':ledger.summary(),'selection_policy':'bulk-fair-channel-year-v1',
+                  'quota':ledger.summary(),'selection_policy':FIRST_PASS_POLICY,
+                  'combined_record_cap':FIRST_PASS_CAP,
+                  'coverage_note':'Bounded sample, not complete comments/replies; legacy RUNNING jobs deferred with checkpoints intact',
                   'resume_command':'python -m scripts.run_campaign_interactions'}
         save_json(root/'interactions_progress.json',public)
         print(json.dumps(public),flush=True)

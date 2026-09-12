@@ -130,6 +130,28 @@ def test_combined_cap_stops_mid_page_without_claiming_complete(tmp_path):
     assert state['reply_status']=='PENDING'
 
 
+def test_campaign_sample15_preserves_resume_and_defers_legacy(tmp_path):
+    from scripts.run_campaign_interactions import FIRST_PASS_CAP, FIRST_PASS_POLICY, first_pass_active
+    class ManyComments:
+        calls = 0
+        def get(self, url, params, timeout):
+            self.calls += 1
+            return Response({'items': [
+                {'snippet': {'topLevelComment': comment(i), 'totalReplyCount': 1}}
+                for i in range(30)], 'nextPageToken': 'synthetic-next'})
+    transport = ManyComments()
+    engine, job, journal, jid, _ = setup_interactions(tmp_path, transport, cap=FIRST_PASS_CAP)
+    state = engine.step(job=job, journal=journal, claim=next_claim(journal,jid))
+    assert state['count'] == 15
+    assert state['comment_status'] == 'PARTIAL_CAP'
+    assert state['comment_offset'] == 15 and state['parents']
+    assert engine.step(job=job, journal=journal, claim=next_claim(journal,jid)) == 'CAP_REACHED'
+    assert transport.calls == 1
+    legacy = {'job': encode(dict(policy_version='bulk-fair-channel-year-v1'))}
+    assert not first_pass_active(legacy)
+    assert first_pass_active({'job': encode(dict(policy_version=FIRST_PASS_POLICY))})
+
+
 def test_stale_claim_never_writes(tmp_path):
     engine,job,journal,jid,book=setup_interactions(tmp_path,Comments())
     old=next_claim(journal,jid);journal.recover_abandoned_jobs(timeout_seconds=0)
