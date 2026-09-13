@@ -58,7 +58,8 @@ the index and stops this worker, so stale state is never used to retry publicati
         super().__init__(store, **kwargs)
         self.records = []
         self.extent = 1
-        self.ws = next((w for w in store.spreadsheet.worksheets() if w.title == TAB), None)
+        self.tabs = store._write(store.spreadsheet.worksheets)
+        self.ws = next((w for w in self.tabs if w.title == TAB), None)
         self.valid = True
         if self.ws:
             header = store._write(self.ws.get_values, 'A1:D1')
@@ -129,6 +130,20 @@ the index and stops this worker, so stale state is never used to retry publicati
     def _after_verified_write(self, ws):
         self.ws = ws
 
+    def _allocated_cells(self):
+        return sum(w.row_count*w.col_count for w in self.tabs)
+
+    def _ensure_archive_tab(self, rows):
+        # These tab objects were just refreshed through the rate-limited store.
+        if self.ws is None:
+            self.ws = self.store._write(self.store.spreadsheet.add_worksheet,
+                                        title=TAB, rows=rows, cols=4)
+            self.tabs.append(self.ws)
+        elif self.ws.row_count < rows or self.ws.col_count < 4:
+            self.store._write(self.ws.resize, rows=max(rows,self.ws.row_count),
+                              cols=max(4,self.ws.col_count))
+        return self.ws
+
     def _allocation_rows(self, required_rows, ws):
         # Reserve at most 2,047 extra rows, included in the live capacity check.
         # No data is dropped and populated ranges are still checked before writing.
@@ -149,6 +164,10 @@ the index and stops this worker, so stale state is never used to retry publicati
                 key = tuple(event[k] for k in ('vtuber_channel_id', 'video_id', 'source_type', 'record_id'))
                 if key in self.payloads and self.payloads[key] != encode(event):
                     raise RuntimeError('Conflicting event identity; preserve committed data')
+            # One live capacity/shape snapshot per batch, through the same
+            # backoff/spacing path as all other Sheets requests.
+            self.tabs = self.store._write(self.store.spreadsheet.worksheets)
+            self.ws = next((w for w in self.tabs if w.title == TAB), None)
             result = super().commit(job_id, expected_sequence, events, state)
             if not result.get('reconciled'):
                 self.records.extend(records)
@@ -187,7 +206,7 @@ def run(root=ROOT):
     hasher = PrivacyHasher()
     ledger = CampaignLedger(root/'quota.sqlite3')
     store = PrivateSheetStore()
-    allocated = sum(w.row_count*w.col_count for w in store.spreadsheet.worksheets())
+    allocated = sum(w.row_count*w.col_count for w in store._write(store.spreadsheet.worksheets))
     started = time.monotonic()
     public = {'status':'LOADING_AUTHORIZED_ARCHIVE','at':now().isoformat(),
               'workbook_allocated_cells':allocated,'safe_remaining_cells':max(0,8000000-allocated)}
@@ -304,7 +323,7 @@ def run(root=ROOT):
         pages_acknowledged += int(isinstance(result, dict))
         totals = batches.totals
         report_started = time.monotonic()
-        allocated = sum(w.row_count*w.col_count for w in store.spreadsheet.worksheets())
+        allocated = batches._allocated_cells()
         elapsed = time.monotonic()-started
         videos_processed = con.execute('SELECT COUNT(*) FROM jobs WHERE turns>0').fetchone()[0]
         deferred = con.execute("SELECT COUNT(*) FROM jobs WHERE status='RUNNING' AND json_extract(job,'$.policy_version')!=?", (FIRST_PASS_POLICY,)).fetchone()[0]
@@ -345,5 +364,8 @@ if __name__ == '__main__':
                 path = ROOT/'interactions_progress.json'
                 public = json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
                 public.update(status='WORKER_ERROR_STOP', at=now().isoformat(), error_type=type(error).__name__)
+                code = getattr(error, 'code', None)
+                if type(code) is int:
+                    public['http_status'] = code
                 emit_progress(ROOT, public)
                 raise SystemExit(1) from None

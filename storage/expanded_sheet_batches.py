@@ -165,13 +165,13 @@ class ExpandedSheetBatches:
         end = self._occupied_extent(ws)
         required_rows = end + len(rows)
         allocation_rows = self._allocation_rows(required_rows, ws)
-        existing_alloc = sum(w.row_count * w.col_count for w in self.store.spreadsheet.worksheets())
+        existing_alloc = self._allocated_cells()
         growth = max(0, allocation_rows * max(4, ws.col_count) - ws.row_count * ws.col_count) if ws else allocation_rows * 4
         capacity = capacity_estimate(archive_rows=0, control_cells=growth + self.reserved_growth_cells,
                                      allocated_cells=max(existing_alloc, self.measured_allocated_cells))
         if capacity['state'] != 'PASS':
             raise RuntimeError('INSUFFICIENT workbook capacity; no truncation or second workbook')
-        ws = self.store.ensure_tab(TAB, 4, allocation_rows)
+        ws = self._ensure_archive_tab(allocation_rows)
         if end == 1 and self.store._write(ws.get_values, 'A1:D1') != [ARCHIVE_HEADERS]:
             self.store._write(ws.update, range_name='A1:D1', values=[ARCHIVE_HEADERS], value_input_option='RAW')
         target = f'A{end+1}:D{required_rows}'
@@ -185,6 +185,12 @@ class ExpandedSheetBatches:
 
     def _after_verified_write(self, ws):
         pass
+
+    def _allocated_cells(self):
+        return sum(w.row_count * w.col_count for w in self.store.spreadsheet.worksheets())
+
+    def _ensure_archive_tab(self, rows):
+        return self.store.ensure_tab(TAB, 4, rows)
 
     def _allocation_rows(self, required_rows, ws):
         return required_rows

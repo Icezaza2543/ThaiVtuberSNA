@@ -120,6 +120,27 @@ def test_indexed_writer_crash_after_remote_ack_reconciles_once(tmp_path,monkeypa
         CampaignBatches(store(book),measured_allocated_cells=0)
 
 
+def test_one_rate_limited_metadata_read_per_commit(tmp_path,monkeypatch):
+    engine,job,journal,jid,book=setup_interactions(tmp_path,Comments())
+    s=store(book); original=s._write; calls=[]; inside=[False]
+    metadata=book.worksheets
+    def checked_metadata():
+        assert inside[0], 'Sheets metadata must use backoff/rate limiting'
+        calls.append('metadata')
+        return metadata()
+    def wrapped(function,*args,**kwargs):
+        inside[0]=True
+        try:return original(function,*args,**kwargs)
+        finally:inside[0]=False
+    monkeypatch.setattr(book,'worksheets',checked_metadata)
+    monkeypatch.setattr(s,'_write',wrapped)
+    batches=CampaignBatches(s,measured_allocated_cells=0);engine.batches=batches
+    calls.clear()
+    engine.step(job=job,journal=journal,claim=next_claim(journal,jid))
+    assert calls==['metadata']
+    assert batches._allocated_cells()==sum(w.row_count*w.col_count for w in book.tabs)
+
+
 def test_shared_durable_quota_and_provider_stop(tmp_path):
     clock=lambda:datetime(2026,9,10,8,tzinfo=timezone.utc)
     a=CampaignLedger(tmp_path/'q.sqlite',clock=clock)
