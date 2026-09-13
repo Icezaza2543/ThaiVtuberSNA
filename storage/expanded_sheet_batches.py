@@ -129,6 +129,11 @@ class ExpandedSheetBatches:
             raise RuntimeError('Job identity buffer exceeds approved bound; do not truncate')
         return state, seen
 
+    def _job_records(self, job_id):
+        _, records = self._scan()
+        prefix = 'expanded-v1/' + job_id + '/'
+        return (r for r in records if r.get('source_path', '').startswith(prefix))
+
     def commit(self, job_id, expected_sequence, events, state):
         if self.measured_allocated_cells is None:
             raise RuntimeError('NOT_MEASURED: capacity approval required before writing')
@@ -143,7 +148,7 @@ class ExpandedSheetBatches:
         rows.append([batch_id, 'batch_manifest', str(len(rows)), encode({'sha256': digest, 'rows': len(rows)})])
         current, _ = self.load(job_id)
         if current.get('sequence', 0) == state['sequence']:
-            _, records = self._scan()
+            records = self._job_records(job_id)
             committed = [[r.get(k, '') for k in ARCHIVE_HEADERS] for r in records
                          if r.get('source_path') == batch_id]
             if current != state or committed != rows:
@@ -159,13 +164,14 @@ class ExpandedSheetBatches:
         # Scan physical ranges in bounded chunks through the existing store transport.
         end = self._occupied_extent(ws)
         required_rows = end + len(rows)
+        allocation_rows = self._allocation_rows(required_rows, ws)
         existing_alloc = sum(w.row_count * w.col_count for w in self.store.spreadsheet.worksheets())
-        growth = max(0, required_rows * max(4, ws.col_count) - ws.row_count * ws.col_count) if ws else required_rows * 4
+        growth = max(0, allocation_rows * max(4, ws.col_count) - ws.row_count * ws.col_count) if ws else allocation_rows * 4
         capacity = capacity_estimate(archive_rows=0, control_cells=growth + self.reserved_growth_cells,
                                      allocated_cells=max(existing_alloc, self.measured_allocated_cells))
         if capacity['state'] != 'PASS':
             raise RuntimeError('INSUFFICIENT workbook capacity; no truncation or second workbook')
-        ws = self.store.ensure_tab(TAB, 4, required_rows)
+        ws = self.store.ensure_tab(TAB, 4, allocation_rows)
         if end == 1 and self.store._write(ws.get_values, 'A1:D1') != [ARCHIVE_HEADERS]:
             self.store._write(ws.update, range_name='A1:D1', values=[ARCHIVE_HEADERS], value_input_option='RAW')
         target = f'A{end+1}:D{required_rows}'
@@ -174,7 +180,14 @@ class ExpandedSheetBatches:
         self.store._write(ws.update, range_name=target, values=rows, value_input_option='RAW')
         if self.store._write(ws.get_values, target) != rows:
             raise RuntimeError('Ambiguous acknowledgement; reconcile batch before retry')
+        self._after_verified_write(ws)
         return {'verified': True, 'content_sha256': digest, 'rows': len(events)}
+
+    def _after_verified_write(self, ws):
+        pass
+
+    def _allocation_rows(self, required_rows, ws):
+        return required_rows
 
     def _occupied_extent(self, ws):
         end = 1

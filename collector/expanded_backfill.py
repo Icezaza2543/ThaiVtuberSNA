@@ -253,6 +253,9 @@ class ExpandedInteractions:
             raise ValueError('Expanded namespace required')
         if job.get('combined_record_cap') != self.cap:
             raise ValueError('Claim policy differs from combined record cap')
+        one_page = job.get('collection_mode') == 'one_comment_page'
+        if job.get('collection_mode') not in (None, 'one_comment_page'):
+            raise ValueError('Unsupported collection mode')
         from core.hasher import compute_key_fingerprint
         journal.bind_identity(DATASET_VERSION, compute_key_fingerprint(self.hasher.secret_salt))
         owner = journal.get_job(claim['job_id'])
@@ -263,6 +266,10 @@ class ExpandedInteractions:
             state = dict(comment_token=None, comment_offset=0, comment_status='PENDING',
                          reply_status='PENDING', live_chat_status='NOT_REQUESTED', parents=[],
                          reply_token=None, reply_offset=0, count=0, sequence=0)
+        if one_page and state.get('first_pass_status') == 'PAGE_SAMPLE_COMPLETE':
+            journal.commit_job(claim['job_id'], state['count'], claim_token=claim['claim_token'],
+                               outcome='PARTIAL_CAPTURE')
+            return 'PAGE_SAMPLE_COMPLETE'
         def stop(reason, outcome='EXTRACTION_FAILURE'):
             failed = deepcopy(state)
             failed[source + '_status'] = reason
@@ -277,7 +284,7 @@ class ExpandedInteractions:
         if state['count'] >= self.cap:
             journal.commit_job(claim['job_id'], state['count'], claim_token=claim['claim_token'], outcome='PARTIAL_CAPTURE')
             return 'EXHAUSTED' if state['comment_status'] == state['reply_status'] == 'EXHAUSTED' else 'CAP_REACHED'
-        source = 'reply' if state['parents'] else 'comment'
+        source = 'reply' if state['parents'] and not one_page else 'comment'
         if source == 'comment' and state['comment_status'] not in {'PENDING', 'PARTIAL_ERROR', 'BUDGET_STOP', 'EXTRACTION_FAILURE', 'IDENTITY_UNAVAILABLE'}:
             journal.commit_job(claim['job_id'], state['count'], claim_token=claim['claim_token'],
                                outcome='PARTIAL_CAPTURE')
@@ -292,7 +299,7 @@ class ExpandedInteractions:
             return stop('BUDGET_STOP', 'RATE_LIMITED')
         except Exception:
             return stop('EXTRACTION_FAILURE')
-        if error:
+        if error and terminal not in {'COMMENTS_DISABLED', 'VIDEO_UNAVAILABLE', 'VIDEO_NOT_FOUND', 'REPLIES_UNAVAILABLE'}:
             return stop('EXTRACTION_FAILURE')
         rows = []
         if terminal == 'TOKEN_EXPIRED':
@@ -336,6 +343,11 @@ class ExpandedInteractions:
                 working[source + '_status'] = 'PARTIAL_CAP'
             elif not working['parents'] and working['comment_status'] == 'EXHAUSTED':
                 working['reply_status'] = 'PARTIAL_UNAVAILABLE' if working.get('unavailable_replies') else 'EXHAUSTED'
+        if one_page and not terminal:
+            # Acknowledged first-page sample, including an empty accessible page.
+            # Keep pagination offsets and reply parents for an explicitly deeper pass.
+            working['first_pass_status'] = 'PAGE_SAMPLE_COMPLETE'
+            working['reply_status'] = 'DEFERRED'
         working['sequence'] += 1
         publish = lambda: self.batches.commit(expected, state['sequence'], rows, working)
         accepted = journal.commit_job(claim['job_id'], working['count'], claim_token=claim['claim_token'],
