@@ -129,7 +129,7 @@ try {
       });
       assert.equal(report.performance.idleDraws, 0, 'Sleeping graph still draws frames');
     }
-    await page.goto(base + '/research/');
+    await page.goto(base + '/?view=research');
     await page.waitForFunction(() => document.querySelector('#kpiStrip').children.length > 0);
     await overflow(page);
     await screenshot(page, `research-${width}`);
