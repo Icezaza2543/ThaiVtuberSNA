@@ -1,0 +1,125 @@
+{
+  "report": [
+    {
+      "width": 1440,
+      "tab": "overview",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "tab": "ecosystem",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "tab": "lineage",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "tab": "cohorts",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "tab": "centrality",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "tab": "quality",
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "tab": "overview",
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "tab": "ecosystem",
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "tab": "lineage",
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "tab": "cohorts",
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "tab": "centrality",
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "tab": "quality",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "tab": "overview",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "tab": "ecosystem",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "tab": "lineage",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "tab": "cohorts",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "tab": "centrality",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "tab": "quality",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "tab": "overview",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "tab": "ecosystem",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "tab": "lineage",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "tab": "cohorts",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "tab": "centrality",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "tab": "quality",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

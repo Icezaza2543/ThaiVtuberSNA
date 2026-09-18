@@ -1,0 +1,39 @@
+{
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 900,
+      "fields": 193,
+      "charts": 7,
+      "sections": 9,
+      "status": "PASS"
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "fields": 193,
+      "charts": 7,
+      "sections": 9,
+      "status": "PASS"
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "fields": 193,
+      "charts": 7,
+      "sections": 9,
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "fields": 193,
+      "charts": 7,
+      "sections": 9,
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "dataRequests": [],
+  "noJavaScript": "Navigation and all chapters remain available"
+}

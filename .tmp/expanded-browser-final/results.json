@@ -1,0 +1,40 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "checks": [
+      "typed edges",
+      "dated membership",
+      "isolated nodes",
+      "unknown attributes",
+      "inspector refresh",
+      "search",
+      "missing mode",
+      "future period",
+      "dynamic years",
+      "synthetic opt-in"
+    ],
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "checks": [
+      "typed edges",
+      "dated membership",
+      "isolated nodes",
+      "unknown attributes",
+      "inspector refresh",
+      "search",
+      "missing mode",
+      "future period",
+      "dynamic years",
+      "synthetic opt-in"
+    ],
+    "errors": []
+  }
+]

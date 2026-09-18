@@ -1,0 +1,11 @@
+{
+  "starting_sha": "f6158fc9827c64aa9d8159f7641970eda72dfe51",
+  "protected_paths": 179,
+  "mismatches": [],
+  "coordinates": "sha256_47a63e3160c1b1282fe0ceb997f08ef6ae5beec584771c237bb11d50fab83adc",
+  "embedded_hashes": {
+    "EMBEDDED_DATA": "fd6aa189e712cf61721e2d768e0cba0fd0d3dbfdf87d734155d6ab6186e21842",
+    "EMBEDDED_TEMPORAL_SLICES": "4bc76998281038cb8fe3dab5372f0fc95684a4bfd253ef2fb49fb9f0344ad551",
+    "EMBEDDED_TEMPORAL_COMMUNITIES": "81010baab539fee0085b68cf748cc8d3e829cf048df208f414ee1ccfcadf0055"
+  }
+}
