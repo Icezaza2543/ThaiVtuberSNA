@@ -15,7 +15,10 @@ __pycache__/
 .venv/
 pytest-cache-files-*/
 
-# Temporary files & yt-dlp dumps
+# Temporary files & generated QA output
+.tmp/
+
+# yt-dlp / transient files
 temp_*
 *.part
 *.part*
