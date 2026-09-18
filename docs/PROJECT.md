@@ -1,7 +1,7 @@
 # ThaiVtuberSNA — Project Guide
 
 > เอกสารฉบับนี้คือ source of truth หลักของโปรเจกต์  
-> เอกสารใน `docs/legal/` และ `docs/evidence/` เป็นเอกสารประกอบด้านนโยบายและหลักฐาน ไม่ใช่คู่มือโครงการแยกชุด
+> `docs/legal/` และ `docs/evidence/` เป็นเอกสารประกอบด้านนโยบาย/หลักฐาน ส่วน `docs/research_v2/` และเอกสาร historical/refactor ที่ยังคงอยู่ถือเป็น frozen provenance ไม่ใช่ active project documentation
 
 ## 1. เป้าหมายของโครงการ
 
@@ -231,6 +231,7 @@ python -m http.server 5500 --bind 127.0.0.1 --directory web
 เอกสารที่แยกออกจาก Project Guide เพราะเป็นคนละประเภท:
 
 - `docs/evidence/` — machine-readable QA / audit evidence
+- `docs/research_v2/` — frozen historical research/provenance; ไม่ใช่ canonical documentation
 - `docs/legal/TERMS.md`
 - `docs/legal/PRIVACY.md`
 - `docs/legal/RIGHTS_REQUESTS.md`
