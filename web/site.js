@@ -2,9 +2,8 @@
 (async () => {
   'use strict';
   const views = {
-    network: { title: 'เครือข่าย | Thai VTuber SNA', css: 'styles.css', scripts: ['temporal-state.js', 'app.js', 'observatory-ui.js'] },
-    research: { title: 'ผลวิเคราะห์ | Thai VTuber SNA', css: 'research/research_dashboard.css', scripts: ['research/research_dashboard.js'] },
-    report: { title: 'รายงานต้นแบบ | Thai VTuber SNA', css: 'research/research_v2.css', scripts: ['research/research_v2.js'] },
+    network: { title: 'เครือข่าย | Thai VTuber SNA', css: 'network.css', scripts: ['network-state.js', 'app.js', 'network-ui.js'] },
+    research: { title: 'Research Dashboard | Thai VTuber SNA', css: 'research.css', scripts: ['research.js'] },
   };
   const requested = new URLSearchParams(location.search).get('view');
   const name = Object.hasOwn(views, requested) ? requested : 'network';

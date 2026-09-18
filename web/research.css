@@ -3,3 +3,73 @@
 @media(max-width:900px){.dash-header{padding:24px}.panel-grid-2{grid-template-columns:1fr;gap:0}.reading-intro{align-items:start}.header-title{font-size:18px}.tab-nav{gap:22px}.kpi-card{padding:0 16px}.dash-main{padding-top:32px}}
 @media(max-width:600px){.dash-header{align-items:start;padding:20px}.header-left{gap:12px}.logo-mark{display:none}.header-title{font-size:17px}.header-sub{font-size:11px}.header-right{font-size:11px;max-width:130px}.reading-intro{flex-direction:column;gap:24px}.year-control{width:100%}.dash-main{padding:28px 20px}.kpi-strip{grid-template-columns:1fr;gap:20px;margin:28px 0}.kpi-card,.kpi-card:first-child{padding:0 0 20px;border:0;border-bottom:1px solid var(--border-subtle)}.kpi-value{font-size:42px}.takeaway{padding:22px}.chart-hint{min-height:0}.dash-footer{flex-direction:column;padding:20px}.quality-explainer{padding:20px}h3{font-size:20px}.reading-links{gap:4px 20px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+
+/* Research framing: keep scope visible before interpretation. */
+.research-scope {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0 20px;
+}
+.scope-card {
+  min-width: 0;
+  padding: 16px 18px;
+  border: 1px solid rgba(214,216,227,.12);
+  border-radius: 14px;
+  background: rgba(16,20,33,.62);
+}
+.scope-card span,
+.scope-card small {
+  display: block;
+  color: #9298aa;
+}
+.scope-card span {
+  margin-bottom: 5px;
+  font-size: 12px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.scope-card strong {
+  display: block;
+  color: #f7f7fb;
+  font-size: 20px;
+  line-height: 1.25;
+}
+.scope-card small {
+  margin-top: 6px;
+  line-height: 1.45;
+}
+.research-questions {
+  margin: 18px 0 26px;
+}
+.research-questions h3 {
+  margin: 0 0 12px;
+}
+.question-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.question-grid article {
+  padding: 18px;
+  border-top: 2px solid rgba(98,231,255,.55);
+  background: rgba(14,17,27,.52);
+}
+.question-grid strong {
+  display: block;
+  margin-bottom: 7px;
+  color: #f7f7fb;
+}
+.question-grid p {
+  margin: 0;
+  color: #aeb4c5;
+  line-height: 1.6;
+}
+@media (max-width: 900px) {
+  .research-scope { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .question-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .research-scope { grid-template-columns: 1fr; }
+}

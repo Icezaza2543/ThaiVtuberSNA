@@ -1,5 +1,6 @@
 (function () {
   'use strict';
+  // Canonical research dashboard for the unified single-page site.
   let data;
   const palette = ['#62e7ff', '#a78bfa', '#ff7ac8', '#6ef0c2', '#ffd16a', '#e6e8f2'];
   const el = id => document.getElementById(id);
@@ -104,6 +105,9 @@
   async function init(){try{const response=await fetch('research/dashboard_data.json');if(!response.ok)throw new Error('load');data=await response.json();
     el('genTimestamp').textContent='ข้อมูล ณ '+date(data.meta.generated_at);el('footerGen').textContent='จัดทำเมื่อ '+date(data.meta.generated_at);
     el('summaryYear').innerHTML=data.meta.years.map(y=>'<option value="'+y+'">'+year(y)+'</option>').join('');el('summaryYear').value=data.meta.years.at(-1);
+    const scopeYears=el('scopeYears');if(scopeYears)scopeYears.textContent=data.meta.years[0]+'–'+data.meta.years.at(-1);
+    const latestQuality=data.quality?.yearly_quality?.at(-1);const scopeCoverage=el('scopeCoverage');
+    if(scopeCoverage)scopeCoverage.textContent=latestQuality&&Number.isFinite(latestQuality.video_sampling_ratio)?pct(latestQuality.video_sampling_ratio):'ดู Coverage';
     const buttons=[...document.querySelectorAll('.tab-btn')];buttons.forEach((button,index)=>{button.id='tab-'+button.dataset.tab;button.setAttribute('role','tab');button.setAttribute('aria-controls','panel-'+button.dataset.tab);const panel=el('panel-'+button.dataset.tab);panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',button.id);button.addEventListener('click',()=>activate(button.dataset.tab));button.addEventListener('keydown',event=>{const next=event.key==='ArrowRight'?(index+1)%buttons.length:event.key==='ArrowLeft'?(index+buttons.length-1)%buttons.length:event.key==='Home'?0:event.key==='End'?buttons.length-1:null;if(next!==null){event.preventDefault();buttons[next].focus();buttons[next].click();}});});
     document.querySelectorAll('[data-open-tab]').forEach(button=>button.addEventListener('click',()=>{activate(button.dataset.openTab);el('tab-'+button.dataset.openTab).focus();}));
     el('summaryYear').addEventListener('change',overview);el('bridgeSearch').addEventListener('input',centrality);
