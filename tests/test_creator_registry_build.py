@@ -145,6 +145,37 @@ def test_trusted_baseline_discovery_adds_zero_accounts():
 
 
 
+
+def test_discovery_label_does_not_become_handle_alias_or_canonical_display():
+    r = review()
+    r["rows"][0].update(
+        display_name="Portfolio child label",
+        original_name="Portfolio child label",
+        url="https://www.tiktok.com/@realcreator",
+        platform="tiktok",
+    )
+    res = resolutions()
+    row = res["resolutions"][0]
+    row.update(
+        platform="tiktok",
+        url="https://www.tiktok.com/@realcreator",
+        canonical_name="Real Creator",
+        persona_id="persona_real",
+        outcome="new_persona",
+        method="explicit_official_identity",
+    )
+    row["evidence"][0].update(
+        source_url="https://www.tiktok.com/@realcreator",
+        summary="Official profile identifies Real Creator and owns @realcreator.",
+    )
+    payload = build_registry(baseline(), r, res)
+    account = next(row for row in payload["accounts"] if row["platform"] == "tiktok")
+    creator = next(row for row in payload["creators"] if row["persona_id"] == "persona_real")
+    assert account["handle"] == "realcreator"
+    assert account["display_name"] == "Real Creator"
+    assert "Portfolio child label" not in creator["aliases"]
+    assert account["metadata"]["discovery_original_name"] == "Portfolio child label"
+
 def test_ambiguous_baseline_handle_preserves_both_channel_ids_without_handle_merge():
     rows = baseline()
     rows[1]["handle"] = rows[0]["handle"]
