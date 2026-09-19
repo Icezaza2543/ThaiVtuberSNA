@@ -13,6 +13,8 @@ on:
       - docs/research_v2/LONG_RUNNING_RESEARCH_REPORT.md
       - docs/research_v2/OVERNIGHT_REPORT.md
       - config/settings.py
+      - scripts/package_creator_review_evidence.py
+      - tests/test_creator_registry_baseline.py
       - .github/workflows/task12-retire-legacy-registry.yml
 
 permissions:
