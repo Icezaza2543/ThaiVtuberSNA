@@ -18,11 +18,15 @@ Strategies:
 6. FANDOM_CATEGORY_EXPANSION
 """
 
-import json
 import logging
 from datetime import datetime, timezone
 from pathlib import Path
+import sys
 import pandas as pd
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from config.settings import CREATOR_REGISTRY_PATH
+from core.creator_catalog import CreatorCatalog
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("BuildDiscoveryCandidatesNew")
@@ -32,7 +36,6 @@ DATA_DIR = BASE_DIR / "data"
 INDUSTRY_DIR = DATA_DIR / "industry"
 INDUSTRY_DIR.mkdir(parents=True, exist_ok=True)
 
-REGISTRY_PATH = DATA_DIR / "thai_vtuber_registry.json"
 MANIFEST_PATH = DATA_DIR / "temporal" / "catalog" / "target_manifest.csv"
 FANDOM_AUDIT_PATH = INDUSTRY_DIR / "fandom_thai_vtubers_audit.csv"
 
@@ -43,10 +46,9 @@ NOW_ISO = datetime.now(timezone.utc).isoformat()
 
 
 def build_discovery_candidates_new():
-    with open(REGISTRY_PATH, "r", encoding="utf-8") as f:
-        reg_data = json.load(f)
-    reg_cids = {r["channel_id"]: r for r in reg_data}
-    logger.info(f"Loaded {len(reg_cids)} baseline channels from Thai VTuber Registry.")
+    reg_rows = list(CreatorCatalog.from_path(CREATOR_REGISTRY_PATH).youtube_rows())
+    reg_cids = {row["channel_id"]: row for row in reg_rows}
+    logger.info(f"Loaded {len(reg_cids)} canonical YouTube channels from CreatorCatalog.")
 
     manifest_df = pd.read_csv(MANIFEST_PATH)
     frozen_cids = set(manifest_df["channel_id"])
@@ -67,7 +69,7 @@ def build_discovery_candidates_new():
             "already_known": True,
             "duplicate_of": None,
             "first_discovered_at": r.get("checked_date") or NOW_ISO,
-            "notes": "Baseline registry channel (1,370 universe). Not counted as newly discovered."
+            "notes": "Known canonical creator channel. Not counted as newly discovered."
         })
         seen_candidates.add(cid)
 
