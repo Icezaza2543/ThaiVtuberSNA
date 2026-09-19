@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-19
 
-**Status:** Design approved in chat; written specification awaiting review
+**Status:** Approved by the user on 2026-09-19
 
 **Scope:** Creator identity, account eligibility, registry storage, and registry consumers
 
