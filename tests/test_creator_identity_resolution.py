@@ -463,3 +463,68 @@ def test_platform_validation_rejects_empty_selection(tmp_path, capsys):
     review = {'rows': [dict(REVIEW['rows'][0], discovery_id=f'new_{i:03}', url=f'https://x.com/alpha{i}') for i in range(393)]}
     args = cli_files(tmp_path, review, {'rows': [researched(r) for r in review['rows']]})
     assert main(args + ['--platform', 'typo', '--validate-only']) == 1
+
+
+def linked_chain():
+    xrow = dict(REVIEW['rows'][0])
+    twitch = dict(xrow, discovery_id='new_twitch', platform='twitch', url='https://www.twitch.tv/alpha', platform_id='12345')
+    youtube = dict(xrow, discovery_id='new_youtube', platform='youtube', url=YT, channel_id=CHANNEL)
+    entries = [researched(xrow), researched(twitch)]
+    for entry, target in zip(entries, [twitch, youtube]):
+        entry['no_existing_persona_match'] = False
+        entry['official_account_urls'].append(target['url'])
+        entry['assertions'] = [{'method': 'official_crosslink', 'target_discovery_id': target['discovery_id'], 'source_urls': entry['evidence_urls']}]
+    return {'rows': [xrow, twitch, youtube]}, {'rows': entries}
+
+
+@pytest.mark.parametrize('field,value', [('url', 'https://www.twitch.tv/alpha'), ('canonical_url', 'https://www.twitch.tv/alpha'), ('platform_id', '12345')])
+def test_merge_cannot_substitute_peer_account_identity(tmp_path, capsys, field, value):
+    review, research = linked_chain()
+    args = cli_files(tmp_path, review, research)
+    out = tmp_path / 'ledger.json'
+    assert main(args + ['--output', str(out)]) == 0
+    prior = json.loads(out.read_text())
+    row = next(r for r in prior['resolutions'] if r['discovery_id'] == 'new_x')
+    row[field] = value
+    out.write_text(json.dumps(prior))
+    unchanged = out.read_bytes()
+    assert main(args + ['--merge-existing', str(out), '--output', str(out)]) == 1
+    assert out.read_bytes() == unchanged
+
+
+@pytest.mark.parametrize('path', [
+    ['new_x', 'new_twitch', 'new_x'],
+    ['new_x', 'new_youtube'],
+    ['new_x', 'new_youtube', 'new_twitch'],
+    ['new_x', 'new_twitch'],
+])
+def test_merge_requires_simple_verified_path_ending_at_identity_root(tmp_path, capsys, path):
+    review, research = linked_chain()
+    args = cli_files(tmp_path, review, research)
+    out = tmp_path / 'ledger.json'
+    assert main(args + ['--output', str(out)]) == 0
+    prior = json.loads(out.read_text())
+    row = next(r for r in prior['resolutions'] if r['discovery_id'] == 'new_x')
+    assert row['identity_path'] == ['new_x', 'new_twitch', 'new_youtube']
+    row['identity_path'] = path
+    out.write_text(json.dumps(prior))
+    assert main(args + ['--merge-existing', str(out), '--output', str(out)]) == 1
+
+
+def test_tied_verified_claims_are_byte_stable_when_trusted_arrays_reverse(tmp_path, capsys):
+    registry = trusted()
+    registry['tables']['evidence'].append(dict(registry['tables']['evidence'][0], id='ev_other', url='https://alpha.example/accounts'))
+    registry['tables']['account_links'].append(dict(registry['tables']['account_links'][1], evidence_id='ev_other'))
+    first = resolve_accounts(BASELINE, REVIEW, registry, {}, {})
+    reversed_registry = {'tables': {key: list(reversed(rows)) for key, rows in registry['tables'].items()}}
+    second = resolve_accounts(BASELINE, REVIEW, reversed_registry, {}, {})
+    assert json.dumps(first, sort_keys=True) == json.dumps(second, sort_keys=True)
+    args = cli_files(tmp_path, research={'rows': []})
+    registry_path = tmp_path / 'trusted-registry.json'
+    registry_path.write_text(json.dumps(registry))
+    out = tmp_path / 'ledger.json'
+    assert main(args + ['--output', str(out)]) == 0
+    expected = out.read_bytes()
+    registry_path.write_text(json.dumps(reversed_registry))
+    assert main(args + ['--merge-existing', str(out), '--output', str(out)]) == 0
+    assert out.read_bytes() == expected

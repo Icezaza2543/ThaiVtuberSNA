@@ -243,11 +243,22 @@ def _attachment_path(start, roots, edges):
         node, path, proofs = queue.popleft()
         if node in roots:
             return path, proofs
-        for target, proof in sorted(edges[node], key=lambda item: (METHOD_PRIORITY.index(item[1]['method']), item[0])):
+        for target, proof in sorted(edges[node], key=lambda item: (METHOD_PRIORITY.index(item[1]['method']), item[0], json.dumps(item[1], sort_keys=True, ensure_ascii=False))):
             if target not in visited:
                 visited.add(target)
                 queue.append((target, path + [target], proofs + [proof]))
     raise ValueError('missing identity attachment path')
+
+
+def _establishing_claim(claims):
+    if not claims:
+        return None
+    method = min((claim['method'] for claim in claims), key=METHOD_PRIORITY.index)
+    # Every equally establishing source is retained. Registry array order never
+    # selects one claim's proof while discarding another equally valid proof.
+    evidence = {json.dumps(e, sort_keys=True, ensure_ascii=False): e
+                for claim in claims if claim['method'] == method for e in claim['evidence']}
+    return {'method': method, 'evidence': [evidence[key] for key in sorted(evidence)]}
 
 
 def _summary(ledger, selected):
@@ -400,7 +411,7 @@ def resolve_accounts(baseline, review_bundle, trusted_registry, legacy_decisions
             # attachment. A peer's exact-ID method is never inherited.
             path, path_edges = _attachment_path(did, roots, edges)
             root_claims = claims[path[-1]]
-            root_claim = min(root_claims, key=lambda c: METHOD_PRIORITY.index(c['method'])) if root_claims else None
+            root_claim = _establishing_claim(root_claims)
             establishing = path_edges[0] if path_edges else root_claim
             method = establishing['method'] if establishing else 'explicit_official_identity'
             method_evidence = establishing['evidence'] if establishing else material[did]['evidence']
@@ -436,7 +447,36 @@ def resolve_accounts(baseline, review_bundle, trusted_registry, legacy_decisions
     return ledger
 
 
-def _verify_previous(previous, current, research):
+def _valid_prior_path(old, current, entries, peer_ids):
+    path = old.get('identity_path')
+    if (not isinstance(path, list) or not path or any(not isinstance(node, str) for node in path)
+            or path[0] != old['discovery_id'] or len(path) != len(set(path)) or not set(path) <= peer_ids):
+        return False
+    verified_edges = defaultdict(list)
+    for source in peer_ids:
+        for assertion in entries.get(source, {}).get('assertions', []):
+            target = assertion.get('target_discovery_id')
+            if target in peer_ids:
+                verified_edges[frozenset((source, target))].append(assertion)
+    if any(frozenset(pair) not in verified_edges for pair in zip(path, path[1:])):
+        return False
+    if len(path) > 1:
+        first_edge = verified_edges[frozenset(path[:2])]
+        if not any(assertion['method'] == old['method'] and
+                   set(_urls(old.get('method_evidence_urls', []))) <= set(_urls(assertion['source_urls']))
+                   for assertion in first_edge):
+            return False
+    endpoint = path[-1]
+    if old['outcome'] == 'new_persona':
+        # A historical provisional anchor can cease to be the chosen anchor
+        # after a later verified crosslink, but must still prove the old ID.
+        return endpoint in entries and old['persona_id'] == new_persona_id(endpoint, entries[endpoint]['canonical_name'])
+    return (current[endpoint]['identity_path'] == [endpoint]
+            and current[endpoint]['outcome'] == 'existing_persona'
+            and current[endpoint]['persona_id'] == old['persona_id'])
+
+
+def _verify_previous(previous, current, research, review):
     """Authenticate old facts against current evidence, then regenerate output.
 
     A formerly separate new persona may now be a member of a larger component.
@@ -444,6 +484,7 @@ def _verify_previous(previous, current, research):
     arbitrary persona IDs and unsupported source material never do.
     """
     entries = {r['discovery_id']: r for r in _records(research)}
+    discoveries = {r['discovery_id']: r for r in _records(review)}
     prior_ids = set()
     components = defaultdict(list)
     for row in current.values():
@@ -459,11 +500,19 @@ def _verify_previous(previous, current, research):
         prior_evidence = old.get('evidence', [])
         valid = bool(prior_evidence) and all(json.dumps(e, sort_keys=True, ensure_ascii=False) in evidence for e in prior_evidence)
         valid &= old.get('conflict') is False and old.get('platform') == now['platform']
-        valid &= old.get('platform_id') in {None, now['platform_id']}
+        original = discoveries[did]
+        original_id = (_platform_id(original) or (None, None))[1]
+        own_ids = {original_id, now['platform_id']}
+        valid &= old.get('platform_id') in own_ids
+        own_urls = {_account_url(original['url']), _account_url(now['url'])}
+        if entries.get(did, {}).get('canonical_url'):
+            own_urls.add(_account_url(entries[did]['canonical_url']))
+        valid &= _account_url(old['url']) in own_urls
+        if 'canonical_url' in old:
+            valid &= _account_url(old['canonical_url']) in own_urls
         for field in ('checked_urls', 'official_account_urls'):
             allowed = {_account_url(u) for r in peers for u in r[field]}
             valid &= bool(old.get(field)) and {_account_url(u) for u in old[field]} <= allowed
-        valid &= _account_url(old['url']) in {_account_url(u) for r in peers for u in r['official_account_urls']} | {_account_url(now['url'])}
         valid &= _urls(old.get('evidence_urls', [])) == _urls([e['source_url'] for e in prior_evidence])
         valid &= set(_urls(old.get('evidence_urls', []))) <= set(_urls(old.get('checked_urls', [])))
         historical_names = {r['canonical_name'] for r in peers} | {entries[p]['canonical_name'].strip() for p in peer_ids if p in entries}
@@ -491,8 +540,7 @@ def _verify_previous(previous, current, research):
         valid &= old.get('reviewer') in {now['reviewer'], f"automated:{old.get('method')}"}
         if 'method_evidence_urls' in old:
             valid &= bool(old['method_evidence_urls']) and set(_urls(old['method_evidence_urls'])) <= set(old['evidence_urls']) & set(_urls(list(method_sources)))
-        if 'identity_path' in old:
-            valid &= bool(old['identity_path']) and old['identity_path'][0] == did and set(old['identity_path']) <= peer_ids
+        valid &= _valid_prior_path(old, current, entries, peer_ids)
         if not valid:
             raise ValueError(f'conflicting or unverifiable previous resolution: {did}')
         prior_ids.add(did)
@@ -535,7 +583,7 @@ def main(argv=None):
             previous = _load(args.merge_existing)
             if previous.get('schema_version') != 1:
                 raise ValueError('unsupported previous resolution schema')
-            prior_ids = _verify_previous(previous, all_rows, research)
+            prior_ids = _verify_previous(previous, all_rows, research, review)
             selected.update({r['discovery_id']: r for r in review['rows'] if r['discovery_id'] in prior_ids})
         for key in ('resolutions', 'unresolved', 'conflicts'):
             ledger[key] = [r for r in ledger[key] if r['discovery_id'] in selected]
