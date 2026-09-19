@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   // Canonical research dashboard for the unified single-page site.
-  let data;
+  let data, researchV2;
   const palette = ['#62e7ff', '#a78bfa', '#ff7ac8', '#6ef0c2', '#ffd16a', '#e6e8f2'];
   const el = id => document.getElementById(id);
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -98,11 +98,40 @@
     const names={BASELINE_UNIFIED_TH1:'ชุดหลัก',COMMENT_ONLY_TH1:'เฉพาะความคิดเห็น',DROPOUT_10PCT_MEAN:'สุ่มตัดข้อมูล 10% (ค่าเฉลี่ย)',LOW_COVERAGE_EXCLUDED:'ตัดช่องหลักฐานน้อย',THRESHOLD_TH3:'ผู้ร่วมอย่างน้อย 3 คน',THRESHOLD_TH5:'ผู้ร่วมอย่างน้อย 5 คน'};
     chart('canvasSensitivity',data.meta.years.map(y=>y===data.meta.partial_year?y+'*':y),Object.entries(names).map(([key,name])=>({name,values:data.meta.years.map(y=>data.quality.bias_sensitivity.find(r=>r.year===y&&r.perturbation_scenario===key)?.modularity)})));
   }
-  const renderers={overview,ecosystem,lineage,cohorts,centrality,quality};
+
+  function pulse(){
+    const meta=researchV2.metadata||{}, coverage=researchV2.coverage||{}, pulse=researchV2.industry_pulse||{}, outlook=researchV2.outlook||{};
+    el('pulseScope').textContent=num(coverage.target_cohort_universe || meta.target_cohort_size)+' ช่อง';
+    el('pulseDatasetDate').textContent=meta.dataset_date ? date(meta.dataset_date+'T00:00:00Z') : 'ไม่มีข้อมูล';
+    const verdictLabels={INSUFFICIENT_EVIDENCE:'หลักฐานยังไม่พอสรุปรวม',EXPANDING:'ขยายตัว',STABLE:'ทรงตัว',CONTRACTING:'หดตัว'};
+    el('outlookVerdict').textContent=verdictLabels[outlook.verdict] || String(outlook.verdict || 'ไม่มีข้อมูล');
+    el('pulseThesis').textContent=pulse.thesis || outlook.structural_state?.trajectory_conclusion || 'ยังไม่มีข้อสรุป';
+    const cards=[
+      ['Creator',pulse.creators],
+      ['Audience',pulse.audience],
+      ['Network',pulse.network],
+      ['Market',pulse.market]
+    ];
+    el('pulseGrid').innerHTML=cards.map(([label,item])=>item?'<article class="pulse-card"><div class="pulse-card-head"><span>'+esc(label)+'</span><strong>'+esc(item.confidence || '—')+'</strong></div><h3>'+esc(item.value)+'</h3><p class="pulse-compare">'+esc(item.comparison || '')+'</p><p>'+esc(item.interpretation || '')+'</p><small>'+esc(item.limitation || '')+'</small></article>':'').join('');
+    const directionLabels={EXPANDING:'เพิ่มขึ้น',CONTRACTING:'ลดลง',STABLE:'ทรงตัว',INSUFFICIENT_EVIDENCE:'หลักฐานไม่พอ'};
+    table(el('outlookTable'),['มิติ','ช่วง','ค่า','เทียบก่อนหน้า','ทิศทาง','ความเชื่อมั่น','ข้อจำกัด'],(outlook.scorecard||[]).map(r=>[
+      String(r.dimension||'').replaceAll('_',' '),
+      r.period||'—',
+      Number.isFinite(r.value)?num(r.value):'ไม่มีค่าที่สรุปได้',
+      Number.isFinite(r.previous_comparable_value)?num(r.previous_comparable_value):'—',
+      directionLabels[r.direction]||r.direction||'—',
+      r.confidence||'—',
+      r.limitation||'—'
+    ]));
+  }
+  const renderers={overview,ecosystem,lineage,cohorts,centrality,quality,pulse};
   function render(){renderers[document.querySelector('.tab-btn.active').dataset.tab]();}
   function activate(name){document.querySelectorAll('.tab-btn').forEach(button=>{const active=button.dataset.tab===name;button.classList.toggle('active',active);button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;el('panel-'+button.dataset.tab).classList.toggle('active',active);});render();}
   function date(value){return new Intl.DateTimeFormat('th-TH-u-ca-gregory',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Bangkok'}).format(new Date(value));}
-  async function init(){try{const response=await fetch('research/dashboard_data.json');if(!response.ok)throw new Error('load');data=await response.json();
+  async function init(){try{
+    const [dashboardResponse,v2Response]=await Promise.all([fetch('research/dashboard_data.json'),fetch('research/data/research_v2.json')]);
+    if(!dashboardResponse.ok||!v2Response.ok)throw new Error('load');
+    [data,researchV2]=await Promise.all([dashboardResponse.json(),v2Response.json()]);
     el('genTimestamp').textContent='ข้อมูล ณ '+date(data.meta.generated_at);el('footerGen').textContent='จัดทำเมื่อ '+date(data.meta.generated_at);
     el('summaryYear').innerHTML=data.meta.years.map(y=>'<option value="'+y+'">'+year(y)+'</option>').join('');el('summaryYear').value=data.meta.years.at(-1);
     const scopeYears=el('scopeYears');if(scopeYears)scopeYears.textContent=data.meta.years[0]+'–'+data.meta.years.at(-1);

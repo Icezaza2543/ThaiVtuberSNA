@@ -11,15 +11,16 @@ for(const width of [1440,1280,1024,390]) {
  const source=await page.evaluate(()=>fetch('research/dashboard_data.json').then(r=>r.json()));
  for(const y of source.meta.years){await page.selectOption('#summaryYear',String(y));const row=source.ecosystem.yearly_metrics.find(r=>r.year===y);assert.equal(await page.locator('.kpi-value').first().innerText(),row.active_channels.toLocaleString('th-TH'));}
  await page.selectOption('#summaryYear','2026');
- for(const tab of ['overview','ecosystem','lineage','cohorts','centrality','quality']){
+ for(const tab of ['overview','ecosystem','lineage','cohorts','centrality','quality','pulse']){
  await page.locator('[data-tab="'+tab+'"]').click();
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'Overflow '+width+' '+tab);
  const panel=page.locator('#panel-'+tab);assert.doesNotMatch(await panel.innerText(),/undefined|NaN|Infinity|YTD|COMPLETED/);
- assert.ok(await panel.locator('canvas[role="img"]').count()>0);
+ if(tab!=='pulse') assert.ok(await panel.locator('canvas[role="img"]').count()>0);
  assert.equal(await panel.locator('canvas').count(),await panel.locator('.chart-support').count());
  await page.screenshot({path:output+'/'+width+'-'+tab+'.png'});
  report.push({width,tab,passed:true});
  }
+ await page.locator('[data-tab="pulse"]').click();assert.match(await page.locator('#pulseScope').innerText(),/193/);assert.ok(await page.locator('#pulseGrid .pulse-card').count()>=4);assert.ok(await page.locator('#outlookTable tbody tr').count()>=1);
  await page.locator('[data-tab="centrality"]').click();await page.fill('#bridgeSearch','no-such-channel-1234');assert.match(await page.locator('#bridgeCount').innerText(),/พบ 0 ช่อง/);
  await page.locator('[data-tab="overview"]').focus();await page.keyboard.press('ArrowRight');assert.equal(await page.locator('[data-tab="ecosystem"]').getAttribute('aria-selected'),'true');
  await page.close();

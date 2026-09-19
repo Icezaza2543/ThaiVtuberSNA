@@ -2,8 +2,8 @@
   "schema_version": 1,
   "policy": "1 persona / 1 character form = 1 VTuber entity",
   "description": "Visual identity review decisions for unresolved discovery VTubers",
-  "last_updated": "2026-09-19T09:35:20.403886Z",
-  "total_decisions": 252,
+  "last_updated": "2026-09-19T09:39:58.845999Z",
+  "total_decisions": 257,
   "decisions": [
     {
       "discovery_id": "candidate_005ddb664b9cb301b7bd",
@@ -1768,6 +1768,41 @@
       "decision": "new_persona",
       "notes": "",
       "reviewed_at": "2026-09-19T09:29:39.391Z"
+    },
+    {
+      "discovery_id": "candidate_989597a9384fc216e8ad",
+      "candidate_persona_id": "persona_0cdf1c7236621e88b96a",
+      "decision": "new_persona",
+      "notes": "คนนี้ไม่ใช่ vtuber",
+      "reviewed_at": "2026-09-19T09:37:56.381Z"
+    },
+    {
+      "discovery_id": "candidate_a941733637dc308fb2dc",
+      "candidate_persona_id": "vtuber_padzangchannel",
+      "decision": "same_persona",
+      "notes": "",
+      "reviewed_at": "2026-09-19T09:38:09.521Z"
+    },
+    {
+      "discovery_id": "candidate_dca7ece865b62d1fe3d7",
+      "candidate_persona_id": "vtuber_bishamonkuroneko_as",
+      "decision": "same_persona",
+      "notes": "",
+      "reviewed_at": "2026-09-19T09:38:19.232Z"
+    },
+    {
+      "discovery_id": "candidate_d3d0abea48017a5c3eb7",
+      "candidate_persona_id": "vtuber_leonachannel",
+      "decision": "new_persona",
+      "notes": "",
+      "reviewed_at": "2026-09-19T09:38:34.171Z"
+    },
+    {
+      "discovery_id": "candidate_6d6408cd74938d34ab33",
+      "candidate_persona_id": "persona_c20c168d6c92fbc77ca9",
+      "decision": "new_persona",
+      "notes": "",
+      "reviewed_at": "2026-09-19T09:39:13.123Z"
     }
   ]
 }
