@@ -632,6 +632,134 @@ def test_cli_repeated_trusted_corrections_and_merge_require_retained_audit(tmp_p
     assert output.read_bytes() == original
 
 
+def required_corrections_fixture():
+    """Two independent corrections; the selected X row only uses one of them."""
+    from scripts.resolve_creator_identities import _record_sha256
+    registry, corrections = trusted_link_correction_fixture()
+    link = registry['tables']['account_links'][0]
+    account = registry['tables']['accounts'][0]
+    corrections['corrections'].append(dict(
+        corrections['corrections'][0], link_id=link['id'], account_id=account['id'],
+        link_sha256=_record_sha256(link), account_sha256=_record_sha256(account)))
+    manifest = sorted(({'link_id': row['link_id'], 'correction_sha256': _record_sha256(row)}
+                       for row in corrections['corrections']), key=lambda row: row['link_id'])
+    return registry, corrections, manifest
+
+
+def required_correction_cli(tmp_path, source):
+    registry, corrections, manifest = required_corrections_fixture()
+    review = dict(REVIEW, eligibility_counts={'vtuber': 1})
+    research = {'rows': [researched()]}
+    (review if source == 'review' else research)['required_trusted_link_corrections'] = manifest
+    args = cli_files(tmp_path, review, research)
+    (tmp_path / 'trusted-registry.json').write_text(json.dumps(registry), encoding='utf-8')
+    path = tmp_path / 'corrections.json'
+    path.write_text(json.dumps(corrections), encoding='utf-8')
+    return args, path, corrections, manifest
+
+
+@pytest.mark.parametrize('source', ['review', 'research'])
+@pytest.mark.parametrize('mode', ['fresh', 'filtered_validate', 'full_validate', 'merge'])
+@pytest.mark.parametrize('supplied', ['omitted', 'partial', 'stale', 'extra_conflicting'])
+def test_required_corrections_fail_before_output_in_every_cli_mode(tmp_path, capsys, source, mode, supplied):
+    args, path, corrections, _ = required_correction_cli(tmp_path, source)
+    output = tmp_path / 'ledger.json'
+    original = None
+    if mode == 'merge':
+        assert main(args + ['--trusted-link-corrections', str(path), '--output', str(output)]) == 0
+        original = output.read_bytes()
+        args += ['--merge-existing', str(output)]
+    elif mode == 'filtered_validate':
+        args += ['--platform', 'x', '--validate-only']
+    elif mode == 'full_validate':
+        args += ['--validate-only']
+    else:
+        args += ['--queue']
+    if supplied != 'omitted':
+        if supplied == 'partial':
+            corrections['corrections'] = corrections['corrections'][:1]
+        elif supplied == 'stale':
+            corrections['corrections'][0]['summary'] += ' Changed after approval.'
+        else:
+            corrections['corrections'].append(dict(corrections['corrections'][0], summary='Conflicting extra record.'))
+        path.write_text(json.dumps(corrections), encoding='utf-8')
+        args += ['--trusted-link-corrections', str(path)]
+    capsys.readouterr()
+    assert main(args + ['--output', str(output)]) == 1
+    captured = capsys.readouterr()
+    assert 'correction' in json.loads(captured.err)['error']
+    assert captured.out == ''  # No count/validation success before the dependency check.
+    if original is not None:
+        assert output.read_bytes() == original
+    else:
+        assert not output.exists()
+
+
+@pytest.mark.parametrize('source', ['review', 'research'])
+@pytest.mark.parametrize('mode', ['fresh', 'filtered_validate', 'full_validate', 'merge'])
+def test_complete_required_corrections_succeed_in_every_cli_mode(tmp_path, source, mode):
+    args, path, _, manifest = required_correction_cli(tmp_path, source)
+    args += ['--trusted-link-corrections', str(path)]
+    output = tmp_path / 'ledger.json'
+    if mode == 'merge':
+        assert main(args + ['--output', str(output)]) == 0
+        original = output.read_bytes()
+        args += ['--merge-existing', str(output)]
+    elif mode == 'filtered_validate':
+        args += ['--platform', 'x', '--validate-only']
+    elif mode == 'full_validate':
+        args += ['--validate-only']
+    assert main(args + ['--output', str(output)]) == 0
+    if 'validate' in mode:
+        assert not output.exists()
+    else:
+        ledger = json.loads(output.read_text(encoding='utf-8'))
+        assert ledger['required_trusted_link_corrections'] == manifest
+        assert len(ledger['trusted_link_corrections_applied']) == 2
+        assert ledger['resolutions'][0]['outcome'] == 'new_persona'
+        if mode == 'merge':
+            assert output.read_bytes() == original
+
+
+def test_merged_research_preserves_sorted_correction_requirements_and_rejects_conflicts():
+    _, _, manifest = required_corrections_fixture()
+    first = {'rows': [researched()], 'required_trusted_link_corrections': manifest[:1]}
+    second = {'rows': [], 'required_trusted_link_corrections': manifest[1:]}
+    merged = merge_research([second, first, first])
+    assert merged == {'rows': [researched()], 'required_trusted_link_corrections': manifest}
+    second['required_trusted_link_corrections'] = [dict(manifest[0], correction_sha256='0' * 64)]
+    with pytest.raises(ValueError, match='conflicting required trusted link correction'):
+        merge_research([first, second])
+
+
+@pytest.mark.parametrize('manifest', [None, {}, ['link_a_x'], [{'link_id': 'link_a_x'}],
+                                     [{'link_id': 'link_a_x', 'correction_sha256': 'invalid'}],
+                                     [{'link_id': '', 'correction_sha256': '0' * 64}]])
+def test_malformed_required_correction_manifest_fails_closed(manifest):
+    with pytest.raises(ValueError, match='required trusted link correction'):
+        resolve_accounts(BASELINE, dict(REVIEW, required_trusted_link_corrections=manifest),
+                         {}, {}, {'rows': [researched()]})
+
+
+def test_research_rejected_link_references_require_applied_corrections_even_without_manifest():
+    registry, corrections = trusted_link_correction_fixture()
+    entry = researched()
+    entry['existing_persona_search'] = {'rejected_trusted_link_corrections': ['link_a_x']}
+    with pytest.raises(ValueError, match='required trusted link correction'):
+        resolve_accounts(BASELINE, REVIEW, registry, {}, {'rows': [entry]})
+    ledger = resolve_accounts(BASELINE, REVIEW, registry, {}, {'rows': [entry]}, trusted_link_corrections=[corrections])
+    assert ledger['resolutions'][0]['outcome'] == 'new_persona'
+
+
+def test_review_and_research_correction_requirements_cannot_disagree():
+    registry, corrections, manifest = required_corrections_fixture()
+    review = dict(REVIEW, required_trusted_link_corrections=manifest)
+    research = {'rows': [researched()], 'required_trusted_link_corrections':
+                [dict(manifest[0], correction_sha256='0' * 64)]}
+    with pytest.raises(ValueError, match='conflicting required trusted link correction'):
+        resolve_accounts(BASELINE, review, registry, {}, research, trusted_link_corrections=[corrections])
+
+
 REAL_EVIDENCE = Path(__file__).resolve().parents[1] / 'docs/evidence/creator-registry-review-2026-09-19'
 REAL_LEDGER = Path(__file__).resolve().parents[1] / 'data/registry/identity_resolutions.json'
 
@@ -693,3 +821,47 @@ def test_real_client_personas_remain_distinct_from_nyeeeon_with_retained_correct
     assert all(a['correction']['disposition'] == 'reject_identity_link' for a in audit)
     assert 'link_61b87c391961a5735fad' not in {a['original_link']['id'] for a in audit}
     assert all('VTUBER CHILD' in a['correction']['summary'] for a in audit)
+
+
+def test_production_inputs_pin_all_six_reviewed_corrections():
+    from scripts.resolve_creator_identities import _record_sha256
+    corrections = json.loads((REAL_EVIDENCE / 'trusted_link_corrections.json').read_text(encoding='utf-8'))
+    expected = sorted(({'link_id': r['link_id'], 'correction_sha256': _record_sha256(r)}
+                       for r in corrections['corrections']), key=lambda r: r['link_id'])
+    assert len(expected) == 6
+    for path in [REAL_EVIDENCE / 'review_bundle.json', REAL_EVIDENCE / 'identity_research_linked.json', REAL_LEDGER]:
+        assert json.loads(path.read_text(encoding='utf-8'))['required_trusted_link_corrections'] == expected
+
+
+@pytest.mark.parametrize('supplied', ['omitted', 'partial', 'complete'])
+def test_merge_replay_keeps_requirements_from_prior_ledger(tmp_path, capsys, supplied):
+    args, path, corrections, _ = required_correction_cli(tmp_path, 'review')
+    output = tmp_path / 'ledger.json'
+    assert main(args + ['--trusted-link-corrections', str(path), '--output', str(output)]) == 0
+    original = output.read_bytes()
+    review_path = tmp_path / 'review-bundle.json'
+    review = json.loads(review_path.read_text(encoding='utf-8'))
+    del review['required_trusted_link_corrections']
+    review_path.write_text(json.dumps(review), encoding='utf-8')
+    if supplied != 'omitted':
+        if supplied == 'partial':
+            corrections['corrections'] = corrections['corrections'][:1]
+            path.write_text(json.dumps(corrections), encoding='utf-8')
+        args += ['--trusted-link-corrections', str(path)]
+    capsys.readouterr()
+    status = main(args + ['--merge-existing', str(output), '--output', str(output)])
+    assert status == (0 if supplied == 'complete' else 1)
+    if supplied != 'complete':
+        captured = capsys.readouterr()
+        assert 'missing required trusted link corrections' in json.loads(captured.err)['error']
+        assert captured.out == ''
+    assert output.read_bytes() == original
+
+
+def test_additional_valid_correction_can_extend_a_required_set():
+    registry, corrections, manifest = required_corrections_fixture()
+    review = dict(REVIEW, required_trusted_link_corrections=manifest[:1])
+    ledger = resolve_accounts(BASELINE, review, registry, {}, {'rows': [researched()]},
+                              trusted_link_corrections=[corrections])
+    assert len(ledger['trusted_link_corrections_applied']) == 2
+    assert ledger['required_trusted_link_corrections'] == manifest[:1]

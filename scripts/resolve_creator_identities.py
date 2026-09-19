@@ -15,7 +15,8 @@ Repeated research files are merged by discovery ID; disagreements fail closed.
 Legacy visual decisions are advisory only and never supply positive evidence.
 Repeatable trusted-link correction files reject only named, hash-bound verified
 links whose cited owner-controlled source disproves ownership; original facts
-remain in the audit ledger.
+remain in the audit ledger. Review/research manifests pin required correction IDs
+and content hashes; omitted or changed dependencies fail before any resolution.
 """
 from __future__ import annotations
 
@@ -35,6 +36,10 @@ if __package__ in (None, ''):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from core.creator_registry_contract import normalize_platform, YOUTUBE_CHANNEL_ID
+from core.creator_identity_corrections import (
+    REQUIRED_CORRECTIONS, correction_records, merge_required_trusted_link_corrections,
+    record_sha256 as _record_sha256, require_trusted_link_corrections,
+)
 
 METHOD_PRIORITY = ('exact_platform_id', 'verified_registry_link', 'official_crosslink', 'explicit_official_identity')
 OFFICIAL_KINDS = {'official_profile', 'official_website', 'self_statement', 'youtube_api'}
@@ -132,7 +137,11 @@ def merge_research(payloads):
             if did in entries and entries[did] != row:
                 raise ValueError(f'conflicting research for {did}')
             entries[did] = row
-    return {'rows': [entries[key] for key in sorted(entries)]}
+    result = {'rows': [entries[key] for key in sorted(entries)]}
+    required = merge_required_trusted_link_corrections(payloads)
+    if required:
+        result[REQUIRED_CORRECTIONS] = required
+    return result
 
 
 def _unique_records(payload, table):
@@ -148,33 +157,13 @@ def _unique_records(payload, table):
 
 
 
-def _record_sha256(record):
-    return hashlib.sha256(json.dumps(record, ensure_ascii=False, sort_keys=True,
-                                     separators=(',', ':')).encode()).hexdigest()
-
-
 def _correct_trusted_links(registry, payloads):
     """Reject explicitly disproved links while retaining immutable original facts.
 
     Corrections bind to hashes of the original link, account and cited evidence.
     Registry updates therefore require a reviewed correction, never a silent reuse.
     """
-    corrections = {}
-    fields = {'link_id', 'account_id', 'asserted_persona_id', 'evidence_id', 'disposition',
-              'link_sha256', 'account_sha256', 'evidence_sha256', 'source_urls',
-              'summary', 'observed_at', 'reviewer'}
-    for payload in payloads:
-        if payload.get('schema_version') != 1 or 'corrections' not in payload:
-            raise ValueError('unsupported trusted link correction schema')
-        for row in _records(payload, 'corrections'):
-            if set(row) != fields or row.get('disposition') != 'reject_identity_link':
-                raise ValueError('invalid trusted link correction fields/disposition')
-            key = row['link_id']
-            if not isinstance(key, str) or not key:
-                raise ValueError('trusted link correction missing link ID')
-            if key in corrections and corrections[key] != row:
-                raise ValueError('conflicting trusted link corrections')
-            corrections[key] = row
+    corrections = correction_records(payloads)
     if not corrections:
         return registry, []
     tables = registry.get('tables', registry)
@@ -352,6 +341,19 @@ def _summary(ledger, selected):
 
 def resolve_accounts(baseline, review_bundle, trusted_registry, legacy_decisions, researched, youtube_client=None, trusted_link_corrections=None):
     """Produce schema-v1 ledger or raise ResolutionError with its failed audit rows."""
+    research_payload = merge_research([researched])
+    required = merge_required_trusted_link_corrections([review_bundle, research_payload])
+    correction_payloads = trusted_link_corrections or []
+    referenced_ids = set()
+    for row in research_payload['rows']:
+        search = row.get('existing_persona_search', {})
+        if isinstance(search, dict):
+            rejected = search.get('rejected_trusted_link_corrections', [])
+            if (not isinstance(rejected, list)
+                    or any(not isinstance(key, str) or not key.strip() for key in rejected)):
+                raise ValueError('invalid required trusted link correction references in research')
+            referenced_ids.update(rejected)
+    require_trusted_link_corrections(required, correction_payloads, referenced_ids)
     review = {}
     for row in _records(review_bundle):
         did = row.get('discovery_id')
@@ -364,15 +366,17 @@ def resolve_accounts(baseline, review_bundle, trusted_registry, legacy_decisions
     excluded_urls = {_account_url(url) for row in review.values()
                      if row.get('eligibility') not in {'vtuber', 'trusted_baseline'}
                      for url in [row['url'], *row.get('evidence_urls', [])]}
-    trusted_registry, correction_audit = _correct_trusted_links(trusted_registry, trusted_link_corrections or [])
+    trusted_registry, correction_audit = _correct_trusted_links(trusted_registry, correction_payloads)
     names, id_index, url_index, persona_urls, aliases, baseline_ids = _indexes(baseline, trusted_registry, excluded_urls)
     accepted = {did: r for did, r in review.items() if r.get('eligibility') == 'vtuber'}
-    research = {r['discovery_id']: r for r in merge_research([researched])['rows']}
+    research = {r['discovery_id']: r for r in research_payload['rows']}
     for did in research:
         if did not in accepted:
             raise ValueError(f'research references excluded/ineligible or unknown discovery: {did}')
     legacy = {r['discovery_id']: r for r in _records(legacy_decisions, 'decisions') if r.get('discovery_id') in accepted}
     ledger = {'schema_version': 1, 'resolutions': [], 'trusted_baseline_verified': [], 'unresolved': [], 'conflicts': []}
+    if required:
+        ledger[REQUIRED_CORRECTIONS] = required
     if correction_audit:
         ledger['trusted_link_corrections_applied'] = correction_audit
     for did, row in sorted(review.items()):
@@ -657,6 +661,13 @@ def main(argv=None):
     try:
         review = _load(args.review_bundle)
         research = merge_research([_load(path) for path in args.researched])
+        previous = _load(args.merge_existing) if args.merge_existing else None
+        if previous is not None:
+            if previous.get('schema_version') != 1:
+                raise ValueError('unsupported previous resolution schema')
+            required = merge_required_trusted_link_corrections([review, research, previous])
+            if required:
+                research[REQUIRED_CORRECTIONS] = required
         try:
             ledger = resolve_accounts(_load(args.baseline), review, _load(args.trusted_registry), _load(args.legacy_decisions), research,
                                       trusted_link_corrections=[_load(path) for path in args.trusted_link_corrections])
@@ -666,9 +677,6 @@ def main(argv=None):
         platforms = {normalize_platform(p) for p in args.platform}
         selected = {r['discovery_id']: r for r in review['rows'] if r['eligibility'] == 'vtuber' and (not platforms or normalize_platform(r['platform']) in platforms)}
         if args.merge_existing:
-            previous = _load(args.merge_existing)
-            if previous.get('schema_version') != 1:
-                raise ValueError('unsupported previous resolution schema')
             current_corrections = {json.dumps(row, sort_keys=True, ensure_ascii=False)
                                    for row in ledger.get('trusted_link_corrections_applied', [])}
             if any(json.dumps(row, sort_keys=True, ensure_ascii=False) not in current_corrections

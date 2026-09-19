@@ -8,11 +8,18 @@ import ipaddress
 import json
 import re
 import shutil
+import sys
 from collections import Counter
 from datetime import datetime
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
+
+
+if __package__ in (None, ''):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from core.creator_identity_corrections import REQUIRED_CORRECTIONS, trusted_link_correction_manifest
 
 
 AUTO_MAP = {
@@ -212,7 +219,8 @@ def _apply_explicit_corrections(rows: list[dict[str, Any]], payload: dict[str, A
         row["evidence_urls"] = sorted(set(row["evidence_urls"] + [entry["source_url"], canonical]))
 
 
-def package_review_evidence(screening_path: Path, human_path: Path, corrections_path: Path | None = None) -> dict[str, Any]:
+def package_review_evidence(screening_path: Path, human_path: Path, corrections_path: Path | None = None,
+                            trusted_link_correction_paths: list[Path] | None = None) -> dict[str, Any]:
     """Return final eligibility rows without cache paths or private review details."""
     screening = _load_object(Path(screening_path))
     human = _load_object(Path(human_path))
@@ -273,11 +281,16 @@ def package_review_evidence(screening_path: Path, human_path: Path, corrections_
         _apply_explicit_corrections(rows, _load_object(Path(corrections_path)))
 
     counts = dict(sorted(Counter(row["eligibility"] for row in rows).items()))
-    return {
+    bundle = {
         "schema_version": 1,
         "rows": rows,
         "eligibility_counts": counts,
     }
+    required = trusted_link_correction_manifest([_load_object(Path(path))
+                                                 for path in trusted_link_correction_paths or []])
+    if required:
+        bundle[REQUIRED_CORRECTIONS] = required
+    return bundle
 
 
 def validate_production_counts(bundle: dict[str, Any]) -> None:
@@ -315,6 +328,8 @@ def main() -> None:
     parser.add_argument("--human", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--corrections", type=Path, help="Explicit reviewed eligibility corrections applied after human decisions.")
+    parser.add_argument("--trusted-link-corrections", action="append", type=Path, default=[],
+                        help="Pin required trusted-link correction IDs and content hashes in the bundle.")
     parser.add_argument(
         "--legacy-source",
         type=Path,
@@ -322,7 +337,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    bundle = package_review_evidence(args.screening, args.human, args.corrections)
+    bundle = package_review_evidence(args.screening, args.human, args.corrections, args.trusted_link_corrections)
     validate_production_counts(bundle)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)

@@ -296,3 +296,18 @@ def test_explicit_corrections_fail_closed_when_not_supported(review_inputs, tmp_
     correction = write_json(tmp_path / 'corrections.json', payload)
     with pytest.raises(ValueError):
         package_review_evidence(screening, human, correction)
+
+
+def test_packager_binds_trusted_correction_content_for_reproducible_resolver_inputs(review_inputs, tmp_path):
+    import hashlib
+    source = Path(__file__).resolve().parents[1] / 'docs/evidence/creator-registry-review-2026-09-19/trusted_link_corrections.json'
+    payload = json.loads(source.read_text(encoding='utf-8'))
+    correction_file = write_json(tmp_path / 'trusted-corrections.json', payload)
+    expected = sorted(({'link_id': row['link_id'], 'correction_sha256':
+                        hashlib.sha256(json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode()).hexdigest()}
+                       for row in payload['corrections']), key=lambda row: row['link_id'])
+    bundle = package_review_evidence(*review_inputs, trusted_link_correction_paths=[correction_file, correction_file])
+    assert bundle['required_trusted_link_corrections'] == expected
+    payload['corrections'].reverse()
+    write_json(correction_file, payload)
+    assert package_review_evidence(*review_inputs, trusted_link_correction_paths=[correction_file]) == bundle
