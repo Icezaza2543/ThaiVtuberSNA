@@ -1,0 +1,2520 @@
+{
+  "lookups": [
+    {
+      "url": "https://www.youtube.com/@soumeivtuber",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@soumeivtuber/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=HXFnX9kuUvQ",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=7wyWzkV7PY8",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@SupercutieLucilla",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@SupercutieLucilla/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=LBVLMzwieaE",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=0Ih9o7Le9QM",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@Livietia",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@Livietia/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=qvQfxynyibQ",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=ZdK8MpX3KCI",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@MizuhoKai_EX",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@MizuhoKai_EX/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=4Kg70ElfX90",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=kNYufIGFco4",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@AmuiiiChan",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@AmuiiiChan/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=fnJhjhwznWY",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@shiomiau",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@shiomiau/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=-GiXx4q9NBk",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=dVco1SBTpZ8",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/shorts/zxuWh0ffiuI",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/shorts/zxuWh0ffiuI/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/shorts/5fweUpvBeBM",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/shorts/5fweUpvBeBM/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/shorts/E0xW6jOtkeQ",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/shorts/E0xW6jOtkeQ/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/shorts/4EUX04B-4As",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/shorts/4EUX04B-4As/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@PMheeMaru",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@PMheeMaru/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=hVtEVSI6Pjo",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=QDo1vFrW7Rg",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@HayatoASKZ",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@HayatoASKZ/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=870JmJtKcAM",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@yuuroki_usaku",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@yuuroki_usaku/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=OSTLdJFEPMw",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=f46LXr_BU60",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/shorts/3lExZD4sjeY",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/shorts/3lExZD4sjeY/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/shorts/bJoM23njAaM",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/shorts/bJoM23njAaM/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCjRhcXQcLp0Zz08tE_-DX-w",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCjRhcXQcLp0Zz08tE_-DX-w/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=aOSkJmnMjq4",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=piJm814Y2hs",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/shorts/UZDwRCAWzhc",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/shorts/UZDwRCAWzhc/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@SKYLERcvc",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@SKYLERcvc/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=ghmw0QUNpMQ",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=EexjZUe3zGE",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@ShuaVibeENT",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@ShuaVibeENT/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@Leon-R-Shootingstar",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@Leon-R-Shootingstar/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=d7ns6ud9PuY",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=HUYaYgiouH8",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@PurpleDogBabo",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@PurpleDogBabo/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Pez1WpOa4ww",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=yyejS_zAF5A",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCDumopqvE5ZQIHIfOOq373A",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=lffG-5IAb9U",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=v18wey0lWEY",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@hoshi_1489",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@hoshi_1489/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=zreD0pADkeY",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=AZvlSZSPbno",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/shorts/fF5KPNZ0TJk",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/shorts/fF5KPNZ0TJk/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/shorts/gpU4DR0SRsc",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/shorts/gpU4DR0SRsc/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/@karin-izumi",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/@karin-izumi/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Us7dnI4RIPI",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=25XdDSE_fyA",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCDrFZpqKkgV27Q1NcYYYU2w/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@angelach1205/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UC7ks6YhbNxNIJzJUKRH0OQA/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@janinevtuber/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCyHu19qHV0hFQyK3ZOhtcnA",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@azuriusseiryux/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCFN4mdxw4ss6DMB6ZYPXPuw",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCC4Wb_x57Ks43GRJ6x_wT5Q/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCdVlryCezLzVh74qwUfrL6Q/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCApZxq6J3R2XNqhzKiBv5mg/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCdbRjgoplGzVI2Iywvpsa0w/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@caelumetoile/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@nonghanging/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCoE5M6UAVHuvWx8LK69oiDQ/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCL4nWmMsqtYKN6OvcmskNtg/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@zilbi_acas/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCxLACuzMdL0qGzmXBu1VwJg/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCchEIVkQk2tgdHiSc0LxGJQ/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@bunny_arha/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UC9uFujZvbTm3PpTycIz5Z0w/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@roxy_cvc/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@sivlaacas/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCgq-rIElYiBFQnxgMnkojwg",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UC-SoXgd5-sJS78_ctcifNeA/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCVrJQs3lbOJcVHPRxLPM6Zg/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCaMhj4Q6-bx1IZE3izVtk6A/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCURO2Hz8CWn0knwFbNTo2ng",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCBev9yAPNYhFM4ORPQb_LYQ/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCrv90qmK4-Yxj_QyNMqBVQA/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@byakko_0478/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UC65MNFVWnrkOpg04LBHVvzw",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@xanny_ch/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@daylaneyturner/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@garikunthawat-th9975/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCAPpxOuXCbSvj1jHnNetw4g/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCbS8T1ffrgNRkvRy11KbnHQ/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCFXP-2Bob2gW8rlEffW1hgA/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCXb11qYYfasyRgp22rK6mMA/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCCnI25SLttKYJdVgno6qkYg/about",
+      "error": "YouTube identity lookup failed",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@soumeivtuber",
+      "evidence": {
+        "channel_id": "UCT0ZRL2bM01iwqJHwQO-3sA",
+        "canonical_url": "https://www.youtube.com/channel/UCT0ZRL2bM01iwqJHwQO-3sA",
+        "title": "SOUMEI【VtuberTH】",
+        "description": "",
+        "source_resource": "handle:@soumeivtuber",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:45.034298+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@soumeivtuber/about",
+      "evidence": {
+        "channel_id": "UCT0ZRL2bM01iwqJHwQO-3sA",
+        "canonical_url": "https://www.youtube.com/channel/UCT0ZRL2bM01iwqJHwQO-3sA",
+        "title": "SOUMEI【VtuberTH】",
+        "description": "",
+        "source_resource": "handle:@soumeivtuber",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:45.039298+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=HXFnX9kuUvQ",
+      "evidence": {
+        "channel_id": "UCT0ZRL2bM01iwqJHwQO-3sA",
+        "canonical_url": "https://www.youtube.com/channel/UCT0ZRL2bM01iwqJHwQO-3sA",
+        "title": "SOUMEI【VtuberTH】",
+        "description": "",
+        "source_resource": "video:HXFnX9kuUvQ",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:45.447478+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=7wyWzkV7PY8",
+      "evidence": {
+        "channel_id": "UCT0ZRL2bM01iwqJHwQO-3sA",
+        "canonical_url": "https://www.youtube.com/channel/UCT0ZRL2bM01iwqJHwQO-3sA",
+        "title": "SOUMEI【VtuberTH】",
+        "description": "",
+        "source_resource": "video:7wyWzkV7PY8",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:45.847662+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/@SupercutieLucilla",
+      "evidence": {
+        "channel_id": "UCgciqqd5UWYKVy3QLFT10AA",
+        "canonical_url": "https://www.youtube.com/channel/UCgciqqd5UWYKVy3QLFT10AA",
+        "title": "Lucilla ch. VtuberTh",
+        "description": "꒷꒦꒷ 𝖻𝖾𝗅𝗅𝗈 - ʟᴜᴄɪʟʟᴀ ʟᴀ ғʟᴜɢᴇʟ ◡̎ 💫 𓐄 ✿ ⌗ 𝖼𝗎𝗍𝗂𝖾 3oO % 🦋✨ เด็กสาวลูกครึ่งภูติจากเผ่าปีกสวรรค์☁️ ยินดีที่ได้รู้จักนะคะ~!🌸 ଘ(੭ˊᵕˋ)੭ ♡",
+        "source_resource": "handle:@supercutielucilla",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:46.186722+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@SupercutieLucilla/about",
+      "evidence": {
+        "channel_id": "UCgciqqd5UWYKVy3QLFT10AA",
+        "canonical_url": "https://www.youtube.com/channel/UCgciqqd5UWYKVy3QLFT10AA",
+        "title": "Lucilla ch. VtuberTh",
+        "description": "꒷꒦꒷ 𝖻𝖾𝗅𝗅𝗈 - ʟᴜᴄɪʟʟᴀ ʟᴀ ғʟᴜɢᴇʟ ◡̎ 💫 𓐄 ✿ ⌗ 𝖼𝗎𝗍𝗂𝖾 3oO % 🦋✨ เด็กสาวลูกครึ่งภูติจากเผ่าปีกสวรรค์☁️ ยินดีที่ได้รู้จักนะคะ~!🌸 ଘ(੭ˊᵕˋ)੭ ♡",
+        "source_resource": "handle:@supercutielucilla",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:46.192144+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=LBVLMzwieaE",
+      "evidence": {
+        "channel_id": "UCgciqqd5UWYKVy3QLFT10AA",
+        "canonical_url": "https://www.youtube.com/channel/UCgciqqd5UWYKVy3QLFT10AA",
+        "title": "Lucilla ch. VtuberTh",
+        "description": "꒷꒦꒷ 𝖻𝖾𝗅𝗅𝗈 - ʟᴜᴄɪʟʟᴀ ʟᴀ ғʟᴜɢᴇʟ ◡̎ 💫 𓐄 ✿ ⌗ 𝖼𝗎𝗍𝗂𝖾 3oO % 🦋✨ เด็กสาวลูกครึ่งภูติจากเผ่าปีกสวรรค์☁️ ยินดีที่ได้รู้จักนะคะ~!🌸 ଘ(੭ˊᵕˋ)੭ ♡",
+        "source_resource": "video:LBVLMzwieaE",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:46.566290+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=0Ih9o7Le9QM",
+      "evidence": {
+        "channel_id": "UCgciqqd5UWYKVy3QLFT10AA",
+        "canonical_url": "https://www.youtube.com/channel/UCgciqqd5UWYKVy3QLFT10AA",
+        "title": "Lucilla ch. VtuberTh",
+        "description": "꒷꒦꒷ 𝖻𝖾𝗅𝗅𝗈 - ʟᴜᴄɪʟʟᴀ ʟᴀ ғʟᴜɢᴇʟ ◡̎ 💫 𓐄 ✿ ⌗ 𝖼𝗎𝗍𝗂𝖾 3oO % 🦋✨ เด็กสาวลูกครึ่งภูติจากเผ่าปีกสวรรค์☁️ ยินดีที่ได้รู้จักนะคะ~!🌸 ଘ(੭ˊᵕˋ)੭ ♡",
+        "source_resource": "video:0Ih9o7Le9QM",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:46.947734+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/@Livietia",
+      "evidence": {
+        "channel_id": "UCLcMloZlYIm7azPH1b61eVw",
+        "canonical_url": "https://www.youtube.com/channel/UCLcMloZlYIm7azPH1b61eVw",
+        "title": "Livietia",
+        "description": "เป็นทานุกิที่เบื่อทุนนิยมค่ะ เริ่มต้นทำช่องเพราะเพื่อนในกลุ่มชอบแอบหลับตอนเราพูด เลยมาลองพูดในที่สาธารณะดูว่าคนอื่นจะหลับไหม ตอนนี้มีช่องไว้สร้างแรงบันดาลใจให้ตัวเองกลับไปเข้าระบบทุนนิยมค่ะ\nFan Name: ผู้หลับใหล(ผลล)",
+        "source_resource": "handle:@livietia",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:47.247928+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@Livietia/about",
+      "evidence": {
+        "channel_id": "UCLcMloZlYIm7azPH1b61eVw",
+        "canonical_url": "https://www.youtube.com/channel/UCLcMloZlYIm7azPH1b61eVw",
+        "title": "Livietia",
+        "description": "เป็นทานุกิที่เบื่อทุนนิยมค่ะ เริ่มต้นทำช่องเพราะเพื่อนในกลุ่มชอบแอบหลับตอนเราพูด เลยมาลองพูดในที่สาธารณะดูว่าคนอื่นจะหลับไหม ตอนนี้มีช่องไว้สร้างแรงบันดาลใจให้ตัวเองกลับไปเข้าระบบทุนนิยมค่ะ\nFan Name: ผู้หลับใหล(ผลล)",
+        "source_resource": "handle:@livietia",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:47.254132+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=qvQfxynyibQ",
+      "evidence": {
+        "channel_id": "UCLcMloZlYIm7azPH1b61eVw",
+        "canonical_url": "https://www.youtube.com/channel/UCLcMloZlYIm7azPH1b61eVw",
+        "title": "Livietia",
+        "description": "เป็นทานุกิที่เบื่อทุนนิยมค่ะ เริ่มต้นทำช่องเพราะเพื่อนในกลุ่มชอบแอบหลับตอนเราพูด เลยมาลองพูดในที่สาธารณะดูว่าคนอื่นจะหลับไหม ตอนนี้มีช่องไว้สร้างแรงบันดาลใจให้ตัวเองกลับไปเข้าระบบทุนนิยมค่ะ\nFan Name: ผู้หลับใหล(ผลล)",
+        "source_resource": "video:qvQfxynyibQ",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:47.697409+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=ZdK8MpX3KCI",
+      "evidence": {
+        "channel_id": "UCLcMloZlYIm7azPH1b61eVw",
+        "canonical_url": "https://www.youtube.com/channel/UCLcMloZlYIm7azPH1b61eVw",
+        "title": "Livietia",
+        "description": "เป็นทานุกิที่เบื่อทุนนิยมค่ะ เริ่มต้นทำช่องเพราะเพื่อนในกลุ่มชอบแอบหลับตอนเราพูด เลยมาลองพูดในที่สาธารณะดูว่าคนอื่นจะหลับไหม ตอนนี้มีช่องไว้สร้างแรงบันดาลใจให้ตัวเองกลับไปเข้าระบบทุนนิยมค่ะ\nFan Name: ผู้หลับใหล(ผลล)",
+        "source_resource": "video:ZdK8MpX3KCI",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:48.136374+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/@MizuhoKai_EX",
+      "evidence": {
+        "channel_id": "UCF4EIN5KhxGwlFLp-ijQvwA",
+        "canonical_url": "https://www.youtube.com/channel/UCF4EIN5KhxGwlFLp-ijQvwA",
+        "title": "Mizuho Kai 《 EXia 》",
+        "description": "ฮ้ายฮาย~~เหล่าดาวๆทุกท่านด้วยนะ\nHi hiii~~all the stars\n⋆✦--------------------------------✧★✧--------------------------------✦⋆\nยินดีที่ได้รู้จักนะครับเหล่าดาวๆทั้งหลาย เทพปลาดาวตนนี้ขอบันดาลความสุขให้กับทุกดวงดาวที่ผ่านไปผ่ามมาด้วยน้า~~\nit's a pleasure to meet you, all the stars. I the starfish god wishes to bring happiness to every star that passes by~~\n⋆✦--------------------------------✧★✧--------------------------------✦⋆\n\n 🌊 ทุกคนสามารถติดตามมิโฮะได้ที่ 🌊\n 🌊 You guys can support me in this platform 🌊\n------------------------------------------------------------\n\nX : https://x.com/mizuho_exia?s=21\n\n⋆✦--------------------------------✧★✧--------------------------------✦⋆\n⋆✦HASHTAGS✦⋆\nTagLive : #MihoLive\nTagFanart  : #MihoFA\nFanName : #เหล่าดาวๆ\n\n⋆✦--------------------------------✧★✧--------------------------------✦⋆\nMama : https://x.com/geimuriri?s=21\n",
+        "source_resource": "handle:@mizuhokai_ex",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:48.461832+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@MizuhoKai_EX/about",
+      "evidence": {
+        "channel_id": "UCF4EIN5KhxGwlFLp-ijQvwA",
+        "canonical_url": "https://www.youtube.com/channel/UCF4EIN5KhxGwlFLp-ijQvwA",
+        "title": "Mizuho Kai 《 EXia 》",
+        "description": "ฮ้ายฮาย~~เหล่าดาวๆทุกท่านด้วยนะ\nHi hiii~~all the stars\n⋆✦--------------------------------✧★✧--------------------------------✦⋆\nยินดีที่ได้รู้จักนะครับเหล่าดาวๆทั้งหลาย เทพปลาดาวตนนี้ขอบันดาลความสุขให้กับทุกดวงดาวที่ผ่านไปผ่ามมาด้วยน้า~~\nit's a pleasure to meet you, all the stars. I the starfish god wishes to bring happiness to every star that passes by~~\n⋆✦--------------------------------✧★✧--------------------------------✦⋆\n\n 🌊 ทุกคนสามารถติดตามมิโฮะได้ที่ 🌊\n 🌊 You guys can support me in this platform 🌊\n------------------------------------------------------------\n\nX : https://x.com/mizuho_exia?s=21\n\n⋆✦--------------------------------✧★✧--------------------------------✦⋆\n⋆✦HASHTAGS✦⋆\nTagLive : #MihoLive\nTagFanart  : #MihoFA\nFanName : #เหล่าดาวๆ\n\n⋆✦--------------------------------✧★✧--------------------------------✦⋆\nMama : https://x.com/geimuriri?s=21\n",
+        "source_resource": "handle:@mizuhokai_ex",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:48.468242+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=4Kg70ElfX90",
+      "evidence": {
+        "channel_id": "UCF4EIN5KhxGwlFLp-ijQvwA",
+        "canonical_url": "https://www.youtube.com/channel/UCF4EIN5KhxGwlFLp-ijQvwA",
+        "title": "Mizuho Kai 《 EXia 》",
+        "description": "ฮ้ายฮาย~~เหล่าดาวๆทุกท่านด้วยนะ\nHi hiii~~all the stars\n⋆✦--------------------------------✧★✧--------------------------------✦⋆\nยินดีที่ได้รู้จักนะครับเหล่าดาวๆทั้งหลาย เทพปลาดาวตนนี้ขอบันดาลความสุขให้กับทุกดวงดาวที่ผ่านไปผ่ามมาด้วยน้า~~\nit's a pleasure to meet you, all the stars. I the starfish god wishes to bring happiness to every star that passes by~~\n⋆✦--------------------------------✧★✧--------------------------------✦⋆\n\n 🌊 ทุกคนสามารถติดตามมิโฮะได้ที่ 🌊\n 🌊 You guys can support me in this platform 🌊\n------------------------------------------------------------\n\nX : https://x.com/mizuho_exia?s=21\n\n⋆✦--------------------------------✧★✧--------------------------------✦⋆\n⋆✦HASHTAGS✦⋆\nTagLive : #MihoLive\nTagFanart  : #MihoFA\nFanName : #เหล่าดาวๆ\n\n⋆✦--------------------------------✧★✧--------------------------------✦⋆\nMama : https://x.com/geimuriri?s=21\n",
+        "source_resource": "video:4Kg70ElfX90",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:48.929038+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=kNYufIGFco4",
+      "evidence": {
+        "channel_id": "UCF4EIN5KhxGwlFLp-ijQvwA",
+        "canonical_url": "https://www.youtube.com/channel/UCF4EIN5KhxGwlFLp-ijQvwA",
+        "title": "Mizuho Kai 《 EXia 》",
+        "description": "ฮ้ายฮาย~~เหล่าดาวๆทุกท่านด้วยนะ\nHi hiii~~all the stars\n⋆✦--------------------------------✧★✧--------------------------------✦⋆\nยินดีที่ได้รู้จักนะครับเหล่าดาวๆทั้งหลาย เทพปลาดาวตนนี้ขอบันดาลความสุขให้กับทุกดวงดาวที่ผ่านไปผ่ามมาด้วยน้า~~\nit's a pleasure to meet you, all the stars. I the starfish god wishes to bring happiness to every star that passes by~~\n⋆✦--------------------------------✧★✧--------------------------------✦⋆\n\n 🌊 ทุกคนสามารถติดตามมิโฮะได้ที่ 🌊\n 🌊 You guys can support me in this platform 🌊\n------------------------------------------------------------\n\nX : https://x.com/mizuho_exia?s=21\n\n⋆✦--------------------------------✧★✧--------------------------------✦⋆\n⋆✦HASHTAGS✦⋆\nTagLive : #MihoLive\nTagFanart  : #MihoFA\nFanName : #เหล่าดาวๆ\n\n⋆✦--------------------------------✧★✧--------------------------------✦⋆\nMama : https://x.com/geimuriri?s=21\n",
+        "source_resource": "video:kNYufIGFco4",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:49.319140+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/@AmuiiiChan",
+      "evidence": {
+        "channel_id": "UCrwRrMLoFSCZrYuz2oJM9LA",
+        "canonical_url": "https://www.youtube.com/channel/UCrwRrMLoFSCZrYuz2oJM9LA",
+        "title": "AmuiiiChan",
+        "description": "",
+        "source_resource": "handle:@amuiiichan",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:49.655600+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@AmuiiiChan/about",
+      "evidence": {
+        "channel_id": "UCrwRrMLoFSCZrYuz2oJM9LA",
+        "canonical_url": "https://www.youtube.com/channel/UCrwRrMLoFSCZrYuz2oJM9LA",
+        "title": "AmuiiiChan",
+        "description": "",
+        "source_resource": "handle:@amuiiichan",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:49.661278+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=fnJhjhwznWY",
+      "evidence": {
+        "channel_id": "UCrwRrMLoFSCZrYuz2oJM9LA",
+        "canonical_url": "https://www.youtube.com/channel/UCrwRrMLoFSCZrYuz2oJM9LA",
+        "title": "AmuiiiChan",
+        "description": "",
+        "source_resource": "video:fnJhjhwznWY",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:50.115778+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/@shiomiau",
+      "evidence": {
+        "channel_id": "UCLPcqD2-HVb2paJx0L1hJBQ",
+        "canonical_url": "https://www.youtube.com/channel/UCLPcqD2-HVb2paJx0L1hJBQ",
+        "title": "shiomiau",
+        "description": "good to see you! I'm shio!\n\nI'm a VTuber who mainly streams a lot of indie games and art! I'm usually live at either 8 PM JST or 9 AM JST. I play a lot of indie games in the likes of ULTRAKILL, Noita, or The Binding of Isaac, but not limited to just that. I also drew my own model, and occasionally stream art and karaoke! \n\nhope you stick around!\n\n#vtuber #vtuberen #envtuber #gaming",
+        "source_resource": "handle:@shiomiau",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:50.421007+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@shiomiau/about",
+      "evidence": {
+        "channel_id": "UCLPcqD2-HVb2paJx0L1hJBQ",
+        "canonical_url": "https://www.youtube.com/channel/UCLPcqD2-HVb2paJx0L1hJBQ",
+        "title": "shiomiau",
+        "description": "good to see you! I'm shio!\n\nI'm a VTuber who mainly streams a lot of indie games and art! I'm usually live at either 8 PM JST or 9 AM JST. I play a lot of indie games in the likes of ULTRAKILL, Noita, or The Binding of Isaac, but not limited to just that. I also drew my own model, and occasionally stream art and karaoke! \n\nhope you stick around!\n\n#vtuber #vtuberen #envtuber #gaming",
+        "source_resource": "handle:@shiomiau",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:50.426052+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=-GiXx4q9NBk",
+      "evidence": {
+        "channel_id": "UCLPcqD2-HVb2paJx0L1hJBQ",
+        "canonical_url": "https://www.youtube.com/channel/UCLPcqD2-HVb2paJx0L1hJBQ",
+        "title": "shiomiau",
+        "description": "good to see you! I'm shio!\n\nI'm a VTuber who mainly streams a lot of indie games and art! I'm usually live at either 8 PM JST or 9 AM JST. I play a lot of indie games in the likes of ULTRAKILL, Noita, or The Binding of Isaac, but not limited to just that. I also drew my own model, and occasionally stream art and karaoke! \n\nhope you stick around!\n\n#vtuber #vtuberen #envtuber #gaming",
+        "source_resource": "video:-GiXx4q9NBk",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:50.812820+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=dVco1SBTpZ8",
+      "evidence": {
+        "channel_id": "UCLPcqD2-HVb2paJx0L1hJBQ",
+        "canonical_url": "https://www.youtube.com/channel/UCLPcqD2-HVb2paJx0L1hJBQ",
+        "title": "shiomiau",
+        "description": "good to see you! I'm shio!\n\nI'm a VTuber who mainly streams a lot of indie games and art! I'm usually live at either 8 PM JST or 9 AM JST. I play a lot of indie games in the likes of ULTRAKILL, Noita, or The Binding of Isaac, but not limited to just that. I also drew my own model, and occasionally stream art and karaoke! \n\nhope you stick around!\n\n#vtuber #vtuberen #envtuber #gaming",
+        "source_resource": "video:dVco1SBTpZ8",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:51.210682+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://youtube.com/shorts/zxuWh0ffiuI",
+      "evidence": {
+        "channel_id": "UCVhMzJhna39ULdMowQAE-uQ",
+        "canonical_url": "https://www.youtube.com/channel/UCVhMzJhna39ULdMowQAE-uQ",
+        "title": "Hatsuji ::H.T.J ",
+        "description": "สะเก็ดดวงดาววัย 26 ปี ที่ไม่มีเพศเรียกว่า เพศดวงดาวที่ตกลงมาอาศัยอยู่ที่โลกนี้ไงล่ะ\n\" ボクガールです。僕は星宝だから！\"\n\nHashtags             \nGeneral : #HatsujiMind             \nStream : #Maiwanpaku             \nFan Art : #maimaiDaw            \nNSFW : #maiDaiNa             \nMeme : #maimeme\n",
+        "source_resource": "video:zxuWh0ffiuI",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:51.598875+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://youtube.com/shorts/zxuWh0ffiuI/about",
+      "evidence": {
+        "channel_id": "UCVhMzJhna39ULdMowQAE-uQ",
+        "canonical_url": "https://www.youtube.com/channel/UCVhMzJhna39ULdMowQAE-uQ",
+        "title": "Hatsuji ::H.T.J ",
+        "description": "สะเก็ดดวงดาววัย 26 ปี ที่ไม่มีเพศเรียกว่า เพศดวงดาวที่ตกลงมาอาศัยอยู่ที่โลกนี้ไงล่ะ\n\" ボクガールです。僕は星宝だから！\"\n\nHashtags             \nGeneral : #HatsujiMind             \nStream : #Maiwanpaku             \nFan Art : #maimaiDaw            \nNSFW : #maiDaiNa             \nMeme : #maimeme\n",
+        "source_resource": "video:zxuWh0ffiuI",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:51.604378+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/shorts/5fweUpvBeBM",
+      "evidence": {
+        "channel_id": "UCeZoMTRssGhbl9vS5lvYsQg",
+        "canonical_url": "https://www.youtube.com/channel/UCeZoMTRssGhbl9vS5lvYsQg",
+        "title": "Rarin Ch.",
+        "description": "เป็นนาค เป็นวีทูปเบอร์\n\nตอนแรกกะมามีสาระ ตอนนี้มีแต่อะไรบ้างก็ไม่รู้แล้วเนี่ย!?\n\nแฮชแท็ก (#)\n\nทั่วไป #RuayRarin\nงานศิลป์ #RarinTone\n",
+        "source_resource": "video:5fweUpvBeBM",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:52.211470+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://youtube.com/shorts/5fweUpvBeBM/about",
+      "evidence": {
+        "channel_id": "UCeZoMTRssGhbl9vS5lvYsQg",
+        "canonical_url": "https://www.youtube.com/channel/UCeZoMTRssGhbl9vS5lvYsQg",
+        "title": "Rarin Ch.",
+        "description": "เป็นนาค เป็นวีทูปเบอร์\n\nตอนแรกกะมามีสาระ ตอนนี้มีแต่อะไรบ้างก็ไม่รู้แล้วเนี่ย!?\n\nแฮชแท็ก (#)\n\nทั่วไป #RuayRarin\nงานศิลป์ #RarinTone\n",
+        "source_resource": "video:5fweUpvBeBM",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:52.217125+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/shorts/E0xW6jOtkeQ",
+      "evidence": {
+        "channel_id": "UCdVlryCezLzVh74qwUfrL6Q",
+        "canonical_url": "https://www.youtube.com/channel/UCdVlryCezLzVh74qwUfrL6Q",
+        "title": "ฟ้อนดาวมาเล่า | Fondawl【RE:S】",
+        "description": "เธอ ๆ ฉันมีเรื่องมาเล่า\n\nติวเตอร์สาวที่จะมาเล่าเรื่องราวให้คุณฟัง\nถ้าอธิบายตามภาษาวิชาการมันน่าเบื่อ เดี๋ยวเรามาฟังเวอร์ชั่นที่ง่ายและสนุกไปกับฟ้อนดาวกันดีกว่า!\n\nGeneral : #ฟ้อนดาวมาเล่า #FondawlStory\nArt  : #ของขวัญฟ้อนดาว #forFondawl\n\n------------\n\n【For Work Contact】\nX : https://x.com/RESpaark\n",
+        "source_resource": "video:E0xW6jOtkeQ",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:52.623195+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://youtube.com/shorts/E0xW6jOtkeQ/about",
+      "evidence": {
+        "channel_id": "UCdVlryCezLzVh74qwUfrL6Q",
+        "canonical_url": "https://www.youtube.com/channel/UCdVlryCezLzVh74qwUfrL6Q",
+        "title": "ฟ้อนดาวมาเล่า | Fondawl【RE:S】",
+        "description": "เธอ ๆ ฉันมีเรื่องมาเล่า\n\nติวเตอร์สาวที่จะมาเล่าเรื่องราวให้คุณฟัง\nถ้าอธิบายตามภาษาวิชาการมันน่าเบื่อ เดี๋ยวเรามาฟังเวอร์ชั่นที่ง่ายและสนุกไปกับฟ้อนดาวกันดีกว่า!\n\nGeneral : #ฟ้อนดาวมาเล่า #FondawlStory\nArt  : #ของขวัญฟ้อนดาว #forFondawl\n\n------------\n\n【For Work Contact】\nX : https://x.com/RESpaark\n",
+        "source_resource": "video:E0xW6jOtkeQ",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:52.628429+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/shorts/4EUX04B-4As",
+      "evidence": {
+        "channel_id": "UCLMlKgN_f39Ex0pFZ4e5oUQ",
+        "canonical_url": "https://www.youtube.com/channel/UCLMlKgN_f39Ex0pFZ4e5oUQ",
+        "title": "Derya CH. ⌜VZ⌟ ",
+        "description": "Welcome to my world, little fish. The fun is just getting started!\n\n",
+        "source_resource": "video:4EUX04B-4As",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:53.296753+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://youtube.com/shorts/4EUX04B-4As/about",
+      "evidence": {
+        "channel_id": "UCLMlKgN_f39Ex0pFZ4e5oUQ",
+        "canonical_url": "https://www.youtube.com/channel/UCLMlKgN_f39Ex0pFZ4e5oUQ",
+        "title": "Derya CH. ⌜VZ⌟ ",
+        "description": "Welcome to my world, little fish. The fun is just getting started!\n\n",
+        "source_resource": "video:4EUX04B-4As",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:53.301591+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@PMheeMaru",
+      "evidence": {
+        "channel_id": "UCV6RYWaK2TAQfHsNyKAtaoA",
+        "canonical_url": "https://www.youtube.com/channel/UCV6RYWaK2TAQfHsNyKAtaoA",
+        "title": "พี่หมี ( Maru ) VtuberTH : Online now!!",
+        "description": "Twitter : https://twitter.com/PMheeMaru/status/1549202805226762241?t=wRtSwCTerYtbquO6fEKA3g&s=19\n🚧Under Construction🚧",
+        "source_resource": "handle:@pmheemaru",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:53.633677+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@PMheeMaru/about",
+      "evidence": {
+        "channel_id": "UCV6RYWaK2TAQfHsNyKAtaoA",
+        "canonical_url": "https://www.youtube.com/channel/UCV6RYWaK2TAQfHsNyKAtaoA",
+        "title": "พี่หมี ( Maru ) VtuberTH : Online now!!",
+        "description": "Twitter : https://twitter.com/PMheeMaru/status/1549202805226762241?t=wRtSwCTerYtbquO6fEKA3g&s=19\n🚧Under Construction🚧",
+        "source_resource": "handle:@pmheemaru",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:53.638571+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=hVtEVSI6Pjo",
+      "evidence": {
+        "channel_id": "UCV6RYWaK2TAQfHsNyKAtaoA",
+        "canonical_url": "https://www.youtube.com/channel/UCV6RYWaK2TAQfHsNyKAtaoA",
+        "title": "พี่หมี ( Maru ) VtuberTH : Online now!!",
+        "description": "Twitter : https://twitter.com/PMheeMaru/status/1549202805226762241?t=wRtSwCTerYtbquO6fEKA3g&s=19\n🚧Under Construction🚧",
+        "source_resource": "video:hVtEVSI6Pjo",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:54.053053+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=QDo1vFrW7Rg",
+      "evidence": {
+        "channel_id": "UCV6RYWaK2TAQfHsNyKAtaoA",
+        "canonical_url": "https://www.youtube.com/channel/UCV6RYWaK2TAQfHsNyKAtaoA",
+        "title": "พี่หมี ( Maru ) VtuberTH : Online now!!",
+        "description": "Twitter : https://twitter.com/PMheeMaru/status/1549202805226762241?t=wRtSwCTerYtbquO6fEKA3g&s=19\n🚧Under Construction🚧",
+        "source_resource": "video:QDo1vFrW7Rg",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:54.439041+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/@HayatoASKZ",
+      "evidence": {
+        "channel_id": "UCnncGChIuzRNUhaAJqFgT1A",
+        "canonical_url": "https://www.youtube.com/channel/UCnncGChIuzRNUhaAJqFgT1A",
+        "title": "Hayato Asukaze [VTravelVlog]",
+        "description": "นักเดินทางธรรมดานี่แหละ\nจะเล่นเกมทุกเกมที่สามารถเล่นได้ ถึงแม้ฝีมือจะไม่ได้เก่งก็เถอะนะ แต่ก็ไม่มีกฎข้อไหนบอกว่าห้ามเล่นอ่ะนะ Play for fun.\nและจะพยายามสร้างความสนุกและความบันเทิงให้กับทุกๆคนที่หลงทางเข้ามาดูนะ\n\nขอบคุณทุกๆคนที่เข้ามารับชมและกดติดตามคลิปด้วยนะ (^_^)\nThanks for watching and Subscribing\n",
+        "source_resource": "handle:@hayatoaskz",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:54.856757+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@HayatoASKZ/about",
+      "evidence": {
+        "channel_id": "UCnncGChIuzRNUhaAJqFgT1A",
+        "canonical_url": "https://www.youtube.com/channel/UCnncGChIuzRNUhaAJqFgT1A",
+        "title": "Hayato Asukaze [VTravelVlog]",
+        "description": "นักเดินทางธรรมดานี่แหละ\nจะเล่นเกมทุกเกมที่สามารถเล่นได้ ถึงแม้ฝีมือจะไม่ได้เก่งก็เถอะนะ แต่ก็ไม่มีกฎข้อไหนบอกว่าห้ามเล่นอ่ะนะ Play for fun.\nและจะพยายามสร้างความสนุกและความบันเทิงให้กับทุกๆคนที่หลงทางเข้ามาดูนะ\n\nขอบคุณทุกๆคนที่เข้ามารับชมและกดติดตามคลิปด้วยนะ (^_^)\nThanks for watching and Subscribing\n",
+        "source_resource": "handle:@hayatoaskz",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:54.862522+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=870JmJtKcAM",
+      "evidence": {
+        "channel_id": "UCnncGChIuzRNUhaAJqFgT1A",
+        "canonical_url": "https://www.youtube.com/channel/UCnncGChIuzRNUhaAJqFgT1A",
+        "title": "Hayato Asukaze [VTravelVlog]",
+        "description": "นักเดินทางธรรมดานี่แหละ\nจะเล่นเกมทุกเกมที่สามารถเล่นได้ ถึงแม้ฝีมือจะไม่ได้เก่งก็เถอะนะ แต่ก็ไม่มีกฎข้อไหนบอกว่าห้ามเล่นอ่ะนะ Play for fun.\nและจะพยายามสร้างความสนุกและความบันเทิงให้กับทุกๆคนที่หลงทางเข้ามาดูนะ\n\nขอบคุณทุกๆคนที่เข้ามารับชมและกดติดตามคลิปด้วยนะ (^_^)\nThanks for watching and Subscribing\n",
+        "source_resource": "video:870JmJtKcAM",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:55.256447+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/@yuuroki_usaku",
+      "evidence": {
+        "channel_id": "UC2Rctk_JbZ6EXT4z4Uaut-w",
+        "canonical_url": "https://www.youtube.com/channel/UC2Rctk_JbZ6EXT4z4Uaut-w",
+        "title": "Usaku CH.",
+        "description": "",
+        "source_resource": "handle:@yuuroki_usaku",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:55.613114+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@yuuroki_usaku/about",
+      "evidence": {
+        "channel_id": "UC2Rctk_JbZ6EXT4z4Uaut-w",
+        "canonical_url": "https://www.youtube.com/channel/UC2Rctk_JbZ6EXT4z4Uaut-w",
+        "title": "Usaku CH.",
+        "description": "",
+        "source_resource": "handle:@yuuroki_usaku",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:55.618591+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=OSTLdJFEPMw",
+      "evidence": {
+        "channel_id": "UC2Rctk_JbZ6EXT4z4Uaut-w",
+        "canonical_url": "https://www.youtube.com/channel/UC2Rctk_JbZ6EXT4z4Uaut-w",
+        "title": "Usaku CH.",
+        "description": "",
+        "source_resource": "video:OSTLdJFEPMw",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:55.979264+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=f46LXr_BU60",
+      "evidence": {
+        "channel_id": "UC2Rctk_JbZ6EXT4z4Uaut-w",
+        "canonical_url": "https://www.youtube.com/channel/UC2Rctk_JbZ6EXT4z4Uaut-w",
+        "title": "Usaku CH.",
+        "description": "",
+        "source_resource": "video:f46LXr_BU60",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:56.429746+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://youtube.com/shorts/3lExZD4sjeY",
+      "evidence": {
+        "channel_id": "UC_XPgDT6i9evZc5uJF1tc8g",
+        "canonical_url": "https://www.youtube.com/channel/UC_XPgDT6i9evZc5uJF1tc8g",
+        "title": "Enryu Horus Ch. 炎竜ホルス",
+        "description": "Welcome to Horus Channel ✨\nDora... Dora... Doragon! 🐲 炎竜ホルスです！銀河竜🌌\n\nHello, I'm a Virtual Isekai Enryu Horus. Nice to meet you!\nPlease subscribe to my channel! Thank you for Watching! Enjoy :)\n☄┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈☄\n✉ horusenryuu@gmail.com\n",
+        "source_resource": "video:3lExZD4sjeY",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:56.793668+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://youtube.com/shorts/3lExZD4sjeY/about",
+      "evidence": {
+        "channel_id": "UC_XPgDT6i9evZc5uJF1tc8g",
+        "canonical_url": "https://www.youtube.com/channel/UC_XPgDT6i9evZc5uJF1tc8g",
+        "title": "Enryu Horus Ch. 炎竜ホルス",
+        "description": "Welcome to Horus Channel ✨\nDora... Dora... Doragon! 🐲 炎竜ホルスです！銀河竜🌌\n\nHello, I'm a Virtual Isekai Enryu Horus. Nice to meet you!\nPlease subscribe to my channel! Thank you for Watching! Enjoy :)\n☄┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈☄\n✉ horusenryuu@gmail.com\n",
+        "source_resource": "video:3lExZD4sjeY",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:56.798958+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/shorts/bJoM23njAaM",
+      "evidence": {
+        "channel_id": "UCiuLi0DkmZQAH4fy_XhFUuA",
+        "canonical_url": "https://www.youtube.com/channel/UCiuLi0DkmZQAH4fy_XhFUuA",
+        "title": "CzarBooHan",
+        "description": "\" ซาร์บูฮาน \" สไลม์กินวิญญาณ\nสไลม์น่ะกินไม่เลือก แต่ของโปรดที่ขาดไม่ได้...ดันเป็นพวกตาลุงซะงั้น:P",
+        "source_resource": "video:bJoM23njAaM",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:57.143411+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://youtube.com/shorts/bJoM23njAaM/about",
+      "evidence": {
+        "channel_id": "UCiuLi0DkmZQAH4fy_XhFUuA",
+        "canonical_url": "https://www.youtube.com/channel/UCiuLi0DkmZQAH4fy_XhFUuA",
+        "title": "CzarBooHan",
+        "description": "\" ซาร์บูฮาน \" สไลม์กินวิญญาณ\nสไลม์น่ะกินไม่เลือก แต่ของโปรดที่ขาดไม่ได้...ดันเป็นพวกตาลุงซะงั้น:P",
+        "source_resource": "video:bJoM23njAaM",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:57.148675+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCjRhcXQcLp0Zz08tE_-DX-w",
+      "evidence": {
+        "channel_id": "UCjRhcXQcLp0Zz08tE_-DX-w",
+        "canonical_url": "https://www.youtube.com/channel/UCjRhcXQcLp0Zz08tE_-DX-w",
+        "title": "SC SugarCute VtubeTH [re-debut soon]",
+        "description": "⍝ʕ•ᴥ•ʔ⍝ สวัสดีค่ะ ชื่อ Sugar[น้ำตาล] นะคะ สายพันธุ์กระต่าย+มด ⍝ʕ•ᴥ•ʔ⍝\n⍝ʕ•ᴥ•ʔ⍝ สายเล่นเกมส์ เป็น Vtuber ยังไงก็ช่วย \"เอ็นดู\" เยอะๆด้วยนะคะ ⍝ʕ•ᴥ•ʔ⍝ \n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nช่องทางการติดตาม\n🔵 Facebook [รวมทุกแนว] : SC_SugarCute \n🔴 YouTuber [เกมอื่นๆ] : SC SugarCute VtubeTH [re-debut soon]\n🔴 YouTuber [FiveM] : Philin Carino\n🟪 IG : SUGARVTUBER \n🟦 Twitter : @scsugarcute1\n⬛ ช่องทาง 𝐭𝐢𝐤𝐭𝐨𝐤 ⠶ @philincarino\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nหลักๆช่องนี้ จะเล่นเกมทั่วๆไป\nPUBG ow2 naraka Palworld VALORANT\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ \n",
+        "source_resource": "channel:UCjRhcXQcLp0Zz08tE_-DX-w",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:57.474125+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCjRhcXQcLp0Zz08tE_-DX-w/about",
+      "evidence": {
+        "channel_id": "UCjRhcXQcLp0Zz08tE_-DX-w",
+        "canonical_url": "https://www.youtube.com/channel/UCjRhcXQcLp0Zz08tE_-DX-w",
+        "title": "SC SugarCute VtubeTH [re-debut soon]",
+        "description": "⍝ʕ•ᴥ•ʔ⍝ สวัสดีค่ะ ชื่อ Sugar[น้ำตาล] นะคะ สายพันธุ์กระต่าย+มด ⍝ʕ•ᴥ•ʔ⍝\n⍝ʕ•ᴥ•ʔ⍝ สายเล่นเกมส์ เป็น Vtuber ยังไงก็ช่วย \"เอ็นดู\" เยอะๆด้วยนะคะ ⍝ʕ•ᴥ•ʔ⍝ \n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nช่องทางการติดตาม\n🔵 Facebook [รวมทุกแนว] : SC_SugarCute \n🔴 YouTuber [เกมอื่นๆ] : SC SugarCute VtubeTH [re-debut soon]\n🔴 YouTuber [FiveM] : Philin Carino\n🟪 IG : SUGARVTUBER \n🟦 Twitter : @scsugarcute1\n⬛ ช่องทาง 𝐭𝐢𝐤𝐭𝐨𝐤 ⠶ @philincarino\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nหลักๆช่องนี้ จะเล่นเกมทั่วๆไป\nPUBG ow2 naraka Palworld VALORANT\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ \n",
+        "source_resource": "channel:UCjRhcXQcLp0Zz08tE_-DX-w",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:57.478545+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=aOSkJmnMjq4",
+      "evidence": {
+        "channel_id": "UCjRhcXQcLp0Zz08tE_-DX-w",
+        "canonical_url": "https://www.youtube.com/channel/UCjRhcXQcLp0Zz08tE_-DX-w",
+        "title": "SC SugarCute VtubeTH [re-debut soon]",
+        "description": "⍝ʕ•ᴥ•ʔ⍝ สวัสดีค่ะ ชื่อ Sugar[น้ำตาล] นะคะ สายพันธุ์กระต่าย+มด ⍝ʕ•ᴥ•ʔ⍝\n⍝ʕ•ᴥ•ʔ⍝ สายเล่นเกมส์ เป็น Vtuber ยังไงก็ช่วย \"เอ็นดู\" เยอะๆด้วยนะคะ ⍝ʕ•ᴥ•ʔ⍝ \n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nช่องทางการติดตาม\n🔵 Facebook [รวมทุกแนว] : SC_SugarCute \n🔴 YouTuber [เกมอื่นๆ] : SC SugarCute VtubeTH [re-debut soon]\n🔴 YouTuber [FiveM] : Philin Carino\n🟪 IG : SUGARVTUBER \n🟦 Twitter : @scsugarcute1\n⬛ ช่องทาง 𝐭𝐢𝐤𝐭𝐨𝐤 ⠶ @philincarino\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nหลักๆช่องนี้ จะเล่นเกมทั่วๆไป\nPUBG ow2 naraka Palworld VALORANT\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ \n",
+        "source_resource": "video:aOSkJmnMjq4",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:57.877764+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=piJm814Y2hs",
+      "evidence": {
+        "channel_id": "UCjRhcXQcLp0Zz08tE_-DX-w",
+        "canonical_url": "https://www.youtube.com/channel/UCjRhcXQcLp0Zz08tE_-DX-w",
+        "title": "SC SugarCute VtubeTH [re-debut soon]",
+        "description": "⍝ʕ•ᴥ•ʔ⍝ สวัสดีค่ะ ชื่อ Sugar[น้ำตาล] นะคะ สายพันธุ์กระต่าย+มด ⍝ʕ•ᴥ•ʔ⍝\n⍝ʕ•ᴥ•ʔ⍝ สายเล่นเกมส์ เป็น Vtuber ยังไงก็ช่วย \"เอ็นดู\" เยอะๆด้วยนะคะ ⍝ʕ•ᴥ•ʔ⍝ \n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nช่องทางการติดตาม\n🔵 Facebook [รวมทุกแนว] : SC_SugarCute \n🔴 YouTuber [เกมอื่นๆ] : SC SugarCute VtubeTH [re-debut soon]\n🔴 YouTuber [FiveM] : Philin Carino\n🟪 IG : SUGARVTUBER \n🟦 Twitter : @scsugarcute1\n⬛ ช่องทาง 𝐭𝐢𝐤𝐭𝐨𝐤 ⠶ @philincarino\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nหลักๆช่องนี้ จะเล่นเกมทั่วๆไป\nPUBG ow2 naraka Palworld VALORANT\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ \n",
+        "source_resource": "video:piJm814Y2hs",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:58.242124+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/shorts/UZDwRCAWzhc",
+      "evidence": {
+        "channel_id": "UCASpA6_BQVi6LpuBRdSxfmw",
+        "canonical_url": "https://www.youtube.com/channel/UCASpA6_BQVi6LpuBRdSxfmw",
+        "title": "ALThiMa-NigHT",
+        "description": "วี-สายยัดเยียด(เพลง)-โดนแกง\nยินดีต้อนรับสู่มิติ Pi-Ka-To!!! ฟังเพลงกับอัล♀นะคะ หรือ มาเล่นเกย์เอ้ยเกม ฟังไนท์♂คุย(กับตัวเอง)ครับป๋ม\nวางโลกแห่งความเป็นจริงไว้ปลดปล่อยความเป็นตัวคุณได้ขอแค่ไม่ผิดกฎก็พอ\nนอกนั้น อัลกับไนท์จะ คิด.วิเคราะห์.แยกแยะ.เอง 555\nความสุขที่ไม่เดือดร้อนตัวเองและผู้อื่นคือจุดหมายของช่อง\nFan Name : ชาว PiKaTo\n🦮🍽\nhttps://www.facebook.com/profile.php?id=61574843675312\nwww.tiktok.com/@althitima\nhttps://discord.gg/MXQng5eevT\nhttps://x.com/ALThiMa_NigHT\n",
+        "source_resource": "video:UZDwRCAWzhc",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:58.648522+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/shorts/UZDwRCAWzhc/about",
+      "evidence": {
+        "channel_id": "UCASpA6_BQVi6LpuBRdSxfmw",
+        "canonical_url": "https://www.youtube.com/channel/UCASpA6_BQVi6LpuBRdSxfmw",
+        "title": "ALThiMa-NigHT",
+        "description": "วี-สายยัดเยียด(เพลง)-โดนแกง\nยินดีต้อนรับสู่มิติ Pi-Ka-To!!! ฟังเพลงกับอัล♀นะคะ หรือ มาเล่นเกย์เอ้ยเกม ฟังไนท์♂คุย(กับตัวเอง)ครับป๋ม\nวางโลกแห่งความเป็นจริงไว้ปลดปล่อยความเป็นตัวคุณได้ขอแค่ไม่ผิดกฎก็พอ\nนอกนั้น อัลกับไนท์จะ คิด.วิเคราะห์.แยกแยะ.เอง 555\nความสุขที่ไม่เดือดร้อนตัวเองและผู้อื่นคือจุดหมายของช่อง\nFan Name : ชาว PiKaTo\n🦮🍽\nhttps://www.facebook.com/profile.php?id=61574843675312\nwww.tiktok.com/@althitima\nhttps://discord.gg/MXQng5eevT\nhttps://x.com/ALThiMa_NigHT\n",
+        "source_resource": "video:UZDwRCAWzhc",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:58.654432+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@SKYLERcvc",
+      "evidence": {
+        "channel_id": "UCYTwCLeVSdtebYrQNliWzeA",
+        "canonical_url": "https://www.youtube.com/channel/UCYTwCLeVSdtebYrQNliWzeA",
+        "title": "SKYLER Ch. 『𝐋𝐕』",
+        "description": "",
+        "source_resource": "handle:@skylercvc",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:58.978969+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@SKYLERcvc/about",
+      "evidence": {
+        "channel_id": "UCYTwCLeVSdtebYrQNliWzeA",
+        "canonical_url": "https://www.youtube.com/channel/UCYTwCLeVSdtebYrQNliWzeA",
+        "title": "SKYLER Ch. 『𝐋𝐕』",
+        "description": "",
+        "source_resource": "handle:@skylercvc",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:53:58.983665+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=ghmw0QUNpMQ",
+      "evidence": {
+        "channel_id": "UCYTwCLeVSdtebYrQNliWzeA",
+        "canonical_url": "https://www.youtube.com/channel/UCYTwCLeVSdtebYrQNliWzeA",
+        "title": "SKYLER Ch. 『𝐋𝐕』",
+        "description": "",
+        "source_resource": "video:ghmw0QUNpMQ",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:53:59.372221+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=EexjZUe3zGE",
+      "evidence": {
+        "channel_id": "UCYTwCLeVSdtebYrQNliWzeA",
+        "canonical_url": "https://www.youtube.com/channel/UCYTwCLeVSdtebYrQNliWzeA",
+        "title": "SKYLER Ch. 『𝐋𝐕』",
+        "description": "",
+        "source_resource": "video:EexjZUe3zGE",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:54:00.136040+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/@ShuaVibeENT",
+      "evidence": {
+        "channel_id": "UC_oH76DShLob3sbdod-RF6Q",
+        "canonical_url": "https://www.youtube.com/channel/UC_oH76DShLob3sbdod-RF6Q",
+        "title": "SHUA Ch. / QURSE",
+        "description": "",
+        "source_resource": "handle:@shuavibeent",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:00.471745+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@ShuaVibeENT/about",
+      "evidence": {
+        "channel_id": "UC_oH76DShLob3sbdod-RF6Q",
+        "canonical_url": "https://www.youtube.com/channel/UC_oH76DShLob3sbdod-RF6Q",
+        "title": "SHUA Ch. / QURSE",
+        "description": "",
+        "source_resource": "handle:@shuavibeent",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:00.477727+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/@Leon-R-Shootingstar",
+      "evidence": {
+        "channel_id": "UCSIDlMRZyiQKsntMAhFE04w",
+        "canonical_url": "https://www.youtube.com/channel/UCSIDlMRZyiQKsntMAhFE04w",
+        "title": "Leon",
+        "description": "",
+        "source_resource": "handle:@leon-r-shootingstar",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:00.938919+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@Leon-R-Shootingstar/about",
+      "evidence": {
+        "channel_id": "UCSIDlMRZyiQKsntMAhFE04w",
+        "canonical_url": "https://www.youtube.com/channel/UCSIDlMRZyiQKsntMAhFE04w",
+        "title": "Leon",
+        "description": "",
+        "source_resource": "handle:@leon-r-shootingstar",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:00.944250+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=d7ns6ud9PuY",
+      "evidence": {
+        "channel_id": "UCSIDlMRZyiQKsntMAhFE04w",
+        "canonical_url": "https://www.youtube.com/channel/UCSIDlMRZyiQKsntMAhFE04w",
+        "title": "Leon",
+        "description": "",
+        "source_resource": "video:d7ns6ud9PuY",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:54:01.338208+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=HUYaYgiouH8",
+      "evidence": {
+        "channel_id": "UCSIDlMRZyiQKsntMAhFE04w",
+        "canonical_url": "https://www.youtube.com/channel/UCSIDlMRZyiQKsntMAhFE04w",
+        "title": "Leon",
+        "description": "",
+        "source_resource": "video:HUYaYgiouH8",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:54:01.707575+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/@PurpleDogBabo",
+      "evidence": {
+        "channel_id": "UC7imvp6XJyfD6YJ51FV7kOA",
+        "canonical_url": "https://www.youtube.com/channel/UC7imvp6XJyfD6YJ51FV7kOA",
+        "title": "PurpleDog BaBo",
+        "description": "บะโบ้คือวีทูปเบอร์ \"หมา\" ที่มาจากอนาคต และ เคลมว่าตัวเองเป็นคน",
+        "source_resource": "handle:@purpledogbabo",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:02.056918+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@PurpleDogBabo/about",
+      "evidence": {
+        "channel_id": "UC7imvp6XJyfD6YJ51FV7kOA",
+        "canonical_url": "https://www.youtube.com/channel/UC7imvp6XJyfD6YJ51FV7kOA",
+        "title": "PurpleDog BaBo",
+        "description": "บะโบ้คือวีทูปเบอร์ \"หมา\" ที่มาจากอนาคต และ เคลมว่าตัวเองเป็นคน",
+        "source_resource": "handle:@purpledogbabo",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:02.061655+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Pez1WpOa4ww",
+      "evidence": {
+        "channel_id": "UC7imvp6XJyfD6YJ51FV7kOA",
+        "canonical_url": "https://www.youtube.com/channel/UC7imvp6XJyfD6YJ51FV7kOA",
+        "title": "PurpleDog BaBo",
+        "description": "บะโบ้คือวีทูปเบอร์ \"หมา\" ที่มาจากอนาคต และ เคลมว่าตัวเองเป็นคน",
+        "source_resource": "video:Pez1WpOa4ww",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:54:02.416758+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=yyejS_zAF5A",
+      "evidence": {
+        "channel_id": "UC7imvp6XJyfD6YJ51FV7kOA",
+        "canonical_url": "https://www.youtube.com/channel/UC7imvp6XJyfD6YJ51FV7kOA",
+        "title": "PurpleDog BaBo",
+        "description": "บะโบ้คือวีทูปเบอร์ \"หมา\" ที่มาจากอนาคต และ เคลมว่าตัวเองเป็นคน",
+        "source_resource": "video:yyejS_zAF5A",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:54:02.803236+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCDumopqvE5ZQIHIfOOq373A",
+      "evidence": {
+        "channel_id": "UCDumopqvE5ZQIHIfOOq373A",
+        "canonical_url": "https://www.youtube.com/channel/UCDumopqvE5ZQIHIfOOq373A",
+        "title": "Mortifer Bathory Ch. - Parabellum",
+        "description": "Mortifer Bathory\nYog-Sothot's Witch / Motiaty Professor\n@Parabellum Project\n\nTwitter: https://twitter.com/MortyBathory\n\nI will love you until Azathot's awake.\nCatch me if you can, Mr.Holmes.\n",
+        "source_resource": "channel:UCDumopqvE5ZQIHIfOOq373A",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:03.193819+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=lffG-5IAb9U",
+      "evidence": {
+        "channel_id": "UCDumopqvE5ZQIHIfOOq373A",
+        "canonical_url": "https://www.youtube.com/channel/UCDumopqvE5ZQIHIfOOq373A",
+        "title": "Mortifer Bathory Ch. - Parabellum",
+        "description": "Mortifer Bathory\nYog-Sothot's Witch / Motiaty Professor\n@Parabellum Project\n\nTwitter: https://twitter.com/MortyBathory\n\nI will love you until Azathot's awake.\nCatch me if you can, Mr.Holmes.\n",
+        "source_resource": "video:lffG-5IAb9U",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:54:03.559564+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=v18wey0lWEY",
+      "evidence": {
+        "channel_id": "UCDumopqvE5ZQIHIfOOq373A",
+        "canonical_url": "https://www.youtube.com/channel/UCDumopqvE5ZQIHIfOOq373A",
+        "title": "Mortifer Bathory Ch. - Parabellum",
+        "description": "Mortifer Bathory\nYog-Sothot's Witch / Motiaty Professor\n@Parabellum Project\n\nTwitter: https://twitter.com/MortyBathory\n\nI will love you until Azathot's awake.\nCatch me if you can, Mr.Holmes.\n",
+        "source_resource": "video:v18wey0lWEY",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:54:03.923642+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/@hoshi_1489",
+      "evidence": {
+        "channel_id": "UCLsSGTcqAZSG0V8zuz_TKgg",
+        "canonical_url": "https://www.youtube.com/channel/UCLsSGTcqAZSG0V8zuz_TKgg",
+        "title": "Hoshi_1489【DL】",
+        "description": " โฮชิเป็นดวงดาวที่ตกลงมาชนจิ้งจอกที่กำลังจับแกะกิน\nมีทั้งหมดสามร่าง มีชีวิตที่ไม่ได้สวยหรูเท่าไหร่นักและนิสัยเจ้าเล่ห์นิดหน่อย\n",
+        "source_resource": "handle:@hoshi_1489",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:04.261505+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@hoshi_1489/about",
+      "evidence": {
+        "channel_id": "UCLsSGTcqAZSG0V8zuz_TKgg",
+        "canonical_url": "https://www.youtube.com/channel/UCLsSGTcqAZSG0V8zuz_TKgg",
+        "title": "Hoshi_1489【DL】",
+        "description": " โฮชิเป็นดวงดาวที่ตกลงมาชนจิ้งจอกที่กำลังจับแกะกิน\nมีทั้งหมดสามร่าง มีชีวิตที่ไม่ได้สวยหรูเท่าไหร่นักและนิสัยเจ้าเล่ห์นิดหน่อย\n",
+        "source_resource": "handle:@hoshi_1489",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:04.267675+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=zreD0pADkeY",
+      "evidence": {
+        "channel_id": "UCLsSGTcqAZSG0V8zuz_TKgg",
+        "canonical_url": "https://www.youtube.com/channel/UCLsSGTcqAZSG0V8zuz_TKgg",
+        "title": "Hoshi_1489【DL】",
+        "description": " โฮชิเป็นดวงดาวที่ตกลงมาชนจิ้งจอกที่กำลังจับแกะกิน\nมีทั้งหมดสามร่าง มีชีวิตที่ไม่ได้สวยหรูเท่าไหร่นักและนิสัยเจ้าเล่ห์นิดหน่อย\n",
+        "source_resource": "video:zreD0pADkeY",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:54:04.646502+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=AZvlSZSPbno",
+      "evidence": {
+        "channel_id": "UCLsSGTcqAZSG0V8zuz_TKgg",
+        "canonical_url": "https://www.youtube.com/channel/UCLsSGTcqAZSG0V8zuz_TKgg",
+        "title": "Hoshi_1489【DL】",
+        "description": " โฮชิเป็นดวงดาวที่ตกลงมาชนจิ้งจอกที่กำลังจับแกะกิน\nมีทั้งหมดสามร่าง มีชีวิตที่ไม่ได้สวยหรูเท่าไหร่นักและนิสัยเจ้าเล่ห์นิดหน่อย\n",
+        "source_resource": "video:AZvlSZSPbno",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:54:05.015699+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/shorts/fF5KPNZ0TJk",
+      "evidence": {
+        "channel_id": "UCsQphFL62QU4XfvjN4B0kAQ",
+        "canonical_url": "https://www.youtube.com/channel/UCsQphFL62QU4XfvjN4B0kAQ",
+        "title": "RuLaRaLan",
+        "description": "สวัสดีทุกคนค่ะ เราชื่อ RuLaRaLan จะเรียกเรา ลาลัน หรือ ลัน ก็ได้ค่ะ \nช่องเราเป็นช่องที่เน้นเกี่ยวกับการวาดรูป การทำอนิเมชั่น และเล่นเกมค่ะ\nบรรยากาศช่องเราจะเป็นแนวสบายๆชิลๆ เกมส่วนใหญ่ที่เล่นจะเป็นทำฟาร์ม เอาชีวิตรอด เป็นส่วนใหญ่\n",
+        "source_resource": "video:fF5KPNZ0TJk",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:54:05.381551+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/shorts/fF5KPNZ0TJk/about",
+      "evidence": {
+        "channel_id": "UCsQphFL62QU4XfvjN4B0kAQ",
+        "canonical_url": "https://www.youtube.com/channel/UCsQphFL62QU4XfvjN4B0kAQ",
+        "title": "RuLaRaLan",
+        "description": "สวัสดีทุกคนค่ะ เราชื่อ RuLaRaLan จะเรียกเรา ลาลัน หรือ ลัน ก็ได้ค่ะ \nช่องเราเป็นช่องที่เน้นเกี่ยวกับการวาดรูป การทำอนิเมชั่น และเล่นเกมค่ะ\nบรรยากาศช่องเราจะเป็นแนวสบายๆชิลๆ เกมส่วนใหญ่ที่เล่นจะเป็นทำฟาร์ม เอาชีวิตรอด เป็นส่วนใหญ่\n",
+        "source_resource": "video:fF5KPNZ0TJk",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:54:05.387040+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/shorts/gpU4DR0SRsc",
+      "evidence": {
+        "channel_id": "UCPZIPuQPrfrUG9Xe_okEmQA",
+        "canonical_url": "https://www.youtube.com/channel/UCPZIPuQPrfrUG9Xe_okEmQA",
+        "title": "PLAVE 플레이브",
+        "description": "PLAVE OFFICIAL YouTube\n플레이브 공식 유튜브\n⠀\n#PLAVE #플레이브 \n",
+        "source_resource": "video:gpU4DR0SRsc",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:54:06.060414+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/shorts/gpU4DR0SRsc/about",
+      "evidence": {
+        "channel_id": "UCPZIPuQPrfrUG9Xe_okEmQA",
+        "canonical_url": "https://www.youtube.com/channel/UCPZIPuQPrfrUG9Xe_okEmQA",
+        "title": "PLAVE 플레이브",
+        "description": "PLAVE OFFICIAL YouTube\n플레이브 공식 유튜브\n⠀\n#PLAVE #플레이브 \n",
+        "source_resource": "video:gpU4DR0SRsc",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:54:06.066510+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://youtube.com/@karin-izumi",
+      "evidence": {
+        "channel_id": "UCFAw3UIt0Fwmgn-XcSLpKpA",
+        "canonical_url": "https://www.youtube.com/channel/UCFAw3UIt0Fwmgn-XcSLpKpA",
+        "title": "Karin",
+        "description": "อิซุมิ คาริน ( Izumi Karin ) ยินดีที่ได้รู้จักค่ะ✨\n\n#Axiaprojectคาริน #IzumiKarin #MinecraftRoplay",
+        "source_resource": "handle:@karin-izumi",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:06.381063+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://youtube.com/@karin-izumi/about",
+      "evidence": {
+        "channel_id": "UCFAw3UIt0Fwmgn-XcSLpKpA",
+        "canonical_url": "https://www.youtube.com/channel/UCFAw3UIt0Fwmgn-XcSLpKpA",
+        "title": "Karin",
+        "description": "อิซุมิ คาริน ( Izumi Karin ) ยินดีที่ได้รู้จักค่ะ✨\n\n#Axiaprojectคาริน #IzumiKarin #MinecraftRoplay",
+        "source_resource": "handle:@karin-izumi",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:06.387026+00:00",
+      "requests": 0
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Us7dnI4RIPI",
+      "evidence": {
+        "channel_id": "UCFAw3UIt0Fwmgn-XcSLpKpA",
+        "canonical_url": "https://www.youtube.com/channel/UCFAw3UIt0Fwmgn-XcSLpKpA",
+        "title": "Karin",
+        "description": "อิซุมิ คาริน ( Izumi Karin ) ยินดีที่ได้รู้จักค่ะ✨\n\n#Axiaprojectคาริน #IzumiKarin #MinecraftRoplay",
+        "source_resource": "video:Us7dnI4RIPI",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:54:06.768112+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=25XdDSE_fyA",
+      "evidence": {
+        "channel_id": "UCFAw3UIt0Fwmgn-XcSLpKpA",
+        "canonical_url": "https://www.youtube.com/channel/UCFAw3UIt0Fwmgn-XcSLpKpA",
+        "title": "Karin",
+        "description": "อิซุมิ คาริน ( Izumi Karin ) ยินดีที่ได้รู้จักค่ะ✨\n\n#Axiaprojectคาริน #IzumiKarin #MinecraftRoplay",
+        "source_resource": "video:25XdDSE_fyA",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T14:54:07.160698+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCDrFZpqKkgV27Q1NcYYYU2w/about",
+      "evidence": {
+        "channel_id": "UCDrFZpqKkgV27Q1NcYYYU2w",
+        "canonical_url": "https://www.youtube.com/channel/UCDrFZpqKkgV27Q1NcYYYU2w",
+        "title": "Kiyomi Ch.",
+        "description": "สวัสดีนายท่านคอนๆ....\n\n ᐡ⸝⸝› ·̫ ‹⸝⸝ᐡ\n\nคิโยมิเป็นจิ้งจอกแดงอาศัยในอยู่ที่เขาอาสึคาชิอยู่ในส่วลึกมีศาลเจ้าฮิคาริที่ไกลห่างจากตัวเมืองมนุษย์ จึงมาเป็นVtuber #Kityominohikarijinja\n\nนายท่าน(∩´∀`∩)♡ ช่วยกดติดตาม กดแชร์ สุดท้ายก็ช่วยกดกระดิ่งด้วยนะคอนๆ\n\nอ๊ะๆ นายท่าน ถ้าอยากบูรณะศาลเจ้าฮิคาริพร้อมกับให้อินาริด้วย จะดีใจมากๆคอนๆ\n\nติดตามได้ที่ ทวิตเตอร์ : https://twitter.com/Kiyomi_Chan943  (ทวิตเตอร์ ใกล้จะเป็นอดีตเพราะเจ้าพ่อทวิตใหม่หายนะ )\n\nโดเนทบูรณะศาลเจ้าฮิคาริ&เต้าหู้ทอดอินาริ https://tipme.in.th/kitsuneinazuma-chan \n\nFB: https://www.facebook.com/Kitsunechan.Inazuma.ch/\n\nhttps://www.threads.net/@kiyomi.no.hikarijinja (Threads)\n\nhttps://mstdn.in.th/@Kiyomi_neChan (Mastodon)\n\nอินตราแกรม : https://www.instagram.com/invites/contact/?i=kjv5j82hm386&utm_content=mm7grdq\n\nVtuberสายอิสระเป็นกันเองป้ายแดงมือใหม่นะ คอนๆ",
+        "source_resource": "channel:UCDrFZpqKkgV27Q1NcYYYU2w",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:07.465109+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@angelach1205/about",
+      "evidence": {
+        "channel_id": "UCfTrcGy2fIrRX4rFs_yon2Q",
+        "canonical_url": "https://www.youtube.com/channel/UCfTrcGy2fIrRX4rFs_yon2Q",
+        "title": "Angela Ch. 🪽🌙",
+        "description": "🪽 Hi hi~ Minnasan!\n\nWelcome to Angela Ch. 🌙\n\nAngela คือเอลฟ์สาวที่ชอบร้องเพลง เล่นเกม และวาดรูป\n🎤 Singer • 🎮 Gamer • 🎨 Artist\n\nบางครั้งเราอาจร้องเพลงด้วยกัน\nบางครั้งอาจออกผจญภัยในเกม\nและบางครั้ง…เอลฟ์คนนี้อาจวุ่นวายกว่าที่คิด 😂\n\n🌙 Under the same moon, we meet again.\n\n💙 #Angeluya\n",
+        "source_resource": "handle:@angelach1205",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:07.784770+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UC7ks6YhbNxNIJzJUKRH0OQA/about",
+      "evidence": {
+        "channel_id": "UC7ks6YhbNxNIJzJUKRH0OQA",
+        "canonical_url": "https://www.youtube.com/channel/UC7ks6YhbNxNIJzJUKRH0OQA",
+        "title": "In0suke",
+        "description": "A banana spirit. It seems in this day and age the belief in the Banana Religion is dwindling, so even bananas need to get a job! \nWelcome to the Banana Kingdom!\n",
+        "source_resource": "channel:UC7ks6YhbNxNIJzJUKRH0OQA",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:08.089161+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@janinevtuber/about",
+      "evidence": {
+        "channel_id": "UCXD559NUGtTvry3EP_D965g",
+        "canonical_url": "https://www.youtube.com/channel/UCXD559NUGtTvry3EP_D965g",
+        "title": "Janine Eisenberg Ch.",
+        "description": "Hi everyone, Janine here. Your weirdos Priestess Vtuber.\nI hope you all enjoy the fun and weird experience from me!\n\nContact on X: https://twitter.com/JanisaVtuber\n",
+        "source_resource": "handle:@janinevtuber",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:08.403735+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCyHu19qHV0hFQyK3ZOhtcnA",
+      "evidence": {
+        "channel_id": "UCyHu19qHV0hFQyK3ZOhtcnA",
+        "canonical_url": "https://www.youtube.com/channel/UCyHu19qHV0hFQyK3ZOhtcnA",
+        "title": "Nuttiz",
+        "description": "เรียก \"นัทติส\" หรือ \"นัท\" ก็ได้ค้าา 🍒\n\nLive Stream 20:00\n• TUE • WED • THU • FRI\n\n2 ทุ่ม อังคาร-ศุกร์\nสตรีมทั้งใน Youtube และ Twitch\n\nติดต่องาน Contact\nGmail : nuttizforwork@gmail.com\nFacebook : https://www.facebook.com/Nuttizzz\n",
+        "source_resource": "channel:UCyHu19qHV0hFQyK3ZOhtcnA",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:08.754335+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@azuriusseiryux/about",
+      "evidence": {
+        "channel_id": "UC-D7UaQJpy_AO48bptDZd3g",
+        "canonical_url": "https://www.youtube.com/channel/UC-D7UaQJpy_AO48bptDZd3g",
+        "title": "Azurius Seiryu Ch.",
+        "description": "Azu🐉💥 | Virtual Blue Dragon |  VtuberTH\nTwitter : @AzuriusSeiryux\nTiktok : @azuriusseiryux\nFacebook : Azurius Seiryu Ch.\nDiscord : https://discord.gg/naFuZeMS\n\n#AzuriusSeiryu\n",
+        "source_resource": "handle:@azuriusseiryux",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:09.101552+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCFN4mdxw4ss6DMB6ZYPXPuw",
+      "evidence": {
+        "channel_id": "UCFN4mdxw4ss6DMB6ZYPXPuw",
+        "canonical_url": "https://www.youtube.com/channel/UCFN4mdxw4ss6DMB6ZYPXPuw",
+        "title": "Nora",
+        "description": "วีทูปเบอร์นักท่องมิติ \n\nไลฟ์ผ่าน YouTube เวลา 21.00 น.\nหยุดทุกวันอาทิตย์และนักขัตฤกษ์ครับ\n\n#AmamiyaNora #pngtuber #Vtuber #vtuberth",
+        "source_resource": "channel:UCFN4mdxw4ss6DMB6ZYPXPuw",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:09.412701+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCC4Wb_x57Ks43GRJ6x_wT5Q/about",
+      "evidence": {
+        "channel_id": "UCC4Wb_x57Ks43GRJ6x_wT5Q",
+        "canonical_url": "https://www.youtube.com/channel/UCC4Wb_x57Ks43GRJ6x_wT5Q",
+        "title": "Choya Ch.",
+        "description": "สวัสดีทุกคน ผมชื่อ โชยะ เป็นมังกรสีฟ้า อายุ 20 ปี\n1 หมื่นซัพ                14 พ.ย. 2024\n2 หมื่นซัพ                26 ม.ค. 2025\n3 หมื่นซัพ                26 ม.ค. 2025\n4 หมื่นซัพ                27 ม.ค. 2025\n5 หมื่นซัพ                29 ม.ค. 2025\n8 หมื่นซัพ                02 ก.พ. 2025\n1 แสนซัพ                06 ก.พ. 2025\n1 แสน 5 หมื่นซัพ    19 ก.พ. 2025\n1 แสน 6 หมื่นซัพ    25 ก.พ. 2025\n1 แสน 7 หมื่นซัพ    15 มี.ค. 2025\n1 แสน 8 หมื่นซัพ    26 มี.ค. 2025\n1 แสน 9 หมื่นซัพ    01 เม.ย. 2025\n2 แสนซัพ                06 เม.ย. 2025\n3 แสนซัพ                17 มิ.ย. 2025\n4 แสนซัพ                19 ธ.ค. 2025\n4 แสน 5 หมื่นซัพ    13 มี.ค. 2026\nสนใจติดต่อโฆษณาหรือสปอนเซอร์  \nchoya.contact@gmail.com (เฉพาะเรื่องงานเท่านั้น)\n\n",
+        "source_resource": "channel:UCC4Wb_x57Ks43GRJ6x_wT5Q",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:09.704565+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCdVlryCezLzVh74qwUfrL6Q/about",
+      "evidence": {
+        "channel_id": "UCdVlryCezLzVh74qwUfrL6Q",
+        "canonical_url": "https://www.youtube.com/channel/UCdVlryCezLzVh74qwUfrL6Q",
+        "title": "ฟ้อนดาวมาเล่า | Fondawl【RE:S】",
+        "description": "เธอ ๆ ฉันมีเรื่องมาเล่า\n\nติวเตอร์สาวที่จะมาเล่าเรื่องราวให้คุณฟัง\nถ้าอธิบายตามภาษาวิชาการมันน่าเบื่อ เดี๋ยวเรามาฟังเวอร์ชั่นที่ง่ายและสนุกไปกับฟ้อนดาวกันดีกว่า!\n\nGeneral : #ฟ้อนดาวมาเล่า #FondawlStory\nArt  : #ของขวัญฟ้อนดาว #forFondawl\n\n------------\n\n【For Work Contact】\nX : https://x.com/RESpaark\n",
+        "source_resource": "channel:UCdVlryCezLzVh74qwUfrL6Q",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:10.022088+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCApZxq6J3R2XNqhzKiBv5mg/about",
+      "evidence": {
+        "channel_id": "UCApZxq6J3R2XNqhzKiBv5mg",
+        "canonical_url": "https://www.youtube.com/channel/UCApZxq6J3R2XNqhzKiBv5mg",
+        "title": "Zandy",
+        "description": "โย่ว! แซนดี้ หรือเรียกแซนก็ได้\nยินดีที่ได้รู้จักนะ 🛸\n\nVtuber TH\n👾 Twitch : https://www.twitch.tv/zandy31a\n👾 X : https://x.com/zandy31a\n👾 Facebook : https://www.facebook.com/Zandy-109438535141986\n👾 EasyDonate : https://easydonate.app/zandy31a\nส่ง FA ได้ในทวิต #ZandyArt\n",
+        "source_resource": "channel:UCApZxq6J3R2XNqhzKiBv5mg",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:10.344579+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCdbRjgoplGzVI2Iywvpsa0w/about",
+      "evidence": {
+        "channel_id": "UCdbRjgoplGzVI2Iywvpsa0w",
+        "canonical_url": "https://www.youtube.com/channel/UCdbRjgoplGzVI2Iywvpsa0w",
+        "title": "NatsuneBeLL",
+        "description": "Hello! My name is Natsune Bell. I'm The Witch who love to singing and drawing. I hope everyone enjoy my song.\n\n#Vtuber #VtuberTH #vartist #vsinger \n\nFor Business & Cantact : natsune02@gmail.com \n",
+        "source_resource": "channel:UCdbRjgoplGzVI2Iywvpsa0w",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:10.643797+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@caelumetoile/about",
+      "evidence": {
+        "channel_id": "UC7EF6GJ5re0WrkabEH4CzUQ",
+        "canonical_url": "https://www.youtube.com/channel/UC7EF6GJ5re0WrkabEH4CzUQ",
+        "title": "Caelum Etoile",
+        "description": "",
+        "source_resource": "handle:@caelumetoile",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:10.950126+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@nonghanging/about",
+      "evidence": {
+        "channel_id": "UCccZ6oCzvHm1y2oCmhk4WUA",
+        "canonical_url": "https://www.youtube.com/channel/UCccZ6oCzvHm1y2oCmhk4WUA",
+        "title": "NongHanging (น้องห้ะหงิง)",
+        "description": "ติดตามแจ้งเวลาไลฟ์ในไอจี nonghanging ฮะ\n[ ติดต่องาน/collab ]\nemail: nonghanging.w@gmail.com\nหรือไลน์ oa : @627tntqv (มี @)\n\nสเปคคอม\nCPU AMD RYZEN 9 7950x3d (16 Cores / 32 Threads)\nRAM 32GB\nการ์ดจอ NVIDIA GeForce RTX 4070\n\n \n",
+        "source_resource": "handle:@nonghanging",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:11.271202+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCoE5M6UAVHuvWx8LK69oiDQ/about",
+      "evidence": {
+        "channel_id": "UCoE5M6UAVHuvWx8LK69oiDQ",
+        "canonical_url": "https://www.youtube.com/channel/UCoE5M6UAVHuvWx8LK69oiDQ",
+        "title": "Filyn Ch. | VtuberTH",
+        "description": "สวัสดีค่ะ ทางนี้ชื่อฟิลินนะคะ เป็นกวางที่แอบหนีออกจากป่ามาเปิดร้านเบเกอรี่อาศัยอยู่กับมนุษย์ค่ะ\n\n❉ ╤╤╤╤ ✿ ╤╤╤╤ ❉❉ ╤╤╤╤ ✿ ╤╤╤╤ ❉\n\nปัจจุบันกำลังเริ่มศึกษาเทคโนโลยีของมนุษย์ หากมีสิ่งใดที่ฟิลินทำได้ไม่ดี ขออภัยไว้ ณ ทีนี้ด้วยนะคะ สามารถชี้แนะแนวทางกวางน้อยๆตัวนี้ได้เสมอค่ะ\n\n❉ ╤╤╤╤ ✿ ╤╤╤╤ ❉❉ ╤╤╤╤ ✿ ╤╤╤╤ ❉\n\nName : Filyn Freddy\nBday : 09/09/xxxx\nAge : จะอยู่ชั่วนิรันดร์ (Live Here Forever)\nLanguages : TH / En / cn (๛ ˘ ³˘ )♡\nHabits : Kind, Mercy, Chill, Positive (เอนจอยคั้บ)\n",
+        "source_resource": "channel:UCoE5M6UAVHuvWx8LK69oiDQ",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:11.572188+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCL4nWmMsqtYKN6OvcmskNtg/about",
+      "evidence": {
+        "channel_id": "UCL4nWmMsqtYKN6OvcmskNtg",
+        "canonical_url": "https://www.youtube.com/channel/UCL4nWmMsqtYKN6OvcmskNtg",
+        "title": "Rubellite ch. Euphora",
+        "description": "I’m Virtual Liver Rubellite but you guys can call me Ruby😉I am a crystal that has transform into a human and currently exploring the human world 🌎 IT HAS BEEN A WONDERFUL EXPERIENCE SO FAR❤️If you guys could help me learn more about this world please come join me @Rubellite_EPR (Twitter) & Rubellite Ch. Euphora (YouTube)\n",
+        "source_resource": "channel:UCL4nWmMsqtYKN6OvcmskNtg",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:11.946637+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@zilbi_acas/about",
+      "evidence": {
+        "channel_id": "UCrC9xqhECNdfpb0j7xnnmqg",
+        "canonical_url": "https://www.youtube.com/channel/UCrC9xqhECNdfpb0j7xnnmqg",
+        "title": "Zilbi | AcastledProject",
+        "description": "อันยองคั้บทุกคน ผมซิลบี้นะค้าบ",
+        "source_resource": "handle:@zilbi_acas",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:12.257900+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCxLACuzMdL0qGzmXBu1VwJg/about",
+      "evidence": {
+        "channel_id": "UCxLACuzMdL0qGzmXBu1VwJg",
+        "canonical_url": "https://www.youtube.com/channel/UCxLACuzMdL0qGzmXBu1VwJg",
+        "title": "Yuusa Ch. 優桜ヨルモ",
+        "description": "สวัสดีจ้า! ผม Yuusa ภูติแห่งฝันร้ายสาธารณะของทุกคนครับ!! \n-----------------------------------\n//Socials Medias//\nTwitch : https://www.twitch.tv/yuusayorumo\nVODS Channel : https://www.youtube.com/@YuusaVODS\nTwitter : https://twitter.com/Yuusa_Yorumo\nTiktok : https://www.tiktok.com/@yuusa_yorumo\nDiscord Community : https://discord.gg/WUF8kkyXdg\n",
+        "source_resource": "channel:UCxLACuzMdL0qGzmXBu1VwJg",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:12.776112+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCchEIVkQk2tgdHiSc0LxGJQ/about",
+      "evidence": {
+        "channel_id": "UCchEIVkQk2tgdHiSc0LxGJQ",
+        "canonical_url": "https://www.youtube.com/channel/UCchEIVkQk2tgdHiSc0LxGJQ",
+        "title": "Dariela",
+        "description": "𝓥𝓲𝓻𝓽𝓾𝓪𝓵 𝓓𝓸𝓵𝓵 𝓥𝓽𝓾𝓫𝓮𝓻\n🧸 Dariela dolly 🧸\nกอดตุ๊กตาตัวนี้แน่นๆ นะคะ\n\n⠂⠁⠁⠂⠄⠄⠂⠁⠁⠂★  ★⠄⠂⠁⠁⠂⠄⠄⠂⠁⠁⠂\n\n⊹ HASHTAGS ⊹\n🪡Common Tag #Dariela_LIVE\n🪡FanArt Tag #Dariela_FA\n\n⠂⠁⠁⠂⠄⠄⠂⠁⠁⠂★  ★⠄⠂⠁⠁⠂⠄⠄⠂⠁⠁⠂\n🖤 Tipme 🖤\nhttps://tipme.in.th/darielavtuberth\n\n#vtuberth #dariela #darieladolly \n\n",
+        "source_resource": "channel:UCchEIVkQk2tgdHiSc0LxGJQ",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:13.109915+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@bunny_arha/about",
+      "evidence": {
+        "channel_id": "UCViu7EG7einNkiSOtfZ4GzQ",
+        "canonical_url": "https://www.youtube.com/channel/UCViu7EG7einNkiSOtfZ4GzQ",
+        "title": "☆ Bunny Arha [ バニーアルハー ] ☆",
+        "description": "꒰ᐢ. .ᐢ꒱Thai Vtuber เป็นมนุษย์กระต่าย จะกลายร่างเป็นกระต่ายในวันที่อยากเป็น บางวันก็เป็นผู้ชาย เพราะโดนคำสาปจากพระแม่กระตุ่ย\nตอนเป็นผู้ชายชอบแกล้งคน ส่วนตอนเป็นผู้หญิง หนูเป็นสาวเรียบร้อยค่ะ อิอิ  ໒꒰ྀིっ˕ -｡꒱ྀི১\n#Vtuber #ThaiVtuber\n\n꒰ა ☆ ໒꒱ Vtuber  ✩\n\n========================\n₊‧°𐐪♡𐑂°‧₊ ช่องทางการติดตาม ₊‧°𐐪♡𐑂°‧₊\n\nX (Twitter) : Vela_bunnyarha\nhttps://twitter.com/Vela_bunnyarha\nInstagram : @vela_bunnyarha\nhttps://www.instagram.com/vela_bunnyarha/\nTikTok : bunny_arha_\nhttps://www.tiktok.com/@bunny_arha_\nTwitch : bunny_arha\nhttps://www.twitch.tv/bunny_arha\n\n========================\n₊‧°𐐪♡𐑂°‧₊₊‧°𐐪♡𐑂°‧₊₊‧°𐐪♡𐑂°‧₊₊‧°𐐪♡𐑂°‧₊\n",
+        "source_resource": "handle:@bunny_arha",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:13.436278+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UC9uFujZvbTm3PpTycIz5Z0w/about",
+      "evidence": {
+        "channel_id": "UC9uFujZvbTm3PpTycIz5Z0w",
+        "canonical_url": "https://www.youtube.com/channel/UC9uFujZvbTm3PpTycIz5Z0w",
+        "title": "Aelios Ch.",
+        "description": "Aelios | AXION Astray Entertainment\n\nContact 📩 :  https://x.com/AeliosOfficial\nWebsite : https://www.astraycorp.com/ \n",
+        "source_resource": "channel:UC9uFujZvbTm3PpTycIz5Z0w",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:15.375421+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@roxy_cvc/about",
+      "evidence": {
+        "channel_id": "UCa3ZWWJvZVsSYIASWWCBhxA",
+        "canonical_url": "https://www.youtube.com/channel/UCa3ZWWJvZVsSYIASWWCBhxA",
+        "title": "ROXY Ch. 『𝐋𝐕』",
+        "description": "",
+        "source_resource": "handle:@roxy_cvc",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:15.871126+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@sivlaacas/about",
+      "evidence": {
+        "channel_id": "UCsGDL8e40r6e0JaMJlqlEXw",
+        "canonical_url": "https://www.youtube.com/channel/UCsGDL8e40r6e0JaMJlqlEXw",
+        "title": "Sivla | AcastledProject",
+        "description": "ท๊าดาาา~ ชื่อเอลวิสน๊าา ยินดีที่ได้รู้จักงับ 😊 เป็น VTuber เล่นเกมเป็นส่วนใหญ่ ฝากกดติดตามด้วยนะค้าบ ✨\n\nSivla - เมเนเจอร์ @AcastledProject | ติดต่องาน DM (@sivla01_) \nHashtag : #SivlaNOW & #SivlaACS | Fanart : #Sivlart\nMODEL: @\\zatouhajime\n",
+        "source_resource": "handle:@sivlaacas",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:16.282595+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCgq-rIElYiBFQnxgMnkojwg",
+      "evidence": {
+        "channel_id": "UCgq-rIElYiBFQnxgMnkojwg",
+        "canonical_url": "https://www.youtube.com/channel/UCgq-rIElYiBFQnxgMnkojwg",
+        "title": "Padzang Channel",
+        "description": "\"เป็นVtuber เป็นเกมเมอร์ และเป็นผู้รายงานข่าวสารวงการเกม\"\nPadzang Channel ได้ถือกำเนิดขึ้นจาก CEO ผู้มีความฝัน Jotaro Padzang ผู้สร้าง Content ด้านข่าวสารวงการเกม พร้อมทั้ง Live Stream เล่นเกมต่างๆในกระแส และพูดคุยเรื่องราวต่างๆ ทั้งเรื่องเกม เรื่องทั่วไป และทัวร์งานอีเวนท์ต่างๆ ผ่านโลก VR\nตามด้วยทีมงานคุณภาพจาก G.O.A. Enterprise พร้อมเหล่าผองเพื่อน Vtuber และโลก VR ผลัดกันสร้าง Content ต่างๆที่โลกต้องจดจำ\n\n",
+        "source_resource": "channel:UCgq-rIElYiBFQnxgMnkojwg",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:16.607580+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UC-SoXgd5-sJS78_ctcifNeA/about",
+      "evidence": {
+        "channel_id": "UC-SoXgd5-sJS78_ctcifNeA",
+        "canonical_url": "https://www.youtube.com/channel/UC-SoXgd5-sJS78_ctcifNeA",
+        "title": "Killmonnks",
+        "description": "สวัสดีคนที่หลงเข้ามาครับ\n\n________________________________________________________________________________\n\nสร้างช่องKillmonnksเมื่อ 18/03/2566 02:22 A.M.\nยอดผู้ติดตามแตะ 100 คน (02/03/2568 ~15:20น.)\nยอดผู้ติดตามแตะ 1,000 คน (26/03/2568 ~11:00น.)\n-\n",
+        "source_resource": "channel:UC-SoXgd5-sJS78_ctcifNeA",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:16.926824+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCVrJQs3lbOJcVHPRxLPM6Zg/about",
+      "evidence": {
+        "channel_id": "UCVrJQs3lbOJcVHPRxLPM6Zg",
+        "canonical_url": "https://www.youtube.com/channel/UCVrJQs3lbOJcVHPRxLPM6Zg",
+        "title": "Adams Maur 【 FMP 】",
+        "description": "Mr.Adam\nสัวสดีทุกคนนะครับบบบบ สำหรับคนที่จะพูคุยหรือติดงานคาม ลิ้งด้สนล่างครับบบบบ    ตรงช่องลิงก์",
+        "source_resource": "channel:UCVrJQs3lbOJcVHPRxLPM6Zg",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:17.229680+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCaMhj4Q6-bx1IZE3izVtk6A/about",
+      "evidence": {
+        "channel_id": "UCaMhj4Q6-bx1IZE3izVtk6A",
+        "canonical_url": "https://www.youtube.com/channel/UCaMhj4Q6-bx1IZE3izVtk6A",
+        "title": "Saneko ch. Euphora",
+        "description": "いち― に― さん― 猫です～ ₍˄·͈༝·͈˄*₎◞ ̑̑ \n\n୨୧ ─ ・┈ ・ ─ ・┈ ─ ・┈・┈ ・ ─ ・┈ ─ ・┈ ─・┈ ─ ・┈・┈ ・ ─  ୨୧\n\nʚɞྀི   三ネコ　モチ  โมจิที่มีหงอน !  น้องแมวผู้คลั่งรักสีชมพูและบาร์บี้สุดหัวใจ\n\nﾌｧﾝﾏ : 🐱🍡 ‎⸝⸝⸝\n\n୨୧ ─ ・┈ ・ ─ ・┈ ─ ・┈・┈ ・ ─ ・┈ ─ ・┈ ─・┈ ─ ・┈・┈ ・ ─  ୨୧\n\n    ⋆⑅˚₊  𝗛𝗮𝘀𝗵𝘁𝗮𝗴𝘀  ₊˚⑅⋆\n\n𐐪 𝗚𝗲𝗻𝗲𝗿𝗮𝗹 𐑂 #Saneko1banKawaii\n𐐪 𝗦𝘁𝗿𝗲𝗮𝗺 𐑂 #SanekoTime\n𐐪 𝗙𝗮𝗻𝗮𝗿𝘁 𐑂 #SanekoArt\n𐐪 𝗠𝗲𝗺𝗲 𐑂 #SaneLoL\n\n୨୧ ─ ・┈ ・ ─ ・┈ ─ ・┈・┈ ・ ─ ・┈ ─ ・┈ ─・┈ ─ ・┈・┈ ・ ─  ୨୧\n\n❝ はじめまして、どうぞ よろしくおねがいします！🌟 ❞\n",
+        "source_resource": "channel:UCaMhj4Q6-bx1IZE3izVtk6A",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:17.529983+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCURO2Hz8CWn0knwFbNTo2ng",
+      "evidence": {
+        "channel_id": "UCURO2Hz8CWn0knwFbNTo2ng",
+        "canonical_url": "https://www.youtube.com/channel/UCURO2Hz8CWn0knwFbNTo2ng",
+        "title": "RaneeTani『VTG』",
+        "description": "ℜ𝔞𝔫𝔢𝔢 /รานี🫦 ผีตานีสาวสวยที่ชอบแจกจ่ายความรัก สงสัยแจกเยอะไป ทุกคนถึงอยากเป็นพี่บัวขาวกันหมด\n\n",
+        "source_resource": "channel:UCURO2Hz8CWn0knwFbNTo2ng",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:17.862962+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCBev9yAPNYhFM4ORPQb_LYQ/about",
+      "evidence": {
+        "channel_id": "UCBev9yAPNYhFM4ORPQb_LYQ",
+        "canonical_url": "https://www.youtube.com/channel/UCBev9yAPNYhFM4ORPQb_LYQ",
+        "title": "Rion Chitose Ch. / AStars Chrono prince",
+        "description": "",
+        "source_resource": "channel:UCBev9yAPNYhFM4ORPQb_LYQ",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:18.194577+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCrv90qmK4-Yxj_QyNMqBVQA/about",
+      "evidence": {
+        "channel_id": "UCrv90qmK4-Yxj_QyNMqBVQA",
+        "canonical_url": "https://www.youtube.com/channel/UCrv90qmK4-Yxj_QyNMqBVQA",
+        "title": "Faethon Uni. Jantra",
+        "description": "✨🌠\n",
+        "source_resource": "channel:UCrv90qmK4-Yxj_QyNMqBVQA",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:18.510949+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@byakko_0478/about",
+      "evidence": {
+        "channel_id": "UCHok5DsRNhBaudMfYmQzkwQ",
+        "canonical_url": "https://www.youtube.com/channel/UCHok5DsRNhBaudMfYmQzkwQ",
+        "title": "Byakko Ch",
+        "description": "สวัสดีค่า เบียโกะนะคะ วีอิสระร่าเริงและเอ๋อที่สุดค่ะ ฝากติดตามกันด้วยนะคะ! แล้วมาพบกันในไลฟ์น้า",
+        "source_resource": "handle:@byakko_0478",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:19.028921+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UC65MNFVWnrkOpg04LBHVvzw",
+      "evidence": {
+        "channel_id": "UC65MNFVWnrkOpg04LBHVvzw",
+        "canonical_url": "https://www.youtube.com/channel/UC65MNFVWnrkOpg04LBHVvzw",
+        "title": "Bishamon Kuroneko Ch. / AStars Chrono prince",
+        "description": "",
+        "source_resource": "channel:UC65MNFVWnrkOpg04LBHVvzw",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:19.353334+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@xanny_ch/about",
+      "evidence": {
+        "channel_id": "UCyUKsUp-qpa7uf3HT-pBAPQ",
+        "canonical_url": "https://www.youtube.com/channel/UCyUKsUp-qpa7uf3HT-pBAPQ",
+        "title": "Xanny Ch.",
+        "description": "💎 Vtuber ยักษ์มนุษย์เงินเดือน 👠 ภายใต้สังกัด Vniverse project\n  | Hashtag  (All Topic) #XannyV (Fan Art) #XannyArt\n",
+        "source_resource": "handle:@xanny_ch",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:19.675473+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@daylaneyturner/about",
+      "evidence": {
+        "channel_id": "UCBZ3rIc0aC9gkwvduUZjv-w",
+        "canonical_url": "https://www.youtube.com/channel/UCBZ3rIc0aC9gkwvduUZjv-w",
+        "title": "Daylaney Turner ch.『VW』",
+        "description": "เป็ดสาวพราวเสน่ห์ นักสืบเป็ด เดย์ลานีย์ ลัค เทอร์เนอร์ / ดีดี้ \nデイラニー・ターナーです。ディディと呼んでください！\nDaylaney Turner / Didi\nTH (OK！) / 日本 (少し)\n\nHashtags\nGeneral: #DaylaneyTurner\nLive: #DaylaneyLive\nFanArt: #DaylaneyArt\nFanName: #ผู้ช่วยเป็ด\nEmoji: 🦆❤️\n\n⌜ ━━━━━━━━━━━━━━━━ ⌝\n                        【กฎ-กติกา】\n1. ห้าม ทำอะไรที่ไม่มีมารยาท ไร้กาลเทศะ\n2. ให้ ทำอะไรที่มีมารยาท มีกาลเทศะ\n⌞ ━━━━━━━━━━━━━━━━ ⌟\n",
+        "source_resource": "handle:@daylaneyturner",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:19.982308+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@garikunthawat-th9975/about",
+      "evidence": {
+        "channel_id": "UCWmAJNFzWAjb-fCjUfeVbHQ",
+        "canonical_url": "https://www.youtube.com/channel/UCWmAJNFzWAjb-fCjUfeVbHQ",
+        "title": "GARI Kunthawat ",
+        "description": "✿ การี กุลธวัช - GARI Ch. ✿\n\nยินดีที่ได้รู้จักครับ สนใจหลุมศพแบบไหนครับ ผมพร้อมดูแลทุกๆ ความต้องการของคุณเลยนะ… 🥀🪦\n\nเป็นคนพูดไม่เก่ง แต่รักหมดใจครับ… เห้ยๆ คมกริบเหมือนมีดบาด 👻\n",
+        "source_resource": "handle:@garikunthawat-th9975",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:20.305804+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCAPpxOuXCbSvj1jHnNetw4g/about",
+      "evidence": {
+        "channel_id": "UCAPpxOuXCbSvj1jHnNetw4g",
+        "canonical_url": "https://www.youtube.com/channel/UCAPpxOuXCbSvj1jHnNetw4g",
+        "title": "3AM Ch. | ตีสาม",
+        "description": "ตีสาม l 🐾👻【3AM virtual ghost】\n\nแมวผีสีขาวดำในห้องของเชอร์มี่ กลุ่มก้อนพลังงานที่ถูกเรียกมาจุติเพราะเข้าใจผิดว่าโดนเรียกชื่อจากการบังเอิญลอยมาได้ยินช่วงเล่าเรื่องผี โตมาเป็นวิญญาณที่คนเซ่นไหว้เพื่อความโชคดี ด..ได้ยังไงกันนะ ...\n\nโดเนทเพื่อเซ่นไหว้ปี๋แงว\nhttps://easydonate.app/3am_vtuber\n\nติดต่อลงโฆษณา mjgt.office@gmail.com\n\n𐙚────ᝰ.₊ ⊹\n\nTwitter: https://x.com/3AM_vtuber\nTiktok:  https://www.tiktok.com/@3AM_vtuber\nInstagram:  https://www.instagram.com/3AM_vtuber\nFacebook Page:  https://www.facebook.com/VtuberMJGT/\n\n𐙚────ᝰ.₊ ⊹\n\n\n#3AMeow #ภาพติดวิญญาณแมว",
+        "source_resource": "channel:UCAPpxOuXCbSvj1jHnNetw4g",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:20.633404+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCbS8T1ffrgNRkvRy11KbnHQ/about",
+      "evidence": {
+        "channel_id": "UCbS8T1ffrgNRkvRy11KbnHQ",
+        "canonical_url": "https://www.youtube.com/channel/UCbS8T1ffrgNRkvRy11KbnHQ",
+        "title": "Grey Murasaki Vitale Ch.",
+        "description": "สวัสดีครับ ผม \"เกรย์\" วีทูปเบอร์นักเขียนที่พักนี้ไม่ค่อยจะได้วนเวียนกับหนังสือเท่าไหร่ ขอฝากเนื้อฝากตัวด้วยนะครับ\n\nHashtag\nLive : #GreyM_live\nFanart : #ในกล่องสีซีเปีย\nEtc : #บนชั้นสีขาว\n\nติดตาม Room Number Vtuber Project ได้ที่\nOfficial YouTube : https://youtube.com/@RoomNumberVTH\nOfficial Twitter : https://twitter.com/roomnumbervth\nOfficial Facebook : https://www.facebook.com/RoomNumberVTH \n",
+        "source_resource": "channel:UCbS8T1ffrgNRkvRy11KbnHQ",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:20.961719+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCFXP-2Bob2gW8rlEffW1hgA/about",
+      "evidence": {
+        "channel_id": "UCFXP-2Bob2gW8rlEffW1hgA",
+        "canonical_url": "https://www.youtube.com/channel/UCFXP-2Bob2gW8rlEffW1hgA",
+        "title": "Halon Hashi Ch.",
+        "description": "ハロン ハシ🐣☁️ \nHalon Hashi\n\n\nนางฟ้าที่ใช้ชีวิตมานับพันปี แต่ความสงบสุขต้องมาถูกรบกวนโดยเหล่าชาวล๋อน เป็นนางฟ้าติดเกมอยู่ดีดี โดนจับมาเป็นวีทูปเบอร์ซะงั้น!? ปีศาจก็ต้องจับ เกมก็ต้องเล่น ไลฟ์ก็ต้องไลฟ์ จะทำยังไงดีล่ะทีนี้!!!!!\n\n#HalonHalorn \n#HalonArt \n#HalonMeme\n",
+        "source_resource": "channel:UCFXP-2Bob2gW8rlEffW1hgA",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:21.306270+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCXb11qYYfasyRgp22rK6mMA/about",
+      "evidence": {
+        "channel_id": "UCXb11qYYfasyRgp22rK6mMA",
+        "canonical_url": "https://www.youtube.com/channel/UCXb11qYYfasyRgp22rK6mMA",
+        "title": "Hello Tawan - Tawan The Horizon",
+        "description": "As the horizon glows, so do our dreams rise.🌅\nเมื่อเส้นขอบฟ้าส่องสว่าง นั่นคือเวลาที่ฉันจะลุกขึ้น เปล่งประกาย และไล่ล่าความฝัน🌅\n\nContact and Portal\ntwitter @TawanTheHorizon\nIG : Tawan The Horizon\nTiktok: hello_tawanv2\nFB: Hello Tawan Fanpage\nMore: https://linktr.ee/hellotawanhorizon\nRoblox ชื่อ : mochi_sun รับfollowไม่รับแอด\n\nสนับสนุนค่าอุปกรณ์, คอมใหม่, อาหาร และตัวละครmodel Vtuber และค่าการศึกษา สามารถส่งได้ที่นี่ :\nhttps://easydonate.app/tawanthehorizon/member\n https://buymeacoffee.com/hellotawanhorizon\nhttps://tipme.in.th/c0b94f14839ae6f3beca8602\n\nผู้ติดตาม:\n500✅\n1000 ✅\n5000 ✅️\n10000 ✅️ 14/05/22\n25000 ✅ ก.ค. 2023\n50000 ✅ ม.ค.2024\n100000 ยังไม่ได้\n250000 ยังไม่ได้\n500000 ยังไม่ได้\n",
+        "source_resource": "channel:UCXb11qYYfasyRgp22rK6mMA",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:21.645419+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCCnI25SLttKYJdVgno6qkYg/about",
+      "evidence": {
+        "channel_id": "UCCnI25SLttKYJdVgno6qkYg",
+        "canonical_url": "https://www.youtube.com/channel/UCCnI25SLttKYJdVgno6qkYg",
+        "title": "LVMP",
+        "description": "LVMP | Goddess of War  🔥 🌋 \n\nไง เหล่าผู้ถือตะเกียงทั้งหลาย \nHi my child, lamp bearers.\n\n══════════ ◦°•☼•°◦ ══════════\n\n ❇ [ Hashtags ] ❇\nHashtag : #LVMP\nTagFA : #Lvmpcanvas\nTagพูดคุย : #หัวใจคุณแลมป์\nTaglive : #LVMPLive\nTagSing : #ChantofLVMP\n",
+        "source_resource": "channel:UCCnI25SLttKYJdVgno6qkYg",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T14:54:21.953346+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@lucreziacheckmate",
+      "evidence": {
+        "channel_id": "UCZ0-aA5GGHsJKxkvBVGHewg",
+        "canonical_url": "https://www.youtube.com/channel/UCZ0-aA5GGHsJKxkvBVGHewg",
+        "title": "Lucrezia【CHECKMATE】",
+        "description": "Im Lucrezia ,but u can call me lulu🩷📖\n",
+        "source_resource": "handle:@lucreziacheckmate",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:33.405907+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@Shikar_Dawg",
+      "evidence": {
+        "channel_id": "UCqsUkQeicv0nEs5_d6DXYvQ",
+        "canonical_url": "https://www.youtube.com/channel/UCqsUkQeicv0nEs5_d6DXYvQ",
+        "title": "Shikár Dawg",
+        "description": "❥ Hashtags\nยำรวม : #ShikáDawg\nFANART : #ShikáArtt\nMeme : #มีมีชิก้า\nSing Song : #singtomena!\n",
+        "source_resource": "handle:@shikar_dawg",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:33.755233+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@kyoyavtuber",
+      "evidence": {
+        "channel_id": "UCd6bx1YwqNRzfaMoMB5nOHg",
+        "canonical_url": "https://www.youtube.com/channel/UCd6bx1YwqNRzfaMoMB5nOHg",
+        "title": "KYOYA KIERAN【SKR】",
+        "description": "สวัสดีครับผมชื่อ เคียวยะ คีแรน ผมเป็นนักสำรวจจากอาณาจักรโดโรคาเกีย อยู่ในระหว่างการค้นหาเพื่อนสมัยเด็กที่ถูกคลื่นยักษ์จากมหาภัยพิบัติทาเวียร์พัดตกลงไปในส่วนลึกของร่องมหาสมุทรอัลคาเทีย ปัจจุบันเคียวติดอยู่ในมิติระหว่างโลกของโดโรคาเกียกับทาโลแว คอยเอาใจช่วยกันด้วยนะครับ!\n\nยินดีที่ได้รู้จักกับทุกคนเลย สามารถติดตามเรื่องราวของเคียวต่อได้ที่ Twitter : @KyoyaVtuberTH\nเคียวอยากเป็นเพื่อนที่แสนดีแล้วก็อยากเป็นพี่ชายที่แสนอบอุ่นให้กับทุกคนครับ!! สุดท้ายนี้ขอให้ทุกคนมีความสุขและรักษาสุขภาพกันด้วยนะครับ  ^^",
+        "source_resource": "handle:@kyoyavtuber",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:34.162163+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@LittleBunnieCh",
+      "evidence": {
+        "channel_id": "UCD_aBWFE2nsQB0Pb6Hj8Ksg",
+        "canonical_url": "https://www.youtube.com/channel/UCD_aBWFE2nsQB0Pb6Hj8Ksg",
+        "title": "LittleBunnie Ch.",
+        "description": "เป็นกระต่ายมีเหนียงที่รักทุกคนมากๆเลยนะะะ!💕",
+        "source_resource": "handle:@littlebunniech",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:34.743740+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@ZephyrosLV",
+      "evidence": {
+        "channel_id": "UCajDqISajEnqeC6DpClzrcg",
+        "canonical_url": "https://www.youtube.com/channel/UCajDqISajEnqeC6DpClzrcg",
+        "title": "Zephyros Ch.『𝐋𝐕』",
+        "description": "",
+        "source_resource": "handle:@zephyroslv",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:35.049991+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@rubyreth",
+      "evidence": {
+        "channel_id": "UCytfzQcVDwj4xRUBMzUB29g",
+        "canonical_url": "https://www.youtube.com/channel/UCytfzQcVDwj4xRUBMzUB29g",
+        "title": "Rubyreth",
+        "description": "Hi there everyone  I'm half-elven name \n [Ruby de Laria] you can call me Ruby~\nI'm the grandmaster one of the knighthood order of pendor [The Ranger of the Griffon] \nMy chapter lay inside Laria forests. 🌳\n…………………\n: by the way if you want to collab with me!!! please contact me on twitter.\n",
+        "source_resource": "handle:@rubyreth",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:35.428419+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@mellovie.u",
+      "error": "YouTube identity lookup returned no matching channel",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@potiaht",
+      "evidence": {
+        "channel_id": "UC2IZur8-GAsn7gHQNTNOOgQ",
+        "canonical_url": "https://www.youtube.com/channel/UC2IZur8-GAsn7gHQNTNOOgQ",
+        "title": "Potia PBT",
+        "description": "你们好！This's the land of Potia! 🫶🏻🥕 It's time now \n\nสวัสดีค่ะ! 🌟 ขอต้อนรับทุกท่านเข้าสู่โลกของเรา 🌈✨ ที่นี่คือสถานที่ที่เต็มไปด้วยสีสัน ความสุข และความหวัง เป็นโลกที่ถูกเติมเต็มด้วยความอบอุ่นและพลังบวกจากทุกมุมของมัน! 🥕🫶🏻\n\nPotia Bakery เป็นเสมือนโลกในอีกมิติที่มีเสน่ห์และความสดใสไปทั่วทุกพื้นที่ ตั้งแต่ทุ่งกว้างสีเขียวชอุ่มไปจนถึงท้องฟ้าสีฟ้าสดใสและดวงอาทิตย์ที่ส่องแสงอบอุ่น รวมไปถึงเหล่ากระต่ายทั้งหลาย การเดินทางในสถานที่นี้เป็นเหมือนการเดินเข้าสู่โลกที่ไม่มีความเครียด ไม่มีความกังวล และทุกๆ การกระทำเป็นการฉลองชีวิตที่เต็มไปด้วยรอยยิ้มและความหวัง\n\nทุกก้าวที่คุณก้าวใน Potia Bakery จะทำให้คุณรู้สึกถึงความสนุกและความเป็นกันเอง ราวกับทุกสิ่งถูกออกแบบมาเพื่อให้คุณได้พบกับความสุขและความสดใสจากภายใน! ✨\n\nขอเชิญทุกคนมาร่วมสำรวจโลกแห่งนี้ และปลดปล่อยความสดใสไปกับเรา! 🌟\n",
+        "source_resource": "handle:@potiaht",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:36.081656+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@Kagemaru404",
+      "evidence": {
+        "channel_id": "UClFQeZMVqFVZonqSYk0l-Og",
+        "canonical_url": "https://www.youtube.com/channel/UClFQeZMVqFVZonqSYk0l-Og",
+        "title": "Kagemaru 404",
+        "description": "สวัสดีขอรับ ชื่อ คาเงะมารุ เรียก คาเงะ หรือ เงะ ก็ได้ครับตามสะดวกเลย ฝากตัวด้วยขอรับ",
+        "source_resource": "handle:@kagemaru404",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:36.402716+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@ging3rbelle",
+      "evidence": {
+        "channel_id": "UCs3O6VR89_-NPCUSj29jY3Q",
+        "canonical_url": "https://www.youtube.com/channel/UCs3O6VR89_-NPCUSj29jY3Q",
+        "title": "gingerbelle",
+        "description": "ขิง, หมาน้ยสุดกาก!\n\n——————— ୨୧ ————————\nอย่าลืมกดไลค์ กดติดตาม และกดกระดิ่งเพื่อที่จะไม่พลาดไลฟ์กันน้า\n(สามารถเข้าเซิฟดิสคอร์ดของขิงเพื่อรับการแจ้งเตือนไลฟ์ และพูดคุยเล่นกันได้ที่ลิงค์ด้านล่างเลยนะคะ)\nหากพบเห็นปัญหาสามารถแจ้งได้ในแชทเลยคั้บ\n\n——————— ୨୧ ————————\n【Hashtag】\n- Live : #ginger_live\n- FA : #ginger_FA\n- Meme : #ginger_meme\n- Highlight : #ginger_plays\n- Sing : #ginger_sing\n\n——————— ୨୧ ————————\nกฏสำหรับการพูดคุยกันในไลฟ์\n1. ห้ามสแปมข้อความจนเกินไป\n2. ห้ามส่งข้อความที่เป็นการคุกคาม หรือส่อไปในทางเพศ\n3. มีมารยาท เคารพซึ่งกันและกัน\n4. สามารถกล่าวถึงวีท่านอื่นได้แต่ขอให้อยู่ในขอบเขต และเคารพขิงขิงด้วยนะคะ\n\n——————— ୨୧ ————————\nช่องทางการติดต่อ: \nTwitter: https://www.twitter.com/ggingerbelle\nDiscord: https://discord.gg/TaJjCf2KQH\nFB: https://www.facebook.com/gingerbelle1208\nTwitch: https://www.twitch.tv/gnihker\n\n——————— ୨୧ ————————\n",
+        "source_resource": "handle:@ging3rbelle",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:36.762333+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@SHIROKChannel",
+      "evidence": {
+        "channel_id": "UC3DORp_0MHcP00w2JxQ88_Q",
+        "canonical_url": "https://www.youtube.com/channel/UC3DORp_0MHcP00w2JxQ88_Q",
+        "title": "SHIRO K. Channel",
+        "description": "Owner - Shiro Café 🐻‍❄️ \nคาเฟ่คุณหมียินดีต้อนรับนะครับ \n#ShiroK #shirok_fa  #shirok_meme  #shirok_live  #vtuber #vtuberth \n",
+        "source_resource": "handle:@shirokchannel",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:37.096973+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@SaiMaiZ",
+      "evidence": {
+        "channel_id": "UC_BZjak0ArVzJ-8yjUUaTqg",
+        "canonical_url": "https://www.youtube.com/channel/UC_BZjak0ArVzJ-8yjUUaTqg",
+        "title": "SaiMaiZ さいまい ⌜VZ⌟",
+        "description": "สายไหมเป็นแมวดำตาสองสี\n\nโดเนทค่าขนมแมวได้ที่ https://ezdn.app/saimaiz_\nสมัครสมาชิกได้ที่ https://www.youtube.com/channel/UC_BZjak0ArVzJ-8yjUUaTqg/join\n\nติดตามความเคลื่อนไหวได้ที่\nTwitter​ : https://twitter.com/SaiMaiZ_\nFacebook page : https://web.facebook.com/SaiMaiZVtuberTH\nTikTok : https://www.tiktok.com/@saimaizvtuberth\nBlueSky : https://bsky.app/profile/saimaiz.bsky.social\nTwitch : https://www.twitch.tv/saimaizvtuberth\nฝากกดไลค์ กดติดตามกันด้วยเน้อ\n\nเข้ามาเป็นสมาชิกครอบครัว CanDyCatFam กันได้ที่\nDiscord : ​https://discord.gg/EM9YCaxSnv\n\nสายไหมขอฝากเนื้อฝากตัวฝากหัวใจด้วยนะคะ~\n\nHajimemashite\nSaiMaiZ​ desu\nYoroshiku Onegaishimasu~\n\nสามารถส่งfanartมาได้ทั้งในDiscord​และในtwitter(X)เลยนะคะ\n",
+        "source_resource": "handle:@saimaiz",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:37.430602+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@Kamashi_AKIA",
+      "error": "YouTube identity lookup returned no matching channel",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@ALhongVTG",
+      "evidence": {
+        "channel_id": "UC52dzPlsz8jN2hIevufKCHA",
+        "canonical_url": "https://www.youtube.com/channel/UC52dzPlsz8jN2hIevufKCHA",
+        "title": "ALhong 『VTG』",
+        "description": "จะยอมให้แมวหลอก หรือเป็นฝ่ายหลอกซะเอง ?\n\nGeneral : #ALhong\nFA : #LhongArts\nLive : #Lhongma\nดูดวง : #LhongMadoo\n",
+        "source_resource": "handle:@alhongvtg",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:38.908007+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@FusuiForry",
+      "error": "YouTube identity lookup returned no matching channel",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@Kylanz_KLZ",
+      "evidence": {
+        "channel_id": "UCQ-6qbMhvGGmyGq6eZZE8gQ",
+        "canonical_url": "https://www.youtube.com/channel/UCQ-6qbMhvGGmyGq6eZZE8gQ",
+        "title": "Kylanz Ch. 【 KLZ 】",
+        "description": "Chimera & elf of Seven Sins INDEMNITY || KLZ !! virtual project coming soon Please Stay tune....\n\n",
+        "source_resource": "handle:@kylanz_klz",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:39.682516+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@ReiQuasar0",
+      "evidence": {
+        "channel_id": "UCTyOEgyQGrLSZU1bXeYlLoA",
+        "canonical_url": "https://www.youtube.com/channel/UCTyOEgyQGrLSZU1bXeYlLoA",
+        "title": "Rei Quasar",
+        "description": "",
+        "source_resource": "handle:@reiquasar0",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:40.040626+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@HimawariWhiteOwl",
+      "evidence": {
+        "channel_id": "UCINz9FJcpcedlGsYKXQkopA",
+        "canonical_url": "https://www.youtube.com/channel/UCINz9FJcpcedlGsYKXQkopA",
+        "title": "Hoshimura Himawari",
+        "description": "This Channel is my Hobby, I will Live Stream  on Friday, Saturday and Sundays at 10 PM (UTC+07:00)\n\nยินดีต้องรับสู่ช่องของ ฮิมาวาริค่ะ เย่~ (つ≧▽≦)つ\nสวัสดีค่ะทุกคน ฮิมาวารินะคะ เป็นนกฮูกที่เดินทางมาจากต่างกาแล็กซี่ค่ะ \nตอนนี้มาเดินทางมายังแถบทางช้างเผือกเพื่อมาพบปะ มอบความสนุก และแชร์ความรู้ต่างๆให้กับทุกๆคนค่ะ\nหากชอบรบกวนกดติดตามเราด้วยนะคะ  (୨୧•͈ᴗ•͈)◞ᵗʱᵃᵑᵏઽ*♡\n\nWelcome to Himawari Channel.\nHello everyone,  My name is Himawari., I am an owl that travels from different galaxies.\nNow come to the Milky Way to get to know each other. make fun and share knowledge with everyone.\nIf you like it, please subscribe me.\n\nようこそ、ひまわりのチャンネルへ  (つ≧▽≦)つ\nこにちは皆さん、私は星村ひまわりと申します。私は別の銀河からの旅行フクロウです。\n今、皆さんと一緒に会って遊んで教えてために天の川に着いた。\nよろしければ、サブスクライブしてください。(୨୧•͈ᴗ•͈)◞ᵗʱᵃᵑᵏઽ*♡\n",
+        "source_resource": "handle:@himawariwhiteowl",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:42.981997+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@PuinoonDesu",
+      "evidence": {
+        "channel_id": "UCFcV8AGufMRT7is-GX1Y9gQ",
+        "canonical_url": "https://www.youtube.com/channel/UCFcV8AGufMRT7is-GX1Y9gQ",
+        "title": "Puinoon プイヌン",
+        "description": "I’m Puinoon, a catgirl vtuber who love singing! 🐱✨",
+        "source_resource": "handle:@puinoondesu",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:43.298120+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@OneirosNorr",
+      "error": "YouTube identity lookup returned no matching channel",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@AtsukoMeron_SRV",
+      "evidence": {
+        "channel_id": "UCmrnmSL4OHsw_i0a5d2RUpg",
+        "canonical_url": "https://www.youtube.com/channel/UCmrnmSL4OHsw_i0a5d2RUpg",
+        "title": "Atsuko Meron【SRV】",
+        "description": "オハヨウー、オハヨウー\nセレンディピティー・コンステラ「敦子 メーロン」です！☀️\n\nโอะฮาโย๊ว โอะฮาโยว〜\nSerendipity・Constella「อัตสึโกะ เมรอน」เองค่า！☀️\n\n。。。。。。。。。。。。。。。。。。。。。。。\n\nเรียกสั้นๆว่า เมรอน นะฮะ เป็น「ลูกนกอินทรี」ถ้าไม่รู้ ก็จงรู้ซะ!! ว้าก ฮ่าๆๆๆๆๆ\nวันๆก็ไม่คิดไรมาก คิดอยู่อย่างเดียว จะอัพคลิปอะไรดีนะ...\n\n。。。。。。。。。。。。。。。。。。。。。。。\n\n🥚Twitter 🥚\nhttps://twitter.com/AtsukoMeron_SRV\n\n🥚Youtube 🥚\nhttps://www.youtube.com/@AtsukoMeron\n\n🥚Hashtag🥚\nMain : #AtsukoMeron\nLive : #MeroLive\nFan Art : #MeronArts\nFan Name : #MeroNIM\n\nICON : 🥚, ☀️\n。。。。。。。。。。。。。。。。。。。。。。。\nMama : https://twitter.com/Nora_Vanadiz\nPapa : https://twitter.com/chubbyartistART\n\nสามารถติดตามข่าวสารเพิ่มเติมจาก...\n🥚บ้าน Serendipity Project🥚\n▷ https://twitter.com/Seren_Project\n▷ https://www.youtube.com/@Serendipity-Project\n▷ https://www.facebook.com/SerendipityVtuber\n",
+        "source_resource": "handle:@atsukomeron_srv",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:43.991553+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCoOMJUZ5plQtVQDYbicD3dw",
+      "evidence": {
+        "channel_id": "UCoOMJUZ5plQtVQDYbicD3dw",
+        "canonical_url": "https://www.youtube.com/channel/UCoOMJUZ5plQtVQDYbicD3dw",
+        "title": "Mortifer Bathory Ch.",
+        "description": "Yog-Sothoth’s Witch / Moriaty Prof. \n🩸🔪 EN/TH Vtuber \n\nTwitter :  https://twitter.com/MortyBathory\n\n\n",
+        "source_resource": "channel:UCoOMJUZ5plQtVQDYbicD3dw",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:44.325566+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UChSGIJlrLUI1UVds38w2Obg",
+      "evidence": {
+        "channel_id": "UChSGIJlrLUI1UVds38w2Obg",
+        "canonical_url": "https://www.youtube.com/channel/UChSGIJlrLUI1UVds38w2Obg",
+        "title": "Leon Ch.",
+        "description": "",
+        "source_resource": "channel:UChSGIJlrLUI1UVds38w2Obg",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:46.791556+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UC5hzPIEarrdy8zUsP9mE5Vw",
+      "evidence": {
+        "channel_id": "UC5hzPIEarrdy8zUsP9mE5Vw",
+        "canonical_url": "https://www.youtube.com/channel/UC5hzPIEarrdy8zUsP9mE5Vw",
+        "title": "Haru.",
+        "description": "",
+        "source_resource": "channel:UC5hzPIEarrdy8zUsP9mE5Vw",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:47.124827+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCqsI2kWRlvSe1jpeS3PoGwA",
+      "evidence": {
+        "channel_id": "UCqsI2kWRlvSe1jpeS3PoGwA",
+        "canonical_url": "https://www.youtube.com/channel/UCqsI2kWRlvSe1jpeS3PoGwA",
+        "title": "Fuyu Ch.",
+        "description": "ยินดีที่ได้พบกันครับ \nชื่อ ฟุยุ กระต่ายต่างดาวครับ❕\n\nปกติจะไลฟ์วันศุกร์และวันเสาร์ครับ\nมาคุยเล่นกันได้นะ🐰🩵🌟\n\nติดต่องานได้ที่ 🍀\n🔹 chanmkhalamell@gmail.com\n",
+        "source_resource": "channel:UCqsI2kWRlvSe1jpeS3PoGwA",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:47.446004+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/channel/UCH6Fib1kQUaR2qurlEXnZMA",
+      "evidence": {
+        "channel_id": "UCH6Fib1kQUaR2qurlEXnZMA",
+        "canonical_url": "https://www.youtube.com/channel/UCH6Fib1kQUaR2qurlEXnZMA",
+        "title": "Zenaida XETA-102 Channel",
+        "description": "Zenaida XETA-102 【 Mechanical Angel of the Dead】\nนางฟ้าจักรกลแห่งความตาย\n",
+        "source_resource": "channel:UCH6Fib1kQUaR2qurlEXnZMA",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:00:47.806767+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@MuertoTarde",
+      "evidence": {
+        "channel_id": "UCE7YKCIhly_Jtd-k8hGXGMQ",
+        "canonical_url": "https://www.youtube.com/channel/UCE7YKCIhly_Jtd-k8hGXGMQ",
+        "title": "MuertoTarde",
+        "description": "",
+        "source_resource": "handle:@muertotarde",
+        "quota_units": 1
+      },
+      "observed_at": "2026-09-19T15:09:54.332520+00:00",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@Nanako_NPT",
+      "error": "YouTube identity lookup returned no matching channel",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/@mainazzaya_ch",
+      "error": "YouTube identity lookup returned no matching channel",
+      "requests": 1
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=NtfW1Hzl6fE",
+      "evidence": {
+        "channel_id": "UCd6bx1YwqNRzfaMoMB5nOHg",
+        "canonical_url": "https://www.youtube.com/channel/UCd6bx1YwqNRzfaMoMB5nOHg",
+        "title": "KYOYA KIERAN【SKR】",
+        "description": "สวัสดีครับผมชื่อ เคียวยะ คีแรน ผมเป็นนักสำรวจจากอาณาจักรโดโรคาเกีย อยู่ในระหว่างการค้นหาเพื่อนสมัยเด็กที่ถูกคลื่นยักษ์จากมหาภัยพิบัติทาเวียร์พัดตกลงไปในส่วนลึกของร่องมหาสมุทรอัลคาเทีย ปัจจุบันเคียวติดอยู่ในมิติระหว่างโลกของโดโรคาเกียกับทาโลแว คอยเอาใจช่วยกันด้วยนะครับ!\n\nยินดีที่ได้รู้จักกับทุกคนเลย สามารถติดตามเรื่องราวของเคียวต่อได้ที่ Twitter : @KyoyaVtuberTH\nเคียวอยากเป็นเพื่อนที่แสนดีแล้วก็อยากเป็นพี่ชายที่แสนอบอุ่นให้กับทุกคนครับ!! สุดท้ายนี้ขอให้ทุกคนมีความสุขและรักษาสุขภาพกันด้วยนะครับ  ^^",
+        "source_resource": "video:NtfW1Hzl6fE",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T15:09:56.012646+00:00",
+      "requests": 2
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=dbQV5w4jO0E",
+      "evidence": {
+        "channel_id": "UCTyOEgyQGrLSZU1bXeYlLoA",
+        "canonical_url": "https://www.youtube.com/channel/UCTyOEgyQGrLSZU1bXeYlLoA",
+        "title": "Rei Quasar",
+        "description": "",
+        "source_resource": "video:dbQV5w4jO0E",
+        "quota_units": 2
+      },
+      "observed_at": "2026-09-19T15:09:56.378815+00:00",
+      "requests": 2
+    }
+  ],
+  "requests": 167
+}

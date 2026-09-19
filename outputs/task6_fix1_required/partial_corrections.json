@@ -18,25 +18,6 @@
       "reviewer": "codex:task-6-linked-identity-research"
     },
     {
-      "link_id": "link_7562c58a16d51c0abbeb",
-      "account_id": "acct_5784e30be2e9c927da86",
-      "asserted_persona_id": "persona_6e9e31346f7b9164ce4b",
-      "evidence_id": "ev_9981a9ae8f758d840f01",
-      "disposition": "reject_identity_link",
-      "link_sha256": "ae4653ca9f77e9e2ddc481a91962fe46b0beb4b7bc83a50b455665a2719eded6",
-      "account_sha256": "c407ceafc843df48bce2b51d6a0d382e215a1ea604efd588f2380873d1de8483",
-      "evidence_sha256": "605b0d4c17a0ecf33f1765b89bd209502669a8fccffeabbcd8f20ff1972dd384",
-      "source_urls": [
-        "https://amillyarchive.carrd.co/",
-        "https://drakonyamio.carrd.co/",
-        "https://www.youtube.com/channel/UC3K3Crh966nzLx41obfJhaA",
-        "https://x.com/amillyarchive"
-      ],
-      "summary": "The cited X page belongs to AmiLLy Archive; its owner-written bio and own Carrd identify AmiLLy and its own YouTube/social profiles. The retained x_profile_direct collector recorded an outgoing drakonyamio Twitch URL but no ownership statement. Drako Nya Mio's own Carrd explicitly introduces Drako Nya Mio and labels https://www.twitch.tv/drakonyamio, https://x.com/DrakoNyaMio and its own YouTube as its social accounts. The verified original YouTube owner path identifies Drako Nya Mio separately. Controller ruling rejects only this unsupported AmiLLy-to-Drako Twitch ownership edge, preserving Drako Nya Mio and AmiLLy Archive as distinct personas. A timeline outgoing link does not establish creator ownership.",
-      "observed_at": "2026-09-19T15:54:13.540311+00:00",
-      "reviewer": "codex:task-7-x-identity-research"
-    },
-    {
       "link_id": "link_90254edab7f59383f02e",
       "account_id": "acct_5a81f5d2f73fb74e67a9",
       "asserted_persona_id": "persona_f8c56088dd10763bccd5",
@@ -101,22 +82,6 @@
       ],
       "summary": "The cited source places this exact https://www.twitch.tv/BlueMage_VT under VTUBER CHILD, headed BlueMage_VT, with Vtuber: BlueMage_VT. It is a client/model-work entry, separate from the follow me owner icons containing twitch.tv/nyeeeon. The automated hub_crawl misread that relationship as account ownership. Controller ruling rejects this exact identity link while retaining Nyeeeon's actual own accounts.",
       "observed_at": "2026-09-19T15:21:18.108230+00:00",
-      "reviewer": "codex:task-6-linked-identity-research"
-    },
-    {
-      "link_id": "link_f51c9371eb526cf3e983",
-      "account_id": "acct_ef242d9302589009a72b",
-      "asserted_persona_id": "persona_f8c56088dd10763bccd5",
-      "evidence_id": "ev_0babf355911590a0cf0e",
-      "disposition": "reject_identity_link",
-      "link_sha256": "4318dbe69aaac4591c725b76b5eecf0da6f777407e45af9c48be9293f18366e3",
-      "account_sha256": "846fa8cf505cb81e862ef42bbaa392149a795e976e257bcb22b60abd01006225",
-      "evidence_sha256": "3a3b0ec6b10f78250aadf0f3fc0da4be31b3f07d0970c73637feb48c437159ae",
-      "source_urls": [
-        "https://neonsten.carrd.co"
-      ],
-      "summary": "The cited source places this exact https://www.twitch.tv/tpastry under VTUBER CHILD, headed Batstry, with Vtuber: Batstry. It is a client/model-work entry, separate from the follow me owner icons containing twitch.tv/nyeeeon. The automated hub_crawl misread that relationship as account ownership. Controller ruling rejects this exact identity link while retaining Nyeeeon's actual own accounts.",
-      "observed_at": "2026-09-19T15:21:18.108262+00:00",
       "reviewer": "codex:task-6-linked-identity-research"
     }
   ]

@@ -1,0 +1,895 @@
+﻿รายชื่อบัญชีใหม่ที่คัดออกจากรายชื่อ VTuber — ผลสรุปสุดท้าย
+วันที่สรุป: 19 กันยายน 2026
+ขอบเขต: discovery 884 รายการ; ฐานเดิม 1,370 ช่องถือเป็น VTuber ตามคำยืนยันของผู้ใช้และไม่ได้ตรวจซ้ำ
+คัดออกทั้งหมด: 102 | จากการตรวจหลักฐานเดิม: 30 | จากคำตัดสินผู้ใช้: 72
+ผู้ใช้ยืนยันว่าเป็น VTuber: 30 | บัญชีปิด/เข้าไม่ได้: 94 | ยังไม่แน่ใจ: 0
+บัญชีปิด/เข้าไม่ได้และรายการยังไม่แน่ใจไม่รวมในรายชื่อที่คัดออกนี้
+ผลนี้เป็นการตัดสินระดับบัญชี ไม่ใช่ข้อสรุปว่าเจ้าของไม่เคยมี persona ในบัญชีอื่น
+
+=== หลักฐานสาธารณะระบุว่าไม่ใช่ผู้แสดง VTuber (3 รายการ) ===
+
+1. Tim Koa [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@TimKoa
+รหัส discovery: candidate_5e0540c9b4b60a7ebb3c
+Channel ID: UCg8jb5qTZWa9WLBT6-JBsnw
+เหตุผล: ช่องผู้ประกอบการ/ทำสติกเกอร์และ productivity ของ Tim Koa ตาม About เว็บไซต์ส่วนตัว และเนื้อหาร้านของตน
+หลักฐาน: https://www.youtube.com/@TimKoa/about
+หลักฐาน: https://www.youtube.com/watch?v=9BXOJj9k4uA
+หลักฐาน: https://timkoa.com/
+
+2. Charlie Chang [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@CharlieChang
+รหัส discovery: candidate_af3ab63822eeda450a64
+Channel ID: UCTQuKo8v0PaPCvk5aRxc_Yg
+เหตุผล: ช่องผู้ประกอบการ Charlie Chang สอนธุรกิจ การเงิน และการทำงานส่วนตัว ตาม About และเว็บไซต์เจ้าของ
+หลักฐาน: https://www.youtube.com/@CharlieChang/about
+หลักฐาน: https://www.charliechang.com/
+
+3. sdshepard [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/sdshepard
+รหัส discovery: candidate_e1dd68323b65e2a2f5e0
+เหตุผล: เป็นช่องของครีเอเตอร์/นักแข่ง Monster Hunter: About ระบุอดีตแชมป์อเมริกาเหนือ เว็บไซต์ต้นสังกัดจัดเป็น Twitch Streamer และมีบทสัมภาษณ์ครีเอเตอร์ในชื่อตนเอง สอดคล้องกับภาพหลายวิดีโอที่เป็นเจ้าของดำเนินรายการปกติ; ไม่พบหลักฐานตัวตนเสมือนที่เกี่ยวข้องในการตรวจนี้
+หลักฐาน: https://www.twitch.tv/sdshepard/about
+หลักฐาน: https://www.ggtalentgroup.com/
+หลักฐาน: https://mobile.x.com/SD_Shepard/with_replies
+หลักฐาน: https://podcasts.apple.com/gr/podcast/khans-kast/id1678503736
+หลักฐาน: https://www.twitch.tv/videos/2877922976
+หลักฐาน: https://www.twitch.tv/videos/2876964798
+หลักฐาน: https://www.twitch.tv/videos/1188069707
+
+=== บัญชีองค์กร / สื่อ / คลิป / บริการ จากการตรวจหลักฐาน (25 รายการ) ===
+
+1. CasherCard [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@CasherCard
+รหัส discovery: candidate_018dfc1bf5228583c982
+Channel ID: UCEf70rN2-1GQ-IcZX4L6i1Q
+เหตุผล: ช่องบริการบัตรชำระเงินเสมือน CasherCard; virtual ในที่นี้หมายถึงบัตร ไม่ใช่ผู้แสดงเสมือน
+หลักฐาน: https://www.youtube.com/@CasherCard/about
+หลักฐาน: https://www.youtube.com/watch?v=Y_1DIRZ8v3c
+
+2. แฟนคลับ Vtuber Thailand [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@vtuberthailand3883
+รหัส discovery: candidate_18e20e6a1f27f57af0e5
+Channel ID: UC8Cs36R6dg5j_X8RiBd027Q
+เหตุผล: เพจแฟนคลับ รับโปรโมต ตัดคลิป และทำมีมให้ VTuber คนอื่นตามคำอธิบายช่อง
+หลักฐาน: https://www.youtube.com/@vtuberthailand3883/about
+หลักฐาน: https://www.youtube.com/watch?v=1nxBFROGZOg
+
+3. Streamer Moment So Good [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@streamermomentsogood5857
+รหัส discovery: candidate_1d494235970b452140f7
+Channel ID: UCIRoUZp3F8-2OW1FM32gCjA
+เหตุผล: ช่องรวบรวมโมเมนต์ GTA ของสตรีมเมอร์หลายคน พร้อมลิงก์ต้นทางในคำอธิบายวิดีโอ
+หลักฐาน: https://www.youtube.com/@streamermomentsogood5857/about
+หลักฐาน: https://www.youtube.com/watch?v=qMWjald4duw
+
+4. Pandora [Official] [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@Pandora_official
+รหัส discovery: candidate_2191571826386363fd1f
+Channel ID: UC2kwZbKPHU82x1Sk1FtirEQ
+เหตุผล: บัญชีบริษัท Pandora Virtual Entertainment แนะนำศิลปินหลายคน ไม่ใช่บัญชี persona รายบุคคล
+หลักฐาน: https://www.youtube.com/@Pandora_official/about
+หลักฐาน: https://www.youtube.com/watch?v=Ya4o8NDiAmM
+หลักฐาน: https://www.youtube.com/watch?v=sIsK9Ft13GA
+
+5. ตื่นมาแปล [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@Tuenmaplae
+รหัส discovery: candidate_25196282caa0c3ef652c
+Channel ID: UCP6gupHUoaWsck4c8FoHDhQ
+เหตุผล: ช่องแปลคลิป VTuber; About และคำอธิบายระบุคัดช่วงสตรีมผู้อื่นมาทำซับไทย
+หลักฐาน: https://www.youtube.com/@Tuenmaplae/about
+หลักฐาน: https://www.youtube.com/watch?v=03scKhNlJaM
+
+6. Tsunnya 【The Clipper】 [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@Tsun
+รหัส discovery: candidate_33aa3003f1c4557cc0ca
+Channel ID: UCc5fMFVClKHNZtWJ1xmhfGQ
+เหตุผล: เจ้าของระบุเป็นช่องแปล VTuber และ The Clipper; ผลงานเป็นคลิปของผู้แสดงอื่น
+หลักฐาน: https://www.youtube.com/@Tsun/about
+หลักฐาน: https://www.youtube.com/watch?v=UxWs1KUkzV8
+
+7. หิวหัวหอม Ch. [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@HioHuahom
+รหัส discovery: candidate_42e4039d70abb5cdfc1c
+Channel ID: UC6KDYiLRYeEskld4AbFKfew
+เหตุผล: ช่องตัดต่อแฟนคลิปด้อม ARP ตาม About ไม่ใช่ช่องของ VTuber ที่ปรากฏในคลิป
+หลักฐาน: https://www.youtube.com/@HioHuahom/about
+หลักฐาน: https://www.youtube.com/watch?v=Uzv0kWz-_fY
+หลักฐาน: https://www.youtube.com/watch?v=Kzr6P06qRug
+
+8. AStars official [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@AStarsofficial
+รหัส discovery: candidate_5459bb682e29583e31d5
+Channel ID: UCTpyXDDGdkcw3GCol3lwq_w
+เหตุผล: บัญชีกลางค่าย AStars production; ข่าวบริษัทแม่ระบุช่องนี้เป็นช่องค่าย แยกจากช่องศิลปิน
+หลักฐาน: https://www.youtube.com/@AStarsofficial/about
+หลักฐาน: https://www.youtube.com/watch?v=upy2O6qdgQk
+หลักฐาน: https://www.youtube.com/watch?v=8V0-Z-CQwzQ
+หลักฐาน: https://bravegroup.co.jp/en/news/6611/
+
+9. Lumina Project [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@LuminaVProject
+รหัส discovery: candidate_64b73b41f846ea52ddf8
+Channel ID: UCyjtLSLwNr2rH9E-Iy6x8Eg
+เหตุผล: บัญชีกลาง Lumina Project เผยแพร่งานและกิจกรรมรวมของสมาชิก ไม่ใช่ persona รายบุคคล
+หลักฐาน: https://www.youtube.com/@LuminaVProject/about
+หลักฐาน: https://www.youtube.com/watch?v=87Kg66JgHbM
+หลักฐาน: https://www.youtube.com/watch?v=-v9rolJWHyI
+
+10. Senolive [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/channel/UCaXVZQ3bFktio7QkdpM6HIQ
+รหัส discovery: candidate_6a8ef5ff15101cd09000
+Channel ID: UCaXVZQ3bFktio7QkdpM6HIQ
+เหตุผล: About ระบุชัดว่าเป็น VTuber Agency และ Official Account ของ Senolive
+หลักฐาน: https://www.youtube.com/channel/UCaXVZQ3bFktio7QkdpM6HIQ/about
+หลักฐาน: https://www.youtube.com/watch?v=vYvtscng0J0
+หลักฐาน: https://www.youtube.com/watch?v=dM1fVfaRJeA
+
+11. แปลเป็นไทย Vtuber [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@vtuberthaisub
+รหัส discovery: candidate_6f60b8b74c178945b54a
+Channel ID: UCtkAJVuzQ70wo1QTlYmzWLA
+เหตุผล: ช่องทำซับไทยจากคลิปภาษาอังกฤษของ VTuber อื่น พร้อมระบุต้นฉบับ
+หลักฐาน: https://www.youtube.com/@vtuberthaisub/about
+หลักฐาน: https://www.youtube.com/watch?v=E3ozo1zqFPY
+หลักฐาน: https://www.youtube.com/watch?v=Mrc6WSwZq80
+
+12. JunoF8 [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@JunoF8
+รหัส discovery: candidate_7520665dbfe5b3dc39b5
+Channel ID: UCvmdx76soK_ekIxC9Vt1ayg
+เหตุผล: ช่องรวมคลิปเรื่องราว GTA/Run Town พร้อมลิงก์สตรีมเมอร์ต้นทางหลายบัญชี
+หลักฐาน: https://www.youtube.com/@JunoF8/about
+หลักฐาน: https://www.youtube.com/watch?v=B3gnm0kMmr4
+
+13. ลืมพิมพ์ [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@Luemphim
+รหัส discovery: candidate_9b2060c4ef2019a309f8
+Channel ID: UCTlRTJBlpEfqdUotpvia9QQ
+เหตุผล: ช่องแปลคลิป VTuber อื่น; คำอธิบายให้ติดตามและสนับสนุนเจ้าของต้นฉบับ
+หลักฐาน: https://www.youtube.com/@Luemphim/about
+หลักฐาน: https://www.youtube.com/watch?v=3MnuM9NYXfk
+
+14. VALORANT Esports Thailand [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@VALORANTEsportsTH
+รหัส discovery: candidate_a34684102b1f27996b3d
+Channel ID: UCNcpe0OrmnOHIUB33bVFbfQ
+เหตุผล: บัญชีทางการ VALORANT Esports ประเทศไทย สำหรับการแข่งขันและข่าวอีสปอร์ต
+หลักฐาน: https://www.youtube.com/@VALORANTEsportsTH/about
+หลักฐาน: https://www.youtube.com/watch?v=LV1uTn25uNk
+หลักฐาน: https://www.youtube.com/watch?v=akobN6NbTaw
+
+15. Sashimi Clips [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@SashimiClips
+รหัส discovery: candidate_add573e686507f0edd1c
+Channel ID: UCTEKkDX7lafQVnJrqu55jrA
+เหตุผล: About ระบุอัปโหลดคลิป VTuber โดยเฉพาะสมาชิก Hololive EN และวิดีโออ้างต้นทาง
+หลักฐาน: https://www.youtube.com/@SashimiClips/about
+หลักฐาน: https://www.youtube.com/watch?v=H0xB9E4KwAM
+หลักฐาน: https://www.youtube.com/watch?v=bZrYecj7LEA
+
+16. Bangkok Esports [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@BangkokEsports
+รหัส discovery: candidate_b083f79e40a55be771b8
+Channel ID: UCyE2L8KZaBollChyE5lKrhA
+เหตุผล: สื่อข่าว Bangkok Esports; About ระบุผลิตข่าวและประวัติผู้เล่น/สตรีมเมอร์
+หลักฐาน: https://www.youtube.com/@BangkokEsports/about
+หลักฐาน: https://www.youtube.com/watch?v=c7dcxZH5n7I
+หลักฐาน: https://www.youtube.com/watch?v=voqVfWshseU
+
+17. VALGANG - TH [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@valgang.official
+รหัส discovery: candidate_b578179d56c10569bf84
+Channel ID: UCIYEcko-rkFtc7oR61X0Y_A
+เหตุผล: ช่องรวบรวมไฮไลต์ Valorant ของผู้เล่นอื่น พร้อมเครดิตช่อง Primmie และสตรีมเมอร์หลายคน
+หลักฐาน: https://www.youtube.com/@valgang.official/about
+หลักฐาน: https://www.youtube.com/watch?v=CttupX5fRM0
+หลักฐาน: https://www.youtube.com/watch?v=nxIIXhDTVm4
+
+18. แมวพิมพ์ [ Vtuber แปลไทย ] [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@Maewpim
+รหัส discovery: candidate_c676b3368a102360ca9b
+Channel ID: UCkzPzlIsIwbwnwdA0T6_KqQ
+เหตุผล: ช่องแปล Hololive JP/VTuber อื่น และระบุให้โดเนทเจ้าของต้นฉบับแทนช่องแปล
+หลักฐาน: https://www.youtube.com/@Maewpim/about
+หลักฐาน: https://www.youtube.com/watch?v=C46eFMzsjU4
+
+19. Ani-One Thailand [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@AniOneThailand
+รหัส discovery: candidate_cd02fe1ea0e58da79d89
+Channel ID: UCw2bdNSXh4x6e0NCduVoxMQ
+เหตุผล: ช่องจัดจำหน่ายอนิเมะ Ani-One ของ Medialink ตาม About ไม่ใช่ผู้แสดง VTuber
+หลักฐาน: https://www.youtube.com/@AniOneThailand/about
+หลักฐาน: https://www.youtube.com/watch?v=GcIi2IUQ98w
+
+20. วันๆของ Vtuber ก็งี้แหละ [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@vtuber3606
+รหัส discovery: candidate_d0d9e5c2311acc3d76e4
+Channel ID: UCvE-YERDpUsDj2sfVgHV2tw
+เหตุผล: About ระบุทำคลิปสั้นของ VTuber; แคตตาล็อกเป็นไฮไลต์ของ Kona, Elvene, Hori และคนอื่น
+หลักฐาน: https://www.youtube.com/@vtuber3606/about
+หลักฐาน: https://www.youtube.com/watch?v=tWiPtB3_Hl8
+
+21. Caters Clips [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@CatersClips
+รหัส discovery: candidate_d4169101dd42cb77a9dd
+Channel ID: UCcR4cyQyAF-guvk7Wm5Lbqg
+เหตุผล: Caters Clips เป็นคลังวิดีโอ UGC และบริการอนุญาตใช้สิทธิ์สื่อของบริษัท ตาม About
+หลักฐาน: https://www.youtube.com/@CatersClips/about
+หลักฐาน: https://www.youtube.com/watch?v=JNrOBrUGAi4
+หลักฐาน: https://www.youtube.com/watch?v=ZOUnLrIFiu0
+
+22. TODAY Bizview [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@TODAYBizview
+รหัส discovery: candidate_f4a4d3afe29b335588a6
+Channel ID: UCWxI8e_5-oHm5K8lMASpA2Q
+เหตุผล: ช่องสื่อข่าวธุรกิจของทีม TODAY ตาม About และรายการสัมภาษณ์
+หลักฐาน: https://www.youtube.com/@TODAYBizview/about
+หลักฐาน: https://www.youtube.com/watch?v=8403j4aWSko
+หลักฐาน: https://www.youtube.com/watch?v=vPH9jrtuPh8
+
+23. ClipsVonClaus [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@clipsvonclaus
+รหัส discovery: candidate_f6e6d835c4b502010a37
+Channel ID: UCqQlq8W2OVF8Dn2LYTdz3lA
+เหตุผล: ช่องรวบรวมคลิป/เหตุการณ์ของสตรีมเมอร์ Kick หลายคน มีลิงก์ต้นทางและช่วงเวลาในวิดีโอ
+หลักฐาน: https://www.youtube.com/@clipsvonclaus/about
+หลักฐาน: https://www.youtube.com/watch?v=RptSyFME2Pk
+
+24. lestreamertrend [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/lestreamertrend
+รหัส discovery: candidate_852c837cd20b5763ef57
+เหตุผล: เจ้าของระบุชัดว่าเป็นช่องประชาสัมพันธ์ที่ได้รับอนุญาตให้ส่งผู้ชมไปช่อง Youladecadd ไม่ใช่บัญชีตัวตน VTuber อิสระ
+หลักฐาน: https://www.twitch.tv/lestreamertrend/about
+
+25. pixelaproject [facebook]
+บัญชี/ลิงก์: https://facebook.com/pixelaproject
+รหัส discovery: candidate_c3ee63965ca43f10e0dd
+เหตุผล: Facebook ระบุชัดว่า Pixela Official เป็นค่าย Virtual Youtuber และ X ระบุเป็นกลุ่ม Virtual influencer เป็นบัญชีองค์กร/ค่าย ไม่ใช่ persona รายบุคคล
+หลักฐาน: https://facebook.com/pixelaproject
+หลักฐาน: https://x.com/PixelaProject
+
+=== ลิงก์ไม่ใช่บัญชีครีเอเตอร์ที่ใช้ในโครงการ (2 รายการ) ===
+
+1. gank-icon.png [ganknow]
+บัญชี/ลิงก์: https://ganknow.com/gank-icon.png
+รหัส discovery: candidate_a636b784dfe2a9627b63
+เหตุผล: URL ตอบกลับเป็นไฟล์ภาพ image/png มีลายเซ็น PNG และ IHDR เป็นไอคอนเว็บไซต์ ไม่ใช่โปรไฟล์บุคคลหรือ persona
+หลักฐาน: https://ganknow.com/gank-icon.png
+หลักฐาน: https://ganknow.com/search?q=VTuber
+
+2. popular [instagram]
+บัญชี/ลิงก์: https://www.instagram.com/popular
+รหัส discovery: candidate_ecc2d5dd270c116512cb
+เหตุผล: เป็นหน้า Popular on Instagram สำหรับสำรวจ reels, profiles และหัวข้อยอดนิยม ไม่ใช่บัญชีผู้สร้างคอนเทนต์
+หลักฐาน: https://www.instagram.com/popular
+หลักฐาน: https://www.instagram.com/explore/tags/vtuber/
+
+=== ผู้ใช้ตัดสินว่าไม่เกี่ยวข้องกับโครงการ (67 รายการ) ===
+
+1. iamSometimes [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@iamSometimes
+รหัส discovery: candidate_076790ca3ca69a354f1b
+Channel ID: UCqA48zxQgGz1AfON-wrn5BA
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@iamSometimes/about
+หลักฐาน: https://www.youtube.com/watch?v=utE_79puwhw
+หลักฐาน: https://www.youtube.com/watch?v=M0M3HFkJVXs
+
+2. Chicken V [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@chickenv56
+รหัส discovery: candidate_0c18cce03d1511d0c667
+Channel ID: UCTmwLrdtL2FJQcHumh9A0kQ
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@chickenv56/about
+หลักฐาน: https://www.youtube.com/watch?v=SClog9FzcEo
+หลักฐาน: https://www.youtube.com/watch?v=caGWYSrLuYE
+
+3. Nuttito [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@Nutty4U2012
+รหัส discovery: candidate_1cfa75963dc58057962d
+Channel ID: UCsooTubxCJu-Ft0arPctDWw
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@Nutty4U2012/about
+หลักฐาน: https://www.youtube.com/watch?v=V5-fiBZxBAs
+หลักฐาน: https://www.youtube.com/watch?v=0oCsPZ_XmiM
+
+4. NPC Gatip [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@NPCGatip
+รหัส discovery: candidate_207edba7b648f121b454
+Channel ID: UCRWU_2TsCcRjuIMYO6Tr6XQ
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@NPCGatip/about
+หลักฐาน: https://www.youtube.com/watch?v=6bvYMfV3F5I
+หลักฐาน: https://www.youtube.com/watch?v=2gBhGynAB8M
+
+5. SVNZ [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@Surveniezch
+รหัส discovery: candidate_28b191b980eb88a4d8d7
+Channel ID: UCGJ82_OvYFYMReOjRd2xJ5A
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@Surveniezch/about
+หลักฐาน: https://www.youtube.com/watch?v=zGdY1hFsovU
+หลักฐาน: https://www.youtube.com/watch?v=JBACewO9gQE
+
+6. Lastcrosser [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@Lastcrosser
+รหัส discovery: candidate_3eb36052a25ff5ebd6d9
+Channel ID: UCjVrQi0X2DmrU1VLxKe0ETA
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@Lastcrosser/about
+หลักฐาน: https://www.youtube.com/watch?v=4u_FCdPMpJQ
+หลักฐาน: https://www.youtube.com/watch?v=Kt5AuDRpKTk
+
+7. Apologize Ch [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@ApologizeCh122
+รหัส discovery: candidate_40d9f0ba6525254e7b83
+Channel ID: UCAnueg3o3om3PF2p8W4MV5w
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@ApologizeCh122/about
+หลักฐาน: https://www.youtube.com/watch?v=ypFVWBaoeBw
+หลักฐาน: https://www.youtube.com/watch?v=6_MkZv5UFWo
+
+8. Wanoiz [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@Wanoiz
+รหัส discovery: candidate_4284262c8b30e68a37ed
+Channel ID: UCK6i8EKyDGH9tqfDI8ZJoMA
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@Wanoiz/about
+หลักฐาน: https://www.youtube.com/watch?v=Coh7L-1S0Lc
+หลักฐาน: https://www.youtube.com/watch?v=fy44JqbFmI4
+
+9. zigxc. [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@zigxc
+รหัส discovery: candidate_4472d50ead95a39d0211
+Channel ID: UC9BmmY3J_Ftk2FN5AacXAkg
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@zigxc/about
+หลักฐาน: https://www.youtube.com/watch?v=p2d0u5VcYqw
+หลักฐาน: https://www.youtube.com/watch?v=Ham3l_jToe0
+
+10. YouTube TV Recap  [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@YouTubeRecapTV
+รหัส discovery: candidate_44823ff20781ad4adee9
+Channel ID: UCgERDHMwGdeeRB9nhTrte5g
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@YouTubeRecapTV/about
+หลักฐาน: https://www.youtube.com/watch?v=KEV8p0UNHEg
+
+11. Azuka_ontop [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@RAKNONGMUY
+รหัส discovery: candidate_4dd0d1ab5d49b74d3199
+Channel ID: UCk42wrNmOHuFTZGgFFWmHzQ
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@RAKNONGMUY/about
+หลักฐาน: https://www.youtube.com/watch?v=ooUd8LXvIIU
+
+12. CLOUDSPHERE [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@CLOUDSPHERE
+รหัส discovery: candidate_5de4d47fefd370d5a913
+Channel ID: UCOjzqWC0NZvnA8NsU6Cjhag
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@CLOUDSPHERE/about
+หลักฐาน: https://www.youtube.com/watch?v=_k7cNMD7Ho8
+หลักฐาน: https://www.youtube.com/watch?v=LLYaM8ijY_A
+
+13. สมตุ้ยเกมมิ่ง [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@streamtenders
+รหัส discovery: candidate_5e90b0c3fe875027add8
+Channel ID: UC2enab_9_gbG-4HIQk73xnw
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@streamtenders/about
+หลักฐาน: https://www.youtube.com/watch?v=fl7LfLcgI38
+หลักฐาน: https://www.youtube.com/watch?v=1YDu08_kY70
+
+14. ServAntics [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@ServAnticscat
+รหัส discovery: candidate_6625dd9ed3ee518fa56b
+Channel ID: UCBXlIG7JjAFrfDrUD1Lnzkg
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@ServAnticscat/about
+หลักฐาน: https://www.youtube.com/watch?v=dWZUGM3i9BM
+หลักฐาน: https://www.youtube.com/watch?v=uIzHSjNJTmY
+
+15. BreakGate [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@BreakGate
+รหัส discovery: candidate_6d623fb270ef8b990197
+Channel ID: UCDfw94o6nonldOA-aXHSw2w
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@BreakGate/about
+หลักฐาน: https://www.youtube.com/watch?v=d-a6KzePoos
+หลักฐาน: https://www.youtube.com/watch?v=09r6ribQmyE
+
+16. ESC LT PLAYER [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@ESCLTPLAYER
+รหัส discovery: candidate_6deb696b1e8723ae5e98
+Channel ID: UCfF_Y1PSbapF_-iXS16S7rw
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@ESCLTPLAYER/about
+หลักฐาน: https://www.youtube.com/watch?v=MCB1QYRSXOI
+หลักฐาน: https://www.youtube.com/watch?v=jFcaqVMqsPo
+
+17. Streaming by Max 2.0 [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@StreamingbyMax2.0
+รหัส discovery: candidate_7556c98af430d17009b6
+Channel ID: UCZUxOCTyeyLdZUr7YmteRRQ
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@StreamingbyMax2.0/about
+หลักฐาน: https://www.youtube.com/watch?v=7WG4G52DiMA
+หลักฐาน: https://www.youtube.com/watch?v=jhII-wpH5PQ
+
+18. Slapper [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@slapperch
+รหัส discovery: candidate_797436926d6183c3894e
+Channel ID: UC8fWyZQfxhakER1VrBnMlEQ
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@slapperch/about
+หลักฐาน: https://www.youtube.com/watch?v=H30z2hCqa5w
+หลักฐาน: https://www.youtube.com/watch?v=bIrNODVDs1I
+
+19. PHETWEATHER [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@PHETWEATHER
+รหัส discovery: candidate_832e5e86a9e1935f398a
+Channel ID: UCg2LVTi-c2uYPfO8bdsLA0w
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@PHETWEATHER/about
+หลักฐาน: https://www.youtube.com/watch?v=S1mF13OZTT8
+หลักฐาน: https://www.youtube.com/watch?v=DFOw2BIeYoA
+
+20. LuckFast [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@FastDrama
+รหัส discovery: candidate_880e263079ce856d7199
+Channel ID: UCdthL0Dpr4OmRMjBkmpOiPw
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@FastDrama/about
+หลักฐาน: https://www.youtube.com/watch?v=gEmIJxyY56g
+
+21. กิต งายย [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@kritngi
+รหัส discovery: candidate_8cf210912815f9b8162a
+Channel ID: UCni0RryGg4KQJd7jVqPpXZw
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@kritngi/about
+หลักฐาน: https://www.youtube.com/watch?v=dkSdMN-IH-k
+หลักฐาน: https://www.youtube.com/watch?v=YxXlJmMMoPA
+
+22. BNNx [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@bnnx.21
+รหัส discovery: candidate_93d9c6a3f23ff85d3017
+Channel ID: UC1nhQ5dTaUFYTkZg9le3KmQ
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@bnnx.21/about
+หลักฐาน: https://www.youtube.com/watch?v=94ofzeZtpgI
+หลักฐาน: https://www.youtube.com/watch?v=vLqiXnE9i90
+
+23. T0NZero x N5S [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/channel/UCLy-ymZxh0-UFi3ov7MJKvA
+รหัส discovery: candidate_989597a9384fc216e8ad
+Channel ID: UCLy-ymZxh0-UFi3ov7MJKvA
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/channel/UCLy-ymZxh0-UFi3ov7MJKvA/about
+หลักฐาน: https://www.youtube.com/watch?v=cYL4qjZ3MLo
+หลักฐาน: https://www.youtube.com/watch?v=x8mYn1ny_M0
+
+24. Hererm [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@hererm
+รหัส discovery: candidate_9fad6936b0384ac3a050
+Channel ID: UCFYtuhhyTKcuaDdCqdeXnpQ
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@hererm/about
+หลักฐาน: https://www.youtube.com/watch?v=nwo_4WaqUWU
+หลักฐาน: https://www.youtube.com/watch?v=VyXUf24XWvI
+
+25. KRISSAE [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@KRISSA.E
+รหัส discovery: candidate_9fd32853104c4ab50b90
+Channel ID: UCHDTvwWxi8R0iDsf721Vspg
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@KRISSA.E/about
+หลักฐาน: https://www.youtube.com/watch?v=Qj014FOPOyQ
+หลักฐาน: https://www.youtube.com/watch?v=oxOASSg10ro
+
+26. ppimirl [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@ppimirl
+รหัส discovery: candidate_a98d7477073afea98acb
+Channel ID: UCSTM_2D-kDHqgMfBw2nD-FA
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@ppimirl/about
+หลักฐาน: https://www.youtube.com/watch?v=f7ZtatYjkVQ
+หลักฐาน: https://www.youtube.com/watch?v=ente9G_jfz8
+
+27. USS enterprise [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@uss3208
+รหัส discovery: candidate_cf73e9a50c6863b99830
+Channel ID: UCGRWdrMJCHqrqZ8mAZ4RRrg
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@uss3208/about
+หลักฐาน: https://www.youtube.com/watch?v=9uS2doX93mg
+
+28. BRE GAMING [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@BREGAMING01
+รหัส discovery: candidate_d6282533a945707a1f66
+Channel ID: UCpKR9tyYLLLeN_hf2B66uBw
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@BREGAMING01/about
+หลักฐาน: https://www.youtube.com/watch?v=OnI8v-PRYYo
+หลักฐาน: https://www.youtube.com/watch?v=g5DTqVSVvtA
+
+29. PANNAWAT [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@pannawat8032
+รหัส discovery: candidate_df4368f4046ca8e95881
+Channel ID: UCUMfYVXon0zUBTBToop6B0w
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@pannawat8032/about
+หลักฐาน: https://www.youtube.com/watch?v=sglXDxf4Tg4
+หลักฐาน: https://www.youtube.com/watch?v=aCglzSuiZ2M
+
+30. MinORu [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@MinORuOnly
+รหัส discovery: candidate_e2a34a4493ccd6b5fcc8
+Channel ID: UCK-JOh6HwRaA-0_g5NRQExg
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@MinORuOnly/about
+หลักฐาน: https://www.youtube.com/watch?v=o68BFq2KGRk
+หลักฐาน: https://www.youtube.com/watch?v=Kaqm9lmxYR0
+
+31. XY AZ [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@XY_AZ
+รหัส discovery: candidate_e2a472aa27f701b85827
+Channel ID: UCzTiCSXKOLbyGAgd-FsquCg
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@XY_AZ/about
+หลักฐาน: https://www.youtube.com/watch?v=46LRDCe_1ew
+หลักฐาน: https://www.youtube.com/watch?v=R3qmYSzOOkE
+
+32. Captain MUAL2027 Gamer [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@CaptainMUAL
+รหัส discovery: candidate_efee3ad0365900df118e
+Channel ID: UCEbSoi5tyeQi4Dh_Fl-Gv0w
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@CaptainMUAL/about
+หลักฐาน: https://www.youtube.com/watch?v=WF2oIy_a_S0
+หลักฐาน: https://www.youtube.com/watch?v=SBO6tzsAXF0
+
+33. Fouradd [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@Fouradd99
+รหัส discovery: candidate_f755b271275129a7aa0f
+Channel ID: UCuDtdOIX4z1I4OLI5Xwlh4w
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@Fouradd99/about
+หลักฐาน: https://www.youtube.com/watch?v=DmfXMkrzOOg
+หลักฐาน: https://www.youtube.com/watch?v=aMPEPZf0-bs
+
+34. ANIMORth - อนิเมาะไทย [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@ANIMORth
+รหัส discovery: candidate_fbd3abb0e14962ce0d18
+Channel ID: UCqUFeQcm4VmxNP58PpIfY6A
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@ANIMORth/about
+หลักฐาน: https://www.youtube.com/watch?v=2YJj_gIUkrk
+หลักฐาน: https://www.youtube.com/watch?v=cBpchBzaK_o
+
+35. ttvstreamer_btw [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/ttvstreamer_btw
+รหัส discovery: candidate_06eedb7a7920fd530eed
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/ttvstreamer_btw/about
+
+36. pakotvstreamer [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/pakotvstreamer
+รหัส discovery: candidate_149c446a4bf79c275b02
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/pakotvstreamer/about
+
+37. xavstreamer26 [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/xavstreamer26
+รหัส discovery: candidate_151395d4fd50f1a14a1a
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/xavstreamer26/about
+
+38. activstreamer [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/activstreamer
+รหัส discovery: candidate_25efcec01a353c4f623d
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/activstreamer/about
+
+39. kyo1984123 [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/kyo1984123
+รหัส discovery: candidate_26dfe3bf77b1e213d0b6
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/kyo1984123/about
+
+40. isazarin [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/isazarin
+รหัส discovery: candidate_2b487cdbe9f03f2a0a42
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/isazarin/about
+
+41. sorakasaivtuber [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/sorakasaivtuber
+รหัส discovery: candidate_2bdfa26bcc4178cb5b9b
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/sorakasaivtuber/about
+
+42. cheenmachine_ [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/cheenmachine_
+รหัส discovery: candidate_3fbf7de364f09cbb2b75
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/cheenmachine_/about
+
+43. blackzdemon [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/blackzdemon
+รหัส discovery: candidate_40bff6a687ec743887d5
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/blackzdemon/about
+
+44. lkstreamerttv [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/lkstreamerttv
+รหัส discovery: candidate_435e1dcee1a42493865d
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/lkstreamerttv/about
+
+45. streamertwtch [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/streamertwtch
+รหัส discovery: candidate_4bddf932a4b81be52c85
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/streamertwtch/about
+
+46. kiara_chaan [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/kiara_chaan
+รหัส discovery: candidate_5fb54cfe287efce84e44
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/kiara_chaan/about
+
+47. favstreamer55 [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/favstreamer55
+รหัส discovery: candidate_6a33e1a8b6dea47f90e5
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/favstreamer55/about
+
+48. tonyoverdose420 [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/tonyoverdose420
+รหัส discovery: candidate_803a30890a3936a19d06
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/tonyoverdose420/about
+
+49. wotesz [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/wotesz
+รหัส discovery: candidate_827cecef7deb35ad043f
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/wotesz/about
+
+50. tarkovstreamer [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/tarkovstreamer
+รหัส discovery: candidate_996108f17b909d607309
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/tarkovstreamer/about
+
+51. avstreamer12 [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/avstreamer12
+รหัส discovery: candidate_a66b668059468ceff52f
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/avstreamer12/about
+
+52. notastreamertbh [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/notastreamertbh
+รหัส discovery: candidate_a7804862e779b6a10a0e
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/notastreamertbh/about
+
+53. notvavstreamer [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/notvavstreamer
+รหัส discovery: candidate_b34068e00da1c4faa645
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/notvavstreamer/about
+
+54. myrask [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/myrask
+รหัส discovery: candidate_b84f0e0f9ff69bca69a3
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/myrask/about
+
+55. acvstreamer [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/acvstreamer
+รหัส discovery: candidate_c59713501f9f764d4f5d
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/acvstreamer/about
+
+56. shunarii_ [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/shunarii_
+รหัส discovery: candidate_d177ef96550a11f6f7ab
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/shunarii_/about
+
+57. ttvstreamerbp [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/ttvstreamerbp
+รหัส discovery: candidate_d7ef9db02011161a091f
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/ttvstreamerbp/about
+
+58. caitycoopscoops [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/caitycoopscoops
+รหัส discovery: candidate_da36f86ea0771e9cc768
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/caitycoopscoops/about
+
+59. dragon_streamertwitch [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/dragon_streamertwitch
+รหัส discovery: candidate_f02018a426bbe0ba04ef
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/dragon_streamertwitch/about
+
+60. ttvstreamer123btw [twitch]
+บัญชี/ลิงก์: https://www.twitch.tv/ttvstreamer123btw
+รหัส discovery: candidate_f14973eb6ef2bb75db13
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: ตรวจ bio, About และหลักฐานที่เข้าถึงได้แล้ว แต่ยังไม่พอสรุปการใช้ตัวตนเสมือน การไม่มีคีย์เวิร์ดหรือมี facecam ไม่ใช่เหตุให้ตัดออก
+หลักฐาน: https://www.twitch.tv/ttvstreamer123btw/about
+
+61. filian.senpai [instagram]
+บัญชี/ลิงก์: https://www.instagram.com/filian.senpai
+รหัส discovery: candidate_11323fdd6223cbcffd18
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: โปรไฟล์ใช้ชื่อ Filian Senpai และเขียน Hashira Of Filian พร้อมชี้ไป @filliantv แต่ยังยืนยันไม่ได้ว่าเป็นบัญชีทางการหรือบัญชีแฟนคลับ จึงไม่ฟันธงเป็น persona หรือ non-VTuber
+หลักฐาน: https://www.instagram.com/filian.senpai
+หลักฐาน: https://www.instagram.com/explore/tags/vtuber/
+
+62. azeruunofficial [instagram]
+บัญชี/ลิงก์: https://www.instagram.com/azeruunofficial
+รหัส discovery: candidate_480b4d3072e56f85e49d
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: โปรไฟล์ Instagram ใช้ชื่อ Azeru Unofficial; พบสื่อที่ใช้ชื่อเดียวกันเกี่ยวกับ 3D VTuber แต่ยังยืนยันความเป็นเจ้าของบัญชี Instagram ไม่ได้ จึงไม่ตัดว่าเป็น non-VTuber
+หลักฐาน: https://www.instagram.com/azeruunofficial
+หลักฐาน: https://www.instagram.com/explore/tags/vtuber/
+
+63. michael.ny [instagram]
+บัญชี/ลิงก์: https://www.instagram.com/michael.ny
+รหัส discovery: candidate_6effcbf44509e5161e3c
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: Instagram และ Patreon ระบุงาน Video Design/Motion Graphics/Animation และขายโมเดล VTuber แต่บทบาทนักทำโมเดลไม่พิสูจน์ว่าไม่มี persona ของตนเอง จึงไม่ฟันธง non-VTuber
+หลักฐาน: https://www.instagram.com/michael.ny
+หลักฐาน: https://www.instagram.com/explore/tags/vtuber/
+หลักฐาน: https://www.patreon.com/michaelrusakov/about
+
+64. RealiableCh [facebook]
+บัญชี/ลิงก์: https://facebook.com/RealiableCh
+รหัส discovery: candidate_f16ef885fcc55117c643
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: Facebook/YouTube เป็นช่องเกม Blue Archive; พบแหล่งรองกล่าวถึง Realiable ในกิจกรรม VTuber จึงไม่มีเหตุฟันธง non-VTuber จากข้อความช่องปัจจุบัน
+หลักฐาน: https://facebook.com/RealiableCh
+หลักฐาน: https://www.youtube.com/channel/UCI1SAgyaSIwdGf2uVbcmuvQ
+
+65. nekonevtuber [instagram]
+บัญชี/ลิงก์: https://www.instagram.com/nekonevtuber
+รหัส discovery: candidate_923607b918dbf9aa666c
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: Instagram มีชื่อ Nekone และระบุว่าพูดภาษาญี่ปุ่น/ไลฟ์ทุกวัน แต่ข้อความที่อ่านได้ไม่ยืนยันรูปแบบเสมือนด้วยตัวเอง จึงไม่คัดออก
+หลักฐาน: https://www.instagram.com/nekonevtuber
+หลักฐาน: https://www.instagram.com/explore/tags/vtuber/
+
+66. you.are.in.stain [instagram]
+บัญชี/ลิงก์: https://www.instagram.com/you.are.in.stain
+รหัส discovery: candidate_bc8fc944f7e7cb7c74fa
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: บัญชีระบุทำ animation ด้วยตนเองและเผยแพร่ภาพ/GIF แต่ยังไม่พอพิสูจน์ว่าเจ้าของไม่มี persona เสมือน จึงไม่ใช้เพียงอาชีพนักวาดเป็นเหตุคัดออก
+หลักฐาน: https://www.instagram.com/you.are.in.stain
+หลักฐาน: https://www.instagram.com/explore/tags/vtuber/
+หลักฐาน: https://x.com/BootlegDagut
+หลักฐาน: https://linktr.ee/BootlegDagut
+
+67. novapovie [instagram]
+บัญชี/ลิงก์: https://www.instagram.com/novapovie
+รหัส discovery: candidate_cd58ae9f21024fb64c21
+คำตัดสินของผู้ใช้: ไม่เกี่ยวข้องกับโครงการ
+ข้อมูลก่อนตัดสิน: พบข้อมูลสตรีม IRL และไลฟ์สไตล์พร้อมโปรไฟล์ Nova แต่การออกกล้องหรือทำ IRL ไม่ตัดความเป็น VTuber แบบผสม จึงยังไม่คัดออก
+หลักฐาน: https://www.instagram.com/novapovie
+หลักฐาน: https://www.instagram.com/explore/tags/vtuber/
+หลักฐาน: https://www.youtube.com/@NovaPoviee
+
+=== ผู้ใช้ตัดสินว่าเป็นบัญชีค่าย / สื่อ / ตัดคลิป (5 รายการ) ===
+
+1. Shinjix [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@Shinjix004
+รหัส discovery: candidate_29f8689383c4885305c0
+Channel ID: UCEzGy6m9NHNGSF4AEmBrgdQ
+คำตัดสินของผู้ใช้: บัญชีค่าย / สื่อ / ตัดคลิป
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@Shinjix004/about
+หลักฐาน: https://www.youtube.com/watch?v=68TRNXEImXc
+
+2. Komuruay [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@komurahuak
+รหัส discovery: candidate_438261f15df8494d23fb
+Channel ID: UCD46O6I4Ro5oDKT1cHLidFg
+คำตัดสินของผู้ใช้: บัญชีค่าย / สื่อ / ตัดคลิป
+หมายเหตุจากผู้ใช้: Live2D Rigger
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@komurahuak/about
+หลักฐาน: https://www.youtube.com/watch?v=nIHU494To58
+
+3. #หาทำGang [youtube]
+บัญชี/ลิงก์: https://youtube.com/@hathamgang
+รหัส discovery: candidate_6b7c2682fece3e9a8214
+Channel ID: UCwJEnC_mcMEHCyYFC4j0uhg
+คำตัดสินของผู้ใช้: บัญชีค่าย / สื่อ / ตัดคลิป
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://youtube.com/@hathamgang/about
+หลักฐาน: https://www.youtube.com/watch?v=_-TP9I2bOGI
+หลักฐาน: https://www.youtube.com/watch?v=gKAvYppdlYY
+
+4. TeenMu [youtube]
+บัญชี/ลิงก์: https://www.youtube.com/@TeenMu
+รหัส discovery: candidate_da32ebf29776361ead00
+Channel ID: UC1nG6WSQmdIf-ry-FORG0oQ
+คำตัดสินของผู้ใช้: บัญชีค่าย / สื่อ / ตัดคลิป
+ข้อมูลก่อนตัดสิน: อ่าน About และรายการวิดีโอ/สตรีมแล้ว แต่หลักฐานยังไม่พอตัดสินสถานะ virtual persona; ไม่คัดออกจากการไม่มีคำว่า VTuber
+หลักฐาน: https://www.youtube.com/@TeenMu/about
+หลักฐาน: https://www.youtube.com/watch?v=VBOISieYSSE
+หลักฐาน: https://www.youtube.com/watch?v=01ojlG_LTyI
+
+5. White | V.W.Y [x]
+บัญชี/ลิงก์: https://x.com/White_VwithU
+รหัส discovery: candidate_ed4b911f31cf4e52213e
+คำตัดสินของผู้ใช้: บัญชีค่าย / สื่อ / ตัดคลิป
+ข้อมูลก่อนตัดสิน: ค่ายระบุ White_VwithU เป็น CEO และหลายคนใช้เป็นผู้จัดการติดต่องาน; ยังแยกไม่ได้ว่าบัญชีนี้มีบทบาท VTuber ด้วยหรือไม่
+หลักฐาน: https://www30.twstalker.com/vwith_u
+

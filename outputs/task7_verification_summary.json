@@ -1,0 +1,73 @@
+{
+  "review_bundle_reproduced": true,
+  "reversed_inputs_byte_identical": true,
+  "repeated_corrections_merge_byte_identical": true,
+  "blocked_production_omission_partial_modes": 8,
+  "earlier_116_identity_fields_unchanged": true,
+  "earlier_116_research_rows_unchanged": true,
+  "ledger_sha256": "54064d4d68adc06be1bcae92d55cc47c164641116f1094d214e0ad05cde3f30f",
+  "counts": {
+    "accepted": 242,
+    "by_method": {
+      "exact_platform_id": 7,
+      "explicit_official_identity": 126,
+      "official_crosslink": 58,
+      "verified_registry_link": 51
+    },
+    "by_outcome": {
+      "existing_persona": 116,
+      "new_persona": 126
+    },
+    "by_platform": {
+      "facebook": 6,
+      "ganknow": 3,
+      "instagram": 7,
+      "tiktok": 58,
+      "website": 17,
+      "x": 126,
+      "youtube": 25
+    },
+    "conflicts": 0,
+    "resolved": 242,
+    "unresolved": 0
+  },
+  "global_accepted": 392,
+  "x_by_outcome": {
+    "new_persona": 68,
+    "existing_persona": 58
+  },
+  "x_by_method": {
+    "explicit_official_identity": 68,
+    "verified_registry_link": 42,
+    "official_crosslink": 16
+  },
+  "unique_personas": 236,
+  "unique_new_personas": 125,
+  "x_unique_personas": 126,
+  "x_unique_new_personas": 68,
+  "new_persona_searches": 68,
+  "evidence_records": 252,
+  "evidence_kinds": {
+    "official_profile": 229,
+    "official_website": 22,
+    "self_statement": 1
+  },
+  "collection_methods": {
+    "direct_public_x_profile": 122,
+    "direct_public_creator_hub": 22,
+    "retained_verified_registry_evidence": 39,
+    "direct_public_youtube_profile": 64,
+    "retained_attributed_x_post_via_mirror": 1,
+    "direct_public_video_description": 4
+  },
+  "unique_source_urls": 252,
+  "youtube_api_requests_quota": 0,
+  "fresh_public_profiles": 239,
+  "fresh_public_profile_statuses": {
+    "200": 226,
+    "404": 12,
+    "403": 1
+  },
+  "public_video_descriptions_checked": 28,
+  "correction_count": 7
+}

@@ -816,20 +816,22 @@ def test_real_client_personas_remain_distinct_from_nyeeeon_with_retained_correct
     clients = [rows[did] for did in ('candidate_5d85ad1e31dc7fd520a9', 'candidate_d4ffc2fcb4bd1133ae5a')]
     assert len({r['persona_id'] for r in clients}) == 2
     assert all(r['persona_id'] != 'vtuber_nyeeeon' for r in clients)
-    audit = ledger['trusted_link_corrections_applied']
+    audit = [a for a in ledger['trusted_link_corrections_applied']
+             if a['correction']['asserted_persona_id'] == 'persona_f8c56088dd10763bccd5']
     assert {a['original_account']['handle'] for a in audit} == {'scythringe', 'reiquasar0', 'tpastry', 'BlueMage_VT', 'zerobusterxz', 'theclumsynoob'}
     assert all(a['correction']['disposition'] == 'reject_identity_link' for a in audit)
     assert 'link_61b87c391961a5735fad' not in {a['original_link']['id'] for a in audit}
     assert all('VTUBER CHILD' in a['correction']['summary'] for a in audit)
 
 
-def test_production_inputs_pin_all_six_reviewed_corrections():
+def test_production_inputs_pin_every_reviewed_correction():
     from scripts.resolve_creator_identities import _record_sha256
     corrections = json.loads((REAL_EVIDENCE / 'trusted_link_corrections.json').read_text(encoding='utf-8'))
     expected = sorted(({'link_id': r['link_id'], 'correction_sha256': _record_sha256(r)}
                        for r in corrections['corrections']), key=lambda r: r['link_id'])
-    assert len(expected) == 6
-    for path in [REAL_EVIDENCE / 'review_bundle.json', REAL_EVIDENCE / 'identity_research_linked.json', REAL_LEDGER]:
+    assert len(expected) >= 7
+    assert any(row["link_id"] == "link_7562c58a16d51c0abbeb" for row in expected)
+    for path in [REAL_EVIDENCE / 'review_bundle.json', REAL_EVIDENCE / 'identity_research_linked.json', REAL_EVIDENCE / 'identity_research_x.json', REAL_LEDGER]:
         assert json.loads(path.read_text(encoding='utf-8'))['required_trusted_link_corrections'] == expected
 
 
@@ -865,3 +867,187 @@ def test_additional_valid_correction_can_extend_a_required_set():
                               trusted_link_corrections=[corrections])
     assert len(ledger['trusted_link_corrections_applied']) == 2
     assert ledger['required_trusted_link_corrections'] == manifest[:1]
+
+
+def test_same_display_name_x_accounts_require_official_crosslink_before_merging():
+    review = copy.deepcopy(REVIEW)
+    review['rows'].append(dict(review['rows'][0], discovery_id='other_alpha_x', url='https://x.com/another_alpha'))
+    entries = [researched(row) for row in review['rows']]
+    ledger = resolve_accounts(BASELINE, review, {}, {}, {'rows': entries})
+    assert len({row['persona_id'] for row in ledger['resolutions']}) == 2
+    assert all(row['outcome'] == 'new_persona' for row in ledger['resolutions'])
+    assert all(row['persona_id'] != 'vtuber_alpha' for row in ledger['resolutions'])
+
+
+def test_shared_agency_and_roster_do_not_establish_persona_equivalence():
+    agency = 'https://agency.example/members'
+    review = copy.deepcopy(REVIEW)
+    review['rows'][0]['agency'] = 'Example Agency'
+    review['rows'].append(dict(review['rows'][0], discovery_id='beta_x', url='https://x.com/beta', display_name='Beta'))
+    entries = [researched(row) for row in review['rows']]
+    for name, entry in zip(('Alpha', 'Beta'), entries):
+        entry['canonical_name'] = name
+        entry['agency'] = 'Example Agency'
+        entry['checked_urls'].append(agency)
+        entry['evidence_urls'].append(agency)
+        entry['evidence'].append({'source_url': agency, 'source_kind': 'official_website',
+                                 'summary': f'The agency roster separately names {name} and its X account among the members.',
+                                 'supports': ['persona_identity', 'account_ownership'], 'observed_at': '2026-09-19T00:00:00Z'})
+    ledger = resolve_accounts(BASELINE, review, {}, {}, {'rows': entries})
+    assert len({row['persona_id'] for row in ledger['resolutions']}) == 2
+    assert all(row['outcome'] == 'new_persona' for row in ledger['resolutions'])
+    assert all(row['identity_path'] == [row['discovery_id']] for row in ledger['resolutions'])
+
+
+def test_x_production_batch_covers_exactly_126_accepted_accounts_with_retained_provenance():
+    review = json.loads((REAL_EVIDENCE / 'review_bundle.json').read_text(encoding='utf-8'))
+    research = json.loads((REAL_EVIDENCE / 'identity_research_x.json').read_text(encoding='utf-8'))
+    ledger = json.loads(REAL_LEDGER.read_text(encoding='utf-8'))
+    selected = {row['discovery_id']: row for row in review['rows']
+                if row['eligibility'] == 'vtuber' and row['platform'] == 'x'}
+    assert len(selected) == 126
+    assert len(research['rows']) == 126
+    assert {row['discovery_id'] for row in research['rows']} == set(selected)
+    resolved = {row['discovery_id']: row for row in ledger['resolutions']}
+    assert set(selected) <= set(resolved)
+    assert not ledger['unresolved'] and not ledger['conflicts']
+    assert review['eligibility_counts']['vtuber'] == 392
+    assert research['required_trusted_link_corrections'] == review['required_trusted_link_corrections']
+    for row in research['rows']:
+        assert row['reviewer'] and row['evidence']
+        assert selected[row['discovery_id']]['url'] in row['official_account_urls']
+        assert all(e['source_kind'] in {'official_profile', 'official_website', 'self_statement', 'youtube_api'} for e in row['evidence'])
+        if row.get('no_existing_persona_match'):
+            search = row['existing_persona_search']
+            assert search['corpora'] and search['official_urls_checked'] and search['result']
+        assert resolved[row['discovery_id']]['platform'] == 'x'
+
+
+DRAKO_BAD_LINK = 'link_7562c58a16d51c0abbeb'
+
+
+def drako_twitch_correction_cli(tmp_path):
+    """Replay the actual rejected edge against two distinct baseline personas."""
+    ledger = json.loads(REAL_LEDGER.read_text(encoding='utf-8'))
+    audit = ledger['trusted_link_corrections_applied']
+    rejected = next(row for row in audit if row['original_link']['id'] == DRAKO_BAD_LINK)
+    tables = {key: {} for key in ('personas', 'accounts', 'evidence', 'account_links')}
+    for row in audit:
+        for table, field in [('accounts', 'original_account'), ('evidence', 'original_evidence'), ('account_links', 'original_link')]:
+            record = row[field]
+            tables[table][record['id']] = record
+        pid = row['original_link']['persona_id']
+        tables['personas'][pid] = {'id': pid, 'name': pid, 'review_status': 'verified'}
+    amilly = rejected['original_link']['persona_id']
+    amilly_cid = 'UCiG3hDSyLNx-tani2z03_Zg'
+    drako_cid = 'UC3K3Crh966nzLx41obfJhaA'
+    amilly_url = 'https://www.youtube.com/channel/' + amilly_cid
+    drako_url = 'https://www.youtube.com/channel/' + drako_cid
+    tables['accounts']['amilly_youtube'] = {'id': 'amilly_youtube', 'platform': 'youtube', 'platform_id': amilly_cid, 'url': amilly_url}
+    tables['evidence']['amilly_identity'] = {'id': 'amilly_identity', 'url': amilly_url, 'kind': 'official_profile', 'summary': 'The owner profile identifies AmiLLy.', 'observed_at': '2026-09-19T00:00:00Z'}
+    tables['account_links']['amilly_youtube_link'] = {'id': 'amilly_youtube_link', 'account_id': 'amilly_youtube', 'persona_id': amilly, 'review_status': 'verified', 'evidence_id': 'amilly_identity'}
+    registry = {'tables': {key: list(records.values()) for key, records in tables.items()}}
+    baseline = [{'channel_id': cid, 'channel_url': url, 'person_id': pid, 'canonical_name': name}
+                for cid, url, pid, name in [(drako_cid, drako_url, 'vtuber_drakonyamio', 'Drako Nya Mio'),
+                                            (amilly_cid, amilly_url, 'vtuber_amillyarchive', 'AmiLLy Archive')]]
+    x_url = 'https://x.com/DrakoNyaMio'
+    twitch_url = 'https://www.twitch.tv/drakonyamio'
+    hub = 'https://drakonyamio.carrd.co/'
+    review = {'schema_version': 1, 'eligibility_counts': {'vtuber': 2}, 'rows': [
+        {'discovery_id': 'drako_x', 'platform': 'x', 'url': x_url, 'display_name': 'Drako Nya Mio', 'eligibility': 'vtuber'},
+        {'discovery_id': 'drako_twitch', 'platform': 'twitch', 'url': twitch_url, 'platform_id': '140727353', 'display_name': 'Drako Nya Mio', 'eligibility': 'vtuber'}],
+        'required_trusted_link_corrections': ledger['required_trusted_link_corrections']}
+    entries = []
+    for row in review['rows']:
+        entry = researched(row)
+        entry.update(canonical_name='Drako Nya Mio', checked_urls=[x_url, twitch_url, hub, drako_url],
+                     official_account_urls=[x_url, twitch_url, drako_url], evidence_urls=[hub], no_existing_persona_match=False,
+                     evidence=[{'source_url': hub, 'source_kind': 'official_website', 'summary': 'Drako Nya Mio identifies its own X, Twitch drakonyamio and YouTube accounts together.',
+                                'supports': ['persona_identity', 'account_ownership'], 'observed_at': '2026-09-19T00:00:00Z'}])
+        entry['assertions'] = [{'method': 'official_crosslink', 'source_urls': [hub],
+                                **({'persona_id': 'vtuber_drakonyamio'} if row['platform'] == 'x' else {'target_discovery_id': 'drako_x'})}]
+        entries.append(entry)
+    args = cli_files(tmp_path, review, {'rows': entries})
+    for file, payload in [('baseline.json', baseline), ('trusted-registry.json', registry)]:
+        (tmp_path / file).write_text(json.dumps(payload), encoding='utf-8')
+    corrections = {'schema_version': 1, 'corrections': [row['correction'] for row in audit]}
+    path = tmp_path / 'corrections.json'
+    path.write_text(json.dumps(corrections), encoding='utf-8')
+    return args, path, corrections
+
+
+@pytest.mark.parametrize('supplied', ['omitted', 'without_drako', 'complete'])
+@pytest.mark.parametrize('mode', ['fresh', 'filtered_validate', 'full_validate', 'merge'])
+def test_drako_correction_is_required_before_every_output_mode(tmp_path, capsys, supplied, mode):
+    args, path, corrections = drako_twitch_correction_cli(tmp_path)
+    output = tmp_path / 'ledger.json'
+    original = None
+    if mode == 'merge':
+        assert main(args + ['--trusted-link-corrections', str(path), '--output', str(output)]) == 0
+        original = output.read_bytes()
+        args += ['--merge-existing', str(output)]
+    elif mode == 'filtered_validate':
+        args += ['--platform', 'x', '--validate-only']
+    elif mode == 'full_validate':
+        args += ['--validate-only']
+    if supplied == 'without_drako':
+        corrections['corrections'] = [row for row in corrections['corrections'] if row['link_id'] != DRAKO_BAD_LINK]
+        path.write_text(json.dumps(corrections), encoding='utf-8')
+    if supplied != 'omitted':
+        args += ['--trusted-link-corrections', str(path)]
+    capsys.readouterr()
+    result = main(args + ['--output', str(output)])
+    captured = capsys.readouterr()
+    if supplied != 'complete':
+        assert result == 1
+        assert DRAKO_BAD_LINK in captured.err
+        assert captured.out == ''
+        if original:
+            assert output.read_bytes() == original
+        else:
+            assert not output.exists()
+    else:
+        assert result == 0
+        if 'validate' not in mode:
+            resolved = json.loads(output.read_text(encoding='utf-8'))['resolutions']
+            assert len(resolved) == 2
+            assert {row['persona_id'] for row in resolved} == {'vtuber_drakonyamio'}
+            if original:
+                assert output.read_bytes() == original
+
+
+def test_bad_drako_link_cannot_silently_merge_two_supported_personas(tmp_path, capsys):
+    args, _, corrections = drako_twitch_correction_cli(tmp_path)
+    review_path = tmp_path / 'review-bundle.json'
+    review = json.loads(review_path.read_text(encoding='utf-8'))
+    review.pop('required_trusted_link_corrections')
+    review_path.write_text(json.dumps(review), encoding='utf-8')
+    # Even absent the manifest, retained independent ownership proofs expose the bad raw link.
+    output = tmp_path / 'queue.json'
+    assert main(args + ['--queue', '--output', str(output)]) == 1
+    conflict = json.loads(output.read_text(encoding='utf-8'))
+    assert len(conflict['conflicts']) == 2
+    assert not conflict['resolutions']
+    assert all(set(row['persona_ids']) == {'vtuber_drakonyamio', 'vtuber_amillyarchive'} for row in conflict['conflicts'])
+
+
+def test_x_cached_kuronia_and_historical_handle_evidence_remain_explicit():
+    research = json.loads((REAL_EVIDENCE / 'identity_research_x.json').read_text(encoding='utf-8'))
+    rows = {row['discovery_id']: row for row in research['rows']}
+    resolved = {row['discovery_id']: row for row in json.loads(REAL_LEDGER.read_text(encoding='utf-8'))['resolutions']}
+    kuronia = next(row for row in rows.values() if row['canonical_name'] == 'Kuronia')
+    evidence = next(e for e in kuronia['evidence'] if e['source_kind'] == 'self_statement')
+    assert evidence['attributed_account_url'] == 'https://x.com/KurosekiNia'
+    assert evidence['attributed_owner_handle'] == '@KurosekiNia'
+    assert evidence['source_url'] == 'https://x.com/KurosekiNia/status/2030301430108848205'
+    assert evidence['capture_source_url'] == 'https://mobile.twstalker.com/lovely_2776'
+    assert evidence['retained_statement'] and evidence['capture_date'] and evidence['capture_provenance']
+    assert evidence['live_official_confirmation'] is False
+    assert not kuronia.get('assertions')
+    assert resolved[kuronia['discovery_id']]['outcome'] == 'new_persona'
+    assert resolved[kuronia['discovery_id']]['identity_path'] == [kuronia['discovery_id']]
+    for url, persona in [('https://x.com/tsukimorihecate', 'vtuber_hecatevtuber'),
+                         ('https://x.com/meltilda_vtuber', 'vtuber_meltildavt')]:
+        row = next(row for row in rows.values() if url in row['official_account_urls'])
+        assert any(e.get('collection_method') == 'direct_public_video_description' for e in row['evidence'])
+        assert resolved[row['discovery_id']]['persona_id'] == persona
