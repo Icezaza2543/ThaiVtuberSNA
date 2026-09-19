@@ -11,7 +11,6 @@ CANONICAL WRITER GOVERNANCE:
 - It derives creator_public_snapshot strictly from canonical lifecycle evidence.
 """
 
-import json
 from pathlib import Path
 
 import pandas as pd
@@ -20,10 +19,11 @@ ROOT = Path(__file__).resolve().parent.parent
 import sys
 sys.path.insert(0, str(ROOT))
 from analytics.creator_snapshot import build_snapshot_frame
+from config.settings import CREATOR_REGISTRY_PATH
+from core.creator_catalog import CreatorCatalog
 
 TARGET_MANIFEST_CSV = ROOT / "data/temporal/catalog/target_manifest.csv"
 CHANNEL_COVERAGE_PARQUET = ROOT / "data/temporal/catalog/channel_coverage.parquet"
-REGISTRY_JSON = ROOT / "data/thai_vtuber_registry.json"
 CANONICAL_EVENTS_PARQUET = ROOT / "data/industry/creator_status_events.parquet"
 CANONICAL_COVERAGE_PARQUET = ROOT / "data/industry/creator_evidence_coverage.parquet"
 
@@ -38,8 +38,7 @@ def build_creator_public_snapshot() -> pd.DataFrame:
     print("Loading canonical lifecycle evidence and target manifest...")
     targets_df = pd.read_csv(TARGET_MANIFEST_CSV)
     coverage_df = pd.read_parquet(CHANNEL_COVERAGE_PARQUET)
-    with open(REGISTRY_JSON, "r", encoding="utf-8") as f:
-        registry_data = json.load(f)
+    registry_data = list(CreatorCatalog.from_path(CREATOR_REGISTRY_PATH).youtube_rows())
     
     # Load canonical lifecycle evidence
     canonical_cov_df = pd.read_parquet(CANONICAL_COVERAGE_PARQUET)
