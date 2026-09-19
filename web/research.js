@@ -65,7 +65,7 @@
     el('surfacePeriodNote').textContent='Surface v1 ใช้ '+num(c.strict_virtual_channels)+' STRICT_VIRTUAL channels จาก '+num(c.reviewed_identity_channels)+' ช่องที่ review แล้ว · catalog ณ '+content.source_as_of+' · network snapshot ณ '+network.source_as_of;
     el('surfaceKpis').innerHTML=[
       ['Strict channels',c.strict_virtual_channels,'ใช้เป็น denominator หลักของ Surface v1'],
-      ['Catalog videos',content.catalog_videos,'วิดีโอใน 229 ช่อง ณ checkpoint'],
+      ['Catalog videos',content.catalog_videos,'วิดีโอใน '+num(content.catalog_channels)+' ช่อง ณ checkpoint'],
       ['Thresholded edges',network.edges,'ปลายทั้งสองฝั่งอยู่ใน strict cohort'],
       ['Strong edges',network.strong_edges,'มี strong_shared > 0 ใน snapshot เดียวกัน']
     ].map(([label,value,note])=>'<div class="kpi-card"><div class="kpi-label">'+esc(label)+'</div><strong class="kpi-value">'+num(value)+'</strong><div class="kpi-sub">'+esc(note)+'</div></div>').join('');
@@ -77,7 +77,8 @@
       ['STRICT_VIRTUAL',num(c.strict_virtual_channels),'Surface default'],
       ['PROVISIONAL_VIRTUAL',num(c.provisional_virtual_channels),'รอหลักฐาน virtual medium เพิ่ม'],
       ['HOLD',num(c.hold_channels),'ยังไม่นับ'],
-      ['EXCLUDE_NON_PERSONA',num(c.excluded_non_persona_accounts),'ไม่ให้นับเป็น VTuber']
+      ['EXCLUDE_NON_PERSONA',num(c.excluded_non_persona_accounts),'ไม่ให้นับเป็น VTuber'],
+      ['EXCLUDE_NON_VIRTUAL',num(c.excluded_non_virtual_creators),'ไม่ให้นับเป็น VTuber']
     ]);
     table(el('surfaceNetworkTable'),['ตัวชี้วัด','ค่า'],[
       ['Nodes',num(network.nodes)],['Edges',num(network.edges)],['Strong edges',num(network.strong_edges)],
@@ -91,7 +92,7 @@
     ]);
     table(el('surfaceTopDegreeTable'),['ช่อง','Degree','สังกัดใน snapshot'],network.top_degree.map(r=>[r.label,num(r.degree),agency(r.agency)]));
     el('surfaceAudienceStatus').textContent=surface.audience.note;
-    el('surfaceAuditNote').textContent='Strict contamination scan: '+num(surface.audit.strict_channels_flagged_for_spot_check)+' ช่องถูก flag เพื่อ spot-check จากคำประเภท project/official/studio ฯลฯ แต่ไม่มี auto-exclusion เพิ่ม; '+num(surface.audit.provisional_review_queue)+' provisional channels ถูกแยกเป็นคิวตรวจต่อ.';
+    el('surfaceAuditNote').textContent='ตรวจครบ '+num(surface.audit.reviewed_from_provisional)+' ช่องจากคิว provisional: ตัดสินได้ '+num(surface.audit.resolved_from_provisional)+' ช่อง และยังต้องตรวจเพิ่ม '+num(surface.audit.still_unresolved_from_provisional)+' ช่อง · ธง spot-check จากชุดเดิม '+num(surface.audit.strict_channels_flagged_for_spot_check)+' ช่องยังคงอยู่; ธงคำศัพท์อย่างเดียวไม่ใช่เหตุให้ตัดออก';
   }
   function overview(){
     const rows=data.ecosystem.yearly_metrics, selected=rows.find(r=>r.year===Number(el('summaryYear').value)) || rows.at(-1);
