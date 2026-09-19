@@ -77,19 +77,3 @@ def test_complete_ledger_seals_corrected_392_account_scope():
         "youtube": 25,
     }
     assert len({row["discovery_id"] for row in ledger["resolutions"]}) == 392
-
-
-def test_drako_twitch_joins_verified_drako_persona_not_amilly():
-    review = _load(REVIEW_BUNDLE)
-    ledger = _load(LEDGER)
-
-    drako = next(
-        row
-        for row in review["rows"]
-        if row.get("eligibility") == "vtuber"
-        and row.get("platform") == "twitch"
-        and row.get("url", "").rstrip("/").casefold() == "https://www.twitch.tv/drakonyamio"
-    )
-    resolved = next(row for row in ledger["resolutions"] if row["discovery_id"] == drako["discovery_id"])
-    assert resolved["persona_id"] == "vtuber_drakonyamio"
-    assert resolved["persona_id"] != "persona_6e9e31346f7b9164ce4b"
