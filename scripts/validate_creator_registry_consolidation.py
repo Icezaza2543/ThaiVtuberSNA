@@ -43,6 +43,14 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def git_blob_oid(ref: str, relative_path: str) -> str:
+    return subprocess.check_output(
+        ["git", "rev-parse", f"{ref}:{relative_path}"],
+        cwd=ROOT,
+        text=True,
+    ).strip()
+
+
 def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8-sig"))
 
@@ -66,33 +74,70 @@ def pytest_summary(text: str) -> dict:
 
 
 def protected_hash_report(pre_refactor: dict) -> dict:
+    """Verify protected Git content independent of checkout line endings."""
     report = {}
+    baseline_commit = pre_refactor["commit"]
     for relative, expected in sorted(pre_refactor["files"].items()):
         path = ROOT / relative
         if relative in EXPECTED_DELETED_LEGACY:
             if path.exists():
                 raise ValueError(f"retired legacy path still exists: {relative}")
-            report[relative] = {"status": "expected_deleted", "expected_sha256": expected}
+            report[relative] = {
+                "status": "expected_deleted",
+                "expected_task1_worktree_sha256": expected,
+                "baseline_git_blob": git_blob_oid(baseline_commit, relative),
+            }
             continue
+
         if not path.exists():
             raise ValueError(f"protected file missing unexpectedly: {relative}")
-        actual = sha256(path)
-        if actual != expected:
-            raise ValueError(f"protected hash changed: {relative}")
+
+        baseline_blob = git_blob_oid(baseline_commit, relative)
+        current_blob = git_blob_oid("HEAD", relative)
+        if current_blob != baseline_blob:
+            raise ValueError(f"protected Git blob changed: {relative}")
         report[relative] = {
             "status": "unchanged",
-            "expected_sha256": expected,
-            "actual_sha256": actual,
+            "expected_task1_worktree_sha256": expected,
+            "baseline_git_blob": baseline_blob,
+            "current_git_blob": current_blob,
         }
 
-    # Two intentionally retired source files retain byte-identical sealed evidence.
-    old_registry_hash = pre_refactor["files"]["data/thai_vtuber_registry.json"]
-    if sha256(BASELINE_PATH) != old_registry_hash:
-        raise ValueError("trusted baseline snapshot no longer preserves retired registry bytes")
-    old_visual_hash = pre_refactor["files"]["data/entity_resolution/visual_identity_review.json"]
-    sealed_visual = EVIDENCE_DIR / "legacy_visual_identity_review.json"
-    if sha256(sealed_visual) != old_visual_hash:
-        raise ValueError("sealed visual review no longer preserves retired evidence bytes")
+    # Retired sources must remain byte-identical as sealed Git objects.
+    old_registry_blob = git_blob_oid(
+        baseline_commit, "data/thai_vtuber_registry.json"
+    )
+    sealed_registry_blob = git_blob_oid(
+        "HEAD",
+        "docs/evidence/creator-registry-review-2026-09-19/"
+        "trusted_baseline_1370.json",
+    )
+    if sealed_registry_blob != old_registry_blob:
+        raise ValueError("trusted baseline snapshot no longer preserves retired registry blob")
+
+    old_visual_blob = git_blob_oid(
+        baseline_commit, "data/entity_resolution/visual_identity_review.json"
+    )
+    sealed_visual_blob = git_blob_oid(
+        "HEAD",
+        "docs/evidence/creator-registry-review-2026-09-19/"
+        "legacy_visual_identity_review.json",
+    )
+    if sealed_visual_blob != old_visual_blob:
+        raise ValueError("sealed visual review no longer preserves retired evidence blob")
+
+    report["_sealed_replacements"] = {
+        "trusted_baseline_1370.json": {
+            "retired_git_blob": old_registry_blob,
+            "sealed_git_blob": sealed_registry_blob,
+            "equal": True,
+        },
+        "legacy_visual_identity_review.json": {
+            "retired_git_blob": old_visual_blob,
+            "sealed_git_blob": sealed_visual_blob,
+            "equal": True,
+        },
+    }
     return report
 
 
