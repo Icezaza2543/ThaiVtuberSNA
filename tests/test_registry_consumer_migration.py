@@ -45,7 +45,32 @@ LEGACY_NAMES = {
     "thai_vtuber_registry.csv",
     "registry_vtubers.csv",
     "master_creators.json",
+    "visual_identity_review",
 }
+
+LEGACY_PATHS = [
+    ROOT / "data" / "thai_vtuber_registry.json",
+    ROOT / "data" / "thai_vtuber_registry.csv",
+    ROOT / "data" / "registry_vtubers.csv",
+    ROOT / "data" / "master_creators.json",
+    ROOT / "scripts" / "reconstruct_master_creators.py",
+    ROOT / "scripts" / "update_master_with_review_and_dedup.py",
+    ROOT / "scripts" / "validate_master_creators.py",
+    ROOT / "data" / "entity_resolution" / "visual_identity_review.json",
+    ROOT / "index.html",
+    ROOT / "tools" / "visual_identity_review" / "index.html",
+    ROOT / "tools" / "visual_identity_review" / "server.py",
+    ROOT / "scripts" / "test_review_server.py",
+]
+
+ACTIVE_DOCS = [
+    ROOT / "README.md",
+    ROOT / "docs" / "PROJECT.md",
+    ROOT / "data" / "phase1_registry_report.md",
+    ROOT / "docs" / "research_v2" / "CURRENT_DATA_CAPABILITIES.md",
+    ROOT / "docs" / "research_v2" / "LONG_RUNNING_RESEARCH_REPORT.md",
+    ROOT / "docs" / "research_v2" / "OVERNIGHT_REPORT.md",
+]
 
 
 def test_collection_modules_do_not_reference_legacy_registry_names():
@@ -106,3 +131,41 @@ def test_phase1_builder_is_intake_only():
     assert "phase1_creator_candidates.json" in source
     assert '"review_status": "unreviewed"' in source
     assert "CREATOR_REGISTRY_PATH" not in source
+
+
+def _legacy_runtime_references():
+    roots = [
+        ROOT / "config",
+        ROOT / "core",
+        ROOT / "collector",
+        ROOT / "scripts",
+        ROOT / "storage",
+        ROOT / "analytics",
+        ROOT / "web",
+        ROOT / "tests",
+    ]
+    findings = []
+    for base in roots:
+        if not base.exists():
+            continue
+        for path in base.rglob("*"):
+            if not path.is_file() or path == Path(__file__):
+                continue
+            if path.suffix.lower() not in {".py", ".js", ".mjs", ".html", ".md", ".json", ".css"}:
+                continue
+            text = path.read_text(encoding="utf-8", errors="replace")
+            names = sorted(name for name in LEGACY_NAMES if name in text)
+            if names:
+                findings.append((path.relative_to(ROOT).as_posix(), names))
+    for path in ACTIVE_DOCS:
+        text = path.read_text(encoding="utf-8", errors="replace")
+        names = sorted(name for name in LEGACY_NAMES if name in text)
+        if names:
+            findings.append((path.relative_to(ROOT).as_posix(), names))
+    return findings
+
+
+def test_legacy_registry_files_and_runtime_references_are_gone():
+    for path in LEGACY_PATHS:
+        assert not path.exists(), path
+    assert _legacy_runtime_references() == []
