@@ -1,0 +1,92 @@
+........................................................................ [ 15%]
+........................................................................ [ 31%]
+........................................................................ [ 46%]
+........................................................................ [ 62%]
+.......................................F.............................F.. [ 77%]
+.........................F.............................................. [ 93%]
+................................                                         [100%]
+================================== FAILURES ===================================
+____________________ test_02_controller_quality_gates_pass ____________________
+
+    def test_02_controller_quality_gates_pass():
+        """2. All 5 automated quality gates pass cleanly on the repository."""
+        ctrl = ObservatoryController(base_dir=REPO_ROOT)
+        res = ctrl.validate_quality_gates()
+    
+>       assert res["all_passed"] is True, f"Gates failed: {res['gates']}"
+E       AssertionError: Gates failed: {'visualizer_coordinates': {'status': 'PASS', 'hash': 'sha256_47a63e3160c1b1282fe0ceb997f08ef6ae5beec584771c237bb11d50fab83adc', 'expected': 'sha256_47a63e3160c1b1282fe0ceb997f08ef6ae5beec584771c237bb11d50fab83adc'}, 'historical_baseline_isolation': {'status': 'PASS', 'hash': 'sha256_2588ce1ce8e48df69a449ebe3bb8de7266b1cf6bf18b08495ae4d4acc5c43805', 'expected': 'sha256_2588ce1ce8e48df69a449ebe3bb8de7266b1cf6bf18b08495ae4d4acc5c43805'}, 'hmac_key_continuity': {'status': 'PASS', 'fingerprint': 'sha256_9a664bf3123ad58b9c95410eebed13ce0b95e08c05c8f539b0f2d7f1f8011e1e', 'expected': 'sha256_9a664bf3123ad58b9c95410eebed13ce0b95e08c05c8f539b0f2d7f1f8011e1e'}, 'dataset_release_validation': {'status': 'FAIL', 'details': 'OK'}, 'privacy_audit': {'status': 'PASS'}}
+E       assert False is True
+
+tests\test_observatory_controller.py:68: AssertionError
+---------------------------- Captured stdout call -----------------------------
+============================================================
+T18: Validating Dataset Release Package & Artifact Integrity
+============================================================
+✓ Checked 40 artifacts across 11 sections.
+✓ Verified schemas against data dictionary (6 tables).
+
+❌ VALIDATION FAILED with 4 errors:
+  - Missing file: web/research/index.html
+  - Missing file: web/research/research_dashboard.css
+  - Missing file: web/research/research_dashboard.js
+  - Deterministic content hash mismatch: expected sha256_f20e140124852a689770d3ec0621e4fc1a6d23f94f59b58ec68ccda8b79b18db, got sha256_bafac98d24f11e7974d17cd2424b0cd57c3d58ebedf6fcf2f9a2c36cbbb8ed63
+{
+  "status": "PASS",
+  "checked_files": 142,
+  "failures": [],
+  "classification_counts": {
+    "PUBLIC_RESEARCH_DATA": 142
+  },
+  "canary_passed": true,
+  "scope": "Working public outputs and project data including ignored worktree data; local credentials permitted only if ignored. Git object store is covered separately. No OS backup/swap inspection."
+}
+____________________ test_release_validation_script_passes ____________________
+
+    def test_release_validation_script_passes():
+        """Verify release validation script passes cleanly with exit code 0."""
+>       assert validate_release() is True
+E       assert False is True
+E        +  where False = validate_release()
+
+tests\test_release_reproducibility.py:95: AssertionError
+---------------------------- Captured stdout call -----------------------------
+============================================================
+T18: Validating Dataset Release Package & Artifact Integrity
+============================================================
+✓ Checked 40 artifacts across 11 sections.
+✓ Verified schemas against data dictionary (6 tables).
+
+❌ VALIDATION FAILED with 4 errors:
+  - Missing file: web/research/index.html
+  - Missing file: web/research/research_dashboard.css
+  - Missing file: web/research/research_dashboard.js
+  - Deterministic content hash mismatch: expected sha256_f20e140124852a689770d3ec0621e4fc1a6d23f94f59b58ec68ccda8b79b18db, got sha256_bafac98d24f11e7974d17cd2424b0cd57c3d58ebedf6fcf2f9a2c36cbbb8ed63
+_______________________ test_methodology_pointers_exist _______________________
+
+contract_data = {'metadata': {'title': 'Thai VTuber Industry Intelligence v2 Aggregate Data Contract', 'generated_at': '2026-09-09T07:...em': {'active_observed': 166, 'target_cohort_total': 193, 'first_observed': 156, 'inactive_unavailable': 33, ...}, ...}
+
+    def test_methodology_pointers_exist(contract_data):
+        """All methodology artifacts must resolve to valid paths on disk."""
+        artifacts = contract_data["methodology"]["artifacts"]
+        assert len(artifacts) >= 14
+        for key, rel_path in artifacts.items():
+            p = ROOT / rel_path
+>           assert p.exists(), f"Methodology artifact for {key} missing on disk: {rel_path}"
+E           AssertionError: Methodology artifact for identity missing on disk: docs/data_storage_architecture.md
+E           assert False
+E            +  where False = exists()
+E            +    where exists = WindowsPath('C:/Users/Icezaza/.codex/worktrees/creator-registry-consolidation/ThaiVtuberSNA/docs/data_storage_architecture.md').exists
+
+tests\test_research_v2_data_contract.py:138: AssertionError
+============================== warnings summary ===============================
+tests/test_observatory_controller.py: 63 warnings
+tests/test_observatory_full_dag.py: 57 warnings
+  C:\Python313\Lib\site-packages\networkx\algorithms\assortativity\correlation.py:282: RuntimeWarning: invalid value encountered in scalar divide
+    r = (t - s) / (1 - s)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_observatory_controller.py::test_02_controller_quality_gates_pass
+FAILED tests/test_release_reproducibility.py::test_release_validation_script_passes
+FAILED tests/test_research_v2_data_contract.py::test_methodology_pointers_exist
+3 failed, 461 passed, 120 warnings in 113.64s (0:01:53)
