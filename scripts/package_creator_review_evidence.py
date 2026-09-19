@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import ipaddress
 import json
 import re
 import shutil
@@ -55,9 +56,10 @@ PRODUCTION_COUNTS = {
     "unavailable": 94,
     "vtuber": 393,
 }
-_LOCAL_PATH = re.compile(r"(?:^[A-Za-z]:[\\/]|^\\\\|^/|\bfile:)", re.IGNORECASE)
+_LOCAL_PATH = re.compile(r"(?:\b[A-Za-z]:[\\/]|\\\\|\bfile:)", re.IGNORECASE)
+_UNIX_PATH_IN_TEXT = re.compile(r"(?:^|[\s'\"(])/(?:home|tmp|var|etc|Users|private|opt|mnt|srv)(?:/|\b)")
 _SECRET = re.compile(
-    r"(?:api[_-]?key|token|secret|password|credential|authorization)\s*[:=]|\bbearer\s+",
+    r"(?:api[_ -]?key|token|secret|password|credential|authorization)\s*(?:[:=]|\b(?:is|was|equals)\b)\s*\S+|\bbearer\s+",
     re.IGNORECASE,
 )
 
@@ -81,7 +83,8 @@ def _load_object(path: Path) -> dict[str, Any]:
 def _validate_safe_text(value: Any, field: str, discovery_id: str) -> str:
     if not isinstance(value, str):
         raise ValueError(f"unsafe {field} for {discovery_id}: expected text")
-    if _LOCAL_PATH.search(value) or _SECRET.search(value):
+    has_unix_path = field not in {"url", "evidence_urls"} and _UNIX_PATH_IN_TEXT.search(value)
+    if _LOCAL_PATH.search(value) or has_unix_path or _SECRET.search(value):
         raise ValueError(f"unsafe {field} for {discovery_id}")
     return value
 
@@ -89,7 +92,22 @@ def _validate_safe_text(value: Any, field: str, discovery_id: str) -> str:
 def _validate_public_url(value: Any, field: str, discovery_id: str) -> str:
     text = _validate_safe_text(value, field, discovery_id)
     parsed = urlparse(text)
-    if parsed.scheme not in {"http", "https"} or not parsed.netloc or parsed.username or parsed.password:
+    hostname = parsed.hostname
+    if (
+        parsed.scheme not in {"http", "https"}
+        or not parsed.netloc
+        or not hostname
+        or parsed.username
+        or parsed.password
+        or hostname.lower() == "localhost"
+        or hostname.lower().endswith(".localhost")
+    ):
+        raise ValueError(f"unsafe {field} for {discovery_id}")
+    try:
+        address = ipaddress.ip_address(hostname)
+    except ValueError:
+        address = None
+    if address is not None and not address.is_global:
         raise ValueError(f"unsafe {field} for {discovery_id}")
     return text
 

@@ -157,7 +157,13 @@ def test_rejects_duplicate_human_decision_object_keys(review_inputs, tmp_path):
     ("field", "value"),
     [
         ("url", "C:\\Users\\example\\private.json"),
+        ("url", "https://localhost/private"),
+        ("url", "https://127.0.0.1/private"),
+        ("url", "https://[::1]/private"),
+        ("url", "https://169.254.10.20/private"),
         ("reason", "token=super-secret-value"),
+        ("reason", "see C:\\Users\\alice\\token.txt"),
+        ("reason", "the password is hunter2"),
         ("evidence_urls", ["file:///tmp/private-cache.json"]),
     ],
 )
@@ -179,6 +185,19 @@ def test_keeps_valid_public_evidence_urls_and_reason_meaning(review_inputs):
 
     assert row["reason"] == "automated evidence"
     assert row["evidence_urls"] == ["https://example.test/automated/about"]
+
+
+def test_keeps_benign_english_and_thai_credential_discussion(review_inputs):
+    screening, human = review_inputs
+    payload = json.loads(screening.read_text(encoding="utf-8"))
+    row = next(row for row in payload["rows"] if row["discovery_id"] == "automated-vtuber")
+    row["reason"] = "The official profile discusses password safety; หน้าโปรไฟล์ทางการอธิบายความปลอดภัยของรหัสผ่าน"
+    row["evidence_urls"] = ["https://public.example.org/evidence"]
+    write_json(screening, payload)
+
+    bundle = package_review_evidence(screening, human)
+    published = next(row for row in bundle["rows"] if row["discovery_id"] == "automated-vtuber")
+    assert published["reason"] == row["reason"]
 
 
 def test_rejects_same_size_bundle_with_wrong_production_distribution(review_inputs):
