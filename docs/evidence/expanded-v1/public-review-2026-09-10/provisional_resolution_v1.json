@@ -12,9 +12,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCAoZkJiB43mNUD6aadeozRw/about"
@@ -31,9 +31,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCRaAduo6w37DoPahoaiVbTg/about"
@@ -50,9 +50,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer",
+        "performer",
         "artist",
         "rigger",
         "singer"
@@ -75,10 +75,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer",
-        "brand_ambassador",
+        "performer",
         "singer"
       ],
       "source_urls": [
@@ -88,7 +87,10 @@
       "decision_reason": "Direct self-description of Rainnie as the virtual performer; brand affiliation is not evidence of a project-only account.",
       "conflict_flag": false,
       "reviewer": "Codex public channel evidence review",
-      "reviewed_at": "2026-09-19T10:34:21.276716+00:00"
+      "reviewed_at": "2026-09-19T10:34:21.276716+00:00",
+      "additional_descriptors": [
+        "brand_ambassador"
+      ]
     },
     {
       "channel_id": "UCpBjGiBLFJ8x-7kHDtPY74g",
@@ -96,9 +98,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCpBjGiBLFJ8x-7kHDtPY74g/about"
@@ -115,9 +117,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCYWG9ZKz94VcpEqvvhBXk0A/about",
@@ -138,7 +140,7 @@
       "entity_type": "virtual_creator",
       "presentation_format": "Live2D",
       "roles": [
-        "virtual_performer",
+        "performer",
         "artist"
       ],
       "source_urls": [
@@ -158,9 +160,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer",
+        "performer",
         "singer"
       ],
       "source_urls": [
@@ -178,9 +180,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UC-KdQvTPC9k3pLjy4Y1PBkg/about",
@@ -199,9 +201,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCVEL1jAgCQNQcRN9Ble6lMw/about",
@@ -220,9 +222,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCY5HIZ97IaqeUGCQCh5yDpA/about",
@@ -240,9 +242,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCDVOWB_Fi5jmi6o-x5_uV8g/about",
@@ -263,7 +265,7 @@
       "entity_type": "virtual_creator",
       "presentation_format": "Live2D",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UC6Zrmc0VG4gqQJ4jS58iKGw/about",
@@ -282,9 +284,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer",
+        "performer",
         "artist"
       ],
       "source_urls": [
@@ -305,9 +307,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCmAObfjMAwE-nqr9D0ISAFw/about",
@@ -327,9 +329,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "animated_2D_persona",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCjgiHXaBeeuWfxZpNMCJioQ/about",
@@ -349,9 +351,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCVlgCh9B_0PI7COJ2tJ7hIw/about",
@@ -370,9 +372,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCutz6S1DcEHPnEb_r9ztkzg/about",
@@ -391,9 +393,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "animated_2D_persona",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCdPOgLoE_grESHHrpHDNsEg/about",
@@ -411,9 +413,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCG1Dk3994tPaCIBJp8Cu2pg/about",
@@ -433,9 +435,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCZmQjdEL_PAGWvFlAm4hQMg/about",
@@ -457,7 +459,7 @@
       "entity_type": "virtual_creator",
       "presentation_format": "Live2D",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/watch?v=KMn-nOcsjMY",
@@ -476,9 +478,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer",
+        "performer",
         "artist",
         "singer"
       ],
@@ -497,9 +499,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCMUtWzsjAQJgp6UlkbVSo1w/about",
@@ -518,9 +520,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCCptqrhEdtJGBer1qWWRLnA/about"
@@ -537,9 +539,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCQMHAPgxhO634HZIJraHPTA/about",
@@ -559,9 +561,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "animated_2D_persona",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCNW0brB5G5GcBDXuJ1iDglw/about",
@@ -579,9 +581,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCpNkVsMlsJRF792H-1_1vPA/about",
@@ -600,9 +602,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer",
+        "performer",
         "singer"
       ],
       "source_urls": [
@@ -620,9 +622,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCbfARUSxU4X2o5_PwjRXezw/about",
@@ -641,9 +643,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCwv0DTchQQhKo7-C0VPu9yA/about"
@@ -660,9 +662,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCvxN2R4-6hqHGYX-AL8Q7Qw/about",
@@ -681,9 +683,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCFkljb428Byj00FxL_kwYyA/about",
@@ -703,12 +705,10 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer",
-        "artist",
-        "comic_artist",
-        "cosplayer"
+        "performer",
+        "artist"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCXddo8vgPHBsEkDMqRwcYSQ/about"
@@ -717,7 +717,10 @@
       "decision_reason": "Multiple creative roles coexist with explicit virtual-persona activity; not an artist-only exclusion.",
       "conflict_flag": false,
       "reviewer": "Codex public channel evidence review",
-      "reviewed_at": "2026-09-19T10:36:30.965315+00:00"
+      "reviewed_at": "2026-09-19T10:36:30.965315+00:00",
+      "additional_descriptors": [
+        "cosplayer"
+      ]
     },
     {
       "channel_id": "UCpIlOwUGihEx-Qzie2JiMWw",
@@ -725,9 +728,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCpIlOwUGihEx-Qzie2JiMWw/about",
@@ -746,9 +749,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer",
+        "performer",
         "artist"
       ],
       "source_urls": [
@@ -768,9 +771,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "3D_and_unspecified_model",
+      "presentation_format": "3D",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCRjdIz5ngcJVDZ-bjs2mEzg/about",
@@ -789,9 +792,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCkF8r4_wvBnMm2mrdvcxU_g/about",
@@ -811,9 +814,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UClCLRJrlg3F9FOPnUfItZSw/about",
@@ -832,9 +835,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer",
+        "performer",
         "singer"
       ],
       "source_urls": [
@@ -853,9 +856,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCTtgiI6vO_zxlcOBLd3P7Jg/about",
@@ -877,7 +880,7 @@
       "entity_type": "virtual_creator",
       "presentation_format": "Live2D",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCyv2oEiAXQp9xLlBr1Tn6Vg/about",
@@ -896,9 +899,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer",
+        "performer",
         "artist"
       ],
       "source_urls": [
@@ -916,9 +919,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UChrGwUGm1puXFhoC0lC7LFQ/about",
@@ -938,9 +941,9 @@
       "old_status": "PROVISIONAL_VIRTUAL",
       "new_status": "STRICT_VIRTUAL",
       "entity_type": "virtual_creator",
-      "presentation_format": "virtual_persona_unspecified",
+      "presentation_format": "unknown",
       "roles": [
-        "virtual_performer"
+        "performer"
       ],
       "source_urls": [
         "https://www.youtube.com/channel/UCH6Fib1kQUaR2qurlEXnZMA/about",
