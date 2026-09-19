@@ -17,6 +17,9 @@ from pathlib import Path
 from urllib.parse import urlparse
 import pandas as pd
 
+from config.settings import CREATOR_REGISTRY_PATH
+from core.creator_catalog import CreatorCatalog
+
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("BuildCreatorLifecycleEvidence")
 
@@ -55,7 +58,6 @@ def parse_authority_handle(url: str) -> str:
     return ""
 
 MANIFEST_PATH = DATA_DIR / "temporal" / "catalog" / "target_manifest.csv"
-REGISTRY_PATH = DATA_DIR / "thai_vtuber_registry.json"
 COVERAGE_PATH = DATA_DIR / "temporal" / "catalog" / "channel_coverage.parquet"
 
 # Curated identity fields are checked against both independent local identity catalogs.
@@ -572,9 +574,8 @@ def build_creator_datasets():
     manifest_df = pd.read_csv(MANIFEST_PATH)
     logger.info(f"Loaded {len(manifest_df)} channels from {MANIFEST_PATH}")
 
-    with open(REGISTRY_PATH, "r", encoding="utf-8") as f:
-        reg_data = json.load(f)
-    reg_by_id = {r["channel_id"]: r for r in reg_data}
+    reg_data = list(CreatorCatalog.from_path(CREATOR_REGISTRY_PATH).youtube_rows())
+    reg_by_id = {row["channel_id"]: row for row in reg_data}
 
     cov_df = pd.read_parquet(COVERAGE_PATH)
     cov_by_id = {r["channel_id"]: r for _, r in cov_df.iterrows()}
@@ -707,7 +708,7 @@ def build_creator_datasets():
                     "creator_source_class": "INFERRED_PROXY",
                     "verification_status": "INFERRED_PROXY",
                     "source_type": "REGISTRY_INACTIVITY_PROXY",
-                    "source_reference": f"thai_vtuber_registry.json:last_video_published_at={last_pub}",
+                    "source_reference": f"creator_catalog:last_video_published_at={last_pub}",
                     "retrieved_at": retrieved_at,
                     "notes": f"Observed {status} boundary based on last public activity recorded on {dt_str} (>180d inactive)."
                 }
