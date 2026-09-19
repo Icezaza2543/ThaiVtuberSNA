@@ -2,8 +2,8 @@
 Builds data/industry/discovery_universe.parquet & .csv
 
 Quantifies the broader Thai VTuber universe beyond the frozen 193-channel research cohort:
-- Identifies 1,370 total discoverable channels
-- Separates frozen analytical cohort (193) from broader ecosystem (1,177)
+- Identifies the current canonical YouTube creator universe
+- Separates the frozen analytical cohort (193) from the broader ecosystem
 - Preserves longitudinal comparability of the frozen cohort
 - Provides evidence strength ratings and provenance sources
 """
