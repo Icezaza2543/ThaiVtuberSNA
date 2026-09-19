@@ -1,6 +1,6 @@
-import hashlib
 import json
 from pathlib import Path
+import subprocess
 
 from config.settings import CREATOR_REGISTRY_PATH
 from core.creator_catalog import CreatorCatalog
@@ -9,8 +9,12 @@ from core.creator_catalog import CreatorCatalog
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+def git_blob_oid(ref, relative_path):
+    return subprocess.check_output(
+        ["git", "rev-parse", f"{ref}:{relative_path}"],
+        cwd=ROOT,
+        text=True,
+    ).strip()
 
 
 def test_pre_refactor_baseline_records_real_registry_and_protected_files():
@@ -34,12 +38,24 @@ def test_pre_refactor_baseline_records_real_registry_and_protected_files():
 
     assert baseline["trusted_youtube_channels"] == 1370
     assert baseline["trusted_unique_channel_ids"] == 1370
-    assert baseline["files"]["data/temporal/catalog/target_manifest.csv"] == sha(
-        ROOT / "data/temporal/catalog/target_manifest.csv"
+
+    # Protected files are compared as Git blobs rather than working-tree bytes.
+    # Task 1 captured SHA-256 on Windows (CRLF), while CI runs on Linux (LF);
+    # identical repository content must therefore be checked at the Git-object
+    # boundary to avoid a platform-specific false positive.
+    manifest = "data/temporal/catalog/target_manifest.csv"
+    assert git_blob_oid(baseline["commit"], manifest) == git_blob_oid("HEAD", manifest)
+
+    # The sealed trusted snapshot preserves the exact retired registry Git blob.
+    retired_registry = "data/thai_vtuber_registry.json"
+    sealed_snapshot = (
+        "docs/evidence/creator-registry-review-2026-09-19/"
+        "trusted_baseline_1370.json"
     )
-    # Historical path names remain sealed only inside the evidence manifest; the
-    # trusted snapshot must retain the exact pre-refactor registry bytes.
-    assert sha(snapshot_path) in set(baseline["files"].values())
+    assert git_blob_oid(baseline["commit"], retired_registry) == git_blob_oid(
+        "HEAD", sealed_snapshot
+    )
+
     assert len(registry) == 1370
     assert len(snapshot_ids) == 1370
     assert snapshot_ids <= catalog_ids
