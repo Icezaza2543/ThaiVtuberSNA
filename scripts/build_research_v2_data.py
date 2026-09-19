@@ -24,6 +24,9 @@ from typing import Dict, Any, List
 
 import pandas as pd
 
+from config.settings import CREATOR_REGISTRY_PATH
+from core.creator_catalog import CreatorCatalog
+
 ROOT = Path(__file__).resolve().parent.parent
 
 # Input Artifacts
@@ -65,9 +68,8 @@ def generate_v2_data_contract():
     video_catalog_df = pd.read_parquet(TEMPORAL_DIR / "catalog/video_catalog.parquet")
     quality_df = pd.read_parquet(TEMPORAL_DIR / "quality/yearly_evidence_quality.parquet")
     target_manifest_df = pd.read_csv(TEMPORAL_DIR / "catalog/target_manifest.csv")
-    with open(ROOT / "data/thai_vtuber_registry.json", "r", encoding="utf-8") as f:
-        registry_data = json.load(f)
-    registered_channels_count = len(registry_data)
+    creator_catalog = CreatorCatalog.from_path(CREATOR_REGISTRY_PATH)
+    registered_channels_count = len(creator_catalog.youtube_accounts())
     
     # 2. Extract dynamic baseline numbers
     eco_2024 = eco_df[eco_df["year"] == 2024].iloc[0]
@@ -119,7 +121,8 @@ def generate_v2_data_contract():
         "target_cohort": f"{target_cohort_total} Target Thai VTuber Channels (Frozen Longitudinal Cohort)",
         "target_cohort_size": target_cohort_total,
         "observation_window": "2020-01-01 to 2026-09-08 (YTD)",
-        "dataset_date": "2026-09-08"
+        "dataset_date": "2026-09-08",
+        "creator_registry_sha256": creator_catalog.source_fingerprint()
     }
 
     coverage = {
