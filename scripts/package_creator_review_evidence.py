@@ -3,11 +3,9 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import ipaddress
 import json
 import re
-import shutil
 import sys
 from collections import Counter
 from datetime import datetime
@@ -304,24 +302,6 @@ def validate_production_counts(bundle: dict[str, Any]) -> None:
         )
 
 
-def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
-def _copy_legacy_review(legacy_source: Path, output_dir: Path, baseline_path: Path) -> None:
-    legacy_destination = output_dir / "legacy_visual_identity_review.json"
-    shutil.copyfile(legacy_source, legacy_destination)
-    source_hash = _sha256(legacy_source)
-    if _sha256(legacy_destination) != source_hash:
-        raise ValueError("legacy visual identity review copy does not match source")
-
-    baseline = _load_object(baseline_path)
-    files = baseline.setdefault("files", {})
-    files["data/entity_resolution/visual_identity_review.json"] = source_hash
-    files["docs/evidence/creator-registry-review-2026-09-19/legacy_visual_identity_review.json"] = source_hash
-    baseline_path.write_text(json.dumps(baseline, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--screening", type=Path, required=True)
@@ -330,11 +310,6 @@ def main() -> None:
     parser.add_argument("--corrections", type=Path, help="Explicit reviewed eligibility corrections applied after human decisions.")
     parser.add_argument("--trusted-link-corrections", action="append", type=Path, default=[],
                         help="Pin required trusted-link correction IDs and content hashes in the bundle.")
-    parser.add_argument(
-        "--legacy-source",
-        type=Path,
-        default=Path("data/entity_resolution/visual_identity_review.json"),
-    )
     args = parser.parse_args()
 
     bundle = package_review_evidence(args.screening, args.human, args.corrections, args.trusted_link_corrections)
@@ -342,7 +317,6 @@ def main() -> None:
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(bundle, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    _copy_legacy_review(args.legacy_source, args.output.parent, args.output.parent / "pre_refactor_baseline.json")
 
     print("eligibility\tcount")
     for eligibility, count in bundle["eligibility_counts"].items():
