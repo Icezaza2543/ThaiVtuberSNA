@@ -1,0 +1,247 @@
+{
+  "schema_version": "surface-analytics-v1",
+  "source_commit": "2c5068f88fb390fe28f884b4354fc787640094d4",
+  "cohort": {
+    "raw_reference_channels": 1370,
+    "reviewed_identity_channels": 408,
+    "strict_virtual_channels": 229,
+    "provisional_virtual_channels": 45,
+    "hold_channels": 132,
+    "excluded_non_persona_accounts": 2,
+    "default_policy": "STRICT_VIRTUAL_ONLY"
+  },
+  "content": {
+    "source_as_of": "2026-09-10",
+    "catalog_channels": 229,
+    "catalog_videos": 70243,
+    "exact_timestamp_videos": 70243,
+    "oldest_publication": "2013-05-01T14:03:11+00:00",
+    "newest_publication": "2026-09-10T08:41:55+00:00",
+    "channels_with_video_at_or_before_2020": 18,
+    "catalog_status_counts": {
+      "PLAYLIST_EXHAUSTED": 222,
+      "PENDING": 7
+    },
+    "videos_per_channel": {
+      "min": 13,
+      "p25": 152,
+      "median": 300,
+      "mean": 306.74,
+      "p75": 421,
+      "p90": 588.2,
+      "max": 700
+    },
+    "yearly": [
+      {
+        "year": 2013,
+        "videos": 9,
+        "channels": 1
+      },
+      {
+        "year": 2014,
+        "videos": 5,
+        "channels": 2
+      },
+      {
+        "year": 2015,
+        "videos": 11,
+        "channels": 2
+      },
+      {
+        "year": 2016,
+        "videos": 51,
+        "channels": 4
+      },
+      {
+        "year": 2017,
+        "videos": 175,
+        "channels": 5
+      },
+      {
+        "year": 2018,
+        "videos": 119,
+        "channels": 5
+      },
+      {
+        "year": 2019,
+        "videos": 126,
+        "channels": 6
+      },
+      {
+        "year": 2020,
+        "videos": 603,
+        "channels": 14
+      },
+      {
+        "year": 2021,
+        "videos": 3998,
+        "channels": 64
+      },
+      {
+        "year": 2022,
+        "videos": 7365,
+        "channels": 106
+      },
+      {
+        "year": 2023,
+        "videos": 10254,
+        "channels": 151
+      },
+      {
+        "year": 2024,
+        "videos": 18963,
+        "channels": 214
+      },
+      {
+        "year": 2025,
+        "videos": 18733,
+        "channels": 202
+      },
+      {
+        "year": 2026,
+        "videos": 9831,
+        "channels": 172
+      }
+    ]
+  },
+  "network": {
+    "source_as_of": "2026-09-07",
+    "source_note": "Filtered from the public 1,370-channel thresholded network snapshot; current live interaction collection is newer but is not recomputed here while the private workbook is mutating.",
+    "minimum_shared_viewers": 5,
+    "nodes": 229,
+    "edges": 29,
+    "strong_edges": 21,
+    "isolated_nodes": 212,
+    "connected_components": 214,
+    "largest_component_nodes": 15,
+    "density": 0.001111,
+    "average_degree": 0.2533,
+    "edge_shared_viewers": {
+      "min": 5,
+      "median": 7,
+      "p75": 13,
+      "p90": 14,
+      "max": 15
+    },
+    "top_degree": [
+      {
+        "channel_id": "UC4x2o7dyxOqFLoA9NKxf0Iw",
+        "label": "Ivy Ch.【ARP】",
+        "degree": 8,
+        "agency": "Algorhythm Project"
+      },
+      {
+        "channel_id": "UCfiD6DpIwPP4lQ4NPqZNOHg",
+        "label": "Solar Ch.【ARP】",
+        "degree": 8,
+        "agency": "Algorhythm Project"
+      },
+      {
+        "channel_id": "UCAr4U_HGMYXn1EZjdWiGSLQ",
+        "label": "Baabel Ch.【ARP】",
+        "degree": 6,
+        "agency": "Algorhythm Project"
+      },
+      {
+        "channel_id": "UC3O5wAgEVyNA1Jw3gyi-_jA",
+        "label": "MOLLY",
+        "degree": 6,
+        "agency": "Independent"
+      },
+      {
+        "channel_id": "UCuZ1ajvlGFUMCHZAPdetKHw",
+        "label": "Dacapo Ch.【ARP】",
+        "degree": 4,
+        "agency": "Algorhythm Project"
+      },
+      {
+        "channel_id": "UC_LTVw7bj_wFH4n8POeSNbw",
+        "label": "Faminé Ch.【ARP】",
+        "degree": 3,
+        "agency": "Algorhythm Project"
+      },
+      {
+        "channel_id": "UCcFIthTrwa6N-1ri9sQZstw",
+        "label": "Poru Ch.【ARP】",
+        "degree": 3,
+        "agency": "Algorhythm Project"
+      },
+      {
+        "channel_id": "UCZYTMrnVmu1iUVyGeqB6zJQ",
+        "label": "T-Reina Ashyra Ch. Lumina-World-End",
+        "degree": 3,
+        "agency": "Lumina Live"
+      },
+      {
+        "channel_id": "UCGo7fnmWfGQewxZVDmC3iJQ",
+        "label": "Xonebu X'thulhu Ch. Lumina-World-End",
+        "degree": 3,
+        "agency": "Lumina Live"
+      },
+      {
+        "channel_id": "UCGAtHjeWWgyWboVQ33ZQX6Q",
+        "label": "Zenith Ch.【ARP】",
+        "degree": 3,
+        "agency": "Algorhythm Project"
+      }
+    ]
+  },
+  "audience": {
+    "clean_unique_pseudonyms": null,
+    "clean_interactions": null,
+    "status": "NOT_RECOMPUTED_WHILE_LIVE_PRIVATE_ARCHIVE_IS_MUTATING",
+    "note": "The current public aggregate artifacts do not support exact strict-cohort pseudonym or interaction counts without rebuilding from viewer-level private evidence. Values are intentionally null rather than estimated."
+  },
+  "timeline": {
+    "reviewed_identity_starts": 224,
+    "reviewed_redebuts": 2,
+    "reviewed_model_changes": 2,
+    "earliest_reviewed_identity_start": "2020-07-10",
+    "event_points_by_year": [
+      {
+        "year": 2020,
+        "identity_start": 2,
+        "redebut": 0,
+        "model_change": 0
+      },
+      {
+        "year": 2021,
+        "identity_start": 50,
+        "redebut": 0,
+        "model_change": 0
+      },
+      {
+        "year": 2022,
+        "identity_start": 41,
+        "redebut": 0,
+        "model_change": 1
+      },
+      {
+        "year": 2023,
+        "identity_start": 53,
+        "redebut": 0,
+        "model_change": 0
+      },
+      {
+        "year": 2024,
+        "identity_start": 78,
+        "redebut": 2,
+        "model_change": 1
+      }
+    ],
+    "note": "Event points are reviewed evidence for named personas. They are not a census of all active VTubers in each year and do not imply continuous membership after the event."
+  },
+  "audit": {
+    "strict_channels_flagged_for_spot_check": 27,
+    "additional_auto_exclusions": 0,
+    "audit_note": "Lexical contamination scan found organizational/channel-type terms, but no additional strict channel had explicit reviewed evidence that the uploader was a non-persona account. Flags remain for human spot-check only.",
+    "provisional_review_queue": 45
+  },
+  "limitations": [
+    "Surface cohort is limited to 229 strict channels from the 408 identity-reviewed groups; it is not the count of all Thai VTubers.",
+    "The 1,370-channel reference frame remains unchanged for provenance and ongoing collection.",
+    "Catalog metrics use the 2026-09-10 bulk catalog checkpoint; live collection may be newer.",
+    "Network metrics use the public 2026-09-07 threshold>=5 snapshot because the current private interaction archive is still changing.",
+    "Clean audience pseudonym and interaction totals are deliberately withheld until a strict-cohort canonical rebuild can run against a stable private archive."
+  ]
+}
