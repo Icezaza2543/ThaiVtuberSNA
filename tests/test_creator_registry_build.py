@@ -144,6 +144,17 @@ def test_trusted_baseline_discovery_adds_zero_accounts():
     assert account["metadata"]["trusted_baseline_discovery_ids"] == ["old_duplicate"]
 
 
+
+def test_ambiguous_baseline_handle_preserves_both_channel_ids_without_handle_merge():
+    rows = baseline()
+    rows[1]["handle"] = rows[0]["handle"]
+    payload = build_registry(rows, review(), resolutions())
+    youtube = [row for row in payload["accounts"] if row["platform"] == "youtube"]
+    assert {row["platform_id"] for row in youtube} == {A, B}
+    assert {row["handle"] for row in youtube} == {A, B}
+    assert {row["metadata"]["legacy_handle"] for row in youtube} == {"@alpha"}
+    assert all(row["metadata"]["handle_resolution"] == "ambiguous_legacy_handle_uses_channel_id" for row in youtube)
+
 def test_null_metrics_remain_null():
     payload = build_registry(baseline(), review(), resolutions())
     account = next(row for row in payload["accounts"] if row["platform_id"] == A)
