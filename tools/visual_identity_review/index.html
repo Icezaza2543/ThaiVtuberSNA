@@ -475,6 +475,17 @@
       color: #ffffff;
       box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
     }
+    .btn-defunct {
+      background: #1f2937;
+      border: 1px solid #4b5563;
+      color: #cbd5e1;
+    }
+    .btn-defunct:hover {
+      background: #374151;
+      border-color: #9ca3af;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(75, 85, 99, 0.4);
+    }
     .shortcut-key {
       font-size: 11px;
       padding: 2px 6px;
@@ -512,6 +523,8 @@
     .dec-same { background: var(--good-bg); border-color: var(--good); color: #a7f3d0; }
     .dec-new { background: var(--bad-bg); border-color: var(--bad); color: #fecdd3; }
     .dec-uncertain { background: var(--warn-bg); border-color: var(--warn); color: #fef3c7; }
+    .dec-defunct { background: #1f2937; border-color: #4b5563; color: #cbd5e1; }
+    .pill-defunct { border-color: #4b5563; color: #cbd5e1; }
 
     /* Empty state */
     .empty-state {
@@ -560,16 +573,17 @@
     <!-- Toolbar & Stats -->
     <div class="toolbar">
       <div class="stats-group" id="statsGroup">
-        <span class="stat-pill"><strong id="statTotal">884</strong> บัญชีรอตรวจสอบ</span>
+        <span class="stat-pill"><strong id="statTotal">428</strong> บัญชีรอตรวจสอบ</span>
         <span class="stat-pill pill-cyan" title="บัญชีที่มีความคล้ายคลึงกับตัวละครในระบบตั้งแต่ 80% ขึ้นไป"><strong id="statHighMatch">0</strong> ความคล้าย 80%+</span>
         <span class="stat-pill"><strong id="statReviewed">0</strong> ตรวจสอบแล้ว</span>
         <span class="stat-pill pill-good"><strong id="statSame">0</strong> ตัวละครเดียวกัน</span>
         <span class="stat-pill pill-bad"><strong id="statNew">0</strong> ตัวละครใหม่</span>
         <span class="stat-pill pill-warn"><strong id="statUncertain">0</strong> ไม่แน่ชัด</span>
-        <span class="stat-pill"><strong id="statRemaining">884</strong> คงเหลือ</span>
+        <span class="stat-pill pill-defunct"><strong id="statDefunct">0</strong> ช่องถูกลบ/เข้าถึงไม่ได้</span>
+        <span class="stat-pill"><strong id="statRemaining">428</strong> คงเหลือ</span>
       </div>
       <div class="nav-actions">
-        <span id="queueIndex" style="font-family: var(--font-mono); color: var(--muted); font-size: 13px;">1 / 884</span>
+        <span id="queueIndex" style="font-family: var(--font-mono); color: var(--muted); font-size: 13px;">1 / 428</span>
         <button id="prevBtn" class="btn">◀ ก่อนหน้า [←]</button>
         <button id="nextBtn" class="btn">ถัดไป [→] ▶</button>
       </div>
@@ -585,9 +599,10 @@
         <option value="same_persona">ผลการตรวจ: ตัวละครเดียวกัน</option>
         <option value="new_persona">ผลการตรวจ: ตัวละครใหม่ (แยกเอนทิตี)</option>
         <option value="uncertain">ผลการตรวจ: ไม่แน่ชัด / ข้อมูลไม่เพียงพอ</option>
+        <option value="defunct">ผลการตรวจ: ช่องถูกลบ / เข้าถึงไม่ได้</option>
       </select>
       <input type="text" id="searchInput" class="input-field" placeholder="ค้นหาบัญชีค้นพบใหม่ด้วยชื่อ, แฮนเดิล (@handle), หรือ URL..." />
-      <div style="color: var(--muted); font-size: 12px;">คีย์ลัดบนแป้นพิมพ์: กด <strong>1</strong> ตัวละครเดียวกัน, กด <strong>2</strong> ตัวละครใหม่, กด <strong>3</strong> ไม่แน่ชัด</div>
+      <div style="color: var(--muted); font-size: 12px;">คีย์ลัดบนแป้นพิมพ์: กด <strong>1</strong> ตัวละครเดียวกัน, กด <strong>2</strong> ตัวละครใหม่, กด <strong>3</strong> ไม่แน่ชัด, กด <strong>4</strong> ช่องถูกลบ/เข้าถึงไม่ได้</div>
     </div>
 
     <!-- Main Comparison Grid -->
@@ -643,6 +658,13 @@
               <span>? ไม่แน่ชัด / ข้อมูลไม่พอ</span>
               <span class="shortcut-key">กด 3</span>
             </button>
+            <button class="btn btn-decision btn-defunct" id="btnDefunct">
+              <span>🗑️ ช่องถูกลบ / เข้าถึงไม่ได้</span>
+              <span class="shortcut-key">กด 4</span>
+            </button>
+          </div>
+          <div style="font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.4;">
+            💡 <strong>กรณีช่องหายไป/เข้าถึงไม่ได้:</strong> หากคลิกเปิดดูโปรไฟล์แล้วพบว่าช่องถูกลบ, บัญชีถูกระงับ, หรือแจ้ง 404 สามารถกด <strong>🗑️ ช่องถูกลบ / เข้าถึงไม่ได้ (กด 4)</strong> เพื่อคัดแยกออกจากคิวได้ทันที
           </div>
 
           <div class="notes-box" style="margin-top: 12px;">
@@ -880,17 +902,18 @@
       }
 
       function renderStats() {
-        let same = 0, newP = 0, uncertain = 0, highMatch = 0, unreviewedYt = 0;
+        let same = 0, newP = 0, uncertain = 0, defunct = 0, highMatch = 0, unreviewedYt = 0;
         Object.values(state.decisions).forEach(d => {
           if (d.decision === 'same_persona') same++;
           else if (d.decision === 'new_persona') newP++;
           else if (d.decision === 'uncertain') uncertain++;
+          else if (d.decision === 'defunct') defunct++;
         });
         state.discoveries.forEach(d => {
           if ((d._maxScore || 0) >= 0.80) highMatch++;
           if (d._exactYtMatch && !state.decisions[d.discovery_id]) unreviewedYt++;
         });
-        const reviewed = same + newP + uncertain;
+        const reviewed = same + newP + uncertain + defunct;
         $('statTotal').textContent = state.discoveries.length;
         if ($('statHighMatch')) $('statHighMatch').textContent = highMatch;
         if ($('ytExactCount')) $('ytExactCount').textContent = unreviewedYt;
@@ -899,6 +922,7 @@
         $('statSame').textContent = same;
         $('statNew').textContent = newP;
         $('statUncertain').textContent = uncertain;
+        if ($('statDefunct')) $('statDefunct').textContent = defunct;
         $('statRemaining').textContent = state.discoveries.length - reviewed;
       }
 
@@ -1090,12 +1114,14 @@
           const labels = {
             same_persona: '✓ ตัวละครเดียวกัน (ยืนยันโมเดล/อวาตาร์ตรงกัน)',
             new_persona: '✕ ตัวละครใหม่ (แยกเป็น VTuber คนละคน)',
-            uncertain: '? ไม่แน่ชัด (หลักฐานไม่เพียงพอ)'
+            uncertain: '? ไม่แน่ชัด (หลักฐานไม่เพียงพอ)',
+            defunct: '🗑️ ช่องถูกลบ / เข้าถึงไม่ได้ / ปิดไปแล้ว'
           };
           const classes = {
             same_persona: 'dec-same',
             new_persona: 'dec-new',
-            uncertain: 'dec-uncertain'
+            uncertain: 'dec-uncertain',
+            defunct: 'dec-defunct'
           };
           $('currentDecisionBadge').textContent = labels[dec.decision] || dec.decision;
           $('currentDecisionBadge').className = `current-decision-badge ${classes[dec.decision] || ''}`;
@@ -1334,6 +1360,7 @@
       $('btnSame').onclick = () => saveDecision('same_persona');
       $('btnNew').onclick = () => saveDecision('new_persona');
       $('btnUncertain').onclick = () => saveDecision('uncertain');
+      $('btnDefunct').onclick = () => saveDecision('defunct');
 
       $('notesInput').onchange = () => {
         if (!state.filtered.length) return;
@@ -1349,6 +1376,7 @@
         if (e.key === '1') saveDecision('same_persona');
         else if (e.key === '2') saveDecision('new_persona');
         else if (e.key === '3') saveDecision('uncertain');
+        else if (e.key === '4') saveDecision('defunct');
         else if (e.key === 'ArrowLeft') $('prevBtn').click();
         else if (e.key === 'ArrowRight') $('nextBtn').click();
       });

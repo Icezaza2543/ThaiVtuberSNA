@@ -134,6 +134,7 @@ def run_update():
 
     resolved_same_persona = []
     resolved_new_persona = []
+    resolved_defunct = []
     resolved_registry_persona = []
     remaining_unresolved = []
 
@@ -161,7 +162,16 @@ def run_update():
             })
             continue
 
-        # 3. Duplicate against existing canonical personas
+        # 3. Manual review decision: defunct (channel deleted, dead, terminated, 404)
+        if dec and dec.get("decision") in ("defunct", "defunct_or_deleted"):
+            resolved_defunct.append({
+                "discovery": d,
+                "source": "manual_review",
+                "notes": dec.get("notes", "ช่องถูกลบ / เข้าถึงไม่ได้ / ปิดไปแล้ว")
+            })
+            continue
+
+        # 4. Duplicate against existing canonical personas
         y = extract_yt_id(d.get("platform_id")) or extract_yt_id(d.get("url"))
         h = extract_handle(d.get("handle")) or extract_handle(d.get("url"))
         u = str(d.get("url") or "").strip().lower().rstrip("/")
@@ -388,11 +398,13 @@ def run_update():
     master["canonical_personas"] = personas
     master["canonical_accounts"] = accounts
     master["unresolved_discovery_accounts"] = remaining_unresolved
+    master["defunct_discovery_accounts"] = resolved_defunct
 
     master["counts"]["canonical_personas"] = len(personas)
     master["counts"]["canonical_accounts"] = len(accounts)
     master["counts"]["unresolved_discovery_only_accounts"] = len(remaining_unresolved)
     master["counts"]["remaining_unique_discovery_only_accounts"] = len(remaining_unresolved)
+    master["counts"]["defunct_discovery_accounts"] = len(resolved_defunct)
     master["counts"]["total_master_records"] = len(personas) + len(accounts) + len(remaining_unresolved)
 
     # Atomically write updated master
