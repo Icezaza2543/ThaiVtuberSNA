@@ -1,0 +1,1125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ThaiVtuberSNA · Visual Identity Review</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07090e;
+      --bg-gradient: radial-gradient(circle at 25% 0%, #171530 0%, #07090e 55%);
+      --panel: #0e121d;
+      --panel-alt: #131929;
+      --panel-elevated: #192238;
+      --border: #232c42;
+      --border-focus: #4b587d;
+      --text: #f3f5fb;
+      --muted: #8b99b5;
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.25);
+      --cyan: #06b6d4;
+      --good: #10b981;
+      --good-bg: #064e3b;
+      --bad: #f43f5e;
+      --bad-bg: #4c0519;
+      --warn: #f59e0b;
+      --warn-bg: #451a03;
+      --radius: 14px;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      background-image: var(--bg-gradient);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+    }
+
+    .shell {
+      max-width: 1560px;
+      margin: 0 auto;
+      padding: 20px 24px 60px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .brand h1 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 4px;
+    }
+    .brand .tagline {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Domain Policy Alert */
+    .policy-banner {
+      background: linear-gradient(135deg, #16122e 0%, #0d1222 100%);
+      border: 1px solid #4338ca;
+      border-radius: var(--radius);
+      padding: 12px 18px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.12);
+    }
+    .policy-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .policy-text {
+      font-size: 13px;
+      line-height: 1.45;
+      color: #c7d2fe;
+    }
+    .policy-text strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* Controls Bar */
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 18px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .stats-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .stat-pill {
+      background: var(--panel-alt);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 12px;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .stat-pill strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+    .stat-pill.pill-good strong { color: #34d399; }
+    .stat-pill.pill-bad strong { color: #fb7185; }
+    .stat-pill.pill-warn strong { color: #fbbf24; }
+
+    .nav-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn {
+      padding: 8px 14px;
+      background: var(--panel-alt);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-weight: 500;
+      font-size: 13px;
+    }
+    .btn:hover:not(:disabled) {
+      background: var(--panel-elevated);
+      border-color: var(--border-focus);
+    }
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      border-color: transparent;
+      color: #ffffff;
+      box-shadow: 0 2px 12px var(--accent-glow);
+    }
+    .btn-primary:hover:not(:disabled) {
+      filter: brightness(1.1);
+    }
+
+    /* Queue & Filter controls */
+    .filter-bar {
+      display: grid;
+      grid-template-columns: 180px minmax(200px, 1fr) auto;
+      gap: 12px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+    .input-field, select.input-field {
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: var(--text);
+      outline: none;
+    }
+    .input-field:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
+    }
+
+    /* Main Comparison Grid */
+    .compare-container {
+      display: grid;
+      grid-template-columns: minmax(360px, 1.1fr) 340px minmax(360px, 1.1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    /* Entity Cards */
+    .entity-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    }
+    .card-header {
+      padding: 12px 18px;
+      background: var(--panel-alt);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-badge {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .badge-discovery {
+      background: rgba(6, 182, 212, 0.15);
+      color: #22d3ee;
+      border: 1px solid rgba(6, 182, 212, 0.3);
+    }
+    .badge-canonical {
+      background: rgba(139, 92, 246, 0.15);
+      color: #a78bfa;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
+    .visual-stage {
+      height: 380px;
+      background: #03060a;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .visual-stage img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.2s ease;
+    }
+    .visual-stage:hover img {
+      transform: scale(1.02);
+    }
+    .visual-placeholder {
+      text-align: center;
+      padding: 24px;
+      color: var(--muted);
+    }
+    .visual-placeholder .icon {
+      font-size: 48px;
+      margin-bottom: 8px;
+      opacity: 0.5;
+    }
+    .visual-placeholder p {
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .card-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .entity-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      word-break: break-word;
+    }
+    .entity-id {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #64748b;
+      word-break: break-all;
+    }
+    .meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .meta-tag {
+      background: var(--panel-alt);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 12px;
+      color: #cbd5e1;
+    }
+    .platform-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: #1e293b;
+    }
+    .platform-youtube { color: #f43f5e; }
+    .platform-twitch { color: #a855f7; }
+    .platform-tiktok { color: #22d3ee; }
+    .platform-x { color: #cbd5e1; }
+    .platform-facebook { color: #3b82f6; }
+
+    .profile-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: var(--panel-alt);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: #93c5fd;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      transition: all 0.15s;
+    }
+    .link-btn:hover {
+      background: var(--panel-elevated);
+      border-color: var(--cyan);
+      color: #ffffff;
+    }
+
+    /* Middle Control Column */
+    .middle-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .box h3 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Candidate ranking list */
+    .candidate-list {
+      max-height: 260px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-right: 4px;
+    }
+    .candidate-item {
+      background: var(--panel-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 10px;
+      text-align: left;
+      transition: all 0.15s;
+      width: 100%;
+    }
+    .candidate-item:hover {
+      border-color: var(--border-focus);
+      background: var(--panel-elevated);
+    }
+    .candidate-item.selected {
+      border-color: var(--accent);
+      background: #1c1538;
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+    .candidate-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .candidate-score {
+      font-size: 11px;
+      color: #38bdf8;
+      font-family: var(--font-mono);
+      background: rgba(56, 189, 248, 0.1);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+    .candidate-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+      font-family: var(--font-mono);
+    }
+
+    /* Decision Actions */
+    .decision-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .btn-decision {
+      padding: 12px 14px;
+      text-align: left;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 10px;
+    }
+    .btn-same {
+      background: #064e3b;
+      border: 1px solid #059669;
+      color: #6ee7b7;
+    }
+    .btn-same:hover {
+      background: #047857;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+    }
+    .btn-new {
+      background: #4c0519;
+      border: 1px solid #e11d48;
+      color: #fda4af;
+    }
+    .btn-new:hover {
+      background: #be123c;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(244, 63, 94, 0.3);
+    }
+    .btn-uncertain {
+      background: #451a03;
+      border: 1px solid #d97706;
+      color: #fcd34d;
+    }
+    .btn-uncertain:hover {
+      background: #b45309;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+    }
+    .shortcut-key {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .notes-box textarea {
+      width: 100%;
+      min-height: 70px;
+      background: var(--panel-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 10px;
+      color: var(--text);
+      resize: vertical;
+      font-size: 12px;
+    }
+    .notes-box textarea:focus {
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    .current-decision-badge {
+      margin-top: 10px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+      background: var(--panel-alt);
+      border: 1px solid var(--border);
+    }
+    .dec-same { background: var(--good-bg); border-color: var(--good); color: #a7f3d0; }
+    .dec-new { background: var(--bad-bg); border-color: var(--bad); color: #fecdd3; }
+    .dec-uncertain { background: var(--warn-bg); border-color: var(--warn); color: #fef3c7; }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="brand">
+        <h1>ThaiVtuberSNA · Visual Identity Review</h1>
+        <div class="tagline">Human Visual Inspection Workflow for Unresolved Discovery Records</div>
+      </div>
+      <div class="nav-actions">
+        <label class="btn" title="Open master_creators.json if running via file:// without a server" style="cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+          📂 Load JSON
+          <input type="file" id="localFileInput" accept=".json" style="display:none">
+        </label>
+        <button id="exportBtn" class="btn btn-primary" title="Export review decisions to JSON file">⬇ Export Decisions</button>
+        <button id="saveServerBtn" class="btn" title="Persist to data/entity_resolution/visual_identity_review.json">💾 Save to Server</button>
+      </div>
+    </header>
+
+    <div class="policy-banner">
+      <div class="policy-icon">⚖️</div>
+      <div class="policy-text">
+        <strong>Domain Rule:</strong> 1 persona / 1 character form = 1 VTuber entity. If a performer graduates, reincarnates, or debuts under a new VTuber identity, <strong>always treat that as a DIFFERENT entity</strong> even if the human performer is known. Visual character identity (avatar/model/artwork) takes strict priority over names, voices, or rumors.
+      </div>
+    </div>
+
+    <!-- Toolbar & Stats -->
+    <div class="toolbar">
+      <div class="stats-group" id="statsGroup">
+        <span class="stat-pill"><strong id="statTotal">884</strong> Discovery</span>
+        <span class="stat-pill"><strong id="statReviewed">0</strong> Reviewed</span>
+        <span class="stat-pill pill-good"><strong id="statSame">0</strong> Same Persona</span>
+        <span class="stat-pill pill-bad"><strong id="statNew">0</strong> New Persona</span>
+        <span class="stat-pill pill-warn"><strong id="statUncertain">0</strong> Uncertain</span>
+        <span class="stat-pill"><strong id="statRemaining">884</strong> Remaining</span>
+      </div>
+      <div class="nav-actions">
+        <span id="queueIndex" style="font-family: var(--font-mono); color: var(--muted); font-size: 13px;">1 / 884</span>
+        <button id="prevBtn" class="btn">◀ Prev [←]</button>
+        <button id="nextBtn" class="btn">Next [→] ▶</button>
+      </div>
+    </div>
+
+    <!-- Filter & Search Bar -->
+    <div class="filter-bar">
+      <select id="filterSelect" class="input-field">
+        <option value="unreviewed">Queue: Unreviewed Only</option>
+        <option value="all">Queue: All Records</option>
+        <option value="same_persona">Reviewed: Same Persona</option>
+        <option value="new_persona">Reviewed: New Persona</option>
+        <option value="uncertain">Reviewed: Uncertain</option>
+      </select>
+      <input type="text" id="searchInput" class="input-field" placeholder="Search unresolved discovery records by name, handle, or URL..." />
+      <div style="color: var(--muted); font-size: 12px;">Keyboard shortcuts: <strong>1</strong> Same, <strong>2</strong> New, <strong>3</strong> Uncertain</div>
+    </div>
+
+    <!-- Main Comparison Grid -->
+    <div id="mainWorkspace" class="compare-container">
+      <!-- LEFT: Discovery Account -->
+      <div class="entity-card" id="leftCard">
+        <div class="card-header">
+          <span class="card-badge badge-discovery">Unresolved Discovery Lead</span>
+          <span id="leftPlatform" class="platform-badge">YOUTUBE</span>
+        </div>
+        <div class="visual-stage" id="leftStage">
+          <!-- Image or preview button -->
+        </div>
+        <div class="card-body">
+          <div class="entity-title" id="leftName">Loading...</div>
+          <div class="entity-id" id="leftId">discovery_id</div>
+          <div class="meta-tags" id="leftMeta"></div>
+          <div class="profile-links" id="leftLinks"></div>
+        </div>
+      </div>
+
+      <!-- MIDDLE: Comparison Navigation & Actions -->
+      <div class="middle-panel">
+        <div class="box">
+          <h3>
+            <span>Candidate Personas</span>
+            <span id="candidateCount" style="font-size: 11px; color: var(--cyan);">0 found</span>
+          </h3>
+          <input type="text" id="candidateSearchInput" class="input-field" placeholder="Filter candidates..." style="margin-bottom: 8px; font-size: 12px;" />
+          <div class="candidate-list" id="candidateList">
+            <!-- Candidate ranking list -->
+          </div>
+          <div style="font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.4;">
+            * Ranking by name/handle similarity is <em>navigation assistance only</em>. Never auto-merge without visual inspection.
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>Review Decision</h3>
+          <div class="decision-buttons">
+            <button class="btn btn-decision btn-same" id="btnSame">
+              <span>✓ Same Persona</span>
+              <span class="shortcut-key">Key 1</span>
+            </button>
+            <button class="btn btn-decision btn-new" id="btnNew">
+              <span>✕ New Persona (Different Entity)</span>
+              <span class="shortcut-key">Key 2</span>
+            </button>
+            <button class="btn btn-decision btn-uncertain" id="btnUncertain">
+              <span>? Uncertain / Need Evidence</span>
+              <span class="shortcut-key">Key 3</span>
+            </button>
+          </div>
+
+          <div class="notes-box" style="margin-top: 12px;">
+            <textarea id="notesInput" placeholder="Add reviewer notes (e.g. avatar characteristics, art style, model differences, graduation context)..."></textarea>
+          </div>
+
+          <div id="currentDecisionBadge" class="current-decision-badge">
+            Status: Unreviewed
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Canonical Persona Candidate -->
+      <div class="entity-card" id="rightCard">
+        <div class="card-header">
+          <span class="card-badge badge-canonical">Canonical Persona Candidate</span>
+          <span id="rightStatusBadge" class="card-badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">VERIFIED</span>
+        </div>
+        <div class="visual-stage" id="rightStage">
+          <!-- Image or preview button -->
+        </div>
+        <div class="card-body">
+          <div class="entity-title" id="rightName">—</div>
+          <div class="entity-id" id="rightId">persona_id</div>
+          <div class="meta-tags" id="rightMeta"></div>
+          <div class="profile-links" id="rightLinks"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="emptyView" class="empty-state" style="display: none;">
+      <h2>No records matching current filter</h2>
+      <p>Try clearing your search query or changing filter to "Queue: All Records".</p>
+    </div>
+
+    <footer>
+      <div>ThaiVtuberSNA · Visual Identity Review Workflow</div>
+      <div>Decisions persist to <code>data/entity_resolution/visual_identity_review.json</code></div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      const state = {
+        master: null,
+        discoveries: [],
+        canonicals: [],
+        accounts: [],
+        filtered: [],
+        currentIndex: 0,
+        selectedCandidateId: null,
+        decisions: {}, // keyed by discovery_id
+      };
+
+      const $ = id => document.getElementById(id);
+
+      // Utility normalizers
+      function norm(s) {
+        return String(s || '').normalize('NFKC').toLowerCase().replace(/^@/, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim().replace(/\s+/g, ' ');
+      }
+
+      function trigrams(s) {
+        s = '  ' + norm(s) + '  ';
+        const set = {};
+        for (let i = 0; i < s.length - 2; i++) set[s.slice(i, i + 3)] = 1;
+        return set;
+      }
+
+      function similarity(a, b) {
+        a = norm(a); b = norm(b);
+        if (!a || !b) return 0;
+        if (a === b) return 1.0;
+        if (a.length > 3 && (a.includes(b) || b.includes(a))) return 0.85;
+        const A = trigrams(a), B = trigrams(b);
+        let inter = 0;
+        for (let k in A) { if (B[k]) inter++; }
+        const total = Object.keys(A).length + Object.keys(B).length - inter;
+        return total ? inter / total : 0;
+      }
+
+      // Rank candidate canonical personas for a given discovery lead
+      function rankCandidates(discovery, queryFilter) {
+        const dName = discovery.name || '';
+        const dHandle = discovery.handle || '';
+        const dPlatform = discovery.platform || '';
+        const q = norm(queryFilter || '');
+
+        let scored = state.canonicals.map(p => {
+          let bestSim = similarity(dName, p.name);
+          // Check accounts of this persona
+          const accs = p.accounts || [];
+          for (let a of accs) {
+            if (a.handle) bestSim = Math.max(bestSim, similarity(dHandle, a.handle));
+            if (a.name) bestSim = Math.max(bestSim, similarity(dName, a.name));
+            if (dPlatform && a.platform === dPlatform) bestSim += 0.05;
+          }
+          return { persona: p, score: Math.min(1.0, bestSim) };
+        });
+
+        if (q) {
+          scored = scored.filter(x => norm(x.persona.name).includes(q) || (x.persona.accounts || []).some(a => norm(a.handle || '').includes(q) || norm(a.name || '').includes(q)));
+        }
+
+        scored.sort((a, b) => b.score - a.score);
+        return scored.slice(0, 50);
+      }
+
+      function renderStats() {
+        let same = 0, newP = 0, uncertain = 0;
+        Object.values(state.decisions).forEach(d => {
+          if (d.decision === 'same_persona') same++;
+          else if (d.decision === 'new_persona') newP++;
+          else if (d.decision === 'uncertain') uncertain++;
+        });
+        const reviewed = same + newP + uncertain;
+        $('statTotal').textContent = state.discoveries.length;
+        $('statReviewed').textContent = reviewed;
+        $('statSame').textContent = same;
+        $('statNew').textContent = newP;
+        $('statUncertain').textContent = uncertain;
+        $('statRemaining').textContent = state.discoveries.length - reviewed;
+      }
+
+      function filterQueue() {
+        const filter = $('filterSelect').value;
+        const q = norm($('searchInput').value);
+
+        state.filtered = state.discoveries.filter(d => {
+          const dec = state.decisions[d.discovery_id];
+          if (filter === 'unreviewed' && dec) return false;
+          if (filter !== 'all' && filter !== 'unreviewed' && (!dec || dec.decision !== filter)) return false;
+          if (q) {
+            const match = norm(d.name || '').includes(q) || norm(d.handle || '').includes(q) || norm(d.url || '').includes(q);
+            if (!match) return false;
+          }
+          return true;
+        });
+
+        if (state.currentIndex >= state.filtered.length) {
+          state.currentIndex = Math.max(0, state.filtered.length - 1);
+        }
+        renderCurrentRecord();
+      }
+
+      function renderCurrentRecord() {
+        if (!state.filtered.length) {
+          $('mainWorkspace').style.display = 'none';
+          $('emptyView').style.display = 'block';
+          $('queueIndex').textContent = '0 / 0';
+          return;
+        }
+
+        $('mainWorkspace').style.display = 'grid';
+        $('emptyView').style.display = 'none';
+        $('queueIndex').textContent = `${state.currentIndex + 1} / ${state.filtered.length}`;
+
+        const d = state.filtered[state.currentIndex];
+        const dec = state.decisions[d.discovery_id];
+
+        // Left Card (Discovery)
+        $('leftName').textContent = d.name || d.handle || '(Unnamed Discovery Lead)';
+        $('leftId').textContent = d.discovery_id;
+        $('leftPlatform').textContent = (d.platform || 'WEB').toUpperCase();
+        $('leftPlatform').className = `platform-badge platform-${(d.platform || 'web').toLowerCase()}`;
+
+        // Left Meta
+        let metaHtml = '';
+        if (d.handle) metaHtml += `<span class="meta-tag">@${escapeHtml(d.handle)}</span>`;
+        if (d.discovered_at) metaHtml += `<span class="meta-tag">Discovered: ${d.discovered_at.slice(0, 10)}</span>`;
+        if (d.provenance?.evidence_kind) metaHtml += `<span class="meta-tag">${escapeHtml(d.provenance.evidence_kind)}</span>`;
+        $('leftMeta').innerHTML = metaHtml;
+
+        // Left Links
+        let linksHtml = '';
+        if (d.url) {
+          linksHtml += `<a class="link-btn" href="${escapeAttr(d.url)}" target="_blank" rel="noopener noreferrer">↗ Open Profile Page</a>`;
+        }
+        if (d.source_url) {
+          linksHtml += `<a class="link-btn" href="${escapeAttr(d.source_url)}" target="_blank" rel="noopener noreferrer">🔍 Source Evidence</a>`;
+        }
+        $('leftLinks').innerHTML = linksHtml;
+
+        // Left Visual Stage
+        renderVisualStage($('leftStage'), d);
+
+        // Candidates ranking
+        const candidates = rankCandidates(d, $('candidateSearchInput').value);
+        $('candidateCount').textContent = `${candidates.length} candidates`;
+
+        // Determine selected candidate
+        if (dec && dec.candidate_persona_id) {
+          state.selectedCandidateId = dec.candidate_persona_id;
+        } else if (!state.selectedCandidateId || !candidates.some(c => c.persona.persona_id === state.selectedCandidateId)) {
+          state.selectedCandidateId = candidates.length ? candidates[0].persona.persona_id : null;
+        }
+
+        // Render candidate items
+        $('candidateList').innerHTML = candidates.map(c => {
+          const p = c.persona;
+          const isSel = p.persona_id === state.selectedCandidateId;
+          const scorePercent = Math.round(c.score * 100);
+          return `
+            <button class="candidate-item ${isSel ? 'selected' : ''}" data-id="${p.persona_id}">
+              <div class="candidate-head">
+                <span>${escapeHtml(p.name)}</span>
+                <span class="candidate-score">${scorePercent}%</span>
+              </div>
+              <div class="candidate-sub">${p.account_count || 0} accounts · ${escapeHtml(p.persona_id)}</div>
+            </button>
+          `;
+        }).join('') || '<div style="color: var(--muted); padding: 12px; font-size: 12px;">No candidates found</div>';
+
+        document.querySelectorAll('.candidate-item').forEach(btn => {
+          btn.onclick = () => {
+            state.selectedCandidateId = btn.getAttribute('data-id');
+            renderCurrentRecord();
+          };
+        });
+
+        // Right Card (Selected Persona)
+        const selP = state.canonicals.find(p => p.persona_id === state.selectedCandidateId);
+        if (selP) {
+          $('rightName').textContent = selP.name;
+          $('rightId').textContent = selP.persona_id;
+          $('rightStatusBadge').textContent = selP.is_verified ? 'VERIFIED' : 'PENDING';
+          $('rightStatusBadge').style.background = selP.is_verified ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)';
+          $('rightStatusBadge').style.color = selP.is_verified ? '#34d399' : '#fbbf24';
+
+          let rightMeta = `<span class="meta-tag">${selP.accounts?.length || 0} linked accounts</span>`;
+          if (selP.accounts) {
+            selP.accounts.forEach(a => {
+              rightMeta += `<span class="meta-tag platform-${a.platform}">${a.platform.toUpperCase()}: ${escapeHtml(a.handle || a.name || a.platform_id)}</span>`;
+            });
+          }
+          $('rightMeta').innerHTML = rightMeta;
+
+          let rightLinks = '';
+          if (selP.accounts) {
+            selP.accounts.forEach(a => {
+              if (a.url) {
+                rightLinks += `<a class="link-btn" href="${escapeAttr(a.url)}" target="_blank" rel="noopener noreferrer">↗ ${a.platform.toUpperCase()}</a>`;
+              }
+            });
+          }
+          $('rightLinks').innerHTML = rightLinks || '<span style="color: var(--muted); font-size: 12px;">No links</span>';
+          renderVisualStage($('rightStage'), selP);
+        } else {
+          $('rightName').textContent = '—';
+          $('rightId').textContent = 'No candidate selected';
+          $('rightMeta').innerHTML = '';
+          $('rightLinks').innerHTML = '';
+          $('rightStage').innerHTML = '<div class="visual-placeholder"><p>Select a candidate persona from the list</p></div>';
+        }
+
+        // Current decision notes & badge
+        $('notesInput').value = dec ? (dec.notes || '') : '';
+        if (dec) {
+          const labels = {
+            same_persona: '✓ Same Persona (Character Match Confirmed)',
+            new_persona: '✕ New Persona (Separate VTuber Entity)',
+            uncertain: '? Uncertain (Insufficient Evidence)'
+          };
+          const classes = {
+            same_persona: 'dec-same',
+            new_persona: 'dec-new',
+            uncertain: 'dec-uncertain'
+          };
+          $('currentDecisionBadge').textContent = labels[dec.decision] || dec.decision;
+          $('currentDecisionBadge').className = `current-decision-badge ${classes[dec.decision] || ''}`;
+        } else {
+          $('currentDecisionBadge').textContent = 'Status: Unreviewed';
+          $('currentDecisionBadge').className = 'current-decision-badge';
+        }
+
+        $('prevBtn').disabled = state.currentIndex <= 0;
+        $('nextBtn').disabled = state.currentIndex >= state.filtered.length - 1;
+      }
+
+      function renderVisualStage(container, entity) {
+        // Try finding avatar/image URL
+        let imgUrl = entity.avatar_url || entity.image_url || entity.thumbnail_url;
+        if (!imgUrl && entity.accounts) {
+          for (let a of entity.accounts) {
+            if (a.avatar_url || a.thumbnail_url) {
+              imgUrl = a.avatar_url || a.thumbnail_url;
+              break;
+            }
+          }
+        }
+
+        if (imgUrl) {
+          container.innerHTML = `<img src="${escapeAttr(imgUrl)}" alt="Avatar" loading="lazy" />`;
+        } else {
+          // Provide direct visual inspection action buttons
+          const url = entity.url || (entity.accounts && entity.accounts[0] ? entity.accounts[0].url : '');
+          container.innerHTML = `
+            <div class="visual-placeholder">
+              <div class="icon">🎨</div>
+              <p>Direct avatar preview not cached</p>
+              ${url ? `<a class="btn btn-primary" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer" style="font-size: 12px;">↗ Open Live Profile to Inspect Model</a>` : ''}
+            </div>
+          `;
+        }
+      }
+
+      function saveDecision(decisionType) {
+        if (!state.filtered.length) return;
+        const d = state.filtered[state.currentIndex];
+        const candidatePersonaId = state.selectedCandidateId;
+
+        if (decisionType === 'same_persona' && !candidatePersonaId) {
+          alert('Please select a candidate persona before deciding Same Persona.');
+          return;
+        }
+
+        const decisionRecord = {
+          discovery_id: d.discovery_id,
+          candidate_persona_id: candidatePersonaId,
+          decision: decisionType,
+          notes: $('notesInput').value.trim(),
+          reviewed_at: new Date().toISOString()
+        };
+
+        state.decisions[d.discovery_id] = decisionRecord;
+        localStorage.setItem('vtuber_visual_identity_decisions', JSON.stringify(state.decisions));
+        renderStats();
+
+        // Also post to server API if running server
+        fetch('/api/decision', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(decisionRecord)
+        }).catch(() => {});
+
+        // Move to next unreviewed if in unreviewed mode
+        if ($('filterSelect').value === 'unreviewed') {
+          filterQueue();
+        } else if (state.currentIndex < state.filtered.length - 1) {
+          state.currentIndex++;
+          renderCurrentRecord();
+        } else {
+          renderCurrentRecord();
+        }
+      }
+
+      function exportDecisions() {
+        const list = Object.values(state.decisions);
+        const payload = {
+          schema_version: 1,
+          policy: "1 persona / 1 character form = 1 VTuber entity",
+          exported_at: new Date().toISOString(),
+          total_decisions: list.length,
+          decisions: list
+        };
+
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `visual_identity_review_${new Date().toISOString().slice(0, 10)}.json`;
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+
+      function saveToServer() {
+        const list = Object.values(state.decisions);
+        fetch('/api/save_all', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ decisions: list })
+        })
+        .then(r => r.json())
+        .then(data => {
+          alert(`Successfully persisted ${list.length} decisions to data/entity_resolution/visual_identity_review.json!`);
+        })
+        .catch(err => {
+          alert('Could not reach server endpoint. Decisions remain saved in localStorage and can be exported with the Export button.');
+        });
+      }
+
+      function escapeHtml(s) {
+        return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+      function escapeAttr(s) {
+        return String(s || '').replace(/"/g, '&quot;');
+      }
+
+      // Initialize
+      async function init() {
+        // Load stored decisions
+        try {
+          const stored = localStorage.getItem('vtuber_visual_identity_decisions');
+          if (stored) state.decisions = JSON.parse(stored);
+        } catch (e) {}
+
+        // Load master dataset
+        try {
+          let res = await fetch('/data/master_creators.json');
+          if (!res.ok) {
+            res = await fetch('../../data/master_creators.json');
+          }
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const master = await res.json();
+          state.master = master;
+          state.discoveries = master.unresolved_discovery_accounts || [];
+          state.canonicals = master.canonical_personas || [];
+          state.accounts = master.canonical_accounts || [];
+
+          // Try loading server decisions if exists
+          try {
+            const dRes = await fetch('/api/decisions');
+            if (dRes.ok) {
+              const serverDecs = await dRes.json();
+              const list = Array.isArray(serverDecs) ? serverDecs : (serverDecs?.decisions || []);
+              list.forEach(d => { if (d.discovery_id) state.decisions[d.discovery_id] = d; });
+            }
+          } catch (e) {}
+
+          renderStats();
+          filterQueue();
+        } catch (e) {
+          console.warn('Automatic fetch failed (likely file:// protocol without server):', e);
+          // Show subtle prompt to use Load JSON button if needed
+          const banner = document.querySelector('.policy-text');
+          if (banner) {
+            banner.innerHTML += `<div style="margin-top: 8px; color: #fbbf24; font-weight: 600;">⚠️ Could not auto-load data/master_creators.json via HTTP. Click <strong>📂 Load JSON</strong> in the top right to select data/master_creators.json.</div>`;
+          }
+        }
+      }
+
+      // Event listeners
+      $('localFileInput').onchange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          try {
+            const master = JSON.parse(event.target.result);
+            state.master = master;
+            state.discoveries = master.unresolved_discovery_accounts || [];
+            state.canonicals = master.canonical_personas || [];
+            state.accounts = master.canonical_accounts || [];
+            renderStats();
+            filterQueue();
+          } catch (err) {
+            alert('Failed to parse JSON file: ' + err.message);
+          }
+        };
+        reader.readAsText(file, 'utf-8');
+      };
+
+      $('filterSelect').onchange = filterQueue;
+      $('searchInput').oninput = filterQueue;
+      $('candidateSearchInput').oninput = renderCurrentRecord;
+      $('prevBtn').onclick = () => { if (state.currentIndex > 0) { state.currentIndex--; renderCurrentRecord(); } };
+      $('nextBtn').onclick = () => { if (state.currentIndex < state.filtered.length - 1) { state.currentIndex++; renderCurrentRecord(); } };
+      $('exportBtn').onclick = exportDecisions;
+      $('saveServerBtn').onclick = saveToServer;
+
+      $('btnSame').onclick = () => saveDecision('same_persona');
+      $('btnNew').onclick = () => saveDecision('new_persona');
+      $('btnUncertain').onclick = () => saveDecision('uncertain');
+
+      $('notesInput').onchange = () => {
+        if (!state.filtered.length) return;
+        const d = state.filtered[state.currentIndex];
+        if (state.decisions[d.discovery_id]) {
+          state.decisions[d.discovery_id].notes = $('notesInput').value.trim();
+          localStorage.setItem('vtuber_visual_identity_decisions', JSON.stringify(state.decisions));
+        }
+      };
+
+      document.addEventListener('keydown', e => {
+        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target?.tagName)) return;
+        if (e.key === '1') saveDecision('same_persona');
+        else if (e.key === '2') saveDecision('new_persona');
+        else if (e.key === '3') saveDecision('uncertain');
+        else if (e.key === 'ArrowLeft') $('prevBtn').click();
+        else if (e.key === 'ArrowRight') $('nextBtn').click();
+      });
+
+      init();
+    })();
+  </script>
+</body>
+</html>
