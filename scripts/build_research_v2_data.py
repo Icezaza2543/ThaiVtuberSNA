@@ -371,7 +371,7 @@ def generate_v2_data_contract():
         "artifacts": {
             "scope": "data/temporal/catalog/phase_t1_catalog_audit.md",
             "time": "data/temporal/backfill/phase_t5_backfill_report.md",
-            "identity": "docs/data_storage_architecture.md",
+            "identity": "docs/evidence-milestone.md",
             "sampling": "data/temporal/backfill/temporal_backfill_quality.md",
             "strong": "data/temporal/snapshots/network_snapshots.parquet",
             "communities": "data/temporal/analysis/temporal_community_report.md",
