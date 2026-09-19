@@ -393,12 +393,15 @@ class _RegistryBuilder:
                 agency=_first_text(review.get("agency"), default="Independent"),
                 lifecycle_status="active",
                 source_class="trusted_baseline" if pid in self.creators else "reviewed_discovery",
-                aliases=[review.get("display_name"), review.get("original_name")],
+                aliases=[],
             )
             platform = normalize_platform(_first_text(resolution.get("platform"), review.get("platform")))
             platform_id = _first_text(resolution.get("platform_id"), review.get("channel_id"), review.get("platform_id"))
             url = _first_text(resolution.get("url"), review.get("url"))
-            handle = _first_text(review.get("handle"), review.get("original_name")) or _url_handle(platform, url, platform_id)
+            # Discovery labels can describe a parent portfolio/client relation and
+            # are not account identifiers.  Only an explicit reviewed handle or
+            # the accepted canonical URL may define the handle index.
+            handle = _first_text(review.get("handle")) or _url_handle(platform, url, platform_id)
             provisional = {
                 "account_id": stable_account_id(platform, platform_id, url),
                 "persona_id": pid,
@@ -406,7 +409,7 @@ class _RegistryBuilder:
                 "platform_id": platform_id,
                 "handle": handle,
                 "url": url,
-                "display_name": _first_text(review.get("display_name"), canonical_name, default=canonical_name),
+                "display_name": canonical_name,
                 "account_status": "available",
                 "is_primary": True,
                 "eligibility_source": "review_bundle:vtuber",
@@ -416,6 +419,9 @@ class _RegistryBuilder:
                     "discovery_ids": [did],
                     "resolution_outcome": resolution.get("outcome"),
                     "reviewer": resolution.get("reviewer"),
+                    "discovery_display_name": review.get("display_name"),
+                    "discovery_original_name": review.get("original_name"),
+                    "review_reason": review.get("reason"),
                 },
             }
             actual, created = self.register_account(provisional)
