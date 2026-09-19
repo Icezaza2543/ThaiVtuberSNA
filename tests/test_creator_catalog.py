@@ -1,4 +1,5 @@
 import hashlib
+import json
 from pathlib import Path
 
 from core.creator_catalog import CreatorCatalog
@@ -47,3 +48,28 @@ def test_catalog_returns_defensive_views_and_deterministic_legacy_rows():
 
 def test_catalog_fingerprint_hashes_exact_source_bytes():
     assert CreatorCatalog.from_path(FIXTURE).source_fingerprint() == hashlib.sha256(FIXTURE.read_bytes()).hexdigest()
+
+
+def test_catalog_indexes_normalized_alias_handles_and_urls_defensively(tmp_path):
+    payload = json.loads(FIXTURE.read_text(encoding="utf-8"))
+    account = payload["accounts"][0]
+    account.update(
+        {
+            "platform": "twitter",
+            "platform_id": "alpha-id",
+            "handle": "@Alpha",
+            "url": "HTTPS://X.COM:443/Alpha/",
+        }
+    )
+    path = tmp_path / "registry.json"
+    path.write_text(json.dumps(payload), encoding="utf-8")
+    catalog = CreatorCatalog.from_path(path)
+
+    by_handle = catalog.account_by_handle("x", "alpha")
+    by_url = catalog.account_by_url("https://x.com/Alpha")
+    assert by_handle["account_id"] == "account_alpha_youtube"
+    assert by_url["account_id"] == "account_alpha_youtube"
+    by_handle["metadata"]["subscriber_count"] = 0
+    by_url["display_name"] = "Mutated"
+    assert catalog.account_by_handle("twitter", "@ALPHA")["metadata"]["subscriber_count"] == 42
+    assert catalog.account_by_url("https://X.com:443/Alpha/")["display_name"] == "Alpha Channel"

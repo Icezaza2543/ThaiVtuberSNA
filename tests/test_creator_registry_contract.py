@@ -124,3 +124,34 @@ def test_orphaned_creator_and_evidence_fail_closed():
     payload["counts"]["evidence"] += 1
     with pytest.raises(ValueError, match="orphan evidence"):
         validate_registry(payload)
+
+
+@pytest.mark.parametrize(
+    ("target", "field", "value", "message"),
+    [
+        ("creator", "canonical_name", 7, "canonical_name"),
+        ("creator", "aliases", ["Alpha", 7], "aliases"),
+        ("account", "metadata", "not-an-object", "metadata"),
+        ("account", "is_primary", "true", "is_primary"),
+        ("account", "handle", None, "handle"),
+        ("evidence", "subject_ids", [object()], "subject_ids"),
+        ("evidence", "supports", "persona_identity", "supports"),
+    ],
+)
+def test_malformed_required_field_types_fail_closed(target, field, value, message):
+    payload = load_fixture()
+    records = payload[{"creator": "creators", "account": "accounts", "evidence": "evidence"}[target]]
+    records[0][field] = value
+    with pytest.raises(ValueError, match=message):
+        validate_registry(payload)
+
+
+def test_counts_require_exact_integer_schema():
+    payload = load_fixture()
+    payload["counts"]["accounts"] = True
+    with pytest.raises(ValueError, match="count"):
+        validate_registry(payload)
+    payload = load_fixture()
+    payload["counts"]["extra"] = 1
+    with pytest.raises(ValueError, match="count"):
+        validate_registry(payload)

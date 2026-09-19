@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from core.creator_registry_contract import normalize_platform, validate_registry
+from core.creator_registry_contract import normalize_handle, normalize_platform, normalize_url, validate_registry
 
 
 class CreatorCatalog:
@@ -23,10 +23,14 @@ class CreatorCatalog:
         self._accounts_by_persona: dict[str, tuple[dict[str, Any], ...]] = {}
         grouped: dict[str, list[dict[str, Any]]] = {}
         self._accounts_by_platform_id: dict[tuple[str, str], dict[str, Any]] = {}
+        self._accounts_by_handle: dict[tuple[str, str], dict[str, Any]] = {}
+        self._accounts_by_url: dict[str, dict[str, Any]] = {}
         for account in self._accounts:
             grouped.setdefault(account["persona_id"], []).append(account)
             if account["platform_id"]:
                 self._accounts_by_platform_id[(account["platform"], account["platform_id"])] = account
+            self._accounts_by_handle[(account["platform"], normalize_handle(account["handle"]))] = account
+            self._accounts_by_url[normalize_url(account["url"])] = account
         self._accounts_by_persona = {
             persona_id: tuple(accounts) for persona_id, accounts in grouped.items()
         }
@@ -67,6 +71,12 @@ class CreatorCatalog:
 
     def account_by_platform_id(self, platform: str, platform_id: str) -> dict[str, Any] | None:
         return self._copy(self._accounts_by_platform_id.get((normalize_platform(platform), platform_id)))
+
+    def account_by_handle(self, platform: str, handle: str) -> dict[str, Any] | None:
+        return self._copy(self._accounts_by_handle.get((normalize_platform(platform), normalize_handle(handle))))
+
+    def account_by_url(self, url: str) -> dict[str, Any] | None:
+        return self._copy(self._accounts_by_url.get(normalize_url(url)))
 
     def youtube_accounts(self) -> tuple[dict[str, Any], ...]:
         accounts = (account for account in self._accounts if account["platform"] == "youtube")

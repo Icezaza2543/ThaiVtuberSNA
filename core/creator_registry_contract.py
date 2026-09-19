@@ -95,6 +95,16 @@ def normalize_url(url: str) -> str:
     return urlunsplit((scheme, netloc, path, parsed.query, ""))
 
 
+def normalize_handle(handle: str) -> str:
+    """Return a platform-scoped canonical handle without display decoration."""
+    if not isinstance(handle, str) or not handle.strip():
+        raise ValueError("handle is required")
+    normalized = handle.strip().lstrip("@").casefold()
+    if not normalized:
+        raise ValueError("handle is required")
+    return normalized
+
+
 def stable_account_id(platform: str, platform_id: str | None, url: str) -> str:
     """Create an ID from a canonical platform identity, never array position."""
     canonical_platform = normalize_platform(platform)
@@ -126,10 +136,22 @@ def _nonempty_string(record: dict[str, Any], field: str, kind: str) -> str:
     return value.strip()
 
 
+def _string_list(record: dict[str, Any], field: str, kind: str, *, required: bool = False) -> list[str]:
+    value = record[field]
+    if not isinstance(value, list) or (required and not value):
+        qualifier = "a non-empty array" if required else "an array"
+        raise ValueError(f"{kind} {field} must be {qualifier}")
+    if any(not isinstance(item, str) or not item.strip() for item in value):
+        raise ValueError(f"{kind} {field} must contain non-empty strings")
+    return value
+
+
 def _evidence_references_exist(
     owner_kind: str, owner_id: str, evidence_ids: Any, evidence_by_id: dict[str, dict[str, Any]]
 ) -> None:
-    if not isinstance(evidence_ids, list) or not evidence_ids:
+    if not isinstance(evidence_ids, list) or not evidence_ids or any(
+        not isinstance(evidence_id, str) or not evidence_id.strip() for evidence_id in evidence_ids
+    ):
         raise ValueError(f"{owner_kind} {owner_id} requires evidence")
     for evidence_id in evidence_ids:
         if evidence_id not in evidence_by_id:
@@ -147,12 +169,24 @@ def validate_registry(payload: dict) -> None:
         raise ValueError(f"registry missing required fields: {', '.join(sorted(missing))}")
     if payload["schema_version"] != SCHEMA_VERSION:
         raise ValueError(f"unsupported schema version: {payload['schema_version']!r}")
+    for field in ("dataset_name", "identity_policy"):
+        _nonempty_string(payload, field, "registry")
+    if not isinstance(payload["source_fingerprints"], dict) or any(
+        not isinstance(key, str) or not key.strip() or not isinstance(value, str) or not value.strip()
+        for key, value in payload["source_fingerprints"].items()
+    ):
+        raise ValueError("registry source_fingerprints must be an object of non-empty strings")
     for name in ("creators", "accounts", "evidence"):
         if not isinstance(payload[name], list):
             raise ValueError(f"registry {name} must be an array")
     if not isinstance(payload["counts"], dict):
         raise ValueError("registry counts must be an object")
+    count_keys = {"creators", "accounts", "evidence"}
+    if set(payload["counts"]) != count_keys:
+        raise ValueError("registry counts must contain exactly creators, accounts, and evidence")
     for name in ("creators", "accounts", "evidence"):
+        if not isinstance(payload["counts"][name], int) or isinstance(payload["counts"][name], bool):
+            raise ValueError(f"count {name} must be an integer")
         if payload["counts"].get(name) != len(payload[name]):
             raise ValueError(f"count mismatch for {name}")
 
@@ -161,22 +195,40 @@ def validate_registry(payload: dict) -> None:
     for creator in payload["creators"]:
         _required(creator, _CREATOR_FIELDS, "creator")
         persona_id = _nonempty_string(creator, "persona_id", "creator")
+        for field in ("canonical_name", "agency", "lifecycle_status", "eligibility", "identity_status", "source_class"):
+            _nonempty_string(creator, field, "creator")
+        _string_list(creator, "aliases", "creator")
+        _string_list(creator, "evidence_ids", "creator", required=True)
         if persona_id in creator_ids:
             raise ValueError(f"duplicate persona {persona_id!r}")
         if creator["eligibility"] != "vtuber":
             raise ValueError(f"creator {persona_id} eligibility must equal 'vtuber'")
-        if not isinstance(creator["aliases"], list):
-            raise ValueError(f"creator {persona_id} aliases must be an array")
         creator_ids.add(persona_id)
         creators_by_id[persona_id] = creator
 
     account_ids: set[str] = set()
     account_identity: dict[tuple[str, str], dict[str, Any]] = {}
+    handle_identity: dict[tuple[str, str], dict[str, Any]] = {}
     url_identity: dict[str, dict[str, Any]] = {}
     for account in payload["accounts"]:
         _required(account, _ACCOUNT_FIELDS, "account")
         account_id = _nonempty_string(account, "account_id", "account")
         persona_id = _nonempty_string(account, "persona_id", "account")
+        for field in (
+            "platform",
+            "handle",
+            "url",
+            "display_name",
+            "account_status",
+            "eligibility_source",
+            "identity_resolution",
+        ):
+            _nonempty_string(account, field, "account")
+        if not isinstance(account["is_primary"], bool):
+            raise ValueError(f"account {account_id} is_primary must be a boolean")
+        if not isinstance(account["metadata"], dict):
+            raise ValueError(f"account {account_id} metadata must be an object")
+        _string_list(account, "evidence_ids", "account", required=True)
         if account_id in account_ids:
             raise ValueError(f"duplicate account ID {account_id!r}")
         if persona_id not in creator_ids:
@@ -191,6 +243,13 @@ def validate_registry(payload: dict) -> None:
             if not isinstance(platform_id, str) or not YOUTUBE_CHANNEL_ID.fullmatch(platform_id):
                 raise ValueError(f"account {account_id} has invalid YouTube Channel ID")
         normalized_url = normalize_url(account["url"])
+        handle_key = (platform, normalize_handle(account["handle"]))
+        previous_handle = handle_identity.get(handle_key)
+        if previous_handle:
+            if previous_handle["persona_id"] != persona_id:
+                raise ValueError(f"conflicting persona for account handle {handle_key!r}")
+            raise ValueError(f"duplicate account handle {handle_key!r}")
+        handle_identity[handle_key] = account
         if platform_id:
             identity_key = (platform, platform_id)
             previous = account_identity.get(identity_key)
@@ -212,12 +271,13 @@ def validate_registry(payload: dict) -> None:
     for evidence in payload["evidence"]:
         _required(evidence, _EVIDENCE_FIELDS, "evidence")
         evidence_id = _nonempty_string(evidence, "evidence_id", "evidence")
+        for field in ("source_url", "source_kind", "observed_at", "summary", "provenance"):
+            _nonempty_string(evidence, field, "evidence")
+        _string_list(evidence, "supports", "evidence", required=True)
+        subject_ids = _string_list(evidence, "subject_ids", "evidence", required=True)
         if evidence_id in evidence_by_id:
             raise ValueError(f"duplicate evidence {evidence_id!r}")
         normalize_url(evidence["source_url"])
-        subject_ids = evidence["subject_ids"]
-        if not isinstance(subject_ids, list) or not subject_ids:
-            raise ValueError(f"evidence {evidence_id} requires subject_ids")
         unknown_subjects = set(subject_ids) - known_subject_ids
         if unknown_subjects:
             raise ValueError(f"evidence {evidence_id} references unknown subject {sorted(unknown_subjects)!r}")
