@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   // Canonical research dashboard for the unified single-page site.
-  let data;
+  let data, surface;
   const palette = ['#62e7ff', '#a78bfa', '#ff7ac8', '#6ef0c2', '#ffd16a', '#e6e8f2'];
   const el = id => document.getElementById(id);
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -56,6 +56,43 @@
   }
   const s = (rows,key,name) => ({name,values:rows.map(r=>r[key])});
   function annual(id,rows,key,name,percent=false,min=0){chart(id,rows.map(r=>r.year === data.meta.partial_year ? r.year+'*' : r.year),[s(rows,key,name)],{percent,min});}
+  function surfaceView(){
+    const c=surface.cohort, content=surface.content, network=surface.network, timeline=surface.timeline;
+    el('surfaceReferenceCount').textContent=num(c.raw_reference_channels);
+    el('surfaceReviewedCount').textContent=num(c.reviewed_identity_channels);
+    el('surfaceStrictCount').textContent=num(c.strict_virtual_channels);
+    el('surfacePendingReview').textContent=num(c.provisional_virtual_channels+c.hold_channels);
+    el('surfacePeriodNote').textContent='Surface v1 ใช้ '+num(c.strict_virtual_channels)+' STRICT_VIRTUAL channels จาก '+num(c.reviewed_identity_channels)+' ช่องที่ review แล้ว · catalog ณ '+content.source_as_of+' · network snapshot ณ '+network.source_as_of;
+    el('surfaceKpis').innerHTML=[
+      ['Strict channels',c.strict_virtual_channels,'ใช้เป็น denominator หลักของ Surface v1'],
+      ['Catalog videos',content.catalog_videos,'วิดีโอใน 229 ช่อง ณ checkpoint'],
+      ['Thresholded edges',network.edges,'ปลายทั้งสองฝั่งอยู่ใน strict cohort'],
+      ['Strong edges',network.strong_edges,'มี strong_shared > 0 ใน snapshot เดียวกัน']
+    ].map(([label,value,note])=>'<div class="kpi-card"><div class="kpi-label">'+esc(label)+'</div><strong class="kpi-value">'+num(value)+'</strong><div class="kpi-sub">'+esc(note)+'</div></div>').join('');
+    chart('canvasSurfaceVideos',content.yearly.map(r=>r.year),[s(content.yearly,'videos','วิดีโอ')]);
+    chart('canvasSurfaceChannels',content.yearly.map(r=>r.year),[s(content.yearly,'channels','ช่อง')]);
+    table(el('surfaceEligibilityTable'),['ชั้นข้อมูล','จำนวน','การใช้งาน'],[
+      ['Reference frame',num(c.raw_reference_channels),'collection / provenance'],
+      ['Reviewed identity groups',num(c.reviewed_identity_channels),'ผ่าน review แล้ว'],
+      ['STRICT_VIRTUAL',num(c.strict_virtual_channels),'Surface default'],
+      ['PROVISIONAL_VIRTUAL',num(c.provisional_virtual_channels),'รอหลักฐาน virtual medium เพิ่ม'],
+      ['HOLD',num(c.hold_channels),'ยังไม่นับ'],
+      ['EXCLUDE_NON_PERSONA',num(c.excluded_non_persona_accounts),'ไม่ให้นับเป็น VTuber']
+    ]);
+    table(el('surfaceNetworkTable'),['ตัวชี้วัด','ค่า'],[
+      ['Nodes',num(network.nodes)],['Edges',num(network.edges)],['Strong edges',num(network.strong_edges)],
+      ['Isolated nodes',num(network.isolated_nodes)],['Connected components',num(network.connected_components)],
+      ['Largest component',num(network.largest_component_nodes)],['Average degree',num(network.average_degree)],
+      ['Density',pct(network.density)],['Minimum shared viewers',num(network.minimum_shared_viewers)]
+    ]);
+    const events=timeline.event_points_by_year;
+    chart('canvasSurfaceIdentity',events.map(r=>r.year),[
+      s(events,'identity_start','identity start'),s(events,'redebut','redebut'),s(events,'model_change','model change')
+    ]);
+    table(el('surfaceTopDegreeTable'),['ช่อง','Degree','สังกัดใน snapshot'],network.top_degree.map(r=>[r.label,num(r.degree),agency(r.agency)]));
+    el('surfaceAudienceStatus').textContent=surface.audience.note;
+    el('surfaceAuditNote').textContent='Strict contamination scan: '+num(surface.audit.strict_channels_flagged_for_spot_check)+' ช่องถูก flag เพื่อ spot-check จากคำประเภท project/official/studio ฯลฯ แต่ไม่มี auto-exclusion เพิ่ม; '+num(surface.audit.provisional_review_queue)+' provisional channels ถูกแยกเป็นคิวตรวจต่อ.';
+  }
   function overview(){
     const rows=data.ecosystem.yearly_metrics, selected=rows.find(r=>r.year===Number(el('summaryYear').value)) || rows.at(-1);
     el('periodNote').textContent=selected.is_ytd ? 'ปี '+selected.year+' ยังไม่ครบปี · ข้อมูลถึง '+date((data.meta.caveats?.partial_window_2026_ytd?.match(/to (\d{4}-\d{2}-\d{2})/)?.[1] || data.meta.generated_at))+' · ใช้บรรยายช่วงนี้ ห้ามเทียบกับปีเต็มเพื่อสรุปการเติบโต' : 'สรุปปี '+selected.year+' · จำนวนที่พบในชุดข้อมูล ไม่ใช่จำนวนทั้งหมดของวงการ';
@@ -98,11 +135,11 @@
     const names={BASELINE_UNIFIED_TH1:'ชุดหลัก',COMMENT_ONLY_TH1:'เฉพาะความคิดเห็น',DROPOUT_10PCT_MEAN:'สุ่มตัดข้อมูล 10% (ค่าเฉลี่ย)',LOW_COVERAGE_EXCLUDED:'ตัดช่องหลักฐานน้อย',THRESHOLD_TH3:'ผู้ร่วมอย่างน้อย 3 คน',THRESHOLD_TH5:'ผู้ร่วมอย่างน้อย 5 คน'};
     chart('canvasSensitivity',data.meta.years.map(y=>y===data.meta.partial_year?y+'*':y),Object.entries(names).map(([key,name])=>({name,values:data.meta.years.map(y=>data.quality.bias_sensitivity.find(r=>r.year===y&&r.perturbation_scenario===key)?.modularity)})));
   }
-  const renderers={overview,ecosystem,lineage,cohorts,centrality,quality};
+  const renderers={surface:surfaceView,overview,ecosystem,lineage,cohorts,centrality,quality};
   function render(){renderers[document.querySelector('.tab-btn.active').dataset.tab]();}
   function activate(name){document.querySelectorAll('.tab-btn').forEach(button=>{const active=button.dataset.tab===name;button.classList.toggle('active',active);button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;el('panel-'+button.dataset.tab).classList.toggle('active',active);});render();}
   function date(value){return new Intl.DateTimeFormat('th-TH-u-ca-gregory',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Bangkok'}).format(new Date(value));}
-  async function init(){try{const response=await fetch('research/dashboard_data.json');if(!response.ok)throw new Error('load');data=await response.json();
+  async function init(){try{const [response,surfaceResponse]=await Promise.all([fetch('research/dashboard_data.json'),fetch('research/surface_analytics_v1.json')]);if(!response.ok||!surfaceResponse.ok)throw new Error('load');data=await response.json();surface=await surfaceResponse.json();
     el('genTimestamp').textContent='ข้อมูล ณ '+date(data.meta.generated_at);el('footerGen').textContent='จัดทำเมื่อ '+date(data.meta.generated_at);
     el('summaryYear').innerHTML=data.meta.years.map(y=>'<option value="'+y+'">'+year(y)+'</option>').join('');el('summaryYear').value=data.meta.years.at(-1);
     const scopeYears=el('scopeYears');if(scopeYears)scopeYears.textContent=data.meta.years[0]+'–'+data.meta.years.at(-1);
@@ -111,7 +148,7 @@
     const buttons=[...document.querySelectorAll('.tab-btn')];buttons.forEach((button,index)=>{button.id='tab-'+button.dataset.tab;button.setAttribute('role','tab');button.setAttribute('aria-controls','panel-'+button.dataset.tab);const panel=el('panel-'+button.dataset.tab);panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',button.id);button.addEventListener('click',()=>activate(button.dataset.tab));button.addEventListener('keydown',event=>{const next=event.key==='ArrowRight'?(index+1)%buttons.length:event.key==='ArrowLeft'?(index+buttons.length-1)%buttons.length:event.key==='Home'?0:event.key==='End'?buttons.length-1:null;if(next!==null){event.preventDefault();buttons[next].focus();buttons[next].click();}});});
     document.querySelectorAll('[data-open-tab]').forEach(button=>button.addEventListener('click',()=>{activate(button.dataset.openTab);el('tab-'+button.dataset.openTab).focus();}));
     el('summaryYear').addEventListener('change',overview);el('bridgeSearch').addEventListener('input',centrality);
-    await document.fonts.ready;el('loadStatus').hidden=true;activate('overview');let timer;window.addEventListener('resize',()=>{clearTimeout(timer);timer=setTimeout(render,120);});
+    await document.fonts.ready;el('loadStatus').hidden=true;activate('surface');let timer;window.addEventListener('resize',()=>{clearTimeout(timer);timer=setTimeout(render,120);});
   }catch(error){el('loadStatus').textContent='โหลดข้อมูลไม่สำเร็จ โปรดลองโหลดหน้านี้ใหม่';el('loadStatus').setAttribute('role','alert');}}
   init();
 })();
