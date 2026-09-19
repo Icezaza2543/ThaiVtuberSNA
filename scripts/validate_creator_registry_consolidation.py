@@ -179,7 +179,7 @@ def branch_review() -> dict:
         for path in changed
         if path.startswith("outputs/task6")
         or path.startswith("outputs/task7")
-        or path in LEGACY_RUNTIME_PATHS
+        or (path in LEGACY_RUNTIME_PATHS and (ROOT / path).exists())
     )
     if forbidden:
         raise ValueError(f"final branch still carries retired/scratch paths: {forbidden[:10]}")
