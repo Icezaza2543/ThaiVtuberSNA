@@ -158,11 +158,15 @@ def test_rejects_duplicate_human_decision_object_keys(review_inputs, tmp_path):
     [
         ("url", "C:\\Users\\example\\private.json"),
         ("url", "https://localhost/private"),
+        ("url", "https://localhost./private"),
         ("url", "https://127.0.0.1/private"),
+        ("url", "https://127.0.0.1./private"),
         ("url", "https://[::1]/private"),
         ("url", "https://169.254.10.20/private"),
         ("reason", "token=super-secret-value"),
         ("reason", "see C:\\Users\\alice\\token.txt"),
+        ("reason", "see /root/.ssh/id_ed25519"),
+        ("reason", "read /usr/local/private.txt and /proc/self/environ"),
         ("reason", "the password is hunter2"),
         ("evidence_urls", ["file:///tmp/private-cache.json"]),
     ],
@@ -193,6 +197,18 @@ def test_keeps_benign_english_and_thai_credential_discussion(review_inputs):
     row = next(row for row in payload["rows"] if row["discovery_id"] == "automated-vtuber")
     row["reason"] = "The official profile discusses password safety; หน้าโปรไฟล์ทางการอธิบายความปลอดภัยของรหัสผ่าน"
     row["evidence_urls"] = ["https://public.example.org/evidence"]
+    write_json(screening, payload)
+
+    bundle = package_review_evidence(screening, human)
+    published = next(row for row in bundle["rows"] if row["discovery_id"] == "automated-vtuber")
+    assert published["reason"] == row["reason"]
+
+
+def test_keeps_public_url_path_in_evidence_summary(review_inputs):
+    screening, human = review_inputs
+    payload = json.loads(screening.read_text(encoding="utf-8"))
+    row = next(row for row in payload["rows"] if row["discovery_id"] == "automated-vtuber")
+    row["reason"] = "Official evidence: https://public.example.org/root/profile"
     write_json(screening, payload)
 
     bundle = package_review_evidence(screening, human)

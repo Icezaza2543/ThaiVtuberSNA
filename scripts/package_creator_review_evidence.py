@@ -57,7 +57,9 @@ PRODUCTION_COUNTS = {
     "vtuber": 393,
 }
 _LOCAL_PATH = re.compile(r"(?:\b[A-Za-z]:[\\/]|\\\\|\bfile:)", re.IGNORECASE)
-_UNIX_PATH_IN_TEXT = re.compile(r"(?:^|[\s'\"(])/(?:home|tmp|var|etc|Users|private|opt|mnt|srv)(?:/|\b)")
+_UNIX_PATH_IN_TEXT = re.compile(
+    r"(?<![A-Za-z0-9._:/\-\u0E00-\u0E7F])/(?!/)[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)+"
+)
 _SECRET = re.compile(
     r"(?:api[_ -]?key|token|secret|password|credential|authorization)\s*(?:[:=]|\b(?:is|was|equals)\b)\s*\S+|\bbearer\s+",
     re.IGNORECASE,
@@ -92,7 +94,7 @@ def _validate_safe_text(value: Any, field: str, discovery_id: str) -> str:
 def _validate_public_url(value: Any, field: str, discovery_id: str) -> str:
     text = _validate_safe_text(value, field, discovery_id)
     parsed = urlparse(text)
-    hostname = parsed.hostname
+    hostname = parsed.hostname.rstrip(".") if parsed.hostname else None
     if (
         parsed.scheme not in {"http", "https"}
         or not parsed.netloc
