@@ -2,13 +2,12 @@
 Thai VTuber Audience Network (SNA)
 Web Dataset Builder
 
-Builds web/data.json from data/thai_vtuber_registry.csv:
-1. Includes ALL 187 agency VTubers across all 23 agencies for complete agency swarms.
+Builds web/data.json from the canonical CreatorCatalog:
+1. Includes canonical affiliated VTuber channels for complete agency swarms.
 2. Selects top and diverse Independent VTubers across all tiers (Tier S, A, B, C, D).
 3. Generates realistic audience overlap edges and SNA centrality metrics.
 4. Outputs web/data.json and embeds updated data in web/app.js.
 """
-import csv
 import json
 import logging
 import math
@@ -19,7 +18,8 @@ from pathlib import Path
 from typing import List, Dict, Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from config.settings import DATA_DIR, BASE_DIR
+from config.settings import DATA_DIR, BASE_DIR, CREATOR_REGISTRY_PATH
+from core.creator_catalog import CreatorCatalog
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("BuildWebData")
@@ -51,11 +51,10 @@ AGENCY_CONFIG = {
 
 
 def run_build():
-    reg_csv = DATA_DIR / "thai_vtuber_registry.csv"
-    with open(reg_csv, "r", encoding="utf-8") as f:
-        all_channels = list(csv.DictReader(f))
+    creator_catalog = CreatorCatalog.from_path(CREATOR_REGISTRY_PATH)
+    all_channels = list(creator_catalog.youtube_rows())
 
-    logger.info(f"Loaded {len(all_channels)} channels from registry.")
+    logger.info(f"Loaded {len(all_channels)} canonical YouTube channels.")
 
     # 1. Separate into Affiliated and Independent
     affiliated = [c for c in all_channels if c.get("agency") != "Independent"]
@@ -215,7 +214,8 @@ def run_build():
             "total_vtubers": len(nodes),
             "total_connections": len(edges),
             "agencies_count": len(agency_groups),
-            "updated_at": "2026-09-06"
+            "updated_at": "2026-09-06",
+            "creator_registry_sha256": creator_catalog.source_fingerprint()
         },
         "agencies": agencies_meta,
         "nodes": nodes,
