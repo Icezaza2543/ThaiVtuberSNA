@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ThaiVtuberSNA · Visual Identity Review</title>
+  <style>
+    :root{
+      --bg:#090c14;--panel:#111625;--panel2:#171d2f;--line:#29324a;--text:#f5f7ff;
+      --muted:#9aa6c3;--accent:#8b5cf6;--cyan:#22d3ee;--good:#34d399;--bad:#fb7185;--warn:#fbbf24;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(circle at 20% 0,#1a1640 0,#090c14 40%);color:var(--text);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    .shell{max-width:1500px;margin:auto;padding:24px}
+    .top{display:flex;gap:20px;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+    h1{font-size:25px;margin:0 0 4px}.sub{color:var(--muted);font-size:13px}
+    .rule{border:1px solid #5b4ab8;background:#171331;padding:12px 14px;border-radius:14px;margin:14px 0 18px}
+    .rule b{color:#d8ccff}
+    .toolbar,.stats,.nav,.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .btn{border:1px solid var(--line);background:#171d2f;color:var(--text);border-radius:10px;padding:9px 12px}
+    .btn:hover{border-color:#5d6b92}.primary{background:linear-gradient(135deg,#6d5dfc,#8b5cf6);border-color:transparent}
+    .good{background:#123b30;border-color:#235e4d}.bad{background:#46202b;border-color:#713043}.warn{background:#493919;border-color:#745a1e}
+    .ghost{background:transparent}
+    .danger{color:#ffb4bf}
+    .status{padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:#111625;color:var(--muted)}
+    .status strong{color:var(--text)}
+    .loader{margin-top:18px;border:1px dashed #465271;background:#0e1320;border-radius:16px;padding:28px;text-align:center}
+    .loader input{display:none}
+    .hint{font-size:12px;color:var(--muted)}
+    .workspace{display:none}
+    .controls{display:grid;grid-template-columns:180px 1fr 1fr auto;gap:10px;margin:16px 0}
+    input,select,textarea{width:100%;background:#0d1220;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+    .compare{display:grid;grid-template-columns:minmax(0,1fr) 390px minmax(0,1fr);gap:14px;align-items:stretch}
+    .card{background:rgba(17,22,37,.94);border:1px solid var(--line);border-radius:18px;overflow:hidden;min-width:0}
+    .cardHead{padding:13px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}
+    .cardHead .kicker{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+    .media{height:360px;background:#0b0f1a;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);position:relative}
+    .media img{width:100%;height:100%;object-fit:contain;background:#0b0f1a}
+    .placeholder{padding:24px;text-align:center;color:var(--muted)}
+    .body{padding:16px}.name{font-size:22px;font-weight:750;margin-bottom:4px}.id{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#7f8aa7;word-break:break-all}
+    .meta{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 8px;color:#bdc7dc}
+    .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.links a{color:#c8e7ff;text-decoration:none;border:1px solid var(--line);padding:6px 8px;border-radius:8px;font-size:12px}
+    .links a:hover{border-color:var(--cyan)}
+    .middle{display:flex;flex-direction:column;gap:12px}
+    .candidateBox{background:#111625;border:1px solid var(--line);border-radius:18px;padding:14px}
+    .candidateList{max-height:360px;overflow:auto;display:flex;flex-direction:column;gap:7px;margin-top:10px}
+    .candidate{border:1px solid var(--line);background:#0d1220;border-radius:10px;padding:9px;text-align:left;color:var(--text)}
+    .candidate.active{border-color:#8b5cf6;background:#181432}.candidate small{display:block;color:var(--muted)}
+    .candidate .score{float:right;color:#9ce7f4;font-size:11px}
+    .decision{background:#111625;border:1px solid var(--line);border-radius:18px;padding:14px}
+    .decision h3,.candidateBox h3{margin:0 0 8px;font-size:14px}
+    .actions{display:grid;grid-template-columns:1fr;gap:8px}
+    .actions .btn{padding:12px;text-align:left}
+    textarea{min-height:80px;resize:vertical;margin-top:9px}
+    .decisionBadge{margin-top:9px;font-size:12px;color:var(--muted)}
+    .footerNav{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:14px}
+    .empty{padding:40px;text-align:center;color:var(--muted)}
+    .debug{margin-top:12px;font-size:12px;color:var(--muted)}
+    .dataset{margin-top:14px;padding:12px;background:#0d1220;border:1px solid var(--line);border-radius:12px;text-align:left}
+    .dataset strong{color:#fff}
+    @media(max-width:1050px){.compare{grid-template-columns:1fr}.middle{order:3}.controls{grid-template-columns:1fr 1fr}.media{height:300px}}
+    @media(max-width:650px){.shell{padding:14px}.top{display:block}.controls{grid-template-columns:1fr}.media{height:260px}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <div class="top">
+    <div>
+      <h1>Visual Identity Review</h1>
+      <div class="sub">ThaiVtuberSNA · temporary entity-resolution frontend</div>
+    </div>
+    <div class="toolbar">
+      <button class="btn" id="loadBtn">โหลด master_creators.json</button>
+      <button class="btn" id="importBtn">Import review</button>
+      <button class="btn primary" id="exportBtn" disabled>Export review</button>
+      <button class="btn ghost danger" id="clearBtn" disabled>ล้างผล local</button>
+    </div>
+  </div>
+
+  <div class="rule">
+    <b>กฎการตัดสิน:</b> 1 persona / 1 ร่าง = 1 VTuber entity · ถ้า grad / reincarnate / debut ร่างใหม่ ให้เป็น <b>คนละ entity เสมอ</b> แม้ผู้ให้เสียงจะเป็นคนเดิม
+    · ชื่อและ link ใช้แค่เสนอ candidate; <b>ห้าม auto-merge</b>
+  </div>
+
+  <div class="stats" id="stats">
+    <span class="status">ยังไม่ได้โหลดข้อมูล</span>
+  </div>
+
+  <div class="loader" id="loader">
+    <div style="font-size:18px;font-weight:700;margin-bottom:6px">โหลดข้อมูลสำหรับ review</div>
+    <div class="hint">หน้านี้จะลองอ่าน <code>data/master_creators.json</code> อัตโนมัติ ถ้า deployment ไม่มีไฟล์ ให้เลือกไฟล์จากเครื่องได้เลย ข้อมูลไม่ถูก upload ไป server</div>
+    <div style="margin-top:16px"><button class="btn primary" id="pickBtn">เลือกไฟล์ JSON</button></div>
+    <input type="file" id="masterFile" accept=".json,application/json" />
+    <div class="dataset" id="datasetInfo" style="display:none"></div>
+  </div>
+
+  <div class="workspace" id="workspace">
+    <div class="controls">
+      <select id="filter">
+        <option value="unreviewed">ยังไม่ review</option>
+        <option value="all">ทั้งหมด</option>
+        <option value="same_persona">ร่างเดียวกัน</option>
+        <option value="new_persona">คนละร่าง / new persona</option>
+        <option value="uncertain">ไม่แน่ใจ</option>
+      </select>
+      <input id="queueSearch" placeholder="ค้นหา discovery..." />
+      <input id="candidateSearch" placeholder="ค้นหา canonical persona..." />
+      <button class="btn" id="jumpBtn">ไปตัวแรกที่ยังไม่ทำ</button>
+    </div>
+
+    <div id="reviewPane">
+      <div class="compare">
+        <section class="card">
+          <div class="cardHead"><div><div class="kicker">Discovery lead</div><strong>บัญชีที่ต้องตัดสิน</strong></div><span id="queuePos" class="hint"></span></div>
+          <div class="media" id="leftMedia"></div>
+          <div class="body">
+            <div class="name" id="leftName"></div>
+            <div class="id" id="leftId"></div>
+            <div class="meta" id="leftMeta"></div>
+            <div class="links" id="leftLinks"></div>
+          </div>
+        </section>
+
+        <aside class="middle">
+          <div class="candidateBox">
+            <h3>Candidate เดิม <span class="hint">(text ranking only)</span></h3>
+            <div class="hint">ใช้ชื่อ/handle แค่ช่วยหา สิ่งที่ตัดสินจริงคือ persona/character identity</div>
+            <div class="candidateList" id="candidateList"></div>
+          </div>
+          <div class="decision">
+            <h3>ผล review</h3>
+            <div class="actions">
+              <button class="btn good" data-decision="same_persona"><b>1 · ร่างเดียวกัน</b><br><span class="hint">บัญชีนี้เป็น VTuber persona เดิม</span></button>
+              <button class="btn bad" data-decision="new_persona"><b>2 · คนละร่าง / New persona</b><br><span class="hint">นับเป็น VTuber คนละ entity</span></button>
+              <button class="btn warn" data-decision="uncertain"><b>3 · ยังไม่แน่ใจ</b><br><span class="hint">เก็บไว้ตรวจต่อ ไม่ merge</span></button>
+            </div>
+            <textarea id="notes" placeholder="หมายเหตุ เช่น ภาพวาดคนละร่าง / outfit เดียวกัน / ต้องเช็ก model เพิ่ม"></textarea>
+            <div class="decisionBadge" id="decisionBadge">ยังไม่ได้ review</div>
+          </div>
+        </aside>
+
+        <section class="card">
+          <div class="cardHead"><div><div class="kicker">Canonical candidate</div><strong>persona เดิมที่เลือกเทียบ</strong></div><span id="candidateScore" class="hint"></span></div>
+          <div class="media" id="rightMedia"></div>
+          <div class="body">
+            <div class="name" id="rightName"></div>
+            <div class="id" id="rightId"></div>
+            <div class="meta" id="rightMeta"></div>
+            <div class="links" id="rightLinks"></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="footerNav">
+        <div class="nav">
+          <button class="btn" id="prevBtn">← ก่อนหน้า</button>
+          <button class="btn" id="nextBtn">ถัดไป →</button>
+        </div>
+        <div class="hint">Keyboard: 1 = same persona · 2 = new persona · 3 = uncertain · ←/→ = navigate</div>
+      </div>
+    </div>
+    <div class="empty" id="empty" style="display:none">ไม่พบรายการตาม filter นี้</div>
+  </div>
+</div>
+
+<input type="file" id="reviewFile" accept=".json,application/json" style="display:none" />
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(s){ return document.querySelector(s); };
+  var state = {
+    master:null, rawText:'', fingerprint:'', sourceName:'', discoveries:[], canonicals:[], accounts:[],
+    decisions:{}, filtered:[], currentIndex:0, selectedCandidateId:null, ranked:[], detectedArrays:[]
+  };
+  var STORAGE_PREFIX = 'thaivtubersna.visual-review.v1.';
+
+  function scalar(v){ return v !== null && (typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean'); }
+  function idOf(o){
+    if(!o || typeof o !== 'object') return '';
+    var keys=['persona_id','canonical_persona_id','creator_id','vtuber_id','account_id','channel_id','id','uid','uuid'];
+    for(var i=0;i<keys.length;i++){ if(scalar(o[keys[i]]) && String(o[keys[i]]).trim()) return String(o[keys[i]]); }
+    return '';
+  }
+  function displayName(o){
+    if(!o || typeof o !== 'object') return '(ไม่มีชื่อ)';
+    var keys=['display_name','displayName','name','label','creator_name','persona_name','vtuber_name','channel_name','title','handle','username'];
+    for(var i=0;i<keys.length;i++){ if(typeof o[keys[i]]==='string' && o[keys[i]].trim()) return o[keys[i]].trim(); }
+    return idOf(o) || '(ไม่มีชื่อ)';
+  }
+  function normalizeText(s){
+    return String(s||'').normalize('NFKC').toLowerCase().replace(/^@/,'').replace(/[^\p{L}\p{N}]+/gu,' ').trim().replace(/\s+/g,' ');
+  }
+  function flattenText(o, depth){
+    depth = depth || 0;
+    if(depth>3 || o===null || o===undefined) return '';
+    if(scalar(o)) return String(o);
+    if(Array.isArray(o)) return o.slice(0,20).map(function(x){return flattenText(x,depth+1);}).join(' ');
+    if(typeof o==='object'){
+      var parts=[];
+      Object.keys(o).slice(0,80).forEach(function(k){
+        if(/raw|html|description|bio|note|source_text/i.test(k) && depth>0) return;
+        parts.push(flattenText(o[k],depth+1));
+      });
+      return parts.join(' ');
+    }
+    return '';
+  }
+  function identityTerms(o){
+    var keys=['display_name','displayName','name','label','creator_name','persona_name','vtuber_name','channel_name','handle','username','screen_name'];
+    var out=[];
+    keys.forEach(function(k){ if(typeof o[k]==='string') out.push(o[k]); });
+    if(o.__accounts) o.__accounts.forEach(function(a){ keys.forEach(function(k){ if(typeof a[k]==='string') out.push(a[k]); }); });
+    if(!out.length) out.push(displayName(o));
+    return out.map(normalizeText).filter(Boolean);
+  }
+  function trigrams(s){
+    s='  '+normalizeText(s)+'  ';
+    var set={}; for(var i=0;i<s.length-2;i++) set[s.slice(i,i+3)]=1; return set;
+  }
+  function sim(a,b){
+    a=normalizeText(a); b=normalizeText(b); if(!a||!b) return 0;
+    if(a===b) return 1;
+    if(a.length>3 && (a.indexOf(b)>=0 || b.indexOf(a)>=0)) return .88;
+    var A=trigrams(a),B=trigrams(b),inter=0,uni={},k;
+    for(k in A){uni[k]=1;if(B[k])inter++} for(k in B)uni[k]=1;
+    var n=Object.keys(uni).length; return n?inter/n:0;
+  }
+  function scorePair(a,b){
+    var A=identityTerms(a), B=identityTerms(b), best=0;
+    A.forEach(function(x){B.forEach(function(y){best=Math.max(best,sim(x,y));});});
+    var aa=String(a.agency||a.affiliation||''), bb=String(b.agency||b.affiliation||'');
+    if(aa && bb && normalizeText(aa)===normalizeText(bb)) best=Math.min(1,best+.04);
+    return best;
+  }
+  function collectArrays(o,path,depth,out){
+    path=path||'$'; depth=depth||0; out=out||[];
+    if(depth>4 || !o || typeof o!=='object') return out;
+    if(Array.isArray(o)){
+      if(o.length && typeof o[0]==='object') out.push({path:path,count:o.length,items:o});
+      return out;
+    }
+    Object.keys(o).forEach(function(k){
+      var v=o[k];
+      if(Array.isArray(v) && v.length && typeof v[0]==='object') out.push({path:path+'.'+k,count:v.length,items:v});
+      else if(v && typeof v==='object' && depth<4) collectArrays(v,path+'.'+k,depth+1,out);
+    });
+    return out;
+  }
+  function tagText(o){
+    var keys=['source','origin','record_source','bucket','kind','type','match_status','resolution','discovery_status','dataset','provenance'];
+    var p=[]; keys.forEach(function(k){ if(o[k]!==undefined) p.push(flattenText(o[k],0)); });
+    return normalizeText(p.join(' '));
+  }
+  function isNewRecord(o){
+    var t=tagText(o);
+    if(/(^| )new( |$)/.test(t) || /discovery only|discovery_only/.test(t)) return true;
+    if(o.discovery_only===true) return true;
+    if(o.exact_match===false && (o.discovery_id || o.discovery_source || o.discovered_at)) return true;
+    return false;
+  }
+  function isOldRecord(o){
+    var t=tagText(o);
+    return /(^| )old( |$)/.test(t) || /existing|registry/.test(t) && !isNewRecord(o);
+  }
+  function pickArray(arrays, kind){
+    var best=null,bestScore=-1e9;
+    arrays.forEach(function(a){
+      var p=a.path.toLowerCase(),s=0;
+      if(kind==='discovery'){
+        if(/new|discovery|unresolved|lead|candidate/.test(p)) s+=25;
+        if(a.count>=700 && a.count<=1100) s+=15-Math.abs(a.count-884)/100;
+      }else if(kind==='canonical'){
+        if(/canonical.*persona|persona.*canonical|personas/.test(p)) s+=30;
+        if(/account/.test(p)) s-=10;
+        if(a.count>=700 && a.count<=1100) s+=15-Math.abs(a.count-895)/100;
+      }else if(kind==='accounts'){
+        if(/canonical.*account|accounts/.test(p)) s+=25;
+        if(a.count>=3000) s+=10;
+      }
+      if(s>bestScore){bestScore=s;best=a;}
+    });
+    return bestScore>0?best:null;
+  }
+  function adaptMaster(master){
+    var arrays=collectArrays(master);
+    state.detectedArrays=arrays;
+    var records=null;
+    if(Array.isArray(master)) records=master;
+    else {
+      var keys=['records','master_creators','creators','entries'];
+      for(var i=0;i<keys.length;i++) if(Array.isArray(master[keys[i]])){records=master[keys[i]];break;}
+    }
+    var discoveries=[];
+    var canonicals=[];
+    if(records){
+      discoveries=records.filter(isNewRecord);
+      var old=records.filter(isOldRecord);
+      if(old.length) canonicals=old;
+    }
+    if(!discoveries.length){
+      var da=pickArray(arrays,'discovery'); if(da) discoveries=da.items;
+    }
+    var ca=pickArray(arrays,'canonical');
+    if(ca && (!canonicals.length || /persona/.test(ca.path.toLowerCase()))) canonicals=ca.items;
+    var aa=pickArray(arrays,'accounts');
+    var accounts=aa?aa.items:[];
+    if(!canonicals.length && records) canonicals=records.filter(function(x){return !isNewRecord(x);});
+    var amap={};
+    accounts.forEach(function(a){
+      var pid=String(a.persona_id||a.canonical_persona_id||a.creator_id||a.owner_persona_id||'');
+      if(pid){ if(!amap[pid]) amap[pid]=[]; amap[pid].push(a); }
+    });
+    canonicals=canonicals.map(function(p){
+      var x=Object.assign({},p), pid=idOf(p); x.__accounts=amap[pid]||[]; return x;
+    });
+    return {discoveries:discoveries,canonicals:canonicals,accounts:accounts,arrays:arrays};
+  }
+  function imageOf(o){
+    var found=[];
+    function walk(v,k,depth){
+      if(depth>4 || v===null || v===undefined) return;
+      if(typeof v==='string' && /^https?:\/\//i.test(v) && /(avatar|image|img|thumbnail|thumb|photo|icon|portrait|visual|art|picture)/i.test(k||'')) found.push(v);
+      else if(Array.isArray(v)) v.slice(0,10).forEach(function(x){walk(x,k,depth+1);});
+      else if(typeof v==='object') Object.keys(v).slice(0,80).forEach(function(key){walk(v[key],key,depth+1);});
+    }
+    walk(o,'',0); return found[0]||'';
+  }
+  function collectLinks(o){
+    var out=[];
+    function add(u,label){ if(!u||!/^https?:\/\//i.test(u)) return; if(out.some(function(x){return x.url===u;})) return; out.push({url:u,label:label||hostLabel(u)}); }
+    function hostLabel(u){ try{return new URL(u).hostname.replace(/^www\./,'');}catch(e){return 'link';} }
+    function walk(v,k,depth){
+      if(depth>4||v===null||v===undefined||out.length>=12)return;
+      if(typeof v==='string'){
+        var m=v.match(/https?:\/\/[^\s"'<>]+/g); if(m) m.forEach(function(u){add(u,k);});
+      }else if(Array.isArray(v)) v.slice(0,20).forEach(function(x){walk(x,k,depth+1);});
+      else if(typeof v==='object') Object.keys(v).slice(0,100).forEach(function(key){walk(v[key],key,depth+1);});
+    }
+    walk(o,'',0);
+    if(o.__accounts) o.__accounts.forEach(function(a){walk(a,'account',1);});
+    if(!out.length){
+      var platform=normalizeText(o.platform||o.platform_name||''), handle=String(o.handle||o.username||'').replace(/^@/,'');
+      if(handle){
+        if(platform.indexOf('youtube')>=0) add('https://www.youtube.com/@'+handle,'YouTube');
+        if(platform==='x' || platform.indexOf('twitter')>=0) add('https://x.com/'+handle,'X');
+        if(platform.indexOf('twitch')>=0) add('https://www.twitch.tv/'+handle,'Twitch');
+        if(platform.indexOf('tiktok')>=0) add('https://www.tiktok.com/@'+handle,'TikTok');
+      }
+      var cid=String(o.channel_id||''); if(/^UC[\w-]+$/.test(cid)) add('https://www.youtube.com/channel/'+cid,'YouTube');
+    }
+    return out.slice(0,8);
+  }
+  function metaPairs(o){
+    var wanted=['platform','handle','username','agency','affiliation','status','source','origin','record_source','channel_id'];
+    var out=[];
+    wanted.forEach(function(k){if(scalar(o[k]) && String(o[k]).trim()) out.push([k,String(o[k])]);});
+    return out.slice(0,8);
+  }
+  function hashString(s){
+    var h=2166136261; for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h+=(h<<1)+(h<<4)+(h<<7)+(h<<8)+(h<<24);} return ('00000000'+(h>>>0).toString(16)).slice(-8);
+  }
+  function storageKey(){return STORAGE_PREFIX+state.fingerprint;}
+  function loadLocal(){
+    try{ var v=localStorage.getItem(storageKey()); state.decisions=v?JSON.parse(v):{}; }catch(e){state.decisions={};}
+  }
+  function saveLocal(){ try{localStorage.setItem(storageKey(),JSON.stringify(state.decisions));}catch(e){} }
+
+  function entityKey(o,idx,prefix){return idOf(o)||prefix+'_'+idx+'_'+hashString(displayName(o)+flattenText(o,0).slice(0,150));}
+  function initData(master,text,name){
+    state.master=master; state.rawText=text; state.sourceName=name||'master_creators.json'; state.fingerprint=hashString(text);
+    var a=adaptMaster(master); state.discoveries=a.discoveries; state.canonicals=a.canonicals; state.accounts=a.accounts;
+    state.discoveries=state.discoveries.map(function(x,i){var y=Object.assign({},x);y.__review_id=entityKey(x,i,'disc');return y;});
+    state.canonicals=state.canonicals.map(function(x,i){var y=Object.assign({},x);y.__review_id=entityKey(x,i,'persona');return y;});
+    loadLocal(); state.currentIndex=0; state.selectedCandidateId=null;
+    $('#loader').style.display='none'; $('#workspace').style.display='block'; $('#exportBtn').disabled=false; $('#clearBtn').disabled=false;
+    updateFilter(); renderStats(); showDatasetInfo(a);
+  }
+  function showDatasetInfo(a){
+    var el=$('#datasetInfo'); el.style.display='block';
+    el.innerHTML='<strong>Detected:</strong> discovery '+state.discoveries.length.toLocaleString()+' · canonical '+state.canonicals.length.toLocaleString()+' · accounts '+state.accounts.length.toLocaleString()+
+      '<br><span class="hint">ถ้าจำนวน discovery ไม่ใกล้ 884 ให้หยุดก่อน export เพราะ schema ที่ auto-detect อาจเลือก array ผิด</span>';
+  }
+  function renderStats(){
+    var c={same_persona:0,new_persona:0,uncertain:0};
+    Object.keys(state.decisions).forEach(function(k){var d=state.decisions[k]; if(c[d.decision]!==undefined)c[d.decision]++;});
+    var reviewed=c.same_persona+c.new_persona+c.uncertain;
+    $('#stats').innerHTML=
+      '<span class="status"><strong>'+state.discoveries.length.toLocaleString()+'</strong> discovery</span>'+
+      '<span class="status"><strong>'+reviewed.toLocaleString()+'</strong> reviewed</span>'+
+      '<span class="status"><strong>'+c.same_persona.toLocaleString()+'</strong> same persona</span>'+
+      '<span class="status"><strong>'+c.new_persona.toLocaleString()+'</strong> new persona</span>'+
+      '<span class="status"><strong>'+c.uncertain.toLocaleString()+'</strong> uncertain</span>'+
+      '<span class="status"><strong>'+(state.discoveries.length-reviewed).toLocaleString()+'</strong> remaining</span>';
+  }
+  function filterItems(){
+    var mode=$('#filter').value, q=normalizeText($('#queueSearch').value);
+    return state.discoveries.filter(function(d){
+      var dec=state.decisions[d.__review_id];
+      if(mode==='unreviewed' && dec) return false;
+      if(mode!=='all' && mode!=='unreviewed' && (!dec || dec.decision!==mode)) return false;
+      if(q && normalizeText(flattenText(d,0)).indexOf(q)<0) return false;
+      return true;
+    });
+  }
+  function updateFilter(){
+    var current=state.filtered[state.currentIndex];
+    state.filtered=filterItems();
+    if(current){
+      var ni=state.filtered.findIndex(function(x){return x.__review_id===current.__review_id;}); state.currentIndex=ni>=0?ni:0;
+    }else state.currentIndex=0;
+    renderCurrent();
+  }
+  function rankCandidates(d,q){
+    q=normalizeText(q||'');
+    var arr=state.canonicals.map(function(c){return {c:c,score:scorePair(d,c)};});
+    if(q) arr=arr.filter(function(x){return normalizeText(flattenText(x.c,0)).indexOf(q)>=0;});
+    arr.sort(function(a,b){return b.score-a.score;});
+    return arr.slice(0, q?50:8);
+  }
+  function renderMedia(el,o){
+    var img=imageOf(o);
+    if(img){
+      el.innerHTML='<img alt="" referrerpolicy="no-referrer" src="'+escapeAttr(img)+'"><div class="placeholder" style="display:none">โหลดภาพไม่ได้</div>';
+      var im=el.querySelector('img'); im.onerror=function(){im.style.display='none';var p=el.querySelector('.placeholder');p.style.display='block';p.innerHTML='ไม่มีภาพที่เปิดได้ใน dataset<br><span class="hint">ใช้ปุ่ม profile ด้านล่างเปิดดู artwork/model</span>';};
+    }else el.innerHTML='<div class="placeholder">ไม่พบ avatar / image URL ใน record<br><span class="hint">เปิด profile ด้านล่างเพื่อเทียบ character design</span></div>';
+  }
+  function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c];});}
+  function escapeAttr(s){return escapeHtml(s);}
+  function renderEntity(prefix,o){
+    $(prefix+'Name').textContent=displayName(o);
+    $(prefix+'Id').textContent=idOf(o)||o.__review_id||'';
+    var meta=metaPairs(o); $(prefix+'Meta').innerHTML=meta.map(function(p){return '<span class="pill">'+escapeHtml(p[0])+': '+escapeHtml(p[1])+'</span>';}).join('');
+    var links=collectLinks(o); $(prefix+'Links').innerHTML=links.length?links.map(function(l){return '<a target="_blank" rel="noopener noreferrer" href="'+escapeAttr(l.url)+'">'+escapeHtml(l.label)+'</a>';}).join(''):'<span class="hint">ไม่มี link ใน record</span>';
+  }
+  function renderCandidates(d){
+    state.ranked=rankCandidates(d,$('#candidateSearch').value);
+    if(!state.selectedCandidateId && state.ranked.length) state.selectedCandidateId=state.ranked[0].c.__review_id;
+    var existing=state.decisions[d.__review_id];
+    if(existing && existing.candidate_persona_id && state.canonicals.some(function(c){return c.__review_id===existing.candidate_persona_id;})) state.selectedCandidateId=existing.candidate_persona_id;
+    $('#candidateList').innerHTML=state.ranked.map(function(x){
+      var active=x.c.__review_id===state.selectedCandidateId?' active':'';
+      return '<button class="candidate'+active+'" data-id="'+escapeAttr(x.c.__review_id)+'"><span class="score">'+Math.round(x.score*100)+'%</span><b>'+escapeHtml(displayName(x.c))+'</b><small>'+escapeHtml(idOf(x.c))+'</small></button>';
+    }).join('') || '<div class="hint">ไม่พบ candidate</div>';
+    Array.prototype.forEach.call(document.querySelectorAll('.candidate'),function(btn){btn.onclick=function(){state.selectedCandidateId=btn.getAttribute('data-id');renderCandidateOnly();renderCandidates(d);};});
+  }
+  function selectedCandidate(){return state.canonicals.find(function(c){return c.__review_id===state.selectedCandidateId;})||null;}
+  function renderCandidateOnly(){
+    var c=selectedCandidate();
+    if(!c){
+      $('#rightMedia').innerHTML='<div class="placeholder">ยังไม่ได้เลือก candidate</div>'; $('#rightName').textContent='—'; $('#rightId').textContent=''; $('#rightMeta').innerHTML=''; $('#rightLinks').innerHTML=''; $('#candidateScore').textContent=''; return;
+    }
+    renderMedia($('#rightMedia'),c); renderEntity('#right',c);
+    var d=state.filtered[state.currentIndex]; var sc=d?scorePair(d,c):0; $('#candidateScore').textContent='text hint '+Math.round(sc*100)+'%';
+  }
+  function renderCurrent(){
+    if(!state.filtered.length){$('#reviewPane').style.display='none';$('#empty').style.display='block';return;}
+    $('#reviewPane').style.display='block';$('#empty').style.display='none';
+    if(state.currentIndex<0)state.currentIndex=0;if(state.currentIndex>=state.filtered.length)state.currentIndex=state.filtered.length-1;
+    var d=state.filtered[state.currentIndex],dec=state.decisions[d.__review_id];
+    state.selectedCandidateId=dec&&dec.candidate_persona_id?dec.candidate_persona_id:null;
+    renderMedia($('#leftMedia'),d); renderEntity('#left',d); $('#queuePos').textContent=(state.currentIndex+1)+' / '+state.filtered.length;
+    renderCandidates(d); renderCandidateOnly();
+    $('#notes').value=dec&&dec.notes?dec.notes:'';
+    var label='ยังไม่ได้ review';
+    if(dec){label=dec.decision==='same_persona'?'✓ ร่างเดียวกัน':dec.decision==='new_persona'?'✓ คนละร่าง / new persona':'? ยังไม่แน่ใจ';}
+    $('#decisionBadge').textContent=label;
+  }
+  function setDecision(type){
+    if(!state.filtered.length)return;
+    var d=state.filtered[state.currentIndex],c=selectedCandidate();
+    if(type==='same_persona' && !c){alert('เลือก canonical persona ก่อน');return;}
+    state.decisions[d.__review_id]={
+      discovery_id:d.__review_id,
+      discovery_native_id:idOf(d)||null,
+      candidate_persona_id:c?c.__review_id:null,
+      candidate_native_id:c?idOf(c)||null:null,
+      decision:type,
+      notes:$('#notes').value||'',
+      reviewed_at:new Date().toISOString()
+    };
+    saveLocal(); renderStats();
+    var mode=$('#filter').value;
+    if(mode==='unreviewed'){ updateFilter(); }
+    else { renderCurrent(); if(state.currentIndex<state.filtered.length-1){state.currentIndex++;renderCurrent();} }
+  }
+  function saveNotes(){
+    if(!state.filtered.length)return;
+    var d=state.filtered[state.currentIndex],dec=state.decisions[d.__review_id]; if(!dec)return;
+    dec.notes=$('#notes').value||''; dec.reviewed_at=new Date().toISOString(); saveLocal();
+  }
+  function exportReview(){
+    var list=Object.keys(state.decisions).map(function(k){return state.decisions[k];});
+    var summary={same_persona:0,new_persona:0,uncertain:0};
+    list.forEach(function(d){if(summary[d.decision]!==undefined)summary[d.decision]++;});
+    var payload={
+      schema_version:1,
+      policy:'one_vtuber_persona_one_entity',
+      policy_note:'Graduation/reincarnation/new character is a different VTuber entity even if the performer is the same.',
+      source:{file:state.sourceName,fingerprint:state.fingerprint,discoveries_detected:state.discoveries.length,canonicals_detected:state.canonicals.length},
+      exported_at:new Date().toISOString(),
+      summary:summary,
+      decisions:list
+    };
+    var blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='visual_identity_review_'+state.fingerprint+'.json';a.click();setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
+  }
+  function importReview(obj){
+    if(!obj || !Array.isArray(obj.decisions)){alert('ไฟล์ review ไม่ถูก format');return;}
+    obj.decisions.forEach(function(d){if(d.discovery_id)state.decisions[d.discovery_id]=d;});
+    saveLocal();renderStats();updateFilter();
+  }
+  function readFile(file,cb){
+    var r=new FileReader();r.onload=function(){try{cb(JSON.parse(r.result),String(r.result),file.name);}catch(e){alert('JSON parse ไม่ผ่าน: '+e.message);}};r.readAsText(file);
+  }
+  async function tryAutoLoad(){
+    try{
+      var res=await fetch('data/master_creators.json',{cache:'no-store'}); if(!res.ok)return;
+      var text=await res.text(); initData(JSON.parse(text),text,'data/master_creators.json');
+    }catch(e){}
+  }
+
+  $('#pickBtn').onclick=function(){$('#masterFile').click();}; $('#loadBtn').onclick=function(){$('#masterFile').click();};
+  $('#masterFile').onchange=function(){if(this.files[0])readFile(this.files[0],initData);};
+  $('#importBtn').onclick=function(){$('#reviewFile').click();};
+  $('#reviewFile').onchange=function(){var f=this.files[0];if(!f)return;readFile(f,function(o){importReview(o);});};
+  $('#exportBtn').onclick=exportReview;
+  $('#clearBtn').onclick=function(){if(confirm('ล้างผล review ที่เก็บใน browser สำหรับ dataset นี้?')){state.decisions={};localStorage.removeItem(storageKey());renderStats();updateFilter();}};
+  $('#filter').onchange=updateFilter; $('#queueSearch').oninput=updateFilter;
+  $('#candidateSearch').oninput=function(){if(state.filtered.length){state.selectedCandidateId=null;renderCandidates(state.filtered[state.currentIndex]);renderCandidateOnly();}};
+  $('#prevBtn').onclick=function(){if(state.currentIndex>0){state.currentIndex--;renderCurrent();}};
+  $('#nextBtn').onclick=function(){if(state.currentIndex<state.filtered.length-1){state.currentIndex++;renderCurrent();}};
+  $('#jumpBtn').onclick=function(){$('#filter').value='unreviewed';updateFilter();};
+  $('#notes').onchange=saveNotes;
+  Array.prototype.forEach.call(document.querySelectorAll('[data-decision]'),function(b){b.onclick=function(){setDecision(b.getAttribute('data-decision'));};});
+  document.addEventListener('keydown',function(e){
+    if(e.target && /input|textarea|select/i.test(e.target.tagName))return;
+    if(e.key==='1')setDecision('same_persona'); if(e.key==='2')setDecision('new_persona'); if(e.key==='3')setDecision('uncertain');
+    if(e.key==='ArrowLeft')$('#prevBtn').click(); if(e.key==='ArrowRight')$('#nextBtn').click();
+  });
+  tryAutoLoad();
+})();
+</script>
+</body>
+</html>
