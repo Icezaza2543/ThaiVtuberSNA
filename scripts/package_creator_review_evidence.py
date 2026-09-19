@@ -5,10 +5,12 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import shutil
 from collections import Counter
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 
 AUTO_MAP = {
@@ -42,13 +44,60 @@ STABLE_FIELDS = (
     "decision_provenance",
     "reviewed_at",
 )
+PRODUCTION_COUNTS = {
+    "exclude_associated_account": 1,
+    "exclude_invalid_account": 2,
+    "exclude_non_persona": 30,
+    "exclude_non_vtuber": 3,
+    "exclude_unrelated": 67,
+    "exclude_virtual_group": 2,
+    "trusted_baseline": 292,
+    "unavailable": 94,
+    "vtuber": 393,
+}
+_LOCAL_PATH = re.compile(r"(?:^[A-Za-z]:[\\/]|^\\\\|^/|\bfile:)", re.IGNORECASE)
+_SECRET = re.compile(
+    r"(?:api[_-]?key|token|secret|password|credential|authorization)\s*[:=]|\bbearer\s+",
+    re.IGNORECASE,
+)
+
+
+def _duplicate_rejecting_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON object key: {key!r}")
+        result[key] = value
+    return result
 
 
 def _load_object(path: Path) -> dict[str, Any]:
-    payload = json.loads(path.read_text(encoding="utf-8"))
+    payload = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_duplicate_rejecting_object)
     if not isinstance(payload, dict):
         raise ValueError(f"{path} must contain a JSON object")
     return payload
+
+
+def _validate_safe_text(value: Any, field: str, discovery_id: str) -> str:
+    if not isinstance(value, str):
+        raise ValueError(f"unsafe {field} for {discovery_id}: expected text")
+    if _LOCAL_PATH.search(value) or _SECRET.search(value):
+        raise ValueError(f"unsafe {field} for {discovery_id}")
+    return value
+
+
+def _validate_public_url(value: Any, field: str, discovery_id: str) -> str:
+    text = _validate_safe_text(value, field, discovery_id)
+    parsed = urlparse(text)
+    if parsed.scheme not in {"http", "https"} or not parsed.netloc or parsed.username or parsed.password:
+        raise ValueError(f"unsafe {field} for {discovery_id}")
+    return text
+
+
+def _validate_evidence_urls(value: Any, discovery_id: str) -> list[str]:
+    if not isinstance(value, list):
+        raise ValueError(f"unsafe evidence_urls for {discovery_id}: expected list")
+    return [_validate_public_url(url, "evidence_urls", discovery_id) for url in value]
 
 
 def _latest_human_decisions(human: dict[str, Any]) -> dict[str, dict[str, Any]]:
@@ -128,11 +177,11 @@ def package_review_evidence(screening_path: Path, human_path: Path) -> dict[str,
             "platform": source.get("platform"),
             "display_name": source.get("name"),
             "original_name": source.get("original_name"),
-            "url": source.get("url"),
+            "url": _validate_public_url(source.get("url"), "url", discovery_id),
             "channel_id": source.get("channel_id"),
             "eligibility": eligibility,
-            "reason": source.get("reason"),
-            "evidence_urls": source.get("evidence_urls", []),
+            "reason": _validate_safe_text(source.get("reason"), "reason", discovery_id),
+            "evidence_urls": _validate_evidence_urls(source.get("evidence_urls", []), discovery_id),
             "decision_provenance": provenance,
             "reviewed_at": reviewed_at,
         }
@@ -147,6 +196,17 @@ def package_review_evidence(screening_path: Path, human_path: Path) -> dict[str,
         "rows": rows,
         "eligibility_counts": counts,
     }
+
+
+def validate_production_counts(bundle: dict[str, Any]) -> None:
+    rows = bundle.get("rows", [])
+    counts = Counter(row.get("eligibility") for row in rows)
+    if len(rows) != 884:
+        raise ValueError(f"expected 884 review rows, found {len(rows)}")
+    if dict(sorted(counts.items())) != PRODUCTION_COUNTS:
+        raise ValueError(
+            f"eligibility distribution does not match production counts: {dict(sorted(counts.items()))!r}"
+        )
 
 
 def _sha256(path: Path) -> str:
@@ -180,8 +240,7 @@ def main() -> None:
     args = parser.parse_args()
 
     bundle = package_review_evidence(args.screening, args.human)
-    if len(bundle["rows"]) != 884:
-        raise ValueError(f"expected 884 review rows, found {len(bundle['rows'])}")
+    validate_production_counts(bundle)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(bundle, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

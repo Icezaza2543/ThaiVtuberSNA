@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from scripts.package_creator_review_evidence import package_review_evidence
+from scripts.package_creator_review_evidence import package_review_evidence, validate_production_counts
 
 
 def write_json(path: Path, payload: dict) -> Path:
@@ -138,3 +138,54 @@ def test_rejects_human_decision_for_non_unresolved_row(review_inputs, tmp_path):
 
     with pytest.raises(ValueError, match="non-UNRESOLVED"):
         package_review_evidence(screening, human)
+
+
+def test_rejects_duplicate_human_decision_object_keys(review_inputs, tmp_path):
+    screening, _ = review_inputs
+    human = tmp_path / "duplicate-human.json"
+    human.write_text(
+        '{"decisions":{"human-vtuber":{"discovery_id":"human-vtuber","decision":"vtuber"},'
+        '"human-vtuber":{"discovery_id":"human-vtuber","decision":"unavailable"}}}',
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="duplicate JSON object key"):
+        package_review_evidence(screening, human)
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("url", "C:\\Users\\example\\private.json"),
+        ("reason", "token=super-secret-value"),
+        ("evidence_urls", ["file:///tmp/private-cache.json"]),
+    ],
+)
+def test_rejects_local_paths_and_secret_values_in_allowed_fields(review_inputs, field, value):
+    screening, human = review_inputs
+    payload = json.loads(screening.read_text(encoding="utf-8"))
+    row = next(row for row in payload["rows"] if row["discovery_id"] == "automated-vtuber")
+    row[field] = value
+    write_json(screening, payload)
+
+    with pytest.raises(ValueError, match="unsafe"):
+        package_review_evidence(screening, human)
+
+
+def test_keeps_valid_public_evidence_urls_and_reason_meaning(review_inputs):
+    screening, human = review_inputs
+    bundle = package_review_evidence(screening, human)
+    row = next(row for row in bundle["rows"] if row["discovery_id"] == "automated-vtuber")
+
+    assert row["reason"] == "automated evidence"
+    assert row["evidence_urls"] == ["https://example.test/automated/about"]
+
+
+def test_rejects_same_size_bundle_with_wrong_production_distribution(review_inputs):
+    screening, human = review_inputs
+    bundle = package_review_evidence(screening, human)
+    bundle["rows"] = (bundle["rows"] * 148)[:884]
+    bundle["rows"][0] = {**bundle["rows"][0], "eligibility": "unavailable"}
+
+    with pytest.raises(ValueError, match="eligibility distribution"):
+        validate_production_counts(bundle)
