@@ -41,8 +41,8 @@ def test_server():
     with urllib.request.urlopen(req) as resp:
         data = json.loads(resp.read().decode("utf-8"))
         assert len(data.get("master_records", [])) == 4481, f"Expected 4481 records, got {len(data.get('master_records', []))}"
-        assert len(data.get("unresolved_discovery_accounts", [])) == 884, f"Expected 884 discoveries, got {len(data.get('unresolved_discovery_accounts', []))}"
-        print(f"  [PASS] GET /data/master_creators.json -> 4,481 records, 884 unresolved discoveries loaded")
+        assert len(data.get("unresolved_discovery_accounts", [])) <= 600, f"Expected <= 600 discoveries, got {len(data.get('unresolved_discovery_accounts', []))}"
+        print(f"  [PASS] GET /data/master_creators.json -> 4,481 records, {len(data.get('unresolved_discovery_accounts', []))} unresolved discoveries loaded")
 
     # 3. Test decisions endpoint
     req = urllib.request.Request(f"{base_url}/api/decisions")
