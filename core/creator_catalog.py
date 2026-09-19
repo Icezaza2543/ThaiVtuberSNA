@@ -91,7 +91,7 @@ class CreatorCatalog:
                 {
                     "channel_id": account["platform_id"],
                     "name": account["display_name"],
-                    "handle": account["handle"],
+                    "handle": metadata.get("legacy_handle", account["handle"]),
                     "channel_url": account["url"],
                     "agency": creator["agency"],
                     "activity_status": metadata.get("activity_status", creator["lifecycle_status"]),
