@@ -58,8 +58,9 @@ PRODUCTION_COUNTS = {
 }
 _LOCAL_PATH = re.compile(r"(?:\b[A-Za-z]:[\\/]|\\\\|\bfile:)", re.IGNORECASE)
 _UNIX_PATH_IN_TEXT = re.compile(
-    r"(?<![A-Za-z0-9._:/\-\u0E00-\u0E7F])/(?!/)[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*"
+    r"(?<![\w\u0E00-\u0E7F])/(?!/)[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*"
 )
+_HTTP_URL_IN_TEXT = re.compile(r"""https?://[^\s<>"']+""", re.IGNORECASE)
 _SECRET = re.compile(
     r"(?:api[_ -]?key|token|secret|password|credential|authorization)\s*(?:[:=]|\b(?:is|was|equals)\b)\s*\S+|\bbearer\s+",
     re.IGNORECASE,
@@ -85,7 +86,16 @@ def _load_object(path: Path) -> dict[str, Any]:
 def _validate_safe_text(value: Any, field: str, discovery_id: str) -> str:
     if not isinstance(value, str):
         raise ValueError(f"unsafe {field} for {discovery_id}: expected text")
-    has_unix_path = field not in {"url", "evidence_urls"} and _UNIX_PATH_IN_TEXT.search(value)
+    has_unix_path = False
+    if field not in {"url", "evidence_urls"}:
+        # Validate embedded URLs before excluding their paths from the text scan.
+        # URL fields skip this scan and receive their own public-host validation.
+        def exclude_public_url(match: re.Match[str]) -> str:
+            _validate_public_url(match.group(), "url", discovery_id)
+            return " "
+
+        text_without_urls = _HTTP_URL_IN_TEXT.sub(exclude_public_url, value)
+        has_unix_path = bool(_UNIX_PATH_IN_TEXT.search(text_without_urls))
     if _LOCAL_PATH.search(value) or has_unix_path or _SECRET.search(value):
         raise ValueError(f"unsafe {field} for {discovery_id}")
     return value
