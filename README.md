@@ -35,6 +35,14 @@ Research Dashboard รวมภาพรวม ecosystem, community lineage, coh
 - catalog coverage และ sampled interaction coverage เป็นคนละเรื่อง
 - ปี 2026 ในชุดวิเคราะห์ปัจจุบันยังเป็น partial year
 
+## Creator registry และ cohort
+
+- `data/registry/creators.json` คือ **canonical creator registry** เพียงไฟล์เดียวของ runtime
+- `core.creator_catalog.CreatorCatalog` คือ read-only access layer สำหรับ collection, analysis และ web builders
+- Trusted baseline YouTube Channel IDs เดิม 1,370 ช่องยังต้องคงอยู่ครบใน canonical catalog แต่เป็น **baseline subset** ไม่ใช่ไฟล์ทะเบียนอีกชุด
+- `data/temporal/catalog/target_manifest.csv` คือ **frozen longitudinal cohort 193 ช่อง** และจะไม่ถูกขยายอัตโนมัติเมื่อ catalog พบ account ใหม่
+- discovery ใหม่ต้องเข้าผ่าน intake → eligibility review → identity resolution → deterministic registry rebuild ก่อนใช้เป็น canonical identity
+
 ## เอกสาร
 
 เอกสารโครงการหลักมีฉบับเดียว:
