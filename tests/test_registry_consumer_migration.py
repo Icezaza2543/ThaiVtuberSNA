@@ -63,6 +63,10 @@ LEGACY_PATHS = [
     ROOT / "scripts" / "test_review_server.py",
 ]
 
+AUDIT_ONLY_REFERENCE_FILES = {
+    ROOT / "scripts" / "validate_creator_registry_consolidation.py",
+}
+
 ACTIVE_DOCS = [
     ROOT / "README.md",
     ROOT / "docs" / "PROJECT.md",
@@ -149,7 +153,11 @@ def _legacy_runtime_references():
         if not base.exists():
             continue
         for path in base.rglob("*"):
-            if not path.is_file() or path == Path(__file__):
+            if (
+                not path.is_file()
+                or path == Path(__file__)
+                or path in AUDIT_ONLY_REFERENCE_FILES
+            ):
                 continue
             if path.suffix.lower() not in {".py", ".js", ".mjs", ".html", ".md", ".json", ".css"}:
                 continue
