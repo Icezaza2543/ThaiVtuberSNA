@@ -236,7 +236,15 @@ class _RegistryBuilder:
 
     def add_baseline(self) -> None:
         seen_channels: set[str] = set()
-        for row in sorted(self.baseline, key=lambda item: str(item.get("channel_id") or "")):
+        baseline_rows = sorted(self.baseline, key=lambda item: str(item.get("channel_id") or ""))
+        handle_counts: dict[str, int] = {}
+        for row in baseline_rows:
+            cid = _first_text(row.get("channel_id"))
+            url = _first_text(row.get("channel_url"), row.get("url"), default=f"https://www.youtube.com/channel/{cid}")
+            reported = _first_text(row.get("handle")) or _url_handle("youtube", url, cid)
+            key = normalize_handle(reported)
+            handle_counts[key] = handle_counts.get(key, 0) + 1
+        for row in baseline_rows:
             cid = _first_text(row.get("channel_id"))
             if cid is None:
                 raise ValueError("baseline row missing channel_id")
@@ -254,7 +262,9 @@ class _RegistryBuilder:
                 source_class="trusted_baseline",
                 aliases=[value for value in (row.get("name"), row.get("display_name")) if isinstance(value, str)],
             )
-            handle = _first_text(row.get("handle")) or _url_handle("youtube", url, cid)
+            reported_handle = _first_text(row.get("handle")) or _url_handle("youtube", url, cid)
+            ambiguous_legacy_handle = handle_counts[normalize_handle(reported_handle)] > 1
+            handle = cid if ambiguous_legacy_handle else reported_handle
             account = {
                 "account_id": stable_account_id("youtube", cid, url),
                 "persona_id": pid,
@@ -273,6 +283,9 @@ class _RegistryBuilder:
             for field in sorted(RESERVED_METADATA_FIELDS):
                 if field in row:
                     account["metadata"][field] = row[field]
+            if ambiguous_legacy_handle:
+                account["metadata"]["legacy_handle"] = reported_handle
+                account["metadata"]["handle_resolution"] = "ambiguous_legacy_handle_uses_channel_id"
             actual, created = self.register_account(account)
             if not created:
                 raise ValueError(f"baseline account unexpectedly deduplicated: {cid}")
