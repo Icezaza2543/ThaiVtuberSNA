@@ -27,7 +27,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install test dependency
-        run: python -m pip install --disable-pip-version-check pytest
+        run: python -m pip install --disable-pip-version-check pytest requests
 
       - name: Run builder unit tests
         run: python -m pytest tests/test_creator_registry_build.py -q
