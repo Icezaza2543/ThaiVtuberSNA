@@ -1,0 +1,69 @@
+name: Registry Refactor Branch Cleanup
+
+on:
+  push:
+    branches:
+      - codex/creator-registry-consolidation
+    paths:
+      - .github/workflows/registry-refactor-cleanup.yml
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install focused dependencies
+        run: python -m pip install --disable-pip-version-check pytest requests
+
+      - name: Verify scratch outputs have no active consumers
+        shell: bash
+        run: |
+          if rg -n 'outputs/task6|outputs/task7' \
+            config core collector scripts storage analytics tests web README.md docs \
+            --glob '!docs/superpowers/**' --glob '!docs/refactor/**' --glob '!docs/evidence/**'; then
+            echo "Active source still references Task 6/7 scratch outputs."
+            exit 1
+          fi
+
+      - name: Remove scratch outputs and temporary task workflows
+        shell: bash
+        run: |
+          rm -rf outputs/task6* outputs/task7*
+          rm -f \
+            .github/workflows/task9-registry-builder.yml \
+            .github/workflows/task10-registry-consumers.yml \
+            .github/workflows/task11-analysis-registry.yml \
+            .github/workflows/task12-retire-legacy-registry.yml \
+            .github/workflows/registry-refactor-cleanup.yml
+
+      - name: Run focused post-cleanup tests
+        run: |
+          python -m pytest \
+            tests/test_creator_identity_resolution.py \
+            tests/test_creator_registry_build.py \
+            tests/test_registry_consumer_migration.py \
+            -q
+
+      - name: Diff gate
+        run: git diff --check
+
+      - name: Commit cleanup
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A outputs .github/workflows
+          git commit -m "chore(registry): clean refactor scratch artifacts"
+          git push origin HEAD:codex/creator-registry-consolidation
