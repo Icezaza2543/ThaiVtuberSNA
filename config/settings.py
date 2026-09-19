@@ -28,6 +28,8 @@ DATA_DIR = BASE_DIR / "data"
 EVENTS_DIR = DATA_DIR / "events"
 ANALYTICS_DIR = DATA_DIR / "analytics"
 CACHE_DIR = DATA_DIR / "cache"
+CREATOR_REGISTRY_PATH = DATA_DIR / "registry" / "creators.json"
+CREATOR_IDENTITY_CACHE_DIR = BASE_DIR / ".tmp" / "creator_identity"
 
 # Privacy & Hashing
 # Persistent HMAC Secret Key location
