@@ -22,6 +22,24 @@ COLLECTION_MODULES = [
     ROOT / "scripts" / "run_batch_network_350.py",
     ROOT / "scripts" / "run_hybrid_crawler_30.py",
 ]
+
+ANALYSIS_MODULES = [
+    ROOT / "scripts" / "audit_creator_identity_mapping.py",
+    ROOT / "scripts" / "audit_research_v2_consistency.py",
+    ROOT / "scripts" / "audit_sheets_privacy.py",
+    ROOT / "scripts" / "build_collab_registries.py",
+    ROOT / "scripts" / "build_creator_ecosystem_data.py",
+    ROOT / "scripts" / "build_creator_lifecycle_evidence.py",
+    ROOT / "scripts" / "build_discovery_candidates_new.py",
+    ROOT / "scripts" / "build_discovery_universe.py",
+    ROOT / "scripts" / "build_historical_lifecycle.py",
+    ROOT / "scripts" / "build_research_v2_data.py",
+    ROOT / "scripts" / "build_web_data.py",
+    ROOT / "scripts" / "compact_campaign_review.py",
+    ROOT / "scripts" / "create_target_manifest.py",
+    ROOT / "scripts" / "update_web_with_real_data.py",
+]
+CONSUMER_MODULES = COLLECTION_MODULES + ANALYSIS_MODULES
 LEGACY_NAMES = {
     "thai_vtuber_registry.json",
     "thai_vtuber_registry.csv",
@@ -31,7 +49,7 @@ LEGACY_NAMES = {
 
 
 def test_collection_modules_do_not_reference_legacy_registry_names():
-    for path in COLLECTION_MODULES:
+    for path in CONSUMER_MODULES:
         source = path.read_text(encoding="utf-8")
         assert not any(name in source for name in LEGACY_NAMES), path
 
