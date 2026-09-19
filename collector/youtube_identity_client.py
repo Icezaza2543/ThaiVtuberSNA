@@ -26,6 +26,10 @@ class ChannelEvidence:
     quota_units: int
 
 
+class _IdentityValidationError(RuntimeError):
+    """A constant-message validation error raised only by this module."""
+
+
 class YouTubeIdentityClient:
     """Resolve YouTube URLs without mutating YouTube or quota-control state."""
 
@@ -42,8 +46,8 @@ class YouTubeIdentityClient:
         if not self._api_key:
             raise RuntimeError("YOUTUBE_API_KEY is required for an uncached YouTube identity lookup")
 
-        service = self._service or self._build_service()
         try:
+            service = self._service or self._build_service()
             if kind == "channel":
                 evidence = self._channel_evidence(service, api_identifier, source_resource, quota_units=1)
             elif kind == "handle":
@@ -53,20 +57,19 @@ class YouTubeIdentityClient:
                 video = self._execute(service.videos().list(part="snippet", id=identifier))
                 owner = self._video_owner(video)
                 evidence = self._channel_evidence(service, owner, source_resource, quota_units=2)
-        except RuntimeError:
+                if evidence.channel_id != owner:
+                    raise _IdentityValidationError("YouTube channel did not confirm video owner")
+        except _IdentityValidationError:
             raise
-        except Exception as error:
+        except Exception:
             raise RuntimeError("YouTube identity lookup failed") from None
 
         self._write_cache(evidence)
         return evidence
 
     def _build_service(self):
-        try:
-            from googleapiclient.discovery import build
-            return build("youtube", "v3", developerKey=self._api_key, cache_discovery=False)
-        except Exception:
-            raise RuntimeError("YouTube identity lookup failed") from None
+        from googleapiclient.discovery import build
+        return build("youtube", "v3", developerKey=self._api_key, cache_discovery=False)
 
     @staticmethod
     def _parse_url(url: str) -> tuple[str, str, str, str]:
@@ -97,9 +100,9 @@ class YouTubeIdentityClient:
         try:
             channel_id = response["items"][0]["snippet"]["channelId"]
         except (KeyError, IndexError, TypeError):
-            raise RuntimeError("YouTube identity lookup returned no matching video") from None
+            raise _IdentityValidationError("YouTube identity lookup returned no matching video") from None
         if not isinstance(channel_id, str) or not _CHANNEL_ID.fullmatch(channel_id):
-            raise RuntimeError("YouTube identity lookup returned an invalid video owner")
+            raise _IdentityValidationError("YouTube identity lookup returned an invalid video owner")
         return channel_id
 
     def _channel_evidence(self, service, channel_id: str, source_resource: str, *, quota_units: int) -> ChannelEvidence:
@@ -108,10 +111,7 @@ class YouTubeIdentityClient:
 
     @staticmethod
     def _execute(request):
-        try:
-            return request.execute()
-        except Exception:
-            raise RuntimeError("YouTube identity lookup failed") from None
+        return request.execute()
 
     @staticmethod
     def _evidence_from_channel_response(response: object, source_resource: str, *, quota_units: int) -> ChannelEvidence:
@@ -122,11 +122,11 @@ class YouTubeIdentityClient:
             title = snippet["title"]
             description = snippet["description"]
         except (KeyError, IndexError, TypeError):
-            raise RuntimeError("YouTube identity lookup returned no matching channel") from None
+            raise _IdentityValidationError("YouTube identity lookup returned no matching channel") from None
         if not isinstance(channel_id, str) or not _CHANNEL_ID.fullmatch(channel_id):
-            raise RuntimeError("YouTube identity lookup returned an invalid channel")
+            raise _IdentityValidationError("YouTube identity lookup returned an invalid channel")
         if not isinstance(title, str) or not isinstance(description, str):
-            raise RuntimeError("YouTube identity lookup returned invalid channel metadata")
+            raise _IdentityValidationError("YouTube identity lookup returned invalid channel metadata")
         return ChannelEvidence(
             channel_id=channel_id,
             canonical_url=f"https://www.youtube.com/channel/{channel_id}",

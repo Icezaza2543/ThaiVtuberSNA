@@ -7,6 +7,7 @@ from collector.youtube_identity_client import YouTubeIdentityClient
 
 
 CHANNEL_ID = "UC" + "A" * 22
+SECOND_CHANNEL_ID = "UC" + "B" * 22
 VIDEO_ID = "abcdefghijk"
 YOUTUBE_URL = f"https://www.youtube.com/channel/{CHANNEL_ID}"
 
@@ -30,25 +31,34 @@ class FakeResource:
     def list(self, **kwargs):
         self.service.calls.append((f"{self.name}.list", kwargs))
         self.service.execute_count += 1
+        if self.service.list_error:
+            raise self.service.list_error
         if self.service.error:
             return FakeRequest({}, self.service.error)
         if self.name == "videos":
-            return FakeRequest({"items": [{"snippet": {"channelId": CHANNEL_ID}}]})
-        return FakeRequest({"items": [{"id": CHANNEL_ID, "snippet": {
+            return FakeRequest({"items": [{"snippet": {"channelId": self.service.video_owner}}]})
+        return FakeRequest({"items": [{"id": self.service.returned_channel_id, "snippet": {
             "title": "Test Channel", "description": "A safe description"
         }}]})
 
 
 class FakeService:
-    def __init__(self, error=None):
+    def __init__(self, error=None, *, video_owner=CHANNEL_ID, returned_channel_id=CHANNEL_ID,
+                 channels_error=None, list_error=None):
         self.calls = []
         self.execute_count = 0
         self.error = error
+        self.video_owner = video_owner
+        self.returned_channel_id = returned_channel_id
+        self.channels_error = channels_error
+        self.list_error = list_error
 
     def videos(self):
         return FakeResource(self, "videos")
 
     def channels(self):
+        if self.channels_error:
+            raise self.channels_error
         return FakeResource(self, "channels")
 
 
@@ -98,6 +108,16 @@ def test_video_urls_resolve_and_confirm_video_owner(fake_service, tmp_path, url)
     assert result.quota_units == 2
 
 
+def test_video_owner_requires_matching_confirmed_channel_id(tmp_path):
+    """Returning another valid channel ID after video-owner lookup must fail closed."""
+    service = FakeService(video_owner=CHANNEL_ID, returned_channel_id=SECOND_CHANNEL_ID)
+    client = YouTubeIdentityClient("secret-test-key", cache_dir=tmp_path, service=service)
+
+    with pytest.raises(RuntimeError, match="did not confirm video owner"):
+        client.resolve(f"https://youtube.com/watch?v={VIDEO_ID}")
+    assert not list(Path(tmp_path).rglob("*.json"))
+
+
 def test_cache_avoids_second_api_call(fake_service, tmp_path):
     """Bypassing a cached successful resource must fail this no-repeat-call behavior."""
     client = YouTubeIdentityClient("secret-test-key", cache_dir=tmp_path, service=fake_service)
@@ -114,8 +134,8 @@ def test_cached_success_is_usable_without_api_key(fake_service, tmp_path):
     assert YouTubeIdentityClient("", cache_dir=tmp_path).resolve(YOUTUBE_URL) == expected
 
 
-def test_conflicting_cached_owner_fails_closed(fake_service, tmp_path):
-    """Accepting a resource record with a conflicting owner must fail closed."""
+def test_cached_evidence_with_mismatched_canonical_channel_fails_closed(fake_service, tmp_path):
+    """Accepting cached evidence whose channel ID disagrees with its canonical URL must fail closed."""
     client = YouTubeIdentityClient("secret-test-key", cache_dir=tmp_path, service=fake_service)
     client.resolve(f"https://youtube.com/watch?v={VIDEO_ID}")
     cache_file = next(Path(tmp_path).rglob("*.json"))
@@ -170,3 +190,18 @@ def test_cache_and_errors_never_contain_api_key(tmp_path):
         client.resolve(YOUTUBE_URL)
     assert secret not in str(error.value)
     assert secret not in "".join(path.read_text(encoding="utf-8") for path in Path(tmp_path).rglob("*"))
+
+
+@pytest.mark.parametrize("failure", ["channels", "list"])
+def test_service_setup_errors_never_expose_api_key_or_write_cache(tmp_path, failure):
+    """Letting a service accessor or list error escape would disclose its credential-bearing message."""
+    secret = "secret-from-service"
+    service = FakeService(
+        channels_error=RuntimeError(secret) if failure == "channels" else None,
+        list_error=RuntimeError(secret) if failure == "list" else None,
+    )
+
+    with pytest.raises(RuntimeError, match="YouTube identity lookup failed") as error:
+        YouTubeIdentityClient(secret, cache_dir=tmp_path, service=service).resolve(YOUTUBE_URL)
+    assert secret not in str(error.value)
+    assert not list(Path(tmp_path).rglob("*.json"))
