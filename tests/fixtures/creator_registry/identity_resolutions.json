@@ -39,7 +39,13 @@
       "evidence_urls": [
         "https://x.com/alpha"
       ],
+      "identity_path": [
+        "fixture_alpha_x"
+      ],
       "method": "official_crosslink",
+      "method_evidence_urls": [
+        "https://x.com/alpha"
+      ],
       "official_account_urls": [
         "https://www.youtube.com/channel/UCAAAAAAAAAAAAAAAAAAAAAA",
         "https://x.com/alpha"

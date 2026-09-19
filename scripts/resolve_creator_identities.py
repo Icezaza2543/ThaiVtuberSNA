@@ -17,7 +17,7 @@ Legacy visual decisions are advisory only and never supply positive evidence.
 from __future__ import annotations
 
 import argparse
-from collections import Counter, defaultdict
+from collections import Counter, defaultdict, deque
 import hashlib
 import ipaddress
 import json
@@ -131,16 +131,30 @@ def merge_research(payloads):
     return {'rows': [entries[key] for key in sorted(entries)]}
 
 
-def _indexes(baseline, trusted_registry):
+def _unique_records(payload, table):
+    indexed = {}
+    for row in _records(payload, table):
+        key = row.get('id')
+        if not isinstance(key, str) or not key:
+            raise ValueError(f'trusted {table} missing ID')
+        if key in indexed:
+            raise ValueError(f'duplicate trusted {table} ID: {key}')
+        indexed[key] = row
+    return indexed
+
+
+def _indexes(baseline, trusted_registry, excluded_urls=frozenset()):
     names, id_index, url_index, persona_urls = {}, defaultdict(list), defaultdict(list), defaultdict(set)
     baseline_ids = set()
     def register(row, pid, method, evidence):
         key = _platform_id(row)
-        claim = {'persona_id': pid, 'method': method, 'evidence': evidence}
+        claim_urls = {_account_url(row['url'])} | {_account_url(e['source_url']) for e in evidence}
+        claim = {'persona_id': pid, 'method': method, 'evidence': evidence, 'excluded': bool(claim_urls & excluded_urls)}
         if key:
             id_index[key].append(claim)
         url_index[_account_url(row['url'])].append(claim)
-        persona_urls[pid].add(_account_url(row['url']))
+        if not claim['excluded']:
+            persona_urls[pid].add(_account_url(row['url']))
     for row in baseline:
         cid = row.get('channel_id')
         if not isinstance(cid, str) or not YOUTUBE_CHANNEL_ID.fullmatch(cid):
@@ -156,9 +170,9 @@ def _indexes(baseline, trusted_registry):
               'supports': ['account_ownership', 'persona_identity'], 'observed_at': row.get('checked_date')}
         register({'platform': 'youtube', 'channel_id': cid, 'url': url}, pid, 'exact_platform_id', [ev])
     tables = trusted_registry.get('tables', trusted_registry)
-    personas = {p['id']: p for p in _records(tables, 'personas') if p.get('review_status') == 'verified'}
-    accounts = {a['id']: a for a in _records(tables, 'accounts')}
-    evidence = {e['id']: e for e in _records(tables, 'evidence')}
+    personas = {pid: p for pid, p in _unique_records(tables, 'personas').items() if p.get('review_status') == 'verified'}
+    accounts = _unique_records(tables, 'accounts')
+    evidence = _unique_records(tables, 'evidence')
     links = []
     for link in _records(tables, 'account_links'):
         ev = evidence.get(link.get('evidence_id'))
@@ -167,9 +181,13 @@ def _indexes(baseline, trusted_registry):
             continue
         links.append((link, accounts[link['account_id']], ev))
     aliases = {}
-    for link, account, _ in links:
+    for link, account, ev in links:
+        if {_account_url(account['url']), _account_url(ev['url'])} & excluded_urls:
+            continue
         exact = id_index.get(_platform_id(account), [])
         for claim in exact:
+            if claim['excluded']:
+                continue
             pid = link['persona_id']
             target = claim['persona_id']
             if pid in aliases and aliases[pid] != target:
@@ -218,6 +236,20 @@ def _research_evidence(entry, row):
             'official_account_urls': official, 'evidence': records, 'reviewer': entry['reviewer']}
 
 
+def _attachment_path(start, roots, edges):
+    queue = deque([(start, [start], [])])
+    visited = {start}
+    while queue:
+        node, path, proofs = queue.popleft()
+        if node in roots:
+            return path, proofs
+        for target, proof in sorted(edges[node], key=lambda item: (METHOD_PRIORITY.index(item[1]['method']), item[0])):
+            if target not in visited:
+                visited.add(target)
+                queue.append((target, path + [target], proofs + [proof]))
+    raise ValueError('missing identity attachment path')
+
+
 def _summary(ledger, selected):
     rows = ledger['resolutions']
     return {'accepted': len(selected), 'resolved': len(rows),
@@ -229,7 +261,6 @@ def _summary(ledger, selected):
 
 def resolve_accounts(baseline, review_bundle, trusted_registry, legacy_decisions, researched, youtube_client=None):
     """Produce schema-v1 ledger or raise ResolutionError with its failed audit rows."""
-    names, id_index, url_index, persona_urls, aliases, baseline_ids = _indexes(baseline, trusted_registry)
     review = {}
     for row in _records(review_bundle):
         did = row.get('discovery_id')
@@ -239,6 +270,10 @@ def resolve_accounts(baseline, review_bundle, trusted_registry, legacy_decisions
             raise ValueError(f'duplicate discovery ID: {did}')
         _url(row['url'])
         review[did] = dict(row, platform=normalize_platform(row['platform']))
+    excluded_urls = {_account_url(url) for row in review.values()
+                     if row.get('eligibility') not in {'vtuber', 'trusted_baseline'}
+                     for url in [row['url'], *row.get('evidence_urls', [])]}
+    names, id_index, url_index, persona_urls, aliases, baseline_ids = _indexes(baseline, trusted_registry, excluded_urls)
     accepted = {did: r for did, r in review.items() if r.get('eligibility') == 'vtuber'}
     research = {r['discovery_id']: r for r in merge_research([researched])['rows']}
     for did in research:
@@ -260,9 +295,8 @@ def resolve_accounts(baseline, review_bundle, trusted_registry, legacy_decisions
     def union(left, right):
         left, right = sorted((find(left), find(right)))
         parents[right] = left
-    claims, material, methods, errors = defaultdict(list), {}, defaultdict(list), {}
+    claims, material, errors, edges = defaultdict(list), {}, {}, defaultdict(list)
     resolved_accounts = {did: dict(row) for did, row in accepted.items()}
-    excluded_urls = {_account_url(row['url']) for row in review.values() if row.get('eligibility') not in {'vtuber', 'trusted_baseline'}}
     for did, row in sorted(accepted.items()):
         try:
             if did in research:
@@ -288,8 +322,9 @@ def resolve_accounts(baseline, review_bundle, trusted_registry, legacy_decisions
                         raise ValueError('conflicting persona account identifiers')
                     row = resolved
             matches = list(id_index.get(_platform_id(row), [])) + list(url_index.get(_account_url(row['url']), []))
+            if any(c['excluded'] for c in matches):
+                raise ValueError('exact/trusted identity claim references excluded/ineligible account or evidence')
             claims[did].extend(matches)
-            methods[did].extend(c['method'] for c in matches)
             if did not in research:
                 if not matches:
                     raise ValueError('missing identity evidence')
@@ -320,9 +355,11 @@ def resolve_accounts(baseline, review_bundle, trusted_registry, legacy_decisions
                     raise ValueError('official identity evidence does not record target account URL')
                 if target:
                     union(did, target)
+                    edge = {'method': method, 'evidence': [evidences[u] for u in source_urls]}
+                    edges[did].append((target, edge))
+                    edges[target].append((did, edge))
                 else:
                     claims[did].append({'persona_id': pid, 'method': method, 'evidence': [evidences[u] for u in source_urls]})
-                methods[did].append(method)
         except ValueError as exc:
             errors[did] = str(exc)
     account_owners = {}
@@ -357,26 +394,33 @@ def resolve_accounts(baseline, review_bundle, trusted_registry, legacy_decisions
         anchor = min(members)
         pid = next(iter(pids)) if pids else new_persona_id(anchor, material[anchor]['canonical_name'])
         name = names[pid] if pids else material[anchor]['canonical_name']
-        evidence_by_content = {}
-        checked, official = set(), set()
+        roots = {did for did in members if claims[did]} if pids else {anchor}
         for did in members:
-            data = material.get(did, {})
-            checked.update(data.get('checked_urls', []))
-            official.update(data.get('official_account_urls', []))
-            official.add(accepted[did]['url'])
-            all_evidence = data.get('evidence', []) + [e for c in claims[did] for e in c['evidence']]
-            for e in all_evidence:
-                normalized = dict(e, source_url=_url(e['source_url']))
-                evidence_by_content[json.dumps(normalized, sort_keys=True, ensure_ascii=False)] = normalized
-                checked.add(normalized['source_url'])
-        evidence = [evidence_by_content[key] for key in sorted(evidence_by_content)]
-        for did in members:
+            # Only this discovery's route to an identity root establishes its
+            # attachment. A peer's exact-ID method is never inherited.
+            path, path_edges = _attachment_path(did, roots, edges)
+            root_claims = claims[path[-1]]
+            root_claim = min(root_claims, key=lambda c: METHOD_PRIORITY.index(c['method'])) if root_claims else None
+            establishing = path_edges[0] if path_edges else root_claim
+            method = establishing['method'] if establishing else 'explicit_official_identity'
+            method_evidence = establishing['evidence'] if establishing else material[did]['evidence']
+            evidence_by_content, checked, official = {}, set(), set()
+            for peer in path:
+                data = material.get(peer, {})
+                checked.update(data.get('checked_urls', []))
+                official.update(data.get('official_account_urls', []))
+                official.add(accepted[peer]['url'])
+                all_evidence = data.get('evidence', []) + [e for c in claims[peer] for e in c['evidence']]
+                for e in all_evidence:
+                    normalized = dict(e, source_url=_url(e['source_url']))
+                    evidence_by_content[json.dumps(normalized, sort_keys=True, ensure_ascii=False)] = normalized
+                    checked.add(normalized['source_url'])
+            evidence = [evidence_by_content[key] for key in sorted(evidence_by_content)]
             row = resolved_accounts[did]
-            available_methods = methods[did] or [m for peer in members for m in methods[peer]]
-            method = min(available_methods, key=METHOD_PRIORITY.index) if available_methods else 'explicit_official_identity'
             record = {'discovery_id': did, 'platform': row['platform'], 'platform_id': (_platform_id(row) or (None, None))[1],
                       'url': _url(row['url']), 'outcome': 'existing_persona' if pids else 'new_persona',
                       'persona_id': pid, 'canonical_name': name, 'method': method, 'conflict': False,
+                      'identity_path': path, 'method_evidence_urls': _urls([e['source_url'] for e in method_evidence]),
                       'checked_urls': _urls(list(checked)), 'evidence_urls': _urls([e['source_url'] for e in evidence]),
                       'official_account_urls': _urls(list(official)), 'evidence': evidence,
                       'reviewer': material.get(did, {}).get('reviewer', f'automated:{method}')}
@@ -390,6 +434,69 @@ def resolve_accounts(baseline, review_bundle, trusted_registry, legacy_decisions
         reasons = sorted({r['reason'] for r in ledger['unresolved'] + ledger['conflicts']})
         raise ResolutionError('; '.join(reasons), ledger)
     return ledger
+
+
+def _verify_previous(previous, current, research):
+    """Authenticate old facts against current evidence, then regenerate output.
+
+    A formerly separate new persona may now be a member of a larger component.
+    Its earlier deterministic anchor remains a valid historical identity claim;
+    arbitrary persona IDs and unsupported source material never do.
+    """
+    entries = {r['discovery_id']: r for r in _records(research)}
+    prior_ids = set()
+    components = defaultdict(list)
+    for row in current.values():
+        components[row['persona_id']].append(row)
+    for old in _records(previous, 'resolutions'):
+        did = old.get('discovery_id')
+        now = current.get(did)
+        if not now or did in prior_ids:
+            raise ValueError(f'conflicting or unverifiable previous resolution: {did}')
+        peers = components[now['persona_id']]
+        peer_ids = {r['discovery_id'] for r in peers}
+        evidence = {json.dumps(e, sort_keys=True, ensure_ascii=False) for r in peers for e in r['evidence']}
+        prior_evidence = old.get('evidence', [])
+        valid = bool(prior_evidence) and all(json.dumps(e, sort_keys=True, ensure_ascii=False) in evidence for e in prior_evidence)
+        valid &= old.get('conflict') is False and old.get('platform') == now['platform']
+        valid &= old.get('platform_id') in {None, now['platform_id']}
+        for field in ('checked_urls', 'official_account_urls'):
+            allowed = {_account_url(u) for r in peers for u in r[field]}
+            valid &= bool(old.get(field)) and {_account_url(u) for u in old[field]} <= allowed
+        valid &= _account_url(old['url']) in {_account_url(u) for r in peers for u in r['official_account_urls']} | {_account_url(now['url'])}
+        valid &= _urls(old.get('evidence_urls', [])) == _urls([e['source_url'] for e in prior_evidence])
+        valid &= set(_urls(old.get('evidence_urls', []))) <= set(_urls(old.get('checked_urls', [])))
+        historical_names = {r['canonical_name'] for r in peers} | {entries[p]['canonical_name'].strip() for p in peer_ids if p in entries}
+        valid &= old.get('canonical_name') in historical_names
+        if old.get('outcome') == 'new_persona':
+            anchors = {new_persona_id(p, entries[p]['canonical_name']) for p in peer_ids if p in entries}
+            valid &= old.get('persona_id') in anchors
+        elif old.get('outcome') == 'existing_persona':
+            valid &= now['outcome'] == 'existing_persona' and old.get('persona_id') == now['persona_id']
+        else:
+            valid = False
+        allowed_methods = {now['method']}
+        method_sources = set(now['method_evidence_urls']) if old.get('method') == now['method'] else set()
+        if old.get('outcome') == 'new_persona':
+            allowed_methods.add('explicit_official_identity')
+            if old.get('method') == 'explicit_official_identity':
+                method_sources.update(e['source_url'] for e in entries.get(did, {}).get('evidence', []) if 'persona_identity' in e.get('supports', []))
+        for peer in peer_ids:
+            for assertion in entries.get(peer, {}).get('assertions', []):
+                if peer == did or assertion.get('target_discovery_id') == did:
+                    allowed_methods.add(assertion['method'])
+                    if assertion['method'] == old.get('method'):
+                        method_sources.update(assertion['source_urls'])
+        valid &= old.get('method') in allowed_methods
+        valid &= old.get('reviewer') in {now['reviewer'], f"automated:{old.get('method')}"}
+        if 'method_evidence_urls' in old:
+            valid &= bool(old['method_evidence_urls']) and set(_urls(old['method_evidence_urls'])) <= set(old['evidence_urls']) & set(_urls(list(method_sources)))
+        if 'identity_path' in old:
+            valid &= bool(old['identity_path']) and old['identity_path'][0] == did and set(old['identity_path']) <= peer_ids
+        if not valid:
+            raise ValueError(f'conflicting or unverifiable previous resolution: {did}')
+        prior_ids.add(did)
+    return prior_ids
 
 
 def _load(path):
@@ -412,7 +519,7 @@ def main(argv=None):
     parser.add_argument('--output', type=Path)
     parser.add_argument('--merge-existing', type=Path)
     parser.add_argument('--queue', action='store_true', help='Write a partial audit ledger including unresolved/conflicting rows.')
-    parser.add_argument('--validate-only', action='store_true', help='Require all 393 accepted accounts; write no files.')
+    parser.add_argument('--validate-only', action='store_true', help='Require 393 accepted inputs and complete resolution of the selected platforms; write no files.')
     args = parser.parse_args(argv)
     try:
         review = _load(args.review_bundle)
@@ -428,12 +535,7 @@ def main(argv=None):
             previous = _load(args.merge_existing)
             if previous.get('schema_version') != 1:
                 raise ValueError('unsupported previous resolution schema')
-            prior_ids = set()
-            for row in _records(previous, 'resolutions'):
-                did = row['discovery_id']
-                if did in prior_ids or all_rows.get(did) != row:
-                    raise ValueError(f'conflicting or unverifiable previous resolution: {did}')
-                prior_ids.add(did)
+            prior_ids = _verify_previous(previous, all_rows, research)
             selected.update({r['discovery_id']: r for r in review['rows'] if r['discovery_id'] in prior_ids})
         for key in ('resolutions', 'unresolved', 'conflicts'):
             ledger[key] = [r for r in ledger[key] if r['discovery_id'] in selected]
@@ -442,7 +544,8 @@ def main(argv=None):
         failed = bool(ledger['unresolved'] or ledger['conflicts'])
         if args.validate_only:
             total_accepted = sum(r.get('eligibility') == 'vtuber' for r in review['rows'])
-            return int(failed or len(selected) != 393 or total_accepted != 393)
+            expected = len(selected) if platforms else 393
+            return int(failed or not expected or len(ledger['resolutions']) != expected or total_accepted != 393)
         if args.output and (not failed or args.queue):
             args.output.parent.mkdir(parents=True, exist_ok=True)
             temporary = args.output.with_suffix(args.output.suffix + '.tmp')

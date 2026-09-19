@@ -346,3 +346,120 @@ def test_explicit_identity_requires_distinct_sources_not_http_aliases():
     entry['assertions'][0]['source_urls'].append(duplicate)
     with pytest.raises(ValueError, match='two official sources'):
         resolve_accounts(BASELINE, REVIEW, {}, {}, research)
+
+
+@pytest.mark.parametrize('batch_size', [117, 126, 150])
+def test_cli_validates_complete_platform_batch_with_global_393(tmp_path, capsys, batch_size):
+    rows = [dict(REVIEW['rows'][0], discovery_id=f'x_{i}', url=f'https://x.com/alpha{i}') for i in range(batch_size)]
+    rows += [dict(REVIEW['rows'][0], discovery_id=f'twitch_{i}', platform='twitch', url=f'https://www.twitch.tv/alpha{i}') for i in range(393 - batch_size)]
+    args = cli_files(tmp_path, {'rows': rows}, {'rows': [researched(r) for r in rows[:batch_size]]})
+    assert main(args + ['--platform', 'x', '--validate-only']) == 0
+    summary = json.loads(capsys.readouterr().out)
+    assert summary['accepted'] == summary['resolved'] == batch_size
+    assert summary['unresolved'] == summary['conflicts'] == 0
+
+
+def test_cli_reconciles_prior_x_persona_after_later_twitch_crosslink(tmp_path, capsys):
+    review = copy.deepcopy(REVIEW)
+    twitch = dict(review['rows'][0], discovery_id='new_twitch', platform='twitch', url='https://www.twitch.tv/alpha')
+    review['rows'].append(twitch)
+    args = cli_files(tmp_path, review)
+    out = tmp_path / 'ledger.json'
+    assert main(args + ['--platform', 'x', '--output', str(out)]) == 0
+    original_persona = json.loads(out.read_text())['resolutions'][0]['persona_id']
+    entry = researched(twitch)
+    entry['official_account_urls'].append(REVIEW['rows'][0]['url'])
+    entry['assertions'] = [{'method': 'official_crosslink', 'target_discovery_id': 'new_x', 'source_urls': [twitch['url']]}]
+    new_file = tmp_path / 'twitch.json'
+    new_file.write_text(json.dumps({'rows': [entry]}))
+    combined = args + ['--researched', str(new_file)]
+    assert main(combined + ['--platform', 'twitch', '--merge-existing', str(out), '--output', str(out)]) == 0
+    rows = json.loads(out.read_text())['resolutions']
+    assert {r['discovery_id'] for r in rows} == {'new_x', 'new_twitch'}
+    assert len({r['persona_id'] for r in rows}) == 1
+    assert rows[0]['persona_id'] != original_persona
+    expected = tmp_path / 'all-at-once.json'
+    assert main(combined + ['--output', str(expected)]) == 0
+    assert out.read_bytes() == expected.read_bytes()
+
+
+def test_cli_allows_evidence_enrichment_but_rejects_invented_prior_source(tmp_path, capsys):
+    args = cli_files(tmp_path)
+    out = tmp_path / 'ledger.json'
+    assert main(args + ['--output', str(out)]) == 0
+    entry = researched()
+    more = 'https://alpha.example/about'
+    entry['evidence'].append(dict(entry['evidence'][0], source_url=more, source_kind='official_website'))
+    entry['evidence_urls'].append(more)
+    entry['checked_urls'].append(more)
+    (tmp_path / 'researched.json').write_text(json.dumps({'rows': [entry]}))
+    assert main(args + ['--merge-existing', str(out), '--output', str(out)]) == 0
+    prior = json.loads(out.read_text())
+    assert more in prior['resolutions'][0]['evidence_urls']
+    prior['resolutions'][0]['evidence'][0]['summary'] = 'Invented provenance.'
+    out.write_text(json.dumps(prior))
+    assert main(args + ['--merge-existing', str(out), '--output', str(out)]) == 1
+
+
+@pytest.mark.parametrize('method,blocked_field', [('exact', 'url'), ('exact', 'evidence_urls'), ('trusted', 'url'), ('trusted', 'evidence_urls')])
+def test_exclusions_apply_to_exact_and_trusted_claim_provenance(method, blocked_field):
+    review = copy.deepcopy(REVIEW)
+    registry = trusted() if method == 'trusted' else {}
+    blocked = YT + '/about' if method == 'trusted' else YT
+    if method == 'exact':
+        review['rows'][0].update(platform='youtube', channel_id=CHANNEL, url='https://www.youtube.com/@alpha')
+    excluded = dict(REVIEW['rows'][0], discovery_id='excluded', eligibility='exclude_associated_account', url='https://x.com/alpha_clips')
+    excluded[blocked_field] = blocked if blocked_field == 'url' else [blocked]
+    review['rows'].append(excluded)
+    with pytest.raises(ValueError, match='excluded|ineligible'):
+        resolve_accounts(BASELINE, review, registry, {}, {})
+
+
+@pytest.mark.parametrize('table', ['personas', 'accounts', 'evidence'])
+@pytest.mark.parametrize('contradictory', [False, True])
+def test_duplicate_trusted_ids_fail_independently_of_order(table, contradictory):
+    registry = trusted()
+    duplicate = copy.deepcopy(registry['tables'][table][0])
+    if contradictory:
+        duplicate['review_status' if table == 'personas' else 'url'] = 'needs_evidence' if table == 'personas' else 'https://unrelated.example/profile'
+    registry['tables'][table].append(duplicate)
+    for rows in [registry['tables'][table], list(reversed(registry['tables'][table]))]:
+        candidate = copy.deepcopy(registry)
+        candidate['tables'][table] = rows
+        with pytest.raises(ValueError, match='duplicate.*ID'):
+            resolve_accounts(BASELINE, REVIEW, candidate, {}, {})
+
+
+def test_incoming_crosslink_uses_own_attachment_method_not_peer_exact_id():
+    review = copy.deepcopy(REVIEW)
+    ytrow = dict(review['rows'][0], discovery_id='new_youtube', platform='youtube', channel_id=CHANNEL, url=YT)
+    review['rows'].append(ytrow)
+    entry = researched(ytrow)
+    entry['official_account_urls'].append(REVIEW['rows'][0]['url'])
+    entry['assertions'] = [{'method': 'official_crosslink', 'target_discovery_id': 'new_x', 'source_urls': [YT]}]
+    ledger = resolve_accounts(BASELINE, review, {}, {}, {'rows': [researched(), entry]})
+    rows = {r['discovery_id']: r for r in ledger['resolutions']}
+    assert rows['new_youtube']['method'] == 'exact_platform_id'
+    assert rows['new_x']['method'] == 'official_crosslink'
+    assert rows['new_x']['method_evidence_urls'] == [YT]
+    assert ledger['counts']['by_method'] == {'exact_platform_id': 1, 'official_crosslink': 1}
+
+
+def test_merge_rejects_tampered_attachment_evidence_urls(tmp_path, capsys):
+    research = crosslink()
+    entry = research['rows'][0]
+    entry['evidence'].append(dict(entry['evidence'][0], source_url=YT, summary='Official persona introduction.'))
+    entry['evidence_urls'].append(YT)
+    args = cli_files(tmp_path, research=research)
+    out = tmp_path / 'ledger.json'
+    assert main(args + ['--output', str(out)]) == 0
+    prior = json.loads(out.read_text())
+    prior['resolutions'][0]['method_evidence_urls'] = [YT]
+    out.write_text(json.dumps(prior))
+    assert main(args + ['--merge-existing', str(out), '--output', str(out)]) == 1
+
+
+def test_platform_validation_rejects_empty_selection(tmp_path, capsys):
+    review = {'rows': [dict(REVIEW['rows'][0], discovery_id=f'new_{i:03}', url=f'https://x.com/alpha{i}') for i in range(393)]}
+    args = cli_files(tmp_path, review, {'rows': [researched(r) for r in review['rows']]})
+    assert main(args + ['--platform', 'typo', '--validate-only']) == 1
