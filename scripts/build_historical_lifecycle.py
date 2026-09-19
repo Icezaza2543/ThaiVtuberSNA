@@ -39,9 +39,13 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 logger = logging.getLogger("BuildHistoricalLifecycle")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BASE_DIR))
+
+from config.settings import CREATOR_REGISTRY_PATH
+from core.creator_catalog import CreatorCatalog
+
 TARGET_MANIFEST_CSV = BASE_DIR / "data/temporal/catalog/target_manifest.csv"
 CHANNEL_COVERAGE_PARQUET = BASE_DIR / "data/temporal/catalog/channel_coverage.parquet"
-REGISTRY_CSV = BASE_DIR / "data/thai_vtuber_registry.csv"
 VIDEO_CATALOG_PARQUET = BASE_DIR / "data/video_catalog.parquet"
 
 LIFECYCLE_DIR = BASE_DIR / "data/temporal/lifecycle"
@@ -54,6 +58,8 @@ def build_historical_lifecycle():
     """Builds historical lifecycle events and intervals with strict evidence separation."""
     LIFECYCLE_DIR.mkdir(parents=True, exist_ok=True)
     con = duckdb.connect()
+    registry_df = pd.DataFrame(CreatorCatalog.from_path(CREATOR_REGISTRY_PATH).youtube_rows())
+    con.register("creator_registry", registry_df)
 
     targets_df = con.execute(f"""
         SELECT 
@@ -69,7 +75,7 @@ def build_historical_lifecycle():
             cc.videos_collected,
             cc.termination_reason
         FROM read_csv_auto('{TARGET_MANIFEST_CSV.as_posix()}') tm
-        LEFT JOIN read_csv_auto('{REGISTRY_CSV.as_posix()}') tr ON tm.channel_id = tr.channel_id
+        LEFT JOIN creator_registry tr ON tm.channel_id = tr.channel_id
         LEFT JOIN read_parquet('{CHANNEL_COVERAGE_PARQUET.as_posix()}') cc ON tm.channel_id = cc.channel_id
         ORDER BY tm.name
     """).df()
