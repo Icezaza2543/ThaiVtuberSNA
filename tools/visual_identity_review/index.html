@@ -147,6 +147,7 @@
     .stat-pill.pill-good strong { color: #34d399; }
     .stat-pill.pill-bad strong { color: #fb7185; }
     .stat-pill.pill-warn strong { color: #fbbf24; }
+    .stat-pill.pill-cyan strong { color: #22d3ee; }
 
     .nav-actions {
       display: flex;
@@ -543,6 +544,7 @@
           📂 โหลด JSON
           <input type="file" id="localFileInput" accept=".json" style="display:none">
         </label>
+        <button id="autoConfirmYtBtn" class="btn" title="ถือว่าเป็นคนเดียวกันอัตโนมัติสำหรับบัญชีที่ YouTube Channel ID หรือ Handle ตรงกับในระบบ" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: #fff; font-weight: 600; display: none;">⚡ รวม YouTube ID ตรงกัน (<span id="ytExactCount">0</span>)</button>
         <button id="exportBtn" class="btn btn-primary" title="ส่งออกผลการตัดสินใจทั้งหมดเป็นไฟล์ JSON">⬇ ส่งออกผลการตรวจ (JSON)</button>
         <button id="saveServerBtn" class="btn" title="บันทึกผลไปยัง data/entity_resolution/visual_identity_review.json">💾 บันทึกลงเซิร์ฟเวอร์</button>
       </div>
@@ -559,6 +561,7 @@
     <div class="toolbar">
       <div class="stats-group" id="statsGroup">
         <span class="stat-pill"><strong id="statTotal">884</strong> บัญชีรอตรวจสอบ</span>
+        <span class="stat-pill pill-cyan" title="บัญชีที่มีความคล้ายคลึงกับตัวละครในระบบตั้งแต่ 80% ขึ้นไป"><strong id="statHighMatch">0</strong> ความคล้าย 80%+</span>
         <span class="stat-pill"><strong id="statReviewed">0</strong> ตรวจสอบแล้ว</span>
         <span class="stat-pill pill-good"><strong id="statSame">0</strong> ตัวละครเดียวกัน</span>
         <span class="stat-pill pill-bad"><strong id="statNew">0</strong> ตัวละครใหม่</span>
@@ -575,8 +578,10 @@
     <!-- Filter & Search Bar -->
     <div class="filter-bar">
       <select id="filterSelect" class="input-field">
-        <option value="unreviewed">คิว: เฉพาะที่ยังไม่ได้ตรวจสอบ</option>
-        <option value="all">คิว: ข้อมูลทั้งหมด</option>
+        <option value="unreviewed">คิว: ยังไม่ได้ตรวจ (เรียง 80%+ ขึ้นก่อน)</option>
+        <option value="high_match_unreviewed">คิว: เฉพาะความคล้าย 80%+ (ยังไม่ได้ตรวจ)</option>
+        <option value="all">คิว: ข้อมูลทั้งหมด (เรียง 80%+ ขึ้นก่อน)</option>
+        <option value="high_match_all">คิว: เฉพาะความคล้าย 80%+ (ทั้งหมด)</option>
         <option value="same_persona">ผลการตรวจ: ตัวละครเดียวกัน</option>
         <option value="new_persona">ผลการตรวจ: ตัวละครใหม่ (แยกเอนทิตี)</option>
         <option value="uncertain">ผลการตรวจ: ไม่แน่ชัด / ข้อมูลไม่เพียงพอ</option>
@@ -591,7 +596,10 @@
       <div class="entity-card" id="leftCard">
         <div class="card-header">
           <span class="card-badge badge-discovery">บัญชีค้นพบใหม่ (รอระบุตัวตน)</span>
-          <span id="leftPlatform" class="platform-badge">YOUTUBE</span>
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <span id="leftMatchBadge" class="card-badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">ความคล้าย: —</span>
+            <span id="leftPlatform" class="platform-badge">YOUTUBE</span>
+          </div>
         </div>
         <div class="visual-stage" id="leftStage">
           <!-- Image or preview button -->
@@ -700,40 +708,167 @@
 
       function trigrams(s) {
         s = '  ' + norm(s) + '  ';
-        const set = {};
-        for (let i = 0; i < s.length - 2; i++) set[s.slice(i, i + 3)] = 1;
+        const set = new Set();
+        for (let i = 0; i < s.length - 2; i++) set.add(s.slice(i, i + 3));
         return set;
       }
 
       function similarity(a, b) {
-        a = norm(a); b = norm(b);
-        if (!a || !b) return 0;
-        if (a === b) return 1.0;
-        if (a.length > 3 && (a.includes(b) || b.includes(a))) return 0.85;
-        const A = trigrams(a), B = trigrams(b);
+        const normA = norm(a), normB = norm(b);
+        if (!normA || !normB) return 0;
+        if (normA === normB) return 1.0;
+        const lenA = normA.length, lenB = normB.length;
+        if (lenA > 3 && (normA.includes(normB) || normB.includes(normA))) return 0.85;
+        const setA = trigrams(a), setB = trigrams(b);
+        if (setA.size === 0 || setB.size === 0) return 0;
         let inter = 0;
-        for (let k in A) { if (B[k]) inter++; }
-        const total = Object.keys(A).length + Object.keys(B).length - inter;
+        const [smaller, larger] = setA.size <= setB.size ? [setA, setB] : [setB, setA];
+        for (const k of smaller) {
+          if (larger.has(k)) inter++;
+        }
+        const total = setA.size + setB.size - inter;
         return total ? inter / total : 0;
+      }
+
+      function similarityFast(normA, setA, normB, setB) {
+        if (!normA || !normB) return 0;
+        if (normA === normB) return 1.0;
+        const lenA = normA.length, lenB = normB.length;
+        if (lenA > 3 && (normA.includes(normB) || normB.includes(normA))) return 0.85;
+        if (Math.abs(lenA - lenB) > Math.max(lenA, lenB) * 0.45) return 0;
+        if (!setA || !setB || setA.size === 0 || setB.size === 0) return 0;
+        let inter = 0;
+        const [smaller, larger] = setA.size <= setB.size ? [setA, setB] : [setB, setA];
+        for (const k of smaller) {
+          if (larger.has(k)) inter++;
+        }
+        const total = setA.size + setB.size - inter;
+        return total ? inter / total : 0;
+      }
+
+      function extractYtId(val) {
+        if (!val) return '';
+        const s = String(val).trim();
+        const m = s.match(/(UC[\w-]{21}[AQgw])/);
+        if (m) return m[1];
+        if (s.startsWith('UC') && s.length === 24) return s;
+        return '';
+      }
+
+      function extractYtHandle(val) {
+        if (!val) return '';
+        const s = String(val).trim().toLowerCase();
+        const m = s.match(/(?:youtube\.com\/|@)([\w\.-]+)/);
+        if (m) return m[1].replace(/^@/, '');
+        return s.replace(/^@/, '');
+      }
+
+      function indexCanonicals() {
+        for (const p of state.canonicals) {
+          p._normName = norm(p.name);
+          p._trigrams = trigrams(p.name);
+          p._ytIds = new Set();
+          p._ytHandles = new Set();
+          for (const a of (p.accounts || [])) {
+            a._normName = norm(a.name);
+            a._normHandle = norm(a.handle);
+            a._trigramsHandle = a.handle ? trigrams(a.handle) : null;
+            a._trigramsName = a.name ? trigrams(a.name) : null;
+            if (a.platform === 'youtube') {
+              const yid = extractYtId(a.platform_id) || extractYtId(a.url);
+              if (yid) p._ytIds.add(yid);
+              const yh = extractYtHandle(a.handle) || extractYtHandle(a.url);
+              if (yh && yh.length > 2) p._ytHandles.add(yh);
+            }
+          }
+        }
+      }
+
+      function computeDiscoveryMaxScores() {
+        indexCanonicals();
+        for (const d of state.discoveries) {
+          const dYtId = extractYtId(d.platform_id) || extractYtId(d.url);
+          const dYtHandle = (d.platform === 'youtube') ? (extractYtHandle(d.handle) || extractYtHandle(d.url)) : '';
+
+          let exactYtCandidate = null;
+          if (dYtId || dYtHandle) {
+            for (const p of state.canonicals) {
+              if ((dYtId && p._ytIds && p._ytIds.has(dYtId)) ||
+                  (dYtHandle && p._ytHandles && p._ytHandles.has(dYtHandle))) {
+                exactYtCandidate = p;
+                break;
+              }
+            }
+          }
+
+          if (exactYtCandidate) {
+            d._maxScore = 1.0;
+            d._topCandidate = exactYtCandidate;
+            d._exactYtMatch = true;
+            continue;
+          }
+
+          const dNormName = norm(d.name);
+          const dTrigramsName = dNormName ? trigrams(d.name) : null;
+          const dNormHandle = norm(d.handle);
+          const dTrigramsHandle = dNormHandle ? trigrams(d.handle) : null;
+          const dPlatform = d.platform || '';
+
+          let maxScore = 0;
+          let topCandidate = null;
+
+          for (const p of state.canonicals) {
+            let sim = similarityFast(dNormName, dTrigramsName, p._normName, p._trigrams);
+            for (const a of (p.accounts || [])) {
+              if (dNormHandle && a._normHandle) {
+                sim = Math.max(sim, similarityFast(dNormHandle, dTrigramsHandle, a._normHandle, a._trigramsHandle));
+              }
+              if (dNormName && a._normName) {
+                sim = Math.max(sim, similarityFast(dNormName, dTrigramsName, a._normName, a._trigramsName));
+              }
+              if (dPlatform && a.platform === dPlatform && sim > 0.4) {
+                sim = Math.min(1.0, sim + 0.05);
+              }
+            }
+            if (sim > maxScore) {
+              maxScore = sim;
+              topCandidate = p;
+              if (maxScore >= 1.0) break;
+            }
+          }
+          d._maxScore = maxScore;
+          d._topCandidate = topCandidate;
+          d._exactYtMatch = false;
+        }
       }
 
       // Rank candidate canonical personas for a given discovery lead
       function rankCandidates(discovery, queryFilter) {
-        const dName = discovery.name || '';
-        const dHandle = discovery.handle || '';
+        const dNormName = norm(discovery.name);
+        const dTrigramsName = dNormName ? trigrams(discovery.name) : null;
+        const dNormHandle = norm(discovery.handle);
+        const dTrigramsHandle = dNormHandle ? trigrams(discovery.handle) : null;
         const dPlatform = discovery.platform || '';
         const q = norm(queryFilter || '');
 
         let scored = state.canonicals.map(p => {
-          let bestSim = similarity(dName, p.name);
-          // Check accounts of this persona
+          if (discovery._exactYtMatch && discovery._topCandidate && discovery._topCandidate.persona_id === p.persona_id) {
+            return { persona: p, score: 1.0, exactYt: true };
+          }
+          let bestSim = similarityFast(dNormName, dTrigramsName, p._normName || norm(p.name), p._trigrams || trigrams(p.name));
           const accs = p.accounts || [];
           for (let a of accs) {
-            if (a.handle) bestSim = Math.max(bestSim, similarity(dHandle, a.handle));
-            if (a.name) bestSim = Math.max(bestSim, similarity(dName, a.name));
-            if (dPlatform && a.platform === dPlatform) bestSim += 0.05;
+            if (dNormHandle && (a._normHandle || a.handle)) {
+              bestSim = Math.max(bestSim, similarityFast(dNormHandle, dTrigramsHandle, a._normHandle || norm(a.handle), a._trigramsHandle || trigrams(a.handle)));
+            }
+            if (dNormName && (a._normName || a.name)) {
+              bestSim = Math.max(bestSim, similarityFast(dNormName, dTrigramsName, a._normName || norm(a.name), a._trigramsName || trigrams(a.name)));
+            }
+            if (dPlatform && a.platform === dPlatform && bestSim > 0.4) {
+              bestSim = Math.min(1.0, bestSim + 0.05);
+            }
           }
-          return { persona: p, score: Math.min(1.0, bestSim) };
+          return { persona: p, score: Math.min(1.0, bestSim), exactYt: false };
         });
 
         if (q) {
@@ -745,14 +880,21 @@
       }
 
       function renderStats() {
-        let same = 0, newP = 0, uncertain = 0;
+        let same = 0, newP = 0, uncertain = 0, highMatch = 0, unreviewedYt = 0;
         Object.values(state.decisions).forEach(d => {
           if (d.decision === 'same_persona') same++;
           else if (d.decision === 'new_persona') newP++;
           else if (d.decision === 'uncertain') uncertain++;
         });
+        state.discoveries.forEach(d => {
+          if ((d._maxScore || 0) >= 0.80) highMatch++;
+          if (d._exactYtMatch && !state.decisions[d.discovery_id]) unreviewedYt++;
+        });
         const reviewed = same + newP + uncertain;
         $('statTotal').textContent = state.discoveries.length;
+        if ($('statHighMatch')) $('statHighMatch').textContent = highMatch;
+        if ($('ytExactCount')) $('ytExactCount').textContent = unreviewedYt;
+        if ($('autoConfirmYtBtn')) $('autoConfirmYtBtn').style.display = unreviewedYt > 0 ? 'inline-flex' : 'none';
         $('statReviewed').textContent = reviewed;
         $('statSame').textContent = same;
         $('statNew').textContent = newP;
@@ -767,12 +909,31 @@
         state.filtered = state.discoveries.filter(d => {
           const dec = state.decisions[d.discovery_id];
           if (filter === 'unreviewed' && dec) return false;
-          if (filter !== 'all' && filter !== 'unreviewed' && (!dec || dec.decision !== filter)) return false;
+          if (filter === 'high_match_unreviewed') {
+            if (dec || (d._maxScore || 0) < 0.80) return false;
+          }
+          if (filter === 'high_match_all') {
+            if ((d._maxScore || 0) < 0.80) return false;
+          }
+          if (filter !== 'all' && filter !== 'unreviewed' && filter !== 'high_match_unreviewed' && filter !== 'high_match_all') {
+            if (!dec || dec.decision !== filter) return false;
+          }
           if (q) {
             const match = norm(d.name || '').includes(q) || norm(d.handle || '').includes(q) || norm(d.url || '').includes(q);
             if (!match) return false;
           }
           return true;
+        });
+
+        // SORTING: 80%+ matches come strictly FIRST, sorted descending by score!
+        state.filtered.sort((a, b) => {
+          const aScore = a._maxScore || 0;
+          const bScore = b._maxScore || 0;
+          const aHigh = aScore >= 0.80 ? 1 : 0;
+          const bHigh = bScore >= 0.80 ? 1 : 0;
+          if (aHigh !== bHigh) return bHigh - aHigh; // 80%+ strictly first!
+          if (Math.abs(bScore - aScore) > 0.001) return bScore - aScore;
+          return (a.discovery_id || '').localeCompare(b.discovery_id || '');
         });
 
         if (state.currentIndex >= state.filtered.length) {
@@ -801,6 +962,37 @@
         $('leftId').textContent = d.discovery_id;
         $('leftPlatform').textContent = (d.platform || 'WEB').toUpperCase();
         $('leftPlatform').className = `platform-badge platform-${(d.platform || 'web').toLowerCase()}`;
+
+        // Similarity Badge on Left Card
+        const maxScorePct = Math.round((d._maxScore || 0) * 100);
+        const matchBadge = $('leftMatchBadge');
+        if (matchBadge) {
+          if (d._exactYtMatch) {
+            matchBadge.textContent = `🎯 YouTube ID ตรงกัน 100%`;
+            matchBadge.style.background = 'rgba(16, 185, 129, 0.28)';
+            matchBadge.style.color = '#6ee7b7';
+            matchBadge.style.border = '1px solid #10b981';
+            matchBadge.style.fontWeight = '700';
+          } else if (maxScorePct >= 80) {
+            matchBadge.textContent = `🎯 ความคล้าย ${maxScorePct}%`;
+            matchBadge.style.background = 'rgba(16, 185, 129, 0.22)';
+            matchBadge.style.color = '#34d399';
+            matchBadge.style.border = '1px solid #059669';
+            matchBadge.style.fontWeight = '700';
+          } else if (maxScorePct >= 50) {
+            matchBadge.textContent = `ความคล้าย ${maxScorePct}%`;
+            matchBadge.style.background = 'rgba(56, 189, 248, 0.15)';
+            matchBadge.style.color = '#38bdf8';
+            matchBadge.style.border = '1px solid rgba(56, 189, 248, 0.3)';
+            matchBadge.style.fontWeight = '500';
+          } else {
+            matchBadge.textContent = maxScorePct > 0 ? `ความคล้าย ${maxScorePct}%` : 'ไม่พบคู่เทียบตรง';
+            matchBadge.style.background = 'rgba(139, 153, 181, 0.15)';
+            matchBadge.style.color = '#8b99b5';
+            matchBadge.style.border = '1px solid rgba(139, 153, 181, 0.2)';
+            matchBadge.style.fontWeight = '400';
+          }
+        }
 
         // Left Meta
         let metaHtml = '';
@@ -838,11 +1030,12 @@
           const p = c.persona;
           const isSel = p.persona_id === state.selectedCandidateId;
           const scorePercent = Math.round(c.score * 100);
+          const ytTag = c.exactYt ? '<span style="color:#34d399; font-size:11px; font-weight:700; margin-left:4px;">[🎯 YouTube ID ตรงกัน]</span>' : '';
           return `
-            <button class="candidate-item ${isSel ? 'selected' : ''}" data-id="${p.persona_id}">
+            <button class="candidate-item ${isSel ? 'selected' : ''}" data-id="${p.persona_id}" style="${c.exactYt ? 'border-color: #059669; background: rgba(5, 150, 105, 0.12);' : ''}">
               <div class="candidate-head">
-                <span>${escapeHtml(p.name)}</span>
-                <span class="candidate-score">${scorePercent}%</span>
+                <span>${escapeHtml(p.name)} ${ytTag}</span>
+                <span class="candidate-score" style="${c.exactYt ? 'color: #34d399; background: rgba(16, 185, 129, 0.2); font-weight: 700;' : ''}">${scorePercent}%</span>
               </div>
               <div class="candidate-sub">${p.account_count || 0} บัญชีที่เชื่อมโยง · ${escapeHtml(p.persona_id)}</div>
             </button>
@@ -1045,6 +1238,9 @@
           state.canonicals = master.canonical_personas || [];
           state.accounts = master.canonical_accounts || [];
 
+          // Precompute maximum candidate match scores so 80%+ matches come first
+          computeDiscoveryMaxScores();
+
           // Try loading server decisions if exists
           try {
             const dRes = await fetch('/api/decisions');
@@ -1079,6 +1275,7 @@
             state.discoveries = master.unresolved_discovery_accounts || [];
             state.canonicals = master.canonical_personas || [];
             state.accounts = master.canonical_accounts || [];
+            computeDiscoveryMaxScores();
             renderStats();
             filterQueue();
           } catch (err) {
@@ -1088,6 +1285,44 @@
         reader.readAsText(file, 'utf-8');
       };
 
+      function autoConfirmExactYtMatches() {
+        const unreviewedMatches = state.discoveries.filter(d => d._exactYtMatch && !state.decisions[d.discovery_id]);
+        if (!unreviewedMatches.length) {
+          alert('ไม่พบบัญชีที่ YouTube ID ตรงกันที่ยังไม่ได้ตรวจสอบ');
+          return;
+        }
+
+        const confirmed = confirm(`พบ ${unreviewedMatches.length} บัญชีที่มี YouTube Channel ID หรือ Handle ตรงกับในระบบอย่างแน่นอน\n\nต้องการยืนยันทั้งหมดเป็น "ตัวละครเดียวกัน" (Same Persona) อัตโนมัติทันทีหรือไม่?`);
+        if (!confirmed) return;
+
+        const newDecisions = [];
+        for (const d of unreviewedMatches) {
+          const decisionRecord = {
+            discovery_id: d.discovery_id,
+            candidate_persona_id: d._topCandidate ? d._topCandidate.persona_id : null,
+            decision: 'same_persona',
+            notes: 'YouTube Channel/Handle ID ตรงกับข้อมูลในระบบ (Auto-assumed same persona)',
+            reviewed_at: new Date().toISOString()
+          };
+          state.decisions[d.discovery_id] = decisionRecord;
+          newDecisions.push(decisionRecord);
+        }
+
+        localStorage.setItem('vtuber_visual_identity_decisions', JSON.stringify(state.decisions));
+        renderStats();
+
+        // Save to server
+        fetch('/api/save_all', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ decisions: Object.values(state.decisions) })
+        }).catch(() => {});
+
+        filterQueue();
+        alert(`ยืนยันเป็น "ตัวละครเดียวกัน" เรียบร้อยแล้ว ${newDecisions.length} รายการ!`);
+      }
+
+      $('autoConfirmYtBtn').onclick = autoConfirmExactYtMatches;
       $('filterSelect').onchange = filterQueue;
       $('searchInput').oninput = filterQueue;
       $('candidateSearchInput').oninput = renderCurrentRecord;
