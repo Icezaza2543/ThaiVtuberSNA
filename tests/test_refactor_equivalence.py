@@ -24,9 +24,26 @@ def build_fixture(monkeypatch, tmp_path):
         if key.endswith('CSV'): frame.to_csv(path, index=False)
         else: frame.to_parquet(path, index=False)
         monkeypatch.setattr(snapshot, key, path)
-    registry = tmp_path / 'registry.json'
-    registry.write_text(json.dumps([{'channel_id': f'creator-{i}', 'handle': f'creator{i}', 'subscriber_count': i * 100, 'video_count': i, 'view_count': i * 1000} for i in (1,2,3)]))
-    monkeypatch.setattr(snapshot, 'REGISTRY_JSON', registry)
+    registry_rows = [
+        {
+            'channel_id': f'creator-{i}',
+            'handle': f'creator{i}',
+            'subscriber_count': i * 100,
+            'video_count': i,
+            'view_count': i * 1000,
+        }
+        for i in (1, 2, 3)
+    ]
+
+    class FixtureCatalog:
+        @classmethod
+        def from_path(cls, _path):
+            return cls()
+
+        def youtube_rows(self):
+            return tuple(registry_rows)
+
+    monkeypatch.setattr(snapshot, 'CreatorCatalog', FixtureCatalog)
     monkeypatch.setattr(snapshot, 'OUT_SNAPSHOT_PARQUET', tmp_path / 'snapshot.parquet')
     return snapshot.build_creator_public_snapshot()
 
