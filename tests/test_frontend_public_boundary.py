@@ -4,6 +4,7 @@ Creator IDs are allowed only when present in the independent public registry.
 Failures identify paths and violation categories, never private values.
 """
 import html
+import json
 import re
 from pathlib import Path
 from urllib.parse import unquote
@@ -79,3 +80,20 @@ def test_guard_rejects_private_frontend_payloads(payload):
 def test_guard_allows_public_creator_graph_and_aggregate_counts():
     creator = 'UC' + 'C' * 22
     assert not violations((' {"channel_id":"' + creator + '","shared_viewers":12}').encode(), {creator})
+
+
+@pytest.mark.parametrize(
+    "relative_path",
+    [
+        Path("web/data.json"),
+        Path("web/research/data/research_v2.json"),
+    ],
+)
+def test_registry_derived_public_json_has_current_catalog_fingerprint(relative_path):
+    path = ROOT / relative_path
+    assert path.exists(), path
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    expected = CreatorCatalog.from_path(CREATOR_REGISTRY_PATH).source_fingerprint()
+    assert payload.get("metadata", {}).get("creator_registry_sha256") == expected, (
+        f"{relative_path} is missing or stale against the canonical creator registry"
+    )
