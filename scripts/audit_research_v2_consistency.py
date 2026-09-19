@@ -28,6 +28,9 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from config.settings import CREATOR_REGISTRY_PATH
+from core.creator_catalog import CreatorCatalog
+
 def audit_single_canonical_writer():
     print("Checking Single Canonical Writer Invariant...")
     ecosystem_script = ROOT / "scripts/build_creator_ecosystem_data.py"
@@ -63,12 +66,15 @@ def audit_research_v2_json():
     aud_df = pd.read_parquet(ROOT / "data/industry/audience_behavior_yearly.parquet")
     vid_cat_df = pd.read_parquet(ROOT / "data/temporal/catalog/video_catalog.parquet")
     evt_df = pd.read_parquet(ROOT / "data/industry/creator_status_events.parquet")
-    with open(ROOT / "data/thai_vtuber_registry.json", "r", encoding="utf-8") as f:
-        reg_data = json.load(f)
+    creator_catalog = CreatorCatalog.from_path(CREATOR_REGISTRY_PATH)
+    registered_channels = len(creator_catalog.youtube_accounts())
 
-    # 1. Registered channels dynamic check
-    assert data["coverage"]["registered_channels"] == len(reg_data), (
-        f"registered_channels mismatch: {data['coverage']['registered_channels']} vs {len(reg_data)}"
+    # 1. Registered channels and canonical fingerprint dynamic checks
+    assert data["coverage"]["registered_channels"] == registered_channels, (
+        f"registered_channels mismatch: {data['coverage']['registered_channels']} vs {registered_channels}"
+    )
+    assert data["metadata"].get("creator_registry_sha256") == creator_catalog.source_fingerprint(), (
+        "research_v2.json was generated from a stale or unknown creator registry"
     )
 
     # 2. Yearly coverage chart: videos vs interactions
