@@ -3,7 +3,6 @@
 Creator IDs are allowed only when present in the independent public registry.
 Failures identify paths and violation categories, never private values.
 """
-import csv
 import html
 import re
 from pathlib import Path
@@ -11,6 +10,8 @@ from urllib.parse import unquote
 
 import pytest
 
+from config.settings import CREATOR_REGISTRY_PATH
+from core.creator_catalog import CreatorCatalog
 from core.data_security import PRIVATE_FIELDS, PRIVATE_TABS, SPREADSHEET_ID
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -43,8 +44,11 @@ def violations(blob, creator_ids):
 
 
 def test_public_web_contains_only_public_creator_identities():
-    with (ROOT / 'data/thai_vtuber_registry.csv').open(encoding='utf-8-sig', newline='') as stream:
-        creator_ids = {row['channel_id'] for row in csv.DictReader(stream)}
+    creator_ids = {
+        row["platform_id"]
+        for row in CreatorCatalog.from_path(CREATOR_REGISTRY_PATH).youtube_accounts()
+        if row.get("platform_id")
+    }
     assert creator_ids
     files = sorted(path for path in (ROOT / 'web').rglob('*') if path.is_file())
     assert files
