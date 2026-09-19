@@ -9,6 +9,7 @@ import json
 import re
 import shutil
 from collections import Counter
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
@@ -51,10 +52,10 @@ PRODUCTION_COUNTS = {
     "exclude_non_persona": 30,
     "exclude_non_vtuber": 3,
     "exclude_unrelated": 67,
-    "exclude_virtual_group": 2,
+    "exclude_virtual_group": 3,
     "trusted_baseline": 292,
     "unavailable": 94,
-    "vtuber": 393,
+    "vtuber": 392,
 }
 _LOCAL_PATH = re.compile(r"(?:\b[A-Za-z]:[\\/]|\\\\|\bfile:)", re.IGNORECASE)
 _UNIX_PATH_IN_TEXT = re.compile(
@@ -163,7 +164,55 @@ def _latest_human_decisions(human: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return latest
 
 
-def package_review_evidence(screening_path: Path, human_path: Path) -> dict[str, Any]:
+def _apply_explicit_corrections(rows: list[dict[str, Any]], payload: dict[str, Any]) -> None:
+    """Apply reviewed account-owner contradictions without altering raw decisions."""
+    corrections = payload.get("corrections")
+    if payload.get("schema_version") != 1 or not isinstance(corrections, list):
+        raise ValueError("invalid eligibility correction schema")
+    indexed = {row["discovery_id"]: row for row in rows}
+    seen = set()
+    fields = {"discovery_id", "old_eligibility", "new_eligibility", "account_url",
+              "owner_channel_id", "owner_canonical_url", "source_url", "source_kind",
+              "summary", "observed_at", "reviewer", "ruling"}
+    for entry in corrections:
+        if not isinstance(entry, dict) or set(entry) != fields:
+            raise ValueError("invalid eligibility correction fields")
+        did = entry["discovery_id"]
+        if not isinstance(did, str) or did not in indexed or did in seen:
+            raise ValueError("unknown or duplicate eligibility correction")
+        seen.add(did)
+        row = indexed[did]
+        if (entry["old_eligibility"] != "vtuber" or row["eligibility"] != "vtuber"
+                or entry["new_eligibility"] != "exclude_virtual_group" or row["platform"] != "youtube"):
+            raise ValueError("unsupported eligibility correction transition")
+        if entry["account_url"] != row["url"] or entry["source_kind"] != "youtube_api":
+            raise ValueError("eligibility correction is not bound to the reviewed account")
+        cid = entry["owner_channel_id"]
+        if not isinstance(cid, str) or not re.fullmatch(r"UC[A-Za-z0-9_-]{22}", cid):
+            raise ValueError("invalid correction owner Channel ID")
+        canonical = f"https://www.youtube.com/channel/{cid}"
+        if entry["owner_canonical_url"] != canonical:
+            raise ValueError("correction owner URL does not match Channel ID")
+        for field in ("account_url", "owner_canonical_url", "source_url"):
+            _validate_public_url(entry[field], "url", did)
+        if entry["source_url"] not in {row["url"], canonical}:
+            raise ValueError("correction evidence must identify this account or its owner")
+        for field in ("summary", "observed_at", "reviewer", "ruling"):
+            value = _validate_safe_text(entry[field], field, did)
+            if not value.strip():
+                raise ValueError("eligibility correction requires explicit evidence and review provenance")
+        try:
+            observed = datetime.fromisoformat(entry["observed_at"].replace("Z", "+00:00"))
+            if observed.tzinfo is None:
+                raise ValueError
+        except ValueError:
+            raise ValueError("invalid correction observation timestamp") from None
+        row["eligibility"] = entry["new_eligibility"]
+        row["correction_provenance"] = dict(entry)
+        row["evidence_urls"] = sorted(set(row["evidence_urls"] + [entry["source_url"], canonical]))
+
+
+def package_review_evidence(screening_path: Path, human_path: Path, corrections_path: Path | None = None) -> dict[str, Any]:
     """Return final eligibility rows without cache paths or private review details."""
     screening = _load_object(Path(screening_path))
     human = _load_object(Path(human_path))
@@ -220,6 +269,9 @@ def package_review_evidence(screening_path: Path, human_path: Path) -> dict[str,
     if human_decisions:
         raise ValueError(f"human decisions reference unknown screening rows: {sorted(human_decisions)!r}")
 
+    if corrections_path is not None:
+        _apply_explicit_corrections(rows, _load_object(Path(corrections_path)))
+
     counts = dict(sorted(Counter(row["eligibility"] for row in rows).items()))
     return {
         "schema_version": 1,
@@ -262,6 +314,7 @@ def main() -> None:
     parser.add_argument("--screening", type=Path, required=True)
     parser.add_argument("--human", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--corrections", type=Path, help="Explicit reviewed eligibility corrections applied after human decisions.")
     parser.add_argument(
         "--legacy-source",
         type=Path,
@@ -269,7 +322,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    bundle = package_review_evidence(args.screening, args.human)
+    bundle = package_review_evidence(args.screening, args.human, args.corrections)
     validate_production_counts(bundle)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)

@@ -231,7 +231,7 @@ def test_cli_repeatable_research_validates_count_without_writing(tmp_path, capsy
 
 
 def test_cli_full_393_validation_passes(tmp_path, capsys):
-    review = {'rows': [dict(REVIEW['rows'][0], discovery_id=f'new_{i:03}', url=f'https://x.com/alpha{i}') for i in range(393)]}
+    review = {'eligibility_counts': {'vtuber': 393}, 'rows': [dict(REVIEW['rows'][0], discovery_id=f'new_{i:03}', url=f'https://x.com/alpha{i}') for i in range(393)]}
     args = cli_files(tmp_path, review, {'rows': [researched(r) for r in review['rows']]})
     assert main(args + ['--validate-only']) == 0
     assert json.loads(capsys.readouterr().out)['accepted'] == 393
@@ -317,7 +317,7 @@ def test_cli_refuses_tampered_previous_batch(tmp_path, capsys):
 
 
 def test_cli_validation_cannot_hide_extra_accepted_accounts_with_platform_filter(tmp_path, capsys):
-    review = {'rows': [dict(REVIEW['rows'][0], discovery_id=f'new_{i:03}', url=f'https://x.com/alpha{i}') for i in range(393)]}
+    review = {'eligibility_counts': {'vtuber': 393}, 'rows': [dict(REVIEW['rows'][0], discovery_id=f'new_{i:03}', url=f'https://x.com/alpha{i}') for i in range(393)]}
     review['rows'].append(dict(REVIEW['rows'][0], discovery_id='extra_twitch', platform='twitch', url='https://www.twitch.tv/alpha'))
     args = cli_files(tmp_path, review, {'rows': [researched(r) for r in review['rows']]})
     assert main(args + ['--platform', 'x', '--validate-only']) == 1
@@ -352,7 +352,7 @@ def test_explicit_identity_requires_distinct_sources_not_http_aliases():
 def test_cli_validates_complete_platform_batch_with_global_393(tmp_path, capsys, batch_size):
     rows = [dict(REVIEW['rows'][0], discovery_id=f'x_{i}', url=f'https://x.com/alpha{i}') for i in range(batch_size)]
     rows += [dict(REVIEW['rows'][0], discovery_id=f'twitch_{i}', platform='twitch', url=f'https://www.twitch.tv/alpha{i}') for i in range(393 - batch_size)]
-    args = cli_files(tmp_path, {'rows': rows}, {'rows': [researched(r) for r in rows[:batch_size]]})
+    args = cli_files(tmp_path, {'eligibility_counts': {'vtuber': 393}, 'rows': rows}, {'rows': [researched(r) for r in rows[:batch_size]]})
     assert main(args + ['--platform', 'x', '--validate-only']) == 0
     summary = json.loads(capsys.readouterr().out)
     assert summary['accepted'] == summary['resolved'] == batch_size
@@ -460,7 +460,7 @@ def test_merge_rejects_tampered_attachment_evidence_urls(tmp_path, capsys):
 
 
 def test_platform_validation_rejects_empty_selection(tmp_path, capsys):
-    review = {'rows': [dict(REVIEW['rows'][0], discovery_id=f'new_{i:03}', url=f'https://x.com/alpha{i}') for i in range(393)]}
+    review = {'eligibility_counts': {'vtuber': 393}, 'rows': [dict(REVIEW['rows'][0], discovery_id=f'new_{i:03}', url=f'https://x.com/alpha{i}') for i in range(393)]}
     args = cli_files(tmp_path, review, {'rows': [researched(r) for r in review['rows']]})
     assert main(args + ['--platform', 'typo', '--validate-only']) == 1
 
@@ -528,3 +528,168 @@ def test_tied_verified_claims_are_byte_stable_when_trusted_arrays_reverse(tmp_pa
     registry_path.write_text(json.dumps(reversed_registry))
     assert main(args + ['--merge-existing', str(out), '--output', str(out)]) == 0
     assert out.read_bytes() == expected
+
+
+
+def test_cli_validation_uses_corrected_declared_count_and_excludes_group(tmp_path, capsys):
+    rows = [dict(REVIEW['rows'][0], discovery_id=f'new_{i:03}', url=f'https://x.com/alpha{i}') for i in range(392)]
+    rows.append(dict(REVIEW['rows'][0], discovery_id='corrected_group', eligibility='exclude_virtual_group', url='https://x.com/group'))
+    review = {'eligibility_counts': {'vtuber': 392, 'exclude_virtual_group': 1}, 'rows': rows}
+    args = cli_files(tmp_path, review, {'rows': [researched(r) for r in rows[:-1]]})
+    assert main(args + ['--validate-only']) == 0
+    assert json.loads(capsys.readouterr().out)['resolved'] == 392
+
+
+@pytest.mark.parametrize('counts', [None, {'vtuber': 393}, {'vtuber': 392, 'unavailable': 1}])
+def test_cli_validation_rejects_missing_or_inaccurate_declared_eligibility_counts(tmp_path, capsys, counts):
+    rows = [dict(REVIEW['rows'][0], discovery_id=f'new_{i:03}', url=f'https://x.com/alpha{i}') for i in range(392)]
+    review = {'rows': rows}
+    if counts is not None: review['eligibility_counts'] = counts
+    args = cli_files(tmp_path, review, {'rows': [researched(r) for r in rows]})
+    assert main(args + ['--platform', 'x', '--validate-only']) == 1
+
+
+def trusted_link_correction_fixture():
+    import hashlib
+    registry = trusted()
+    for link in registry['tables']['account_links']:
+        link['id'] = 'link_' + link['account_id']
+    link = registry['tables']['account_links'][1]
+    account = registry['tables']['accounts'][1]
+    evidence = registry['tables']['evidence'][0]
+    def digest(record):
+        return hashlib.sha256(json.dumps(record, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+    correction = {'link_id': link['id'], 'account_id': account['id'], 'asserted_persona_id': link['persona_id'],
+                  'evidence_id': evidence['id'], 'disposition': 'reject_identity_link',
+                  'link_sha256': digest(link), 'account_sha256': digest(account), 'evidence_sha256': digest(evidence),
+                  'source_urls': [evidence['url'], 'https://x.com/alpha'],
+                  'summary': 'The cited site lists a separate client, not the owner account.',
+                  'observed_at': '2026-09-19T15:00:00Z', 'reviewer': 'fixture:correction'}
+    return registry, {'schema_version': 1, 'corrections': [correction]}
+
+
+def test_explicit_trusted_link_correction_rejects_only_named_link_and_preserves_audit():
+    registry, corrections = trusted_link_correction_fixture()
+    before = copy.deepcopy(registry)
+    result = resolve_accounts(BASELINE, REVIEW, registry, {}, {'rows': [researched()]}, trusted_link_corrections=[corrections])
+    assert result['resolutions'][0]['outcome'] == 'new_persona'
+    assert result['resolutions'][0]['persona_id'] != 'vtuber_alpha'
+    assert result['trusted_link_corrections_applied'][0]['correction'] == corrections['corrections'][0]
+    assert result['trusted_link_corrections_applied'][0]['original_link'] == registry['tables']['account_links'][1]
+    assert registry == before
+    # Rejecting the X ownership edge must not remove the valid channel/persona edge.
+    assert resolve_accounts(BASELINE, REVIEW, registry, {}, crosslink(), trusted_link_corrections=[corrections])['resolutions'][0]['persona_id'] == 'vtuber_alpha'
+
+
+@pytest.mark.parametrize('change', ['unknown_link', 'wrong_account', 'wrong_persona', 'wrong_evidence', 'stale_link', 'stale_account', 'stale_evidence', 'uncited_evidence', 'unverified', 'unsafe_source', 'duplicate_conflict'])
+def test_invalid_or_stale_trusted_link_corrections_fail_closed(change):
+    registry, corrections = trusted_link_correction_fixture()
+    correction = corrections['corrections'][0]
+    if change == 'unknown_link': correction['link_id'] = 'missing'
+    elif change == 'wrong_account': correction['account_id'] = 'a_yt'
+    elif change == 'wrong_persona': correction['asserted_persona_id'] = 'someone_else'
+    elif change == 'wrong_evidence': correction['evidence_id'] = 'missing'
+    elif change == 'stale_link': registry['tables']['account_links'][1]['reviewed_at'] = 'changed'
+    elif change == 'stale_account': registry['tables']['accounts'][1]['url'] = 'https://x.com/reassigned'
+    elif change == 'stale_evidence': registry['tables']['evidence'][0]['summary'] = 'Updated evidence'
+    elif change == 'uncited_evidence': correction['source_urls'] = ['https://x.com/alpha']
+    elif change == 'unverified': registry['tables']['account_links'][1]['review_status'] = 'needs_evidence'
+    elif change == 'unsafe_source': correction['source_urls'].append('file:///private')
+    else:
+        corrections['corrections'].append(dict(correction, summary='Conflicting correction'))
+    with pytest.raises(ValueError, match='correction|unsafe'):
+        resolve_accounts(BASELINE, REVIEW, registry, {}, {'rows': [researched()]}, trusted_link_corrections=[corrections])
+
+
+def test_repeated_identical_trusted_corrections_are_deterministic():
+    registry, corrections = trusted_link_correction_fixture()
+    first = resolve_accounts(BASELINE, REVIEW, registry, {}, {'rows': [researched()]}, trusted_link_corrections=[corrections])
+    second = resolve_accounts(BASELINE, REVIEW, registry, {}, {'rows': [researched()]}, trusted_link_corrections=[corrections, corrections])
+    assert first == second
+
+
+def test_cli_repeated_trusted_corrections_and_merge_require_retained_audit(tmp_path):
+    registry, corrections = trusted_link_correction_fixture()
+    inputs = {'baseline': BASELINE, 'review-bundle': dict(REVIEW, eligibility_counts={'vtuber': 1}),
+              'trusted-registry': registry, 'legacy-decisions': {}, 'researched': {'rows': [researched()]},
+              'trusted-link-corrections': corrections}
+    args = []
+    for flag, payload in inputs.items():
+        path = tmp_path / (flag + '.json')
+        path.write_text(json.dumps(payload), encoding='utf-8')
+        args += ['--' + flag, str(path)]
+    output = tmp_path / 'ledger.json'
+    repeated = ['--trusted-link-corrections', str(tmp_path / 'trusted-link-corrections.json')]
+    assert main(args + repeated + ['--output', str(output)]) == 0
+    original = output.read_bytes()
+    ledger = json.loads(original)
+    assert len(ledger['trusted_link_corrections_applied']) == 1
+    assert main(args + ['--merge-existing', str(output), '--output', str(output)]) == 0
+    assert output.read_bytes() == original
+    correction_flag = args.index('--trusted-link-corrections')
+    without = args[:correction_flag] + args[correction_flag + 2:]
+    assert main(without + ['--merge-existing', str(output), '--output', str(output)]) == 1
+    assert output.read_bytes() == original
+
+
+REAL_EVIDENCE = Path(__file__).resolve().parents[1] / 'docs/evidence/creator-registry-review-2026-09-19'
+REAL_LEDGER = Path(__file__).resolve().parents[1] / 'data/registry/identity_resolutions.json'
+
+
+def test_linked_production_batch_has_complete_selected_evidence_and_no_group_leak():
+    from collections import Counter
+    review = json.loads((REAL_EVIDENCE / 'review_bundle.json').read_text(encoding='utf-8'))
+    research = json.loads((REAL_EVIDENCE / 'identity_research_linked.json').read_text(encoding='utf-8'))
+    ledger = json.loads(REAL_LEDGER.read_text(encoding='utf-8'))
+    platforms = {'youtube', 'tiktok', 'website', 'instagram', 'facebook', 'ganknow'}
+    selected = {r['discovery_id']: r for r in review['rows'] if r['eligibility'] == 'vtuber' and r['platform'] in platforms}
+    assert len(selected) == 116
+    assert Counter(r['platform'] for r in selected.values()) == {'youtube': 25, 'tiktok': 58, 'website': 17, 'instagram': 7, 'facebook': 6, 'ganknow': 3}
+    assert {r['discovery_id'] for r in research['rows']} == set(selected)
+    resolved = {r['discovery_id']: r for r in ledger['resolutions']}
+    assert set(selected) <= set(resolved)
+    assert not ledger['unresolved'] and not ledger['conflicts']
+    assert 'candidate_e75fe4be2e942a6f1d0d' not in resolved
+    assert review['eligibility_counts']['vtuber'] == 392
+    assert review['eligibility_counts']['exclude_virtual_group'] == 3
+    for row in research['rows']:
+        assert row['evidence'] and row['reviewer']
+        if row.get('no_existing_persona_match'):
+            assert row['existing_persona_search']['corpora']
+            assert row['existing_persona_search']['official_urls_checked']
+            assert row['existing_persona_search']['result']
+
+
+def test_every_linked_youtube_resolution_agrees_with_api_confirmed_video_or_channel_owner():
+    import re
+    review = json.loads((REAL_EVIDENCE / 'review_bundle.json').read_text(encoding='utf-8'))
+    research = {r['discovery_id']: r for r in json.loads((REAL_EVIDENCE / 'identity_research_linked.json').read_text(encoding='utf-8'))['rows']}
+    resolved = {r['discovery_id']: r for r in json.loads(REAL_LEDGER.read_text(encoding='utf-8'))['resolutions']}
+    selected = [r for r in review['rows'] if r['platform'] == 'youtube' and r['eligibility'] == 'vtuber']
+    assert len(selected) == 25
+    for row in selected:
+        evidence = [e for e in research[row['discovery_id']]['evidence'] if e['source_kind'] == 'youtube_api']
+        assert evidence
+        target = resolved[row['discovery_id']]
+        assert re.fullmatch(r'UC[A-Za-z0-9_-]{22}', target['platform_id'])
+        assert {e['owner_channel_id'] for e in evidence} == {target['platform_id']}
+        assert {e['owner_canonical_url'] for e in evidence} == {'https://www.youtube.com/channel/' + target['platform_id']}
+        if '/shorts/' in row['url'] or 'watch?v=' in row['url']:
+            assert any(e['source_resource'].startswith('video:') for e in evidence)
+    assert resolved['candidate_4ad08d3510b0052de1c8']['canonical_name'].startswith('Derya')
+    assert resolved['candidate_4ad08d3510b0052de1c8']['platform_id'] == 'UCLMlKgN_f39Ex0pFZ4e5oUQ'
+    assert resolved['candidate_b297c147542c164a05a3']['canonical_name'] == 'CzarBooHan'
+    assert resolved['candidate_b297c147542c164a05a3']['platform_id'] == 'UCiuLi0DkmZQAH4fy_XhFUuA'
+
+
+def test_real_client_personas_remain_distinct_from_nyeeeon_with_retained_corrections():
+    ledger = json.loads(REAL_LEDGER.read_text(encoding='utf-8'))
+    rows = {r['discovery_id']: r for r in ledger['resolutions']}
+    clients = [rows[did] for did in ('candidate_5d85ad1e31dc7fd520a9', 'candidate_d4ffc2fcb4bd1133ae5a')]
+    assert len({r['persona_id'] for r in clients}) == 2
+    assert all(r['persona_id'] != 'vtuber_nyeeeon' for r in clients)
+    audit = ledger['trusted_link_corrections_applied']
+    assert {a['original_account']['handle'] for a in audit} == {'scythringe', 'reiquasar0', 'tpastry', 'BlueMage_VT', 'zerobusterxz', 'theclumsynoob'}
+    assert all(a['correction']['disposition'] == 'reject_identity_link' for a in audit)
+    assert 'link_61b87c391961a5735fad' not in {a['original_link']['id'] for a in audit}
+    assert all('VTUBER CHILD' in a['correction']['summary'] for a in audit)

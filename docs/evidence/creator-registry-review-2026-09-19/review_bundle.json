@@ -6708,16 +6708,32 @@
       "original_name": "Zin'fandel「ZTP」",
       "url": "https://www.youtube.com/shorts/gpU4DR0SRsc",
       "channel_id": null,
-      "eligibility": "vtuber",
+      "eligibility": "exclude_virtual_group",
       "reason": "เข้าถึงหน้าโปรไฟล์หรือระบุเจ้าของช่องไม่สำเร็จ; การหาไม่พบไม่ใช่หลักฐานว่าไม่ใช่ VTuber",
       "evidence_urls": [
+        "https://www.youtube.com/channel/UCPZIPuQPrfrUG9Xe_okEmQA",
+        "https://www.youtube.com/shorts/gpU4DR0SRsc",
         "https://www.youtube.com/shorts/gpU4DR0SRsc/about"
       ],
       "decision_provenance": {
         "source": "human_review",
         "decision": "vtuber"
       },
-      "reviewed_at": "2026-09-19T11:41:03.454648+00:00"
+      "reviewed_at": "2026-09-19T11:41:03.454648+00:00",
+      "correction_provenance": {
+        "account_url": "https://www.youtube.com/shorts/gpU4DR0SRsc",
+        "discovery_id": "candidate_e75fe4be2e942a6f1d0d",
+        "new_eligibility": "exclude_virtual_group",
+        "observed_at": "2026-09-19T14:54:06.060414+00:00",
+        "old_eligibility": "vtuber",
+        "owner_canonical_url": "https://www.youtube.com/channel/UCPZIPuQPrfrUG9Xe_okEmQA",
+        "owner_channel_id": "UCPZIPuQPrfrUG9Xe_okEmQA",
+        "reviewer": "codex:task-6-linked-identity-research",
+        "ruling": "Controller explicitly approved reclassification on 2026-09-19: the individual-catalog exclusion rule for group accounts controls over the earlier mislabeled acceptance. Preserve the original screening and human decision provenance; exclude the actual group owner.",
+        "source_kind": "youtube_api",
+        "source_url": "https://www.youtube.com/shorts/gpU4DR0SRsc",
+        "summary": "YouTube videos.list identified the Shorts owner as UCPZIPuQPrfrUG9Xe_okEmQA; channels.list confirmed the same Channel ID with title PLAVE 플레이브 and description PLAVE OFFICIAL YouTube / 플레이브 공식 유튜브. The account is the official virtual group PLAVE, not the individual Zin'fandel named in the discovery lead."
+      }
     },
     {
       "discovery_id": "candidate_e884e36a61c6ea2b930c",
@@ -16493,9 +16509,9 @@
     "exclude_non_persona": 30,
     "exclude_non_vtuber": 3,
     "exclude_unrelated": 67,
-    "exclude_virtual_group": 2,
+    "exclude_virtual_group": 3,
     "trusted_baseline": 292,
     "unavailable": 94,
-    "vtuber": 393
+    "vtuber": 392
   }
 }

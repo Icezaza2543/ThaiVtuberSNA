@@ -13,11 +13,15 @@ sources. Crosslinked discovery components get one deterministic new persona ID.
 Optional platform_id/canonical_url record a publicly evidenced stable account ID.
 Repeated research files are merged by discovery ID; disagreements fail closed.
 Legacy visual decisions are advisory only and never supply positive evidence.
+Repeatable trusted-link correction files reject only named, hash-bound verified
+links whose cited owner-controlled source disproves ownership; original facts
+remain in the audit ledger.
 """
 from __future__ import annotations
 
 import argparse
 from collections import Counter, defaultdict, deque
+from datetime import datetime
 import hashlib
 import ipaddress
 import json
@@ -141,6 +145,82 @@ def _unique_records(payload, table):
             raise ValueError(f'duplicate trusted {table} ID: {key}')
         indexed[key] = row
     return indexed
+
+
+
+def _record_sha256(record):
+    return hashlib.sha256(json.dumps(record, ensure_ascii=False, sort_keys=True,
+                                     separators=(',', ':')).encode()).hexdigest()
+
+
+def _correct_trusted_links(registry, payloads):
+    """Reject explicitly disproved links while retaining immutable original facts.
+
+    Corrections bind to hashes of the original link, account and cited evidence.
+    Registry updates therefore require a reviewed correction, never a silent reuse.
+    """
+    corrections = {}
+    fields = {'link_id', 'account_id', 'asserted_persona_id', 'evidence_id', 'disposition',
+              'link_sha256', 'account_sha256', 'evidence_sha256', 'source_urls',
+              'summary', 'observed_at', 'reviewer'}
+    for payload in payloads:
+        if payload.get('schema_version') != 1 or 'corrections' not in payload:
+            raise ValueError('unsupported trusted link correction schema')
+        for row in _records(payload, 'corrections'):
+            if set(row) != fields or row.get('disposition') != 'reject_identity_link':
+                raise ValueError('invalid trusted link correction fields/disposition')
+            key = row['link_id']
+            if not isinstance(key, str) or not key:
+                raise ValueError('trusted link correction missing link ID')
+            if key in corrections and corrections[key] != row:
+                raise ValueError('conflicting trusted link corrections')
+            corrections[key] = row
+    if not corrections:
+        return registry, []
+    tables = registry.get('tables', registry)
+    accounts = _unique_records(tables, 'accounts')
+    evidence = _unique_records(tables, 'evidence')
+    personas = _unique_records(tables, 'personas')
+    # Legacy fixture links may omit IDs, but every corrected link must be unique.
+    links = defaultdict(list)
+    for link in _records(tables, 'account_links'):
+        if isinstance(link.get('id'), str):
+            links[link['id']].append(link)
+    audit = []
+    for key, correction in sorted(corrections.items()):
+        matches = links.get(key, [])
+        if len(matches) != 1:
+            raise ValueError('trusted link correction names unknown/duplicate link')
+        link = matches[0]
+        account = accounts.get(link.get('account_id'))
+        ev = evidence.get(link.get('evidence_id'))
+        persona = personas.get(link.get('persona_id'))
+        if (link.get('review_status') != 'verified' or link.get('valid_to') or not account
+                or not ev or not persona or persona.get('review_status') != 'verified'
+                or correction['account_id'] != link.get('account_id')
+                or correction['asserted_persona_id'] != link.get('persona_id')
+                or correction['evidence_id'] != link.get('evidence_id')):
+            raise ValueError('stale or mismatched trusted link correction')
+        if any(correction[field] != _record_sha256(record) for field, record in
+               [('link_sha256', link), ('account_sha256', account), ('evidence_sha256', ev)]):
+            raise ValueError('stale trusted link correction content hash')
+        sources = _urls(correction['source_urls'])
+        if _account_url(ev['url']) not in {_account_url(u) for u in sources}:
+            raise ValueError('trusted link correction must cite the original evidence')
+        if any(not isinstance(correction[f], str) or not correction[f].strip()
+               for f in ('summary', 'reviewer', 'observed_at')):
+            raise ValueError('trusted link correction requires observed review provenance')
+        try:
+            observed = datetime.fromisoformat(correction['observed_at'].replace('Z', '+00:00'))
+            if observed.tzinfo is None:
+                raise ValueError
+        except ValueError:
+            raise ValueError('trusted link correction requires timezone-aware observed_at') from None
+        audit.append({'correction': correction, 'original_link': link,
+                      'original_account': account, 'original_evidence': ev})
+    corrected = dict(tables, account_links=[link for link in _records(tables, 'account_links')
+                                           if link.get('id') not in corrections])
+    return ({**registry, 'tables': corrected} if 'tables' in registry else corrected), audit
 
 
 def _indexes(baseline, trusted_registry, excluded_urls=frozenset()):
@@ -270,7 +350,7 @@ def _summary(ledger, selected):
             'unresolved': len(ledger['unresolved']), 'conflicts': len(ledger['conflicts'])}
 
 
-def resolve_accounts(baseline, review_bundle, trusted_registry, legacy_decisions, researched, youtube_client=None):
+def resolve_accounts(baseline, review_bundle, trusted_registry, legacy_decisions, researched, youtube_client=None, trusted_link_corrections=None):
     """Produce schema-v1 ledger or raise ResolutionError with its failed audit rows."""
     review = {}
     for row in _records(review_bundle):
@@ -284,6 +364,7 @@ def resolve_accounts(baseline, review_bundle, trusted_registry, legacy_decisions
     excluded_urls = {_account_url(url) for row in review.values()
                      if row.get('eligibility') not in {'vtuber', 'trusted_baseline'}
                      for url in [row['url'], *row.get('evidence_urls', [])]}
+    trusted_registry, correction_audit = _correct_trusted_links(trusted_registry, trusted_link_corrections or [])
     names, id_index, url_index, persona_urls, aliases, baseline_ids = _indexes(baseline, trusted_registry, excluded_urls)
     accepted = {did: r for did, r in review.items() if r.get('eligibility') == 'vtuber'}
     research = {r['discovery_id']: r for r in merge_research([researched])['rows']}
@@ -292,6 +373,8 @@ def resolve_accounts(baseline, review_bundle, trusted_registry, legacy_decisions
             raise ValueError(f'research references excluded/ineligible or unknown discovery: {did}')
     legacy = {r['discovery_id']: r for r in _records(legacy_decisions, 'decisions') if r.get('discovery_id') in accepted}
     ledger = {'schema_version': 1, 'resolutions': [], 'trusted_baseline_verified': [], 'unresolved': [], 'conflicts': []}
+    if correction_audit:
+        ledger['trusted_link_corrections_applied'] = correction_audit
     for did, row in sorted(review.items()):
         if row.get('eligibility') == 'trusted_baseline':
             key = _platform_id(row)
@@ -563,17 +646,20 @@ def main(argv=None):
     for name in ('review-bundle', 'baseline', 'trusted-registry', 'legacy-decisions'):
         parser.add_argument('--' + name, required=True, type=Path)
     parser.add_argument('--researched', action='append', type=Path, default=[])
+    parser.add_argument('--trusted-link-corrections', action='append', type=Path, default=[],
+                        help='Explicit, hash-bound rejection of disproved verified ownership links.')
     parser.add_argument('--platform', action='append', default=[])
     parser.add_argument('--output', type=Path)
     parser.add_argument('--merge-existing', type=Path)
     parser.add_argument('--queue', action='store_true', help='Write a partial audit ledger including unresolved/conflicting rows.')
-    parser.add_argument('--validate-only', action='store_true', help='Require 393 accepted inputs and complete resolution of the selected platforms; write no files.')
+    parser.add_argument('--validate-only', action='store_true', help='Require declared eligibility counts to match the complete bundle and resolve the selected platforms; write no files.')
     args = parser.parse_args(argv)
     try:
         review = _load(args.review_bundle)
         research = merge_research([_load(path) for path in args.researched])
         try:
-            ledger = resolve_accounts(_load(args.baseline), review, _load(args.trusted_registry), _load(args.legacy_decisions), research)
+            ledger = resolve_accounts(_load(args.baseline), review, _load(args.trusted_registry), _load(args.legacy_decisions), research,
+                                      trusted_link_corrections=[_load(path) for path in args.trusted_link_corrections])
         except ResolutionError as exc:
             ledger = exc.ledger
         all_rows = {r['discovery_id']: r for r in ledger['resolutions']}
@@ -583,6 +669,11 @@ def main(argv=None):
             previous = _load(args.merge_existing)
             if previous.get('schema_version') != 1:
                 raise ValueError('unsupported previous resolution schema')
+            current_corrections = {json.dumps(row, sort_keys=True, ensure_ascii=False)
+                                   for row in ledger.get('trusted_link_corrections_applied', [])}
+            if any(json.dumps(row, sort_keys=True, ensure_ascii=False) not in current_corrections
+                   for row in previous.get('trusted_link_corrections_applied', [])):
+                raise ValueError('previous ledger requires its verified trusted link corrections')
             prior_ids = _verify_previous(previous, all_rows, research, review)
             selected.update({r['discovery_id']: r for r in review['rows'] if r['discovery_id'] in prior_ids})
         for key in ('resolutions', 'unresolved', 'conflicts'):
@@ -591,9 +682,13 @@ def main(argv=None):
         print(json.dumps(ledger['counts'], sort_keys=True))
         failed = bool(ledger['unresolved'] or ledger['conflicts'])
         if args.validate_only:
-            total_accepted = sum(r.get('eligibility') == 'vtuber' for r in review['rows'])
-            expected = len(selected) if platforms else 393
-            return int(failed or not expected or len(ledger['resolutions']) != expected or total_accepted != 393)
+            actual_counts = dict(Counter(r.get('eligibility') for r in review['rows']))
+            declared_counts = review.get('eligibility_counts')
+            valid_counts = (isinstance(declared_counts, dict)
+                            and all(type(value) is int and value > 0 for value in declared_counts.values())
+                            and declared_counts == actual_counts)
+            expected = len(selected) if platforms else actual_counts.get('vtuber', 0)
+            return int(failed or not valid_counts or not expected or len(ledger['resolutions']) != expected)
         if args.output and (not failed or args.queue):
             args.output.parent.mkdir(parents=True, exist_ok=True)
             temporary = args.output.with_suffix(args.output.suffix + '.tmp')

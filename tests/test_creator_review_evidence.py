@@ -247,3 +247,52 @@ def test_rejects_same_size_bundle_with_wrong_production_distribution(review_inpu
 
     with pytest.raises(ValueError, match="eligibility distribution"):
         validate_production_counts(bundle)
+
+
+
+def explicit_group_correction(discovery_id='human-vtuber'):
+    channel_id = 'UC' + 'g' * 22
+    return {'schema_version': 1, 'corrections': [{
+        'discovery_id': discovery_id, 'old_eligibility': 'vtuber',
+        'new_eligibility': 'exclude_virtual_group',
+        'account_url': 'https://example.test/human',
+        'owner_channel_id': channel_id,
+        'owner_canonical_url': 'https://www.youtube.com/channel/' + channel_id,
+        'source_url': 'https://example.test/human', 'source_kind': 'youtube_api',
+        'summary': 'Video owner is the official channel of a virtual group.',
+        'observed_at': '2026-09-19T12:00:00Z',
+        'reviewer': 'fixture:controller', 'ruling': 'Exclude group accounts from the individual catalog.',
+    }]}
+
+
+def test_explicit_group_correction_applies_after_human_precedence_and_retains_provenance(review_inputs, tmp_path):
+    screening, human = review_inputs
+    correction = write_json(tmp_path / 'corrections.json', explicit_group_correction())
+    bundle = package_review_evidence(screening, human, correction)
+    row = next(r for r in bundle['rows'] if r['discovery_id'] == 'human-vtuber')
+    assert row['eligibility'] == 'exclude_virtual_group'
+    assert row['decision_provenance'] == {'source': 'human_review', 'decision': 'vtuber'}
+    assert row['correction_provenance']['old_eligibility'] == 'vtuber'
+    assert row['correction_provenance']['owner_channel_id'] == 'UC' + 'g' * 22
+    assert row['correction_provenance']['source_kind'] == 'youtube_api'
+    assert bundle['eligibility_counts']['vtuber'] == 1
+    assert bundle['eligibility_counts']['exclude_virtual_group'] == 1
+    assert row['correction_provenance']['owner_canonical_url'] in row['evidence_urls']
+
+
+@pytest.mark.parametrize('mutation', ['unknown', 'duplicate', 'wrong_prior', 'readmit', 'wrong_account', 'wrong_owner', 'missing_summary', 'unsafe_source'])
+def test_explicit_corrections_fail_closed_when_not_supported(review_inputs, tmp_path, mutation):
+    screening, human = review_inputs
+    payload = explicit_group_correction()
+    row = payload['corrections'][0]
+    if mutation == 'unknown': row['discovery_id'] = 'missing'
+    if mutation == 'duplicate': payload['corrections'].append(dict(row))
+    if mutation == 'wrong_prior': row['old_eligibility'] = 'unavailable'
+    if mutation == 'readmit': row['new_eligibility'] = 'vtuber'
+    if mutation == 'wrong_account': row['account_url'] = 'https://example.test/another'
+    if mutation == 'wrong_owner': row['owner_channel_id'] = 'invalid'
+    if mutation == 'missing_summary': row['summary'] = ''
+    if mutation == 'unsafe_source': row['source_url'] = 'http://127.0.0.1/private'
+    correction = write_json(tmp_path / 'corrections.json', payload)
+    with pytest.raises(ValueError):
+        package_review_evidence(screening, human, correction)
