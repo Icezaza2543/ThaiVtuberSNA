@@ -56,8 +56,19 @@ def _records(payload: Any, key: str | None = None) -> list[dict[str, Any]]:
     return rows
 
 
+def _canonical_for_hash(value: Any) -> Any:
+    """Canonicalize JSON-like values so source fingerprints ignore array order."""
+    if isinstance(value, dict):
+        return {key: _canonical_for_hash(item) for key, item in sorted(value.items())}
+    if isinstance(value, list):
+        items = [_canonical_for_hash(item) for item in value]
+        return sorted(items, key=lambda item: json.dumps(item, ensure_ascii=False, sort_keys=True, separators=(",", ":")))
+    return value
+
+
 def _semantic_sha256(value: Any) -> str:
-    raw = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    canonical = _canonical_for_hash(value)
+    raw = json.dumps(canonical, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(raw).hexdigest()
 
 
