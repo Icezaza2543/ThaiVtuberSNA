@@ -107,17 +107,14 @@
 
 ---
 
-## 8. Tomorrow's Refactor Starting Point: Top 5 Concrete Actions
+## 8. Registry Refactor Status and Follow-up
 
-To begin the major refactor documented in [`docs/refactor/REFACTOR_PLAN.md`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/docs/refactor/REFACTOR_PLAN.md), execute the following first 5 actions:
+The creator-registry consolidation described by the earlier refactor notes is now implemented on the consolidation branch:
 
-1. **Execute Phase R0 Baseline Freeze**:
-   - Run a standalone script to generate `docs/evidence/pre_refactor_manifest.json` recording SHA-256 checksums of all 29 parquet tables and `web/app.js`.
-2. **Build `src/storage/catalog_store.py` (Phase R2)**:
-   - Unify `data/temporal/catalog/target_manifest.csv` and `data/thai_vtuber_registry.csv` into a single authoritative lookup class to eliminate multi-file source-of-truth drift.
-3. **Extract DuckDB Event Builder into `src/canonical/duckdb_builder.py` (Phase R3)**:
-   - Extract `build_unified_raw_view` and `build_canonical_events_view` out of `scripts/build_duckdb_temporal_snapshots.py` into a reusable module.
-4. **Isolate `AGENCY_ISLAND_COORDINATES` into `web/observatory/src/coordinates.js` (Phase R7)**:
-   - Extract the protected coordinate block byte-for-byte into an isolated ES module and assert exact SHA-256 `47a63e31...` in CI.
-5. **Wire `web/research/data/research_v2.json` into `web/research/research_v2.js` (Phase R7)**:
-   - Hydrate the 193 `data-field` slots in `web/research/index_v2.html` from the newly sealed v2 contract, replacing `/* UI only */` with live reactive data rendering.
+1. **Baseline freeze complete** — trusted baseline Channel IDs and protected hashes are recorded under `docs/evidence/creator-registry-review-2026-09-19/`.
+2. **Canonical catalog complete** — `data/registry/creators.json` is schema-v2 and all runtime/analysis readers use `CreatorCatalog`.
+3. **Identity evidence complete for the reviewed scope** — accepted discovery accounts are sealed in `data/registry/identity_resolutions.json`.
+4. **Frozen cohort preserved** — `data/temporal/catalog/target_manifest.csv` remains an immutable 193-channel longitudinal cohort independent of catalog expansion.
+5. **Public artifact provenance** — registry-derived public JSON stores `metadata.creator_registry_sha256` so stale builds can be rejected.
+
+Remaining refactor work concerns non-registry architecture and historical refactor items; it must not reintroduce a second creator source of truth.
