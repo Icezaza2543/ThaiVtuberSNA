@@ -1,15 +1,14 @@
 """
 Thai VTuber Audience Network (SNA)
-Update Web Visualizer with ALL 1,370 VTubers & High-Confidence (>=5 Viewers) Relation Edges
+Update Web Visualizer with canonical VTuber channels & High-Confidence (>=5 Viewers) Relation Edges
 
-1. Loads ALL 1,370 Thai VTubers from data/thai_vtuber_registry.csv as nodes.
+1. Loads canonical YouTube creator accounts through CreatorCatalog as nodes.
 2. Fetches real calculated overlap pairs from Google Sheets 'NETWORK_RESULT'.
 3. Filters relations with Shared Viewers >= 5 (913 clean, high-confidence edges).
 4. Computes NetworkX centrality metrics (Degree, Betweenness, PageRank) on the real network.
 5. Generates web/data.json and data/real/analytics/network_graph.json.
 6. Injects embedded dataset into web/app.js with minThreshold = 5 for 100% offline & local file:/// compatibility.
 """
-import csv
 import json
 import logging
 import sys
@@ -21,7 +20,8 @@ sys.path.insert(0, str(BASE_DIR))
 
 import gspread
 import networkx as nx
-from config.settings import GOOGLE_SHEETS_CONFIG, DATA_DIR
+from config.settings import GOOGLE_SHEETS_CONFIG, DATA_DIR, CREATOR_REGISTRY_PATH
+from core.creator_catalog import CreatorCatalog
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("UpdateWebAllVTubers")
@@ -60,12 +60,11 @@ def main():
     raw_edges = ws_net.get_all_records()
     logger.info(f"Fetched {len(raw_edges)} total overlap edges from 'NETWORK_RESULT'.")
 
-    # Load ALL 1,370 VTubers from registry
-    registry_file = DATA_DIR / "thai_vtuber_registry.csv"
-    with open(registry_file, "r", encoding="utf-8") as f:
-        all_vtubers = list(csv.DictReader(f))
+    # Load the canonical YouTube creator catalog.
+    creator_catalog = CreatorCatalog.from_path(CREATOR_REGISTRY_PATH)
+    all_vtubers = list(creator_catalog.youtube_rows())
 
-    logger.info(f"Loaded {len(all_vtubers)} VTubers from registry.")
+    logger.info(f"Loaded {len(all_vtubers)} canonical YouTube creator accounts.")
 
     # Name and ID to Info Mapping
     name_to_info = {}
@@ -174,7 +173,8 @@ def main():
             "total_connections": len(edge_records),
             "agencies_count": len(agency_groups),
             "min_relation_threshold": min_edge_threshold,
-            "updated_at": "2026-09-07 (All 1,370 VTubers | Threshold >= 5)"
+            "updated_at": "2026-09-07 (Canonical creator catalog | Threshold >= 5)",
+            "creator_registry_sha256": creator_catalog.source_fingerprint()
         },
         "agencies": agencies_meta,
         "nodes": nodes,
@@ -185,7 +185,7 @@ def main():
     out_web_json = BASE_DIR / "web" / "data.json"
     with open(out_web_json, "w", encoding="utf-8") as f:
         json.dump(web_data, f, indent=2, ensure_ascii=False)
-    logger.info(f"Saved web/data.json with {len(nodes)} nodes (100% of VTubers) and {len(edge_records)} edges.")
+    logger.info(f"Saved web/data.json with {len(nodes)} nodes (canonical YouTube accounts) and {len(edge_records)} edges.")
 
     # Write to data/real/analytics/network_graph.json
     out_analytics_json = BASE_DIR / "data" / "real" / "analytics" / "network_graph.json"
