@@ -23,6 +23,7 @@ on:
       - scripts/update_web_with_real_data.py
       - tests/test_frontend_public_boundary.py
       - tests/test_refactor_equivalence.py
+      - tests/test_research_v2_data_contract.py
       - tests/test_registry_consumer_migration.py
       - tests/test_sheets_privacy_audit.py
       - .github/workflows/task11-analysis-registry.yml
