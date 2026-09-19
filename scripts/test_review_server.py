@@ -33,7 +33,7 @@ def test_server():
     opener = urllib.request.build_opener(urllib.request.HTTPRedirectHandler)
     with opener.open(req) as resp:
         content = resp.read().decode("utf-8")
-        assert "<title>ThaiVtuberSNA · Visual Identity Review</title>" in content, "Review UI HTML not returned"
+        assert "ThaiVtuberSNA" in content and "การตรวจสอบอัตลักษณ์ตัวละคร" in content, "Review UI HTML not returned"
         print("  [PASS] GET / -> serves visual identity review UI")
 
     # 2. Test master_creators.json endpoint

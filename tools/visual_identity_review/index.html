@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="th">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ThaiVtuberSNA · Visual Identity Review</title>
+  <title>ThaiVtuberSNA · การตรวจสอบอัตลักษณ์ตัวละครด้วยสายตา</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #07090e;
@@ -28,7 +28,7 @@
       --warn: #f59e0b;
       --warn-bg: #451a03;
       --radius: 14px;
-      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-sans: 'Prompt', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
 
@@ -535,54 +535,54 @@
   <div class="shell">
     <header>
       <div class="brand">
-        <h1>ThaiVtuberSNA · Visual Identity Review</h1>
-        <div class="tagline">Human Visual Inspection Workflow for Unresolved Discovery Records</div>
+        <h1>ThaiVtuberSNA · การตรวจสอบอัตลักษณ์ตัวละคร</h1>
+        <div class="tagline">ขั้นตอนการตรวจพิสูจน์โมเดลและรูปลักษณ์ VTuber ด้วยสายตา สำหรับบัญชีค้นพบใหม่ที่รอการระบุตัวตน</div>
       </div>
       <div class="nav-actions">
-        <label class="btn" title="Open master_creators.json if running via file:// without a server" style="cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
-          📂 Load JSON
+        <label class="btn" title="เลือกไฟล์ master_creators.json กรณีเปิดใช้งานแบบออฟไลน์" style="cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+          📂 โหลด JSON
           <input type="file" id="localFileInput" accept=".json" style="display:none">
         </label>
-        <button id="exportBtn" class="btn btn-primary" title="Export review decisions to JSON file">⬇ Export Decisions</button>
-        <button id="saveServerBtn" class="btn" title="Persist to data/entity_resolution/visual_identity_review.json">💾 Save to Server</button>
+        <button id="exportBtn" class="btn btn-primary" title="ส่งออกผลการตัดสินใจทั้งหมดเป็นไฟล์ JSON">⬇ ส่งออกผลการตรวจ (JSON)</button>
+        <button id="saveServerBtn" class="btn" title="บันทึกผลไปยัง data/entity_resolution/visual_identity_review.json">💾 บันทึกลงเซิร์ฟเวอร์</button>
       </div>
     </header>
 
     <div class="policy-banner">
       <div class="policy-icon">⚖️</div>
       <div class="policy-text">
-        <strong>Domain Rule:</strong> 1 persona / 1 character form = 1 VTuber entity. If a performer graduates, reincarnates, or debuts under a new VTuber identity, <strong>always treat that as a DIFFERENT entity</strong> even if the human performer is known. Visual character identity (avatar/model/artwork) takes strict priority over names, voices, or rumors.
+        <strong>กฎสำคัญของระบบ (Domain Rule):</strong> 1 เพอร์โซนา / 1 รูปลักษณ์ตัวละคร = 1 เอนทิตี VTuber หากผู้แสดงจบการศึกษา (Graduate), เกิดใหม่ (Reincarnate), หรือเปิดตัวใหม่ภายใต้อัตลักษณ์ VTuber อื่น <strong>จะต้องถือว่าเป็นคนละเอนทิตีเสมอ</strong> แม้จะทราบว่าเป็นผู้พากย์คนเดียวกันก็ตาม การตรวจดูอัตลักษณ์ทางภาพ (อวาตาร์/โมเดล/ภาพวาด) ถือเป็นเกณฑ์สำคัญสูงสุดเหนือกว่าชื่อ เสียง หรือข่าวลือ
       </div>
     </div>
 
     <!-- Toolbar & Stats -->
     <div class="toolbar">
       <div class="stats-group" id="statsGroup">
-        <span class="stat-pill"><strong id="statTotal">884</strong> Discovery</span>
-        <span class="stat-pill"><strong id="statReviewed">0</strong> Reviewed</span>
-        <span class="stat-pill pill-good"><strong id="statSame">0</strong> Same Persona</span>
-        <span class="stat-pill pill-bad"><strong id="statNew">0</strong> New Persona</span>
-        <span class="stat-pill pill-warn"><strong id="statUncertain">0</strong> Uncertain</span>
-        <span class="stat-pill"><strong id="statRemaining">884</strong> Remaining</span>
+        <span class="stat-pill"><strong id="statTotal">884</strong> บัญชีรอตรวจสอบ</span>
+        <span class="stat-pill"><strong id="statReviewed">0</strong> ตรวจสอบแล้ว</span>
+        <span class="stat-pill pill-good"><strong id="statSame">0</strong> ตัวละครเดียวกัน</span>
+        <span class="stat-pill pill-bad"><strong id="statNew">0</strong> ตัวละครใหม่</span>
+        <span class="stat-pill pill-warn"><strong id="statUncertain">0</strong> ไม่แน่ชัด</span>
+        <span class="stat-pill"><strong id="statRemaining">884</strong> คงเหลือ</span>
       </div>
       <div class="nav-actions">
         <span id="queueIndex" style="font-family: var(--font-mono); color: var(--muted); font-size: 13px;">1 / 884</span>
-        <button id="prevBtn" class="btn">◀ Prev [←]</button>
-        <button id="nextBtn" class="btn">Next [→] ▶</button>
+        <button id="prevBtn" class="btn">◀ ก่อนหน้า [←]</button>
+        <button id="nextBtn" class="btn">ถัดไป [→] ▶</button>
       </div>
     </div>
 
     <!-- Filter & Search Bar -->
     <div class="filter-bar">
       <select id="filterSelect" class="input-field">
-        <option value="unreviewed">Queue: Unreviewed Only</option>
-        <option value="all">Queue: All Records</option>
-        <option value="same_persona">Reviewed: Same Persona</option>
-        <option value="new_persona">Reviewed: New Persona</option>
-        <option value="uncertain">Reviewed: Uncertain</option>
+        <option value="unreviewed">คิว: เฉพาะที่ยังไม่ได้ตรวจสอบ</option>
+        <option value="all">คิว: ข้อมูลทั้งหมด</option>
+        <option value="same_persona">ผลการตรวจ: ตัวละครเดียวกัน</option>
+        <option value="new_persona">ผลการตรวจ: ตัวละครใหม่ (แยกเอนทิตี)</option>
+        <option value="uncertain">ผลการตรวจ: ไม่แน่ชัด / ข้อมูลไม่เพียงพอ</option>
       </select>
-      <input type="text" id="searchInput" class="input-field" placeholder="Search unresolved discovery records by name, handle, or URL..." />
-      <div style="color: var(--muted); font-size: 12px;">Keyboard shortcuts: <strong>1</strong> Same, <strong>2</strong> New, <strong>3</strong> Uncertain</div>
+      <input type="text" id="searchInput" class="input-field" placeholder="ค้นหาบัญชีค้นพบใหม่ด้วยชื่อ, แฮนเดิล (@handle), หรือ URL..." />
+      <div style="color: var(--muted); font-size: 12px;">คีย์ลัดบนแป้นพิมพ์: กด <strong>1</strong> ตัวละครเดียวกัน, กด <strong>2</strong> ตัวละครใหม่, กด <strong>3</strong> ไม่แน่ชัด</div>
     </div>
 
     <!-- Main Comparison Grid -->
@@ -590,14 +590,14 @@
       <!-- LEFT: Discovery Account -->
       <div class="entity-card" id="leftCard">
         <div class="card-header">
-          <span class="card-badge badge-discovery">Unresolved Discovery Lead</span>
+          <span class="card-badge badge-discovery">บัญชีค้นพบใหม่ (รอระบุตัวตน)</span>
           <span id="leftPlatform" class="platform-badge">YOUTUBE</span>
         </div>
         <div class="visual-stage" id="leftStage">
           <!-- Image or preview button -->
         </div>
         <div class="card-body">
-          <div class="entity-title" id="leftName">Loading...</div>
+          <div class="entity-title" id="leftName">กำลังโหลดข้อมูล...</div>
           <div class="entity-id" id="leftId">discovery_id</div>
           <div class="meta-tags" id="leftMeta"></div>
           <div class="profile-links" id="leftLinks"></div>
@@ -608,41 +608,41 @@
       <div class="middle-panel">
         <div class="box">
           <h3>
-            <span>Candidate Personas</span>
-            <span id="candidateCount" style="font-size: 11px; color: var(--cyan);">0 found</span>
+            <span>ตัวละครเป้าหมายที่เป็นไปได้ (ผู้สมัคร)</span>
+            <span id="candidateCount" style="font-size: 11px; color: var(--cyan);">0 รายการ</span>
           </h3>
-          <input type="text" id="candidateSearchInput" class="input-field" placeholder="Filter candidates..." style="margin-bottom: 8px; font-size: 12px;" />
+          <input type="text" id="candidateSearchInput" class="input-field" placeholder="ค้นหาตัวละครเป้าหมาย..." style="margin-bottom: 8px; font-size: 12px;" />
           <div class="candidate-list" id="candidateList">
             <!-- Candidate ranking list -->
           </div>
           <div style="font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.4;">
-            * Ranking by name/handle similarity is <em>navigation assistance only</em>. Never auto-merge without visual inspection.
+            * การจัดอันดับตามความคล้ายของชื่อ/แฮนเดิลเป็นเพียงตัวช่วยนำทางเท่านั้น ห้ามรวมเอนทิตีอัตโนมัติโดยไม่ตรวจดูภาพตัวละคร
           </div>
         </div>
 
         <div class="box">
-          <h3>Review Decision</h3>
+          <h3>ผลการตัดสินใจ</h3>
           <div class="decision-buttons">
             <button class="btn btn-decision btn-same" id="btnSame">
-              <span>✓ Same Persona</span>
-              <span class="shortcut-key">Key 1</span>
+              <span>✓ ตัวละครเดียวกัน</span>
+              <span class="shortcut-key">กด 1</span>
             </button>
             <button class="btn btn-decision btn-new" id="btnNew">
-              <span>✕ New Persona (Different Entity)</span>
-              <span class="shortcut-key">Key 2</span>
+              <span>✕ ตัวละครใหม่ (แยกเอนทิตี)</span>
+              <span class="shortcut-key">กด 2</span>
             </button>
             <button class="btn btn-decision btn-uncertain" id="btnUncertain">
-              <span>? Uncertain / Need Evidence</span>
-              <span class="shortcut-key">Key 3</span>
+              <span>? ไม่แน่ชัด / ข้อมูลไม่พอ</span>
+              <span class="shortcut-key">กด 3</span>
             </button>
           </div>
 
           <div class="notes-box" style="margin-top: 12px;">
-            <textarea id="notesInput" placeholder="Add reviewer notes (e.g. avatar characteristics, art style, model differences, graduation context)..."></textarea>
+            <textarea id="notesInput" placeholder="บันทึกหมายเหตุเพิ่มเติม (เช่น รายละเอียดอวาตาร์, ลายเส้นผู้วาด, ความแตกต่างของโมเดล, บริบทการจบการศึกษา/เดบิวต์ใหม่)..."></textarea>
           </div>
 
           <div id="currentDecisionBadge" class="current-decision-badge">
-            Status: Unreviewed
+            สถานะ: ยังไม่ได้ตรวจสอบ
           </div>
         </div>
       </div>
@@ -650,8 +650,8 @@
       <!-- RIGHT: Canonical Persona Candidate -->
       <div class="entity-card" id="rightCard">
         <div class="card-header">
-          <span class="card-badge badge-canonical">Canonical Persona Candidate</span>
-          <span id="rightStatusBadge" class="card-badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">VERIFIED</span>
+          <span class="card-badge badge-canonical">ตัวละครเป้าหมายในระบบ (Canonical Persona)</span>
+          <span id="rightStatusBadge" class="card-badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">ยืนยันแล้ว</span>
         </div>
         <div class="visual-stage" id="rightStage">
           <!-- Image or preview button -->
@@ -666,13 +666,13 @@
     </div>
 
     <div id="emptyView" class="empty-state" style="display: none;">
-      <h2>No records matching current filter</h2>
-      <p>Try clearing your search query or changing filter to "Queue: All Records".</p>
+      <h2>ไม่พบข้อมูลที่ตรงกับตัวกรองปัจจุบัน</h2>
+      <p>ลองล้างคำค้นหา หรือเปลี่ยนตัวกรองเป็น "คิว: ข้อมูลทั้งหมด"</p>
     </div>
 
     <footer>
-      <div>ThaiVtuberSNA · Visual Identity Review Workflow</div>
-      <div>Decisions persist to <code>data/entity_resolution/visual_identity_review.json</code></div>
+      <div>ThaiVtuberSNA · ขั้นตอนการตรวจสอบอัตลักษณ์ตัวละครด้วยสายตา</div>
+      <div>บันทึกผลการตรวจสอบลงใน <code>data/entity_resolution/visual_identity_review.json</code></div>
     </footer>
   </div>
 
@@ -797,7 +797,7 @@
         const dec = state.decisions[d.discovery_id];
 
         // Left Card (Discovery)
-        $('leftName').textContent = d.name || d.handle || '(Unnamed Discovery Lead)';
+        $('leftName').textContent = d.name || d.handle || '(ไม่ระบุชื่อบัญชี)';
         $('leftId').textContent = d.discovery_id;
         $('leftPlatform').textContent = (d.platform || 'WEB').toUpperCase();
         $('leftPlatform').className = `platform-badge platform-${(d.platform || 'web').toLowerCase()}`;
@@ -805,17 +805,17 @@
         // Left Meta
         let metaHtml = '';
         if (d.handle) metaHtml += `<span class="meta-tag">@${escapeHtml(d.handle)}</span>`;
-        if (d.discovered_at) metaHtml += `<span class="meta-tag">Discovered: ${d.discovered_at.slice(0, 10)}</span>`;
-        if (d.provenance?.evidence_kind) metaHtml += `<span class="meta-tag">${escapeHtml(d.provenance.evidence_kind)}</span>`;
+        if (d.discovered_at) metaHtml += `<span class="meta-tag">ค้นพบเมื่อ: ${d.discovered_at.slice(0, 10)}</span>`;
+        if (d.provenance?.evidence_kind) metaHtml += `<span class="meta-tag">หลักฐาน: ${escapeHtml(d.provenance.evidence_kind)}</span>`;
         $('leftMeta').innerHTML = metaHtml;
 
         // Left Links
         let linksHtml = '';
         if (d.url) {
-          linksHtml += `<a class="link-btn" href="${escapeAttr(d.url)}" target="_blank" rel="noopener noreferrer">↗ Open Profile Page</a>`;
+          linksHtml += `<a class="link-btn" href="${escapeAttr(d.url)}" target="_blank" rel="noopener noreferrer">↗ เปิดหน้าโปรไฟล์จริง</a>`;
         }
         if (d.source_url) {
-          linksHtml += `<a class="link-btn" href="${escapeAttr(d.source_url)}" target="_blank" rel="noopener noreferrer">🔍 Source Evidence</a>`;
+          linksHtml += `<a class="link-btn" href="${escapeAttr(d.source_url)}" target="_blank" rel="noopener noreferrer">🔍 ตรวจดูหลักฐานที่มา</a>`;
         }
         $('leftLinks').innerHTML = linksHtml;
 
@@ -824,7 +824,7 @@
 
         // Candidates ranking
         const candidates = rankCandidates(d, $('candidateSearchInput').value);
-        $('candidateCount').textContent = `${candidates.length} candidates`;
+        $('candidateCount').textContent = `พบ ${candidates.length} รายการ`;
 
         // Determine selected candidate
         if (dec && dec.candidate_persona_id) {
@@ -844,10 +844,10 @@
                 <span>${escapeHtml(p.name)}</span>
                 <span class="candidate-score">${scorePercent}%</span>
               </div>
-              <div class="candidate-sub">${p.account_count || 0} accounts · ${escapeHtml(p.persona_id)}</div>
+              <div class="candidate-sub">${p.account_count || 0} บัญชีที่เชื่อมโยง · ${escapeHtml(p.persona_id)}</div>
             </button>
           `;
-        }).join('') || '<div style="color: var(--muted); padding: 12px; font-size: 12px;">No candidates found</div>';
+        }).join('') || '<div style="color: var(--muted); padding: 12px; font-size: 12px;">ไม่พบตัวละครที่ตรงกัน</div>';
 
         document.querySelectorAll('.candidate-item').forEach(btn => {
           btn.onclick = () => {
@@ -861,11 +861,11 @@
         if (selP) {
           $('rightName').textContent = selP.name;
           $('rightId').textContent = selP.persona_id;
-          $('rightStatusBadge').textContent = selP.is_verified ? 'VERIFIED' : 'PENDING';
+          $('rightStatusBadge').textContent = selP.is_verified ? 'ยืนยันแล้ว' : 'รอตรวจสอบ';
           $('rightStatusBadge').style.background = selP.is_verified ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)';
           $('rightStatusBadge').style.color = selP.is_verified ? '#34d399' : '#fbbf24';
 
-          let rightMeta = `<span class="meta-tag">${selP.accounts?.length || 0} linked accounts</span>`;
+          let rightMeta = `<span class="meta-tag">${selP.accounts?.length || 0} บัญชีที่เชื่อมโยง</span>`;
           if (selP.accounts) {
             selP.accounts.forEach(a => {
               rightMeta += `<span class="meta-tag platform-${a.platform}">${a.platform.toUpperCase()}: ${escapeHtml(a.handle || a.name || a.platform_id)}</span>`;
@@ -881,23 +881,23 @@
               }
             });
           }
-          $('rightLinks').innerHTML = rightLinks || '<span style="color: var(--muted); font-size: 12px;">No links</span>';
+          $('rightLinks').innerHTML = rightLinks || '<span style="color: var(--muted); font-size: 12px;">ไม่มีลิงก์ภายนอก</span>';
           renderVisualStage($('rightStage'), selP);
         } else {
           $('rightName').textContent = '—';
-          $('rightId').textContent = 'No candidate selected';
+          $('rightId').textContent = 'ยังไม่ได้เลือกตัวละครเป้าหมาย';
           $('rightMeta').innerHTML = '';
           $('rightLinks').innerHTML = '';
-          $('rightStage').innerHTML = '<div class="visual-placeholder"><p>Select a candidate persona from the list</p></div>';
+          $('rightStage').innerHTML = '<div class="visual-placeholder"><p>กรุณาเลือกตัวละครเป้าหมายจากรายการตรงกลาง</p></div>';
         }
 
         // Current decision notes & badge
         $('notesInput').value = dec ? (dec.notes || '') : '';
         if (dec) {
           const labels = {
-            same_persona: '✓ Same Persona (Character Match Confirmed)',
-            new_persona: '✕ New Persona (Separate VTuber Entity)',
-            uncertain: '? Uncertain (Insufficient Evidence)'
+            same_persona: '✓ ตัวละครเดียวกัน (ยืนยันโมเดล/อวาตาร์ตรงกัน)',
+            new_persona: '✕ ตัวละครใหม่ (แยกเป็น VTuber คนละคน)',
+            uncertain: '? ไม่แน่ชัด (หลักฐานไม่เพียงพอ)'
           };
           const classes = {
             same_persona: 'dec-same',
@@ -907,7 +907,7 @@
           $('currentDecisionBadge').textContent = labels[dec.decision] || dec.decision;
           $('currentDecisionBadge').className = `current-decision-badge ${classes[dec.decision] || ''}`;
         } else {
-          $('currentDecisionBadge').textContent = 'Status: Unreviewed';
+          $('currentDecisionBadge').textContent = 'สถานะ: ยังไม่ได้ตรวจสอบ';
           $('currentDecisionBadge').className = 'current-decision-badge';
         }
 
@@ -928,15 +928,15 @@
         }
 
         if (imgUrl) {
-          container.innerHTML = `<img src="${escapeAttr(imgUrl)}" alt="Avatar" loading="lazy" />`;
+          container.innerHTML = `<img src="${escapeAttr(imgUrl)}" alt="อวาตาร์" loading="lazy" />`;
         } else {
           // Provide direct visual inspection action buttons
           const url = entity.url || (entity.accounts && entity.accounts[0] ? entity.accounts[0].url : '');
           container.innerHTML = `
             <div class="visual-placeholder">
               <div class="icon">🎨</div>
-              <p>Direct avatar preview not cached</p>
-              ${url ? `<a class="btn btn-primary" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer" style="font-size: 12px;">↗ Open Live Profile to Inspect Model</a>` : ''}
+              <p>ไม่พบรูปภาพตัวอย่างที่แคชไว้ในระบบ</p>
+              ${url ? `<a class="btn btn-primary" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer" style="font-size: 12px;">↗ เปิดหน้าโปรไฟล์จริงเพื่อตรวจดูโมเดล/อวาตาร์</a>` : ''}
             </div>
           `;
         }
@@ -948,7 +948,7 @@
         const candidatePersonaId = state.selectedCandidateId;
 
         if (decisionType === 'same_persona' && !candidatePersonaId) {
-          alert('Please select a candidate persona before deciding Same Persona.');
+          alert('กรุณาเลือกตัวละครเป้าหมายในรายการก่อนเลือก "ตัวละครเดียวกัน"');
           return;
         }
 
@@ -1010,10 +1010,10 @@
         })
         .then(r => r.json())
         .then(data => {
-          alert(`Successfully persisted ${list.length} decisions to data/entity_resolution/visual_identity_review.json!`);
+          alert(`บันทึกผลการตรวจสอบ ${list.length} รายการไปยัง data/entity_resolution/visual_identity_review.json เรียบร้อยแล้ว!`);
         })
         .catch(err => {
-          alert('Could not reach server endpoint. Decisions remain saved in localStorage and can be exported with the Export button.');
+          alert('ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ ผลการตรวจสอบยังคงถูกบันทึกไว้ในเบราว์เซอร์ (localStorage) และสามารถกดปุ่ม "ส่งออกผลการตรวจ" ได้');
         });
       }
 
@@ -1062,7 +1062,7 @@
           // Show subtle prompt to use Load JSON button if needed
           const banner = document.querySelector('.policy-text');
           if (banner) {
-            banner.innerHTML += `<div style="margin-top: 8px; color: #fbbf24; font-weight: 600;">⚠️ Could not auto-load data/master_creators.json via HTTP. Click <strong>📂 Load JSON</strong> in the top right to select data/master_creators.json.</div>`;
+            banner.innerHTML += `<div style="margin-top: 8px; color: #fbbf24; font-weight: 600;">⚠️ ไม่สามารถโหลด data/master_creators.json ผ่าน HTTP อัตโนมัติได้ กรุณากดปุ่ม <strong>📂 โหลด JSON</strong> ด้านบนขวาเพื่อเลือกไฟล์</div>`;
           }
         }
       }
@@ -1082,7 +1082,7 @@
             renderStats();
             filterQueue();
           } catch (err) {
-            alert('Failed to parse JSON file: ' + err.message);
+            alert('ไม่สามารถอ่านข้อมูลจากไฟล์ JSON ได้: ' + err.message);
           }
         };
         reader.readAsText(file, 'utf-8');
