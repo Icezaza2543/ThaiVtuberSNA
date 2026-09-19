@@ -3,7 +3,7 @@ Multi-Strategy Real Ecosystem Discovery Builder:
 Builds data/industry/discovery_candidates_new.parquet & .csv
 
 Distinguishes:
-- KNOWN_REGISTRY (baseline 1,370 channels, not counted as newly discovered)
+- KNOWN_REGISTRY (canonical YouTube channels, not counted as newly discovered)
 - NEW_CANDIDATE (independently discovered via external queries, pending verification)
 - NEW_VERIFIED (independently discovered and verified with explicit Thai VTuber credentials)
 - DUPLICATE (multiple discovery strategies reaching the same channel)
