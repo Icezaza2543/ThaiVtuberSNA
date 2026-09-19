@@ -89,8 +89,8 @@ All 12 agency organizations represented in the frozen cohort were audited with p
 | **Flora Project** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | Fandom Wiki (Category:Thai) | `SECONDARY_DOCUMENTED` |
 | **RPG** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | Fandom Wiki / Activity cessation | `INFERRED_PROXY` |
 | **WACTOR** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | Fandom Wiki (Secondary only) | `SECONDARY_DOCUMENTED` |
-| **Ti19t** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | Thai VTuber Registry | `SECONDARY_DOCUMENTED` |
-| **Independent** | `INDEPENDENT_COLLECTIVE` | `NOT_APPLICABLE` | Thai VTuber Registry Catalog | `INFERRED_PROXY` |
+| **Ti19t** | `OFFICIAL_BRAND_ENTITY` | `CORPORATE_REGISTRATION_UNVERIFIED` | Canonical creator catalog / documented secondary evidence | `SECONDARY_DOCUMENTED` |
+| **Independent** | `INDEPENDENT_COLLECTIVE` | `NOT_APPLICABLE` | Canonical creator catalog | `INFERRED_PROXY` |
 
 ---
 
@@ -106,14 +106,11 @@ All 12 agency organizations represented in the frozen cohort were audited with p
 
 ## 6. Real Ecosystem Discovery Baseline vs. New Candidates
 
-- **Known Baseline Registry:** **1,370 channels** in [`data/thai_vtuber_registry.json`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/data/thai_vtuber_registry.json) maintained without modification.
-- **Discovery Candidate Dataset:** Built [`data/industry/discovery_candidates_new.parquet`](file:///c:/Users/Icezaza/Documents/GitHub/ThaiVtuberSNA/data/industry/discovery_candidates_new.parquet) (1,382 total records).
-- **Classification Breakdown:**
-  - `KNOWN_REGISTRY`: 1,370 channels
-  - `NEW_CANDIDATE`: 6 channels (under evaluation)
-  - `NEW_VERIFIED`: 2 channels (confirmed domestic Thai VTubers)
-  - `REJECTED`: 4 foreign / multinational channels excluded to maintain domestic ecosystem integrity (e.g., Takane Lui, Koseki Bijou).
-- **Frozen Cohort Invariant:** The frozen 193 cohort was protected with zero modifications.
+- **Canonical Creator Catalog:** `data/registry/creators.json` now carries normalized persona/account identity and is accessed through `CreatorCatalog`.
+- **Trusted Baseline Invariant:** The original **1,370 YouTube Channel IDs** remain an exact required subset of the canonical catalog; additional reviewed accounts do not rewrite that historical baseline.
+- **Discovery Candidate Dataset:** `data/industry/discovery_candidates_new.parquet` remains a discovery/audit artifact. Its historical classification counts describe the run that produced it and are not the current canonical registry total.
+- **Identity Gate:** New accounts enter the catalog only after eligibility review plus positive identity resolution; name/handle/agency similarity alone cannot merge personas.
+- **Frozen Cohort Invariant:** The frozen 193-channel longitudinal cohort remains unchanged and is separate from catalog growth.
 
 ---
 
