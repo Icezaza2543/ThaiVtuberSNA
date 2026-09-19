@@ -58,7 +58,7 @@ PRODUCTION_COUNTS = {
 }
 _LOCAL_PATH = re.compile(r"(?:\b[A-Za-z]:[\\/]|\\\\|\bfile:)", re.IGNORECASE)
 _UNIX_PATH_IN_TEXT = re.compile(
-    r"(?<![A-Za-z0-9._:/\-\u0E00-\u0E7F])/(?!/)[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)+"
+    r"(?<![A-Za-z0-9._:/\-\u0E00-\u0E7F])/(?!/)[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*"
 )
 _SECRET = re.compile(
     r"(?:api[_ -]?key|token|secret|password|credential|authorization)\s*(?:[:=]|\b(?:is|was|equals)\b)\s*\S+|\bbearer\s+",

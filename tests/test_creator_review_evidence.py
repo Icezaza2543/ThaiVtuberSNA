@@ -165,6 +165,10 @@ def test_rejects_duplicate_human_decision_object_keys(review_inputs, tmp_path):
         ("url", "https://169.254.10.20/private"),
         ("reason", "token=super-secret-value"),
         ("reason", "see C:\\Users\\alice\\token.txt"),
+        ("reason", "/usr"),
+        ("reason", "reviewed /proc for evidence"),
+        ("reason", "source directory (/root)"),
+        ("reason", "see /custom-directory"),
         ("reason", "see /root/.ssh/id_ed25519"),
         ("reason", "read /usr/local/private.txt and /proc/self/environ"),
         ("reason", "the password is hunter2"),
@@ -204,11 +208,22 @@ def test_keeps_benign_english_and_thai_credential_discussion(review_inputs):
     assert published["reason"] == row["reason"]
 
 
-def test_keeps_public_url_path_in_evidence_summary(review_inputs):
+@pytest.mark.parametrize(
+    "reason",
+    [
+        "Official evidence: https://public.example.org/root/profile",
+        "Official evidence: https://example.com/usr",
+        "Official evidence: http://example.com/proc/self/environ",
+        "Official profile/channel summary confirms singing/gaming content",
+        "สรุปจากโปรไฟล์/ช่องทางการ พบเนื้อหาร้องเพลง/เล่นเกม",
+        "Official profile / channel summary; โปรไฟล์ / ช่องทางการ",
+    ],
+)
+def test_keeps_public_url_paths_and_benign_summaries(review_inputs, reason):
     screening, human = review_inputs
     payload = json.loads(screening.read_text(encoding="utf-8"))
     row = next(row for row in payload["rows"] if row["discovery_id"] == "automated-vtuber")
-    row["reason"] = "Official evidence: https://public.example.org/root/profile"
+    row["reason"] = reason
     write_json(screening, payload)
 
     bundle = package_review_evidence(screening, human)
