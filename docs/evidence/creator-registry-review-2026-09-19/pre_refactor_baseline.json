@@ -10,7 +10,9 @@
     "data/temporal/release/environment_dependencies.json": "0325ad5ac19210ee9ac0a748d5a837380ff1ac1d3993b1dc5ace362825274e51",
     "data/temporal/release/provenance_map.json": "9b63481953e2e6609e5ba16bd7382193e66fbf5ab5b2fc41b2a914354eb747c9",
     "data/thai_vtuber_registry.csv": "9c9b4fb90350bfa5313235906769eae72ba2bfda5b7c26abb6afe2fabbb57b02",
-    "data/thai_vtuber_registry.json": "2d4e47ac634f8c9eb1f74028a075cefa6b7cdce496571e4b030b97273780e926"
+    "data/thai_vtuber_registry.json": "2d4e47ac634f8c9eb1f74028a075cefa6b7cdce496571e4b030b97273780e926",
+    "data/entity_resolution/visual_identity_review.json": "53747808c482d2456e33a719082b23d8fa1a3f39a80048d09f2b642c3b0cb24e",
+    "docs/evidence/creator-registry-review-2026-09-19/legacy_visual_identity_review.json": "53747808c482d2456e33a719082b23d8fa1a3f39a80048d09f2b642c3b0cb24e"
   },
   "trusted_unique_channel_ids": 1370,
   "trusted_youtube_channels": 1370

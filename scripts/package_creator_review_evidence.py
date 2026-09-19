@@ -1,0 +1,197 @@
+"""Package final creator-screening decisions as compact, safe review evidence."""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import shutil
+from collections import Counter
+from pathlib import Path
+from typing import Any
+
+
+AUTO_MAP = {
+    "TRUSTED_BASELINE": "trusted_baseline",
+    "VTUBER": "vtuber",
+    "NON_VTUBER": "exclude_non_vtuber",
+    "NON_PERSONA_ACCOUNT": "exclude_non_persona",
+    "INVALID_ACCOUNT_URL": "exclude_invalid_account",
+    "VIRTUAL_GROUP": "exclude_virtual_group",
+    "VTUBER_ASSOCIATED_ACCOUNT": "exclude_associated_account",
+    "UNRESOLVED": "unresolved",
+}
+HUMAN_MAP = {
+    "vtuber": "vtuber",
+    "unrelated": "exclude_unrelated",
+    "non_persona": "exclude_non_persona",
+    "unavailable": "unavailable",
+    "unsure": "unresolved",
+}
+
+STABLE_FIELDS = (
+    "discovery_id",
+    "platform",
+    "display_name",
+    "original_name",
+    "url",
+    "channel_id",
+    "eligibility",
+    "reason",
+    "evidence_urls",
+    "decision_provenance",
+    "reviewed_at",
+)
+
+
+def _load_object(path: Path) -> dict[str, Any]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise ValueError(f"{path} must contain a JSON object")
+    return payload
+
+
+def _latest_human_decisions(human: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    decision_ids = human.get("decisions", [])
+    if isinstance(decision_ids, dict):
+        latest = dict(decision_ids)
+        for discovery_id, entry in latest.items():
+            if not isinstance(entry, dict) or entry.get("discovery_id") != discovery_id:
+                raise ValueError(f"invalid human decision entry for {discovery_id!r}")
+    elif isinstance(decision_ids, list):
+        if len(decision_ids) != len(set(decision_ids)):
+            raise ValueError("human decisions contain duplicate discovery IDs")
+        active_ids = set(decision_ids)
+        latest = {}
+        history = human.get("history", [])
+        if not isinstance(history, list):
+            raise ValueError("human history must be a list")
+        for entry in history:
+            if not isinstance(entry, dict):
+                raise ValueError("human history entries must be JSON objects")
+            discovery_id = entry.get("discovery_id")
+            if discovery_id in active_ids:
+                latest[discovery_id] = entry
+
+        missing = active_ids - latest.keys()
+        if missing:
+            raise ValueError(f"human decisions missing history for {sorted(missing)!r}")
+    else:
+        raise ValueError("human decisions must be a list or object")
+    for discovery_id, entry in latest.items():
+        if entry.get("decision") not in HUMAN_MAP:
+            raise ValueError(f"unknown human decision for {discovery_id}: {entry.get('decision')!r}")
+    return latest
+
+
+def package_review_evidence(screening_path: Path, human_path: Path) -> dict[str, Any]:
+    """Return final eligibility rows without cache paths or private review details."""
+    screening = _load_object(Path(screening_path))
+    human = _load_object(Path(human_path))
+    source_rows = screening.get("rows", [])
+    if not isinstance(source_rows, list):
+        raise ValueError("screening rows must be a list")
+    human_decisions = _latest_human_decisions(human)
+
+    rows: list[dict[str, Any]] = []
+    seen_ids: set[str] = set()
+    for source in source_rows:
+        if not isinstance(source, dict):
+            raise ValueError("screening rows must be JSON objects")
+        discovery_id = source.get("discovery_id")
+        if not isinstance(discovery_id, str) or not discovery_id:
+            raise ValueError("screening row is missing discovery_id")
+        if discovery_id in seen_ids:
+            raise ValueError(f"duplicate discovery ID: {discovery_id}")
+        seen_ids.add(discovery_id)
+
+        automated_decision = source.get("decision")
+        if automated_decision not in AUTO_MAP:
+            raise ValueError(f"unknown automated decision for {discovery_id}: {automated_decision!r}")
+
+        human_entry = human_decisions.pop(discovery_id, None)
+        if human_entry is not None and automated_decision != "UNRESOLVED":
+            raise ValueError(f"human decision for non-UNRESOLVED row: {discovery_id}")
+
+        if human_entry is None:
+            eligibility = AUTO_MAP[automated_decision]
+            provenance = {"source": "automated_screening", "decision": automated_decision}
+            reviewed_at = None
+        else:
+            human_decision = human_entry["decision"]
+            eligibility = HUMAN_MAP[human_decision]
+            provenance = {"source": "human_review", "decision": human_decision}
+            reviewed_at = human_entry.get("reviewed_at")
+
+        row = {
+            "discovery_id": discovery_id,
+            "platform": source.get("platform"),
+            "display_name": source.get("name"),
+            "original_name": source.get("original_name"),
+            "url": source.get("url"),
+            "channel_id": source.get("channel_id"),
+            "eligibility": eligibility,
+            "reason": source.get("reason"),
+            "evidence_urls": source.get("evidence_urls", []),
+            "decision_provenance": provenance,
+            "reviewed_at": reviewed_at,
+        }
+        rows.append({field: row[field] for field in STABLE_FIELDS})
+
+    if human_decisions:
+        raise ValueError(f"human decisions reference unknown screening rows: {sorted(human_decisions)!r}")
+
+    counts = dict(sorted(Counter(row["eligibility"] for row in rows).items()))
+    return {
+        "schema_version": 1,
+        "rows": rows,
+        "eligibility_counts": counts,
+    }
+
+
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _copy_legacy_review(legacy_source: Path, output_dir: Path, baseline_path: Path) -> None:
+    legacy_destination = output_dir / "legacy_visual_identity_review.json"
+    shutil.copyfile(legacy_source, legacy_destination)
+    source_hash = _sha256(legacy_source)
+    if _sha256(legacy_destination) != source_hash:
+        raise ValueError("legacy visual identity review copy does not match source")
+
+    baseline = _load_object(baseline_path)
+    files = baseline.setdefault("files", {})
+    files["data/entity_resolution/visual_identity_review.json"] = source_hash
+    files["docs/evidence/creator-registry-review-2026-09-19/legacy_visual_identity_review.json"] = source_hash
+    baseline_path.write_text(json.dumps(baseline, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--screening", type=Path, required=True)
+    parser.add_argument("--human", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--legacy-source",
+        type=Path,
+        default=Path("data/entity_resolution/visual_identity_review.json"),
+    )
+    args = parser.parse_args()
+
+    bundle = package_review_evidence(args.screening, args.human)
+    if len(bundle["rows"]) != 884:
+        raise ValueError(f"expected 884 review rows, found {len(bundle['rows'])}")
+
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(json.dumps(bundle, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    _copy_legacy_review(args.legacy_source, args.output.parent, args.output.parent / "pre_refactor_baseline.json")
+
+    print("eligibility\tcount")
+    for eligibility, count in bundle["eligibility_counts"].items():
+        print(f"{eligibility}\t{count}")
+    print(f"total\t{len(bundle['rows'])}")
+
+
+if __name__ == "__main__":
+    main()
