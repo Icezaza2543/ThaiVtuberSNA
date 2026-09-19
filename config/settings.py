@@ -76,7 +76,7 @@ GOOGLE_SHEETS_CONFIG = {
     "sheet_vtubers": "VTUBERS",
     "sheet_system": "SYSTEM",
     "sheet_network": "NETWORK_RESULT",
-    "local_fallback_path": DATA_DIR / "registry_vtubers.csv"
+    "creator_registry_path": CREATOR_REGISTRY_PATH
 }
 
 # YouTube API Configuration
