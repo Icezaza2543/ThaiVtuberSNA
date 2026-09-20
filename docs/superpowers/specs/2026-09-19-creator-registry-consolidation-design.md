@@ -10,16 +10,16 @@
 
 ThaiVtuberSNA currently represents creator identity in several overlapping files. The same 1,370 YouTube channels appear in `data/thai_vtuber_registry.json`, `data/thai_vtuber_registry.csv`, and `data/registry_vtubers.csv`; `data/master_creators.json` uses a different persona/account schema and still carries stale discovery state. Consumers read these files directly, so a metadata correction can leave the project internally inconsistent.
 
-This refactor will establish one normalized registry in which one creator record represents one virtual persona or character form and each platform account belongs to exactly one creator. It will combine the trusted 1,370-channel baseline with all 393 accounts accepted during the 2026-09-19 screening and human-review workflow. It will also resolve identity for every accepted account using public evidence and the authorized read-only YouTube Data API before the canonical registry can be published.
+This refactor will establish one normalized registry in which one creator record represents one virtual persona or character form and each platform account belongs to exactly one creator. It combines the trusted 1,370-channel baseline with the 392 discovery accounts that remain eligible after evidence review. The screening and human-review workflow initially accepted 393 accounts; `candidate_e75fe4be2e942a6f1d0d` was later reclassified to `exclude_virtual_group` after YouTube API owner verification showed that the discovered Shorts belonged to the official PLAVE group account rather than the individual persona named in the lead. Identity resolution therefore covers the final 392-account individual-persona scope.
 
-The final persona count is intentionally not fixed at 1,763. Some of the 393 accepted accounts are additional platform accounts for an existing persona, and some accepted accounts may resolve to the same new persona.
+The final persona count is intentionally not derived by simply adding 392 to the baseline. Some accepted accounts are additional platform accounts for an existing persona, and some accepted accounts may resolve to the same new persona.
 
 ## 2. Goals
 
 1. Make `data/registry/creators.json` the only authoritative local creator registry.
 2. Model creators separately from platform accounts and evidence.
 3. Preserve all 1,370 trusted YouTube Channel IDs exactly once.
-4. Include all 393 accepted new accounts exactly once after evidence-backed identity resolution.
+4. Include all 392 final accepted new accounts exactly once after evidence-backed identity resolution, while preserving the evidence-backed exclusion of the reclassified PLAVE group account.
 5. Prevent name-only persona merges and prevent unresolved accounts from entering the canonical registry.
 6. Route registry consumers through one validated `CreatorCatalog` interface.
 7. Remove the obsolete registry copies after every consumer has migrated and equivalence checks pass.
@@ -66,7 +66,7 @@ The build consumes these inputs without modifying them:
 Eligibility precedence is:
 
 1. The original 1,370 baseline is trusted as VTuber data and is not re-reviewed.
-2. The 363 automated `VTUBER` decisions and 30 human `vtuber` decisions are accepted.
+2. The screening stage produced 363 automated `VTUBER` decisions and 30 human `vtuber` decisions (393 initial accepts). One human-accepted row, `candidate_e75fe4be2e942a6f1d0d`, was later reclassified to `exclude_virtual_group` from verified account-owner evidence, leaving 392 final accepted individual-persona accounts.
 3. The 292 `TRUSTED_BASELINE` discovery candidates resolve to existing baseline accounts and add no duplicate account.
 4. The 102 final exclusions do not enter the canonical registry.
 5. The 94 unavailable accounts remain outside the canonical registry and remain explicitly unresolved.
@@ -158,7 +158,7 @@ Evidence summaries preserve the meaning of the reviewed source without storing s
 
 ## 7. Identity-resolution workflow
 
-Identity resolution covers all 393 accepted accounts. Seventy-three already have non-conflicting legacy identity decisions; 320 require validation or new research. Existing exact local evidence currently links 27 of those 320 to a trusted persona. These figures are starting diagnostics, not final contract counts.
+Identity resolution covers all 392 final accepted accounts. The earlier 73/320 split described the 393-row pre-correction scope and is retained only as a historical diagnostic; the evidence-backed PLAVE group correction reduces the production resolution contract by one row.
 
 The resolver processes evidence in this order:
 
@@ -237,7 +237,7 @@ Generated views contain a source fingerprint referencing `creators.json`. CI rej
 Contract validation requires:
 
 - exactly 1,370 unique baseline YouTube Channel IDs are preserved;
-- exactly 393 accepted discovery accounts are represented once;
+- exactly 392 final accepted discovery accounts are represented once;
 - all 292 trusted-baseline candidates resolve without adding duplicate accounts;
 - none of the 102 exclusions appear;
 - none of the 94 unavailable accounts appear;
@@ -265,7 +265,7 @@ Every canonical build records input fingerprints, schema version, builder versio
 
 The refactor is accepted when:
 
-1. Identity resolution is complete for all 393 accepted accounts.
+1. Identity resolution is complete for all 392 final accepted accounts, with the reclassified PLAVE group row excluded from the individual catalog.
 2. `data/registry/creators.json` passes every canonical invariant.
 3. Runtime and test code no longer reads the four obsolete registry files.
 4. The obsolete files are removed after equivalence verification.
