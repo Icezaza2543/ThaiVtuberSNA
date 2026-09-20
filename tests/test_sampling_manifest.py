@@ -16,6 +16,8 @@ Verifies:
 """
 import pytest
 import hashlib
+import json
+import subprocess
 from pathlib import Path
 import pandas as pd
 import pyarrow.parquet as pq
@@ -131,7 +133,30 @@ def test_t1_artifacts_immutability():
         DATA_DIR / "temporal" / "catalog" / "channel_coverage.parquet": "6846090c6172147b5beb0ec00c3d9b38ccf8bf2cfb6b11e3a32a2c55b12cee98",
         DATA_DIR / "temporal" / "catalog" / "target_manifest.csv": "0ce9e037f589e68a2cf8b9d4f058d67ef515e3ff6449f1a51fe422e6bcc6368a",
     }
+    baseline_meta = json.loads(
+        (
+            BASE_DIR
+            / "docs/evidence/creator-registry-review-2026-09-19/pre_refactor_baseline.json"
+        ).read_text(encoding="utf-8")
+    )
     for file_path, expected_hash in baselines.items():
         assert file_path.exists(), f"File missing: {file_path}"
+        if file_path.name == "target_manifest.csv":
+            # CSV working-tree line endings differ between Windows and Linux.
+            # Compare the tracked Git object to the sealed pre-refactor commit
+            # so platform checkout rules cannot look like a data mutation.
+            relative = file_path.relative_to(BASE_DIR).as_posix()
+            baseline_oid = subprocess.check_output(
+                ["git", "rev-parse", f"{baseline_meta['commit']}:{relative}"],
+                cwd=BASE_DIR,
+                text=True,
+            ).strip()
+            current_oid = subprocess.check_output(
+                ["git", "rev-parse", f"HEAD:{relative}"],
+                cwd=BASE_DIR,
+                text=True,
+            ).strip()
+            assert current_oid == baseline_oid, f"T1 Git blob was mutated! {file_path}"
+            continue
         actual_hash = hashlib.sha256(file_path.read_bytes()).hexdigest()
         assert actual_hash == expected_hash, f"T1 file was mutated! {file_path}"
