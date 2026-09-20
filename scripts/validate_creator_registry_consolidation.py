@@ -147,8 +147,17 @@ def pytest_summary(text: str) -> dict:
     blocks = _pytest_failure_blocks(text)
     details = {nodeid: _failure_detail(nodeid, blocks, text) for nodeid in failures}
 
+    summary_lines = re.findall(r"^=+\s*(.*?)\s*=+$", text, flags=re.MULTILINE)
+    final_summary = next(
+        (
+            line for line in reversed(summary_lines)
+            if re.search(r"\b(?:passed|failed|errors?|warnings?)\b", line)
+        ),
+        "",
+    )
+
     def count(label: str) -> int | None:
-        matches = re.findall(rf"(?<!\w)(\d+)\s+{label}\b", text)
+        matches = re.findall(rf"(?<!\w)(\d+)\s+{label}\b", final_summary)
         return int(matches[-1]) if matches else None
 
     return {
