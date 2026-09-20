@@ -69,6 +69,23 @@ def _test_db_with_data():
         "review_status": "verified", "reviewer": "test", "reviewed_at": now
     })
 
+
+    # Trusted legacy YouTube account without a verified persona link.
+    upsert(con, "accounts", {
+        "id": "acct_legacy", "platform": "youtube",
+        "platform_id": "UCcccccccccccccccccccccccc",
+        "id_namespace": "channel_id", "handle": "@legacyvtuber",
+        "name": "LegacyVtuber", "url": "https://www.youtube.com/channel/UCcccccccccccccccccccccccc",
+        "first_discovered_at": now, "evidence_id": "ev001"
+    })
+    upsert(con, "legacy_claims", {
+        "id": "legacy001", "account_id": "acct_legacy",
+        "source_status": "trusted", "source_activity": "active",
+        "source_agency": "Independent", "source_names": '["LegacyVtuber"]',
+        "source_checked_at": now, "last_video_published_at": None,
+        "evidence_id": "ev001"
+    })
+
     # Network edge
     upsert(con, "network_edges", {
         "id": "edge001",
@@ -100,9 +117,9 @@ class TestExportVtubers(unittest.TestCase):
         from thaivtubersna.store import connect
         with connect(self.tmp_db) as con:
             n = export_vtubers(con, self.out_dir / "VTUBERS.csv")
-        self.assertEqual(n, 1)
+        self.assertEqual(n, 2)
         rows = list(csv.DictReader((self.out_dir / "VTUBERS.csv").open(encoding="utf-8-sig")))
-        self.assertEqual(len(rows), 1)
+        self.assertEqual(len(rows), 2)
         self.assertEqual(rows[0]["channel_id"], "UCaaaaaaaaaaaaaaaaaaaaaaaa")
         self.assertEqual(rows[0]["name"], "TestVtuber")
 
@@ -113,6 +130,11 @@ class TestExportVtubers(unittest.TestCase):
         self.assertEqual(n, 1)
         rows = list(csv.DictReader((self.out_dir / "NETWORK_RESULT.csv").open(encoding="utf-8-sig")))
         self.assertEqual(int(rows[0]["Shared Viewers"]), 250)
+        self.assertEqual(int(rows[0]["Shared Live Chat"]), 200)
+        self.assertEqual(int(rows[0]["Shared Comments"]), 50)
+        self.assertEqual(int(rows[0]["Strong Shared Live Chat"]), 60)
+        self.assertEqual(int(rows[0]["Strong Shared Comments"]), 20)
+        self.assertEqual(rows[0]["Calculation Source"], "legacy_seed")
 
     def test_export_tiktok_verified(self):
         from thaivtubersna.store import connect
