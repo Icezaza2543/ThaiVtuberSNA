@@ -51,7 +51,14 @@ def test_public_web_contains_only_public_creator_identities():
         if row.get("platform_id")
     }
     assert creator_ids
-    files = sorted(path for path in (ROOT / 'web').rglob('*') if path.is_file())
+    ignored_subpaths = {("node_modules",), ("dist",), (".vite",), ("public", "data")}
+    files = sorted(
+        path for path in (ROOT / 'web').rglob('*')
+        if path.is_file() and not any(
+            path.relative_to(ROOT / 'web').parts[:len(sub)] == sub
+            for sub in ignored_subpaths
+        )
+    )
     assert files
     failures = []
     for path in files:

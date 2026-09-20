@@ -1,11 +1,10 @@
-# Thai VTuber SNA
+# Thai VTuber SNA & Creator Registry
 
-เว็บสำรวจเครือข่าย VTuber ไทย
+เว็บสำรวจเครือข่ายและทำเนียบ VTuber ไทย
 
-เปิดดูได้เลยที่ `web/index.html` หรือรันผ่าน:
-
-```bash
-python -m http.server 8000 -d web
-```
+## การใช้งาน
+- เครือข่ายและความสัมพันธ์: เปิดดูที่ `web/index.html`
+- ทำเนียบครีเอเตอร์: เปิดดูที่ `web/registry.html`
+- รันเทสต์: `pytest`
 
 แค่นี้แหละ

@@ -38,5 +38,13 @@ jobs:
       - name: Validate Canonical Registry
         run: python -m registry validate
 
+      - name: Verify Unified Distribution Pipeline
+        run: python scripts/build_distribution.py --check-only
+
+      - name: Test Registry Report and Snapshot
+        run: |
+          python -m registry report --as-of 2026-09-11 --output scratch/ci-report
+          python -m registry export --as-of 2026-09-11 --output dist/ci-snapshot
+
       - name: Run Tests
         run: python -m pytest tests/ -q

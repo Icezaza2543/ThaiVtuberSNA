@@ -67,8 +67,13 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, onNavigate }) => {
           <a
             href="./index.html"
             className="nav-item"
-            style={{ opacity: 0.9 }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
+            title="กลับไปยังหน้าเครือข่ายความสัมพันธ์ (Thai VTuber SNA Constellation)"
           >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" />
+            </svg>
             <span className="nav-label-full">เครือข่าย SNA</span>
             <span className="nav-label-mobile">SNA</span>
           </a>
