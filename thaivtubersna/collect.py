@@ -13,9 +13,12 @@ No private data (viewer hashes, login tokens, etc.) is stored here.
 from __future__ import annotations
 
 import hashlib
+import hmac
 import json
 import logging
+import os
 import re
+import secrets
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -25,7 +28,10 @@ from urllib.parse import urlencode, urlparse
 from urllib.request import Request, build_opener, HTTPRedirectHandler
 from uuid import uuid4
 
-from .store import PLATFORMS, connect, count, fetch_all, uid, upsert, utc_now
+from .store import (
+    PLATFORMS, connect, count, fetch_all, get_state, record_interaction,
+    set_state, uid, upsert, utc_now,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -242,6 +248,271 @@ def discover_from_twitch(con, *, max_pages: int = 5, language: str = "th") -> di
     return {"run_id": run_id, "seen": len(seen), "candidates_added": added}
 
 
+
+# ── YouTube interaction collection ───────────────────────────────────────────
+
+_YOUTUBE_API = "https://www.googleapis.com/youtube/v3"
+
+
+def _viewer_hmac_key() -> bytes:
+    """Return a persistent local HMAC key without committing viewer identifiers."""
+    env_key = os.getenv("VIEWER_HMAC_KEY")
+    if env_key:
+        return env_key.encode("utf-8")
+
+    key_path = ROOT / "runtime" / "viewer_hmac.key"
+    key_path.parent.mkdir(parents=True, exist_ok=True)
+    if not key_path.exists():
+        key_path.write_text(secrets.token_hex(32), encoding="ascii")
+    return key_path.read_text(encoding="ascii").strip().encode("ascii")
+
+
+def _hash_viewer(viewer_id: str, key: bytes) -> str:
+    return hmac.new(key, viewer_id.encode("utf-8"), hashlib.sha256).hexdigest()
+
+
+def _youtube_api(resource: str, params: dict[str, Any], api_key: str) -> dict[str, Any]:
+    query = dict(params)
+    query["key"] = api_key
+    raw = _http_get(
+        f"{_YOUTUBE_API}/{resource}?{urlencode(query)}",
+        timeout=30,
+        headers={"User-Agent": "ThaiVtuberSNA/2.0"},
+    )
+    return json.loads(raw)
+
+
+def _eligible_youtube_channels(con) -> list[str]:
+    """Channels trusted either by a verified persona link or the sealed legacy baseline."""
+    rows = con.execute(
+        """
+        SELECT DISTINCT a.platform_id
+        FROM accounts a
+        WHERE a.platform = 'youtube'
+          AND a.platform_id IS NOT NULL
+          AND (
+              EXISTS (
+                  SELECT 1
+                  FROM account_links al
+                  JOIN personas p ON p.id = al.persona_id
+                  WHERE al.account_id = a.id
+                    AND al.review_status = 'verified'
+                    AND p.review_status = 'verified'
+              )
+              OR EXISTS (
+                  SELECT 1 FROM legacy_claims lc WHERE lc.account_id = a.id
+              )
+          )
+        ORDER BY a.platform_id
+        """
+    ).fetchall()
+    return [row[0] for row in rows if row[0]]
+
+
+def _recent_video_ids(channel_id: str, api_key: str, max_videos: int) -> list[str]:
+    # YouTube uploads playlist is deterministic from a channel id: UC... -> UU...
+    uploads_playlist = "UU" + channel_id[2:]
+    page = _youtube_api(
+        "playlistItems",
+        {
+            "part": "contentDetails",
+            "playlistId": uploads_playlist,
+            "maxResults": max(1, min(max_videos, 50)),
+        },
+        api_key,
+    )
+    return [
+        item.get("contentDetails", {}).get("videoId")
+        for item in page.get("items", [])
+        if item.get("contentDetails", {}).get("videoId")
+    ]
+
+
+def _active_live_chat_ids(video_ids: list[str], api_key: str) -> dict[str, str]:
+    if not video_ids:
+        return {}
+    page = _youtube_api(
+        "videos",
+        {
+            "part": "liveStreamingDetails",
+            "id": ",".join(video_ids[:50]),
+            "maxResults": min(len(video_ids), 50),
+        },
+        api_key,
+    )
+    result: dict[str, str] = {}
+    for item in page.get("items", []):
+        chat_id = item.get("liveStreamingDetails", {}).get("activeLiveChatId")
+        if chat_id:
+            result[item["id"]] = chat_id
+    return result
+
+
+def _collect_video_comments(
+    con,
+    channel_id: str,
+    video_id: str,
+    api_key: str,
+    viewer_key: bytes,
+) -> tuple[int, int]:
+    """Collect the newest public top-level comments for one video."""
+    try:
+        page = _youtube_api(
+            "commentThreads",
+            {
+                "part": "snippet",
+                "videoId": video_id,
+                "maxResults": 100,
+                "order": "time",
+                "textFormat": "plainText",
+            },
+            api_key,
+        )
+    except HTTPError as exc:
+        # Comments disabled / unavailable should not kill the 24/7 worker.
+        if exc.code in {403, 404}:
+            return 0, 0
+        raise
+
+    seen = 0
+    inserted = 0
+    for item in page.get("items", []):
+        snippet = (
+            item.get("snippet", {})
+            .get("topLevelComment", {})
+            .get("snippet", {})
+        )
+        author = snippet.get("authorChannelId", {}).get("value")
+        if not author:
+            continue
+        seen += 1
+        if record_interaction(
+            con,
+            creator_id=channel_id,
+            video_id=video_id,
+            viewer_hash=_hash_viewer(author, viewer_key),
+            source_type="comment",
+            observed_at=snippet.get("publishedAt") or utc_now(),
+        ):
+            inserted += 1
+    return seen, inserted
+
+
+def _collect_live_chat(
+    con,
+    channel_id: str,
+    video_id: str,
+    live_chat_id: str,
+    api_key: str,
+    viewer_key: bytes,
+) -> tuple[int, int]:
+    """Collect the newest public messages from an active YouTube live chat."""
+    try:
+        page = _youtube_api(
+            "liveChat/messages",
+            {
+                "part": "snippet,authorDetails",
+                "liveChatId": live_chat_id,
+                "maxResults": 2000,
+            },
+            api_key,
+        )
+    except HTTPError as exc:
+        if exc.code in {403, 404}:
+            return 0, 0
+        raise
+
+    seen = 0
+    inserted = 0
+    for item in page.get("items", []):
+        author = item.get("authorDetails", {}).get("channelId")
+        if not author:
+            continue
+        seen += 1
+        if record_interaction(
+            con,
+            creator_id=channel_id,
+            video_id=video_id,
+            viewer_hash=_hash_viewer(author, viewer_key),
+            source_type="live_chat",
+            observed_at=item.get("snippet", {}).get("publishedAt") or utc_now(),
+        ):
+            inserted += 1
+    return seen, inserted
+
+
+def collect_youtube_interactions(
+    con,
+    *,
+    api_key: str | None = None,
+    channels_per_cycle: int | None = None,
+    max_videos: int | None = None,
+) -> dict[str, Any]:
+    """
+    Collect recent YouTube comments and active live-chat participants directly
+    into DuckDB interactions. Raw viewer channel IDs are HMACed before storage.
+    """
+    api_key = api_key or os.getenv("YOUTUBE_API_KEY")
+    if not api_key:
+        return {"skipped": True, "reason": "no_youtube_api_key"}
+
+    channels_per_cycle = channels_per_cycle or int(
+        os.getenv("YOUTUBE_CHANNELS_PER_CYCLE", "25")
+    )
+    max_videos = max_videos or int(os.getenv("YOUTUBE_RECENT_VIDEOS", "5"))
+    channels = _eligible_youtube_channels(con)
+    if not channels:
+        return {"skipped": True, "reason": "no_youtube_channels"}
+
+    batch_size = max(1, min(channels_per_cycle, len(channels)))
+    cursor = int(get_state(con, "youtube_collect_cursor", 0) or 0) % len(channels)
+    selected = [channels[(cursor + i) % len(channels)] for i in range(batch_size)]
+    set_state(con, "youtube_collect_cursor", (cursor + batch_size) % len(channels))
+
+    viewer_key = _viewer_hmac_key()
+    totals = {
+        "channels_checked": 0,
+        "videos_checked": 0,
+        "comments_seen": 0,
+        "live_chat_seen": 0,
+        "interactions_added": 0,
+        "errors": 0,
+    }
+
+    for channel_id in selected:
+        try:
+            video_ids = _recent_video_ids(channel_id, api_key, max_videos)
+            live_chats = _active_live_chat_ids(video_ids, api_key)
+            totals["channels_checked"] += 1
+            totals["videos_checked"] += len(video_ids)
+
+            for video_id in video_ids:
+                seen, inserted = _collect_video_comments(
+                    con, channel_id, video_id, api_key, viewer_key
+                )
+                totals["comments_seen"] += seen
+                totals["interactions_added"] += inserted
+
+                live_chat_id = live_chats.get(video_id)
+                if live_chat_id:
+                    seen, inserted = _collect_live_chat(
+                        con,
+                        channel_id,
+                        video_id,
+                        live_chat_id,
+                        api_key,
+                        viewer_key,
+                    )
+                    totals["live_chat_seen"] += seen
+                    totals["interactions_added"] += inserted
+        except (HTTPError, URLError, TimeoutError, OSError, ValueError, json.JSONDecodeError) as exc:
+            totals["errors"] += 1
+            logger.warning("YouTube interaction collection failed for %s: %s", channel_id, exc)
+
+    set_state(con, "last_youtube_interaction_collect_at", utc_now())
+    return totals
+
+
 # ── Public entry points ──────────────────────────────────────────────────────
 
 def discover(db_path=None) -> dict:
@@ -271,20 +542,19 @@ def discover(db_path=None) -> dict:
 
 
 def collect_accounts(db_path=None) -> dict:
-    """
-    Step 1b: Fetch public profile data for accounts already in the registry.
-    Currently a stub — to be extended with YouTube Data API / Twitch Helix calls
-    that update account metadata (subscriber_count, last_activity, etc.).
-    """
-    from .store import DB_PATH, connect, set_state
+    """Collect audience interactions for trusted YouTube channels."""
+    from .store import DB_PATH
     path = db_path or DB_PATH
 
     with connect(path) as con:
         n_accounts = con.execute("SELECT COUNT(*) FROM accounts").fetchone()[0]
+        interactions = collect_youtube_interactions(con)
         set_state(con, "last_collect_at", utc_now())
 
-    logger.info("collect_accounts: %d accounts in registry (metadata refresh stub)", n_accounts)
-    return {"accounts_in_registry": n_accounts, "refreshed": 0}
+    return {
+        "accounts_in_registry": n_accounts,
+        "youtube_interactions": interactions,
+    }
 
 
 def run(db_path=None) -> dict:
