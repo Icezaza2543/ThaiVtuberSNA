@@ -250,3 +250,9 @@ def test_08_rollback_mechanism(sandbox_observatory):
     assert not batch_parquet.exists()
     state = ctrl._load_state()
     assert state["active_dataset_version"] == "v1.0.0"
+
+
+def test_09_historical_baseline_hash_is_platform_independent():
+    """9. Historical baseline hash is deterministic regardless of platform default newlines."""
+    snapshots = REPO_ROOT / "data" / "temporal" / "snapshots" / "network_snapshots.parquet"
+    assert compute_historical_baseline_hash(snapshots) == EXPECTED_HISTORICAL_BASELINE_HASH

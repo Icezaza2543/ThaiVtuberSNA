@@ -94,11 +94,11 @@ def test_no_contradictory_lifecycle_states(lifecycles_df, lineage_v2_df):
         post_edges = lineage_v2_df[(lineage_v2_df["from_lineage_id"] == lid) & (lineage_v2_df["from_year"] > lyr)]
         assert post_edges.empty, f"Lineage {lid} has outgoing transition after death year {lyr}"
 
-def test_deterministic_lineage_generation():
+def test_deterministic_lineage_generation(tmp_path):
     """Verify running the lineage builder produces identical deterministic results."""
     from scripts.build_community_lineage_v2 import build_community_lineage_v2
-    df1_edges, df1_life = build_community_lineage_v2()
-    df2_edges, df2_life = build_community_lineage_v2()
+    df1_edges, df1_life = build_community_lineage_v2(output_dir=tmp_path / "run1")
+    df2_edges, df2_life = build_community_lineage_v2(output_dir=tmp_path / "run2")
 
     pd.testing.assert_frame_equal(df1_edges, df2_edges)
     pd.testing.assert_frame_equal(df1_life, df2_life)

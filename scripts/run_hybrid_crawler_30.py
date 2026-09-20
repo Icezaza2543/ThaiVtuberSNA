@@ -33,8 +33,9 @@ import duckdb
 import gspread
 import yt_dlp
 
-from config.settings import YOUTUBE_API_KEY, GOOGLE_SHEETS_CONFIG, DATA_DIR
+from config.settings import YOUTUBE_API_KEY, GOOGLE_SHEETS_CONFIG, DATA_DIR, CREATOR_REGISTRY_PATH
 from core.hasher import PrivacyHasher, compute_key_fingerprint, load_persistent_secret_key
+from core.creator_catalog import CreatorCatalog
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("HybridCrawler30")
@@ -417,16 +418,14 @@ def main():
     key_fingerprint = compute_key_fingerprint(load_persistent_secret_key())
     logger.info(f"Verified Persistent Key Fingerprint: {key_fingerprint}")
 
-    # Load Registry (Read-only reference)
-    registry_file = DATA_DIR / "thai_vtuber_registry.csv"
-    with open(registry_file, "r", encoding="utf-8") as f:
-        all_vtubers = list(csv.DictReader(f))
+    # Load canonical registry through the read-only catalog boundary.
+    all_vtubers = list(CreatorCatalog.from_path(CREATOR_REGISTRY_PATH).youtube_rows())
 
     # Filter Target Channels: Active + (Subs >= 5,000 OR Agency != Independent)
     target_channels = [
         v for v in all_vtubers
         if v.get("activity_status") == "active"
-        and v.get("enabled") == "True"
+        and bool(v.get("enabled", True))
         and (int(v.get("subscriber_count", 0) or 0) >= 5000 or v.get("agency", "Independent") != "Independent")
     ]
     target_channels.sort(key=lambda x: int(x.get("subscriber_count", 0) or 0), reverse=True)

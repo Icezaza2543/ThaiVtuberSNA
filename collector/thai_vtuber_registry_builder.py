@@ -123,7 +123,7 @@ class ThaiVtuberRegistryBuilder:
         for f_item in fandom_list:
             cid = f_item.get("channel_id")
             handle = f_item.get("handle", "")
-            
+
             # If no direct channel ID, but handle exists, try quick resolution via API if available
             if not cid and handle and self.api_key:
                 cid = self._resolve_handle_via_api(handle)
@@ -208,7 +208,7 @@ class ThaiVtuberRegistryBuilder:
             views = meta.get("viewCount", raw.get("view_count", 0))
             video_count = meta.get("videoCount", 0)
             channel_status = meta.get("privacyStatus", "public")
-            
+
             # Use most accurate last published date
             last_pub = raw.get("last_published_video_at", "")
             is_graduated = raw.get("is_graduated_hint", False)
@@ -253,9 +253,10 @@ class ThaiVtuberRegistryBuilder:
 
         self.checkpoint.save()
 
-        # 5. Persist Output Files
-        logger.info("--- Step 1.6: Saving Registry Artifacts ---")
-        self._save_registry_files(confirmed_records, unconfirmed_records)
+        # 5. Persist reviewed-input artifacts only.  Phase 1 discovery never
+        # writes the canonical creator registry directly.
+        logger.info("--- Step 1.6: Saving Discovery Intake Artifacts ---")
+        intake_path = self._save_registry_files(confirmed_records, unconfirmed_records)
 
         # 6. Generate Phase 1 Audit Report
         logger.info("--- Step 1.7: Generating Phase 1 Audit Report ---")
@@ -271,7 +272,7 @@ class ThaiVtuberRegistryBuilder:
             "confirmed_count": len(confirmed_records),
             "unconfirmed_count": len(unconfirmed_records),
             "report_path": str(report_path),
-            "registry_csv": str(self.output_dir / "thai_vtuber_registry.csv"),
+            "candidate_intake": str(intake_path),
             "unconfirmed_csv": str(self.output_dir / "unconfirmed_candidates.csv")
         }
 
@@ -368,68 +369,30 @@ class ThaiVtuberRegistryBuilder:
                 reason=f"Connection failure: {e}"
             )
 
-    def _save_registry_files(self, confirmed: List[Dict[str, Any]], unconfirmed: List[Dict[str, Any]]):
-        """Saves registry to CSV, JSON, and backward-compatible registry."""
-        # 1. Main Confirmed Registry CSV
-        reg_csv = self.output_dir / "thai_vtuber_registry.csv"
-        with open(reg_csv, "w", encoding="utf-8", newline="") as f:
-            writer = csv.DictWriter(f, fieldnames=REGISTRY_COLUMNS)
-            writer.writeheader()
-            for r in confirmed:
-                row = {col: r.get(col, "") for col in REGISTRY_COLUMNS}
-                writer.writerow(row)
+    def _save_registry_files(self, confirmed: List[Dict[str, Any]], unconfirmed: List[Dict[str, Any]]) -> Path:
+        """Persist Phase 1 output as intake evidence, never as the canonical registry."""
+        intake_dir = self.output_dir / "intake"
+        intake_dir.mkdir(parents=True, exist_ok=True)
+        intake_path = intake_dir / "phase1_creator_candidates.json"
+        payload = {
+            "schema_version": 1,
+            "artifact_type": "creator_discovery_intake",
+            "review_status": "unreviewed",
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "rows": confirmed,
+        }
+        with open(intake_path, "w", encoding="utf-8") as handle:
+            json.dump(payload, handle, indent=2, ensure_ascii=False)
 
-        # 2. Main Confirmed Registry JSON
-        reg_json = self.output_dir / "thai_vtuber_registry.json"
-        with open(reg_json, "w", encoding="utf-8") as f:
-            json.dump(confirmed, f, indent=2, ensure_ascii=False)
-
-        # 3. Unconfirmed Quarantine CSV
+        # Keep rejected/unconfirmed candidates as quarantine evidence.  This file
+        # is not a runtime creator registry and cannot be consumed by CreatorCatalog.
         unconfirmed_csv = self.output_dir / "unconfirmed_candidates.csv"
-        with open(unconfirmed_csv, "w", encoding="utf-8", newline="") as f:
-            writer = csv.DictWriter(f, fieldnames=UNCONFIRMED_COLUMNS)
+        with open(unconfirmed_csv, "w", encoding="utf-8", newline="") as handle:
+            writer = csv.DictWriter(handle, fieldnames=UNCONFIRMED_COLUMNS)
             writer.writeheader()
-            for r in unconfirmed:
-                row = {col: r.get(col, "") for col in UNCONFIRMED_COLUMNS}
-                writer.writerow(row)
-
-        # 4. Sync to existing control plane registry_vtubers.csv
-        compat_csv = self.output_dir / "registry_vtubers.csv"
-        compat_cols = [
-            "channel_id", "handle", "name", "subscriber_count", "agency",
-            "status", "thai_confidence", "priority", "source_count",
-            "last_activity", "last_collected", "streams_collected", "enabled"
-        ]
-        with open(compat_csv, "w", encoding="utf-8", newline="") as f:
-            writer = csv.DictWriter(f, fieldnames=compat_cols)
-            writer.writeheader()
-            for r in confirmed:
-                subs = r.get("subscriber_count", 0)
-                tier = "D"
-                if subs >= 100000:
-                    tier = "S"
-                elif subs >= 50000:
-                    tier = "A"
-                elif subs >= 10000:
-                    tier = "B"
-                elif subs >= 1000:
-                    tier = "C"
-
-                writer.writerow({
-                    "channel_id": r["channel_id"],
-                    "handle": r.get("handle", ""),
-                    "name": r.get("name", ""),
-                    "subscriber_count": subs,
-                    "agency": r.get("agency", "Independent"),
-                    "status": "ACCEPT",
-                    "thai_confidence": r.get("thai_confidence", 1.0),
-                    "priority": tier,
-                    "source_count": len(r.get("reference_sources", "").split(";")),
-                    "last_activity": r.get("last_video_published_at", ""),
-                    "last_collected": "",
-                    "streams_collected": 0,
-                    "enabled": r.get("enabled", True)
-                })
+            for record in unconfirmed:
+                writer.writerow({col: record.get(col, "") for col in UNCONFIRMED_COLUMNS})
+        return intake_path
 
     def _generate_audit_report(self, confirmed: List[Dict[str, Any]], unconfirmed: List[Dict[str, Any]]) -> Path:
         """Generates markdown audit report documenting Phase 1 coverage and criteria."""
@@ -463,8 +426,8 @@ class ThaiVtuberRegistryBuilder:
 
         content = f"""# รายงานการตรวจสอบและจัดทำทะเบียน Thai VTuber (ระยะที่ 1)
 
-**วันที่และเวลาตรวจสอบ:** {now_str}  
-**สถานะการผ่านเกณฑ์ระยะที่ 1 (Phase 1 Gate Criteria):** **PASSED**  
+**วันที่และเวลาตรวจสอบ:** {now_str}
+**สถานะการผ่านเกณฑ์ระยะที่ 1 (Phase 1 Gate Criteria):** **PASSED**
 **ข้อห้ามการเก็บข้อมูล:** ไม่มีคอมเมนต์หรือ Live Chat ใด ๆ ถูกเก็บในระยะนี้ (ตรวจสอบเฉพาะ Metadata ช่อง)
 
 ---
@@ -544,11 +507,9 @@ class ThaiVtuberRegistryBuilder:
 
 ## 6. ไฟล์ผลลัพธ์ที่สร้างในระยะที่ 1 (Generated Artifacts)
 
-- **ทะเบียนหลัก (CSV):** [`data/thai_vtuber_registry.csv`](file:///{str(self.output_dir / 'thai_vtuber_registry.csv').replace('\\', '/')})
-- **ทะเบียนหลัก (JSON):** [`data/thai_vtuber_registry.json`](file:///{str(self.output_dir / 'thai_vtuber_registry.json').replace('\\', '/')})
+- **Discovery intake (ต้องผ่าน eligibility + identity review ก่อนเข้าทะเบียนหลัก):** [`data/intake/phase1_creator_candidates.json`](file:///{str(self.output_dir / 'intake' / 'phase1_creator_candidates.json').replace('\\', '/')})
 - **รายชื่อรอตรวจสอบ (Quarantine):** [`data/unconfirmed_candidates.csv`](file:///{str(self.output_dir / 'unconfirmed_candidates.csv').replace('\\', '/')})
 - **สถานะ Checkpoint:** [`data/registry_checkpoint.json`](file:///{str(self.output_dir / 'registry_checkpoint.json').replace('\\', '/')})
-- **Control Plane Sync:** [`data/registry_vtubers.csv`](file:///{str(self.output_dir / 'registry_vtubers.csv').replace('\\', '/')})
 
 ---
 *รายงานนี้จัดทำขึ้นโดยอัตโนมัติเพื่อเป็นหลักฐานตรวจสอบย้อนหลังสำหรับระยะที่ 1*

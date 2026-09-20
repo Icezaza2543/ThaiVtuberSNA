@@ -151,14 +151,13 @@ flowchart TD
    - Older generator docstrings referred to "Reconciled Viewers" before the data dictionary sealed the authoritative term **"Master Identity Candidate Index (Pending Cross-Namespace Reconciliation)"**.
    *Action for refactor*: Ensure all docstrings and internal log messages use the sealed dictionary terminology.
 
-### 4.3 Redundant Sources of Truth
-1. **Target Channel Registry**:
-   - `data/temporal/catalog/target_manifest.csv` (100 rows).
-   - `data/thai_vtuber_registry.csv` (1,500+ rows).
-   - `data/registry_vtubers.csv` (1,500 rows).
-   - Google Sheets `VTUBERS` tab (1,500 rows).
-   - In-memory dictionaries in `scripts/build_historical_lifecycle.py`.
-   *Action for refactor*: Establish a single unified `storage/catalog_store.py` that reads from the canonical registry and caches a validated target manifest.
+### 4.3 Creator Catalog Source of Truth
+1. **Canonical creator identity**:
+   - `data/registry/creators.json` is the only runtime creator/persona/account source of truth.
+   - `core.creator_catalog.CreatorCatalog` validates schema-v2 and provides deterministic lookup/export APIs.
+   - Google Sheets `VTUBERS` is an optional external control-plane view and cannot rewrite the local canonical catalog.
+   - `data/temporal/catalog/target_manifest.csv` is a separate frozen 193-channel research cohort, not a competing registry.
+   - Historical/analysis builders join frozen cohort rows to `CreatorCatalog` metadata without changing cohort membership.
 
 ### 4.4 Calculations Performed in Frontend
 1. **Dashboard v1 (`web/research/research_dashboard.js`)**:

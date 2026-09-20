@@ -19,10 +19,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, Any, List, Optional, Set
 
-from config.settings import BASE_DIR, DATA_DIR, YOUTUBE_API_KEY
+from config.settings import BASE_DIR, DATA_DIR, YOUTUBE_API_KEY, CREATOR_REGISTRY_PATH
 import core.hasher as identity
 from core.hasher import PrivacyHasher
 from core.dataset_identity import validate_dataset_identity
+from core.creator_catalog import CreatorCatalog
 from collector.continuous_collector import ContinuousCollector
 from scripts.privacy_audit import audit_directory
 
@@ -66,19 +67,18 @@ class BalancedVideoCollector:
         Prevents concentrating API budget on a few large channels.
         """
         catalog_path = self.data_dir / "video_catalog.csv"
-        registry_path = self.data_dir / "thai_vtuber_registry.csv"
 
         if not catalog_path.exists():
             raise FileNotFoundError(f"Video catalog not found: {catalog_path}. Complete Phase 2 first.")
 
-        # Load registry for metadata (tier & agency)
-        channel_meta = {}
-        with open(registry_path, "r", encoding="utf-8") as f:
-            for row in csv.DictReader(f):
-                channel_meta[row["channel_id"]] = {
-                    "agency": row.get("agency", "Independent"),
-                    "subscriber_count": int(row.get("subscriber_count", 0) or 0)
-                }
+        # Canonical creator metadata is read only through CreatorCatalog.
+        channel_meta = {
+            row["channel_id"]: {
+                "agency": row.get("agency", "Independent"),
+                "subscriber_count": int(row.get("subscriber_count") or 0),
+            }
+            for row in CreatorCatalog.from_path(CREATOR_REGISTRY_PATH).youtube_rows()
+        }
 
         # Load catalog videos
         videos_by_channel: Dict[str, List[Dict[str, Any]]] = {}
@@ -252,9 +252,9 @@ class BalancedVideoCollector:
 
         content = f"""# รายงานการเก็บข้อมูลรายวิดีโอและแยกแยะแหล่งข้อมูล (ระยะที่ 3)
 
-**วันที่และเวลาเก็บข้อมูล:** {now_str}  
-**สถานะการผ่านเกณฑ์ระยะที่ 3 (Phase 3 Gate Criteria):** **PASSED**  
-**สถานะการตรวจสอบความเป็นส่วนตัว (Cryptographic Privacy Audit):** **{'PASSED (ZERO PII LEAKS)' if privacy_passed else 'FAILED'}**  
+**วันที่และเวลาเก็บข้อมูล:** {now_str}
+**สถานะการผ่านเกณฑ์ระยะที่ 3 (Phase 3 Gate Criteria):** **PASSED**
+**สถานะการตรวจสอบความเป็นส่วนตัว (Cryptographic Privacy Audit):** **{'PASSED (ZERO PII LEAKS)' if privacy_passed else 'FAILED'}**
 **ลายนิ้วมือกุญแจลับ (Key Fingerprint):** `{self.key_fingerprint}`
 
 ---

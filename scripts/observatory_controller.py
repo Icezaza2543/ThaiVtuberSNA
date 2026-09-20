@@ -51,7 +51,14 @@ def compute_historical_baseline_hash(snapshots_file: Path) -> str:
     df = pd.read_parquet(snapshots_file)
     sort_cols = ["window_type", "window_start", "window_end", "vtuber_a", "vtuber_b"]
     hist_mask = df["window_end"] < "2026-01-01"
-    hist_bytes = df[hist_mask].sort_values(sort_cols).to_csv(index=False).encode("utf-8")
+    # Baseline was sealed on Windows; make CSV line endings explicit so the
+    # semantic pre-2026 hash is identical on Windows and Linux CI runners.
+    hist_bytes = (
+        df[hist_mask]
+        .sort_values(sort_cols)
+        .to_csv(index=False, lineterminator="\r\n")
+        .encode("utf-8")
+    )
     return "sha256_" + hashlib.sha256(hist_bytes).hexdigest()
 
 

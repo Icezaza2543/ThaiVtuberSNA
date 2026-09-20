@@ -28,6 +28,8 @@ DATA_DIR = BASE_DIR / "data"
 EVENTS_DIR = DATA_DIR / "events"
 ANALYTICS_DIR = DATA_DIR / "analytics"
 CACHE_DIR = DATA_DIR / "cache"
+CREATOR_REGISTRY_PATH = DATA_DIR / "registry" / "creators.json"
+CREATOR_IDENTITY_CACHE_DIR = BASE_DIR / ".tmp" / "creator_identity"
 
 # Privacy & Hashing
 # Persistent HMAC Secret Key location
@@ -74,7 +76,7 @@ GOOGLE_SHEETS_CONFIG = {
     "sheet_vtubers": "VTUBERS",
     "sheet_system": "SYSTEM",
     "sheet_network": "NETWORK_RESULT",
-    "local_fallback_path": DATA_DIR / "registry_vtubers.csv"
+    "creator_registry_path": CREATOR_REGISTRY_PATH
 }
 
 # YouTube API Configuration

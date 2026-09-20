@@ -20,8 +20,9 @@ from pathlib import Path
 from typing import Dict, Any, List, Optional
 import requests
 
-from config.settings import BASE_DIR, DATA_DIR, YOUTUBE_API_KEY
+from config.settings import BASE_DIR, DATA_DIR, YOUTUBE_API_KEY, CREATOR_REGISTRY_PATH
 from core.registry_checkpoint import PipelineCheckpointManager
+from core.creator_catalog import CreatorCatalog
 
 logger = logging.getLogger("Phase2VideoCatalogBuilder")
 
@@ -57,27 +58,22 @@ class VideoCatalogBuilder:
         logger.info(" PHASE 2: Video Catalog & Inventory Survey                       ")
         logger.info("=================================================================")
 
-        # 1. Load Confirmed Channels from Phase 1 Registry
-        registry_file = self.data_dir / "thai_vtuber_registry.csv"
-        if not registry_file.exists():
-            raise FileNotFoundError(f"Registry not found: {registry_file}. Complete Phase 1 first.")
+        # 1. Load eligible YouTube channels from the canonical CreatorCatalog.
+        channels = [
+            row
+            for row in CreatorCatalog.from_path(CREATOR_REGISTRY_PATH).youtube_rows()
+            if row.get("vtuber_status") == "CONFIRMED"
+            and row.get("activity_status") in ["active", "hiatus"]
+        ]
 
-        channels = []
-        with open(registry_file, "r", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                # Include confirmed channels
-                if row.get("vtuber_status") == "CONFIRMED" and row.get("activity_status") in ["active", "hiatus"]:
-                    channels.append(row)
-
-        logger.info(f"Loaded {len(channels)} active/hiatus confirmed channels from Phase 1 registry.")
+        logger.info(f"Loaded {len(channels)} active/hiatus confirmed channels from canonical creator catalog.")
         if max_channels_sample:
             channels = channels[:max_channels_sample]
             logger.info(f"Limiting video survey to first {max_channels_sample} channels for this batch.")
 
         catalog_records: List[Dict[str, Any]] = []
         existing_catalog_csv = self.data_dir / "video_catalog.csv"
-        
+
         # Load existing catalog records if resuming
         processed_vids = set()
         if existing_catalog_csv.exists():
@@ -297,8 +293,8 @@ class VideoCatalogBuilder:
 
         content = f"""# รายงานการสำรวจและจัดทำรายการวิดีโอ (ระยะที่ 2)
 
-**วันที่และเวลาสำรวจ:** {now_str}  
-**สถานะการผ่านเกณฑ์ระยะที่ 2 (Phase 2 Gate Criteria):** **PASSED**  
+**วันที่และเวลาสำรวจ:** {now_str}
+**สถานะการผ่านเกณฑ์ระยะที่ 2 (Phase 2 Gate Criteria):** **PASSED**
 **ขอบเขต:** สำรวจรายการวิดีโอทั้งหมดจากช่อง Thai VTuber ที่ผ่านการยืนยันในทะเบียนระยะที่ 1
 
 ---

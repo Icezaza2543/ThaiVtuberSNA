@@ -2,16 +2,18 @@
 Thai VTuber Audience Network (SNA)
 Registry Manager (Control Plane)
 
-Implements Google Sheets Registry integration with seamless Local Fallback (CSV/JSON).
-Manages sheets: VTUBERS, SYSTEM, NETWORK_RESULT.
+Google Sheets remains an optional external control plane.  The local creator
+registry is the validated, read-only schema-v2 CreatorCatalog.
 """
 import csv
 import json
 import logging
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import List, Dict, Any, Optional
-from config.settings import GOOGLE_SHEETS_CONFIG, DATA_DIR
+from typing import List, Dict, Any
+
+from config.settings import GOOGLE_SHEETS_CONFIG, DATA_DIR, CREATOR_REGISTRY_PATH
+from core.creator_catalog import CreatorCatalog
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +30,7 @@ VTUBERS_COLUMNS = [
     "last_activity",
     "last_collected",
     "streams_collected",
-    "enabled"
+    "enabled",
 ]
 
 NETWORK_RESULT_COLUMNS = [
@@ -37,14 +39,14 @@ NETWORK_RESULT_COLUMNS = [
     "shared_viewers",
     "jaccard",
     "overlap_coefficient",
-    "calculated_at"
+    "calculated_at",
 ]
 
 
 class RegistryManager:
     def __init__(self, config: Dict[str, Any] = None):
         self.config = config or GOOGLE_SHEETS_CONFIG
-        self.local_csv_path = Path(self.config["local_fallback_path"])
+        self.catalog_path = Path(self.config.get("creator_registry_path", CREATOR_REGISTRY_PATH))
         self.local_system_path = DATA_DIR / "registry_system.json"
         self.local_network_path = DATA_DIR / "network_results.csv"
         self._gsheet_client = None
@@ -52,167 +54,152 @@ class RegistryManager:
         self._init_gsheet_if_configured()
 
     def _init_gsheet_if_configured(self):
-        """Attempts to initialize gspread connection if credentials exist."""
+        """Attempt to initialize gspread when credentials and a sheet ID exist."""
         cred_path = Path(self.config.get("credentials_path", ""))
         sheet_id = self.config.get("spreadsheet_id", "")
-        
+
         if cred_path.exists() and sheet_id:
             try:
                 import gspread
+
                 self._gsheet_client = gspread.service_account(filename=str(cred_path))
                 self._spreadsheet = self._gsheet_client.open_by_key(sheet_id)
-                logger.info(f"Connected to Google Sheets: {sheet_id}")
-            except Exception as e:
-                logger.warning(f"Could not connect to Google Sheets, using local fallback: {e}")
+                logger.info("Connected to configured Google Sheets control plane.")
+            except Exception as exc:
+                logger.warning("Could not connect to Google Sheets; using canonical local catalog: %s", exc)
                 self._gsheet_client = None
+                self._spreadsheet = None
         else:
-            logger.info("Using local CSV/JSON registry (Google Sheets credentials not set).")
+            logger.info("Using canonical local CreatorCatalog (Google Sheets not configured).")
 
     # ------------------ VTUBERS SHEET ------------------
 
+    def _catalog_rows(self) -> List[Dict[str, Any]]:
+        return [dict(row) for row in CreatorCatalog.from_path(self.catalog_path).youtube_rows()]
+
     def load_vtubers(self) -> List[Dict[str, Any]]:
-        """Loads all VTubers from Google Sheet or Local CSV."""
+        """Load the external sheet when available, otherwise the canonical catalog."""
         if self._spreadsheet:
             try:
                 worksheet = self._spreadsheet.worksheet(self.config["sheet_vtubers"])
-                records = worksheet.get_all_records()
-                return self._sanitize_records(records)
-            except Exception as e:
-                logger.error(f"Failed to read from Google Sheet: {e}. Falling back to local CSV.")
-
-        # Local fallback
-        if not self.local_csv_path.exists():
-            return []
-
-        vtubers = []
-        with open(self.local_csv_path, mode="r", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                vtubers.append(self._sanitize_row(row))
-        return vtubers
+                return self._sanitize_records(worksheet.get_all_records())
+            except Exception as exc:
+                logger.error("Failed to read Google Sheet; falling back to canonical catalog: %s", exc)
+        return self._catalog_rows()
 
     def save_vtubers(self, vtubers: List[Dict[str, Any]]):
-        """Saves VTubers list to Local CSV and Google Sheet if available."""
-        # Always write to local CSV for resilience
-        self.local_csv_path.parent.mkdir(parents=True, exist_ok=True)
-        with open(self.local_csv_path, mode="w", encoding="utf-8", newline="") as f:
-            writer = csv.DictWriter(f, fieldnames=VTUBERS_COLUMNS)
-            writer.writeheader()
-            for v in vtubers:
-                row = {col: v.get(col, "") for col in VTUBERS_COLUMNS}
-                writer.writerow(row)
+        """Update only the configured external sheet.
 
-        if self._spreadsheet:
-            try:
-                worksheet = self._spreadsheet.worksheet(self.config["sheet_vtubers"])
-                rows = [VTUBERS_COLUMNS]
-                for v in vtubers:
-                    rows.append([str(v.get(col, "")) for col in VTUBERS_COLUMNS])
-                worksheet.clear()
-                worksheet.update(rows)
-            except Exception as e:
-                logger.error(f"Failed to sync with Google Sheets: {e}")
+        The local canonical catalog is immutable through this control-plane API;
+        changes must enter through reviewed discovery/identity evidence and a
+        deterministic catalog rebuild.
+        """
+        if not self._spreadsheet:
+            raise RuntimeError(
+                "local creator catalog is read-only; configure the external VTUBERS sheet "
+                "or rebuild the canonical registry from reviewed evidence"
+            )
+        try:
+            worksheet = self._spreadsheet.worksheet(self.config["sheet_vtubers"])
+            rows = [VTUBERS_COLUMNS]
+            for vtuber in vtubers:
+                rows.append([str(vtuber.get(col, "")) for col in VTUBERS_COLUMNS])
+            worksheet.clear()
+            worksheet.update(rows)
+        except Exception:
+            logger.exception("Failed to sync VTUBERS sheet")
+            raise
 
     def get_enabled_vtubers(self) -> List[Dict[str, Any]]:
-        """Returns only VTubers that are ACCEPTED and enabled=True."""
-        all_vtubers = self.load_vtubers()
-        return [
-            v for v in all_vtubers
-            if str(v.get("enabled", "")).lower() in ["true", "1", "yes"] and v.get("status") == "ACCEPT"
-        ]
+        """Return eligible enabled rows from either external or canonical shape."""
+        rows = self.load_vtubers()
+        selected = []
+        for row in rows:
+            enabled = row.get("enabled", True)
+            enabled = enabled if isinstance(enabled, bool) else str(enabled).strip().lower() in {"true", "1", "yes"}
+            external_accept = row.get("status") == "ACCEPT"
+            canonical_accept = row.get("vtuber_status") == "CONFIRMED"
+            if enabled and (external_accept or canonical_accept):
+                selected.append(row)
+        return selected
 
     def update_vtuber(self, channel_id: str, updates: Dict[str, Any]):
-        """Updates attributes of a specific VTuber in registry."""
+        """Update an external control-plane row; local-only mode is read-only."""
         vtubers = self.load_vtubers()
-        updated = False
-        for v in vtubers:
-            if v.get("channel_id") == channel_id:
-                v.update(updates)
-                updated = True
-                break
-        if updated:
-            self.save_vtubers(vtubers)
+        for row in vtubers:
+            if row.get("channel_id") == channel_id:
+                row.update(updates)
+                self.save_vtubers(vtubers)
+                return
 
     # ------------------ SYSTEM SHEET ------------------
 
     def update_system_status(self, updates: Dict[str, Any]):
-        """Updates system monitoring metadata."""
+        """Update non-identity system monitoring metadata."""
         current_status = {}
         if self.local_system_path.exists():
             try:
-                with open(self.local_system_path, "r", encoding="utf-8") as f:
-                    current_status = json.load(f)
+                with open(self.local_system_path, "r", encoding="utf-8") as handle:
+                    current_status = json.load(handle)
             except Exception:
                 current_status = {}
 
         current_status.update(updates)
         current_status["updated_at"] = datetime.now(timezone.utc).isoformat()
 
-        with open(self.local_system_path, "w", encoding="utf-8") as f:
-            json.dump(current_status, f, indent=2, ensure_ascii=False)
+        with open(self.local_system_path, "w", encoding="utf-8") as handle:
+            json.dump(current_status, handle, indent=2, ensure_ascii=False)
 
         if self._spreadsheet:
             try:
                 worksheet = self._spreadsheet.worksheet(self.config["sheet_system"])
                 rows = [["Metric", "Value"]]
-                for k, val in current_status.items():
-                    rows.append([str(k), str(val)])
+                for key, value in current_status.items():
+                    rows.append([str(key), str(value)])
                 worksheet.clear()
                 worksheet.update(rows)
-            except Exception as e:
-                logger.warning(f"Failed to sync SYSTEM sheet: {e}")
+            except Exception as exc:
+                logger.warning("Failed to sync SYSTEM sheet: %s", exc)
 
     # ------------------ NETWORK RESULT SHEET ------------------
 
     def save_network_results(self, results: List[Dict[str, Any]]):
-        """Saves SNA Overlap matrix results to local CSV and Google Sheet."""
-        with open(self.local_network_path, "w", encoding="utf-8", newline="") as f:
-            writer = csv.DictWriter(f, fieldnames=NETWORK_RESULT_COLUMNS)
+        """Save derived aggregate network results; these are not creator identity data."""
+        with open(self.local_network_path, "w", encoding="utf-8", newline="") as handle:
+            writer = csv.DictWriter(handle, fieldnames=NETWORK_RESULT_COLUMNS)
             writer.writeheader()
-            for r in results:
-                row = {col: r.get(col, "") for col in NETWORK_RESULT_COLUMNS}
-                writer.writerow(row)
+            for result in results:
+                writer.writerow({col: result.get(col, "") for col in NETWORK_RESULT_COLUMNS})
 
         if self._spreadsheet:
             try:
                 worksheet = self._spreadsheet.worksheet(self.config["sheet_network"])
                 rows = [NETWORK_RESULT_COLUMNS]
-                for r in results:
-                    rows.append([str(r.get(col, "")) for col in NETWORK_RESULT_COLUMNS])
+                for result in results:
+                    rows.append([str(result.get(col, "")) for col in NETWORK_RESULT_COLUMNS])
                 worksheet.clear()
                 worksheet.update(rows)
-            except Exception as e:
-                logger.warning(f"Failed to sync NETWORK_RESULT sheet: {e}")
+            except Exception as exc:
+                logger.warning("Failed to sync NETWORK_RESULT sheet: %s", exc)
 
     # ------------------ SANITIZATION HELPERS ------------------
 
     def _sanitize_records(self, records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        return [self._sanitize_row(r) for r in records]
+        return [self._sanitize_row(record) for record in records]
 
     def _sanitize_row(self, row: Dict[str, Any]) -> Dict[str, Any]:
-        """Ensures proper types for numerical and boolean fields."""
+        """Normalize mutable external-sheet values without touching catalog bytes."""
         sanitized = dict(row)
-        try:
-            sanitized["subscriber_count"] = int(sanitized.get("subscriber_count", 0))
-        except (ValueError, TypeError):
-            sanitized["subscriber_count"] = 0
-
-        try:
-            sanitized["thai_confidence"] = float(sanitized.get("thai_confidence", 0.0))
-        except (ValueError, TypeError):
-            sanitized["thai_confidence"] = 0.0
-
-        try:
-            sanitized["source_count"] = int(sanitized.get("source_count", 1))
-        except (ValueError, TypeError):
-            sanitized["source_count"] = 1
-
-        try:
-            sanitized["streams_collected"] = int(sanitized.get("streams_collected", 0))
-        except (ValueError, TypeError):
-            sanitized["streams_collected"] = 0
-
+        for field, default, converter in (
+            ("subscriber_count", 0, int),
+            ("thai_confidence", 0.0, float),
+            ("source_count", 1, int),
+            ("streams_collected", 0, int),
+        ):
+            try:
+                sanitized[field] = converter(sanitized.get(field, default))
+            except (ValueError, TypeError):
+                sanitized[field] = default
         enabled_raw = str(sanitized.get("enabled", "true")).strip().lower()
-        sanitized["enabled"] = enabled_raw in ["true", "1", "yes"]
-
+        sanitized["enabled"] = enabled_raw in {"true", "1", "yes"}
         return sanitized

@@ -36,16 +36,21 @@ def test_mandatory_top_level_sections(contract_data):
     for section in mandatory:
         assert section in contract_data, f"Missing required section: {section}"
 
-def test_zero_private_viewer_identifiers():
+def test_zero_private_viewer_identifiers(contract_data):
     raw_text = CONTRACT_PATH.read_text(encoding="utf-8")
     
     # 1. No viewer_hash strings
     assert "viewer_hash" not in raw_text
     
-    # 2. No HMAC SHA256 hashes of private viewers
+    # 2. A public content fingerprint is allowed only in the explicit creator
+    # registry metadata field.  Any other raw 64-char digest is rejected.
     hmac_pattern = re.compile(r'\b[0-9a-f]{64}\b')
-    matches = hmac_pattern.findall(raw_text)
-    assert len(matches) == 0, f"Found raw 64-char hashes in public contract: {matches[:3]}"
+    registry_fingerprint = contract_data["metadata"].get("creator_registry_sha256")
+    assert isinstance(registry_fingerprint, str)
+    assert hmac_pattern.fullmatch(registry_fingerprint)
+    remaining = raw_text.replace(registry_fingerprint, "")
+    matches = hmac_pattern.findall(remaining)
+    assert len(matches) == 0, f"Found unexpected raw 64-char hashes in public contract: {matches[:3]}"
     
     # 3. No secrets or email patterns
     secret_pattern = re.compile(r'(AIza[0-9A-Za-z-_]{35}|ghp_[0-9A-Za-z]{36}|client_secret|private_key)')

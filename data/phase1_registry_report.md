@@ -132,11 +132,13 @@ Thai VTuber ในทะเบียนแบ่งตามสังกัด (
 
 ## 5. Artifacts และไฟล์ผลลัพธ์ที่จัดเก็บ
 
-1. **`data/thai_vtuber_registry.csv`**: ทะเบียนหลัก Thai VTuber จำนวน **1,363 ช่อง** (UTF-8, 20 คอลัมน์)
-2. **`data/thai_vtuber_registry.json`**: ทะเบียนหลักรูปแบบ JSON รองรับ API และ Web App
-3. **`data/excluded_channels.csv`**: รายชื่อช่องต่างชาติที่ถูกคัดออกถาวรจำนวน **6 ช่อง**
-4. **`data/unconfirmed_candidates.csv`**: ช่องที่ค้างในคิวตรวจสอบคงเหลือ **0 ช่อง**
-5. **`data/registry_vtubers.csv`**: Control Plane CSV สำหรับระบบจัดตารางเก็บข้อมูลและ DuckDB
+Phase 1 legacy registry exports ถูก retire หลังการรวมทะเบียนแบบ evidence-backed แล้ว ปัจจุบันใช้ขอบเขตต่อไปนี้:
+
+1. **`data/registry/creators.json`**: canonical creator/persona/account catalog แบบ schema-v2
+2. **`data/registry/identity_resolutions.json`**: ledger ของ accepted discovery accounts และหลักฐาน identity resolution
+3. **`docs/evidence/creator-registry-review-2026-09-19/`**: review bundle, trusted baseline snapshot และ identity evidence ที่ใช้ rebuild
+4. **`data/intake/phase1_creator_candidates.json`**: discovery intake ใหม่ที่ยังไม่มีสิทธิ์เขียนเข้า canonical catalog โดยตรง
+5. **`data/excluded_channels.csv` / `data/unconfirmed_candidates.csv` / `data/registry_checkpoint.json`**: exclusion, quarantine และ pipeline state ตามหน้าที่เดิม
 
 ---
-*รายงานจัดทำโดยระบบตรวจสอบ Thai VTuber Audience Network (Phase 1 Registry Builder)*
+*รายงานเดิมของ Phase 1 ถูกปรับคำอธิบาย artifact ให้ตรงกับ canonical registry architecture ปัจจุบัน*

@@ -1,13 +1,14 @@
 {
   "metadata": {
     "title": "Thai VTuber Industry Intelligence v2 Aggregate Data Contract",
-    "generated_at": "2026-09-09T07:07:55.705293+00:00",
+    "generated_at": "2026-09-19T16:58:11.012121+00:00",
     "version": "2.0.0",
     "privacy_class": "PUBLIC_RESEARCH_DATA",
     "target_cohort": "193 Target Thai VTuber Channels (Frozen Longitudinal Cohort)",
     "target_cohort_size": 193,
     "observation_window": "2020-01-01 to 2026-09-08 (YTD)",
-    "dataset_date": "2026-09-08"
+    "dataset_date": "2026-09-08",
+    "creator_registry_sha256": "93164936f6837a695d73cc7b2ccf2fbe1f88161bf10395bf43ea21854387d068"
   },
   "coverage": {
     "data_coverage": "2020 - 2026 (YTD)",
@@ -16,7 +17,7 @@
     "target_cohort": 193,
     "target_cohort_universe": 193,
     "active_cohort_channels_2025": 166,
-    "registered_channels": 1370,
+    "registered_channels": 1388,
     "cataloged_videos": 96420,
     "evidence_channels": 193,
     "observed_accounts": 17119,
@@ -1047,7 +1048,7 @@
     "artifacts": {
       "scope": "data/temporal/catalog/phase_t1_catalog_audit.md",
       "time": "data/temporal/backfill/phase_t5_backfill_report.md",
-      "identity": "docs/data_storage_architecture.md",
+      "identity": "docs/evidence-milestone.md",
       "sampling": "data/temporal/backfill/temporal_backfill_quality.md",
       "strong": "data/temporal/snapshots/network_snapshots.parquet",
       "communities": "data/temporal/analysis/temporal_community_report.md",

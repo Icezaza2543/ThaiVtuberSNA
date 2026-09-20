@@ -2,17 +2,21 @@
 Builds data/industry/discovery_universe.parquet & .csv
 
 Quantifies the broader Thai VTuber universe beyond the frozen 193-channel research cohort:
-- Identifies 1,370 total discoverable channels
-- Separates frozen analytical cohort (193) from broader ecosystem (1,177)
+- Identifies the current canonical YouTube creator universe
+- Separates the frozen analytical cohort (193) from the broader ecosystem
 - Preserves longitudinal comparability of the frozen cohort
 - Provides evidence strength ratings and provenance sources
 """
 
-import json
 import logging
 from datetime import datetime, timezone
 from pathlib import Path
+import sys
 import pandas as pd
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from config.settings import CREATOR_REGISTRY_PATH
+from core.creator_catalog import CreatorCatalog
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("BuildDiscoveryUniverse")
@@ -22,7 +26,6 @@ DATA_DIR = BASE_DIR / "data"
 INDUSTRY_DIR = DATA_DIR / "industry"
 INDUSTRY_DIR.mkdir(parents=True, exist_ok=True)
 
-REGISTRY_PATH = DATA_DIR / "thai_vtuber_registry.json"
 MANIFEST_PATH = DATA_DIR / "temporal" / "catalog" / "target_manifest.csv"
 
 
@@ -31,9 +34,8 @@ def build_discovery_universe():
     frozen_ids = set(manifest["channel_id"])
     logger.info(f"Loaded {len(frozen_ids)} frozen target channels from manifest.")
 
-    with open(REGISTRY_PATH, "r", encoding="utf-8") as f:
-        reg_data = json.load(f)
-    logger.info(f"Loaded {len(reg_data)} channels from Thai VTuber Registry.")
+    reg_data = list(CreatorCatalog.from_path(CREATOR_REGISTRY_PATH).youtube_rows())
+    logger.info(f"Loaded {len(reg_data)} canonical YouTube channels from CreatorCatalog.")
 
     universe_rows = []
     for r in reg_data:

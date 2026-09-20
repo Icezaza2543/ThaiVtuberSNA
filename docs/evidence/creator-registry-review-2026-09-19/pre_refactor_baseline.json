@@ -1,0 +1,19 @@
+{
+  "commit": "afd3f5ab67c9e9ebc824caee8483f5b24fd93b1d",
+  "files": {
+    "data/master_creators.json": "6582a85a756017d4ec66d20c199cc86dcd1317843f91d52b2b68bdce4fcf7796",
+    "data/registry_vtubers.csv": "387fe9b82a1fa7b3070d58751652fc93f4d81e1e5df7e98d3fd750d959a6fd26",
+    "data/temporal/catalog/target_manifest.csv": "0ce9e037f589e68a2cf8b9d4f058d67ef515e3ff6449f1a51fe422e6bcc6368a",
+    "data/temporal/release/data_dictionary.json": "7b4ba2d44be6e8585b625d19fc515afb57f58b8de0a188545f55e6847ed2077c",
+    "data/temporal/release/dataset_manifest.json": "43b1e43eab749f22325b1eb8c49ca6bbc319e2c810bffb617814c5a3d10c3ff0",
+    "data/temporal/release/dataset_release_notes.md": "d881a8b377e5ae70e1a0660d091a164eeb8c3717ed850f4562e6f2b0d7b3f186",
+    "data/temporal/release/environment_dependencies.json": "0325ad5ac19210ee9ac0a748d5a837380ff1ac1d3993b1dc5ace362825274e51",
+    "data/temporal/release/provenance_map.json": "9b63481953e2e6609e5ba16bd7382193e66fbf5ab5b2fc41b2a914354eb747c9",
+    "data/thai_vtuber_registry.csv": "9c9b4fb90350bfa5313235906769eae72ba2bfda5b7c26abb6afe2fabbb57b02",
+    "data/thai_vtuber_registry.json": "2d4e47ac634f8c9eb1f74028a075cefa6b7cdce496571e4b030b97273780e926",
+    "data/entity_resolution/visual_identity_review.json": "53747808c482d2456e33a719082b23d8fa1a3f39a80048d09f2b642c3b0cb24e",
+    "docs/evidence/creator-registry-review-2026-09-19/legacy_visual_identity_review.json": "53747808c482d2456e33a719082b23d8fa1a3f39a80048d09f2b642c3b0cb24e"
+  },
+  "trusted_unique_channel_ids": 1370,
+  "trusted_youtube_channels": 1370
+}

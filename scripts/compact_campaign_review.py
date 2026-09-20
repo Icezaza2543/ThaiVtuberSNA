@@ -4,6 +4,11 @@ import json
 import re
 from collections import Counter, defaultdict
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from config.settings import CREATOR_REGISTRY_PATH
+from core.creator_catalog import CreatorCatalog
 
 BASE=Path('scratch/expanded-v1-campaign/expanded-v1/downtime-2026-09-10')
 REDEBUT=re.compile(r'(?<![a-z])re[\s-]?debut\b|รีเดบิว|เดบิวต์ใหม่|再デビュー',re.I)
@@ -51,7 +56,7 @@ def csv_out(path,rows,fields):
 
 def build(base=BASE):
     raw=read(base/'identity_review_queue.csv');priority=read(base/'identity_priority_review.csv');role_raw=read(base/'role_review_queue.csv')
-    labels={r['channel_id']:r['name'] for r in read(Path('data/thai_vtuber_registry.csv'))}
+    labels={r['channel_id']:r['name'] for r in CreatorCatalog.from_path(CREATOR_REGISTRY_PATH).youtube_rows()}
     out=base/'human-review-v1';out.mkdir(exist_ok=True)
     grouped=defaultdict(dict)
     for row in raw:grouped[row['channel_id']][row['video_id']]=classify(row)

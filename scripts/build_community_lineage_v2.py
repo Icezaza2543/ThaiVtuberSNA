@@ -97,9 +97,10 @@ def load_snapshots() -> pd.DataFrame:
     return pd.read_parquet(COMMUNITY_SNAPSHOTS_PARQUET)
 
 
-def build_community_lineage_v2() -> Tuple[pd.DataFrame, pd.DataFrame]:
+def build_community_lineage_v2(output_dir: Path | None = None) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """Builds persistent community lineage IDs, relation transitions, and lifecycles with one-to-one backbone matching."""
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    target_dir = Path(output_dir) if output_dir is not None else DATA_DIR
+    target_dir.mkdir(parents=True, exist_ok=True)
     df_snapshots = load_snapshots()
 
     # Load target manifest for agency reference
@@ -353,18 +354,26 @@ def build_community_lineage_v2() -> Tuple[pd.DataFrame, pd.DataFrame]:
     df_lineage_v2 = pd.DataFrame(lineage_v2_records)
 
     # Save to parquet
-    df_lineage_v2.to_parquet(OUTPUT_LINEAGE_V2_PARQUET, index=False)
-    df_lifecycles.to_parquet(OUTPUT_LIFECYCLES_PARQUET, index=False)
-    logger.info(f"Saved {OUTPUT_LINEAGE_V2_PARQUET} ({len(df_lineage_v2)} rows)")
-    logger.info(f"Saved {OUTPUT_LIFECYCLES_PARQUET} ({len(df_lifecycles)} rows)")
+    output_lineage = target_dir / "community_lineage_v2.parquet"
+    output_lifecycles = target_dir / "community_lifecycles.parquet"
+    output_report = target_dir / "community_lineage_v2_report.md"
+
+    df_lineage_v2.to_parquet(output_lineage, index=False)
+    df_lifecycles.to_parquet(output_lifecycles, index=False)
+    logger.info(f"Saved {output_lineage} ({len(df_lineage_v2)} rows)")
+    logger.info(f"Saved {output_lifecycles} ({len(df_lifecycles)} rows)")
 
     # Step 5: Generate Report
-    generate_lineage_v2_report(df_lifecycles, df_lineage_v2)
+    generate_lineage_v2_report(df_lifecycles, df_lineage_v2, output_report_path=output_report)
 
     return df_lineage_v2, df_lifecycles
 
 
-def generate_lineage_v2_report(df_lifecycles: pd.DataFrame, df_lineage_v2: pd.DataFrame) -> str:
+def generate_lineage_v2_report(
+    df_lifecycles: pd.DataFrame,
+    df_lineage_v2: pd.DataFrame,
+    output_report_path: Path | None = None,
+) -> str:
     """Generates community_lineage_v2_report.md programmatically from data."""
     active_lineages = df_lifecycles[df_lifecycles["lifecycle_status"] == "ACTIVE"]
     long_lived = df_lifecycles[df_lifecycles["lifespan_years"] >= 4]
@@ -389,7 +398,7 @@ def generate_lineage_v2_report(df_lifecycles: pd.DataFrame, df_lineage_v2: pd.Da
     lines.append("## 1. Persistent Community Lifecycles")
     lines.append("")
     lines.append("| Lineage ID | Birth Year | Last Observed | Lifespan (Yrs) | Status | Dominant Agency | Agency Share | Total Creators | Churn Rate | Split Contributors | Merge Contributors |")
-    lines.append("| :--- | :---: | :---: | :---: | :---: | :--- | :---: | :---: | :---: | :--- | :--- |")
+    lines.append("| :--- | :---: | :---: | :---: | :--- | :---: | :---: | :---: | :--- | :--- |")
     for _, r in df_lifecycles.iterrows():
         lines.append(
             f"| `{r['lineage_id']}` | {r['birth_year']} | {r['last_observed_year']} | {r['lifespan_years']} | "
@@ -424,7 +433,8 @@ def generate_lineage_v2_report(df_lifecycles: pd.DataFrame, df_lineage_v2: pd.Da
     lines.append("")
 
     content = "\n".join(lines)
-    with open(OUTPUT_REPORT_MD, "w", encoding="utf-8") as f:
+    report_path = Path(output_report_path) if output_report_path is not None else OUTPUT_REPORT_MD
+    with open(report_path, "w", encoding="utf-8") as f:
         f.write(content)
 
     return content

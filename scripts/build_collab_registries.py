@@ -18,7 +18,12 @@ import json
 import logging
 from datetime import datetime, timezone
 from pathlib import Path
+import sys
 import pandas as pd
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from config.settings import CREATOR_REGISTRY_PATH
+from core.creator_catalog import CreatorCatalog
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("BuildCollabRegistries")
@@ -30,7 +35,6 @@ INDUSTRY_DIR.mkdir(parents=True, exist_ok=True)
 
 CATALOG_PATH = DATA_DIR / "video_catalog.parquet"
 TEMPORAL_CATALOG_PATH = DATA_DIR / "temporal" / "catalog" / "video_catalog.parquet"
-REGISTRY_PATH = DATA_DIR / "thai_vtuber_registry.json"
 MANIFEST_PATH = DATA_DIR / "temporal" / "catalog" / "target_manifest.csv"
 
 COLLAB_KEYWORDS = [
@@ -101,7 +105,7 @@ def build_collab_registries():
 
     # Check if temporal catalog has titles
     temp_has_titles = "title" in temp_df.columns and temp_df["title"].notna().any()
-    
+
     # Detector input: exact set of records with inspectable titles from root catalog
     if temp_has_titles:
         detector_input_df = temp_df[temp_df["title"].notna()].copy()
@@ -125,8 +129,7 @@ def build_collab_registries():
         f"{temporal_title_uncovered_records} temporal records uncovered)."
     )
 
-    with open(REGISTRY_PATH, "r", encoding="utf-8") as f:
-        reg = json.load(f)
+    reg = list(CreatorCatalog.from_path(CREATOR_REGISTRY_PATH).youtube_rows())
 
     # Build exact handle and exact canonical name lookup dictionary
     exact_handle_map = {}
@@ -135,12 +138,12 @@ def build_collab_registries():
         cid = r["channel_id"]
         cname = r.get("canonical_name") or r.get("name") or ""
         agency = r.get("agency", "Independent")
-        
+
         # Handle exact match (lowercase, no @)
         h = (r.get("handle") or "").lower().replace("@", "").strip()
         if h:
             exact_handle_map[h] = (cid, cname, agency)
-            
+
         # Canonical name exact match
         cn_clean = cname.lower().strip()
         if cn_clean and len(cn_clean) > 3:
@@ -170,7 +173,7 @@ def build_collab_registries():
 
         # Extract explicit @mentions
         mentions = re.findall(r"@([a-zA-Z0-9_\.\-]+)", title)
-        
+
         exact_verified_participants = []
         unresolved_mentions = []
         rejected_mentions = []

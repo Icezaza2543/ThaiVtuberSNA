@@ -12,6 +12,8 @@ __pycache__/
 .pytest_cache/
 .coverage
 .worktrees/
+.serena/
+*.bak
 .venv/
 pytest-cache-files-*/
 

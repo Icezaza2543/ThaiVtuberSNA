@@ -1,0 +1,3947 @@
+{
+  "schema_version": 1,
+  "decisions": {
+    "candidate_076790ca3ca69a354f1b": {
+      "discovery_id": "candidate_076790ca3ca69a354f1b",
+      "name": "iamSometimes",
+      "url": "https://www.youtube.com/@iamSometimes",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:24:25.050249+00:00",
+      "reviewer": "human"
+    },
+    "candidate_0c18cce03d1511d0c667": {
+      "discovery_id": "candidate_0c18cce03d1511d0c667",
+      "name": "Chicken V",
+      "url": "https://www.youtube.com/@chickenv56",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:24:29.364395+00:00",
+      "reviewer": "human"
+    },
+    "candidate_1cfa75963dc58057962d": {
+      "discovery_id": "candidate_1cfa75963dc58057962d",
+      "name": "Nuttito",
+      "url": "https://www.youtube.com/@Nutty4U2012",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:24:33.731039+00:00",
+      "reviewer": "human"
+    },
+    "candidate_1f4908a0b30aef74f87c": {
+      "discovery_id": "candidate_1f4908a0b30aef74f87c",
+      "name": "Howl",
+      "url": "https://www.youtube.com/@Howl_FVP",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:24:38.196251+00:00",
+      "reviewer": "human"
+    },
+    "candidate_207edba7b648f121b454": {
+      "discovery_id": "candidate_207edba7b648f121b454",
+      "name": "NPC Gatip",
+      "url": "https://www.youtube.com/@NPCGatip",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:24:42.270971+00:00",
+      "reviewer": "human"
+    },
+    "candidate_248371a292e3c1ced8a5": {
+      "discovery_id": "candidate_248371a292e3c1ced8a5",
+      "name": "fukach.dobutsuproject",
+      "url": "https://youtube.com/@fukach.dobutsuproject",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:24:44.928016+00:00",
+      "reviewer": "human"
+    },
+    "candidate_28b191b980eb88a4d8d7": {
+      "discovery_id": "candidate_28b191b980eb88a4d8d7",
+      "name": "SVNZ",
+      "url": "https://www.youtube.com/@Surveniezch",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:24:56.503780+00:00",
+      "reviewer": "human"
+    },
+    "candidate_29f8689383c4885305c0": {
+      "discovery_id": "candidate_29f8689383c4885305c0",
+      "name": "Shinjix",
+      "url": "https://www.youtube.com/@Shinjix004",
+      "platform": "youtube",
+      "decision": "non_persona",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:25:12.896665+00:00",
+      "reviewer": "human"
+    },
+    "candidate_2a82be5b9c4d5dd871b0": {
+      "discovery_id": "candidate_2a82be5b9c4d5dd871b0",
+      "name": "AmuiiiChan",
+      "url": "https://www.youtube.com/@AmuiiiChan",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:25:29.554143+00:00",
+      "reviewer": "human"
+    },
+    "candidate_3e1bb83f50909f9ad914": {
+      "discovery_id": "candidate_3e1bb83f50909f9ad914",
+      "name": "wadogardenw",
+      "url": "https://youtube.com/@wadogardenw",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:25:34.242693+00:00",
+      "reviewer": "human"
+    },
+    "candidate_3eb36052a25ff5ebd6d9": {
+      "discovery_id": "candidate_3eb36052a25ff5ebd6d9",
+      "name": "Lastcrosser",
+      "url": "https://www.youtube.com/@Lastcrosser",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:25:49.729913+00:00",
+      "reviewer": "human"
+    },
+    "candidate_40d9f0ba6525254e7b83": {
+      "discovery_id": "candidate_40d9f0ba6525254e7b83",
+      "name": "Apologize Ch",
+      "url": "https://www.youtube.com/@ApologizeCh122",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:26:04.279404+00:00",
+      "reviewer": "human"
+    },
+    "candidate_416e275936ea7ff7e3c8": {
+      "discovery_id": "candidate_416e275936ea7ff7e3c8",
+      "name": "Hatsuji ::H.T.J ",
+      "url": "https://youtube.com/shorts/zxuWh0ffiuI",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:27:00.432103+00:00",
+      "reviewer": "human"
+    },
+    "candidate_41b361c2d6597310aaed": {
+      "discovery_id": "candidate_41b361c2d6597310aaed",
+      "name": "Rarin Ch.",
+      "url": "https://youtube.com/shorts/5fweUpvBeBM",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:27:12.826820+00:00",
+      "reviewer": "human"
+    },
+    "candidate_4231aba205e5f41593b3": {
+      "discovery_id": "candidate_4231aba205e5f41593b3",
+      "name": "Melody Sparkle【PajamaJa】",
+      "url": "https://www.youtube.com/c/MelodyS",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:27:17.048875+00:00",
+      "reviewer": "human"
+    },
+    "candidate_4284262c8b30e68a37ed": {
+      "discovery_id": "candidate_4284262c8b30e68a37ed",
+      "name": "Wanoiz",
+      "url": "https://www.youtube.com/@Wanoiz",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:27:22.351898+00:00",
+      "reviewer": "human"
+    },
+    "candidate_42ea2ac6ecdf55febec1": {
+      "discovery_id": "candidate_42ea2ac6ecdf55febec1",
+      "name": "Nostradamus Karasu",
+      "url": "https://www.youtube.com/@NostradamusKarasu",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:27:25.303840+00:00",
+      "reviewer": "human"
+    },
+    "candidate_438261f15df8494d23fb": {
+      "discovery_id": "candidate_438261f15df8494d23fb",
+      "name": "Komuruay",
+      "url": "https://www.youtube.com/@komurahuak",
+      "platform": "youtube",
+      "decision": "non_persona",
+      "note": "Live2D Rigger",
+      "reviewed_at": "2026-09-19T11:29:27.930197+00:00",
+      "reviewer": "human"
+    },
+    "candidate_4472d50ead95a39d0211": {
+      "discovery_id": "candidate_4472d50ead95a39d0211",
+      "name": "zigxc.",
+      "url": "https://www.youtube.com/@zigxc",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:30:27.515712+00:00",
+      "reviewer": "human"
+    },
+    "candidate_44823ff20781ad4adee9": {
+      "discovery_id": "candidate_44823ff20781ad4adee9",
+      "name": "YouTube TV Recap ",
+      "url": "https://www.youtube.com/@YouTubeRecapTV",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:30:31.762158+00:00",
+      "reviewer": "human"
+    },
+    "candidate_476028204595dee3c1e4": {
+      "discovery_id": "candidate_476028204595dee3c1e4",
+      "name": "ฟ้อนดาวมาเล่า | Fondawl【RE:S】",
+      "url": "https://youtube.com/shorts/E0xW6jOtkeQ",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:30:42.765233+00:00",
+      "reviewer": "human"
+    },
+    "candidate_4ad08d3510b0052de1c8": {
+      "discovery_id": "candidate_4ad08d3510b0052de1c8",
+      "name": "Enryu Horus Ch. 炎竜ホルス",
+      "url": "https://youtube.com/shorts/4EUX04B-4As",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "ลิ้งพาไป https://www.youtube.com/shorts/4EUX04B-4As ซึ่งปัจจุบันเป็ฯ vtuber ชื่อ https://www.youtube.com/@Derya_Vtuber/shorts หรือ Derya CH. ⌜VZ⌟",
+      "reviewed_at": "2026-09-19T11:31:45.343011+00:00",
+      "reviewer": "human"
+    },
+    "candidate_4dd0d1ab5d49b74d3199": {
+      "discovery_id": "candidate_4dd0d1ab5d49b74d3199",
+      "name": "Azuka_ontop",
+      "url": "https://www.youtube.com/@RAKNONGMUY",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:31:51.583433+00:00",
+      "reviewer": "human"
+    },
+    "candidate_5de4d47fefd370d5a913": {
+      "discovery_id": "candidate_5de4d47fefd370d5a913",
+      "name": "CLOUDSPHERE",
+      "url": "https://www.youtube.com/@CLOUDSPHERE",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:32:02.356411+00:00",
+      "reviewer": "human"
+    },
+    "candidate_5e90b0c3fe875027add8": {
+      "discovery_id": "candidate_5e90b0c3fe875027add8",
+      "name": "สมตุ้ยเกมมิ่ง",
+      "url": "https://www.youtube.com/@streamtenders",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:32:15.215356+00:00",
+      "reviewer": "human"
+    },
+    "candidate_6597ed6bc4d13c0c6551": {
+      "discovery_id": "candidate_6597ed6bc4d13c0c6551",
+      "name": "Nerumis",
+      "url": "https://youtube.com/@Nerumis",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:32:19.421887+00:00",
+      "reviewer": "human"
+    },
+    "candidate_6625dd9ed3ee518fa56b": {
+      "discovery_id": "candidate_6625dd9ed3ee518fa56b",
+      "name": "ServAntics",
+      "url": "https://www.youtube.com/@ServAnticscat",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:32:42.203684+00:00",
+      "reviewer": "human"
+    },
+    "candidate_6b7c2682fece3e9a8214": {
+      "discovery_id": "candidate_6b7c2682fece3e9a8214",
+      "name": "#หาทำGang",
+      "url": "https://youtube.com/@hathamgang",
+      "platform": "youtube",
+      "decision": "non_persona",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:32:49.912760+00:00",
+      "reviewer": "human"
+    },
+    "candidate_6b7d2949b171bc6f4416": {
+      "discovery_id": "candidate_6b7d2949b171bc6f4416",
+      "name": "Hayato Asukaze [VTravelVlog]",
+      "url": "https://www.youtube.com/@HayatoASKZ",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:32:58.470340+00:00",
+      "reviewer": "human"
+    },
+    "candidate_6d623fb270ef8b990197": {
+      "discovery_id": "candidate_6d623fb270ef8b990197",
+      "name": "BreakGate",
+      "url": "https://www.youtube.com/@BreakGate",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:33:15.076687+00:00",
+      "reviewer": "human"
+    },
+    "candidate_6deb696b1e8723ae5e98": {
+      "discovery_id": "candidate_6deb696b1e8723ae5e98",
+      "name": "ESC LT PLAYER",
+      "url": "https://www.youtube.com/@ESCLTPLAYER",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:33:44.986974+00:00",
+      "reviewer": "human"
+    },
+    "candidate_6e65a1d5d0089c5967ca": {
+      "discovery_id": "candidate_6e65a1d5d0089c5967ca",
+      "name": "Keiko Kezoku",
+      "url": "https://www.youtube.com/@keikokezoku",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:33:48.104102+00:00",
+      "reviewer": "human"
+    },
+    "candidate_7556c98af430d17009b6": {
+      "discovery_id": "candidate_7556c98af430d17009b6",
+      "name": "Streaming by Max 2.0",
+      "url": "https://www.youtube.com/@StreamingbyMax2.0",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:33:52.113526+00:00",
+      "reviewer": "human"
+    },
+    "candidate_773cab5bb6c5c1852202": {
+      "discovery_id": "candidate_773cab5bb6c5c1852202",
+      "name": "Faethon_Janta",
+      "url": "https://www.youtube.com/@Faethon_Janta",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:33:54.766119+00:00",
+      "reviewer": "human"
+    },
+    "candidate_78ffd63457c08d24d630": {
+      "discovery_id": "candidate_78ffd63457c08d24d630",
+      "name": "NUTTY-WIS",
+      "url": "https://youtube.com/@NUTTY-WIS",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:33:57.371808+00:00",
+      "reviewer": "human"
+    },
+    "candidate_797436926d6183c3894e": {
+      "discovery_id": "candidate_797436926d6183c3894e",
+      "name": "Slapper",
+      "url": "https://www.youtube.com/@slapperch",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:04.096724+00:00",
+      "reviewer": "human"
+    },
+    "candidate_832e5e86a9e1935f398a": {
+      "discovery_id": "candidate_832e5e86a9e1935f398a",
+      "name": "PHETWEATHER",
+      "url": "https://www.youtube.com/@PHETWEATHER",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:08.203781+00:00",
+      "reviewer": "human"
+    },
+    "candidate_880e263079ce856d7199": {
+      "discovery_id": "candidate_880e263079ce856d7199",
+      "name": "LuckFast",
+      "url": "https://www.youtube.com/@FastDrama",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:12.701026+00:00",
+      "reviewer": "human"
+    },
+    "candidate_8abc0b548b5830950b8e": {
+      "discovery_id": "candidate_8abc0b548b5830950b8e",
+      "name": "moemiyabiv3",
+      "url": "https://youtube.com/@moemiyabiv3",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:15.857574+00:00",
+      "reviewer": "human"
+    },
+    "candidate_8cf210912815f9b8162a": {
+      "discovery_id": "candidate_8cf210912815f9b8162a",
+      "name": "กิต งายย",
+      "url": "https://www.youtube.com/@kritngi",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:19.897209+00:00",
+      "reviewer": "human"
+    },
+    "candidate_93d9c6a3f23ff85d3017": {
+      "discovery_id": "candidate_93d9c6a3f23ff85d3017",
+      "name": "BNNx",
+      "url": "https://www.youtube.com/@bnnx.21",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:42.103192+00:00",
+      "reviewer": "human"
+    },
+    "candidate_989597a9384fc216e8ad": {
+      "discovery_id": "candidate_989597a9384fc216e8ad",
+      "name": "T0NZero x N5S",
+      "url": "https://www.youtube.com/channel/UCLy-ymZxh0-UFi3ov7MJKvA",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:46.936213+00:00",
+      "reviewer": "human"
+    },
+    "candidate_98aa40dbfe15b2f026d5": {
+      "discovery_id": "candidate_98aa40dbfe15b2f026d5",
+      "name": "AmySTL999",
+      "url": "https://youtube.com/@AmySTL999",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:51.355826+00:00",
+      "reviewer": "human"
+    },
+    "candidate_998c136375004781f3ff": {
+      "discovery_id": "candidate_998c136375004781f3ff",
+      "name": "Tinsley | VtuberTH",
+      "url": "https://www.youtube.com/@TinsleyALPT",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:54.552943+00:00",
+      "reviewer": "human"
+    },
+    "candidate_9fad6936b0384ac3a050": {
+      "discovery_id": "candidate_9fad6936b0384ac3a050",
+      "name": "Hererm",
+      "url": "https://www.youtube.com/@hererm",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:58.810650+00:00",
+      "reviewer": "human"
+    },
+    "candidate_9fd32853104c4ab50b90": {
+      "discovery_id": "candidate_9fd32853104c4ab50b90",
+      "name": "KRISSAE",
+      "url": "https://www.youtube.com/@KRISSA.E",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:35:06.641213+00:00",
+      "reviewer": "human"
+    },
+    "candidate_a98d7477073afea98acb": {
+      "discovery_id": "candidate_a98d7477073afea98acb",
+      "name": "ppimirl",
+      "url": "https://www.youtube.com/@ppimirl",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:35:12.117227+00:00",
+      "reviewer": "human"
+    },
+    "candidate_ae0eeb21ee9a8e9109dd": {
+      "discovery_id": "candidate_ae0eeb21ee9a8e9109dd",
+      "name": "Enryu Horus Ch. 炎竜ホルス",
+      "url": "https://youtube.com/shorts/3lExZD4sjeY",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:35:24.408751+00:00",
+      "reviewer": "human"
+    },
+    "candidate_aec098775e8fec964d78": {
+      "discovery_id": "candidate_aec098775e8fec964d78",
+      "name": "PINTO",
+      "url": "https://www.youtube.com/@pinto__xx",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:35:35.360785+00:00",
+      "reviewer": "human"
+    },
+    "candidate_b297c147542c164a05a3": {
+      "discovery_id": "candidate_b297c147542c164a05a3",
+      "name": "Edella Edward Ch.",
+      "url": "https://youtube.com/shorts/bJoM23njAaM",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:35:56.735046+00:00",
+      "reviewer": "human"
+    },
+    "candidate_bb148800f5bd48c76036": {
+      "discovery_id": "candidate_bb148800f5bd48c76036",
+      "name": "Carina Aquarius",
+      "url": "https://www.youtube.com/@CarinaAquarius_Ch",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:35:59.933132+00:00",
+      "reviewer": "human"
+    },
+    "candidate_c19e17f71118a2ff5487": {
+      "discovery_id": "candidate_c19e17f71118a2ff5487",
+      "name": "ALThiMa-NigHT",
+      "url": "https://www.youtube.com/shorts/UZDwRCAWzhc",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:37:16.214020+00:00",
+      "reviewer": "human"
+    },
+    "candidate_c36b8be3efc0e3b3941f": {
+      "discovery_id": "candidate_c36b8be3efc0e3b3941f",
+      "name": "Usami Bunny",
+      "url": "https://www.youtube.com/@USAMIBUNNY",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:37:19.965362+00:00",
+      "reviewer": "human"
+    },
+    "candidate_c97d25f6049155c8dce5": {
+      "discovery_id": "candidate_c97d25f6049155c8dce5",
+      "name": "SKYLER Ch. 『𝐋𝐕』",
+      "url": "https://www.youtube.com/@SKYLERcvc",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:37:31.366287+00:00",
+      "reviewer": "human"
+    },
+    "candidate_ce1cce3106793cad1f1e": {
+      "discovery_id": "candidate_ce1cce3106793cad1f1e",
+      "name": "ShuaVibeENT",
+      "url": "https://www.youtube.com/@ShuaVibeENT",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:37:41.930012+00:00",
+      "reviewer": "human"
+    },
+    "candidate_cf73e9a50c6863b99830": {
+      "discovery_id": "candidate_cf73e9a50c6863b99830",
+      "name": "USS enterprise",
+      "url": "https://www.youtube.com/@uss3208",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:37:52.249707+00:00",
+      "reviewer": "human"
+    },
+    "candidate_d2a3a84d6b9a7ef5d75f": {
+      "discovery_id": "candidate_d2a3a84d6b9a7ef5d75f",
+      "name": "yentafobnj",
+      "url": "https://www.youtube.com/@yentafobnj",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:37:55.167293+00:00",
+      "reviewer": "human"
+    },
+    "candidate_d37c8be70febef6d7bbf": {
+      "discovery_id": "candidate_d37c8be70febef6d7bbf",
+      "name": "nongmamuang_vtuber",
+      "url": "https://youtube.com/@nongmamuang_vtuber",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:37:58.856109+00:00",
+      "reviewer": "human"
+    },
+    "candidate_d3d0abea48017a5c3eb7": {
+      "discovery_id": "candidate_d3d0abea48017a5c3eb7",
+      "name": "Leon",
+      "url": "https://www.youtube.com/@Leon-R-Shootingstar",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:38:34.376589+00:00",
+      "reviewer": "human"
+    },
+    "candidate_d6282533a945707a1f66": {
+      "discovery_id": "candidate_d6282533a945707a1f66",
+      "name": "BRE GAMING",
+      "url": "https://www.youtube.com/@BREGAMING01",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:38:42.914806+00:00",
+      "reviewer": "human"
+    },
+    "candidate_da32ebf29776361ead00": {
+      "discovery_id": "candidate_da32ebf29776361ead00",
+      "name": "TeenMu",
+      "url": "https://www.youtube.com/@TeenMu",
+      "platform": "youtube",
+      "decision": "non_persona",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:39:31.963145+00:00",
+      "reviewer": "human"
+    },
+    "candidate_dd132eed8f7672b36ad1": {
+      "discovery_id": "candidate_dd132eed8f7672b36ad1",
+      "name": "Logan U Stryker",
+      "url": "https://www.youtube.com/@urStrykerVtuber",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:39:36.745183+00:00",
+      "reviewer": "human"
+    },
+    "candidate_ddecf7366f043b97fac6": {
+      "discovery_id": "candidate_ddecf7366f043b97fac6",
+      "name": "RuLaRaLan",
+      "url": "https://www.youtube.com/shorts/fF5KPNZ0TJk",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:39:50.134304+00:00",
+      "reviewer": "human"
+    },
+    "candidate_df4368f4046ca8e95881": {
+      "discovery_id": "candidate_df4368f4046ca8e95881",
+      "name": "PANNAWAT",
+      "url": "https://www.youtube.com/@pannawat8032",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:39:54.376616+00:00",
+      "reviewer": "human"
+    },
+    "candidate_e2a34a4493ccd6b5fcc8": {
+      "discovery_id": "candidate_e2a34a4493ccd6b5fcc8",
+      "name": "MinORu",
+      "url": "https://www.youtube.com/@MinORuOnly",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:39:59.917537+00:00",
+      "reviewer": "human"
+    },
+    "candidate_e2a472aa27f701b85827": {
+      "discovery_id": "candidate_e2a472aa27f701b85827",
+      "name": "XY AZ",
+      "url": "https://www.youtube.com/@XY_AZ",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:40:09.531339+00:00",
+      "reviewer": "human"
+    },
+    "candidate_e75fe4be2e942a6f1d0d": {
+      "discovery_id": "candidate_e75fe4be2e942a6f1d0d",
+      "name": "Zin'fandel「ZTP」",
+      "url": "https://www.youtube.com/shorts/gpU4DR0SRsc",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "Zin'fandel「ZTP」 เป็น vtuber แต่ลิ้ง 1. https://www.youtube.com/shorts/gpU4DR0SRsc/about ไม่เกี่ยวข้อง",
+      "reviewed_at": "2026-09-19T11:41:03.454648+00:00",
+      "reviewer": "human"
+    },
+    "candidate_2aa70d80ca60e5c53e59": {
+      "discovery_id": "candidate_2aa70d80ca60e5c53e59",
+      "name": "Lucrezia | VtuberTH",
+      "url": "https://bsky.app/profile/lulutanwitch.bsky.social",
+      "platform": "website",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:43:01.382900+00:00",
+      "reviewer": "human"
+    },
+    "candidate_7778ace9457625414d01": {
+      "discovery_id": "candidate_7778ace9457625414d01",
+      "name": "ZEPHYROS | LESTIAL V",
+      "url": "https://zephyroslv.carrd.co/",
+      "platform": "website",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:43:34.102993+00:00",
+      "reviewer": "human"
+    },
+    "candidate_ee409d7ed82e95f6d64b": {
+      "discovery_id": "candidate_ee409d7ed82e95f6d64b",
+      "name": "Seikou iMinato",
+      "url": "https://www.youtube.com/@i.Minato7",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:46:16.388071+00:00",
+      "reviewer": "human"
+    },
+    "candidate_efee3ad0365900df118e": {
+      "discovery_id": "candidate_efee3ad0365900df118e",
+      "name": "Captain MUAL2027 Gamer",
+      "url": "https://www.youtube.com/@CaptainMUAL",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:46:21.086070+00:00",
+      "reviewer": "human"
+    },
+    "candidate_f755b271275129a7aa0f": {
+      "discovery_id": "candidate_f755b271275129a7aa0f",
+      "name": "Fouradd",
+      "url": "https://www.youtube.com/@Fouradd99",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:46:24.870763+00:00",
+      "reviewer": "human"
+    },
+    "candidate_fbd3abb0e14962ce0d18": {
+      "discovery_id": "candidate_fbd3abb0e14962ce0d18",
+      "name": "ANIMORth - อนิเมาะไทย",
+      "url": "https://www.youtube.com/@ANIMORth",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:46:28.179374+00:00",
+      "reviewer": "human"
+    },
+    "candidate_00c39d68d0b5fa8dc0c3": {
+      "discovery_id": "candidate_00c39d68d0b5fa8dc0c3",
+      "name": "altairalal",
+      "url": "https://www.twitch.tv/altairalal",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:46:36.530493+00:00",
+      "reviewer": "human"
+    },
+    "candidate_05e9319fa904951ee256": {
+      "discovery_id": "candidate_05e9319fa904951ee256",
+      "name": "Rainbows Fukio",
+      "url": "https://www.twitch.tv/fukio_vt",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:46:41.766872+00:00",
+      "reviewer": "human"
+    },
+    "candidate_06eedb7a7920fd530eed": {
+      "discovery_id": "candidate_06eedb7a7920fd530eed",
+      "name": "ttvstreamer_btw",
+      "url": "https://www.twitch.tv/ttvstreamer_btw",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:46:49.866311+00:00",
+      "reviewer": "human"
+    },
+    "candidate_128b9c11e98b2c588be7": {
+      "discovery_id": "candidate_128b9c11e98b2c588be7",
+      "name": "Seikou iMinato",
+      "url": "https://www.twitch.tv/seikou_iminato",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:46:53.291843+00:00",
+      "reviewer": "human"
+    },
+    "candidate_149c446a4bf79c275b02": {
+      "discovery_id": "candidate_149c446a4bf79c275b02",
+      "name": "pakotvstreamer",
+      "url": "https://www.twitch.tv/pakotvstreamer",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:47:10.924071+00:00",
+      "reviewer": "human"
+    },
+    "candidate_151395d4fd50f1a14a1a": {
+      "discovery_id": "candidate_151395d4fd50f1a14a1a",
+      "name": "xavstreamer26",
+      "url": "https://www.twitch.tv/xavstreamer26",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:47:22.727479+00:00",
+      "reviewer": "human"
+    },
+    "candidate_19465b5c9a83f5e7b49b": {
+      "discovery_id": "candidate_19465b5c9a83f5e7b49b",
+      "name": "hyshoa",
+      "url": "https://www.twitch.tv/hyshoa",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:47:27.005748+00:00",
+      "reviewer": "human"
+    },
+    "candidate_1f059cf85c4c0b325e1e": {
+      "discovery_id": "candidate_1f059cf85c4c0b325e1e",
+      "name": "fhagoglyte",
+      "url": "https://www.twitch.tv/fhagoglyte",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:47:31.280512+00:00",
+      "reviewer": "human"
+    },
+    "candidate_25efcec01a353c4f623d": {
+      "discovery_id": "candidate_25efcec01a353c4f623d",
+      "name": "activstreamer",
+      "url": "https://www.twitch.tv/activstreamer",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:47:33.047460+00:00",
+      "reviewer": "human"
+    },
+    "candidate_26dfe3bf77b1e213d0b6": {
+      "discovery_id": "candidate_26dfe3bf77b1e213d0b6",
+      "name": "kyo1984123",
+      "url": "https://www.twitch.tv/kyo1984123",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:47:48.494398+00:00",
+      "reviewer": "human"
+    },
+    "candidate_28534eb42f32556d84ba": {
+      "discovery_id": "candidate_28534eb42f32556d84ba",
+      "name": "unclekanuntentacle",
+      "url": "https://www.twitch.tv/unclekanuntentacle",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:47:53.447287+00:00",
+      "reviewer": "human"
+    },
+    "candidate_2b487cdbe9f03f2a0a42": {
+      "discovery_id": "candidate_2b487cdbe9f03f2a0a42",
+      "name": "isazarin",
+      "url": "https://www.twitch.tv/isazarin",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:48:08.002508+00:00",
+      "reviewer": "human"
+    },
+    "candidate_2bdfa26bcc4178cb5b9b": {
+      "discovery_id": "candidate_2bdfa26bcc4178cb5b9b",
+      "name": "sorakasaivtuber",
+      "url": "https://www.twitch.tv/sorakasaivtuber",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:48:37.715299+00:00",
+      "reviewer": "human"
+    },
+    "candidate_32d9aa0679cbb57e01a7": {
+      "discovery_id": "candidate_32d9aa0679cbb57e01a7",
+      "name": "zinniszier",
+      "url": "https://www.twitch.tv/zinniszier",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:48:42.003352+00:00",
+      "reviewer": "human"
+    },
+    "candidate_345579712ebff45eaa72": {
+      "discovery_id": "candidate_345579712ebff45eaa72",
+      "name": "Aoi Crescent",
+      "url": "https://twitch.tv/aoicrescentarp",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:48:48.909594+00:00",
+      "reviewer": "human"
+    },
+    "candidate_3936c303b78ccf4a5a93": {
+      "discovery_id": "candidate_3936c303b78ccf4a5a93",
+      "name": "kamikasa_mio",
+      "url": "https://www.twitch.tv/kamikasa_mio",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:48:52.764564+00:00",
+      "reviewer": "human"
+    },
+    "candidate_39e14674bba90c0f8e97": {
+      "discovery_id": "candidate_39e14674bba90c0f8e97",
+      "name": "whitekumatan",
+      "url": "https://www.twitch.tv/whitekumatan",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:48:57.276124+00:00",
+      "reviewer": "human"
+    },
+    "candidate_3fbf7de364f09cbb2b75": {
+      "discovery_id": "candidate_3fbf7de364f09cbb2b75",
+      "name": "cheenmachine_",
+      "url": "https://www.twitch.tv/cheenmachine_",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:49:10.724372+00:00",
+      "reviewer": "human"
+    },
+    "candidate_40bff6a687ec743887d5": {
+      "discovery_id": "candidate_40bff6a687ec743887d5",
+      "name": "blackzdemon",
+      "url": "https://www.twitch.tv/blackzdemon",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:49:24.133233+00:00",
+      "reviewer": "human"
+    },
+    "candidate_422acecd64eeaf51f7f5": {
+      "discovery_id": "candidate_422acecd64eeaf51f7f5",
+      "name": "LycosaQx | VStreamer",
+      "url": "https://www.twitch.tv/lycosaqx",
+      "platform": "twitch",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:49:39.363515+00:00",
+      "reviewer": "human"
+    },
+    "candidate_435e1dcee1a42493865d": {
+      "discovery_id": "candidate_435e1dcee1a42493865d",
+      "name": "lkstreamerttv",
+      "url": "https://www.twitch.tv/lkstreamerttv",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:49:45.175707+00:00",
+      "reviewer": "human"
+    },
+    "candidate_4bddf932a4b81be52c85": {
+      "discovery_id": "candidate_4bddf932a4b81be52c85",
+      "name": "streamertwtch",
+      "url": "https://www.twitch.tv/streamertwtch",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:49:50.778180+00:00",
+      "reviewer": "human"
+    },
+    "candidate_4e487f9998e20b429d93": {
+      "discovery_id": "candidate_4e487f9998e20b429d93",
+      "name": "ryoutakumi",
+      "url": "https://www.twitch.tv/ryoutakumi",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:49:54.180380+00:00",
+      "reviewer": "human"
+    },
+    "candidate_4f1cfd1ad5c0fcb3a5d6": {
+      "discovery_id": "candidate_4f1cfd1ad5c0fcb3a5d6",
+      "name": "hoshikoeral",
+      "url": "https://www.twitch.tv/hoshikoeral",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:49:57.707927+00:00",
+      "reviewer": "human"
+    },
+    "candidate_5276f29acdcf02d2e0c8": {
+      "discovery_id": "candidate_5276f29acdcf02d2e0c8",
+      "name": "Peach",
+      "url": "https://www.twitch.tv/peachy_131",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:50:01.271842+00:00",
+      "reviewer": "human"
+    },
+    "candidate_5ec5b53c7d135172c6f5": {
+      "discovery_id": "candidate_5ec5b53c7d135172c6f5",
+      "name": "NoBoRu",
+      "url": "https://www.twitch.tv/noboru_oz",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:50:04.274391+00:00",
+      "reviewer": "human"
+    },
+    "candidate_5fb54cfe287efce84e44": {
+      "discovery_id": "candidate_5fb54cfe287efce84e44",
+      "name": "kiara_chaan",
+      "url": "https://www.twitch.tv/kiara_chaan",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:50:34.498576+00:00",
+      "reviewer": "human"
+    },
+    "candidate_63771fe3134232a4fda3": {
+      "discovery_id": "candidate_63771fe3134232a4fda3",
+      "name": "Nisa",
+      "url": "https://www.twitch.tv/nisapoyo",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:50:39.336883+00:00",
+      "reviewer": "human"
+    },
+    "candidate_6673dbfd2a04800d7473": {
+      "discovery_id": "candidate_6673dbfd2a04800d7473",
+      "name": "Zeraphina Hana",
+      "url": "https://www.twitch.tv/videos/2852328659",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:50:51.025112+00:00",
+      "reviewer": "human"
+    },
+    "candidate_6a33e1a8b6dea47f90e5": {
+      "discovery_id": "candidate_6a33e1a8b6dea47f90e5",
+      "name": "favstreamer55",
+      "url": "https://www.twitch.tv/favstreamer55",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:50:55.472570+00:00",
+      "reviewer": "human"
+    },
+    "candidate_6aa573dfa3b22a301298": {
+      "discovery_id": "candidate_6aa573dfa3b22a301298",
+      "name": "MeiLi",
+      "url": "https://www.twitch.tv/mamimeili",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:50:59.673414+00:00",
+      "reviewer": "human"
+    },
+    "candidate_6ff38b78c4985011e8e7": {
+      "discovery_id": "candidate_6ff38b78c4985011e8e7",
+      "name": "sshirowashi",
+      "url": "https://www.twitch.tv/sshirowashi",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:02.959303+00:00",
+      "reviewer": "human"
+    },
+    "candidate_803a30890a3936a19d06": {
+      "discovery_id": "candidate_803a30890a3936a19d06",
+      "name": "tonyoverdose420",
+      "url": "https://www.twitch.tv/tonyoverdose420",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:07.855463+00:00",
+      "reviewer": "human"
+    },
+    "candidate_8206762a82b7bcc9b861": {
+      "discovery_id": "candidate_8206762a82b7bcc9b861",
+      "name": "jiminelz",
+      "url": "https://www.twitch.tv/jiminelz",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:11.733151+00:00",
+      "reviewer": "human"
+    },
+    "candidate_827cecef7deb35ad043f": {
+      "discovery_id": "candidate_827cecef7deb35ad043f",
+      "name": "wotesz",
+      "url": "https://www.twitch.tv/wotesz",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:17.348444+00:00",
+      "reviewer": "human"
+    },
+    "candidate_82cdded8e08d6f8d2577": {
+      "discovery_id": "candidate_82cdded8e08d6f8d2577",
+      "name": "RLanz Ch.",
+      "url": "https://www.twitch.tv/rlanz_tarima",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:21.063568+00:00",
+      "reviewer": "human"
+    },
+    "candidate_88e3ae03624629d34fc8": {
+      "discovery_id": "candidate_88e3ae03624629d34fc8",
+      "name": "owenzwei",
+      "url": "https://www.twitch.tv/owenzwei",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:24.907762+00:00",
+      "reviewer": "human"
+    },
+    "candidate_8adf5ef527158c1fbd30": {
+      "discovery_id": "candidate_8adf5ef527158c1fbd30",
+      "name": "Nisa",
+      "url": "https://twitch.tv/nisapoyo",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:27.656298+00:00",
+      "reviewer": "human"
+    },
+    "candidate_8c87704e290d4fba9487": {
+      "discovery_id": "candidate_8c87704e290d4fba9487",
+      "name": "Shino Laila",
+      "url": "https://twitch.tv/lailashino_wactor",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:31.861763+00:00",
+      "reviewer": "human"
+    },
+    "candidate_921b8adf7673b690a2ad": {
+      "discovery_id": "candidate_921b8adf7673b690a2ad",
+      "name": "it’s hi",
+      "url": "https://www.twitch.tv/its_hi_arp",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:35.391323+00:00",
+      "reviewer": "human"
+    },
+    "candidate_95cfa329652c577ba45c": {
+      "discovery_id": "candidate_95cfa329652c577ba45c",
+      "name": "Logan U Stryker",
+      "url": "https://www.twitch.tv/urstrykervtuber",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:38.129726+00:00",
+      "reviewer": "human"
+    },
+    "candidate_996108f17b909d607309": {
+      "discovery_id": "candidate_996108f17b909d607309",
+      "name": "tarkovstreamer",
+      "url": "https://www.twitch.tv/tarkovstreamer",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:41.925856+00:00",
+      "reviewer": "human"
+    },
+    "candidate_9b5ad34e74c5495f92bd": {
+      "discovery_id": "candidate_9b5ad34e74c5495f92bd",
+      "name": "Seikou iMinato",
+      "url": "https://twitch.tv/seikou_iminato",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:44.800278+00:00",
+      "reviewer": "human"
+    },
+    "candidate_9c20689f746af3f9d203": {
+      "discovery_id": "candidate_9c20689f746af3f9d203",
+      "name": "kenthemagicianpanda",
+      "url": "https://www.twitch.tv/kenthemagicianpanda",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:47.654365+00:00",
+      "reviewer": "human"
+    },
+    "candidate_9c37388c3b9acdee936b": {
+      "discovery_id": "candidate_9c37388c3b9acdee936b",
+      "name": "Kayo Ch. 【かよCh.】◣PLO◥",
+      "url": "https://www.twitch.tv/kayonoorenji",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:51.002341+00:00",
+      "reviewer": "human"
+    },
+    "candidate_a06ce7d6928d2154ebb6": {
+      "discovery_id": "candidate_a06ce7d6928d2154ebb6",
+      "name": "CinCin Vtu",
+      "url": "https://www.twitch.tv/cincinvtu",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:54.038476+00:00",
+      "reviewer": "human"
+    },
+    "candidate_a332922113d267f92f2b": {
+      "discovery_id": "candidate_a332922113d267f92f2b",
+      "name": "Zabrina",
+      "url": "https://www.twitch.tv/zabrinavtuberth",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:57.208535+00:00",
+      "reviewer": "human"
+    },
+    "candidate_a66b668059468ceff52f": {
+      "discovery_id": "candidate_a66b668059468ceff52f",
+      "name": "avstreamer12",
+      "url": "https://www.twitch.tv/avstreamer12",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:03.155172+00:00",
+      "reviewer": "human"
+    },
+    "candidate_a7804862e779b6a10a0e": {
+      "discovery_id": "candidate_a7804862e779b6a10a0e",
+      "name": "notastreamertbh",
+      "url": "https://www.twitch.tv/notastreamertbh",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:12.753547+00:00",
+      "reviewer": "human"
+    },
+    "candidate_a78262251b2c972d0ba8": {
+      "discovery_id": "candidate_a78262251b2c972d0ba8",
+      "name": "Poppy the Puppy",
+      "url": "https://www.twitch.tv/poppythepuppy1",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:18.392912+00:00",
+      "reviewer": "human"
+    },
+    "candidate_a997205e8545ebf3810c": {
+      "discovery_id": "candidate_a997205e8545ebf3810c",
+      "name": "Aoi Crescent",
+      "url": "https://www.twitch.tv/AoiCrescentARP",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:22.188051+00:00",
+      "reviewer": "human"
+    },
+    "candidate_addd6ace148be8adda99": {
+      "discovery_id": "candidate_addd6ace148be8adda99",
+      "name": "yuiphil",
+      "url": "https://www.twitch.tv/yuiphil",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:25.357872+00:00",
+      "reviewer": "human"
+    },
+    "candidate_ae497393cf7637b92a01": {
+      "discovery_id": "candidate_ae497393cf7637b92a01",
+      "name": "Ken Summer 夏宇賢",
+      "url": "https://twitch.tv/kenthemagicianpanda",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:27.956913+00:00",
+      "reviewer": "human"
+    },
+    "candidate_aee344766a7e5ca59849": {
+      "discovery_id": "candidate_aee344766a7e5ca59849",
+      "name": "hisaki_eita",
+      "url": "https://www.twitch.tv/hisaki_eita",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:31.783215+00:00",
+      "reviewer": "human"
+    },
+    "candidate_b34068e00da1c4faa645": {
+      "discovery_id": "candidate_b34068e00da1c4faa645",
+      "name": "notvavstreamer",
+      "url": "https://www.twitch.tv/notvavstreamer",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:36.718247+00:00",
+      "reviewer": "human"
+    },
+    "candidate_b84f0e0f9ff69bca69a3": {
+      "discovery_id": "candidate_b84f0e0f9ff69bca69a3",
+      "name": "myrask",
+      "url": "https://www.twitch.tv/myrask",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:47.364017+00:00",
+      "reviewer": "human"
+    },
+    "candidate_ba41207914527b89e2ad": {
+      "discovery_id": "candidate_ba41207914527b89e2ad",
+      "name": "nongkini",
+      "url": "https://www.twitch.tv/nongkini",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:51.078269+00:00",
+      "reviewer": "human"
+    },
+    "candidate_bba96b75bd663cf9c4d3": {
+      "discovery_id": "candidate_bba96b75bd663cf9c4d3",
+      "name": "Asteroth",
+      "url": "https://twitch.tv/asteroth_arp",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:54.092401+00:00",
+      "reviewer": "human"
+    },
+    "candidate_bec58bdf49a982cb4899": {
+      "discovery_id": "candidate_bec58bdf49a982cb4899",
+      "name": "Atsuko Meron【SRV】",
+      "url": "https://twitch.tv/atsukomeron",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:58.401943+00:00",
+      "reviewer": "human"
+    },
+    "candidate_bf292229925cfd152e52": {
+      "discovery_id": "candidate_bf292229925cfd152e52",
+      "name": "Supanoo",
+      "url": "https://www.twitch.tv/supanoovtuber",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:53:02.450147+00:00",
+      "reviewer": "human"
+    },
+    "candidate_c59713501f9f764d4f5d": {
+      "discovery_id": "candidate_c59713501f9f764d4f5d",
+      "name": "acvstreamer",
+      "url": "https://www.twitch.tv/acvstreamer",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:53:07.209292+00:00",
+      "reviewer": "human"
+    },
+    "candidate_c81c5ca6fcc74d43899f": {
+      "discovery_id": "candidate_c81c5ca6fcc74d43899f",
+      "name": "Zabrina",
+      "url": "https://twitch.tv/zabrinavtuberth",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:54:59.916935+00:00",
+      "reviewer": "human"
+    },
+    "candidate_ce0141061a155862db32": {
+      "discovery_id": "candidate_ce0141061a155862db32",
+      "name": "Asteroth",
+      "url": "https://www.twitch.tv/asteroth_arp",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:55:02.535747+00:00",
+      "reviewer": "human"
+    },
+    "candidate_d177ef96550a11f6f7ab": {
+      "discovery_id": "candidate_d177ef96550a11f6f7ab",
+      "name": "shunarii_",
+      "url": "https://www.twitch.tv/shunarii_",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:55:27.597327+00:00",
+      "reviewer": "human"
+    },
+    "candidate_d25d9dbaae6bd58a72f1": {
+      "discovery_id": "candidate_d25d9dbaae6bd58a72f1",
+      "name": "Shino Laila",
+      "url": "https://www.twitch.tv/lailashino_wactor",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:55:30.991916+00:00",
+      "reviewer": "human"
+    },
+    "candidate_d7ef9db02011161a091f": {
+      "discovery_id": "candidate_d7ef9db02011161a091f",
+      "name": "ttvstreamerbp",
+      "url": "https://www.twitch.tv/ttvstreamerbp",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:55:34.622523+00:00",
+      "reviewer": "human"
+    },
+    "candidate_da36f86ea0771e9cc768": {
+      "discovery_id": "candidate_da36f86ea0771e9cc768",
+      "name": "caitycoopscoops",
+      "url": "https://www.twitch.tv/caitycoopscoops",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:55:49.299185+00:00",
+      "reviewer": "human"
+    },
+    "candidate_decdad215e16255615a8": {
+      "discovery_id": "candidate_decdad215e16255615a8",
+      "name": "Seishiro Hikari",
+      "url": "https://www.twitch.tv/hikari_seishiro",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:55:53.025965+00:00",
+      "reviewer": "human"
+    },
+    "candidate_f02018a426bbe0ba04ef": {
+      "discovery_id": "candidate_f02018a426bbe0ba04ef",
+      "name": "dragon_streamertwitch",
+      "url": "https://www.twitch.tv/dragon_streamertwitch",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:56:04.508879+00:00",
+      "reviewer": "human"
+    },
+    "candidate_f14973eb6ef2bb75db13": {
+      "discovery_id": "candidate_f14973eb6ef2bb75db13",
+      "name": "ttvstreamer123btw",
+      "url": "https://www.twitch.tv/ttvstreamer123btw",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:56:10.596960+00:00",
+      "reviewer": "human"
+    },
+    "candidate_f33b1eb6f55abfa70951": {
+      "discovery_id": "candidate_f33b1eb6f55abfa70951",
+      "name": "Morika Rei",
+      "url": "https://www.twitch.tv/rei_morika",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:56:22.653656+00:00",
+      "reviewer": "human"
+    },
+    "candidate_f56f97270efbd6cdddcd": {
+      "discovery_id": "candidate_f56f97270efbd6cdddcd",
+      "name": "Rainbows Fukio",
+      "url": "https://twitch.tv/fukio_vt",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:56:25.747464+00:00",
+      "reviewer": "human"
+    },
+    "candidate_c4abede54c93ebacdd33": {
+      "discovery_id": "candidate_c4abede54c93ebacdd33",
+      "name": "Kanzaki Aito | inLAB Intern",
+      "url": "https://x.com/kanzaki_aito",
+      "platform": "x",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:56:39.418653+00:00",
+      "reviewer": "human"
+    },
+    "candidate_c689393a3065d3a85424": {
+      "discovery_id": "candidate_c689393a3065d3a85424",
+      "name": "Seina | IDYP",
+      "url": "https://x.com/seina_idyp",
+      "platform": "x",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:56:46.358351+00:00",
+      "reviewer": "human"
+    },
+    "candidate_c73958a40168f62c0f34": {
+      "discovery_id": "candidate_c73958a40168f62c0f34",
+      "name": "Rosaline",
+      "url": "https://x.com/rosaline_vtuber",
+      "platform": "x",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:57:04.454323+00:00",
+      "reviewer": "human"
+    },
+    "candidate_cd0c830c1cd8c110a099": {
+      "discovery_id": "candidate_cd0c830c1cd8c110a099",
+      "name": "Rubyele Garnet",
+      "url": "https://x.com/rubyeleg",
+      "platform": "x",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:57:12.334228+00:00",
+      "reviewer": "human"
+    },
+    "candidate_dd1b512a80be395f799e": {
+      "discovery_id": "candidate_dd1b512a80be395f799e",
+      "name": "Azuri",
+      "url": "https://x.com/Azuri_PRD",
+      "platform": "x",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:57:27.183619+00:00",
+      "reviewer": "human"
+    },
+    "candidate_e0a2199e617805af301b": {
+      "discovery_id": "candidate_e0a2199e617805af301b",
+      "name": "Fuwari Hoshi",
+      "url": "https://x.com/fuwarihoshi",
+      "platform": "x",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:57:33.931088+00:00",
+      "reviewer": "human"
+    },
+    "candidate_ea8b2374e1a4bd6d11f0": {
+      "discovery_id": "candidate_ea8b2374e1a4bd6d11f0",
+      "name": "YURAburi",
+      "url": "https://x.com/YURAburi",
+      "platform": "x",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:58:15.648444+00:00",
+      "reviewer": "human"
+    },
+    "candidate_ed4b911f31cf4e52213e": {
+      "discovery_id": "candidate_ed4b911f31cf4e52213e",
+      "name": "White | V.W.Y",
+      "url": "https://x.com/White_VwithU",
+      "platform": "x",
+      "decision": "non_persona",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:58:41.497605+00:00",
+      "reviewer": "human"
+    },
+    "candidate_fe2029986e1c617488bb": {
+      "discovery_id": "candidate_fe2029986e1c617488bb",
+      "name": "Rhumora",
+      "url": "https://x.com/Rhumora_ZTP",
+      "platform": "x",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:58:46.563392+00:00",
+      "reviewer": "human"
+    },
+    "candidate_052376f5c345c9d8160d": {
+      "discovery_id": "candidate_052376f5c345c9d8160d",
+      "name": "lamuofficials",
+      "url": "https://www.tiktok.com/@lamuofficials",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:58:50.524218+00:00",
+      "reviewer": "human"
+    },
+    "candidate_0ef9290bbf6590926052": {
+      "discovery_id": "candidate_0ef9290bbf6590926052",
+      "name": "lanlongyingvtuberth",
+      "url": "https://www.tiktok.com/@lanlongyingvtuberth",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:58:53.708260+00:00",
+      "reviewer": "human"
+    },
+    "candidate_11323fdd6223cbcffd18": {
+      "discovery_id": "candidate_11323fdd6223cbcffd18",
+      "name": "filian.senpai",
+      "url": "https://www.instagram.com/filian.senpai",
+      "platform": "instagram",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:58:58.695953+00:00",
+      "reviewer": "human"
+    },
+    "candidate_1618c43a29ad0e3159d7": {
+      "discovery_id": "candidate_1618c43a29ad0e3159d7",
+      "name": "belleec19projekt",
+      "url": "https://www.tiktok.com/@belleec19projekt",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:02.464468+00:00",
+      "reviewer": "human"
+    },
+    "candidate_1a9023eb36128b4280b6": {
+      "discovery_id": "candidate_1a9023eb36128b4280b6",
+      "name": "kayna_channel",
+      "url": "https://www.tiktok.com/@kayna_channel",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:05.358520+00:00",
+      "reviewer": "human"
+    },
+    "candidate_21b6f5b327667c9d0047": {
+      "discovery_id": "candidate_21b6f5b327667c9d0047",
+      "name": "lalalapiszzz",
+      "url": "https://www.tiktok.com/@lalalapiszzz",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:08.364962+00:00",
+      "reviewer": "human"
+    },
+    "candidate_28824a8802171492bb90": {
+      "discovery_id": "candidate_28824a8802171492bb90",
+      "name": "G Sol",
+      "url": "https://www.tiktok.com/@g_solretuajing",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:10.961548+00:00",
+      "reviewer": "human"
+    },
+    "candidate_30648e5c319920e73cf5": {
+      "discovery_id": "candidate_30648e5c319920e73cf5",
+      "name": "banpratoubnj",
+      "url": "https://www.tiktok.com/@banpratoubnj",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:13.225642+00:00",
+      "reviewer": "human"
+    },
+    "candidate_306a936bd290db55b866": {
+      "discovery_id": "candidate_306a936bd290db55b866",
+      "name": "Scene",
+      "url": "https://www.tiktok.com/@scene..uqn",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:15.507413+00:00",
+      "reviewer": "human"
+    },
+    "candidate_38af6a2fea3df394c3e5": {
+      "discovery_id": "candidate_38af6a2fea3df394c3e5",
+      "name": "Nostradamus Karasu",
+      "url": "https://www.tiktok.com/@nostradamus_karasu",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:18.371543+00:00",
+      "reviewer": "human"
+    },
+    "candidate_3dfb7d525405d938b23a": {
+      "discovery_id": "candidate_3dfb7d525405d938b23a",
+      "name": "Zeno Astray",
+      "url": "https://www.tiktok.com/@zeno_astray",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:21.577724+00:00",
+      "reviewer": "human"
+    },
+    "candidate_3fa12dbaa7302ef0221a": {
+      "discovery_id": "candidate_3fa12dbaa7302ef0221a",
+      "name": "Kylanz",
+      "url": "https://www.tiktok.com/@kylanz_KLZ",
+      "platform": "tiktok",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:27.425821+00:00",
+      "reviewer": "human"
+    },
+    "candidate_47f206da8acb08672c3b": {
+      "discovery_id": "candidate_47f206da8acb08672c3b",
+      "name": "Hikari Haruki",
+      "url": "https://www.tiktok.com/@harukiz4ma",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:32.209554+00:00",
+      "reviewer": "human"
+    },
+    "candidate_480b4d3072e56f85e49d": {
+      "discovery_id": "candidate_480b4d3072e56f85e49d",
+      "name": "azeruunofficial",
+      "url": "https://www.instagram.com/azeruunofficial",
+      "platform": "instagram",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:40.635040+00:00",
+      "reviewer": "human"
+    },
+    "candidate_4a71e3ac09d583caf2cf": {
+      "discovery_id": "candidate_4a71e3ac09d583caf2cf",
+      "name": "Mimiif0x",
+      "url": "https://www.tiktok.com/@mimiif0x",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:45.240775+00:00",
+      "reviewer": "human"
+    },
+    "candidate_540522eb7cf27171219f": {
+      "discovery_id": "candidate_540522eb7cf27171219f",
+      "name": "Locenne Ch.",
+      "url": "https://www.tiktok.com/@lucennech",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:48.966498+00:00",
+      "reviewer": "human"
+    },
+    "candidate_6c71f4b5a8e2a93fca09": {
+      "discovery_id": "candidate_6c71f4b5a8e2a93fca09",
+      "name": "Pattivia",
+      "url": "https://www.tiktok.com/@pattivia_live",
+      "platform": "tiktok",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:57.069811+00:00",
+      "reviewer": "human"
+    },
+    "candidate_6effcbf44509e5161e3c": {
+      "discovery_id": "candidate_6effcbf44509e5161e3c",
+      "name": "michael.ny",
+      "url": "https://www.instagram.com/michael.ny",
+      "platform": "instagram",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:00:01.236035+00:00",
+      "reviewer": "human"
+    },
+    "candidate_7135bbcbb30c32cfa7ec": {
+      "discovery_id": "candidate_7135bbcbb30c32cfa7ec",
+      "name": "Neplilnaigh",
+      "url": "https://www.tiktok.com/@neplilnaigh",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:00:21.037170+00:00",
+      "reviewer": "human"
+    },
+    "candidate_7e6da13ce4368263957c": {
+      "discovery_id": "candidate_7e6da13ce4368263957c",
+      "name": "SmallC69",
+      "url": "https://facebook.com/SmallC69",
+      "platform": "facebook",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:00:30.234737+00:00",
+      "reviewer": "human"
+    },
+    "candidate_84296101d4c884047542": {
+      "discovery_id": "candidate_84296101d4c884047542",
+      "name": "Tendouji Fuka",
+      "url": "https://www.tiktok.com/@fukatendouji",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:00:35.399477+00:00",
+      "reviewer": "human"
+    },
+    "candidate_c24ba801e86db2218a9a": {
+      "discovery_id": "candidate_c24ba801e86db2218a9a",
+      "name": "Ashley | VtuberTH",
+      "url": "https://bsky.app/profile/ashleythedemon.bsky.social",
+      "platform": "website",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:00:51.263229+00:00",
+      "reviewer": "human"
+    },
+    "candidate_f16ef885fcc55117c643": {
+      "discovery_id": "candidate_f16ef885fcc55117c643",
+      "name": "RealiableCh",
+      "url": "https://facebook.com/RealiableCh",
+      "platform": "facebook",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:01:09.372125+00:00",
+      "reviewer": "human"
+    },
+    "candidate_923607b918dbf9aa666c": {
+      "discovery_id": "candidate_923607b918dbf9aa666c",
+      "name": "nekonevtuber",
+      "url": "https://www.instagram.com/nekonevtuber",
+      "platform": "instagram",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:01:19.878052+00:00",
+      "reviewer": "human"
+    },
+    "candidate_bc8fc944f7e7cb7c74fa": {
+      "discovery_id": "candidate_bc8fc944f7e7cb7c74fa",
+      "name": "you.are.in.stain",
+      "url": "https://www.instagram.com/you.are.in.stain",
+      "platform": "instagram",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:01:25.143559+00:00",
+      "reviewer": "human"
+    },
+    "candidate_cd58ae9f21024fb64c21": {
+      "discovery_id": "candidate_cd58ae9f21024fb64c21",
+      "name": "novapovie",
+      "url": "https://www.instagram.com/novapovie",
+      "platform": "instagram",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:01:30.472667+00:00",
+      "reviewer": "human"
+    },
+    "candidate_8a2191b0cd4b7c6a37ca": {
+      "discovery_id": "candidate_8a2191b0cd4b7c6a37ca",
+      "name": "kitadesus",
+      "url": "https://www.tiktok.com/@kitadesus",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:01:37.451828+00:00",
+      "reviewer": "human"
+    },
+    "candidate_8cce1ff2a4711a5ca482": {
+      "discovery_id": "candidate_8cce1ff2a4711a5ca482",
+      "name": "Zilbi",
+      "url": "https://www.tiktok.com/@zilbi_acas",
+      "platform": "tiktok",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:01:48.425928+00:00",
+      "reviewer": "human"
+    },
+    "candidate_901b7481d46a0161bba3": {
+      "discovery_id": "candidate_901b7481d46a0161bba3",
+      "name": "Rayne Ch. ไม่มีสังกัด 118",
+      "url": "https://www.tiktok.com/@imrayne",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:01:52.375114+00:00",
+      "reviewer": "human"
+    },
+    "candidate_9aabc90b4aff0e3885e7": {
+      "discovery_id": "candidate_9aabc90b4aff0e3885e7",
+      "name": "lyndel.epr",
+      "url": "https://www.tiktok.com/@lyndel.epr",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:01:55.151486+00:00",
+      "reviewer": "human"
+    },
+    "candidate_a9dee23288ba59f931dc": {
+      "discovery_id": "candidate_a9dee23288ba59f931dc",
+      "name": "Killmonnks ไม่มีสังกัด 6.3K",
+      "url": "https://www.tiktok.com/@Killmonnks",
+      "platform": "tiktok",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:01.321338+00:00",
+      "reviewer": "human"
+    },
+    "candidate_b001eb14574e3df7a041": {
+      "discovery_id": "candidate_b001eb14574e3df7a041",
+      "name": "Zelune Noctarielle 🌙",
+      "url": "https://tiktok.com/@zelune.luneze",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:04.420235+00:00",
+      "reviewer": "human"
+    },
+    "candidate_b8c7bd186f23080dec7e": {
+      "discovery_id": "candidate_b8c7bd186f23080dec7e",
+      "name": "kafube.ch",
+      "url": "https://www.tiktok.com/@kafube.ch",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:07.484252+00:00",
+      "reviewer": "human"
+    },
+    "candidate_c1abbbc04833cc8e210c": {
+      "discovery_id": "candidate_c1abbbc04833cc8e210c",
+      "name": "AirBlack24",
+      "url": "https://www.tiktok.com/@airblack24",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:18.396707+00:00",
+      "reviewer": "human"
+    },
+    "candidate_ccde11beaaf193a7f23d": {
+      "discovery_id": "candidate_ccde11beaaf193a7f23d",
+      "name": "Beatrix Monroe",
+      "url": "https://www.tiktok.com/@beatrixmonroeatx",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:22.345453+00:00",
+      "reviewer": "human"
+    },
+    "candidate_cd7f87942161c3443037": {
+      "discovery_id": "candidate_cd7f87942161c3443037",
+      "name": "kanakochth",
+      "url": "https://www.tiktok.com/@kanakochth",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:25.422531+00:00",
+      "reviewer": "human"
+    },
+    "candidate_ce3a7819e587b932058d": {
+      "discovery_id": "candidate_ce3a7819e587b932058d",
+      "name": "elfymaluky",
+      "url": "https://www.tiktok.com/@elfymaluky",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:28.199543+00:00",
+      "reviewer": "human"
+    },
+    "candidate_cf9838b316a9a244051d": {
+      "discovery_id": "candidate_cf9838b316a9a244051d",
+      "name": "Haku",
+      "url": "https://www.tiktok.com/@haku_ch.kjp",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:31.682079+00:00",
+      "reviewer": "human"
+    },
+    "candidate_d04e4b10c95611c3c15d": {
+      "discovery_id": "candidate_d04e4b10c95611c3c15d",
+      "name": "Luzin Luciana ไม่มีสังกัด 85",
+      "url": "https://www.tiktok.com/@luz1nnn_",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:34.681089+00:00",
+      "reviewer": "human"
+    },
+    "candidate_d49be09c48de2a3d63b6": {
+      "discovery_id": "candidate_d49be09c48de2a3d63b6",
+      "name": "luqkurumi",
+      "url": "https://www.tiktok.com/@luqkurumi",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:37.554541+00:00",
+      "reviewer": "human"
+    },
+    "candidate_d6b4505480a424a0ceee": {
+      "discovery_id": "candidate_d6b4505480a424a0ceee",
+      "name": "Neora Foxxy",
+      "url": "https://www.tiktok.com/@yukisaki_hanabi",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:40.592808+00:00",
+      "reviewer": "human"
+    },
+    "candidate_e74cfdf341b4beca5023": {
+      "discovery_id": "candidate_e74cfdf341b4beca5023",
+      "name": "knight_butler",
+      "url": "https://www.tiktok.com/@knight_butler",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:44.091819+00:00",
+      "reviewer": "human"
+    }
+  },
+  "history": [
+    {
+      "discovery_id": "candidate_076790ca3ca69a354f1b",
+      "name": "iamSometimes",
+      "url": "https://www.youtube.com/@iamSometimes",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:24:25.050249+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_0c18cce03d1511d0c667",
+      "name": "Chicken V",
+      "url": "https://www.youtube.com/@chickenv56",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:24:29.364395+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_1cfa75963dc58057962d",
+      "name": "Nuttito",
+      "url": "https://www.youtube.com/@Nutty4U2012",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:24:33.731039+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_1f4908a0b30aef74f87c",
+      "name": "Howl",
+      "url": "https://www.youtube.com/@Howl_FVP",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:24:38.196251+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_207edba7b648f121b454",
+      "name": "NPC Gatip",
+      "url": "https://www.youtube.com/@NPCGatip",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:24:42.270971+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_248371a292e3c1ced8a5",
+      "name": "fukach.dobutsuproject",
+      "url": "https://youtube.com/@fukach.dobutsuproject",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:24:44.928016+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_28b191b980eb88a4d8d7",
+      "name": "SVNZ",
+      "url": "https://www.youtube.com/@Surveniezch",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:24:56.503780+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_29f8689383c4885305c0",
+      "name": "Shinjix",
+      "url": "https://www.youtube.com/@Shinjix004",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:25:03.644240+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_29f8689383c4885305c0",
+      "name": "Shinjix",
+      "url": "https://www.youtube.com/@Shinjix004",
+      "platform": "youtube",
+      "decision": "non_persona",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:25:12.896665+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_2a82be5b9c4d5dd871b0",
+      "name": "AmuiiiChan",
+      "url": "https://www.youtube.com/@AmuiiiChan",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:25:29.554143+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_3e1bb83f50909f9ad914",
+      "name": "wadogardenw",
+      "url": "https://youtube.com/@wadogardenw",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:25:34.242693+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_3eb36052a25ff5ebd6d9",
+      "name": "Lastcrosser",
+      "url": "https://www.youtube.com/@Lastcrosser",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:25:49.729913+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_40d9f0ba6525254e7b83",
+      "name": "Apologize Ch",
+      "url": "https://www.youtube.com/@ApologizeCh122",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:26:04.279404+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_416e275936ea7ff7e3c8",
+      "name": "Hatsuji ::H.T.J ",
+      "url": "https://youtube.com/shorts/zxuWh0ffiuI",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:27:00.432103+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_41b361c2d6597310aaed",
+      "name": "Rarin Ch.",
+      "url": "https://youtube.com/shorts/5fweUpvBeBM",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:27:12.826820+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_4231aba205e5f41593b3",
+      "name": "Melody Sparkle【PajamaJa】",
+      "url": "https://www.youtube.com/c/MelodyS",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:27:17.048875+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_4284262c8b30e68a37ed",
+      "name": "Wanoiz",
+      "url": "https://www.youtube.com/@Wanoiz",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:27:22.351898+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_42ea2ac6ecdf55febec1",
+      "name": "Nostradamus Karasu",
+      "url": "https://www.youtube.com/@NostradamusKarasu",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:27:25.303840+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_438261f15df8494d23fb",
+      "name": "Komuruay",
+      "url": "https://www.youtube.com/@komurahuak",
+      "platform": "youtube",
+      "decision": "non_persona",
+      "note": "Live2D Rigger",
+      "reviewed_at": "2026-09-19T11:29:27.930197+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_4472d50ead95a39d0211",
+      "name": "zigxc.",
+      "url": "https://www.youtube.com/@zigxc",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:30:27.515712+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_44823ff20781ad4adee9",
+      "name": "YouTube TV Recap ",
+      "url": "https://www.youtube.com/@YouTubeRecapTV",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:30:31.762158+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_476028204595dee3c1e4",
+      "name": "ฟ้อนดาวมาเล่า | Fondawl【RE:S】",
+      "url": "https://youtube.com/shorts/E0xW6jOtkeQ",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:30:42.765233+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_4ad08d3510b0052de1c8",
+      "name": "Enryu Horus Ch. 炎竜ホルス",
+      "url": "https://youtube.com/shorts/4EUX04B-4As",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "ลิ้งพาไป https://www.youtube.com/shorts/4EUX04B-4As ซึ่งปัจจุบันเป็ฯ vtuber ชื่อ https://www.youtube.com/@Derya_Vtuber/shorts หรือ Derya CH. ⌜VZ⌟",
+      "reviewed_at": "2026-09-19T11:31:45.343011+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_4dd0d1ab5d49b74d3199",
+      "name": "Azuka_ontop",
+      "url": "https://www.youtube.com/@RAKNONGMUY",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:31:51.583433+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_5de4d47fefd370d5a913",
+      "name": "CLOUDSPHERE",
+      "url": "https://www.youtube.com/@CLOUDSPHERE",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:32:02.356411+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_5e90b0c3fe875027add8",
+      "name": "สมตุ้ยเกมมิ่ง",
+      "url": "https://www.youtube.com/@streamtenders",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:32:15.215356+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_6597ed6bc4d13c0c6551",
+      "name": "Nerumis",
+      "url": "https://youtube.com/@Nerumis",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:32:19.421887+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_6625dd9ed3ee518fa56b",
+      "name": "ServAntics",
+      "url": "https://www.youtube.com/@ServAnticscat",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:32:42.203684+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_6b7c2682fece3e9a8214",
+      "name": "#หาทำGang",
+      "url": "https://youtube.com/@hathamgang",
+      "platform": "youtube",
+      "decision": "non_persona",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:32:49.912760+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_6b7d2949b171bc6f4416",
+      "name": "Hayato Asukaze [VTravelVlog]",
+      "url": "https://www.youtube.com/@HayatoASKZ",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:32:58.470340+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_6d623fb270ef8b990197",
+      "name": "BreakGate",
+      "url": "https://www.youtube.com/@BreakGate",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:33:15.076687+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_6deb696b1e8723ae5e98",
+      "name": "ESC LT PLAYER",
+      "url": "https://www.youtube.com/@ESCLTPLAYER",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:33:44.986974+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_6e65a1d5d0089c5967ca",
+      "name": "Keiko Kezoku",
+      "url": "https://www.youtube.com/@keikokezoku",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:33:48.104102+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_7556c98af430d17009b6",
+      "name": "Streaming by Max 2.0",
+      "url": "https://www.youtube.com/@StreamingbyMax2.0",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:33:52.113526+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_773cab5bb6c5c1852202",
+      "name": "Faethon_Janta",
+      "url": "https://www.youtube.com/@Faethon_Janta",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:33:54.766119+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_78ffd63457c08d24d630",
+      "name": "NUTTY-WIS",
+      "url": "https://youtube.com/@NUTTY-WIS",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:33:57.371808+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_797436926d6183c3894e",
+      "name": "Slapper",
+      "url": "https://www.youtube.com/@slapperch",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:04.096724+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_832e5e86a9e1935f398a",
+      "name": "PHETWEATHER",
+      "url": "https://www.youtube.com/@PHETWEATHER",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:08.203781+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_880e263079ce856d7199",
+      "name": "LuckFast",
+      "url": "https://www.youtube.com/@FastDrama",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:12.701026+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_8abc0b548b5830950b8e",
+      "name": "moemiyabiv3",
+      "url": "https://youtube.com/@moemiyabiv3",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:15.857574+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_8cf210912815f9b8162a",
+      "name": "กิต งายย",
+      "url": "https://www.youtube.com/@kritngi",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:19.897209+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_93d9c6a3f23ff85d3017",
+      "name": "BNNx",
+      "url": "https://www.youtube.com/@bnnx.21",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:42.103192+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_989597a9384fc216e8ad",
+      "name": "T0NZero x N5S",
+      "url": "https://www.youtube.com/channel/UCLy-ymZxh0-UFi3ov7MJKvA",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:46.936213+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_98aa40dbfe15b2f026d5",
+      "name": "AmySTL999",
+      "url": "https://youtube.com/@AmySTL999",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:51.355826+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_998c136375004781f3ff",
+      "name": "Tinsley | VtuberTH",
+      "url": "https://www.youtube.com/@TinsleyALPT",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:54.552943+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_9fad6936b0384ac3a050",
+      "name": "Hererm",
+      "url": "https://www.youtube.com/@hererm",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:34:58.810650+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_9fd32853104c4ab50b90",
+      "name": "KRISSAE",
+      "url": "https://www.youtube.com/@KRISSA.E",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:35:06.641213+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_a98d7477073afea98acb",
+      "name": "ppimirl",
+      "url": "https://www.youtube.com/@ppimirl",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:35:12.117227+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_ae0eeb21ee9a8e9109dd",
+      "name": "Enryu Horus Ch. 炎竜ホルス",
+      "url": "https://youtube.com/shorts/3lExZD4sjeY",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:35:24.408751+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_aec098775e8fec964d78",
+      "name": "PINTO",
+      "url": "https://www.youtube.com/@pinto__xx",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:35:35.360785+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_b297c147542c164a05a3",
+      "name": "Edella Edward Ch.",
+      "url": "https://youtube.com/shorts/bJoM23njAaM",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:35:56.735046+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_bb148800f5bd48c76036",
+      "name": "Carina Aquarius",
+      "url": "https://www.youtube.com/@CarinaAquarius_Ch",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:35:59.933132+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_c19e17f71118a2ff5487",
+      "name": "ALThiMa-NigHT",
+      "url": "https://www.youtube.com/shorts/UZDwRCAWzhc",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:37:16.214020+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_c36b8be3efc0e3b3941f",
+      "name": "Usami Bunny",
+      "url": "https://www.youtube.com/@USAMIBUNNY",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:37:19.965362+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_c97d25f6049155c8dce5",
+      "name": "SKYLER Ch. 『𝐋𝐕』",
+      "url": "https://www.youtube.com/@SKYLERcvc",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:37:31.366287+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_ce1cce3106793cad1f1e",
+      "name": "ShuaVibeENT",
+      "url": "https://www.youtube.com/@ShuaVibeENT",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:37:41.930012+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_cf73e9a50c6863b99830",
+      "name": "USS enterprise",
+      "url": "https://www.youtube.com/@uss3208",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:37:52.249707+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_d2a3a84d6b9a7ef5d75f",
+      "name": "yentafobnj",
+      "url": "https://www.youtube.com/@yentafobnj",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:37:55.167293+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_d37c8be70febef6d7bbf",
+      "name": "nongmamuang_vtuber",
+      "url": "https://youtube.com/@nongmamuang_vtuber",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:37:58.856109+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_d3d0abea48017a5c3eb7",
+      "name": "Leon",
+      "url": "https://www.youtube.com/@Leon-R-Shootingstar",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:38:34.376589+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_d6282533a945707a1f66",
+      "name": "BRE GAMING",
+      "url": "https://www.youtube.com/@BREGAMING01",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:38:42.914806+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_da32ebf29776361ead00",
+      "name": "TeenMu",
+      "url": "https://www.youtube.com/@TeenMu",
+      "platform": "youtube",
+      "decision": "non_persona",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:39:31.963145+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_dd132eed8f7672b36ad1",
+      "name": "Logan U Stryker",
+      "url": "https://www.youtube.com/@urStrykerVtuber",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:39:36.745183+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_ddecf7366f043b97fac6",
+      "name": "RuLaRaLan",
+      "url": "https://www.youtube.com/shorts/fF5KPNZ0TJk",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:39:50.134304+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_df4368f4046ca8e95881",
+      "name": "PANNAWAT",
+      "url": "https://www.youtube.com/@pannawat8032",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:39:54.376616+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_e2a34a4493ccd6b5fcc8",
+      "name": "MinORu",
+      "url": "https://www.youtube.com/@MinORuOnly",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:39:59.917537+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_e2a472aa27f701b85827",
+      "name": "XY AZ",
+      "url": "https://www.youtube.com/@XY_AZ",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:40:09.531339+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_e75fe4be2e942a6f1d0d",
+      "name": "Zin'fandel「ZTP」",
+      "url": "https://www.youtube.com/shorts/gpU4DR0SRsc",
+      "platform": "youtube",
+      "decision": "vtuber",
+      "note": "Zin'fandel「ZTP」 เป็น vtuber แต่ลิ้ง 1. https://www.youtube.com/shorts/gpU4DR0SRsc/about ไม่เกี่ยวข้อง",
+      "reviewed_at": "2026-09-19T11:41:03.454648+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_2aa70d80ca60e5c53e59",
+      "name": "Lucrezia | VtuberTH",
+      "url": "https://bsky.app/profile/lulutanwitch.bsky.social",
+      "platform": "website",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:43:01.382900+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_7778ace9457625414d01",
+      "name": "ZEPHYROS | LESTIAL V",
+      "url": "https://zephyroslv.carrd.co/",
+      "platform": "website",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:43:34.102993+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_ee409d7ed82e95f6d64b",
+      "name": "Seikou iMinato",
+      "url": "https://www.youtube.com/@i.Minato7",
+      "platform": "youtube",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:46:16.388071+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_efee3ad0365900df118e",
+      "name": "Captain MUAL2027 Gamer",
+      "url": "https://www.youtube.com/@CaptainMUAL",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:46:21.086070+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_f755b271275129a7aa0f",
+      "name": "Fouradd",
+      "url": "https://www.youtube.com/@Fouradd99",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:46:24.870763+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_fbd3abb0e14962ce0d18",
+      "name": "ANIMORth - อนิเมาะไทย",
+      "url": "https://www.youtube.com/@ANIMORth",
+      "platform": "youtube",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:46:28.179374+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_00c39d68d0b5fa8dc0c3",
+      "name": "altairalal",
+      "url": "https://www.twitch.tv/altairalal",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:46:36.530493+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_05e9319fa904951ee256",
+      "name": "Rainbows Fukio",
+      "url": "https://www.twitch.tv/fukio_vt",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:46:41.766872+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_06eedb7a7920fd530eed",
+      "name": "ttvstreamer_btw",
+      "url": "https://www.twitch.tv/ttvstreamer_btw",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:46:49.866311+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_128b9c11e98b2c588be7",
+      "name": "Seikou iMinato",
+      "url": "https://www.twitch.tv/seikou_iminato",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:46:53.291843+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_149c446a4bf79c275b02",
+      "name": "pakotvstreamer",
+      "url": "https://www.twitch.tv/pakotvstreamer",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:47:10.924071+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_151395d4fd50f1a14a1a",
+      "name": "xavstreamer26",
+      "url": "https://www.twitch.tv/xavstreamer26",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:47:22.727479+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_19465b5c9a83f5e7b49b",
+      "name": "hyshoa",
+      "url": "https://www.twitch.tv/hyshoa",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:47:27.005748+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_1f059cf85c4c0b325e1e",
+      "name": "fhagoglyte",
+      "url": "https://www.twitch.tv/fhagoglyte",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:47:31.280512+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_25efcec01a353c4f623d",
+      "name": "activstreamer",
+      "url": "https://www.twitch.tv/activstreamer",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:47:33.047460+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_26dfe3bf77b1e213d0b6",
+      "name": "kyo1984123",
+      "url": "https://www.twitch.tv/kyo1984123",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:47:48.494398+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_28534eb42f32556d84ba",
+      "name": "unclekanuntentacle",
+      "url": "https://www.twitch.tv/unclekanuntentacle",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:47:53.447287+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_2b487cdbe9f03f2a0a42",
+      "name": "isazarin",
+      "url": "https://www.twitch.tv/isazarin",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:48:08.002508+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_2bdfa26bcc4178cb5b9b",
+      "name": "sorakasaivtuber",
+      "url": "https://www.twitch.tv/sorakasaivtuber",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:48:37.715299+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_32d9aa0679cbb57e01a7",
+      "name": "zinniszier",
+      "url": "https://www.twitch.tv/zinniszier",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:48:42.003352+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_345579712ebff45eaa72",
+      "name": "Aoi Crescent",
+      "url": "https://twitch.tv/aoicrescentarp",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:48:48.909594+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_3936c303b78ccf4a5a93",
+      "name": "kamikasa_mio",
+      "url": "https://www.twitch.tv/kamikasa_mio",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:48:52.764564+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_39e14674bba90c0f8e97",
+      "name": "whitekumatan",
+      "url": "https://www.twitch.tv/whitekumatan",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:48:57.276124+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_3fbf7de364f09cbb2b75",
+      "name": "cheenmachine_",
+      "url": "https://www.twitch.tv/cheenmachine_",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:49:10.724372+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_40bff6a687ec743887d5",
+      "name": "blackzdemon",
+      "url": "https://www.twitch.tv/blackzdemon",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:49:24.133233+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_422acecd64eeaf51f7f5",
+      "name": "LycosaQx | VStreamer",
+      "url": "https://www.twitch.tv/lycosaqx",
+      "platform": "twitch",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:49:39.363515+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_435e1dcee1a42493865d",
+      "name": "lkstreamerttv",
+      "url": "https://www.twitch.tv/lkstreamerttv",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:49:45.175707+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_4bddf932a4b81be52c85",
+      "name": "streamertwtch",
+      "url": "https://www.twitch.tv/streamertwtch",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:49:50.778180+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_4e487f9998e20b429d93",
+      "name": "ryoutakumi",
+      "url": "https://www.twitch.tv/ryoutakumi",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:49:54.180380+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_4f1cfd1ad5c0fcb3a5d6",
+      "name": "hoshikoeral",
+      "url": "https://www.twitch.tv/hoshikoeral",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:49:57.707927+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_5276f29acdcf02d2e0c8",
+      "name": "Peach",
+      "url": "https://www.twitch.tv/peachy_131",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:50:01.271842+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_5ec5b53c7d135172c6f5",
+      "name": "NoBoRu",
+      "url": "https://www.twitch.tv/noboru_oz",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:50:04.274391+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_5fb54cfe287efce84e44",
+      "name": "kiara_chaan",
+      "url": "https://www.twitch.tv/kiara_chaan",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:50:34.498576+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_63771fe3134232a4fda3",
+      "name": "Nisa",
+      "url": "https://www.twitch.tv/nisapoyo",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:50:39.336883+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_6673dbfd2a04800d7473",
+      "name": "Zeraphina Hana",
+      "url": "https://www.twitch.tv/videos/2852328659",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:50:51.025112+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_6a33e1a8b6dea47f90e5",
+      "name": "favstreamer55",
+      "url": "https://www.twitch.tv/favstreamer55",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:50:55.472570+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_6aa573dfa3b22a301298",
+      "name": "MeiLi",
+      "url": "https://www.twitch.tv/mamimeili",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:50:59.673414+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_6ff38b78c4985011e8e7",
+      "name": "sshirowashi",
+      "url": "https://www.twitch.tv/sshirowashi",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:02.959303+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_803a30890a3936a19d06",
+      "name": "tonyoverdose420",
+      "url": "https://www.twitch.tv/tonyoverdose420",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:07.855463+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_8206762a82b7bcc9b861",
+      "name": "jiminelz",
+      "url": "https://www.twitch.tv/jiminelz",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:11.733151+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_827cecef7deb35ad043f",
+      "name": "wotesz",
+      "url": "https://www.twitch.tv/wotesz",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:17.348444+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_82cdded8e08d6f8d2577",
+      "name": "RLanz Ch.",
+      "url": "https://www.twitch.tv/rlanz_tarima",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:21.063568+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_88e3ae03624629d34fc8",
+      "name": "owenzwei",
+      "url": "https://www.twitch.tv/owenzwei",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:24.907762+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_8adf5ef527158c1fbd30",
+      "name": "Nisa",
+      "url": "https://twitch.tv/nisapoyo",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:27.656298+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_8c87704e290d4fba9487",
+      "name": "Shino Laila",
+      "url": "https://twitch.tv/lailashino_wactor",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:31.861763+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_921b8adf7673b690a2ad",
+      "name": "it’s hi",
+      "url": "https://www.twitch.tv/its_hi_arp",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:35.391323+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_95cfa329652c577ba45c",
+      "name": "Logan U Stryker",
+      "url": "https://www.twitch.tv/urstrykervtuber",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:38.129726+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_996108f17b909d607309",
+      "name": "tarkovstreamer",
+      "url": "https://www.twitch.tv/tarkovstreamer",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:41.925856+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_9b5ad34e74c5495f92bd",
+      "name": "Seikou iMinato",
+      "url": "https://twitch.tv/seikou_iminato",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:44.800278+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_9c20689f746af3f9d203",
+      "name": "kenthemagicianpanda",
+      "url": "https://www.twitch.tv/kenthemagicianpanda",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:47.654365+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_9c37388c3b9acdee936b",
+      "name": "Kayo Ch. 【かよCh.】◣PLO◥",
+      "url": "https://www.twitch.tv/kayonoorenji",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:51.002341+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_a06ce7d6928d2154ebb6",
+      "name": "CinCin Vtu",
+      "url": "https://www.twitch.tv/cincinvtu",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:54.038476+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_a332922113d267f92f2b",
+      "name": "Zabrina",
+      "url": "https://www.twitch.tv/zabrinavtuberth",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:51:57.208535+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_a66b668059468ceff52f",
+      "name": "avstreamer12",
+      "url": "https://www.twitch.tv/avstreamer12",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:03.155172+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_a7804862e779b6a10a0e",
+      "name": "notastreamertbh",
+      "url": "https://www.twitch.tv/notastreamertbh",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:12.753547+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_a78262251b2c972d0ba8",
+      "name": "Poppy the Puppy",
+      "url": "https://www.twitch.tv/poppythepuppy1",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:18.392912+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_a997205e8545ebf3810c",
+      "name": "Aoi Crescent",
+      "url": "https://www.twitch.tv/AoiCrescentARP",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:22.188051+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_addd6ace148be8adda99",
+      "name": "yuiphil",
+      "url": "https://www.twitch.tv/yuiphil",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:25.357872+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_ae497393cf7637b92a01",
+      "name": "Ken Summer 夏宇賢",
+      "url": "https://twitch.tv/kenthemagicianpanda",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:27.956913+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_aee344766a7e5ca59849",
+      "name": "hisaki_eita",
+      "url": "https://www.twitch.tv/hisaki_eita",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:31.783215+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_b34068e00da1c4faa645",
+      "name": "notvavstreamer",
+      "url": "https://www.twitch.tv/notvavstreamer",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:36.718247+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_b84f0e0f9ff69bca69a3",
+      "name": "myrask",
+      "url": "https://www.twitch.tv/myrask",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:47.364017+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_ba41207914527b89e2ad",
+      "name": "nongkini",
+      "url": "https://www.twitch.tv/nongkini",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:51.078269+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_bba96b75bd663cf9c4d3",
+      "name": "Asteroth",
+      "url": "https://twitch.tv/asteroth_arp",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:54.092401+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_bec58bdf49a982cb4899",
+      "name": "Atsuko Meron【SRV】",
+      "url": "https://twitch.tv/atsukomeron",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:52:58.401943+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_bf292229925cfd152e52",
+      "name": "Supanoo",
+      "url": "https://www.twitch.tv/supanoovtuber",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:53:02.450147+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_c59713501f9f764d4f5d",
+      "name": "acvstreamer",
+      "url": "https://www.twitch.tv/acvstreamer",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:53:07.209292+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_c81c5ca6fcc74d43899f",
+      "name": "Zabrina",
+      "url": "https://twitch.tv/zabrinavtuberth",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:54:59.916935+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_ce0141061a155862db32",
+      "name": "Asteroth",
+      "url": "https://www.twitch.tv/asteroth_arp",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:55:02.535747+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_d177ef96550a11f6f7ab",
+      "name": "shunarii_",
+      "url": "https://www.twitch.tv/shunarii_",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:55:27.597327+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_d25d9dbaae6bd58a72f1",
+      "name": "Shino Laila",
+      "url": "https://www.twitch.tv/lailashino_wactor",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:55:30.991916+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_d7ef9db02011161a091f",
+      "name": "ttvstreamerbp",
+      "url": "https://www.twitch.tv/ttvstreamerbp",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:55:34.622523+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_da36f86ea0771e9cc768",
+      "name": "caitycoopscoops",
+      "url": "https://www.twitch.tv/caitycoopscoops",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:55:49.299185+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_decdad215e16255615a8",
+      "name": "Seishiro Hikari",
+      "url": "https://www.twitch.tv/hikari_seishiro",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:55:53.025965+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_f02018a426bbe0ba04ef",
+      "name": "dragon_streamertwitch",
+      "url": "https://www.twitch.tv/dragon_streamertwitch",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:56:04.508879+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_f14973eb6ef2bb75db13",
+      "name": "ttvstreamer123btw",
+      "url": "https://www.twitch.tv/ttvstreamer123btw",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:56:10.596960+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_f33b1eb6f55abfa70951",
+      "name": "Morika Rei",
+      "url": "https://www.twitch.tv/rei_morika",
+      "platform": "twitch",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:56:15.198211+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_f33b1eb6f55abfa70951",
+      "name": "Morika Rei",
+      "url": "https://www.twitch.tv/rei_morika",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:56:22.653656+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_f56f97270efbd6cdddcd",
+      "name": "Rainbows Fukio",
+      "url": "https://twitch.tv/fukio_vt",
+      "platform": "twitch",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:56:25.747464+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_c4abede54c93ebacdd33",
+      "name": "Kanzaki Aito | inLAB Intern",
+      "url": "https://x.com/kanzaki_aito",
+      "platform": "x",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:56:39.418653+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_c689393a3065d3a85424",
+      "name": "Seina | IDYP",
+      "url": "https://x.com/seina_idyp",
+      "platform": "x",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:56:46.358351+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_c73958a40168f62c0f34",
+      "name": "Rosaline",
+      "url": "https://x.com/rosaline_vtuber",
+      "platform": "x",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:57:04.454323+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_cd0c830c1cd8c110a099",
+      "name": "Rubyele Garnet",
+      "url": "https://x.com/rubyeleg",
+      "platform": "x",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:57:12.334228+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_dd1b512a80be395f799e",
+      "name": "Azuri",
+      "url": "https://x.com/Azuri_PRD",
+      "platform": "x",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:57:27.183619+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_e0a2199e617805af301b",
+      "name": "Fuwari Hoshi",
+      "url": "https://x.com/fuwarihoshi",
+      "platform": "x",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:57:33.931088+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_ea8b2374e1a4bd6d11f0",
+      "name": "YURAburi",
+      "url": "https://x.com/YURAburi",
+      "platform": "x",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:58:15.648444+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_ed4b911f31cf4e52213e",
+      "name": "White | V.W.Y",
+      "url": "https://x.com/White_VwithU",
+      "platform": "x",
+      "decision": "non_persona",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:58:41.497605+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_fe2029986e1c617488bb",
+      "name": "Rhumora",
+      "url": "https://x.com/Rhumora_ZTP",
+      "platform": "x",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:58:46.563392+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_052376f5c345c9d8160d",
+      "name": "lamuofficials",
+      "url": "https://www.tiktok.com/@lamuofficials",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:58:50.524218+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_0ef9290bbf6590926052",
+      "name": "lanlongyingvtuberth",
+      "url": "https://www.tiktok.com/@lanlongyingvtuberth",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:58:53.708260+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_11323fdd6223cbcffd18",
+      "name": "filian.senpai",
+      "url": "https://www.instagram.com/filian.senpai",
+      "platform": "instagram",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:58:58.695953+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_1618c43a29ad0e3159d7",
+      "name": "belleec19projekt",
+      "url": "https://www.tiktok.com/@belleec19projekt",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:02.464468+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_1a9023eb36128b4280b6",
+      "name": "kayna_channel",
+      "url": "https://www.tiktok.com/@kayna_channel",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:05.358520+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_21b6f5b327667c9d0047",
+      "name": "lalalapiszzz",
+      "url": "https://www.tiktok.com/@lalalapiszzz",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:08.364962+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_28824a8802171492bb90",
+      "name": "G Sol",
+      "url": "https://www.tiktok.com/@g_solretuajing",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:10.961548+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_30648e5c319920e73cf5",
+      "name": "banpratoubnj",
+      "url": "https://www.tiktok.com/@banpratoubnj",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:13.225642+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_306a936bd290db55b866",
+      "name": "Scene",
+      "url": "https://www.tiktok.com/@scene..uqn",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:15.507413+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_38af6a2fea3df394c3e5",
+      "name": "Nostradamus Karasu",
+      "url": "https://www.tiktok.com/@nostradamus_karasu",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:18.371543+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_3dfb7d525405d938b23a",
+      "name": "Zeno Astray",
+      "url": "https://www.tiktok.com/@zeno_astray",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:21.577724+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_3fa12dbaa7302ef0221a",
+      "name": "Kylanz",
+      "url": "https://www.tiktok.com/@kylanz_KLZ",
+      "platform": "tiktok",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:27.425821+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_47f206da8acb08672c3b",
+      "name": "Hikari Haruki",
+      "url": "https://www.tiktok.com/@harukiz4ma",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:32.209554+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_480b4d3072e56f85e49d",
+      "name": "azeruunofficial",
+      "url": "https://www.instagram.com/azeruunofficial",
+      "platform": "instagram",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:40.635040+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_4a71e3ac09d583caf2cf",
+      "name": "Mimiif0x",
+      "url": "https://www.tiktok.com/@mimiif0x",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:45.240775+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_540522eb7cf27171219f",
+      "name": "Locenne Ch.",
+      "url": "https://www.tiktok.com/@lucennech",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:48.966498+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_6c71f4b5a8e2a93fca09",
+      "name": "Pattivia",
+      "url": "https://www.tiktok.com/@pattivia_live",
+      "platform": "tiktok",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T11:59:57.069811+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_6effcbf44509e5161e3c",
+      "name": "michael.ny",
+      "url": "https://www.instagram.com/michael.ny",
+      "platform": "instagram",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:00:01.236035+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_7135bbcbb30c32cfa7ec",
+      "name": "Neplilnaigh",
+      "url": "https://www.tiktok.com/@neplilnaigh",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:00:21.037170+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_7e6da13ce4368263957c",
+      "name": "SmallC69",
+      "url": "https://facebook.com/SmallC69",
+      "platform": "facebook",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:00:30.234737+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_84296101d4c884047542",
+      "name": "Tendouji Fuka",
+      "url": "https://www.tiktok.com/@fukatendouji",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:00:35.399477+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_c24ba801e86db2218a9a",
+      "name": "Ashley | VtuberTH",
+      "url": "https://bsky.app/profile/ashleythedemon.bsky.social",
+      "platform": "website",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:00:51.263229+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_f16ef885fcc55117c643",
+      "name": "RealiableCh",
+      "url": "https://facebook.com/RealiableCh",
+      "platform": "facebook",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:01:09.372125+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_923607b918dbf9aa666c",
+      "name": "nekonevtuber",
+      "url": "https://www.instagram.com/nekonevtuber",
+      "platform": "instagram",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:01:19.878052+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_bc8fc944f7e7cb7c74fa",
+      "name": "you.are.in.stain",
+      "url": "https://www.instagram.com/you.are.in.stain",
+      "platform": "instagram",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:01:25.143559+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_cd58ae9f21024fb64c21",
+      "name": "novapovie",
+      "url": "https://www.instagram.com/novapovie",
+      "platform": "instagram",
+      "decision": "unrelated",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:01:30.472667+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_8a2191b0cd4b7c6a37ca",
+      "name": "kitadesus",
+      "url": "https://www.tiktok.com/@kitadesus",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:01:37.451828+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_8cce1ff2a4711a5ca482",
+      "name": "Zilbi",
+      "url": "https://www.tiktok.com/@zilbi_acas",
+      "platform": "tiktok",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:01:48.425928+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_901b7481d46a0161bba3",
+      "name": "Rayne Ch. ไม่มีสังกัด 118",
+      "url": "https://www.tiktok.com/@imrayne",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:01:52.375114+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_9aabc90b4aff0e3885e7",
+      "name": "lyndel.epr",
+      "url": "https://www.tiktok.com/@lyndel.epr",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:01:55.151486+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_a9dee23288ba59f931dc",
+      "name": "Killmonnks ไม่มีสังกัด 6.3K",
+      "url": "https://www.tiktok.com/@Killmonnks",
+      "platform": "tiktok",
+      "decision": "vtuber",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:01.321338+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_b001eb14574e3df7a041",
+      "name": "Zelune Noctarielle 🌙",
+      "url": "https://tiktok.com/@zelune.luneze",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:04.420235+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_b8c7bd186f23080dec7e",
+      "name": "kafube.ch",
+      "url": "https://www.tiktok.com/@kafube.ch",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:07.484252+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_c1abbbc04833cc8e210c",
+      "name": "AirBlack24",
+      "url": "https://www.tiktok.com/@airblack24",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:18.396707+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_ccde11beaaf193a7f23d",
+      "name": "Beatrix Monroe",
+      "url": "https://www.tiktok.com/@beatrixmonroeatx",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:22.345453+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_cd7f87942161c3443037",
+      "name": "kanakochth",
+      "url": "https://www.tiktok.com/@kanakochth",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:25.422531+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_ce3a7819e587b932058d",
+      "name": "elfymaluky",
+      "url": "https://www.tiktok.com/@elfymaluky",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:28.199543+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_cf9838b316a9a244051d",
+      "name": "Haku",
+      "url": "https://www.tiktok.com/@haku_ch.kjp",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:31.682079+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_d04e4b10c95611c3c15d",
+      "name": "Luzin Luciana ไม่มีสังกัด 85",
+      "url": "https://www.tiktok.com/@luz1nnn_",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:34.681089+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_d49be09c48de2a3d63b6",
+      "name": "luqkurumi",
+      "url": "https://www.tiktok.com/@luqkurumi",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:37.554541+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_d6b4505480a424a0ceee",
+      "name": "Neora Foxxy",
+      "url": "https://www.tiktok.com/@yukisaki_hanabi",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:40.592808+00:00",
+      "reviewer": "human"
+    },
+    {
+      "discovery_id": "candidate_e74cfdf341b4beca5023",
+      "name": "knight_butler",
+      "url": "https://www.tiktok.com/@knight_butler",
+      "platform": "tiktok",
+      "decision": "unavailable",
+      "note": "",
+      "reviewed_at": "2026-09-19T12:02:44.091819+00:00",
+      "reviewer": "human"
+    }
+  ]
+}

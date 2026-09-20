@@ -55,9 +55,15 @@ Research Dashboard ถูกออกแบบให้ตอบคำถาม�
 
 การไม่พบตัวตนเดิมในปีถัดไปหมายถึง **ไม่พบในหลักฐานที่เก็บได้** ไม่ใช่การยืนยันว่าเลิกดูหรือออกจากชุมชน
 
-## 4. Cohort และตัวตนครีเอเตอร์
+## 4. Creator registry, baseline และ cohort
 
-โครงการรักษา approved cohort เดิมทั้งหมด **1,370 ช่อง** เป็นฐานการศึกษา เว้นแต่มีการเปลี่ยนแปลง cohort แบบมีหลักฐานและ provenance ชัดเจน
+ระบบแยกหน้าที่ของข้อมูลครีเอเตอร์ออกเป็นสามชั้นอย่างชัดเจน:
+
+1. **Canonical creator registry** — `data/registry/creators.json` เป็น source of truth ของ creator/persona/account identity และอ่านผ่าน `CreatorCatalog` เท่านั้น
+2. **Trusted baseline** — YouTube Channel IDs เดิม **1,370 ช่อง** ต้องคงอยู่ครบเป็น subset ของ canonical catalog เพื่อรักษาความต่อเนื่องและตรวจ regression แต่ไม่ใช่ registry แยกอีกชุด
+3. **Frozen longitudinal cohort** — `data/temporal/catalog/target_manifest.csv` มี **193 ช่อง** สำหรับการวิเคราะห์ตามเวลา และห้ามเพิ่มสมาชิกอัตโนมัติจาก discovery ใหม่
+
+บัญชีที่ค้นพบใหม่ต้องผ่าน eligibility review และ identity resolution ที่มีหลักฐานบวกก่อนเข้าสู่ canonical catalog; ชื่อ, handle หรือสังกัดที่คล้ายกันเพียงอย่างเดียวไม่ใช้เป็นเหตุผล merge persona
 
 ThaiVirtualCreatorRegistry เป็นโครงการแยกที่ช่วยเรื่อง discovery / registry / identity evidence ส่วน ThaiVtuberSNA รับผิดชอบ interaction evidence และ network analysis
 

@@ -12,7 +12,8 @@ from datetime import datetime, timezone
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
-from config.settings import DATA_DIR
+from config.settings import DATA_DIR, CREATOR_REGISTRY_PATH
+from core.creator_catalog import CreatorCatalog
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("CreateTargetManifest")
@@ -29,14 +30,21 @@ def get_tier(subscriber_count: int) -> str:
     return "D"
 
 def main():
-    logger.info("Building frozen target manifest for Phase T1 Historical Catalog...")
-    registry_file = DATA_DIR / "thai_vtuber_registry.csv"
-    if not registry_file.exists():
-        logger.error(f"Registry not found: {registry_file}")
-        sys.exit(1)
+    logger.info("Checking frozen target manifest for Phase T1 Historical Catalog...")
+    catalog = CreatorCatalog.from_path(CREATOR_REGISTRY_PATH)
+    vtubers = list(catalog.youtube_rows())
 
-    with open(registry_file, "r", encoding="utf-8") as f:
-        vtubers = list(csv.DictReader(f))
+    # The longitudinal cohort is immutable once created.  New canonical creator
+    # accounts may enrich ecosystem outputs, but never silently expand this file.
+    if MANIFEST_PATH.exists():
+        with open(MANIFEST_PATH, "r", encoding="utf-8-sig", newline="") as handle:
+            frozen_rows = list(csv.DictReader(handle))
+        catalog_ids = {row["channel_id"] for row in vtubers}
+        missing = {row["channel_id"] for row in frozen_rows} - catalog_ids
+        if missing:
+            raise RuntimeError(f"frozen target manifest contains unknown canonical channels: {sorted(missing)[:5]}")
+        logger.info(f"Frozen target manifest already exists with {len(frozen_rows)} channels; leaving it unchanged.")
+        return
 
     selected_rows = []
     now_str = datetime.now(timezone.utc).isoformat()
