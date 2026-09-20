@@ -44,28 +44,71 @@ def _write_csv(path: Path, fieldnames: list[str], rows: list[dict]) -> int:
 # ── Export functions ─────────────────────────────────────────────────────────
 
 def export_vtubers(con, output_file: Path) -> int:
-    """VTUBERS.csv — YouTube accounts with a verified persona link."""
-    # Join accounts ← account_links ← personas
+    """VTUBERS.csv — trusted YouTube universe for ThaiVtuberMaster."""
     rows_raw = con.execute("""
+        WITH eligible AS (
+            SELECT DISTINCT a.id
+            FROM accounts a
+            WHERE a.platform = 'youtube'
+              AND (
+                  EXISTS (
+                      SELECT 1
+                      FROM account_links al
+                      JOIN personas p ON p.id = al.persona_id
+                      WHERE al.account_id = a.id
+                        AND al.review_status = 'verified'
+                        AND p.review_status = 'verified'
+                  )
+                  OR EXISTS (
+                      SELECT 1 FROM legacy_claims lc WHERE lc.account_id = a.id
+                  )
+              )
+        ),
+        verified_link AS (
+            SELECT
+                al.account_id,
+                p.id AS persona_id,
+                p.canonical_name,
+                al.reviewed_at,
+                ROW_NUMBER() OVER (
+                    PARTITION BY al.account_id
+                    ORDER BY al.reviewed_at DESC NULLS LAST, al.id
+                ) AS rn
+            FROM account_links al
+            JOIN personas p ON p.id = al.persona_id
+            WHERE al.review_status = 'verified'
+              AND p.review_status = 'verified'
+        ),
+        affiliation AS (
+            SELECT
+                persona_id,
+                organization,
+                ROW_NUMBER() OVER (PARTITION BY persona_id ORDER BY id) AS rn
+            FROM affiliations
+            WHERE review_status = 'verified'
+        ),
+        legacy AS (
+            SELECT
+                account_id,
+                source_agency,
+                source_checked_at,
+                ROW_NUMBER() OVER (PARTITION BY account_id ORDER BY source_checked_at DESC, id) AS rn
+            FROM legacy_claims
+        )
         SELECT
-            a.platform_id   AS channel_id,
-            a.handle        AS handle,
-            p.canonical_name AS name,
-            a.name          AS raw_name,
-            af.organization AS agency,
-            p.review_status AS persona_status,
-            al.reviewed_at  AS last_verified,
-            p.id            AS persona_id
-        FROM accounts a
-        JOIN account_links al ON al.account_id = a.id AND al.review_status = 'verified'
-        JOIN personas p       ON p.id = al.persona_id AND p.review_status = 'verified'
-        LEFT JOIN (
-            SELECT persona_id, organization,
-                   ROW_NUMBER() OVER (PARTITION BY persona_id ORDER BY id) AS rn
-            FROM affiliations WHERE review_status = 'verified'
-        ) af ON af.persona_id = p.id AND af.rn = 1
-        WHERE a.platform = 'youtube'
-        ORDER BY LOWER(COALESCE(p.canonical_name, a.name))
+            a.platform_id AS channel_id,
+            a.handle,
+            COALESCE(v.canonical_name, a.name) AS name,
+            COALESCE(af.organization, l.source_agency, 'Independent') AS agency,
+            COALESCE(v.reviewed_at, l.source_checked_at, a.first_discovered_at) AS last_verified,
+            v.persona_id
+        FROM eligible e
+        JOIN accounts a ON a.id = e.id
+        LEFT JOIN verified_link v ON v.account_id = a.id AND v.rn = 1
+        LEFT JOIN affiliation af ON af.persona_id = v.persona_id AND af.rn = 1
+        LEFT JOIN legacy l ON l.account_id = a.id AND l.rn = 1
+        WHERE a.platform_id IS NOT NULL
+        ORDER BY LOWER(COALESCE(v.canonical_name, a.name)), a.platform_id
     """).fetchall()
     cols = [d[0] for d in con.description]
     rows = []
@@ -74,55 +117,78 @@ def export_vtubers(con, output_file: Path) -> int:
         rows.append({
             "channel_id": d["channel_id"],
             "handle": d["handle"] or "",
-            "name": d["name"] or d["raw_name"],
-            "subscriber_count": 0,  # not stored in registry; filled by collect step later
+            "name": d["name"] or d["channel_id"],
+            "subscriber_count": 0,
             "agency": d["agency"] or "Independent",
             "status": "ACCEPT",
             "last_activity": "",
             "last_collected": d["last_verified"] or "",
-            "persona_id": d["persona_id"],
+            "persona_id": d["persona_id"] or "",
         })
-    fieldnames = ["channel_id", "handle", "name", "subscriber_count",
-                  "agency", "status", "last_activity", "last_collected", "persona_id"]
+    fieldnames = [
+        "channel_id", "handle", "name", "subscriber_count",
+        "agency", "status", "last_activity", "last_collected", "persona_id",
+    ]
     return _write_csv(output_file, fieldnames, rows)
 
-
 def export_network(con, output_file: Path) -> int:
-    """NETWORK_RESULT.csv — pairwise audience-overlap edges."""
+    """NETWORK_RESULT.csv — complete pairwise audience-overlap metrics."""
     rows_raw = con.execute("""
         SELECT
-            ne.creator_a    AS channel_a_id,
-            ne.creator_b    AS channel_b_id,
+            ne.creator_a AS channel_a_id,
+            ne.creator_b AS channel_b_id,
             ne.shared_any,
+            ne.shared_live_chat,
+            ne.shared_comments,
             ne.strong_shared_any,
+            ne.strong_shared_live_chat,
+            ne.strong_shared_comments,
+            ne.jaccard,
+            ne.simpson,
+            ne.calculation_source,
             ne.calculated_at,
             ne.agency_a,
             ne.agency_b,
-            pa.name         AS name_a,
-            pb.name         AS name_b
+            pa.name AS name_a,
+            pb.name AS name_b
         FROM network_edges ne
-        LEFT JOIN accounts pa ON pa.platform_id = ne.creator_a AND pa.platform = 'youtube'
-        LEFT JOIN accounts pb ON pb.platform_id = ne.creator_b AND pb.platform = 'youtube'
+        LEFT JOIN accounts pa
+          ON pa.platform_id = ne.creator_a AND pa.platform = 'youtube'
+        LEFT JOIN accounts pb
+          ON pb.platform_id = ne.creator_b AND pb.platform = 'youtube'
         WHERE ne.shared_any > 0
-        ORDER BY ne.shared_any DESC
+        ORDER BY ne.shared_any DESC, ne.creator_a, ne.creator_b
     """).fetchall()
     cols = [d[0] for d in con.description]
     rows = []
     for r in rows_raw:
         d = dict(zip(cols, r))
         rows.append({
+            "Channel A ID": d["channel_a_id"],
             "Channel A": d["name_a"] or d["channel_a_id"],
             "Agency A": d["agency_a"] or "Independent",
+            "Channel B ID": d["channel_b_id"],
             "Channel B": d["name_b"] or d["channel_b_id"],
             "Agency B": d["agency_b"] or "Independent",
             "Shared Viewers": d["shared_any"],
+            "Shared Live Chat": d["shared_live_chat"],
+            "Shared Comments": d["shared_comments"],
             "Strong Shared": d["strong_shared_any"],
+            "Strong Shared Live Chat": d["strong_shared_live_chat"],
+            "Strong Shared Comments": d["strong_shared_comments"],
+            "Jaccard": d["jaccard"] if d["jaccard"] is not None else "",
+            "Simpson": d["simpson"] if d["simpson"] is not None else "",
+            "Calculation Source": d["calculation_source"],
             "Calculated At": d["calculated_at"],
         })
-    fieldnames = ["Channel A", "Agency A", "Channel B", "Agency B",
-                  "Shared Viewers", "Strong Shared", "Calculated At"]
+    fieldnames = [
+        "Channel A ID", "Channel A", "Agency A",
+        "Channel B ID", "Channel B", "Agency B",
+        "Shared Viewers", "Shared Live Chat", "Shared Comments",
+        "Strong Shared", "Strong Shared Live Chat", "Strong Shared Comments",
+        "Jaccard", "Simpson", "Calculation Source", "Calculated At",
+    ]
     return _write_csv(output_file, fieldnames, rows)
-
 
 def export_platform_verified(con, platform: str, output_file: Path) -> int:
     """TIKTOK_VERIFIED.csv or TWITCH_VERIFIED.csv."""
@@ -206,6 +272,11 @@ def _db_fingerprint(con) -> str:
             (SELECT COUNT(*) FROM personas WHERE review_status='verified') AS vp,
             (SELECT COUNT(*) FROM accounts) AS acc,
             (SELECT COUNT(*) FROM network_edges) AS ne,
+            (SELECT COALESCE(SUM(shared_any), 0) FROM network_edges) AS shared_sum,
+            (SELECT COALESCE(SUM(strong_shared_any), 0) FROM network_edges) AS strong_sum,
+            (SELECT MAX(calculated_at) FROM network_edges) AS edge_calc,
+            (SELECT COUNT(*) FROM interactions) AS interactions,
+            (SELECT CAST(MAX(observed_at) AS VARCHAR) FROM interactions) AS last_interaction,
             (SELECT MAX(reviewed_at) FROM personas WHERE review_status='verified') AS last_rev
     """).fetchone()
     return hashlib.sha256(str(rows).encode()).hexdigest()[:16]
