@@ -1,15 +1,24 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = "thai-virtual-creator-registry"
-version = "0.1.0"
-description = "Data collection worker, SNA computation engine, and registry pipeline for ThaiVtuberMaster"
+name = "thaivtubersna"
+version = "2.0.0"
+description = "ThaiVTuber 24/7 Data Collection & SNA Overlap Engine"
+authors = [{ name = "Terasit Juntarasombut" }]
+readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "duckdb>=1.0.0",
+    "requests>=2.31.0",
+]
 
 [project.optional-dependencies]
-discovery = ["playwright>=1.55,<2"]
+test = [
+    "pytest>=8.0.0",
+]
 
-[tool.setuptools.packages.find]
-include = ["registry*"]
-
-[tool.ruff]
-line-length = 110
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

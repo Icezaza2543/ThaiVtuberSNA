@@ -89,21 +89,19 @@ Thai relation values: `thai_language`, `self_declared_thai`, `thai_community`,
 ## Commands
 
 ```sh
-python -m unittest discover -s tests -v
-python -m registry validate
-python -m registry report --as-of YYYY-MM-DD
-python -m registry apply --file reviews/CHANGE.json --dry-run
-python -m registry apply --file reviews/CHANGE.json
-python -m registry queue --status pending --limit 50
-python -m registry queue --kind account_scope --platform twitch --status pending
-python -m registry inspect persona PERSONA_ID
-python -m registry inspect candidate CANDIDATE_ID
-python -m registry coverage
-python -m registry map-creators --help
+python -m pytest tests/ -v
+python -m thaivtubersna validate
+python -m thaivtubersna run
+python -m thaivtubersna worker
+python -m thaivtubersna export --output dist/export/
+python -m thaivtubersna queue
+python -m thaivtubersna apply reviews/CHANGE.json --dry-run
+python -m thaivtubersna apply reviews/CHANGE.json
+python migrate.py --verify
 ```
 
 `--dry-run` must pass before a real apply. Failed applies do not write
-`registry.json`. Do not overwrite an existing `dist/` snapshot.
+to the database. Do not overwrite an existing `dist/` snapshot.
 
 ## Creator-link pipeline (2026-09-16)
 

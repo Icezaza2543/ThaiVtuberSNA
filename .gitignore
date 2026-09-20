@@ -77,10 +77,8 @@ profiles/
 playwright-data/
 *.egg-info/
 
-# Frontend build & generated data
-/web/node_modules/
-/web/dist/
-/web/.vite/
-/web/public/data/
+# Worker runtime (DuckDB is gitignored by *.duckdb above)
+runtime/
+dist/
 /playwright-report/
 /test-results/
