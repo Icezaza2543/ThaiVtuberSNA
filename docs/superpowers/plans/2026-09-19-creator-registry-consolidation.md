@@ -16,7 +16,7 @@
 - Include exactly 363 automated `VTUBER` accounts and 30 human `vtuber` accounts after identity resolution.
 - Resolve one virtual persona or character form per creator; reincarnations and distinct character forms remain separate.
 - Never merge identities from display-name similarity, avatar similarity, agency, or fuzzy score alone.
-- Exclude the 102 final exclusions, 94 unavailable accounts, virtual groups, associated accounts, organizations, media, clip channels, and services from individual creators.
+- Exclude the 106 final exclusions, 94 unavailable accounts, virtual groups, associated accounts, organizations, media, clip channels, and services from individual creators.
 - Use YouTube Data API only for read-only identity evidence; never log or persist its key.
 - Do not write Google Sheets or touch live-worker, workbook, quota-state, cursor-state, HMAC, checkpoint, frozen cohort, or frozen release files.
 - `data/temporal/catalog/target_manifest.csv` remains byte-identical.
