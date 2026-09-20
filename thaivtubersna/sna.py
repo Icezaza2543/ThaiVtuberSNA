@@ -1,224 +1,219 @@
 """
-Step 3 — SNA (Social Network Analysis)
-=======================================
-Computes pairwise audience-overlap between verified Thai VTuber accounts.
+Step 3 — SNA
+============
+Computes pairwise audience overlap directly from DuckDB interactions.
 
-The single question we answer: does VTuber A share viewers with VTuber B,
-and how many / how strongly?
-
-Metrics:
-  shared_any          — viewers who appeared in both channels (any source)
-  shared_live_chat    — live-chat-only overlap
-  shared_comments     — comment-only overlap
-  strong_shared_*     — viewers who appeared ≥ 3 times in both channels
-  jaccard             — |A∩B| / |A∪B|
-  simpson             — |A∩B| / min(|A|, |B|)
-
-Data source: data/events/**/*.parquet  (gitignored, collected offline)
-Fallback:    network_edges already in DuckDB (seeded from web/data.json)
-
-Entry points used by the worker:
-    sna.recalculate_if_needed(path)
-    sna.compute_pairwise_overlap(path)
-    sna.summary(path)
+Strong overlap means the same viewer appeared in at least 2 distinct videos
+for both creators. Source-specific strong metrics apply the same rule to
+live_chat or comment interactions separately.
 """
 from __future__ import annotations
 
 import logging
-from pathlib import Path
 
-from .store import DB_PATH, connect, count, set_state, get_state, utc_now
+from .store import DB_PATH, connect, get_state, set_state, uid, upsert, utc_now
 
 logger = logging.getLogger(__name__)
 
-ROOT = Path(__file__).resolve().parents[1]
-EVENTS_DIR = ROOT / "data" / "events"
-
-# Minimum shared viewers to include an edge in the output
 MIN_SHARED = 1
-# A viewer is "strong" if they appear in ≥ this many sessions per channel
-STRONG_THRESHOLD = 3
-
-
-# ── DuckDB-based overlap computation ─────────────────────────────────────────
+STRONG_VIDEO_THRESHOLD = 2
 
 _OVERLAP_SQL = """
 WITH
-presence AS (
+any_presence AS (
     SELECT
+        creator_id,
         viewer_hash,
-        vtuber_channel_id  AS channel,
-        source_type,
-        COALESCE(appearances, 1)  AS appearances
-    FROM raw_events
+        COUNT(DISTINCT video_id) AS video_count
+    FROM interactions
     WHERE viewer_hash IS NOT NULL
       AND trim(viewer_hash) <> ''
-      AND vtuber_channel_id IS NOT NULL
+      AND creator_id IS NOT NULL
+    GROUP BY creator_id, viewer_hash
 ),
-per_viewer_channel AS (
-    SELECT channel, viewer_hash, source_type,
-           SUM(appearances) AS total_appearances
-    FROM presence
-    GROUP BY channel, viewer_hash, source_type
-),
-pairs AS (
+any_pairs AS (
     SELECT
-        LEAST(a.channel, b.channel)    AS creator_a,
-        GREATEST(a.channel, b.channel) AS creator_b,
-        a.viewer_hash,
-        a.source_type  AS source_a,
-        b.source_type  AS source_b,
-        a.total_appearances AS app_a,
-        b.total_appearances AS app_b
-    FROM per_viewer_channel a
-    JOIN per_viewer_channel b
+        a.creator_id AS creator_a,
+        b.creator_id AS creator_b,
+        COUNT(*) AS shared_any,
+        SUM(
+            CASE
+                WHEN a.video_count >= ? AND b.video_count >= ? THEN 1
+                ELSE 0
+            END
+        ) AS strong_shared_any
+    FROM any_presence a
+    JOIN any_presence b
       ON a.viewer_hash = b.viewer_hash
-     AND a.channel < b.channel
+     AND a.creator_id < b.creator_id
+    GROUP BY a.creator_id, b.creator_id
+),
+source_presence AS (
+    SELECT
+        creator_id,
+        viewer_hash,
+        source_type,
+        COUNT(DISTINCT video_id) AS video_count
+    FROM interactions
+    WHERE viewer_hash IS NOT NULL
+      AND trim(viewer_hash) <> ''
+      AND creator_id IS NOT NULL
+      AND source_type IN ('live_chat', 'comment')
+    GROUP BY creator_id, viewer_hash, source_type
+),
+source_pairs AS (
+    SELECT
+        a.creator_id AS creator_a,
+        b.creator_id AS creator_b,
+        a.source_type,
+        COUNT(*) AS shared_source,
+        SUM(
+            CASE
+                WHEN a.video_count >= ? AND b.video_count >= ? THEN 1
+                ELSE 0
+            END
+        ) AS strong_shared_source
+    FROM source_presence a
+    JOIN source_presence b
+      ON a.viewer_hash = b.viewer_hash
+     AND a.source_type = b.source_type
+     AND a.creator_id < b.creator_id
+    GROUP BY a.creator_id, b.creator_id, a.source_type
+),
+source_agg AS (
+    SELECT
+        creator_a,
+        creator_b,
+        MAX(CASE WHEN source_type = 'live_chat' THEN shared_source ELSE 0 END) AS shared_live_chat,
+        MAX(CASE WHEN source_type = 'comment' THEN shared_source ELSE 0 END) AS shared_comments,
+        MAX(CASE WHEN source_type = 'live_chat' THEN strong_shared_source ELSE 0 END) AS strong_shared_live_chat,
+        MAX(CASE WHEN source_type = 'comment' THEN strong_shared_source ELSE 0 END) AS strong_shared_comments
+    FROM source_pairs
+    GROUP BY creator_a, creator_b
 )
 SELECT
-    creator_a,
-    creator_b,
-    COUNT(DISTINCT viewer_hash)                          AS shared_any,
-    COUNT(DISTINCT CASE WHEN source_a='live_chat' AND source_b='live_chat'
-                        THEN viewer_hash END)             AS shared_live_chat,
-    COUNT(DISTINCT CASE WHEN source_a='comment' AND source_b='comment'
-                        THEN viewer_hash END)             AS shared_comments,
-    COUNT(DISTINCT CASE WHEN app_a >= ? AND app_b >= ?
-                        THEN viewer_hash END)             AS strong_shared_any,
-    COUNT(DISTINCT CASE WHEN source_a='live_chat' AND source_b='live_chat'
-                             AND app_a >= ? AND app_b >= ?
-                        THEN viewer_hash END)             AS strong_shared_live_chat,
-    COUNT(DISTINCT CASE WHEN source_a='comment' AND source_b='comment'
-                             AND app_a >= ? AND app_b >= ?
-                        THEN viewer_hash END)             AS strong_shared_comments
-FROM pairs
-GROUP BY creator_a, creator_b
-HAVING shared_any >= ?
+    p.creator_a,
+    p.creator_b,
+    CAST(p.shared_any AS INTEGER) AS shared_any,
+    CAST(COALESCE(s.shared_live_chat, 0) AS INTEGER) AS shared_live_chat,
+    CAST(COALESCE(s.shared_comments, 0) AS INTEGER) AS shared_comments,
+    CAST(p.strong_shared_any AS INTEGER) AS strong_shared_any,
+    CAST(COALESCE(s.strong_shared_live_chat, 0) AS INTEGER) AS strong_shared_live_chat,
+    CAST(COALESCE(s.strong_shared_comments, 0) AS INTEGER) AS strong_shared_comments
+FROM any_pairs p
+LEFT JOIN source_agg s USING (creator_a, creator_b)
+WHERE p.shared_any >= ?
+ORDER BY p.shared_any DESC, p.creator_a, p.creator_b
 """
 
 _AUDIENCE_SQL = """
-SELECT channel, COUNT(DISTINCT viewer_hash) AS unique_viewers
-FROM (
-    SELECT vtuber_channel_id AS channel, viewer_hash
-    FROM raw_events
-    WHERE viewer_hash IS NOT NULL AND trim(viewer_hash) <> ''
-)
-GROUP BY channel
+SELECT creator_id, COUNT(DISTINCT viewer_hash) AS unique_viewers
+FROM interactions
+WHERE viewer_hash IS NOT NULL AND trim(viewer_hash) <> ''
+GROUP BY creator_id
 """
 
 
-def _has_parquet_data() -> bool:
-    return EVENTS_DIR.exists() and any(EVENTS_DIR.rglob("*.parquet"))
-
-
-def _create_view(con) -> bool:
-    """Create raw_events view over Parquet files. Returns True if data exists."""
-    import duckdb
-    if not _has_parquet_data():
-        return False
-    pattern = str(EVENTS_DIR / "**" / "*.parquet").replace("\\", "/")
-    con.execute(
-        f"CREATE OR REPLACE VIEW raw_events AS "
-        f"SELECT * FROM read_parquet('{pattern}', union_by_name=True)"
-    )
-    return True
+def _interaction_stats(con) -> tuple[int, str | None]:
+    row = con.execute(
+        "SELECT COUNT(*), CAST(MAX(observed_at) AS VARCHAR) FROM interactions"
+    ).fetchone()
+    return int(row[0]), row[1]
 
 
 def compute_pairwise_overlap(db_path=None) -> int:
-    """
-    Compute all pairwise viewer-overlap edges from Parquet event files.
-    Upserts results into network_edges table.
-    Returns number of edges written.
-    """
-    from .store import upsert, uid
+    """Recompute fresh overlap edges from DuckDB interactions."""
     path = db_path or DB_PATH
-
-    if not _has_parquet_data():
-        logger.info("sna: no Parquet event files found in %s; skipping computation", EVENTS_DIR)
-        return 0
-
-    import duckdb
-
-    # Use a separate in-process DuckDB connection to read Parquet
-    analytics_con = duckdb.connect(":memory:")
-    if not _create_view(analytics_con):
-        return 0
-
-    st = STRONG_THRESHOLD
-    rows = analytics_con.execute(
-        _OVERLAP_SQL,
-        [st, st, st, st, st, st, MIN_SHARED]
-    ).fetchall()
-    analytics_con.close()
-
-    if not rows:
-        return 0
-
-    # Compute per-channel audience sizes for Jaccard / Simpson
-    audience_con = duckdb.connect(":memory:")
-    _create_view(audience_con)
-    audience_rows = audience_con.execute(_AUDIENCE_SQL).fetchall()
-    audience_con.close()
-    audience = {ch: n for ch, n in audience_rows}
-
+    threshold = STRONG_VIDEO_THRESHOLD
     now = utc_now()
-    written = 0
+
     with connect(path) as con:
-        for row in rows:
-            (a, b, shared_any, shared_live, shared_comm,
-             strong_any, strong_live, strong_comm) = row
-            n_a = audience.get(a, shared_any)
-            n_b = audience.get(b, shared_any)
+        interaction_count, _ = _interaction_stats(con)
+        if interaction_count == 0:
+            logger.info("sna: no interactions yet; preserving legacy_seed edges")
+            return 0
+
+        rows = con.execute(
+            _OVERLAP_SQL,
+            [threshold, threshold, threshold, threshold, MIN_SHARED],
+        ).fetchall()
+        audience = {
+            creator_id: n
+            for creator_id, n in con.execute(_AUDIENCE_SQL).fetchall()
+        }
+
+        # Fresh SNA results are authoritative for pairs derived from interactions.
+        con.execute("DELETE FROM network_edges WHERE calculation_source = 'live_interactions'")
+
+        written = 0
+        for (
+            creator_a,
+            creator_b,
+            shared_any,
+            shared_live_chat,
+            shared_comments,
+            strong_shared_any,
+            strong_shared_live_chat,
+            strong_shared_comments,
+        ) in rows:
+            n_a = audience.get(creator_a, shared_any)
+            n_b = audience.get(creator_b, shared_any)
             union = n_a + n_b - shared_any
             jaccard = shared_any / union if union > 0 else None
-            simpson = shared_any / min(n_a, n_b) if min(n_a, n_b) > 0 else None
-            edge_id = uid("edge", a + ":" + b)
-            upsert(con, "network_edges", {
-                "id": edge_id,
-                "creator_a": a, "creator_b": b,
-                "shared_any": shared_any,
-                "shared_live_chat": shared_live,
-                "shared_comments": shared_comm,
-                "strong_shared_any": strong_any,
-                "strong_shared_live_chat": strong_live,
-                "strong_shared_comments": strong_comm,
-                "jaccard": jaccard,
-                "simpson": simpson,
-                "agency_a": None,
-                "agency_b": None,
-                "calculated_at": now,
-            })
-            written += 1
-        set_state(con, "last_sna_at", now)
+            smaller = min(n_a, n_b)
+            simpson = shared_any / smaller if smaller > 0 else None
 
-    logger.info("sna: wrote %d network edges", written)
+            upsert(
+                con,
+                "network_edges",
+                {
+                    "id": uid("edge", f"{creator_a}:{creator_b}"),
+                    "creator_a": creator_a,
+                    "creator_b": creator_b,
+                    "shared_any": shared_any,
+                    "shared_live_chat": shared_live_chat,
+                    "shared_comments": shared_comments,
+                    "strong_shared_any": strong_shared_any,
+                    "strong_shared_live_chat": strong_shared_live_chat,
+                    "strong_shared_comments": strong_shared_comments,
+                    "jaccard": jaccard,
+                    "simpson": simpson,
+                    "agency_a": None,
+                    "agency_b": None,
+                    "calculated_at": now,
+                    "calculation_source": "live_interactions",
+                },
+            )
+            written += 1
+
+        interaction_count, interaction_max = _interaction_stats(con)
+        set_state(con, "last_sna_at", now)
+        set_state(con, "last_sna_interaction_count", interaction_count)
+        set_state(con, "last_sna_interaction_max", interaction_max)
+
+    logger.info("sna: wrote %d live interaction edges", written)
     return written
 
 
 def recalculate_if_needed(db_path=None) -> dict:
-    """
-    Recalculate SNA only if new event data is available since the last run.
-    Returns a summary dict.
-    """
+    """Recalculate only when the interactions table has changed."""
     path = db_path or DB_PATH
 
-    if not _has_parquet_data():
-        logger.info("sna: no Parquet data; keeping existing %d seeded edges", _edge_count(path))
-        return {"skipped": True, "reason": "no_parquet_data", "edges": _edge_count(path)}
-
-    # Check if Parquet files are newer than last SNA run
     with connect(path) as con:
-        last_sna = get_state(con, "last_sna_at")
+        interaction_count, interaction_max = _interaction_stats(con)
+        if interaction_count == 0:
+            edges = con.execute("SELECT COUNT(*) FROM network_edges").fetchone()[0]
+            return {"skipped": True, "reason": "no_interactions", "edges": edges}
 
-    parquet_files = list(EVENTS_DIR.rglob("*.parquet"))
-    if last_sna and parquet_files:
-        import os
-        latest_parquet = max(os.path.getmtime(f) for f in parquet_files)
-        from datetime import datetime, timezone
-        last_ts = datetime.fromisoformat(last_sna.replace("Z", "+00:00")).timestamp()
-        if latest_parquet <= last_ts:
-            logger.info("sna: Parquet files unchanged since last run; skipping")
-            return {"skipped": True, "reason": "data_unchanged", "edges": _edge_count(path)}
+        last_count = int(get_state(con, "last_sna_interaction_count", -1) or -1)
+        last_max = get_state(con, "last_sna_interaction_max")
+
+    if interaction_count == last_count and interaction_max == last_max:
+        return {
+            "skipped": True,
+            "reason": "interactions_unchanged",
+            "edges": _edge_count(path),
+        }
 
     edges = compute_pairwise_overlap(path)
     return {"skipped": False, "edges": edges}
@@ -234,26 +229,37 @@ def summary(db_path=None) -> dict:
     path = db_path or DB_PATH
     with connect(path) as con:
         total_edges = con.execute("SELECT COUNT(*) FROM network_edges").fetchone()[0]
-        max_shared = con.execute(
-            "SELECT MAX(shared_any) FROM network_edges"
-        ).fetchone()[0] or 0
-        last_calc = con.execute(
-            "SELECT MAX(calculated_at) FROM network_edges"
-        ).fetchone()[0]
+        max_shared = con.execute("SELECT MAX(shared_any) FROM network_edges").fetchone()[0] or 0
+        last_calc = con.execute("SELECT MAX(calculated_at) FROM network_edges").fetchone()[0]
         unique_creators = con.execute(
-            "SELECT COUNT(DISTINCT creator_a) + COUNT(DISTINCT creator_b) FROM network_edges"
+            """
+            SELECT COUNT(DISTINCT creator_id)
+            FROM (
+                SELECT creator_a AS creator_id FROM network_edges
+                UNION ALL
+                SELECT creator_b AS creator_id FROM network_edges
+            )
+            """
         ).fetchone()[0]
+        interactions = con.execute("SELECT COUNT(*) FROM interactions").fetchone()[0]
+        live_edges = con.execute(
+            "SELECT COUNT(*) FROM network_edges WHERE calculation_source = 'live_interactions'"
+        ).fetchone()[0]
+        seed_edges = con.execute(
+            "SELECT COUNT(*) FROM network_edges WHERE calculation_source = 'legacy_seed'"
+        ).fetchone()[0]
+
     return {
         "total_edges": total_edges,
+        "live_edges": live_edges,
+        "legacy_seed_edges": seed_edges,
         "max_shared_viewers": max_shared,
         "unique_creators_in_network": unique_creators,
+        "interaction_rows": interactions,
         "last_calculated_at": last_calc,
-        "parquet_data_present": _has_parquet_data(),
     }
 
 
 def run(db_path=None) -> dict:
-    """Main entry point: recalculate if needed, return summary."""
     result = recalculate_if_needed(db_path)
-    s = summary(db_path)
-    return {"recalculate": result, "summary": s}
+    return {"recalculate": result, "summary": summary(db_path)}
