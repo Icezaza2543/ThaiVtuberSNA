@@ -59,17 +59,106 @@ def pytest_failures(text: str) -> list[str]:
     return sorted(set(re.findall(r"^FAILED\s+([^\s]+)", text, flags=re.MULTILINE)))
 
 
+def pytest_errors(text: str) -> list[str]:
+    return sorted(set(re.findall(r"^ERROR\s+([^\s]+)", text, flags=re.MULTILINE)))
+
+
+def _normalize_failure_text(text: str) -> str:
+    normalized = text.replace("\\", "/")
+    normalized = re.sub(r"sha256_[0-9a-fA-F]{64}", "sha256_<HASH>", normalized)
+    normalized = re.sub(r"\b[0-9a-fA-F]{64}\b", "<HASH>", normalized)
+    normalized = re.sub(
+        r"(?:[A-Za-z]:)?/(?:[^\s:'\"()]+/)*ThaiVtuberSNA",
+        "<ROOT>",
+        normalized,
+    )
+    normalized = normalized.replace("WindowsPath(", "Path(").replace("PosixPath(", "Path(")
+    return " ".join(normalized.split())
+
+
+def _pytest_failure_blocks(text: str) -> dict[str, str]:
+    marker = re.search(r"^=+\s+FAILURES\s+=+$", text, flags=re.MULTILINE)
+    if not marker:
+        return {}
+    section = text[marker.end():]
+    end = re.search(
+        r"^=+\s+(?:warnings summary|short test summary info)\s+=+$",
+        section,
+        flags=re.MULTILINE,
+    )
+    if end:
+        section = section[:end.start()]
+    headers = list(re.finditer(r"^_{5,}\s+(.+?)\s+_{5,}\s*$", section, flags=re.MULTILINE))
+    blocks: dict[str, str] = {}
+    for index, match in enumerate(headers):
+        stop = headers[index + 1].start() if index + 1 < len(headers) else len(section)
+        blocks[match.group(1).strip()] = section[match.end():stop]
+    return blocks
+
+
+def _failure_detail(nodeid: str, blocks: dict[str, str], text: str) -> dict:
+    label = nodeid.rsplit("::", 1)[-1]
+    block = blocks.get(label)
+    if block is None:
+        for header, candidate in blocks.items():
+            if header == label or header.endswith(label) or label.endswith(header):
+                block = candidate
+                break
+
+    selected: list[str] = []
+    exception_class = "unknown"
+    if block:
+        capture_stdout = False
+        for line in block.splitlines():
+            stripped = line.strip()
+            if re.match(r"^-+\s+Captured .*\s+-+$", line):
+                capture_stdout = True
+                continue
+            if line.startswith("E "):
+                selected.append(line)
+                if exception_class == "unknown":
+                    exc = re.match(r"^E\s+([A-Za-z_][\w.]*(?:Error|Exception))(?::|\b)", line)
+                    if exc:
+                        exception_class = exc.group(1)
+                continue
+            if capture_stdout and stripped and not re.fullmatch(r"[-=_]+", stripped):
+                selected.append(line)
+
+    if not selected:
+        summary = re.search(
+            rf"^FAILED\s+{re.escape(nodeid)}(?:\s+-\s+(.+))?$",
+            text,
+            flags=re.MULTILINE,
+        )
+        if summary and summary.group(1):
+            selected.append(summary.group(1))
+
+    normalized = _normalize_failure_text("\n".join(selected) or nodeid)
+    return {
+        "exception_class": exception_class,
+        "signature": hashlib.sha256(normalized.encode("utf-8")).hexdigest(),
+        "normalized_excerpt": normalized[:600],
+    }
+
+
 def pytest_summary(text: str) -> dict:
     failures = pytest_failures(text)
-    match = re.search(
-        r"(?:(\d+) failed,\s*)?(?:(\d+) passed)(?:,\s*(\d+) warnings?)?",
-        text,
-    )
+    errors = pytest_errors(text)
+    blocks = _pytest_failure_blocks(text)
+    details = {nodeid: _failure_detail(nodeid, blocks, text) for nodeid in failures}
+
+    def count(label: str) -> int | None:
+        matches = re.findall(rf"(?<!\w)(\d+)\s+{label}\b", text)
+        return int(matches[-1]) if matches else None
+
     return {
         "failed_tests": failures,
-        "failed": int(match.group(1) or 0) if match else len(failures),
-        "passed": int(match.group(2)) if match else None,
-        "warnings": int(match.group(3) or 0) if match else None,
+        "error_tests": errors,
+        "failure_details": details,
+        "failed": count("failed") if count("failed") is not None else len(failures),
+        "errors": count("errors?") if count("errors?") is not None else len(errors),
+        "passed": count("passed"),
+        "warnings": count("warnings?") or 0,
     }
 
 
@@ -283,12 +372,31 @@ def main(argv=None) -> int:
     full = pytest_summary(full_text)
     baseline_tests = pytest_summary(baseline_test_text)
 
-    if focused["failed_tests"]:
-        raise ValueError(f"focused registry suite failed: {focused['failed_tests']}")
+    if focused["failed_tests"] or focused["error_tests"]:
+        raise ValueError(
+            "focused registry suite failed: "
+            f"failures={focused['failed_tests']} errors={focused['error_tests']}"
+        )
+    if full["error_tests"]:
+        raise ValueError(f"full suite has pytest errors: {full['error_tests']}")
+
     new_failures = sorted(set(full["failed_tests"]) - set(baseline_tests["failed_tests"]))
     fixed_failures = sorted(set(baseline_tests["failed_tests"]) - set(full["failed_tests"]))
+    changed_baseline_failures = []
+    for nodeid in sorted(set(full["failed_tests"]) & set(baseline_tests["failed_tests"])):
+        current_detail = full["failure_details"].get(nodeid)
+        baseline_detail = baseline_tests["failure_details"].get(nodeid)
+        if current_detail != baseline_detail:
+            changed_baseline_failures.append({
+                "nodeid": nodeid,
+                "baseline": baseline_detail,
+                "current": current_detail,
+            })
     if new_failures:
         raise ValueError(f"full suite has new failures: {new_failures}")
+    if changed_baseline_failures:
+        changed_ids = [item["nodeid"] for item in changed_baseline_failures]
+        raise ValueError(f"baseline failure signatures changed: {changed_ids}")
 
     security = load(args.data_security_json)
     security_status = security.get("status")
@@ -315,6 +423,7 @@ def main(argv=None) -> int:
             **full,
             "baseline_failed_tests": baseline_tests["failed_tests"],
             "new_failures_vs_baseline": new_failures,
+            "changed_baseline_failures": changed_baseline_failures,
             "fixed_failures_vs_baseline": fixed_failures,
         },
         "branch_review": branch_review(),
