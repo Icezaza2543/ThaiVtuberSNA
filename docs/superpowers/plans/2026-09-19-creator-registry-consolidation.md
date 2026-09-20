@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Replace four overlapping creator registries with one evidence-backed persona/account catalog containing the trusted 1,370-channel baseline and all 393 accepted reviewed accounts.
+**Goal:** Replace four overlapping creator registries with one evidence-backed persona/account catalog containing the trusted 1,370-channel baseline and the 392 accounts that remain accepted after evidence-backed eligibility correction. The review workflow initially accepted 393; one PLAVE group account was subsequently reclassified out of the individual-persona catalog.
 
 **Architecture:** A deterministic builder produces `data/registry/creators.json` with normalized creator, account, and evidence tables. `CreatorCatalog` validates and indexes that file, all consumers use its API, and identity-resolution tooling combines trusted links, official public sources, and read-only YouTube Data API evidence before publication.
 
@@ -50,7 +50,7 @@
 - `docs/evidence/creator-registry-review-2026-09-19/trusted_baseline_1370.json` — immutable byte-for-byte snapshot of the accepted 1,370-channel source data; provenance input only, never a runtime registry.
 - `docs/evidence/creator-registry-review-2026-09-19/legacy_visual_identity_review.json` — immutable snapshot of the completed earlier identity decisions used only when consistent with final eligibility.
 - `docs/evidence/creator-registry-review-2026-09-19/pre_refactor_baseline.json` — hashes, row counts, and protected-file fingerprints.
-- `data/registry/identity_resolutions.json` — reviewed mapping for all 393 accepted accounts.
+- `data/registry/identity_resolutions.json` — reviewed mapping for all 392 final accepted individual-persona accounts.
 - `data/registry/creators.json` — sole creator-registry source of truth.
 
 ### New tests and fixtures
@@ -266,7 +266,7 @@ Run:
 python scripts/package_creator_review_evidence.py --screening outputs/new-account-review-2026-09-19/all_884_screening_results.json --human outputs/new-account-review-2026-09-19/human_review_decisions.json --output docs/evidence/creator-registry-review-2026-09-19/review_bundle.json
 ```
 
-Expected counts: 884 total, 292 trusted baseline, 393 VTuber, 102 exclusions, 94 unavailable, with the remaining group/associated statuses preserved outside the individual catalog. The command must print its exact category table and fail if the total differs.
+Expected production counts after the reviewed eligibility correction: 884 total, 292 trusted baseline, 392 VTuber, 106 exclusions, and 94 unavailable. The exclusions include the evidence-backed reclassification of `candidate_e75fe4be2e942a6f1d0d` to `exclude_virtual_group`. The command must print its exact category table and fail if the total differs.
 
 Copy `data/entity_resolution/visual_identity_review.json` byte-for-byte to `docs/evidence/creator-registry-review-2026-09-19/legacy_visual_identity_review.json`. Record both hashes in `pre_refactor_baseline.json` and assert equality. This preserves the accepted evidence while allowing Task 12 to remove the old runtime path.
 
@@ -488,7 +488,7 @@ Support:
 python scripts/resolve_creator_identities.py --review-bundle docs/evidence/creator-registry-review-2026-09-19/review_bundle.json --baseline docs/evidence/creator-registry-review-2026-09-19/trusted_baseline_1370.json --trusted-registry C:/Users/Icezaza/Documents/GitHub/ThaiVirtualCreatorRegistry/data/registry.json --legacy-decisions docs/evidence/creator-registry-review-2026-09-19/legacy_visual_identity_review.json --researched docs/evidence/creator-registry-review-2026-09-19/identity_research_linked.json --researched docs/evidence/creator-registry-review-2026-09-19/identity_research_x.json --researched docs/evidence/creator-registry-review-2026-09-19/identity_research_twitch.json --output data/registry/identity_resolutions.json --validate-only
 ```
 
-`--validate-only` must print totals by platform, existing/new outcomes, evidence method, unresolved count, and conflict count; exit nonzero unless accepted=393, unresolved=0, conflicts=0.
+`--validate-only` must print totals by platform, existing/new outcomes, evidence method, unresolved count, and conflict count; for the production review bundle it exits nonzero unless accepted=392, unresolved=0, conflicts=0.
 
 - [ ] **Step 5: Verify and commit**
 
@@ -582,7 +582,7 @@ git commit -m "data(registry): resolve X creator identities"
 
 **Interfaces:**
 - Consumes: exactly 150 accepted Twitch accounts, captured About panels/video evidence, official social links, and trusted links.
-- Produces: final 393-row `identity_resolutions.json`.
+- Produces: final 392-row `identity_resolutions.json`.
 
 - [ ] **Step 1: Generate and validate the Twitch queue**
 
@@ -597,9 +597,9 @@ Use About-panel links, official creator sites, YouTube channels, X accounts, and
 Run the full resolver validation. It must assert:
 
 ```text
-accepted=393
-unique_discovery_ids=393
-resolved=393
+accepted=392
+unique_discovery_ids=392
+resolved=392
 missing_evidence=0
 conflicts=0
 ```
@@ -659,7 +659,7 @@ Expected: import failure.
 
 - [ ] **Step 3: Implement baseline conversion and resolution application**
 
-Retain each valid baseline `person_id` as `persona_id`; when multiple baseline channels share one `person_id`, emit one creator with multiple YouTube accounts. Convert each baseline row to one YouTube account and one evidence record. Apply the 393 resolution rows, deduplicating accounts by platform ID or normalized URL. When an accepted account resolves to an existing persona, append only the missing account; when it resolves to a new persona, create exactly one creator for that `persona_id`. Never merge two distinct baseline `person_id` values from name similarity; a later merge requires the same qualifying identity evidence as every other account merge.
+Retain each valid baseline `person_id` as `persona_id`; when multiple baseline channels share one `person_id`, emit one creator with multiple YouTube accounts. Convert each baseline row to one YouTube account and one evidence record. Apply the 392 final resolution rows, deduplicating accounts by platform ID or normalized URL. When an accepted account resolves to an existing persona, append only the missing account; when it resolves to a new persona, create exactly one creator for that `persona_id`. Never merge two distinct baseline `person_id` values from name similarity; a later merge requires the same qualifying identity evidence as every other account merge.
 
 Stable order:
 
@@ -856,7 +856,7 @@ Expected: FAIL because legacy files still exist.
 
 - [ ] **Step 3: Re-scan and remove only validated obsolete files**
 
-Run `rg -n 'thai_vtuber_registry|registry_vtubers|master_creators|visual_identity_review'` and classify every remaining match. Remove every file listed in this task only after runtime matches equal zero. The earlier review UI, its server, and its executable test are obsolete because the final decisions are sealed in `legacy_visual_identity_review.json` and the 393-row ledger. Do not delete target manifests, checkpoints, system metadata, discovery seeds, evidence, or frozen releases. The untracked `tools/eligibility_review/` working-copy artifact is not copied into the isolated worktree and is outside this branch.
+Run `rg -n 'thai_vtuber_registry|registry_vtubers|master_creators|visual_identity_review'` and classify every remaining match. Remove every file listed in this task only after runtime matches equal zero. The earlier review UI, its server, and its executable test are obsolete because the final decisions are sealed in `legacy_visual_identity_review.json` and the 392-row ledger. Do not delete target manifests, checkpoints, system metadata, discovery seeds, evidence, or frozen releases. The untracked `tools/eligibility_review/` working-copy artifact is not copied into the isolated worktree and is outside this branch.
 
 - [ ] **Step 4: Update active documentation**
 
@@ -893,7 +893,7 @@ python -c "from pathlib import Path; from core.creator_catalog import CreatorCat
 
 - [ ] **Step 2: Verify exact inclusion and exclusion contracts**
 
-Produce machine-checked counts for baseline Channel IDs, accepted discovery IDs, trusted-baseline duplicates, excluded IDs, unavailable IDs, creators, accounts, evidence, and YouTube accounts. Required fixed values are 1,370, 393, 292, 102, and 94 respectively; creator and total-account counts are observed outputs.
+Produce machine-checked counts for baseline Channel IDs, accepted discovery IDs, trusted-baseline duplicates, excluded IDs, unavailable IDs, creators, accounts, evidence, and YouTube accounts. Required fixed values are 1,370 baseline Channel IDs, 392 accepted discovery IDs, 292 trusted-baseline duplicates, 106 excluded IDs, and 94 unavailable IDs; creator and total-account counts are observed outputs.
 
 - [ ] **Step 3: Verify protected hashes and privacy**
 
