@@ -8,6 +8,8 @@ on:
       - scripts/validate_creator_registry_consolidation.py
       - tests/test_creator_registry_baseline.py
       - tests/test_registry_consumer_migration.py
+      - tests/test_sampling_manifest.py
+      - requirements.txt
       - .github/workflows/task13-registry-final.yml
 
 permissions:
