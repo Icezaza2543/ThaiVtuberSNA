@@ -27,25 +27,25 @@ def test_record_interaction_idempotent(mem_db):
     assert count(mem_db, "interactions") == 0
 
     # Insert interaction
-    record_interaction(
+    assert record_interaction(
         mem_db,
         creator_id="UC_creator_1",
         video_id="vid_123",
         viewer_hash="hash_viewer_abc",
         source_type="live_chat",
         observed_at="2026-09-20T10:00:00Z",
-    )
+    ) is True
     assert count(mem_db, "interactions") == 1
 
     # Insert exact duplicate -> skipped due to UNIQUE constraint
-    record_interaction(
+    assert record_interaction(
         mem_db,
         creator_id="UC_creator_1",
         video_id="vid_123",
         viewer_hash="hash_viewer_abc",
         source_type="live_chat",
         observed_at="2026-09-20T10:05:00Z",
-    )
+    ) is False
     assert count(mem_db, "interactions") == 1
 
     # Insert different source_type -> distinct interaction
@@ -89,3 +89,14 @@ def test_network_edges_calculation_source_default(mem_db):
     })
     row = mem_db.execute("SELECT calculation_source FROM network_edges WHERE id = 'edge_test'").fetchone()
     assert row[0] == "legacy_seed"
+
+
+def test_record_interaction_rejects_unknown_source(mem_db):
+    with pytest.raises(ValueError, match="source_type"):
+        record_interaction(
+            mem_db,
+            creator_id="UC_creator_1",
+            video_id="vid_999",
+            viewer_hash="hash_viewer_xyz",
+            source_type="unknown",
+        )
