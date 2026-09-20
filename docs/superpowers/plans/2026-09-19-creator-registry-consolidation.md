@@ -874,7 +874,7 @@ git commit -m "refactor(registry): retire duplicate creator registries"
 ### Task 13: End-to-end Rebuild, Privacy Check, and Regression Audit
 
 **Files:**
-- Create: `docs/evidence/creator-registry-review-2026-09-19/post_refactor_validation.json`
+- Produce in CI temp storage: `post_refactor_validation.json`, then upload it as a workflow artifact. Task 13 is read-only and must not commit or push generated evidence back to the branch.
 - No production modification is planned; when validation exposes a defect, return to its owning task, fix it there, rerun that task's focused tests, then restart Task 13.
 
 **Interfaces:**
@@ -913,17 +913,12 @@ Then run the full suite:
 python -m pytest -q --basetemp C:/Users/Icezaza/AppData/Local/Temp/thaivtubersna-registry-tests/final-full
 ```
 
-All focused tests must pass. Compare any full-suite failures against Task 1's saved baseline and report every difference by test name.
+All focused tests must pass. Before and after the full suite, require a clean checkout and run `scripts/validate_dataset_release.py` without changing its checksum baseline; fail if pytest mutates tracked files or changes the release-validation result. Compare full-suite failures against Task 1's saved baseline by nodeid, exception class, and normalized failure signature so an existing red test cannot mask a worsened internal failure.
 
-- [ ] **Step 5: Write validation evidence**
+- [ ] **Step 5: Write validation evidence as a CI artifact**
 
-`post_refactor_validation.json` must include the canonical SHA-256, rebuild equality, actual counts, protected hash comparison, focused/full test summaries, privacy audit result, and commit SHA. Do not include credentials, raw API payloads, or private viewer data.
+`post_refactor_validation.json` must include the canonical SHA-256, rebuild equality, actual counts, protected hash comparison, focused/full test summaries, privacy audit result, and validated commit SHA. Write it outside the checkout (for example under `/tmp/registry-final/`) and upload it with the focused/full logs and JUnit XML. Do not include credentials, raw API payloads, or private viewer data.
 
-- [ ] **Step 6: Final commit and branch review**
+- [ ] **Step 6: Final read-only branch review**
 
-```bash
-git add docs/evidence/creator-registry-review-2026-09-19/post_refactor_validation.json
-git commit -m "test(registry): verify canonical consolidation"
-```
-
-Set `$registryBase = git merge-base HEAD origin/main`, run `git diff "$registryBase...HEAD" --check`, inspect the entire branch diff, and confirm no unrelated files changed before requesting final review.
+Set `$registryBase = git merge-base HEAD origin/main`, run `git diff "$registryBase...HEAD" --check`, require `git status --porcelain` to be empty, inspect the entire branch diff, and confirm no unrelated files changed before requesting final review. CI must not run `git commit` or `git push`.
