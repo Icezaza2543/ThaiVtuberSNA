@@ -2,3 +2,5 @@
 # conversion in checkouts and archives so their exact-byte manifest stays valid.
 data/temporal/research_integrity/t11_t19_final_integrity_report.md -text
 data/temporal/research_integrity/t11_t20_ecosystem_observatory_integrity_report.md -text
+data/registry/creators.json text eol=lf
+data/registry/identity_resolutions.json text eol=lf

@@ -496,7 +496,7 @@ def write_registry_atomic(payload: dict[str, Any], path: Path) -> Path:
     temporary = path.with_name(path.name + ".tmp")
     raw = json.dumps(payload, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
     try:
-        temporary.write_text(raw, encoding="utf-8")
+        temporary.write_bytes(raw.encode("utf-8"))
         temporary.replace(path)
     except Exception:
         try:
