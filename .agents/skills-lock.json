@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "installed_on": "2026-09-16",
+  "files": [
+    {
+      "skill": "frontend-design",
+      "repository": "anthropics/skills",
+      "commit": "34040c9c568585f6929bedeaad110ad08f079624",
+      "source_path": "skills/frontend-design/SKILL.md",
+      "installed_path": ".agents/skills/frontend-design/SKILL.md",
+      "git_blob_sha": "a5333457c414d20d625f307df945842c0952ecc3",
+      "sha256": "d91970639e9f5c37682ac7ab60094d35f1c7c1f38d731bd56396563aee10c1d3",
+      "license": "Apache-2.0"
+    },
+    {
+      "skill": "frontend-design",
+      "repository": "anthropics/skills",
+      "commit": "34040c9c568585f6929bedeaad110ad08f079624",
+      "source_path": "skills/frontend-design/LICENSE.txt",
+      "installed_path": ".agents/skills/frontend-design/LICENSE.txt",
+      "git_blob_sha": "f433b1a53f5b830a205fd2df78e2b34974656c7b",
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "license": "Apache-2.0"
+    },
+    {
+      "skill": "web-design-guidelines",
+      "repository": "vercel-labs/agent-skills",
+      "commit": "063bee94c3f4df8453406c830b0a7df0f2860278",
+      "source_path": "skills/web-design-guidelines/SKILL.md",
+      "installed_path": ".agents/skills/web-design-guidelines/SKILL.md",
+      "git_blob_sha": "ceae92ab319216a68274168fba9b63b998b65997",
+      "sha256": "f4647ca866a3accf763777f83e7682954f0187cd6bea7eea0399796652414e8f",
+      "license": "MIT (upstream README)"
+    },
+    {
+      "skill": "luxury-editorial-ui",
+      "origin": "project-authored",
+      "installed_path": ".agents/skills/luxury-editorial-ui/SKILL.md",
+      "sha256": "910682d4e0c4e3fad35624c6b8e04cf6b383167b88705741b64e3630fbe0a49b",
+      "license": "Repository LICENSE"
+    },
+    {
+      "skill": "registry-pages",
+      "origin": "project-authored",
+      "installed_path": ".agents/skills/registry-pages/SKILL.md",
+      "sha256": "8579c82a7ce4f2beab036bff269ac26aac51db3076db8b62bee6057621a575b1",
+      "license": "Repository LICENSE"
+    }
+  ]
+}

@@ -1,0 +1,1657 @@
+{
+  "reviewer": "codex:public-persona-review",
+  "reviewed_at": "2026-09-13T06:35:20.782401+00:00",
+  "scope": "Read first-party YouTube self-descriptions and their explicit public TikTok links, then compared current TikTok display names and public captures. Excluded group/duo links, unrelated names, statements only about other VTubers, and unclear current scope. Niew Lock explicitly lists two named TikTok accounts and is one persona. Observed-day ownership only; no undocumented identity, history, affiliation or activity inference.",
+  "profiles": [
+    {
+      "youtube_channel_id": "UCGD3oQgBhDLhX0Et9MQ42xw",
+      "name": "C ⌜VZ⌟",
+      "tiktok_handles": [
+        "project_c.vz"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC28BH5L5iF6RBdmBmQLOB4A",
+      "name": "Samegi Navin Ch",
+      "tiktok_handles": [
+        "sameginavinch"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCYBInpRmJFaZH09Vi4QhbyQ",
+      "name": "Phoebe ⌜VZ⌟",
+      "tiktok_handles": [
+        "phoebebuddyvz"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC-1rybSj4hxQkeSBzoczAEA",
+      "name": "LuA_Mikina🌙💤",
+      "tiktok_handles": [
+        "luamikina"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCCNYOaQadtiItj4Ww0O_nWA",
+      "name": "Yor0",
+      "tiktok_handles": [
+        "dotto_yoro"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCQ8OI5ZVcXMUzbccl0E7aDg",
+      "name": "Mi Kun Ch.",
+      "tiktok_handles": [
+        "michaelkun888"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCVGgfzDAft7MekDFSwl4i6Q",
+      "name": "althena Florent ch.〚 MQN 〛",
+      "tiktok_handles": [
+        "althena_ch"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCzS2fU-KBCmNb8WZtuIPJeg",
+      "name": "Zenjigo Ch.",
+      "tiktok_handles": [
+        "zenjigo_minibox"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCMXj6ZeXoJmwGZJ_pyGgOww",
+      "name": "Shirin Ch.",
+      "tiktok_handles": [
+        "shirinv_th"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCsPh5sLzHbk5Lh1i-3lw6YQ",
+      "name": "Genbu Ch.《ISP》",
+      "tiktok_handles": [
+        "genbu_irission"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCrhYmN7famDZPeRJSpIH-8Q",
+      "name": "CheezySteaks",
+      "tiktok_handles": [
+        "cheezysteaksttv"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCTboT4AgqOXPh1jhYPo56Nw",
+      "name": "MaVista 「 マビッスタ 」",
+      "tiktok_handles": [
+        "ma_mavista"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCCgcwmnLMixGWs5Qq6pgp5Q",
+      "name": "Latte Lamilla Ch.",
+      "tiktok_handles": [
+        "latte_lamilla"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCNlt0mYDjOGDQNEYXytL4xQ",
+      "name": "Zeiji7ᵗʰ | เซย์จิ",
+      "tiktok_handles": [
+        "zeijikun"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCX6eD52_S5wcmb9T5WvaD2w",
+      "name": "Kazuha Ch. 『VW』",
+      "tiktok_handles": [
+        "kenzuzuha"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC-A6E-QrcyMXLm9YTl3Zi2g",
+      "name": "SapD",
+      "tiktok_handles": [
+        "saphirdragnier"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCorm8aU2AGKUHfcgENBtNpA",
+      "name": "Mumumoomoo",
+      "tiktok_handles": [
+        "mumumoomoov"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC8FWgLB7_YL8GbQZegZtDFw",
+      "name": "NEMURI NEMU",
+      "tiktok_handles": [
+        "nemurinemuzzz"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCHzoslPT8ci9286Ak_zKJ7g",
+      "name": "Ginokami Aki Ch.",
+      "tiktok_handles": [
+        "ginokami_aki_"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCfTNVv0L4GKVqvGbBzHzanA",
+      "name": "Saphilia《ATX》",
+      "tiktok_handles": [
+        "saphilia_atx"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCQVC6KoIlW1NKg0GDC58xEg",
+      "name": "Noir A.",
+      "tiktok_handles": [
+        "noir_a._vtuber"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCZK2FFIIlsvkbf07ctIEncg",
+      "name": "DeliCiae",
+      "tiktok_handles": [
+        "deliciae.v"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCVLyoFll96cu-B9pDPidx7Q",
+      "name": "Tiara Summerstone",
+      "tiktok_handles": [
+        "tiarasummerstone"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "singer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCINB2SSj-JVAhIRAcFLobaw",
+      "name": "MymelloOo",
+      "tiktok_handles": [
+        "mymello0o"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCGrJhqDfxargi0KRv7JABDg",
+      "name": "Mina_falala VtuberTH",
+      "tiktok_handles": [
+        "mina_falala"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCi0c16z1twucSGGKrwFSnLw",
+      "name": "Gaokai Bonthian【KP】",
+      "tiktok_handles": [
+        "gaokai_bonthian"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCAB_3Im-ChL2QHwK6dZV0gA",
+      "name": "Phuma Ch.",
+      "tiktok_handles": [
+        "phumarine_phuma"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCBwVob4rP-hLNIuKdk2BTtg",
+      "name": "Sira Samuel CH.",
+      "tiktok_handles": [
+        "sirasamuelvtuber"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCESaNoJFXsWmfnHfi79eR8A",
+      "name": "Cherry S.Kersche",
+      "tiktok_handles": [
+        "cherrys_kersche"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCGSthfh4W439C_2cQloVocw",
+      "name": "Val 5332",
+      "tiktok_handles": [
+        "valkyrie5332"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCtEA5OK8LV4vf3Pi8M0dxjQ",
+      "name": "Frederick Ch.",
+      "tiktok_handles": [
+        "fredvtuber"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCihwa-JRdmC0BAzwQmMWEuw",
+      "name": "xCapuuccino_",
+      "tiktok_handles": [
+        "xcapuuccino_"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCl6Kc3r-KOr8x2t1Ag9dbzQ",
+      "name": "AYU VTuber",
+      "tiktok_handles": [
+        "ayu_vtb69"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCAPpxOuXCbSvj1jHnNetw4g",
+      "name": "3AM virtual ghost | ตีสาม",
+      "tiktok_handles": [
+        "3am_vtuber"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCKbPi3L0PMVqfYLK0osg8eQ",
+      "name": "Arithmos Ch.",
+      "tiktok_handles": [
+        "arithmosch"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "educator"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCaPkyhmII_9updavHI4a7XQ",
+      "name": "Bua Ch.",
+      "tiktok_handles": [
+        "bua.bsb"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCAy3hv4syXQLSMjBLamJOkw",
+      "name": "Famu Ch.",
+      "tiktok_handles": [
+        "famu_jar"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC4woausx7_jNtb_QfYXoKiA",
+      "name": "Feirong 飛荣《ATX》",
+      "tiktok_handles": [
+        "feirong.vt"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCZ5ggBxWp2lTvpJcCtFYygA",
+      "name": "Helson X404",
+      "tiktok_handles": [
+        "helsongop_artwork"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "artist",
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCXb11qYYfasyRgp22rK6mMA",
+      "name": "Hello Tawan - Tawan The Horizon",
+      "tiktok_handles": [
+        "hello_tawanv2"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCVA3HSersUrgW5Yx2ynr8uw",
+      "name": "Mikia Terra ch. Euphora",
+      "tiktok_handles": [
+        "mikia.epr"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCK8zcdwf38NC4nAmAUi_uhg",
+      "name": "Manami Neko Ch.",
+      "tiktok_handles": [
+        "manamineko_0"
+      ],
+      "thai_relation": "thai_language",
+      "format": "3d",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCdRUjM9PmbAjkEbcK41R5FQ",
+      "name": "Nanoca Ch. ㌨ｶ",
+      "tiktok_handles": [
+        "nanoca_vt"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "singer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC2U4hzHAh_Zk3to4Nj0j9QQ",
+      "name": "泠露 Líng Lù",
+      "tiktok_handles": [
+        "lingluuvt"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "singer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC9SGawU6mLPCQuBuUOR0kIA",
+      "name": "PPoooonn Ch.",
+      "tiktok_handles": [
+        "p2o4n2"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCHAXOg3dPkuC4ts0yaxdKwg",
+      "name": "สมเหน่ง มิโอ 【FL】",
+      "tiktok_handles": [
+        "somnengch"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC_Nfc_od1dbkqayxBUOwm2A",
+      "name": "Vesper Wing ",
+      "tiktok_handles": [
+        "vesper.wing"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC7-ZM8Wi1U6yerqHSEq5tlA",
+      "name": "Pleiades Frontier【21PM】",
+      "tiktok_handles": [
+        "pleiades_frontier"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCUmR1YXqxbx1NXusY2ugj8A",
+      "name": "Thear DreamWhale° 10Hz",
+      "tiktok_handles": [
+        "theardreamwhale"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCGOkjVQVJivJxDN7iSdQuLA",
+      "name": "Moe Miyabi ⌜VZ⌟",
+      "tiktok_handles": [
+        "moe_miyabi"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCpv77tyTG6nJlO9oBIFZ5xQ",
+      "name": "Meteona Mars Ch.",
+      "tiktok_handles": [
+        "meteona_mars"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCKPcwla_mvpdBnyjHYTiwoQ",
+      "name": "Puipui Memory",
+      "tiktok_handles": [
+        "puipuimemory"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCS2-t9SC5UZ9kS_bhbAxPaw",
+      "name": "Notaki Ch.",
+      "tiktok_handles": [
+        "notaki_ch"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCni4SBfvmKlD7bu_ZWDmKiQ",
+      "name": "CoolRin CH",
+      "tiktok_handles": [
+        "coolrin_ch"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC_XPgDT6i9evZc5uJF1tc8g",
+      "name": "Enryu Horus Ch. 炎竜ホルス",
+      "tiktok_handles": [
+        "enryuhorus"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCiVNJohfCMYogqJ4EB6fB1g",
+      "name": "Dragooooon Vtuber",
+      "tiktok_handles": [
+        "dragooooon_lh"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCacSkKAhjz4pDmyee5IiL5A",
+      "name": "Harumoon Ch.",
+      "tiktok_handles": [
+        "harumoonvtuber"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC0D7SuIVLYoD1hU3dxNxdMg",
+      "name": "Ziika ⌜VZ⌟",
+      "tiktok_handles": [
+        "mu_ziika"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "singer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC3PeUyEXBffDBFpOiuk0odQ",
+      "name": "Jisooman Ch.",
+      "tiktok_handles": [
+        "jisooman18"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCDki34ncCre0xPgf1JCkqCA",
+      "name": "Shogo ⌜VZ⌟",
+      "tiktok_handles": [
+        "kamikoshogo"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCGRF7CYtM2Qvevmach7enPA",
+      "name": "Seabunnyi",
+      "tiktok_handles": [
+        "seabunnyi"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCktowrrd3HTEugAQdKeuZOQ",
+      "name": "GNTGxd",
+      "tiktok_handles": [
+        "gntgxd"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCuwUVa1uz28eLDxeoe-CDCQ",
+      "name": "SUMM3R ⌜VZ⌟",
+      "tiktok_handles": [
+        "summ3r_vz"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCmR_ysVFhbwdrh080o1MuMQ",
+      "name": "Momo Vtuber",
+      "tiktok_handles": [
+        "bossmomo_lh"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCph_3mJbLtVYMFr4-n_rRgw",
+      "name": "WINT3R ⌜VZ⌟",
+      "tiktok_handles": [
+        "wint3r_vz"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCW5ZZhibxHgZ6wLzqXK97XQ",
+      "name": "PAres Spacedog『Berlina•ECR』",
+      "tiktok_handles": [
+        "p.ares_spacedog"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCiM8hgTBL6sBMugCDBlij6A",
+      "name": "Sen Koretane Ch.",
+      "tiktok_handles": [
+        "senkoretane"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCw7YDtEaJFn1cOoQdBx3lIA",
+      "name": "Rainnimin",
+      "tiktok_handles": [
+        "rainnimin"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "artist",
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCg7LMUxDiwIDngWPjo60iTw",
+      "name": "Killian Mare",
+      "tiktok_handles": [
+        "killian_xoxo"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCXuiHw-k05CnSu5_DjKUytw",
+      "name": "LIVIANA Ch.",
+      "tiktok_handles": [
+        "liviana_vwitch"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCt5N-YObN60x8TQTMh6mvbw",
+      "name": "Chiiaki Jellyfishkun",
+      "tiktok_handles": [
+        "chiiakijf"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC5x2tcpXNa1dZx035isZKWQ",
+      "name": "LunaLumIIna 「 PRD 」",
+      "tiktok_handles": [
+        "lunalumiina"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCUTA8ZrTOZGUNezeAYWrajg",
+      "name": "QueenSere.Physia Ch",
+      "tiktok_handles": [
+        "sere.physia"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCY5HIZ97IaqeUGCQCh5yDpA",
+      "name": "Clairederier",
+      "tiktok_handles": [
+        "clairederier"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCWRc7m30K-4jNCyVnWh_a-w",
+      "name": "Freidya Ch",
+      "tiktok_handles": [
+        "freidyae"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCe9-AfWL4jLg9CQC7QWa0_g",
+      "name": "MIKA'mu",
+      "tiktok_handles": [
+        "mikamu27"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCFN4mdxw4ss6DMB6ZYPXPuw",
+      "name": "Nora",
+      "tiktok_handles": [
+        "amamiyanora"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCMvc8BlQ7r5gRbz-D2EY0LA",
+      "name": "HØRI 07 ⌜VZ⌟",
+      "tiktok_handles": [
+        "ho07ri"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCC3IBnXJb8xYdg-_MMh1qNg",
+      "name": "Pamberry Ch",
+      "tiktok_handles": [
+        "pamberrych"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC2mSWpVqjjQ7G7gEIfQ7p9w",
+      "name": "Zeraphina Hana",
+      "tiktok_handles": [
+        "zeraphinahn"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCGXguhCIYycPMOTZN9s4x6A",
+      "name": "จู้จีนจุกจิก | Regene【RE:S】",
+      "tiktok_handles": [
+        "regene_0810"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC6Ea68DSHlXrcy9uIw4oUIg",
+      "name": "Lanlongying Ch.",
+      "tiktok_handles": [
+        "lanlongying"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCRpX7uvjkoy3-j_U_3atvog",
+      "name": "Urara Momomi",
+      "tiktok_handles": [
+        "momomiichan"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC8fneiVrSectPFlnumDMFaw",
+      "name": "FuMoon Dayooo",
+      "tiktok_handles": [
+        "fumoondayo"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCRyGfYHjCHIeWZQRpdnDKMg",
+      "name": "Katsuki Ch.",
+      "tiktok_handles": [
+        "katsuki_007x"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCJ6kqLPI4aALUa0p3kJJUKQ",
+      "name": "Mellowlop「Paralist」",
+      "tiktok_handles": [
+        "mellowlop.vtuber"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC5OXcxq6ab6RlhHqNyHws_w",
+      "name": "M a l l o w  Ch.",
+      "tiktok_handles": [
+        "mallow_hamm"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC1pYd8HCTuc8Kdh_8m_znpA",
+      "name": "Freyrina",
+      "tiktok_handles": [
+        "freyrinavtuber"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCziNHXJm0dWUHoi6d0lfGXQ",
+      "name": "Monmon Thedoggo Ch.",
+      "tiktok_handles": [
+        "monmonthedoggo"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "artist",
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCijixp2pBTNrgkF5pDw0wPg",
+      "name": "Neris Ch.",
+      "tiktok_handles": [
+        "thelittlenelle"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCoBGfXR9OWCgLbsm01o55ZA",
+      "name": "N4NAMi",
+      "tiktok_handles": [
+        "1tsn4nami1"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCb6cL1o1-78FjrUOR-AVqMw",
+      "name": "Chloe J. Park Ch. | VTUBER",
+      "tiktok_handles": [
+        "chloejparkvtuber"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCCptqrhEdtJGBer1qWWRLnA",
+      "name": "Lawiz Ch.",
+      "tiktok_handles": [
+        "lawizjkp"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCnNZtWXxIpMK02DYkPMq8vA",
+      "name": "Zhenzhen Ch. 【SSR】",
+      "tiktok_handles": [
+        "zhenzhen.ssr"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCMs5aPn2oecJGX0siIC3q0Q",
+      "name": "Ayris Belle Melleri Ch.",
+      "tiktok_handles": [
+        "ayrisbelle"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "singer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCQGAawBLXuFEodAGOANkAdQ",
+      "name": "J U $ T - Virtual7『TH』",
+      "tiktok_handles": [
+        "just_vz"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCOv6QnpFZfsVsOfh581sFrA",
+      "name": "KitadesuS [MDZ]",
+      "tiktok_handles": [
+        "kitadesusmdz"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCUBooBbB6GNYvQJEna3eRBQ",
+      "name": "Beatrix CH. - ビアトリクス",
+      "tiktok_handles": [
+        "beatrix_monroe"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCpDj-ctDxLn5M5H5G_UxuRA",
+      "name": "Deilliah Goodknight ",
+      "tiktok_handles": [
+        "deilliahgoodknightt"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCXG9ZvdggOsj5kb996vbYPg",
+      "name": "FL_FirstsLove ⌜VZ⌟",
+      "tiktok_handles": [
+        "fl_firstslove"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC0CvHQnIDi7-Pk5nyc09EYw",
+      "name": "Kyubi Nine キュビ ナイン",
+      "tiktok_handles": [
+        "kyubi_nine"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCyXcXkTe7XZYGvX7A3_f3Jw",
+      "name": "ONOMIL Ch.",
+      "tiktok_handles": [
+        "onomilvt"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC4g_aNYnbZ564FUrzHvoFQA",
+      "name": "Moe Kaori  ⌜VZ⌟",
+      "tiktok_handles": [
+        "kaori_vz"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCL1yaSZue9dW_zyvhdI8C3w",
+      "name": "Friskfitz",
+      "tiktok_handles": [
+        "friskfitz"
+      ],
+      "thai_relation": "thai_language",
+      "format": "png",
+      "roles": [
+        "artist",
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCriNq8O70ubJVbUtJ9yoGNw",
+      "name": "IRISS Ch.",
+      "tiktok_handles": [
+        "irissxofficer"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCbXXQtmpcBI8GtO2Xg5pYuw",
+      "name": "Donovan Ch.",
+      "tiktok_handles": [
+        "donovan_vtuber"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCFuUpyt6u2UC90h1nAWuXkw",
+      "name": "Trashythemeow",
+      "tiktok_handles": [
+        "trashythemeow"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCot8DHNnZ2X0ARgaNYZopjw",
+      "name": "Debirun Ch. Pixela-World-End",
+      "tiktok_handles": [
+        "debirunworldend"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC1s5T_9sfGrRxHJhjEceVSg",
+      "name": "Kafune CH.",
+      "tiktok_handles": [
+        "kafune_ch"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCWe8lxEFSt84vZ7srlHySVw",
+      "name": "Sataru【21PM】",
+      "tiktok_handles": [
+        "sataru21pm"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC7BTojsUPC4JhxDYRgmuz2Q",
+      "name": "Jiru ch. Euphora",
+      "tiktok_handles": [
+        "jiru.epr"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCP8f5nq2YdKUmHmLUCkroSw",
+      "name": "Nx-Aji",
+      "tiktok_handles": [
+        "aji2806"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCOGGZpm2i6PXFI9yBvEueRA",
+      "name": "ดอยล์",
+      "tiktok_handles": [
+        "ihatedoyle"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCZxNaWG_8Br9q1eTLSG5wPg",
+      "name": "Blu-Chan GMOT ⌜VZ⌟",
+      "tiktok_handles": [
+        "bluchangmot"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC3H7_4Gz8PhHeMz0hHwuFTw",
+      "name": "Morika Rei【ARRI】[Graduated]",
+      "tiktok_handles": [
+        "morikarei"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "singer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCbd5WWyYS2WBMNNxfVEBQQg",
+      "name": "EVA THE RHINO Ch.",
+      "tiktok_handles": [
+        "evatherhino"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCJ6HUQOWSjCHHdOgz13zFlA",
+      "name": "TheQuillmon ⌜VZ⌟",
+      "tiktok_handles": [
+        "thequillmon"
+      ],
+      "thai_relation": "thai_community",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCL2geAXXebwlFLe-dokNCkw",
+      "name": "Phelita ch. Euphora • [On Hold]",
+      "tiktok_handles": [
+        "phelita_epr"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCr6JjOIjCAYFGJIW3_BznmA",
+      "name": "Big M 4U 『ECR』",
+      "tiktok_handles": [
+        "big_m_4u"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCzH5tEYALkblyTy99n3-YEA",
+      "name": "Tsukiko かざん",
+      "tiktok_handles": [
+        "tsukikosui"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "artist",
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCoc4ArTO-yJUzpqufus_Pdg",
+      "name": "Kokori 《 OTL 》",
+      "tiktok_handles": [
+        "kokori_otl"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UClKBrxMxPf1-104BQRNkDYw",
+      "name": "Lyon De Gladiolus",
+      "tiktok_handles": [
+        "lyondegladiolus_ayon"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCJNuYG7F5YzslTSYChWcKBw",
+      "name": "Kousei Ch.",
+      "tiktok_handles": [
+        "kousei_amanogawa"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCNLRchQpCrJaUvYo731Y_vg",
+      "name": "Callidora Ch.【VJN】",
+      "tiktok_handles": [
+        "callidora_vtuberth"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCc9W8GnDEHPNgt6eshaAvQw",
+      "name": "Nirvana Ch.【ARP】",
+      "tiktok_handles": [
+        "nirvana_arp"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCN2h2ov92AeTDv60a1mUr0g",
+      "name": "Puffy Fluffy Ch.",
+      "tiktok_handles": [
+        "puffyvtuber_"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCJMtmiajwsQXE4rpd2wuEyg",
+      "name": "Chiharu ch.「TRR」",
+      "tiktok_handles": [
+        "chiharu_trr"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCUYOr3CaHR0XIv0FfM22CyA",
+      "name": "Niew Lock ",
+      "tiktok_handles": [
+        "niewlock",
+        "niewlocker"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCh27XHdphGUo6meLoVblIoQ",
+      "name": "Kevara ch. Euphora",
+      "tiktok_handles": [
+        "kevara_epr"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCEQ28ZgkC47h0jG8CWN_V2Q",
+      "name": "TANTAN",
+      "tiktok_handles": [
+        "tanehasol"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC5NrMFPWAtcfNH8ibcBlWhQ",
+      "name": "霧死 - Kirishi",
+      "tiktok_handles": [
+        "kirishi_021"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCbfqosxk1LXHk3pW1p3G0GA",
+      "name": "Issa",
+      "tiktok_handles": [
+        "issanumberone"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCDCOWpzyBFsavT-K7AmN3MQ",
+      "name": "Azato Stacia Ch.",
+      "tiktok_handles": [
+        "azatostacia"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UC8pTkUvJe50zHIbl8LkZphQ",
+      "name": "SeraPhyne Ch【ECR】",
+      "tiktok_handles": [
+        "seraphyne_ch"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCHudKjxLpwqHoqV-57uTRFw",
+      "name": "FuwaFuwaSeal",
+      "tiktok_handles": [
+        "fuwafuwasealvtuber"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCxsyPoIG4fruqHyq91UwIMQ",
+      "name": "NICHA Ch. 【SSR】",
+      "tiktok_handles": [
+        "nicha_ssr"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    },
+    {
+      "youtube_channel_id": "UCbTN1R7AbdA1vICChlVDaYg",
+      "name": "Serenno Koriel ",
+      "tiktok_handles": [
+        "serennokoriel"
+      ],
+      "thai_relation": "thai_language",
+      "format": "unknown",
+      "roles": [
+        "entertainer"
+      ]
+    }
+  ]
+}

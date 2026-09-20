@@ -1,0 +1,47 @@
+{
+  "evidence": [
+    {
+      "id": "ev_b05_pinto",
+      "url": "https://www.youtube.com/@pinto__xx",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T10:20:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review by project owner on 2026-09-17 confirmed PINTO as a Thai virtual creator and confirmed the YouTube channel @pinto__xx as the primary owned platform. Only YouTube was confirmed in the review scope. The registry X account @pinto__xx and other platform links (Facebook, Instagram, lit.link) were not confirmed by owner as owned accounts; those links remain needs_evidence."
+    },
+    {
+      "id": "ev_b05_nostradamus",
+      "url": "https://x.com/NostradamusVT",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T10:20:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review by project owner on 2026-09-17 confirmed Nostradamus Karasu as a Thai virtual creator and confirmed this public X profile as an owned account. Owner-supplied evidence_url in review file."
+    }
+  ],
+  "personas": [
+    {
+      "id": "persona_f3ac52ae514adc62f9f8",
+      "evidence_id": "ev_b05_pinto",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    },
+    {
+      "id": "persona_f950c5c09fec76a5c3a4",
+      "evidence_id": "ev_b05_nostradamus",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    }
+  ],
+  "account_links": [
+    {
+      "id": "link_e7c86e6d3b5844b9fadb",
+      "evidence_id": "ev_b05_nostradamus",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    }
+  ]
+}

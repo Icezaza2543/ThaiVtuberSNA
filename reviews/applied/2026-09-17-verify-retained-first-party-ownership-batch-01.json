@@ -1,0 +1,26 @@
+{
+  "account_links": [
+    {
+      "id": "link_08d805bc85667a26d0d5",
+      "account_id": "acct_8a0348e9ce1f1ab9c078",
+      "persona_id": "persona_3b5213b7e3261b1a7afc",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_b6caa116e9473ee5c590",
+      "review_status": "verified",
+      "reviewer": "codex:retained-evidence-audit",
+      "reviewed_at": "2026-09-17T13:50:00+00:00"
+    },
+    {
+      "id": "link_7e2eee98484939a66cfb",
+      "account_id": "acct_c5910e218501b26dc20c",
+      "persona_id": "persona_6ecdd06fbb46fa7b0f82",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_07c1dd2c282be5a0de67",
+      "review_status": "verified",
+      "reviewer": "codex:retained-evidence-audit",
+      "reviewed_at": "2026-09-17T13:50:00+00:00"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "evidence": [
+    {
+      "id": "ev_c45262d730a167d844fe",
+      "url": "https://www.tiktok.com/embed/@azuko_98?lang=en&embedFrom=webapp_preview",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:19:57.157011+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public technical observation resolving tiktok stable ID 7165901064536572933 for https://www.tiktok.com/@azuko_98; not persona-ownership evidence."
+    },
+    {
+      "id": "ev_4c55b5ec2421e8bac45f",
+      "url": "https://streamrecorder.io/tiktok/%40candycatdy",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T15:19:57.157011+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public technical observation resolving tiktok stable ID 6975626484480214018 for https://www.tiktok.com/@candycatdy; not persona-ownership evidence."
+    }
+  ],
+  "accounts": [
+    {
+      "id": "acct_898e39c8474438424dc5",
+      "platform": "tiktok",
+      "platform_id": "7165901064536572933",
+      "id_namespace": "web_user_id",
+      "handle": "azuko_98",
+      "name": "Azuko  -あずこ-",
+      "url": "https://www.tiktok.com/@azuko_98",
+      "first_discovered_at": "2026-09-16T15:19:57.157011+00:00",
+      "evidence_id": "ev_c45262d730a167d844fe"
+    },
+    {
+      "id": "acct_8c96d186e591765f9803",
+      "platform": "tiktok",
+      "platform_id": "6975626484480214018",
+      "id_namespace": "web_user_id",
+      "handle": "candycatdy",
+      "name": "candycatdy",
+      "url": "https://www.tiktok.com/@candycatdy",
+      "first_discovered_at": "2026-09-16T15:19:57.157011+00:00",
+      "evidence_id": "ev_4c55b5ec2421e8bac45f"
+    }
+  ],
+  "account_links": [],
+  "candidates": [
+    {
+      "id": "candidate_6b7c58972cecd99956db",
+      "platform": "twitch",
+      "platform_id": "627646265",
+      "id_namespace": "user_id",
+      "name": "FL_FirstsLove ⌜VZ⌟",
+      "url": "https://www.twitch.tv/videos/2165730752",
+      "review_status": "verified",
+      "account_id": "acct_63c361e8587ccffccd3a",
+      "evidence_id": "ev_bcbe3a0dab1a5ed7899e",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:19:57.157011+00:00"
+    },
+    {
+      "id": "candidate_d6f48e066cb2f3b7e7cc",
+      "platform": "tiktok",
+      "platform_id": "7165901064536572933",
+      "id_namespace": "web_user_id",
+      "name": "- Azuko - あずこ - Ch.",
+      "url": "https://tiktok.com/@Azuko_98",
+      "review_status": "verified",
+      "account_id": "acct_898e39c8474438424dc5",
+      "evidence_id": "ev_b20929878c2a49050a1b",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:19:57.157011+00:00"
+    },
+    {
+      "id": "candidate_e6ed334505218b54330b",
+      "platform": "tiktok",
+      "platform_id": "6975626484480214018",
+      "id_namespace": "web_user_id",
+      "name": "CandyCatdy CH.",
+      "url": "https://www.tiktok.com/@candycatdy",
+      "review_status": "verified",
+      "account_id": "acct_8c96d186e591765f9803",
+      "evidence_id": "ev_ce08a15f116d71142320",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:19:57.157011+00:00"
+    }
+  ]
+}

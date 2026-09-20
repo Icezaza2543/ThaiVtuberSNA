@@ -1,0 +1,18 @@
+{
+  "review_queue": [
+    {
+      "id": "collision_2bc537310cfa12045d4d",
+      "account_id": "acct_81328964794cd9c75777",
+      "reason": "legacy_identity_collision",
+      "status": "resolved",
+      "note": "Resolved: YouTube account acct_81328964794cd9c75777 consolidated to canonical persona persona_fc1fe4b8823558d7e16e via verified official YouTube About crosslink."
+    },
+    {
+      "id": "collision_ef65f7b3c14017ae603c",
+      "account_id": "acct_642d198aa72805f16f6e",
+      "reason": "legacy_identity_collision",
+      "status": "resolved",
+      "note": "Resolved: YouTube account acct_642d198aa72805f16f6e consolidated to canonical persona persona_d82e11d35ea963b01d7e via verified official YouTube profile crosslink."
+    }
+  ]
+}

@@ -1,0 +1,2950 @@
+{
+  "evidence": [
+    {
+      "id": "ev_e3455a8bb041551fc143",
+      "url": "https://www.youtube.com/channel/UCJCORIrObs3iTzSzCHHvlCA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:12+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCJCORIrObs3iTzSzCHHvlCA to tiktok account https://tiktok.com/@easydonateth (handle easydonateth)."
+    },
+    {
+      "id": "ev_7dbfa3209c329ca88cd8",
+      "url": "https://www.youtube.com/channel/UCqxS4qNzJUWdPgR2UdLpemA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:35:50+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCqxS4qNzJUWdPgR2UdLpemA to tiktok account https://www.tiktok.com/@akitoqflame (handle akitoqflame)."
+    },
+    {
+      "id": "ev_3474cd734e45bb2907a2",
+      "url": "https://www.youtube.com/channel/UCBmXZKNg_Tsy-r5pZsBPVVA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:37:54+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCBmXZKNg_Tsy-r5pZsBPVVA to tiktok account https://www.tiktok.com/@amn.mero (handle amn.mero)."
+    },
+    {
+      "id": "ev_2e3143d09645fd41fcad",
+      "url": "https://www.youtube.com/channel/UCwUOnMoqNijxs5e6GbfRJ3Q",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:33:38+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCwUOnMoqNijxs5e6GbfRJ3Q to tiktok account https://www.tiktok.com/@ant4zin (handle ant4zin)."
+    },
+    {
+      "id": "ev_4b07cfd05ddbe0ab9370",
+      "url": "https://www.youtube.com/channel/UCPtilLPQCGVrhxeuu7nbxRQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:32:07+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCPtilLPQCGVrhxeuu7nbxRQ to tiktok account https://www.tiktok.com/@antiavtuber?_t=zs-8uj8bzs3rio&_r=1 (handle antiavtuber)."
+    },
+    {
+      "id": "ev_4103e50748d5b886a3ff",
+      "url": "https://www.youtube.com/channel/UCZYLQLIIviw56yaDcA9-VwA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:37:36+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCZYLQLIIviw56yaDcA9-VwA to tiktok account https://www.tiktok.com/@azuri_desu (handle azuri_desu)."
+    },
+    {
+      "id": "ev_45bd0e6c9dadb9e2420e",
+      "url": "https://www.youtube.com/channel/UCg1lfyLDBsy0INi17egh6IA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:29:38+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCg1lfyLDBsy0INi17egh6IA to existing tiktok account https://www.tiktok.com/@chermy_vtuber."
+    },
+    {
+      "id": "ev_fbfc28c49a6d8c48fbba",
+      "url": "https://www.youtube.com/channel/UCtJXU7YRwS-Cc8pu8U8bicg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:37:26+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCtJXU7YRwS-Cc8pu8U8bicg to tiktok account https://www.tiktok.com/@chizizfa (handle chizizfa)."
+    },
+    {
+      "id": "ev_aa32cb3bdb1e77baa0d5",
+      "url": "https://www.youtube.com/channel/UC3sqLdjV0uxXfAzLE-fJeXw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:29:47+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UC3sqLdjV0uxXfAzLE-fJeXw to tiktok account https://www.tiktok.com/@cresentansel (handle cresentansel)."
+    },
+    {
+      "id": "ev_5c1f846fc2c8a8b73d24",
+      "url": "https://www.youtube.com/channel/UCcfkeut6fAXSfuT1AmFi2cA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:37:50+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCcfkeut6fAXSfuT1AmFi2cA to tiktok account https://www.tiktok.com/@cs_valkyrie?_t=ZS-8usumx1q0CG&_r=1 (handle cs_valkyrie)."
+    },
+    {
+      "id": "ev_6d529b3a4d7eaa66e8b1",
+      "url": "https://www.youtube.com/channel/UCchEIVkQk2tgdHiSc0LxGJQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:15+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCchEIVkQk2tgdHiSc0LxGJQ to tiktok account https://www.tiktok.com/@darieladolly (handle darieladolly)."
+    },
+    {
+      "id": "ev_317b8879f6702581ca5f",
+      "url": "https://www.youtube.com/channel/UC-rl31Wigrn8iexKkpNl7jg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:29:53+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UC-rl31Wigrn8iexKkpNl7jg to tiktok account https://www.tiktok.com/@dolcheb7 (handle dolcheb7)."
+    },
+    {
+      "id": "ev_c3d0f54fef84256b6a85",
+      "url": "https://www.youtube.com/channel/UCtzBNRsOnn_xYOmXm09YAMw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:36:19+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCtzBNRsOnn_xYOmXm09YAMw to tiktok account https://www.tiktok.com/@feilong0070 (handle feilong0070)."
+    },
+    {
+      "id": "ev_149c5d2bcffcbf7b2b38",
+      "url": "https://www.youtube.com/channel/UCw79Wj7JKNTtBiVqA8OJlSg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:36:55+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCw79Wj7JKNTtBiVqA8OJlSg to tiktok account https://www.tiktok.com/@geno_tst (handle geno_tst)."
+    },
+    {
+      "id": "ev_17997391774ad41caf4b",
+      "url": "https://www.youtube.com/channel/UC5NtCgUU-vQC_GrtzSUeSZA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:34:49+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UC5NtCgUU-vQC_GrtzSUeSZA to tiktok account https://www.tiktok.com/@gloria21pm (handle gloria21pm)."
+    },
+    {
+      "id": "ev_7e2e44435db8e058c12f",
+      "url": "https://www.youtube.com/channel/UCmLd6QDRBcD9TfFrThJucng",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:36:04+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCmLd6QDRBcD9TfFrThJucng to tiktok account https://www.tiktok.com/@gojo.haine?_t=8n8Phvl2Eml&_r=1 (handle gojo.haine)."
+    },
+    {
+      "id": "ev_52a9f42ceea31293250c",
+      "url": "https://www.youtube.com/channel/UCSus3TGWTuMjiQWycSI1CaA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:37:01+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCSus3TGWTuMjiQWycSI1CaA to tiktok account https://www.tiktok.com/@inukami_pugmaru (handle inukami_pugmaru)."
+    },
+    {
+      "id": "ev_6b22e9bd2fe21b191685",
+      "url": "https://www.youtube.com/channel/UC4QwUkFO1_JJe_TTN5jYoyA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:38:10+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UC4QwUkFO1_JJe_TTN5jYoyA to tiktok account https://www.tiktok.com/@inumaruatsuki (handle inumaruatsuki)."
+    },
+    {
+      "id": "ev_5299069647de9fdb0fd6",
+      "url": "https://www.youtube.com/channel/UCL0LiR5zg3vRnIHp-CowVBg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:31:38+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCL0LiR5zg3vRnIHp-CowVBg to tiktok account https://www.tiktok.com/@kamisaki_kuro (handle kamisaki_kuro)."
+    },
+    {
+      "id": "ev_57f4616298fee3e617ee",
+      "url": "https://www.youtube.com/channel/UCDdYlO59uiphs8QUL7I88Rg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:37:30+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCDdYlO59uiphs8QUL7I88Rg to tiktok account https://www.tiktok.com/@kaneakiarina (handle kaneakiarina)."
+    },
+    {
+      "id": "ev_23b95056a0b752c5deb2",
+      "url": "https://www.youtube.com/channel/UCvHE8ZCOcfZR_8HvmBA9JBw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:32:09+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCvHE8ZCOcfZR_8HvmBA9JBw to tiktok account https://www.tiktok.com/@kapz_002 (handle kapz_002)."
+    },
+    {
+      "id": "ev_fe924aec5f45adbc1375",
+      "url": "https://www.youtube.com/channel/UCUz8QMqTQYtmKprSeGGKEkw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:29:31+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCUz8QMqTQYtmKprSeGGKEkw to tiktok account https://www.tiktok.com/@kayleforion (handle kayleforion)."
+    },
+    {
+      "id": "ev_3a85dd0c22d3ba085755",
+      "url": "https://www.youtube.com/channel/UCiK62ZOsD7vMwTw0MJiYDLw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:31:19+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCiK62ZOsD7vMwTw0MJiYDLw to tiktok account https://www.tiktok.com/@kiku_himegu (handle kiku_himegu)."
+    },
+    {
+      "id": "ev_868594711e411fbc31d5",
+      "url": "https://www.youtube.com/channel/UC7txsIaSjDTuvN7h9BzVAsw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:34:20+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UC7txsIaSjDTuvN7h9BzVAsw to tiktok account https://www.tiktok.com/@kiran.regalia (handle kiran.regalia)."
+    },
+    {
+      "id": "ev_b4685f5f9f93e3b4cea7",
+      "url": "https://www.youtube.com/channel/UCihXBP7iwDIIkzbTbUR4jXg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:38:28+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCihXBP7iwDIIkzbTbUR4jXg to tiktok account https://www.tiktok.com/@krynaydin_ztp?_r=1&_t=zs-96fxyiet9pr (handle krynaydin_ztp)."
+    },
+    {
+      "id": "ev_f82e6ac2c82a58af44d5",
+      "url": "https://www.youtube.com/channel/UCg1lfyLDBsy0INi17egh6IA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:29:38+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCg1lfyLDBsy0INi17egh6IA to tiktok account https://www.tiktok.com/@kuriimuvtuber (handle kuriimuvtuber)."
+    },
+    {
+      "id": "ev_30541a4ec914f152acfe",
+      "url": "https://www.youtube.com/channel/UCJu3OL7duainSbXcDvU-bUA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:37:47+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCJu3OL7duainSbXcDvU-bUA to tiktok account https://www.tiktok.com/@kurosawasp (handle kurosawasp)."
+    },
+    {
+      "id": "ev_f8d0a3ca2af25a64c1a3",
+      "url": "https://www.youtube.com/channel/UC2q-fPPrsyKOjRpmm--vzPQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:36:22+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UC2q-fPPrsyKOjRpmm--vzPQ to tiktok account https://www.tiktok.com/@kuroyoru_yami (handle kuroyoru_yami)."
+    },
+    {
+      "id": "ev_9e4f6449362d1e7d6233",
+      "url": "https://www.youtube.com/channel/UCsI6assrGUpDX_TmSK4zehg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:38:21+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCsI6assrGUpDX_TmSK4zehg to tiktok account https://www.tiktok.com/@layniazia (handle layniazia)."
+    },
+    {
+      "id": "ev_b893220dbea3911a9ce9",
+      "url": "https://www.youtube.com/channel/UChSGIJlrLUI1UVds38w2Obg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:37:19+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UChSGIJlrLUI1UVds38w2Obg to tiktok account https://www.tiktok.com/@leonthepinklion (handle leonthepinklion)."
+    },
+    {
+      "id": "ev_3d3ec3a6ad0522e50b98",
+      "url": "https://www.youtube.com/channel/UCHhEdxjXqC8sbAj7a-PVFlg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:37:58+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCHhEdxjXqC8sbAj7a-PVFlg to tiktok account https://www.tiktok.com/@luminshinehart (handle luminshinehart)."
+    },
+    {
+      "id": "ev_372087a685561a3eea4e",
+      "url": "https://www.youtube.com/channel/UCeI78GYlqHWzmWvjGmcjDsA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:36:53+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCeI78GYlqHWzmWvjGmcjDsA to tiktok account https://www.tiktok.com/@m4yamarz (handle m4yamarz)."
+    },
+    {
+      "id": "ev_08751f3fb14ed50e0e43",
+      "url": "https://www.youtube.com/channel/UCIDkMzUr_JW5yoiq_Nx35_A",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:37:33+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCIDkMzUr_JW5yoiq_Nx35_A to tiktok account https://www.tiktok.com/@maaethegreatest (handle maaethegreatest)."
+    },
+    {
+      "id": "ev_61c7240afbe0ebac537b",
+      "url": "https://www.youtube.com/channel/UCyVnAtNZMl0S4x6F3msaElg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:38:26+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCyVnAtNZMl0S4x6F3msaElg to tiktok account https://www.tiktok.com/@makarov227c (handle makarov227c)."
+    },
+    {
+      "id": "ev_595285e6aa7edaa99824",
+      "url": "https://www.youtube.com/channel/UCepQ5leDU2_KgTVOsD4so7A",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:35:57+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCepQ5leDU2_KgTVOsD4so7A to tiktok account https://www.tiktok.com/@manapt52hz (handle manapt52hz)."
+    },
+    {
+      "id": "ev_7d350d267b875287a61a",
+      "url": "https://www.youtube.com/channel/UCNak-g6_mKH-UkDLnrvjyzw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:38:31+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCNak-g6_mKH-UkDLnrvjyzw to tiktok account https://www.tiktok.com/@matsurii_vtuber?_t=ZS-8xnSi2wIMr9&_r=1 (handle matsurii_vtuber)."
+    },
+    {
+      "id": "ev_df38be08c32f5be2172a",
+      "url": "https://www.youtube.com/channel/UC5VPIoY1j_x9UZSqkpwg8jw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:31:31+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UC5VPIoY1j_x9UZSqkpwg8jw to tiktok account https://www.tiktok.com/@mayaoboro (handle mayaoboro)."
+    },
+    {
+      "id": "ev_6f1782c6125798dca5c3",
+      "url": "https://www.youtube.com/channel/UCAzfyfbQ7XHmznbOKinAunQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:35:14+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCAzfyfbQ7XHmznbOKinAunQ to tiktok account https://www.tiktok.com/@meltildavt (handle meltildavt)."
+    },
+    {
+      "id": "ev_3c478862081c166726b5",
+      "url": "https://www.youtube.com/channel/UC6uFH49ET-CCA_a4rMdfBdA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:05+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UC6uFH49ET-CCA_a4rMdfBdA to tiktok account https://www.tiktok.com/@merryl_wayne (handle merryl_wayne)."
+    },
+    {
+      "id": "ev_6ea9b5a9d31cbbae5a7b",
+      "url": "https://www.youtube.com/channel/UCbXO3ON6BR4-lhx5Yd4yzKA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:32:38+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCbXO3ON6BR4-lhx5Yd4yzKA to tiktok account https://www.tiktok.com/@midorisuikavtb (handle midorisuikavtb)."
+    },
+    {
+      "id": "ev_bce9bb8f3c1334209b9e",
+      "url": "https://www.youtube.com/channel/UC4gflcsvblzsnCtNddgDSQA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:32:32+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UC4gflcsvblzsnCtNddgDSQA to tiktok account https://www.tiktok.com/@moia_lnwza55 (handle moia_lnwza55)."
+    },
+    {
+      "id": "ev_8e34bb80b85f26901b67",
+      "url": "https://www.youtube.com/channel/UCcM1cUyEXYmm13DgfwXS-oQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:29:57+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCcM1cUyEXYmm13DgfwXS-oQ to tiktok account https://www.tiktok.com/@mystiexe (handle mystiexe)."
+    },
+    {
+      "id": "ev_44f9fcf46328e454a6cb",
+      "url": "https://www.youtube.com/channel/UCongbtOF4PDmJ-HOXx0jSIQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:29:34+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCongbtOF4PDmJ-HOXx0jSIQ to tiktok account https://www.tiktok.com/@myxnyxx (handle myxnyxx)."
+    },
+    {
+      "id": "ev_f8b711bdc9e783bd6b50",
+      "url": "https://www.youtube.com/channel/UCtI52RQ3VagjRMERxov_OxA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:35:23+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCtI52RQ3VagjRMERxov_OxA to tiktok account https://www.tiktok.com/@nyamaruyui_v2 (handle nyamaruyui_v2)."
+    },
+    {
+      "id": "ev_d537320f37a22f7ef6d1",
+      "url": "https://www.youtube.com/channel/UCfaZG-sf7NrY3RBmoHBSOcg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:29:52+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCfaZG-sf7NrY3RBmoHBSOcg to tiktok account https://www.tiktok.com/@oatsukaresan (handle oatsukaresan)."
+    },
+    {
+      "id": "ev_66a5f812c8064b95feee",
+      "url": "https://www.youtube.com/channel/UCbwvKxA5KSud4jcaD5g5ukQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCbwvKxA5KSud4jcaD5g5ukQ to tiktok account https://www.tiktok.com/@oldmanazazel (handle oldmanazazel)."
+    },
+    {
+      "id": "ev_25e664645a2416e21961",
+      "url": "https://www.youtube.com/channel/UCc6ilVu6_FK9y_9qMMh4WMQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:38+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCc6ilVu6_FK9y_9qMMh4WMQ to tiktok account https://www.tiktok.com/@platinumrw (handle platinumrw)."
+    },
+    {
+      "id": "ev_d87e67506d8641eb7068",
+      "url": "https://www.youtube.com/channel/UCjw7DQp5uNND5qMyyhtOpdQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:31:30+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCjw7DQp5uNND5qMyyhtOpdQ to tiktok account https://www.tiktok.com/@rafadxd_3dvtuber (handle rafadxd_3dvtuber)."
+    },
+    {
+      "id": "ev_0e30c227839c5889d397",
+      "url": "https://www.youtube.com/channel/UCCEHpnzn37K8kQv2QtybE2w",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:35:51+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCCEHpnzn37K8kQv2QtybE2w to tiktok account https://www.tiktok.com/@rayametier_yuan1 (handle rayametier_yuan1)."
+    },
+    {
+      "id": "ev_a18dc12651eaca6c035d",
+      "url": "https://www.youtube.com/channel/UCfPtDFCs4PzDU_hy0usORnw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:37:40+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCfPtDFCs4PzDU_hy0usORnw to tiktok account https://www.tiktok.com/@reva_regaliaast (handle reva_regaliaast)."
+    },
+    {
+      "id": "ev_5c8db12d57877a628e3d",
+      "url": "https://www.youtube.com/channel/UCOJiQA9afDpohgpxgKIKljA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:29:30+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCOJiQA9afDpohgpxgKIKljA to tiktok account https://www.tiktok.com/@rinrexger?_t=8rpa9f8vvsr&_r=1 (handle rinrexger)."
+    },
+    {
+      "id": "ev_fe84c252f9beb5373efd",
+      "url": "https://www.youtube.com/channel/UCPLU2nDo8FV9JAyXLAcTsCw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:34:33+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCPLU2nDo8FV9JAyXLAcTsCw to tiktok account https://www.tiktok.com/@risato014 (handle risato014)."
+    },
+    {
+      "id": "ev_832ff48e7cfb4e39091c",
+      "url": "https://www.youtube.com/channel/UCKE7TdJhSFGM6eBxAOZrw8g",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:35:47+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCKE7TdJhSFGM6eBxAOZrw8g to tiktok account https://www.tiktok.com/@rocokingdomgame (handle rocokingdomgame)."
+    },
+    {
+      "id": "ev_0a5463a2da664bb38d3d",
+      "url": "https://www.youtube.com/channel/UCCCOpUUMaweGiTZ_vNSdh1w",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:32:35+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCCCOpUUMaweGiTZ_vNSdh1w to tiktok account https://www.tiktok.com/@shirasagi_ch?_t=ZS-8uwjMVBPZxq&_r=1 (handle shirasagi_ch)."
+    },
+    {
+      "id": "ev_67c88f46853a510b4337",
+      "url": "https://www.youtube.com/channel/UCGIo_THCq5eGbEdb8f0z10Q",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:34:38+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCGIo_THCq5eGbEdb8f0z10Q to tiktok account https://www.tiktok.com/@shirowashi_ (handle shirowashi_)."
+    },
+    {
+      "id": "ev_70698b65ff98e12e4b9e",
+      "url": "https://www.youtube.com/channel/UCzfzVFRd81VcN7mseTpusIg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:34:23+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCzfzVFRd81VcN7mseTpusIg to tiktok account https://www.tiktok.com/@sirenavth (handle sirenavth)."
+    },
+    {
+      "id": "ev_924cfe61303a87964033",
+      "url": "https://www.youtube.com/channel/UCvAjpLYnhtnZn-6UDT4rraQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:34:39+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCvAjpLYnhtnZn-6UDT4rraQ to tiktok account https://www.tiktok.com/@slushytoma_ (handle slushytoma_)."
+    },
+    {
+      "id": "ev_483466f067a7de35cf2e",
+      "url": "https://www.youtube.com/channel/UCYo4x86C700J5ivxg98oOtw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:29:32+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCYo4x86C700J5ivxg98oOtw to tiktok account https://www.tiktok.com/@snackbarmenu (handle snackbarmenu)."
+    },
+    {
+      "id": "ev_c00ad801caab4ee2d5bd",
+      "url": "https://www.youtube.com/channel/UCmiO2DRc4e80eWfElzQfWyA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:52+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCmiO2DRc4e80eWfElzQfWyA to tiktok account https://www.tiktok.com/@sorasamavtuber (handle sorasamavtuber)."
+    },
+    {
+      "id": "ev_d8cb964b995d7cff1b8c",
+      "url": "https://www.youtube.com/channel/UCCjunxHiL2OHhNDl4sdD1bg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:38:34+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCCjunxHiL2OHhNDl4sdD1bg to tiktok account https://www.tiktok.com/@sotareino (handle sotareino)."
+    },
+    {
+      "id": "ev_bdce4b9fa29c20da4a9a",
+      "url": "https://www.youtube.com/channel/UCg1lfyLDBsy0INi17egh6IA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:29:38+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCg1lfyLDBsy0INi17egh6IA to tiktok account https://www.tiktok.com/@suavtuber (handle suavtuber)."
+    },
+    {
+      "id": "ev_4df15b4c8f8b1a28e2e2",
+      "url": "https://www.youtube.com/channel/UCtGhO6z6GxqtBZ4gP-3rUpA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:33:05+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCtGhO6z6GxqtBZ4gP-3rUpA to tiktok account https://www.tiktok.com/@takumarei (handle takumarei)."
+    },
+    {
+      "id": "ev_fb19cbd487b79894d373",
+      "url": "https://www.youtube.com/channel/UCIgXtat0bKE5e8sXtUgutOw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:37:02+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCIgXtat0bKE5e8sXtUgutOw to tiktok account https://www.tiktok.com/@torakaze_13 (handle torakaze_13)."
+    },
+    {
+      "id": "ev_55e47b0a03d177d6c9d3",
+      "url": "https://www.youtube.com/channel/UCHlFbiJk0VWcT2dPwTqXcxw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:38:19+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCHlFbiJk0VWcT2dPwTqXcxw to tiktok account https://www.tiktok.com/@twitch_jaokat (handle twitch_jaokat)."
+    },
+    {
+      "id": "ev_7b6dc0ab0dad427de825",
+      "url": "https://www.youtube.com/channel/UCvQ3ivV2lcNxaSr66Xl_Kcw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:17+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCvQ3ivV2lcNxaSr66Xl_Kcw to tiktok account https://www.tiktok.com/@vampaow56 (handle vampaow56)."
+    },
+    {
+      "id": "ev_2d7b308385630729744e",
+      "url": "https://www.youtube.com/channel/UCLT-U861QLvJmrlP7K6kv2w",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:11+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCLT-U861QLvJmrlP7K6kv2w to tiktok account https://www.tiktok.com/@vulgtmnahog (handle vulgtmnahog)."
+    },
+    {
+      "id": "ev_0bb48dc294c432e8215e",
+      "url": "https://www.youtube.com/channel/UCjQS71kGf-Ph6uy08IEG2bg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:01+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCjQS71kGf-Ph6uy08IEG2bg to tiktok account https://www.tiktok.com/@walkytalky555 (handle walkytalky555)."
+    },
+    {
+      "id": "ev_14dcfc9cf6ac248364f0",
+      "url": "https://www.youtube.com/channel/UChNrxGsRq7xpntwWcI-h5Hg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:32:41+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UChNrxGsRq7xpntwWcI-h5Hg to tiktok account https://www.tiktok.com/@yuitoku_woof (handle yuitoku_woof)."
+    },
+    {
+      "id": "ev_e76ddd89d7d4d70b363c",
+      "url": "https://www.youtube.com/channel/UCJFoHpvvS4MLNsq0VeiEAyg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCJFoHpvvS4MLNsq0VeiEAyg to tiktok account https://www.tiktok.com/@yuneschan085 (handle yuneschan085)."
+    },
+    {
+      "id": "ev_2a10f90fb4384c50f104",
+      "url": "https://www.youtube.com/channel/UCB_Ooo_Eanv8LHYUGqMMDjg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:35:11+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCB_Ooo_Eanv8LHYUGqMMDjg to tiktok account https://www.tiktok.com/@yuutanatsuki (handle yuutanatsuki)."
+    },
+    {
+      "id": "ev_b74b120fecc67b6a4a55",
+      "url": "https://www.youtube.com/channel/UCSPAN-WjdncItj4wMfi451g",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:29:48+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCSPAN-WjdncItj4wMfi451g to tiktok account https://www.tiktok.com/@zaliviazaly (handle zaliviazaly)."
+    },
+    {
+      "id": "ev_6a4e0e97d8c2e1d04530",
+      "url": "https://www.youtube.com/channel/UCfPtDFCs4PzDU_hy0usORnw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:37:40+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCfPtDFCs4PzDU_hy0usORnw to twitch account https://twitch.tv/reva_regaliaast/home?tt_content=channel&tt_medium=mobile_web_share (handle reva_regaliaast)."
+    },
+    {
+      "id": "ev_c0c9ea6089abc61e914a",
+      "url": "https://www.youtube.com/channel/UCCCOpUUMaweGiTZ_vNSdh1w",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:32:35+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCCCOpUUMaweGiTZ_vNSdh1w to twitch account https://twitch.tv/shirasagi_ch/home (handle shirasagi_ch)."
+    },
+    {
+      "id": "ev_c930669b4ea8e4a57452",
+      "url": "https://www.youtube.com/channel/UCmvFibZ6umhTdyUpLya_vLg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:35:43+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCmvFibZ6umhTdyUpLya_vLg to twitch account https://www.twitch.tv/BlueMage_VT (handle BlueMage_VT)."
+    },
+    {
+      "id": "ev_5cf95fd2644653247555",
+      "url": "https://www.youtube.com/channel/UCbwvKxA5KSud4jcaD5g5ukQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCbwvKxA5KSud4jcaD5g5ukQ to twitch account https://www.twitch.tv/azazelthewanderer (handle azazelthewanderer)."
+    },
+    {
+      "id": "ev_90816231c9d2f252d8bc",
+      "url": "https://www.youtube.com/channel/UCZYLQLIIviw56yaDcA9-VwA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:37:36+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCZYLQLIIviw56yaDcA9-VwA to twitch account https://www.twitch.tv/azuri_prd (handle azuri_prd)."
+    },
+    {
+      "id": "ev_7138be3c48a977280b56",
+      "url": "https://www.youtube.com/channel/UCbXXQtmpcBI8GtO2Xg5pYuw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:33:54+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCbXXQtmpcBI8GtO2Xg5pYuw to twitch account https://www.twitch.tv/donovan_vt (handle donovan_vt)."
+    },
+    {
+      "id": "ev_eeba1bb430460d252f94",
+      "url": "https://www.youtube.com/channel/UCuSeRbNKfziUQdW6hZgiZjw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:18+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCuSeRbNKfziUQdW6hZgiZjw to twitch account https://www.twitch.tv/eulaovtuber (handle eulaovtuber)."
+    },
+    {
+      "id": "ev_e5f672f8c2e804f2d068",
+      "url": "https://www.youtube.com/channel/UC4QwUkFO1_JJe_TTN5jYoyA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:38:10+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UC4QwUkFO1_JJe_TTN5jYoyA to twitch account https://www.twitch.tv/inumaru_atsuki (handle inumaru_atsuki)."
+    },
+    {
+      "id": "ev_508ef61adf428607c648",
+      "url": "https://www.youtube.com/channel/UCXG9ZvdggOsj5kb996vbYPg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:33:42+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCXG9ZvdggOsj5kb996vbYPg to twitch account https://www.twitch.tv/itsme_chicha (handle itsme_chicha)."
+    },
+    {
+      "id": "ev_cefbeab8b904ff43b2a3",
+      "url": "https://www.youtube.com/channel/UClFQeZMVqFVZonqSYk0l-Og",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:36:24+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UClFQeZMVqFVZonqSYk0l-Og to twitch account https://www.twitch.tv/kagema404_ (handle kagema404_)."
+    },
+    {
+      "id": "ev_5d624075aedfcf734fec",
+      "url": "https://www.youtube.com/channel/UCL0LiR5zg3vRnIHp-CowVBg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:31:38+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCL0LiR5zg3vRnIHp-CowVBg to twitch account https://www.twitch.tv/kamisaki_kuro (handle kamisaki_kuro)."
+    },
+    {
+      "id": "ev_8c366da993ebad531d69",
+      "url": "https://www.youtube.com/channel/UC7txsIaSjDTuvN7h9BzVAsw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:34:20+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UC7txsIaSjDTuvN7h9BzVAsw to twitch account https://www.twitch.tv/kiran_regalia (handle kiran_regalia)."
+    },
+    {
+      "id": "ev_834ac09eeb61e33f4fb3",
+      "url": "https://www.youtube.com/channel/UCZhewVQstdQB87rdWwIRHzg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:38:02+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCZhewVQstdQB87rdWwIRHzg to twitch account https://www.twitch.tv/krikka05 (handle krikka05)."
+    },
+    {
+      "id": "ev_7f487c640083998e31aa",
+      "url": "https://www.youtube.com/channel/UCSpIYbnsnaXgRpIpipxJRcw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:29:48+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCSpIYbnsnaXgRpIpipxJRcw to twitch account https://www.twitch.tv/laychlype_alf (handle laychlype_alf)."
+    },
+    {
+      "id": "ev_75db3d144958c659f216",
+      "url": "https://www.youtube.com/channel/UCNy9BIHfr9iuvGdeQ0jm1gA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:33:34+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCNy9BIHfr9iuvGdeQ0jm1gA to twitch account https://www.twitch.tv/maddoxtheorder (handle maddoxtheorder)."
+    },
+    {
+      "id": "ev_f14c1addd5994fe2325c",
+      "url": "https://www.youtube.com/channel/UC5OXcxq6ab6RlhHqNyHws_w",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:32:16+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UC5OXcxq6ab6RlhHqNyHws_w to twitch account https://www.twitch.tv/mallow_ham (handle mallow_ham)."
+    },
+    {
+      "id": "ev_b9b39c7b0ed6b5645d1d",
+      "url": "https://www.youtube.com/channel/UCZhewVQstdQB87rdWwIRHzg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:38:02+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCZhewVQstdQB87rdWwIRHzg to twitch account https://www.twitch.tv/meilin_vtuber (handle meilin_vtuber)."
+    },
+    {
+      "id": "ev_ea94b1e5b0de54af4c20",
+      "url": "https://www.youtube.com/channel/UCeoHajHKBl5q-UvfIEeOm3g",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:32:51+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCeoHajHKBl5q-UvfIEeOm3g to twitch account https://www.twitch.tv/mizugracia (handle mizugracia)."
+    },
+    {
+      "id": "ev_afa58b46646869fec023",
+      "url": "https://www.youtube.com/channel/UCVmZ-RvoPuxk9siBRctLwsA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:36:43+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCVmZ-RvoPuxk9siBRctLwsA to twitch account https://www.twitch.tv/nana_vtuberth (handle nana_vtuberth)."
+    },
+    {
+      "id": "ev_1936fab0a758d9967c7f",
+      "url": "https://www.youtube.com/channel/UCf-P7yTlHAJlVwxzwHu915Q",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCf-P7yTlHAJlVwxzwHu915Q to twitch account https://www.twitch.tv/nancygimme2000 (handle nancygimme2000)."
+    },
+    {
+      "id": "ev_90c3a008a6eade544ad3",
+      "url": "https://www.youtube.com/channel/UCbdwIhYMC977P-Fk6d0utoQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:32:12+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCbdwIhYMC977P-Fk6d0utoQ to twitch account https://www.twitch.tv/nneviris (handle nneviris)."
+    },
+    {
+      "id": "ev_2f5dbdff7422a1bb072d",
+      "url": "https://www.youtube.com/channel/UC0Zn4uhb90EBb5e3NlvuS1g",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:31:15+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UC0Zn4uhb90EBb5e3NlvuS1g to twitch account https://www.twitch.tv/nonokochika (handle nonokochika)."
+    },
+    {
+      "id": "ev_1bd2cbc7fa5887587a85",
+      "url": "https://www.youtube.com/channel/UC2IZur8-GAsn7gHQNTNOOgQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:34:03+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UC2IZur8-GAsn7gHQNTNOOgQ to twitch account https://www.twitch.tv/potia_vtuth (handle potia_vtuth)."
+    },
+    {
+      "id": "ev_5068c1107cc1e32f05b2",
+      "url": "https://www.youtube.com/channel/UCKPcwla_mvpdBnyjHYTiwoQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:21+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCKPcwla_mvpdBnyjHYTiwoQ to twitch account https://www.twitch.tv/puipuimemory (handle puipuimemory)."
+    },
+    {
+      "id": "ev_15303f184b7a9665354b",
+      "url": "https://www.youtube.com/channel/UCWm99dEdWyZR-jWLyzzOIZA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:33:36+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCWm99dEdWyZR-jWLyzzOIZA to twitch account https://www.twitch.tv/railoney (handle railoney)."
+    },
+    {
+      "id": "ev_188672b095afc8c77b86",
+      "url": "https://www.youtube.com/channel/UCCEHpnzn37K8kQv2QtybE2w",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:35:51+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCCEHpnzn37K8kQv2QtybE2w to twitch account https://www.twitch.tv/rayametieryuan (handle rayametieryuan)."
+    },
+    {
+      "id": "ev_07d50343aacf65e6c859",
+      "url": "https://www.youtube.com/channel/UCmvFibZ6umhTdyUpLya_vLg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:35:43+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCmvFibZ6umhTdyUpLya_vLg to twitch account https://www.twitch.tv/reiquasar0 (handle reiquasar0)."
+    },
+    {
+      "id": "ev_4bbe6dc89ad036601ede",
+      "url": "https://www.youtube.com/channel/UCt-_7LOFGUhAQGzePZtbYZg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:36:46+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCt-_7LOFGUhAQGzePZtbYZg to twitch account https://www.twitch.tv/renkon_tora (handle renkon_tora)."
+    },
+    {
+      "id": "ev_9e688a3eb271531cda95",
+      "url": "https://www.youtube.com/channel/UCKE7TdJhSFGM6eBxAOZrw8g",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:35:47+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCKE7TdJhSFGM6eBxAOZrw8g to twitch account https://www.twitch.tv/rocokingdom (handle rocokingdom)."
+    },
+    {
+      "id": "ev_4b3d04058f8439f2c274",
+      "url": "https://www.youtube.com/channel/UCVa_b2jriwKJLcS4CP9Pq3w",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:37:57+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCVa_b2jriwKJLcS4CP9Pq3w to twitch account https://www.twitch.tv/rubellus_remis (handle rubellus_remis)."
+    },
+    {
+      "id": "ev_eab8551b32ab569f3cc8",
+      "url": "https://www.youtube.com/channel/UCrkWEJaRE2eCpEpGZbpNhIQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:12+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCrkWEJaRE2eCpEpGZbpNhIQ to twitch account https://www.twitch.tv/ryuseistarlight (handle ryuseistarlight)."
+    },
+    {
+      "id": "ev_60c56180f3476e030cc4",
+      "url": "https://www.youtube.com/channel/UCpNAFq_PANbmcdfhzfuiekA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:35:35+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCpNAFq_PANbmcdfhzfuiekA to twitch account https://www.twitch.tv/satachan23 (handle satachan23)."
+    },
+    {
+      "id": "ev_13d7e9177b306dcb0cad",
+      "url": "https://www.youtube.com/channel/UCmvFibZ6umhTdyUpLya_vLg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:35:43+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCmvFibZ6umhTdyUpLya_vLg to twitch account https://www.twitch.tv/scythringe (handle scythringe)."
+    },
+    {
+      "id": "ev_b5ff01084cbe6292fa4b",
+      "url": "https://www.youtube.com/channel/UCGIo_THCq5eGbEdb8f0z10Q",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:34:38+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCGIo_THCq5eGbEdb8f0z10Q to twitch account https://www.twitch.tv/shirowashi__ (handle shirowashi__)."
+    },
+    {
+      "id": "ev_b63b1a44ecf9931d6f02",
+      "url": "https://www.youtube.com/channel/UCzc8C1vlN6t3ZfAkQLemjIg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:11+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCzc8C1vlN6t3ZfAkQLemjIg to twitch account https://www.twitch.tv/subs/Kurisumasu_ (handle subs)."
+    },
+    {
+      "id": "ev_6f709a66d9aea53cea38",
+      "url": "https://www.youtube.com/channel/UCmvFibZ6umhTdyUpLya_vLg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:35:43+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCmvFibZ6umhTdyUpLya_vLg to twitch account https://www.twitch.tv/theclumsynoob (handle theclumsynoob)."
+    },
+    {
+      "id": "ev_dd69a775a4fc52024aa3",
+      "url": "https://www.youtube.com/channel/UCmvFibZ6umhTdyUpLya_vLg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:35:43+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCmvFibZ6umhTdyUpLya_vLg to twitch account https://www.twitch.tv/tpastry (handle tpastry)."
+    },
+    {
+      "id": "ev_4b19ff49e274d8e716c5",
+      "url": "https://www.youtube.com/channel/UCJFoHpvvS4MLNsq0VeiEAyg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:30:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCJFoHpvvS4MLNsq0VeiEAyg to twitch account https://www.twitch.tv/yuneschan (handle yuneschan)."
+    },
+    {
+      "id": "ev_e2ea69991ec80c686049",
+      "url": "https://www.youtube.com/channel/UCmvFibZ6umhTdyUpLya_vLg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:35:43+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCmvFibZ6umhTdyUpLya_vLg to twitch account https://www.twitch.tv/zerobusterxz (handle zerobusterxz)."
+    },
+    {
+      "id": "ev_a6eea6f7b86f72c29a1b",
+      "url": "https://www.youtube.com/channel/UCWe8lxEFSt84vZ7srlHySVw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:58:52+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCWe8lxEFSt84vZ7srlHySVw to existing tiktok account https://tiktok.com/@21pm.official."
+    },
+    {
+      "id": "ev_495f93aca4beb08d6178",
+      "url": "https://www.youtube.com/channel/UCU6UxFBQ19d2otSnCPeyykg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:58:52+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCU6UxFBQ19d2otSnCPeyykg to tiktok account https://tiktok.com/@mamunzaatv (handle mamunzaatv)."
+    },
+    {
+      "id": "ev_8ebd1649308b437b4a2b",
+      "url": "https://www.youtube.com/channel/UCEvyDOkcGkzCTo62d9BrhkA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:58:52+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCEvyDOkcGkzCTo62d9BrhkA to existing tiktok account https://www.tiktok.com/@anyaplg."
+    },
+    {
+      "id": "ev_8dd7d35f0f037928920f",
+      "url": "https://www.youtube.com/channel/UCqBG-DyjOA-llSpScSDOxqA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T10:01:17+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCqBG-DyjOA-llSpScSDOxqA to tiktok account https://www.tiktok.com/@apririru (handle apririru)."
+    },
+    {
+      "id": "ev_df0a8f88f08c3c8b7707",
+      "url": "https://www.youtube.com/channel/UCcTGGIt4hirVXIxUHPxIvXw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T10:00:03+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCcTGGIt4hirVXIxUHPxIvXw to tiktok account https://www.tiktok.com/@lazadath (handle lazadath)."
+    },
+    {
+      "id": "ev_0a95f3aa82cd57515848",
+      "url": "https://www.youtube.com/channel/UCI7HyoyonuN4gh_Mgu6Kzbg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:59:20+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCI7HyoyonuN4gh_Mgu6Kzbg to tiktok account https://www.tiktok.com/@lenlorcraft (handle lenlorcraft)."
+    },
+    {
+      "id": "ev_c8a6c6ccc79120bcaeb0",
+      "url": "https://www.youtube.com/channel/UCPfqcgrqpaSMqxezIqf7DuQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T10:00:40+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCPfqcgrqpaSMqxezIqf7DuQ to tiktok account https://www.tiktok.com/@lilinkawerewolf (handle lilinkawerewolf)."
+    },
+    {
+      "id": "ev_06553b76f369b4993804",
+      "url": "https://www.youtube.com/channel/UCAV2_Jxxt-JJ08v77lNLBtg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T10:00:42+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCAV2_Jxxt-JJ08v77lNLBtg to tiktok account https://www.tiktok.com/@malai_deva (handle malai_deva)."
+    },
+    {
+      "id": "ev_d4444b1f7bb661480fd4",
+      "url": "https://www.youtube.com/channel/UClBbcA64ikRSXTijItUQ-OA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:59:53+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UClBbcA64ikRSXTijItUQ-OA to tiktok account https://www.tiktok.com/@mizo.vtuber?_t=zs-8zld5km0afp&_r=1 (handle mizo.vtuber)."
+    },
+    {
+      "id": "ev_07c1dd2c282be5a0de67",
+      "url": "https://www.youtube.com/channel/UCB2UBUgwjQ7y8k3JNEFEVaQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:58:52+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCB2UBUgwjQ7y8k3JNEFEVaQ to existing tiktok account https://www.tiktok.com/@nagumoiscooler."
+    },
+    {
+      "id": "ev_dd7a18f74c0ed3dd34cf",
+      "url": "https://www.youtube.com/channel/UCX5Qv6nz_HUVKtaDiMEReyQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:58:52+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCX5Qv6nz_HUVKtaDiMEReyQ to tiktok account https://www.tiktok.com/@red_fartear (handle red_fartear)."
+    },
+    {
+      "id": "ev_95ef1c396276fcd44da5",
+      "url": "https://www.youtube.com/channel/UCEvyDOkcGkzCTo62d9BrhkA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:58:52+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCEvyDOkcGkzCTo62d9BrhkA to existing tiktok account https://www.tiktok.com/@rexaplg."
+    },
+    {
+      "id": "ev_21dfab7b43ed2bf78532",
+      "url": "https://www.youtube.com/channel/UCEvyDOkcGkzCTo62d9BrhkA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:58:52+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCEvyDOkcGkzCTo62d9BrhkA to existing tiktok account https://www.tiktok.com/@rionaplg."
+    },
+    {
+      "id": "ev_647a989e4dbd9aad556f",
+      "url": "https://www.youtube.com/channel/UCgfEMiBgW-JSS3qksegDo3Q",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:40:04+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCgfEMiBgW-JSS3qksegDo3Q to tiktok account https://www.tiktok.com/@rlanzchino (handle rlanzchino)."
+    },
+    {
+      "id": "ev_1b7f50cd4a52a737f90e",
+      "url": "https://www.youtube.com/channel/UC4194MxDKFwBEFtaFbwwM7g",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T10:00:40+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UC4194MxDKFwBEFtaFbwwM7g to tiktok account https://www.tiktok.com/@soursama_ (handle soursama_)."
+    },
+    {
+      "id": "ev_9992d6a3b31bb41d65e5",
+      "url": "https://www.youtube.com/channel/UC4Ceq8atGdQu58Dn3YKF1Ig",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:39:58+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UC4Ceq8atGdQu58Dn3YKF1Ig to tiktok account https://www.tiktok.com/@t_blueberry?_t=8sVcG59eHfm&_r=1 (handle t_blueberry)."
+    },
+    {
+      "id": "ev_98d279ce8aae10cb247f",
+      "url": "https://www.youtube.com/channel/UCEvyDOkcGkzCTo62d9BrhkA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:58:52+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCEvyDOkcGkzCTo62d9BrhkA to existing tiktok account https://www.tiktok.com/@tamamiplg."
+    },
+    {
+      "id": "ev_28318968137d7a7071ba",
+      "url": "https://www.youtube.com/channel/UCHUHJ0riRQWzPWdAchy6D4w",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T10:01:32+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCHUHJ0riRQWzPWdAchy6D4w to tiktok account https://www.tiktok.com/@tipjai.official (handle tipjai.official)."
+    },
+    {
+      "id": "ev_93ff658ac665ae8b2049",
+      "url": "https://www.youtube.com/channel/UCTxCJt6jtRKeLJys0AaSUew",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:59:33+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCTxCJt6jtRKeLJys0AaSUew to tiktok account https://www.tiktok.com/@unclekanun (handle unclekanun)."
+    },
+    {
+      "id": "ev_61962a5337e1b308bf21",
+      "url": "https://www.youtube.com/channel/UCeY7KQH92GvxRR4F0YWbknA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T10:01:20+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCeY7KQH92GvxRR4F0YWbknA to tiktok account https://www.tiktok.com/@viorises (handle viorises)."
+    },
+    {
+      "id": "ev_7c33d19d6d505213af4e",
+      "url": "https://www.youtube.com/channel/UCalvpWY2A2P4-h5UIs1jGgA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T10:00:53+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCalvpWY2A2P4-h5UIs1jGgA to tiktok account https://www.tiktok.com/@yoinmori (handle yoinmori)."
+    },
+    {
+      "id": "ev_7684290fadd03984f27b",
+      "url": "https://www.youtube.com/channel/UCt483dpJFmpjRjADkNCWj1A",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:58:52+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCt483dpJFmpjRjADkNCWj1A to twitch account https://www.twitch.tv/bluwey_11 (handle bluwey_11)."
+    },
+    {
+      "id": "ev_b6caa116e9473ee5c590",
+      "url": "https://www.youtube.com/channel/UCVQrivN2wzHYLNrsAquYjhg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:58:52+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCVQrivN2wzHYLNrsAquYjhg to twitch account https://www.twitch.tv/jaowayde_vt (handle jaowayde_vt)."
+    },
+    {
+      "id": "ev_a414942967386b9fefeb",
+      "url": "https://www.youtube.com/channel/UCgfEMiBgW-JSS3qksegDo3Q",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T09:40:04+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCgfEMiBgW-JSS3qksegDo3Q to twitch account https://www.twitch.tv/rlanzshino (handle rlanzshino)."
+    },
+    {
+      "id": "ev_b02d28d3e1b181be3a87",
+      "url": "https://www.youtube.com/channel/UCOWt5oD4DqoGowGNz0F6Gkw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T10:00:37+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "YouTube owner cross-link from https://www.youtube.com/channel/UCOWt5oD4DqoGowGNz0F6Gkw to twitch account https://www.twitch.tv/yumiiko_95 (handle yumiiko_95)."
+    }
+  ],
+  "accounts": [
+    {
+      "id": "acct_070ee837cc2c03af4dbb",
+      "platform": "tiktok",
+      "platform_id": "7219263258032079877",
+      "id_namespace": "web_user_id",
+      "handle": "easydonateth",
+      "name": "easydonateth",
+      "url": "https://tiktok.com/@easydonateth",
+      "first_discovered_at": "2026-09-16T09:30:12+00:00",
+      "evidence_id": "ev_e3455a8bb041551fc143"
+    },
+    {
+      "id": "acct_b9905567fd4e040a073a",
+      "platform": "tiktok",
+      "platform_id": "7339964325564285970",
+      "id_namespace": "web_user_id",
+      "handle": "akitoqflame",
+      "name": "akitoqflame",
+      "url": "https://www.tiktok.com/@akitoqflame",
+      "first_discovered_at": "2026-09-16T09:35:50+00:00",
+      "evidence_id": "ev_7dbfa3209c329ca88cd8"
+    },
+    {
+      "id": "acct_1f43da4651359c464e01",
+      "platform": "tiktok",
+      "platform_id": "7622320330719855634",
+      "id_namespace": "web_user_id",
+      "handle": "amn.mero",
+      "name": "amn.mero",
+      "url": "https://www.tiktok.com/@amn.mero",
+      "first_discovered_at": "2026-09-16T09:37:54+00:00",
+      "evidence_id": "ev_3474cd734e45bb2907a2"
+    },
+    {
+      "id": "acct_865f2a9f847c1f469378",
+      "platform": "tiktok",
+      "platform_id": "6541543893299970049",
+      "id_namespace": "web_user_id",
+      "handle": "ant4zin",
+      "name": "ant4zin",
+      "url": "https://www.tiktok.com/@ant4zin",
+      "first_discovered_at": "2026-09-16T09:33:38+00:00",
+      "evidence_id": "ev_2e3143d09645fd41fcad"
+    },
+    {
+      "id": "acct_dc37c190b56f679d2da3",
+      "platform": "tiktok",
+      "platform_id": "7479038894211941384",
+      "id_namespace": "web_user_id",
+      "handle": "antiavtuber",
+      "name": "antiavtuber",
+      "url": "https://www.tiktok.com/@antiavtuber?_t=zs-8uj8bzs3rio&_r=1",
+      "first_discovered_at": "2026-09-16T09:32:07+00:00",
+      "evidence_id": "ev_4b07cfd05ddbe0ab9370"
+    },
+    {
+      "id": "acct_98c898995c48c6cc5b54",
+      "platform": "tiktok",
+      "platform_id": "7277483475178193926",
+      "id_namespace": "web_user_id",
+      "handle": "azuri_desu",
+      "name": "azuri_desu",
+      "url": "https://www.tiktok.com/@azuri_desu",
+      "first_discovered_at": "2026-09-16T09:37:36+00:00",
+      "evidence_id": "ev_4103e50748d5b886a3ff"
+    },
+    {
+      "id": "acct_d81578e8299f4d6ee9a7",
+      "platform": "tiktok",
+      "platform_id": "7309721729525826578",
+      "id_namespace": "web_user_id",
+      "handle": "chizizfa",
+      "name": "chizizfa",
+      "url": "https://www.tiktok.com/@chizizfa",
+      "first_discovered_at": "2026-09-16T09:37:26+00:00",
+      "evidence_id": "ev_fbfc28c49a6d8c48fbba"
+    },
+    {
+      "id": "acct_beb6417a7e85342d26e7",
+      "platform": "tiktok",
+      "platform_id": "7210634022874547202",
+      "id_namespace": "web_user_id",
+      "handle": "cresentansel",
+      "name": "cresentansel",
+      "url": "https://www.tiktok.com/@cresentansel",
+      "first_discovered_at": "2026-09-16T09:29:47+00:00",
+      "evidence_id": "ev_aa32cb3bdb1e77baa0d5"
+    },
+    {
+      "id": "acct_10fad71ecc7d7748d759",
+      "platform": "tiktok",
+      "platform_id": "7202976014904378373",
+      "id_namespace": "web_user_id",
+      "handle": "cs_valkyrie",
+      "name": "cs_valkyrie",
+      "url": "https://www.tiktok.com/@cs_valkyrie?_t=ZS-8usumx1q0CG&_r=1",
+      "first_discovered_at": "2026-09-16T09:37:50+00:00",
+      "evidence_id": "ev_5c1f846fc2c8a8b73d24"
+    },
+    {
+      "id": "acct_893e8987189bb89dfeca",
+      "platform": "tiktok",
+      "platform_id": "7422621770199352338",
+      "id_namespace": "web_user_id",
+      "handle": "darieladolly",
+      "name": "darieladolly",
+      "url": "https://www.tiktok.com/@darieladolly",
+      "first_discovered_at": "2026-09-16T09:30:15+00:00",
+      "evidence_id": "ev_6d529b3a4d7eaa66e8b1"
+    },
+    {
+      "id": "acct_e581d56a870747278d13",
+      "platform": "tiktok",
+      "platform_id": "7198356512304825346",
+      "id_namespace": "web_user_id",
+      "handle": "dolcheb7",
+      "name": "dolcheb7",
+      "url": "https://www.tiktok.com/@dolcheb7",
+      "first_discovered_at": "2026-09-16T09:29:53+00:00",
+      "evidence_id": "ev_317b8879f6702581ca5f"
+    },
+    {
+      "id": "acct_cee07ca26d0777286cba",
+      "platform": "tiktok",
+      "platform_id": "7325250408343372818",
+      "id_namespace": "web_user_id",
+      "handle": "feilong0070",
+      "name": "feilong0070",
+      "url": "https://www.tiktok.com/@feilong0070",
+      "first_discovered_at": "2026-09-16T09:36:19+00:00",
+      "evidence_id": "ev_c3d0f54fef84256b6a85"
+    },
+    {
+      "id": "acct_9572caa3d7dbe7b20c2b",
+      "platform": "tiktok",
+      "platform_id": "7214852077918307333",
+      "id_namespace": "web_user_id",
+      "handle": "geno_tst",
+      "name": "geno_tst",
+      "url": "https://www.tiktok.com/@geno_tst",
+      "first_discovered_at": "2026-09-16T09:36:55+00:00",
+      "evidence_id": "ev_149c5d2bcffcbf7b2b38"
+    },
+    {
+      "id": "acct_55105212e1cea0e4777b",
+      "platform": "tiktok",
+      "platform_id": "7148939746819245057",
+      "id_namespace": "web_user_id",
+      "handle": "gloria21pm",
+      "name": "gloria21pm",
+      "url": "https://www.tiktok.com/@gloria21pm",
+      "first_discovered_at": "2026-09-16T09:34:49+00:00",
+      "evidence_id": "ev_17997391774ad41caf4b"
+    },
+    {
+      "id": "acct_2a13bb8b3e252949ba11",
+      "platform": "tiktok",
+      "platform_id": "7379546897886135304",
+      "id_namespace": "web_user_id",
+      "handle": "gojo.haine",
+      "name": "gojo.haine",
+      "url": "https://www.tiktok.com/@gojo.haine?_t=8n8Phvl2Eml&_r=1",
+      "first_discovered_at": "2026-09-16T09:36:04+00:00",
+      "evidence_id": "ev_7e2e44435db8e058c12f"
+    },
+    {
+      "id": "acct_be76b08044440daad60c",
+      "platform": "tiktok",
+      "platform_id": "7526646407585301522",
+      "id_namespace": "web_user_id",
+      "handle": "inukami_pugmaru",
+      "name": "inukami_pugmaru",
+      "url": "https://www.tiktok.com/@inukami_pugmaru",
+      "first_discovered_at": "2026-09-16T09:37:01+00:00",
+      "evidence_id": "ev_52a9f42ceea31293250c"
+    },
+    {
+      "id": "acct_120fc17e0a2182d2e6fe",
+      "platform": "tiktok",
+      "platform_id": "7134533765037360155",
+      "id_namespace": "web_user_id",
+      "handle": "inumaruatsuki",
+      "name": "inumaruatsuki",
+      "url": "https://www.tiktok.com/@inumaruatsuki",
+      "first_discovered_at": "2026-09-16T09:38:10+00:00",
+      "evidence_id": "ev_6b22e9bd2fe21b191685"
+    },
+    {
+      "id": "acct_7c303fcc58bdc7cb38dd",
+      "platform": "tiktok",
+      "platform_id": "7346635254339699720",
+      "id_namespace": "web_user_id",
+      "handle": "kamisaki_kuro",
+      "name": "kamisaki_kuro",
+      "url": "https://www.tiktok.com/@kamisaki_kuro",
+      "first_discovered_at": "2026-09-16T09:31:38+00:00",
+      "evidence_id": "ev_5299069647de9fdb0fd6"
+    },
+    {
+      "id": "acct_9744e612961d07fbe223",
+      "platform": "tiktok",
+      "platform_id": "7254569951896290310",
+      "id_namespace": "web_user_id",
+      "handle": "kaneakiarina",
+      "name": "kaneakiarina",
+      "url": "https://www.tiktok.com/@kaneakiarina",
+      "first_discovered_at": "2026-09-16T09:37:30+00:00",
+      "evidence_id": "ev_57f4616298fee3e617ee"
+    },
+    {
+      "id": "acct_54c542840bd894044a36",
+      "platform": "tiktok",
+      "platform_id": "7633006721602290705",
+      "id_namespace": "web_user_id",
+      "handle": "kapz_002",
+      "name": "kapz_002",
+      "url": "https://www.tiktok.com/@kapz_002",
+      "first_discovered_at": "2026-09-16T09:32:09+00:00",
+      "evidence_id": "ev_23b95056a0b752c5deb2"
+    },
+    {
+      "id": "acct_865349534549c2bf0d92",
+      "platform": "tiktok",
+      "platform_id": "7047049462326445058",
+      "id_namespace": "web_user_id",
+      "handle": "kayleforion",
+      "name": "kayleforion",
+      "url": "https://www.tiktok.com/@kayleforion",
+      "first_discovered_at": "2026-09-16T09:29:31+00:00",
+      "evidence_id": "ev_fe924aec5f45adbc1375"
+    },
+    {
+      "id": "acct_41881d55d53b1f750058",
+      "platform": "tiktok",
+      "platform_id": "7530965139627344916",
+      "id_namespace": "web_user_id",
+      "handle": "kiku_himegu",
+      "name": "kiku_himegu",
+      "url": "https://www.tiktok.com/@kiku_himegu",
+      "first_discovered_at": "2026-09-16T09:31:19+00:00",
+      "evidence_id": "ev_3a85dd0c22d3ba085755"
+    },
+    {
+      "id": "acct_652c71ca8dfb77d34bac",
+      "platform": "tiktok",
+      "platform_id": "7672056498604557333",
+      "id_namespace": "web_user_id",
+      "handle": "kiran.regalia",
+      "name": "kiran.regalia",
+      "url": "https://www.tiktok.com/@kiran.regalia",
+      "first_discovered_at": "2026-09-16T09:34:20+00:00",
+      "evidence_id": "ev_868594711e411fbc31d5"
+    },
+    {
+      "id": "acct_30aa83ec2a03df02a92b",
+      "platform": "tiktok",
+      "platform_id": "7381420979425494023",
+      "id_namespace": "web_user_id",
+      "handle": "krynaydin_ztp",
+      "name": "krynaydin_ztp",
+      "url": "https://www.tiktok.com/@krynaydin_ztp?_r=1&_t=zs-96fxyiet9pr",
+      "first_discovered_at": "2026-09-16T09:38:28+00:00",
+      "evidence_id": "ev_b4685f5f9f93e3b4cea7"
+    },
+    {
+      "id": "acct_ea4f4410fcb40143285c",
+      "platform": "tiktok",
+      "platform_id": "7167354731018585089",
+      "id_namespace": "web_user_id",
+      "handle": "kuriimuvtuber",
+      "name": "kuriimuvtuber",
+      "url": "https://www.tiktok.com/@kuriimuvtuber",
+      "first_discovered_at": "2026-09-16T09:29:38+00:00",
+      "evidence_id": "ev_f82e6ac2c82a58af44d5"
+    },
+    {
+      "id": "acct_81a54b6938544d0f7c07",
+      "platform": "tiktok",
+      "platform_id": "7106287072340919301",
+      "id_namespace": "web_user_id",
+      "handle": "kurosawasp",
+      "name": "kurosawasp",
+      "url": "https://www.tiktok.com/@kurosawasp",
+      "first_discovered_at": "2026-09-16T09:37:47+00:00",
+      "evidence_id": "ev_30541a4ec914f152acfe"
+    },
+    {
+      "id": "acct_af0162bb086cfdff272f",
+      "platform": "tiktok",
+      "platform_id": "7235303418348291078",
+      "id_namespace": "web_user_id",
+      "handle": "kuroyoru_yami",
+      "name": "kuroyoru_yami",
+      "url": "https://www.tiktok.com/@kuroyoru_yami",
+      "first_discovered_at": "2026-09-16T09:36:22+00:00",
+      "evidence_id": "ev_f8d0a3ca2af25a64c1a3"
+    },
+    {
+      "id": "acct_508a9ddbd7b1c501284e",
+      "platform": "tiktok",
+      "platform_id": "7332215425407845381",
+      "id_namespace": "web_user_id",
+      "handle": "layniazia",
+      "name": "layniazia",
+      "url": "https://www.tiktok.com/@layniazia",
+      "first_discovered_at": "2026-09-16T09:38:21+00:00",
+      "evidence_id": "ev_9e4f6449362d1e7d6233"
+    },
+    {
+      "id": "acct_44302576faddb1559b55",
+      "platform": "tiktok",
+      "platform_id": "7178102386619352069",
+      "id_namespace": "web_user_id",
+      "handle": "leonthepinklion",
+      "name": "leonthepinklion",
+      "url": "https://www.tiktok.com/@leonthepinklion",
+      "first_discovered_at": "2026-09-16T09:37:19+00:00",
+      "evidence_id": "ev_b893220dbea3911a9ce9"
+    },
+    {
+      "id": "acct_b72d9e143a599327a5cd",
+      "platform": "tiktok",
+      "platform_id": "6614025647088910337",
+      "id_namespace": "web_user_id",
+      "handle": "luminshinehart",
+      "name": "luminshinehart",
+      "url": "https://www.tiktok.com/@luminshinehart",
+      "first_discovered_at": "2026-09-16T09:37:58+00:00",
+      "evidence_id": "ev_3d3ec3a6ad0522e50b98"
+    },
+    {
+      "id": "acct_06ca3cbd85ac6643411c",
+      "platform": "tiktok",
+      "platform_id": "7469486777351373832",
+      "id_namespace": "web_user_id",
+      "handle": "m4yamarz",
+      "name": "m4yamarz",
+      "url": "https://www.tiktok.com/@m4yamarz",
+      "first_discovered_at": "2026-09-16T09:36:53+00:00",
+      "evidence_id": "ev_372087a685561a3eea4e"
+    },
+    {
+      "id": "acct_4b990571573c274ea0cd",
+      "platform": "tiktok",
+      "platform_id": "7343242249930736647",
+      "id_namespace": "web_user_id",
+      "handle": "maaethegreatest",
+      "name": "maaethegreatest",
+      "url": "https://www.tiktok.com/@maaethegreatest",
+      "first_discovered_at": "2026-09-16T09:37:33+00:00",
+      "evidence_id": "ev_08751f3fb14ed50e0e43"
+    },
+    {
+      "id": "acct_662c2d35e9f561acf899",
+      "platform": "tiktok",
+      "platform_id": "6944229341066068994",
+      "id_namespace": "web_user_id",
+      "handle": "makarov227c",
+      "name": "makarov227c",
+      "url": "https://www.tiktok.com/@makarov227c",
+      "first_discovered_at": "2026-09-16T09:38:26+00:00",
+      "evidence_id": "ev_61c7240afbe0ebac537b"
+    },
+    {
+      "id": "acct_55a348f45a8e0ced1cd5",
+      "platform": "tiktok",
+      "platform_id": "7415267215962145800",
+      "id_namespace": "web_user_id",
+      "handle": "manapt52hz",
+      "name": "manapt52hz",
+      "url": "https://www.tiktok.com/@manapt52hz",
+      "first_discovered_at": "2026-09-16T09:35:57+00:00",
+      "evidence_id": "ev_595285e6aa7edaa99824"
+    },
+    {
+      "id": "acct_e4b98e0c4b88551f8f15",
+      "platform": "tiktok",
+      "platform_id": "7511458092371051527",
+      "id_namespace": "web_user_id",
+      "handle": "matsurii_vtuber",
+      "name": "matsurii_vtuber",
+      "url": "https://www.tiktok.com/@matsurii_vtuber?_t=ZS-8xnSi2wIMr9&_r=1",
+      "first_discovered_at": "2026-09-16T09:38:31+00:00",
+      "evidence_id": "ev_7d350d267b875287a61a"
+    },
+    {
+      "id": "acct_d0857d950b3f49177f38",
+      "platform": "tiktok",
+      "platform_id": "7132284502760276994",
+      "id_namespace": "web_user_id",
+      "handle": "mayaoboro",
+      "name": "mayaoboro",
+      "url": "https://www.tiktok.com/@mayaoboro",
+      "first_discovered_at": "2026-09-16T09:31:31+00:00",
+      "evidence_id": "ev_df38be08c32f5be2172a"
+    },
+    {
+      "id": "acct_c6ddae346a953f053646",
+      "platform": "tiktok",
+      "platform_id": "7272353830532400133",
+      "id_namespace": "web_user_id",
+      "handle": "meltildavt",
+      "name": "meltildavt",
+      "url": "https://www.tiktok.com/@meltildavt",
+      "first_discovered_at": "2026-09-16T09:35:14+00:00",
+      "evidence_id": "ev_6f1782c6125798dca5c3"
+    },
+    {
+      "id": "acct_cf5ab8c5765f64f63291",
+      "platform": "tiktok",
+      "platform_id": "7340191765751055365",
+      "id_namespace": "web_user_id",
+      "handle": "merryl_wayne",
+      "name": "merryl_wayne",
+      "url": "https://www.tiktok.com/@merryl_wayne",
+      "first_discovered_at": "2026-09-16T09:30:05+00:00",
+      "evidence_id": "ev_3c478862081c166726b5"
+    },
+    {
+      "id": "acct_11f2c228c77fd816fe5a",
+      "platform": "tiktok",
+      "platform_id": "7322449236733445121",
+      "id_namespace": "web_user_id",
+      "handle": "midorisuikavtb",
+      "name": "midorisuikavtb",
+      "url": "https://www.tiktok.com/@midorisuikavtb",
+      "first_discovered_at": "2026-09-16T09:32:38+00:00",
+      "evidence_id": "ev_6ea9b5a9d31cbbae5a7b"
+    },
+    {
+      "id": "acct_b6b98823b9a9e6fa0e5f",
+      "platform": "tiktok",
+      "platform_id": "7318766506833101829",
+      "id_namespace": "web_user_id",
+      "handle": "moia_lnwza55",
+      "name": "moia_lnwza55",
+      "url": "https://www.tiktok.com/@moia_lnwza55",
+      "first_discovered_at": "2026-09-16T09:32:32+00:00",
+      "evidence_id": "ev_bce9bb8f3c1334209b9e"
+    },
+    {
+      "id": "acct_f2f7a4faa145f2f42305",
+      "platform": "tiktok",
+      "platform_id": "7222996118032253958",
+      "id_namespace": "web_user_id",
+      "handle": "mystiexe",
+      "name": "mystiexe",
+      "url": "https://www.tiktok.com/@mystiexe",
+      "first_discovered_at": "2026-09-16T09:29:57+00:00",
+      "evidence_id": "ev_8e34bb80b85f26901b67"
+    },
+    {
+      "id": "acct_23f84a11191c0e0cfaf9",
+      "platform": "tiktok",
+      "platform_id": "7242305064940340229",
+      "id_namespace": "web_user_id",
+      "handle": "myxnyxx",
+      "name": "myxnyxx",
+      "url": "https://www.tiktok.com/@myxnyxx",
+      "first_discovered_at": "2026-09-16T09:29:34+00:00",
+      "evidence_id": "ev_44f9fcf46328e454a6cb"
+    },
+    {
+      "id": "acct_e6dcec009b8743c5e0b1",
+      "platform": "tiktok",
+      "platform_id": "7657912738338145300",
+      "id_namespace": "web_user_id",
+      "handle": "nyamaruyui_v2",
+      "name": "nyamaruyui_v2",
+      "url": "https://www.tiktok.com/@nyamaruyui_v2",
+      "first_discovered_at": "2026-09-16T09:35:23+00:00",
+      "evidence_id": "ev_f8b711bdc9e783bd6b50"
+    },
+    {
+      "id": "acct_ac1f19e5ad01cdf7f1df",
+      "platform": "tiktok",
+      "platform_id": "7466359882813096967",
+      "id_namespace": "web_user_id",
+      "handle": "oatsukaresan",
+      "name": "oatsukaresan",
+      "url": "https://www.tiktok.com/@oatsukaresan",
+      "first_discovered_at": "2026-09-16T09:29:52+00:00",
+      "evidence_id": "ev_d537320f37a22f7ef6d1"
+    },
+    {
+      "id": "acct_c9406726b18dd23ab951",
+      "platform": "tiktok",
+      "platform_id": "7131607534007501829",
+      "id_namespace": "web_user_id",
+      "handle": "oldmanazazel",
+      "name": "oldmanazazel",
+      "url": "https://www.tiktok.com/@oldmanazazel",
+      "first_discovered_at": "2026-09-16T09:30:00+00:00",
+      "evidence_id": "ev_66a5f812c8064b95feee"
+    },
+    {
+      "id": "acct_c5b38079ea40511ed9d9",
+      "platform": "tiktok",
+      "platform_id": "7539124037852791809",
+      "id_namespace": "web_user_id",
+      "handle": "platinumrw",
+      "name": "platinumrw",
+      "url": "https://www.tiktok.com/@platinumrw",
+      "first_discovered_at": "2026-09-16T09:30:38+00:00",
+      "evidence_id": "ev_25e664645a2416e21961"
+    },
+    {
+      "id": "acct_648653088fb486e93302",
+      "platform": "tiktok",
+      "platform_id": "7015578676314948610",
+      "id_namespace": "web_user_id",
+      "handle": "rafadxd_3dvtuber",
+      "name": "rafadxd_3dvtuber",
+      "url": "https://www.tiktok.com/@rafadxd_3dvtuber",
+      "first_discovered_at": "2026-09-16T09:31:30+00:00",
+      "evidence_id": "ev_d87e67506d8641eb7068"
+    },
+    {
+      "id": "acct_c8cd69e0077993939e33",
+      "platform": "tiktok",
+      "platform_id": "7516160868582917127",
+      "id_namespace": "web_user_id",
+      "handle": "rayametier_yuan1",
+      "name": "rayametier_yuan1",
+      "url": "https://www.tiktok.com/@rayametier_yuan1",
+      "first_discovered_at": "2026-09-16T09:35:51+00:00",
+      "evidence_id": "ev_0e30c227839c5889d397"
+    },
+    {
+      "id": "acct_af45bf91d0d0dd47842a",
+      "platform": "tiktok",
+      "platform_id": "7315766898699273221",
+      "id_namespace": "web_user_id",
+      "handle": "reva_regaliaast",
+      "name": "reva_regaliaast",
+      "url": "https://www.tiktok.com/@reva_regaliaast",
+      "first_discovered_at": "2026-09-16T09:37:40+00:00",
+      "evidence_id": "ev_a18dc12651eaca6c035d"
+    },
+    {
+      "id": "acct_f2f37f8e44e17c98ecbb",
+      "platform": "tiktok",
+      "platform_id": "7437348063487034376",
+      "id_namespace": "web_user_id",
+      "handle": "rinrexger",
+      "name": "rinrexger",
+      "url": "https://www.tiktok.com/@rinrexger?_t=8rpa9f8vvsr&_r=1",
+      "first_discovered_at": "2026-09-16T09:29:30+00:00",
+      "evidence_id": "ev_5c8db12d57877a628e3d"
+    },
+    {
+      "id": "acct_fc8f6be9cbb17fc56575",
+      "platform": "tiktok",
+      "platform_id": "6549798213883576321",
+      "id_namespace": "web_user_id",
+      "handle": "risato014",
+      "name": "risato014",
+      "url": "https://www.tiktok.com/@risato014",
+      "first_discovered_at": "2026-09-16T09:34:33+00:00",
+      "evidence_id": "ev_fe84c252f9beb5373efd"
+    },
+    {
+      "id": "acct_8d00fef533bedb0226f1",
+      "platform": "tiktok",
+      "platform_id": "7631522507896833045",
+      "id_namespace": "web_user_id",
+      "handle": "rocokingdomgame",
+      "name": "rocokingdomgame",
+      "url": "https://www.tiktok.com/@rocokingdomgame",
+      "first_discovered_at": "2026-09-16T09:35:47+00:00",
+      "evidence_id": "ev_832ff48e7cfb4e39091c"
+    },
+    {
+      "id": "acct_ffdc062f88ff06626c40",
+      "platform": "tiktok",
+      "platform_id": "7330621347955164168",
+      "id_namespace": "web_user_id",
+      "handle": "shirasagi_ch",
+      "name": "shirasagi_ch",
+      "url": "https://www.tiktok.com/@shirasagi_ch?_t=ZS-8uwjMVBPZxq&_r=1",
+      "first_discovered_at": "2026-09-16T09:32:35+00:00",
+      "evidence_id": "ev_0a5463a2da664bb38d3d"
+    },
+    {
+      "id": "acct_32b7e3dd59db771c209b",
+      "platform": "tiktok",
+      "platform_id": "7556332568129094674",
+      "id_namespace": "web_user_id",
+      "handle": "shirowashi_",
+      "name": "shirowashi_",
+      "url": "https://www.tiktok.com/@shirowashi_",
+      "first_discovered_at": "2026-09-16T09:34:38+00:00",
+      "evidence_id": "ev_67c88f46853a510b4337"
+    },
+    {
+      "id": "acct_850d836a4b770006d897",
+      "platform": "tiktok",
+      "platform_id": "7507140579735553041",
+      "id_namespace": "web_user_id",
+      "handle": "sirenavth",
+      "name": "sirenavth",
+      "url": "https://www.tiktok.com/@sirenavth",
+      "first_discovered_at": "2026-09-16T09:34:23+00:00",
+      "evidence_id": "ev_70698b65ff98e12e4b9e"
+    },
+    {
+      "id": "acct_0b693abc0dfa6d6a3746",
+      "platform": "tiktok",
+      "platform_id": "7342517302363325446",
+      "id_namespace": "web_user_id",
+      "handle": "slushytoma_",
+      "name": "slushytoma_",
+      "url": "https://www.tiktok.com/@slushytoma_",
+      "first_discovered_at": "2026-09-16T09:34:39+00:00",
+      "evidence_id": "ev_924cfe61303a87964033"
+    },
+    {
+      "id": "acct_36de393a5765b30be08a",
+      "platform": "tiktok",
+      "platform_id": "7364101919810798593",
+      "id_namespace": "web_user_id",
+      "handle": "snackbarmenu",
+      "name": "snackbarmenu",
+      "url": "https://www.tiktok.com/@snackbarmenu",
+      "first_discovered_at": "2026-09-16T09:29:32+00:00",
+      "evidence_id": "ev_483466f067a7de35cf2e"
+    },
+    {
+      "id": "acct_5c4921302565b7bea93c",
+      "platform": "tiktok",
+      "platform_id": "7429316740939498502",
+      "id_namespace": "web_user_id",
+      "handle": "sorasamavtuber",
+      "name": "sorasamavtuber",
+      "url": "https://www.tiktok.com/@sorasamavtuber",
+      "first_discovered_at": "2026-09-16T09:30:52+00:00",
+      "evidence_id": "ev_c00ad801caab4ee2d5bd"
+    },
+    {
+      "id": "acct_2c27856009d2f4c889d1",
+      "platform": "tiktok",
+      "platform_id": "6883078059962106881",
+      "id_namespace": "web_user_id",
+      "handle": "sotareino",
+      "name": "sotareino",
+      "url": "https://www.tiktok.com/@sotareino",
+      "first_discovered_at": "2026-09-16T09:38:34+00:00",
+      "evidence_id": "ev_d8cb964b995d7cff1b8c"
+    },
+    {
+      "id": "acct_bd0c2fc878cc8ca68dc9",
+      "platform": "tiktok",
+      "platform_id": "7371881133322568705",
+      "id_namespace": "web_user_id",
+      "handle": "suavtuber",
+      "name": "suavtuber",
+      "url": "https://www.tiktok.com/@suavtuber",
+      "first_discovered_at": "2026-09-16T09:29:38+00:00",
+      "evidence_id": "ev_bdce4b9fa29c20da4a9a"
+    },
+    {
+      "id": "acct_7841210121198a18d2d9",
+      "platform": "tiktok",
+      "platform_id": "7236238401653064710",
+      "id_namespace": "web_user_id",
+      "handle": "takumarei",
+      "name": "takumarei",
+      "url": "https://www.tiktok.com/@takumarei",
+      "first_discovered_at": "2026-09-16T09:33:05+00:00",
+      "evidence_id": "ev_4df15b4c8f8b1a28e2e2"
+    },
+    {
+      "id": "acct_eb2d1daae39fbb341e8e",
+      "platform": "tiktok",
+      "platform_id": "6989885086120690690",
+      "id_namespace": "web_user_id",
+      "handle": "torakaze_13",
+      "name": "torakaze_13",
+      "url": "https://www.tiktok.com/@torakaze_13",
+      "first_discovered_at": "2026-09-16T09:37:02+00:00",
+      "evidence_id": "ev_fb19cbd487b79894d373"
+    },
+    {
+      "id": "acct_de6b9a36239039245bf2",
+      "platform": "tiktok",
+      "platform_id": "7191505496174527493",
+      "id_namespace": "web_user_id",
+      "handle": "twitch_jaokat",
+      "name": "twitch_jaokat",
+      "url": "https://www.tiktok.com/@twitch_jaokat",
+      "first_discovered_at": "2026-09-16T09:38:19+00:00",
+      "evidence_id": "ev_55e47b0a03d177d6c9d3"
+    },
+    {
+      "id": "acct_66fca1b204eedb52fc3d",
+      "platform": "tiktok",
+      "platform_id": "7568789457814504465",
+      "id_namespace": "web_user_id",
+      "handle": "vampaow56",
+      "name": "vampaow56",
+      "url": "https://www.tiktok.com/@vampaow56",
+      "first_discovered_at": "2026-09-16T09:30:17+00:00",
+      "evidence_id": "ev_7b6dc0ab0dad427de825"
+    },
+    {
+      "id": "acct_8004f141577565e0dc69",
+      "platform": "tiktok",
+      "platform_id": "7020981614142653442",
+      "id_namespace": "web_user_id",
+      "handle": "vulgtmnahog",
+      "name": "vulgtmnahog",
+      "url": "https://www.tiktok.com/@vulgtmnahog",
+      "first_discovered_at": "2026-09-16T09:30:11+00:00",
+      "evidence_id": "ev_2d7b308385630729744e"
+    },
+    {
+      "id": "acct_fc4f98a472fcb8de9319",
+      "platform": "tiktok",
+      "platform_id": "6905245089313408001",
+      "id_namespace": "web_user_id",
+      "handle": "walkytalky555",
+      "name": "walkytalky555",
+      "url": "https://www.tiktok.com/@walkytalky555",
+      "first_discovered_at": "2026-09-16T09:30:01+00:00",
+      "evidence_id": "ev_0bb48dc294c432e8215e"
+    },
+    {
+      "id": "acct_81254d8bd937c19a44a5",
+      "platform": "tiktok",
+      "platform_id": "7464462617873515525",
+      "id_namespace": "web_user_id",
+      "handle": "yuitoku_woof",
+      "name": "yuitoku_woof",
+      "url": "https://www.tiktok.com/@yuitoku_woof",
+      "first_discovered_at": "2026-09-16T09:32:41+00:00",
+      "evidence_id": "ev_14dcfc9cf6ac248364f0"
+    },
+    {
+      "id": "acct_dcec859f679cbe836630",
+      "platform": "tiktok",
+      "platform_id": "7338612450818278405",
+      "id_namespace": "web_user_id",
+      "handle": "yuneschan085",
+      "name": "yuneschan085",
+      "url": "https://www.tiktok.com/@yuneschan085",
+      "first_discovered_at": "2026-09-16T09:30:00+00:00",
+      "evidence_id": "ev_e76ddd89d7d4d70b363c"
+    },
+    {
+      "id": "acct_9f8305bcb338c3c3c79f",
+      "platform": "tiktok",
+      "platform_id": "6673081738808591362",
+      "id_namespace": "web_user_id",
+      "handle": "yuutanatsuki",
+      "name": "yuutanatsuki",
+      "url": "https://www.tiktok.com/@yuutanatsuki",
+      "first_discovered_at": "2026-09-16T09:35:11+00:00",
+      "evidence_id": "ev_2a10f90fb4384c50f104"
+    },
+    {
+      "id": "acct_501e442beb36209aacb2",
+      "platform": "tiktok",
+      "platform_id": "7352036838284542994",
+      "id_namespace": "web_user_id",
+      "handle": "zaliviazaly",
+      "name": "zaliviazaly",
+      "url": "https://www.tiktok.com/@zaliviazaly",
+      "first_discovered_at": "2026-09-16T09:29:48+00:00",
+      "evidence_id": "ev_b74b120fecc67b6a4a55"
+    },
+    {
+      "id": "acct_6b9d6eadb9eb8d6067e0",
+      "platform": "twitch",
+      "platform_id": "1155539530",
+      "id_namespace": "user_id",
+      "handle": "reva_regaliaast",
+      "name": "reva_regaliaast",
+      "url": "https://twitch.tv/reva_regaliaast/home?tt_content=channel&tt_medium=mobile_web_share",
+      "first_discovered_at": "2026-09-16T09:37:40+00:00",
+      "evidence_id": "ev_6a4e0e97d8c2e1d04530"
+    },
+    {
+      "id": "acct_ee5cab75652871c16d8b",
+      "platform": "twitch",
+      "platform_id": "1278010640",
+      "id_namespace": "user_id",
+      "handle": "shirasagi_ch",
+      "name": "shirasagi_ch",
+      "url": "https://twitch.tv/shirasagi_ch/home",
+      "first_discovered_at": "2026-09-16T09:32:35+00:00",
+      "evidence_id": "ev_c0c9ea6089abc61e914a"
+    },
+    {
+      "id": "acct_80fc537f3c5bcfd87c69",
+      "platform": "twitch",
+      "platform_id": "452274492",
+      "id_namespace": "user_id",
+      "handle": "BlueMage_VT",
+      "name": "BlueMage_VT",
+      "url": "https://www.twitch.tv/BlueMage_VT",
+      "first_discovered_at": "2026-09-16T09:35:43+00:00",
+      "evidence_id": "ev_c930669b4ea8e4a57452"
+    },
+    {
+      "id": "acct_12cf54c5069f00cb4a1f",
+      "platform": "twitch",
+      "platform_id": "788435857",
+      "id_namespace": "user_id",
+      "handle": "azazelthewanderer",
+      "name": "azazelthewanderer",
+      "url": "https://www.twitch.tv/azazelthewanderer",
+      "first_discovered_at": "2026-09-16T09:30:00+00:00",
+      "evidence_id": "ev_5cf95fd2644653247555"
+    },
+    {
+      "id": "acct_b4a91a2660854cfc37b1",
+      "platform": "twitch",
+      "platform_id": "626317498",
+      "id_namespace": "user_id",
+      "handle": "azuri_prd",
+      "name": "azuri_prd",
+      "url": "https://www.twitch.tv/azuri_prd",
+      "first_discovered_at": "2026-09-16T09:37:36+00:00",
+      "evidence_id": "ev_90816231c9d2f252d8bc"
+    },
+    {
+      "id": "acct_8643ccf195fdb8c6d022",
+      "platform": "twitch",
+      "platform_id": "1110066513",
+      "id_namespace": "user_id",
+      "handle": "donovan_vt",
+      "name": "donovan_vt",
+      "url": "https://www.twitch.tv/donovan_vt",
+      "first_discovered_at": "2026-09-16T09:33:54+00:00",
+      "evidence_id": "ev_7138be3c48a977280b56"
+    },
+    {
+      "id": "acct_20d368213885384ae61d",
+      "platform": "twitch",
+      "platform_id": "889326595",
+      "id_namespace": "user_id",
+      "handle": "eulaovtuber",
+      "name": "eulaovtuber",
+      "url": "https://www.twitch.tv/eulaovtuber",
+      "first_discovered_at": "2026-09-16T09:30:18+00:00",
+      "evidence_id": "ev_eeba1bb430460d252f94"
+    },
+    {
+      "id": "acct_6db70544c20defdb95a0",
+      "platform": "twitch",
+      "platform_id": "143569909",
+      "id_namespace": "user_id",
+      "handle": "inumaru_atsuki",
+      "name": "inumaru_atsuki",
+      "url": "https://www.twitch.tv/inumaru_atsuki",
+      "first_discovered_at": "2026-09-16T09:38:10+00:00",
+      "evidence_id": "ev_e5f672f8c2e804f2d068"
+    },
+    {
+      "id": "acct_34d3b7ac6e501bbcdb51",
+      "platform": "twitch",
+      "platform_id": "776754469",
+      "id_namespace": "user_id",
+      "handle": "itsme_chicha",
+      "name": "itsme_chicha",
+      "url": "https://www.twitch.tv/itsme_chicha",
+      "first_discovered_at": "2026-09-16T09:33:42+00:00",
+      "evidence_id": "ev_508ef61adf428607c648"
+    },
+    {
+      "id": "acct_f02322401d58ef8a7850",
+      "platform": "twitch",
+      "platform_id": "852550021",
+      "id_namespace": "user_id",
+      "handle": "kagema404_",
+      "name": "kagema404_",
+      "url": "https://www.twitch.tv/kagema404_",
+      "first_discovered_at": "2026-09-16T09:36:24+00:00",
+      "evidence_id": "ev_cefbeab8b904ff43b2a3"
+    },
+    {
+      "id": "acct_e440f3b6c04975720ae6",
+      "platform": "twitch",
+      "platform_id": "786363160",
+      "id_namespace": "user_id",
+      "handle": "kamisaki_kuro",
+      "name": "kamisaki_kuro",
+      "url": "https://www.twitch.tv/kamisaki_kuro",
+      "first_discovered_at": "2026-09-16T09:31:38+00:00",
+      "evidence_id": "ev_5d624075aedfcf734fec"
+    },
+    {
+      "id": "acct_06c528f8afd4aaccaaf7",
+      "platform": "twitch",
+      "platform_id": "1385760872",
+      "id_namespace": "user_id",
+      "handle": "kiran_regalia",
+      "name": "kiran_regalia",
+      "url": "https://www.twitch.tv/kiran_regalia",
+      "first_discovered_at": "2026-09-16T09:34:20+00:00",
+      "evidence_id": "ev_8c366da993ebad531d69"
+    },
+    {
+      "id": "acct_f8a8da56b1fb4bc2b3b8",
+      "platform": "twitch",
+      "platform_id": "586799001",
+      "id_namespace": "user_id",
+      "handle": "krikka05",
+      "name": "krikka05",
+      "url": "https://www.twitch.tv/krikka05",
+      "first_discovered_at": "2026-09-16T09:38:02+00:00",
+      "evidence_id": "ev_834ac09eeb61e33f4fb3"
+    },
+    {
+      "id": "acct_d3c9386ce330a7c41871",
+      "platform": "twitch",
+      "platform_id": "1227858732",
+      "id_namespace": "user_id",
+      "handle": "laychlype_alf",
+      "name": "laychlype_alf",
+      "url": "https://www.twitch.tv/laychlype_alf",
+      "first_discovered_at": "2026-09-16T09:29:48+00:00",
+      "evidence_id": "ev_7f487c640083998e31aa"
+    },
+    {
+      "id": "acct_c3a54c0a9ad3e4ce9b60",
+      "platform": "twitch",
+      "platform_id": "1330204819",
+      "id_namespace": "user_id",
+      "handle": "maddoxtheorder",
+      "name": "maddoxtheorder",
+      "url": "https://www.twitch.tv/maddoxtheorder",
+      "first_discovered_at": "2026-09-16T09:33:34+00:00",
+      "evidence_id": "ev_75db3d144958c659f216"
+    },
+    {
+      "id": "acct_63be3779996c5f2b31fd",
+      "platform": "twitch",
+      "platform_id": "728382271",
+      "id_namespace": "user_id",
+      "handle": "mallow_ham",
+      "name": "mallow_ham",
+      "url": "https://www.twitch.tv/mallow_ham",
+      "first_discovered_at": "2026-09-16T09:32:16+00:00",
+      "evidence_id": "ev_f14c1addd5994fe2325c"
+    },
+    {
+      "id": "acct_4deaf54608b998b8f85f",
+      "platform": "twitch",
+      "platform_id": "1087260378",
+      "id_namespace": "user_id",
+      "handle": "meilin_vtuber",
+      "name": "meilin_vtuber",
+      "url": "https://www.twitch.tv/meilin_vtuber",
+      "first_discovered_at": "2026-09-16T09:38:02+00:00",
+      "evidence_id": "ev_b9b39c7b0ed6b5645d1d"
+    },
+    {
+      "id": "acct_01a082a2b5ce3d9c2cda",
+      "platform": "twitch",
+      "platform_id": "1056153817",
+      "id_namespace": "user_id",
+      "handle": "mizugracia",
+      "name": "mizugracia",
+      "url": "https://www.twitch.tv/mizugracia",
+      "first_discovered_at": "2026-09-16T09:32:51+00:00",
+      "evidence_id": "ev_ea94b1e5b0de54af4c20"
+    },
+    {
+      "id": "acct_52608c3b057b01928633",
+      "platform": "twitch",
+      "platform_id": "1283196492",
+      "id_namespace": "user_id",
+      "handle": "nana_vtuberth",
+      "name": "nana_vtuberth",
+      "url": "https://www.twitch.tv/nana_vtuberth",
+      "first_discovered_at": "2026-09-16T09:36:43+00:00",
+      "evidence_id": "ev_afa58b46646869fec023"
+    },
+    {
+      "id": "acct_41b0147e4b8843b5b0c3",
+      "platform": "twitch",
+      "platform_id": "79715116",
+      "id_namespace": "user_id",
+      "handle": "nancygimme2000",
+      "name": "nancygimme2000",
+      "url": "https://www.twitch.tv/nancygimme2000",
+      "first_discovered_at": "2026-09-16T09:30:00+00:00",
+      "evidence_id": "ev_1936fab0a758d9967c7f"
+    },
+    {
+      "id": "acct_0fcea77ace66be07036c",
+      "platform": "twitch",
+      "platform_id": "733835054",
+      "id_namespace": "user_id",
+      "handle": "nneviris",
+      "name": "nneviris",
+      "url": "https://www.twitch.tv/nneviris",
+      "first_discovered_at": "2026-09-16T09:32:12+00:00",
+      "evidence_id": "ev_90c3a008a6eade544ad3"
+    },
+    {
+      "id": "acct_5c86df3cc59da663ee3b",
+      "platform": "twitch",
+      "platform_id": "1347612912",
+      "id_namespace": "user_id",
+      "handle": "nonokochika",
+      "name": "nonokochika",
+      "url": "https://www.twitch.tv/nonokochika",
+      "first_discovered_at": "2026-09-16T09:31:15+00:00",
+      "evidence_id": "ev_2f5dbdff7422a1bb072d"
+    },
+    {
+      "id": "acct_6dba4dd1ef6359b0225d",
+      "platform": "twitch",
+      "platform_id": "1091316290",
+      "id_namespace": "user_id",
+      "handle": "potia_vtuth",
+      "name": "potia_vtuth",
+      "url": "https://www.twitch.tv/potia_vtuth",
+      "first_discovered_at": "2026-09-16T09:34:03+00:00",
+      "evidence_id": "ev_1bd2cbc7fa5887587a85"
+    },
+    {
+      "id": "acct_5453b8b03e79bbd8d2a9",
+      "platform": "twitch",
+      "platform_id": "1123837434",
+      "id_namespace": "user_id",
+      "handle": "puipuimemory",
+      "name": "puipuimemory",
+      "url": "https://www.twitch.tv/puipuimemory",
+      "first_discovered_at": "2026-09-16T09:30:21+00:00",
+      "evidence_id": "ev_5068c1107cc1e32f05b2"
+    },
+    {
+      "id": "acct_d2eaaa4d24207f5ce70c",
+      "platform": "twitch",
+      "platform_id": "1118665324",
+      "id_namespace": "user_id",
+      "handle": "railoney",
+      "name": "railoney",
+      "url": "https://www.twitch.tv/railoney",
+      "first_discovered_at": "2026-09-16T09:33:36+00:00",
+      "evidence_id": "ev_15303f184b7a9665354b"
+    },
+    {
+      "id": "acct_79417e63820277bfa072",
+      "platform": "twitch",
+      "platform_id": "1311509052",
+      "id_namespace": "user_id",
+      "handle": "rayametieryuan",
+      "name": "rayametieryuan",
+      "url": "https://www.twitch.tv/rayametieryuan",
+      "first_discovered_at": "2026-09-16T09:35:51+00:00",
+      "evidence_id": "ev_188672b095afc8c77b86"
+    },
+    {
+      "id": "acct_40171c5800faf22522b7",
+      "platform": "twitch",
+      "platform_id": "915955104",
+      "id_namespace": "user_id",
+      "handle": "reiquasar0",
+      "name": "reiquasar0",
+      "url": "https://www.twitch.tv/reiquasar0",
+      "first_discovered_at": "2026-09-16T09:35:43+00:00",
+      "evidence_id": "ev_07d50343aacf65e6c859"
+    },
+    {
+      "id": "acct_394e6a790561efcb07a9",
+      "platform": "twitch",
+      "platform_id": "1047849844",
+      "id_namespace": "user_id",
+      "handle": "renkon_tora",
+      "name": "renkon_tora",
+      "url": "https://www.twitch.tv/renkon_tora",
+      "first_discovered_at": "2026-09-16T09:36:46+00:00",
+      "evidence_id": "ev_4bbe6dc89ad036601ede"
+    },
+    {
+      "id": "acct_7d3a0105a165dbdcc1fe",
+      "platform": "twitch",
+      "platform_id": "681488913",
+      "id_namespace": "user_id",
+      "handle": "rocokingdom",
+      "name": "rocokingdom",
+      "url": "https://www.twitch.tv/rocokingdom",
+      "first_discovered_at": "2026-09-16T09:35:47+00:00",
+      "evidence_id": "ev_9e688a3eb271531cda95"
+    },
+    {
+      "id": "acct_5311594c87b7cb3add9f",
+      "platform": "twitch",
+      "platform_id": "136786096",
+      "id_namespace": "user_id",
+      "handle": "rubellus_remis",
+      "name": "rubellus_remis",
+      "url": "https://www.twitch.tv/rubellus_remis",
+      "first_discovered_at": "2026-09-16T09:37:57+00:00",
+      "evidence_id": "ev_4b3d04058f8439f2c274"
+    },
+    {
+      "id": "acct_7d9a91d3db7c155b44cd",
+      "platform": "twitch",
+      "platform_id": "826247955",
+      "id_namespace": "user_id",
+      "handle": "ryuseistarlight",
+      "name": "ryuseistarlight",
+      "url": "https://www.twitch.tv/ryuseistarlight",
+      "first_discovered_at": "2026-09-16T09:30:12+00:00",
+      "evidence_id": "ev_eab8551b32ab569f3cc8"
+    },
+    {
+      "id": "acct_4b07bf0592fa714d4ced",
+      "platform": "twitch",
+      "platform_id": "257767501",
+      "id_namespace": "user_id",
+      "handle": "satachan23",
+      "name": "satachan23",
+      "url": "https://www.twitch.tv/satachan23",
+      "first_discovered_at": "2026-09-16T09:35:35+00:00",
+      "evidence_id": "ev_60c56180f3476e030cc4"
+    },
+    {
+      "id": "acct_fc043cb95bdea0f236a6",
+      "platform": "twitch",
+      "platform_id": "1516765770",
+      "id_namespace": "user_id",
+      "handle": "scythringe",
+      "name": "scythringe",
+      "url": "https://www.twitch.tv/scythringe",
+      "first_discovered_at": "2026-09-16T09:35:43+00:00",
+      "evidence_id": "ev_13d7e9177b306dcb0cad"
+    },
+    {
+      "id": "acct_d5a5738b0130734ea1be",
+      "platform": "twitch",
+      "platform_id": "748874756",
+      "id_namespace": "user_id",
+      "handle": "shirowashi__",
+      "name": "shirowashi__",
+      "url": "https://www.twitch.tv/shirowashi__",
+      "first_discovered_at": "2026-09-16T09:34:38+00:00",
+      "evidence_id": "ev_b5ff01084cbe6292fa4b"
+    },
+    {
+      "id": "acct_640c73b93a86614161b0",
+      "platform": "twitch",
+      "platform_id": "174870336",
+      "id_namespace": "user_id",
+      "handle": "subs",
+      "name": "subs",
+      "url": "https://www.twitch.tv/subs/Kurisumasu_",
+      "first_discovered_at": "2026-09-16T09:30:11+00:00",
+      "evidence_id": "ev_b63b1a44ecf9931d6f02"
+    },
+    {
+      "id": "acct_5a81f5d2f73fb74e67a9",
+      "platform": "twitch",
+      "platform_id": "166634334",
+      "id_namespace": "user_id",
+      "handle": "theclumsynoob",
+      "name": "theclumsynoob",
+      "url": "https://www.twitch.tv/theclumsynoob",
+      "first_discovered_at": "2026-09-16T09:35:43+00:00",
+      "evidence_id": "ev_6f709a66d9aea53cea38"
+    },
+    {
+      "id": "acct_ef242d9302589009a72b",
+      "platform": "twitch",
+      "platform_id": "95838891",
+      "id_namespace": "user_id",
+      "handle": "tpastry",
+      "name": "tpastry",
+      "url": "https://www.twitch.tv/tpastry",
+      "first_discovered_at": "2026-09-16T09:35:43+00:00",
+      "evidence_id": "ev_dd69a775a4fc52024aa3"
+    },
+    {
+      "id": "acct_5e04209e881a52fa1369",
+      "platform": "twitch",
+      "platform_id": "1058780722",
+      "id_namespace": "user_id",
+      "handle": "yuneschan",
+      "name": "yuneschan",
+      "url": "https://www.twitch.tv/yuneschan",
+      "first_discovered_at": "2026-09-16T09:30:00+00:00",
+      "evidence_id": "ev_4b19ff49e274d8e716c5"
+    },
+    {
+      "id": "acct_6dc9bb57348811b32ead",
+      "platform": "twitch",
+      "platform_id": "442584372",
+      "id_namespace": "user_id",
+      "handle": "zerobusterxz",
+      "name": "zerobusterxz",
+      "url": "https://www.twitch.tv/zerobusterxz",
+      "first_discovered_at": "2026-09-16T09:35:43+00:00",
+      "evidence_id": "ev_e2ea69991ec80c686049"
+    },
+    {
+      "id": "acct_6d662ea9aed656e7ec47",
+      "platform": "tiktok",
+      "platform_id": "7466536527449097232",
+      "id_namespace": "web_user_id",
+      "handle": "mamunzaatv",
+      "name": "mamunzaatv",
+      "url": "https://tiktok.com/@mamunzaatv",
+      "first_discovered_at": "2026-09-16T09:58:52+00:00",
+      "evidence_id": "ev_495f93aca4beb08d6178"
+    },
+    {
+      "id": "acct_f6bd01f72edcd3c8b8d8",
+      "platform": "tiktok",
+      "platform_id": "7102363899000964102",
+      "id_namespace": "web_user_id",
+      "handle": "apririru",
+      "name": "apririru",
+      "url": "https://www.tiktok.com/@apririru",
+      "first_discovered_at": "2026-09-16T10:01:17+00:00",
+      "evidence_id": "ev_8dd7d35f0f037928920f"
+    },
+    {
+      "id": "acct_13e6ea2c101c33f4e475",
+      "platform": "tiktok",
+      "platform_id": "6558226489875595266",
+      "id_namespace": "web_user_id",
+      "handle": "lazadath",
+      "name": "lazadath",
+      "url": "https://www.tiktok.com/@lazadath",
+      "first_discovered_at": "2026-09-16T10:00:03+00:00",
+      "evidence_id": "ev_df0a8f88f08c3c8b7707"
+    },
+    {
+      "id": "acct_be76f1f75d3bd11764f5",
+      "platform": "tiktok",
+      "platform_id": "7484955052860605441",
+      "id_namespace": "web_user_id",
+      "handle": "lenlorcraft",
+      "name": "lenlorcraft",
+      "url": "https://www.tiktok.com/@lenlorcraft",
+      "first_discovered_at": "2026-09-16T09:59:20+00:00",
+      "evidence_id": "ev_0a95f3aa82cd57515848"
+    },
+    {
+      "id": "acct_75318f6a37e8218f5c41",
+      "platform": "tiktok",
+      "platform_id": "7436211674858013714",
+      "id_namespace": "web_user_id",
+      "handle": "lilinkawerewolf",
+      "name": "lilinkawerewolf",
+      "url": "https://www.tiktok.com/@lilinkawerewolf",
+      "first_discovered_at": "2026-09-16T10:00:40+00:00",
+      "evidence_id": "ev_c8a6c6ccc79120bcaeb0"
+    },
+    {
+      "id": "acct_ac6961d88edf72086165",
+      "platform": "tiktok",
+      "platform_id": "6576389023518752769",
+      "id_namespace": "web_user_id",
+      "handle": "malai_deva",
+      "name": "malai_deva",
+      "url": "https://www.tiktok.com/@malai_deva",
+      "first_discovered_at": "2026-09-16T10:00:42+00:00",
+      "evidence_id": "ev_06553b76f369b4993804"
+    },
+    {
+      "id": "acct_b13202eab91513c2f623",
+      "platform": "tiktok",
+      "platform_id": "7516330344724136961",
+      "id_namespace": "web_user_id",
+      "handle": "mizo.vtuber",
+      "name": "mizo.vtuber",
+      "url": "https://www.tiktok.com/@mizo.vtuber?_t=zs-8zld5km0afp&_r=1",
+      "first_discovered_at": "2026-09-16T09:59:53+00:00",
+      "evidence_id": "ev_d4444b1f7bb661480fd4"
+    },
+    {
+      "id": "acct_9d130fbc88755e47d0c2",
+      "platform": "tiktok",
+      "platform_id": "6986049911888430081",
+      "id_namespace": "web_user_id",
+      "handle": "red_fartear",
+      "name": "red_fartear",
+      "url": "https://www.tiktok.com/@red_fartear",
+      "first_discovered_at": "2026-09-16T09:58:52+00:00",
+      "evidence_id": "ev_dd7a18f74c0ed3dd34cf"
+    },
+    {
+      "id": "acct_bd6d22079ce640f580c8",
+      "platform": "tiktok",
+      "platform_id": "7655660398193050642",
+      "id_namespace": "web_user_id",
+      "handle": "rlanzchino",
+      "name": "rlanzchino",
+      "url": "https://www.tiktok.com/@rlanzchino",
+      "first_discovered_at": "2026-09-16T09:40:04+00:00",
+      "evidence_id": "ev_647a989e4dbd9aad556f"
+    },
+    {
+      "id": "acct_b8c7df4b4032114aadf2",
+      "platform": "tiktok",
+      "platform_id": "7130961238037562374",
+      "id_namespace": "web_user_id",
+      "handle": "soursama_",
+      "name": "soursama_",
+      "url": "https://www.tiktok.com/@soursama_",
+      "first_discovered_at": "2026-09-16T10:00:40+00:00",
+      "evidence_id": "ev_1b7f50cd4a52a737f90e"
+    },
+    {
+      "id": "acct_b9eb14a71cd05793cacd",
+      "platform": "tiktok",
+      "platform_id": "7058916651672732699",
+      "id_namespace": "web_user_id",
+      "handle": "t_blueberry",
+      "name": "t_blueberry",
+      "url": "https://www.tiktok.com/@t_blueberry?_t=8sVcG59eHfm&_r=1",
+      "first_discovered_at": "2026-09-16T09:39:58+00:00",
+      "evidence_id": "ev_9992d6a3b31bb41d65e5"
+    },
+    {
+      "id": "acct_1f9ea9811a4c394b452d",
+      "platform": "tiktok",
+      "platform_id": "7646539512788567048",
+      "id_namespace": "web_user_id",
+      "handle": "tipjai.official",
+      "name": "tipjai.official",
+      "url": "https://www.tiktok.com/@tipjai.official",
+      "first_discovered_at": "2026-09-16T10:01:32+00:00",
+      "evidence_id": "ev_28318968137d7a7071ba"
+    },
+    {
+      "id": "acct_5e8c5ce810a474920dfe",
+      "platform": "tiktok",
+      "platform_id": "7004465290710320129",
+      "id_namespace": "web_user_id",
+      "handle": "unclekanun",
+      "name": "unclekanun",
+      "url": "https://www.tiktok.com/@unclekanun",
+      "first_discovered_at": "2026-09-16T09:59:33+00:00",
+      "evidence_id": "ev_93ff658ac665ae8b2049"
+    },
+    {
+      "id": "acct_b7de4c55f0327b1903a7",
+      "platform": "tiktok",
+      "platform_id": "7308270641417290758",
+      "id_namespace": "web_user_id",
+      "handle": "viorises",
+      "name": "viorises",
+      "url": "https://www.tiktok.com/@viorises",
+      "first_discovered_at": "2026-09-16T10:01:20+00:00",
+      "evidence_id": "ev_61962a5337e1b308bf21"
+    },
+    {
+      "id": "acct_b91cd711ecca3c6532c2",
+      "platform": "tiktok",
+      "platform_id": "7283866201452463110",
+      "id_namespace": "web_user_id",
+      "handle": "yoinmori",
+      "name": "yoinmori",
+      "url": "https://www.tiktok.com/@yoinmori",
+      "first_discovered_at": "2026-09-16T10:00:53+00:00",
+      "evidence_id": "ev_7c33d19d6d505213af4e"
+    },
+    {
+      "id": "acct_ae0126bf33d20a3b0c13",
+      "platform": "twitch",
+      "platform_id": "779006194",
+      "id_namespace": "user_id",
+      "handle": "bluwey_11",
+      "name": "bluwey_11",
+      "url": "https://www.twitch.tv/bluwey_11",
+      "first_discovered_at": "2026-09-16T09:58:52+00:00",
+      "evidence_id": "ev_7684290fadd03984f27b"
+    },
+    {
+      "id": "acct_8a0348e9ce1f1ab9c078",
+      "platform": "twitch",
+      "platform_id": "1071215425",
+      "id_namespace": "user_id",
+      "handle": "jaowayde_vt",
+      "name": "jaowayde_vt",
+      "url": "https://www.twitch.tv/jaowayde_vt",
+      "first_discovered_at": "2026-09-16T09:58:52+00:00",
+      "evidence_id": "ev_b6caa116e9473ee5c590"
+    },
+    {
+      "id": "acct_4239d5922e26ce966e1c",
+      "platform": "twitch",
+      "platform_id": "535476990",
+      "id_namespace": "user_id",
+      "handle": "rlanzshino",
+      "name": "rlanzshino",
+      "url": "https://www.twitch.tv/rlanzshino",
+      "first_discovered_at": "2026-09-16T09:40:04+00:00",
+      "evidence_id": "ev_a414942967386b9fefeb"
+    },
+    {
+      "id": "acct_625776e0aaff2fb36eaa",
+      "platform": "twitch",
+      "platform_id": "740381529",
+      "id_namespace": "user_id",
+      "handle": "yumiiko_95",
+      "name": "yumiiko_95",
+      "url": "https://www.twitch.tv/yumiiko_95",
+      "first_discovered_at": "2026-09-16T10:00:37+00:00",
+      "evidence_id": "ev_b02d28d3e1b181be3a87"
+    }
+  ],
+  "account_links": [
+    {
+      "id": "link_66dde06875ecaa9f91f3",
+      "account_id": "acct_070ee837cc2c03af4dbb",
+      "persona_id": "persona_ced50772bc244f221424",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_e3455a8bb041551fc143",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_e378ab828222fd117c06",
+      "account_id": "acct_93673f0703f6f83b957f",
+      "persona_id": "persona_6ff4fb8d848e2c6635ee",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_45bd0e6c9dadb9e2420e",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_22e27f9ff171363deaea",
+      "account_id": "acct_d81578e8299f4d6ee9a7",
+      "persona_id": "persona_0b327f4d4474fcdc8cbd",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_fbfc28c49a6d8c48fbba",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_45dc742103d3096d3a14",
+      "account_id": "acct_54c542840bd894044a36",
+      "persona_id": "persona_af80c01e8b4c68250bd3",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_23b95056a0b752c5deb2",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_408336159370226369fe",
+      "account_id": "acct_41881d55d53b1f750058",
+      "persona_id": "persona_63b4340c6614278eaaf2",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_3a85dd0c22d3ba085755",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_303479d712f4b56b6586",
+      "account_id": "acct_ea4f4410fcb40143285c",
+      "persona_id": "persona_6ff4fb8d848e2c6635ee",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_f82e6ac2c82a58af44d5",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_f65da98cfd39f3be94dc",
+      "account_id": "acct_11f2c228c77fd816fe5a",
+      "persona_id": "persona_525f235da4a50a716c08",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_6ea9b5a9d31cbbae5a7b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_eabeddfc719614d2f75a",
+      "account_id": "acct_23f84a11191c0e0cfaf9",
+      "persona_id": "persona_07351c0f864177c751a6",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_44f9fcf46328e454a6cb",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_d15b723491799c5c3eb2",
+      "account_id": "acct_e6dcec009b8743c5e0b1",
+      "persona_id": "persona_8a356627062c04c45bbc",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_f8b711bdc9e783bd6b50",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_c0fe09352cfab69773ac",
+      "account_id": "acct_bd0c2fc878cc8ca68dc9",
+      "persona_id": "persona_6ff4fb8d848e2c6635ee",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_bdce4b9fa29c20da4a9a",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_2c8de291fe058cc9b6b1",
+      "account_id": "acct_66fca1b204eedb52fc3d",
+      "persona_id": "persona_aa9b9db368498ddafc65",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_7b6dc0ab0dad427de825",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_256fb7ae7bf5b0fff222",
+      "account_id": "acct_fc4f98a472fcb8de9319",
+      "persona_id": "persona_c8e8cd28b238d1715742",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_0bb48dc294c432e8215e",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_c40d385f59c10ec47f97",
+      "account_id": "acct_dcec859f679cbe836630",
+      "persona_id": "persona_48c709edc02d5923cfc9",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_e76ddd89d7d4d70b363c",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_928f45ffcc3b93089215",
+      "account_id": "acct_8643ccf195fdb8c6d022",
+      "persona_id": "persona_253c44a006a88803075a",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_7138be3c48a977280b56",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_085ba10a77f72ffe4369",
+      "account_id": "acct_34d3b7ac6e501bbcdb51",
+      "persona_id": "persona_f5b26a3e6bcf691715ab",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_508ef61adf428607c648",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_7df8c6df5242d8256607",
+      "account_id": "acct_63be3779996c5f2b31fd",
+      "persona_id": "persona_3052f6c1c6b0937ae501",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_f14c1addd5994fe2325c",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_44d04e938b79d3cc07c0",
+      "account_id": "acct_5c86df3cc59da663ee3b",
+      "persona_id": "persona_8c509084d2ddabeca0df",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_2f5dbdff7422a1bb072d",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_e16132c3068ee35b15e3",
+      "account_id": "acct_5453b8b03e79bbd8d2a9",
+      "persona_id": "persona_867b9d4a8976613d354b",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_5068c1107cc1e32f05b2",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_fd200434355295718b3d",
+      "account_id": "acct_7d9a91d3db7c155b44cd",
+      "persona_id": "persona_c7f5d4d43c4389229069",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_eab8551b32ab569f3cc8",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_8f35f34bd705f0d21536",
+      "account_id": "acct_640c73b93a86614161b0",
+      "persona_id": "persona_4ea700877c5c799a97b1",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_b63b1a44ecf9931d6f02",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_2c4ffbd6ee86983ead96",
+      "account_id": "acct_5e04209e881a52fa1369",
+      "persona_id": "persona_48c709edc02d5923cfc9",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_4b19ff49e274d8e716c5",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_33dddf0c9b1d007194e2",
+      "account_id": "acct_d6b6debfa5df34eaa963",
+      "persona_id": "persona_3d2bfd776bf9bb69f192",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_a6eea6f7b86f72c29a1b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_a19cbd4a323fe4082936",
+      "account_id": "acct_01f9201c7ed8db3083a5",
+      "persona_id": "persona_c7016d23e2296fd3d92a",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_8ebd1649308b437b4a2b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_778f37e525183589d39b",
+      "account_id": "acct_be76f1f75d3bd11764f5",
+      "persona_id": "persona_ee02e00301e106a7ad85",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_0a95f3aa82cd57515848",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_7e2eee98484939a66cfb",
+      "account_id": "acct_c5910e218501b26dc20c",
+      "persona_id": "persona_6ecdd06fbb46fa7b0f82",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_07c1dd2c282be5a0de67",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_e90ad444007b59d026d8",
+      "account_id": "acct_af43c8b1e5de25382c02",
+      "persona_id": "persona_c7016d23e2296fd3d92a",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_95ef1c396276fcd44da5",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_6a58cd7efbc1784ca495",
+      "account_id": "acct_5f2cdb62fa6ffb4b50c5",
+      "persona_id": "persona_c7016d23e2296fd3d92a",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_21dfab7b43ed2bf78532",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_61ae40cebe5c3538825b",
+      "account_id": "acct_6e65ef1d90a600f75b82",
+      "persona_id": "persona_c7016d23e2296fd3d92a",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_98d279ce8aae10cb247f",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_08d805bc85667a26d0d5",
+      "account_id": "acct_8a0348e9ce1f1ab9c078",
+      "persona_id": "persona_3b5213b7e3261b1a7afc",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_b6caa116e9473ee5c590",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    }
+  ]
+}

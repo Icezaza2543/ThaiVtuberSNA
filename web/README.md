@@ -31,3 +31,15 @@ subdirectory as well. Include all JSON files and the `research` and `data` folde
 The former `/research/` and `/research/index_v2.html` pages have been consolidated.
 Update old bookmarks to `?view=research` and `?view=report`; if retaining external
 links is necessary, configure those redirects in the chosen hosting provider.
+
+## Thai Virtual Creator Registry (`registry.html`)
+
+The directory also contains the interactive frontend for the Thai Virtual Creator Registry:
+- Entry point: `web/registry.html`
+- Source code: `web/src/` (React + TypeScript + Vite)
+- Build:
+  ```sh
+  cd web
+  npm install
+  npm run build
+  ```

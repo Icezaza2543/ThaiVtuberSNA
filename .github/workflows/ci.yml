@@ -35,5 +35,8 @@ jobs:
       - name: Run Git Data Security Audit
         run: python scripts/audit_data_security.py --git-only
 
+      - name: Validate Canonical Registry
+        run: python -m registry validate
+
       - name: Run Tests
         run: python -m pytest tests/ -q

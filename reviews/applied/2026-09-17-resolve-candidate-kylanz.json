@@ -1,0 +1,41 @@
+{
+  "evidence": [
+    {
+      "id": "ev_yt_kylanz_resolve",
+      "url": "https://www.youtube.com/channel/UCQ-6qbMhvGGmyGq6eZZE8gQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T13:40:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public YouTube channel @Kylanz_KLZ resolved to stable channel_id UCQ-6qbMhvGGmyGq6eZZE8gQ via first-party channel metadata."
+    }
+  ],
+  "accounts": [
+    {
+      "id": "acct_41ac5fb65f9bc3be0fc5",
+      "platform": "youtube",
+      "platform_id": "UCQ-6qbMhvGGmyGq6eZZE8gQ",
+      "id_namespace": "channel_id",
+      "handle": "Kylanz_KLZ",
+      "name": "Kylanz",
+      "url": "https://www.youtube.com/channel/UCQ-6qbMhvGGmyGq6eZZE8gQ",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_yt_kylanz_resolve"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "candidate_6135fadfa587b1d1648a",
+      "platform": "youtube",
+      "platform_id": "UCQ-6qbMhvGGmyGq6eZZE8gQ",
+      "id_namespace": "channel_id",
+      "name": "Kylanz",
+      "url": "https://www.youtube.com/@Kylanz_KLZ",
+      "review_status": "verified",
+      "account_id": "acct_41ac5fb65f9bc3be0fc5",
+      "evidence_id": "ev_yt_kylanz_resolve",
+      "reviewer": "codex:candidate-account-resolution",
+      "reviewed_at": "2026-09-17T13:40:00+00:00"
+    }
+  ]
+}

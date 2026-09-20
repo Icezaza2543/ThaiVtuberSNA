@@ -1,0 +1,17 @@
+[
+  {
+    "source_url": "https://vtuberthaiinfo-archive.pages.dev/talent",
+    "records_read": 1811,
+    "twitch_entries": 496
+  },
+  {
+    "source_url": "https://vdb.vtbs.moe/json/list.json",
+    "records_read": 10035,
+    "twitch_entries": 45
+  },
+  {
+    "source_url": "https://storage.googleapis.com/thaivtuberranking.appspot.com/v2/channel_data/list.json",
+    "records_read": 1352,
+    "twitch_links": 32
+  }
+]

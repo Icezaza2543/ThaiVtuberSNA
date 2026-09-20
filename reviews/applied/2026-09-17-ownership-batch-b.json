@@ -1,0 +1,46 @@
+{
+  "evidence": [
+    {
+      "id": "ev_b_mit_yt_owner",
+      "url": "https://www.youtube.com/channel/UCB_l7aUEixTDZ0uItf4A2bw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T11:40:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "First-party public YouTube channel Mit Pesisth (stable ID UCB_l7aUEixTDZ0uItf4A2bw). Description confirms Thai streaming activity and header links directly to official X @pesisthatcer. Establishes verified YouTube ownership for persona Mit PESISTH."
+    },
+    {
+      "id": "ev_b_simon_yt_owner",
+      "url": "https://www.youtube.com/channel/UCfS5hs5aCCN3rijKpXjuddg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T11:40:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "First-party public YouTube channel Simon von Crucisburg (stable ID UCfS5hs5aCCN3rijKpXjuddg). Profile links directly to official X @SimonCrucisburg and Bluesky. Establishes verified YouTube ownership for persona Simon von Crucisburg."
+    }
+  ],
+  "account_links": [
+    {
+      "id": "link_mit_yt",
+      "account_id": "acct_887feb20ad2555350b6c",
+      "persona_id": "persona_c8a2a3d5f9e915054fef",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_b_mit_yt_owner",
+      "review_status": "verified",
+      "reviewer": "agent:first-party-review",
+      "reviewed_at": "2026-09-17T11:40:00+00:00"
+    },
+    {
+      "id": "link_simon_yt",
+      "account_id": "acct_fc7861e8445db9bd0295",
+      "persona_id": "persona_dd7c3e8c837cc0957f3d",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_b_simon_yt_owner",
+      "review_status": "verified",
+      "reviewer": "agent:first-party-review",
+      "reviewed_at": "2026-09-17T11:40:00+00:00"
+    }
+  ]
+}

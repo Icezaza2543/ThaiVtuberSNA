@@ -1,0 +1,32 @@
+{
+  "spreadsheet_id": "1H876HyqxkOEYJGczctP5G-ZNAZv22jzViw787h441fE",
+  "snapshot": "dist\\2026-09-13-analytics-v1",
+  "tabs": [
+    {
+      "title": "ANALYTICS_METRICS",
+      "sheet_id": 26091305,
+      "rows": 3575,
+      "columns": 13
+    },
+    {
+      "title": "ANALYTICS_GROWTH",
+      "sheet_id": 26091306,
+      "rows": 2066,
+      "columns": 17
+    },
+    {
+      "title": "ANALYTICS_SOURCES",
+      "sheet_id": 26091307,
+      "rows": 39,
+      "columns": 6
+    },
+    {
+      "title": "ANALYTICS_NOTES",
+      "sheet_id": 26091308,
+      "rows": 23,
+      "columns": 3
+    }
+  ],
+  "batches": 128,
+  "max_request_bytes": 44352
+}

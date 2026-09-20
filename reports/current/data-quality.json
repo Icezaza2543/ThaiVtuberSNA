@@ -1,0 +1,3618 @@
+{
+  "metadata": {
+    "as_of": "2026-09-17",
+    "created_at": "2026-09-17T17:31:56.981633+00:00",
+    "semantics": "Data quality and evidence freshness monitoring. Measures registry observability and unresolved review backlog, not creator activity or absence. Old evidence indicates the registry has not recently re-observed a claim; it does not prove the claim is no longer true."
+  },
+  "summary_counts": {
+    "total_personas": 895,
+    "verified_personas": 873,
+    "needs_evidence_personas": 0,
+    "verified_personas_with_no_verified_accounts": 1,
+    "verified_personas_with_single_platform": 198,
+    "total_accounts": 4721,
+    "distinct_verified_accounts": 2640,
+    "verified_account_links": 2671,
+    "needs_evidence_account_links": 15,
+    "rejected_account_links": 6,
+    "unlinked_accounts": 2064,
+    "shared_accounts_count": 30,
+    "total_candidates": 878,
+    "unresolved_candidates": 621,
+    "needs_evidence_lifecycle_events": 33,
+    "secondary_source_lifecycle_events": 27,
+    "unverified_graduation_claims": 5
+  },
+  "personas": {
+    "no_verified_accounts": [
+      {
+        "persona_id": "persona_f3ac52ae514adc62f9f8",
+        "name": "PINTO",
+        "format": "live2d",
+        "thai_relation": "multiple",
+        "reviewed_at": "2026-09-17T10:20:00+00:00"
+      }
+    ],
+    "single_platform_count": 198,
+    "needs_evidence_count": 0,
+    "stale_evidence_count": 0
+  },
+  "account_ownership": {
+    "ownership_review_status": {
+      "verified": 2671,
+      "needs_evidence": 15,
+      "rejected": 6
+    },
+    "needs_evidence_links_count": 15,
+    "needs_evidence_links_sample": [
+      {
+        "link_id": "link_2320751b1c36064bcf0b",
+        "persona_id": "persona_f3ac52ae514adc62f9f8",
+        "persona_name": "PINTO",
+        "account_id": "acct_2455c3d262a209860cfa",
+        "platform": "facebook",
+        "handle": "pnpnpinto",
+        "evidence_kind": "secondary_source",
+        "evidence_url": "https://hololist.net/pinto/"
+      },
+      {
+        "link_id": "link_2c4d636b25f4f62fb3c6",
+        "persona_id": "persona_6f5c7afe6e9085c3b05f",
+        "persona_name": "Liyin",
+        "account_id": "acct_9cc249ca3d71e1d4fcaa",
+        "platform": "youtube",
+        "handle": "UCWyO0Zn2Vx6U2VOIpeCjsJw",
+        "evidence_kind": "secondary_source",
+        "evidence_url": "https://hololist.net/liyin/"
+      },
+      {
+        "link_id": "link_3a38d2ecdc91cd2ec0c3",
+        "persona_id": "persona_f3ac52ae514adc62f9f8",
+        "persona_name": "PINTO",
+        "account_id": "acct_bcc6506323c5f81f25cd",
+        "platform": "litlink",
+        "handle": "pintoxx",
+        "evidence_kind": "secondary_source",
+        "evidence_url": "https://hololist.net/pinto/"
+      },
+      {
+        "link_id": "link_7d055d774e7a6885d35c",
+        "persona_id": "persona_dcbfc242c4c1198a1dbd",
+        "persona_name": "Seikou iMinato",
+        "account_id": "acct_3b69d31c90264a6aaca5",
+        "platform": "x",
+        "handle": "IMin4to",
+        "evidence_kind": "secondary_source",
+        "evidence_url": "https://hololist.net/seikou-iminato/"
+      },
+      {
+        "link_id": "link_8d261011bc8ba701c1dc",
+        "persona_id": "persona_5efe72eab4e5d5231e0a",
+        "persona_name": "Kylanz",
+        "account_id": "acct_1c6d1ef3023019de2230",
+        "platform": "instagram",
+        "handle": "kylanz_klz",
+        "evidence_kind": "secondary_source",
+        "evidence_url": "https://hololist.net/kylanz/"
+      },
+      {
+        "link_id": "link_92817d5a3a097ab85921",
+        "persona_id": "persona_4b950bae9521bdada92b",
+        "persona_name": "Joro Gumo",
+        "account_id": "acct_8e9e1d60eb6f9bd53acc",
+        "platform": "x",
+        "handle": "Jorogumov",
+        "evidence_kind": "secondary_source",
+        "evidence_url": "https://hololist.net/joro-gumo/"
+      },
+      {
+        "link_id": "link_b6ce9cb57dec2d6f4b4f",
+        "persona_id": "persona_75770df8891acb3b0504",
+        "persona_name": "Nihr Farfalla",
+        "account_id": "acct_81c5a7176fb020410bdb",
+        "platform": "x",
+        "handle": "NihrTH",
+        "evidence_kind": "secondary_source",
+        "evidence_url": "https://hololist.net/nihr-farfalla/"
+      },
+      {
+        "link_id": "link_c25d50eabe9abcae633b",
+        "persona_id": "persona_c8a2a3d5f9e915054fef",
+        "persona_name": "Mit PESISTH",
+        "account_id": "acct_9149917e9ef481c4c3b7",
+        "platform": "instagram",
+        "handle": "mitpesisth",
+        "evidence_kind": "secondary_source",
+        "evidence_url": "https://hololist.net/mit-pesisth/"
+      },
+      {
+        "link_id": "link_ce1a6687f9db5bdb7428",
+        "persona_id": "persona_6939b57ea784abac9934",
+        "persona_name": "NoBoRu",
+        "account_id": "acct_0e0182d96e43637d23e4",
+        "platform": "x",
+        "handle": "NoboruCh",
+        "evidence_kind": "secondary_source",
+        "evidence_url": "https://hololist.net/noboru/"
+      },
+      {
+        "link_id": "link_d15f3c1b16e351d37518",
+        "persona_id": "persona_6f5c7afe6e9085c3b05f",
+        "persona_name": "Liyin",
+        "account_id": "acct_9153e0a4b3559280b7a6",
+        "platform": "instagram",
+        "handle": "liyin_lovely",
+        "evidence_kind": "secondary_source",
+        "evidence_url": "https://hololist.net/liyin/"
+      },
+      {
+        "link_id": "link_d47ec8c96f90fe3d6969",
+        "persona_id": "persona_6939b57ea784abac9934",
+        "persona_name": "NoBoRu",
+        "account_id": "acct_cb337dfa33b6027b612a",
+        "platform": "instagram",
+        "handle": "noboru_oz",
+        "evidence_kind": "secondary_source",
+        "evidence_url": "https://hololist.net/noboru/"
+      },
+      {
+        "link_id": "link_d493233495a24c27f9df",
+        "persona_id": "persona_f3ac52ae514adc62f9f8",
+        "persona_name": "PINTO",
+        "account_id": "acct_b433905f2a35b393bef2",
+        "platform": "instagram",
+        "handle": "pinto__xx",
+        "evidence_kind": "secondary_source",
+        "evidence_url": "https://hololist.net/pinto/"
+      },
+      {
+        "link_id": "link_d51748edb5611f75fda9",
+        "persona_id": "persona_0f387b725aa2421677ed",
+        "persona_name": "Usami Bunny",
+        "account_id": "acct_6ec69e3b5826d78a8c56",
+        "platform": "facebook",
+        "handle": "UsamiBunny",
+        "evidence_kind": "secondary_source",
+        "evidence_url": "https://hololist.net/usami-bunny/"
+      },
+      {
+        "link_id": "link_ef496fdd8d47110ad3c5",
+        "persona_id": "persona_6f5c7afe6e9085c3b05f",
+        "persona_name": "Liyin",
+        "account_id": "acct_0ebc6d6fe30a75e9bf14",
+        "platform": "x",
+        "handle": "Lyin_1",
+        "evidence_kind": "secondary_source",
+        "evidence_url": "https://hololist.net/liyin/"
+      },
+      {
+        "link_id": "link_ff2ddbcb7d8ec38a86b5",
+        "persona_id": "persona_f3ac52ae514adc62f9f8",
+        "persona_name": "PINTO",
+        "account_id": "acct_57c297e32f977db404a7",
+        "platform": "x",
+        "handle": "pinto__xx",
+        "evidence_kind": "secondary_source",
+        "evidence_url": "https://hololist.net/pinto/"
+      }
+    ],
+    "rejected_links_count": 6,
+    "shared_accounts": [
+      {
+        "account_id": "acct_61687ed04a0bd41ffb5c",
+        "platform": "twitch",
+        "platform_id": "776749045",
+        "name": "KaylefOrion",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_1fc8a949c70e9e81437b",
+            "persona_name": "Kaylef Orion",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_61687ed04a0bd41ffb5c",
+            "persona_name": "KaylefOrion",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_f935ebbc447f86b1e5ea",
+        "platform": "facebook",
+        "platform_id": "61586025942609",
+        "name": "61586025942609",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_edf6b2ff3decec5980f5",
+            "persona_name": "Melanox Lunix「ALF」",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_2cf2699ba6fcabad816e",
+            "persona_name": "Adrelis Zinya「ALF」🔥👊🏻",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_070ee837cc2c03af4dbb",
+        "platform": "tiktok",
+        "platform_id": "7219263258032079877",
+        "name": "easydonateth",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_55344c80444a0270f1a8",
+            "persona_name": "crazyghsot",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_4dd62a8078db3897e981",
+            "persona_name": "Meteona Mars Ch.",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_e36938896eaef6e8c736",
+            "persona_name": "กะละมัง วีทูปเบอร์",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_ced50772bc244f221424",
+            "persona_name": "Lyvea•Eve",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_7ee18c7e86566eb39a26",
+            "persona_name": "Noeluc",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_0b327f4d4474fcdc8cbd",
+            "persona_name": "chizizfa666",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_e864ec38b638bad1493c",
+        "platform": "twitch",
+        "platform_id": "828240873",
+        "name": "ZinfandelZTP",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_a66df1bc5dda506e8910",
+            "persona_name": "Zin'fandel「ZTP」",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_b8443a4a6a88fe67e3a4",
+            "persona_name": "Xyne Valdreth「ZTP」",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_36a00077e431f5da0450",
+        "platform": "tiktok",
+        "platform_id": "7426358911541937157",
+        "name": "叶龙 | Yelong",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_b03129adf907f9f9b610",
+            "persona_name": "叶龙 | Yelong",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_d7cd519f4b624ba29eec",
+            "persona_name": "叶龙 Yelong CH.",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_fe0cc147f98cfbb756d6",
+        "platform": "tiktok",
+        "platform_id": "7455141891601957895",
+        "name": "ThearDreamWhale10Hz",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_b393662cc392d0527569",
+            "persona_name": "Thear DreamWhale° 10Hz",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_6468cdaa5d70699a8ea6",
+            "persona_name": "Thear DreamWhale° 10Hz",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_37af3308dcced5818ef6",
+        "platform": "tiktok",
+        "platform_id": "7260030550563357702",
+        "name": "TAIYO BOUKEN!",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_983ee34f8705423b55b5",
+            "persona_name": "TAIYO BOUKEN!",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_55f4761a25d35a3631c2",
+            "persona_name": "TAIYO BOUKEN Ch.",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_96fb98a4f7178a748eba",
+        "platform": "twitch",
+        "platform_id": "849533236",
+        "name": "jammychxn",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_96fb98a4f7178a748eba",
+            "persona_name": "jammychxn",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_e20ce1c9c7e61679fc84",
+            "persona_name": "JamMyChan ch.",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_d9e66ff86fca51070fea",
+        "platform": "facebook",
+        "platform_id": "tipme.in.th",
+        "name": "Verdelite PowerPay",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_5b63f22d9ab601a0c7c1",
+            "persona_name": "Urai [NecroMezza]",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_25ea43e0d090a6f7458c",
+            "persona_name": "LamuJung official  🐬",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_0cdf1c7236621e88b96a",
+            "persona_name": "Riel Tabiji-VtuberTH",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_83b2f6122c32c3521252",
+        "platform": "tiktok",
+        "platform_id": "7146166247653245979",
+        "name": "Milyni_Tivona",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_1f7b4ea5a196e5836427",
+            "persona_name": "Milyni Tivona【BLP】",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_99312e9fd5d9a9f9c1d3",
+            "persona_name": "Milyni_Tivona",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_4ea8b1c1a0a692e09db2",
+        "platform": "tiktok",
+        "platform_id": "7404359049800696840",
+        "name": "SeaU✨️⚓️",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_88a3b6fc77da0cb50348",
+            "persona_name": "SeaU Ch.【CRA】",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_d3315e59f6db25212938",
+            "persona_name": "SeaU✨️⚓️",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_a635d30e87b631be1abf",
+        "platform": "tiktok",
+        "platform_id": "7150719216324101146",
+        "name": "คิวบิไนน์",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_f69dd5792813c6c03458",
+            "persona_name": "Kyubi Nine キュビ ナイン",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_af62959ec7f55a66176c",
+            "persona_name": "Kyubi Nine キュビ ナイン",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_7c0b6023e18e24be5090",
+        "platform": "tiktok",
+        "platform_id": "6874877843043058689",
+        "name": "BluChan GMOT",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_9b5886c702534e6665d0",
+            "persona_name": "Blu-Chan GMOT ⌜VZ⌟",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_9e32f1e52fa0bb270851",
+            "persona_name": "Blu-Chan GMOT ⌜VZ⌟",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_c1e717d8c8cab92309ff",
+        "platform": "twitch",
+        "platform_id": "823836390",
+        "name": "MilyniTivona",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_c1e717d8c8cab92309ff",
+            "persona_name": "MilyniTivona",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_1f7b4ea5a196e5836427",
+            "persona_name": "Milyni Tivona【BLP】",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_2578a641fdd41aef993f",
+        "platform": "twitch",
+        "platform_id": "714801236",
+        "name": "AosoraPopo",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_8cf291510e2872a0568e",
+            "persona_name": "IKKI CHANNEL",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_ba9e2872421908ede6c2",
+            "persona_name": "Aosora Popo Ch.",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_e6c2af6484bee4f4f099",
+        "platform": "tiktok",
+        "platform_id": "7072325685335442434",
+        "name": "LuYao ch.",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_9a110f5ac43d56a2a531",
+            "persona_name": "LuYao ch.",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_dcc641b2dec63c26be54",
+            "persona_name": "Lu Yao Ch.",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_5f2cdb62fa6ffb4b50c5",
+        "platform": "tiktok",
+        "platform_id": "7151317779138839558",
+        "name": "Sigmunda Riona",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_f02d3525ebf1f63453f4",
+            "persona_name": "Sigmunda Riona Ch. 【POLYGON】",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_c7016d23e2296fd3d92a",
+            "persona_name": "Minami Cera",
+            "review_status": "rejected"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_6e65ef1d90a600f75b82",
+        "platform": "tiktok",
+        "platform_id": "7151312156041675782",
+        "name": "Tamami เป็นVtuber🥚💗",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_c7016d23e2296fd3d92a",
+            "persona_name": "Minami Cera",
+            "review_status": "rejected"
+          },
+          {
+            "persona_id": "persona_5814dc685c3b07841fe7",
+            "persona_name": "Tamami เป็นVtuber🥚💗",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_5784e30be2e9c927da86",
+        "platform": "twitch",
+        "platform_id": "140727353",
+        "name": "DrakoNyaMio",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_6e9e31346f7b9164ce4b",
+            "persona_name": "AmiLLy Archive",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_5784e30be2e9c927da86",
+            "persona_name": "DrakoNyaMio",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_dfa02754bbd5992c8226",
+        "platform": "twitch",
+        "platform_id": "131578275",
+        "name": "biru101",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_21c44b79ec809e9f52e7",
+            "persona_name": "Biru [ビール]",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_dfa02754bbd5992c8226",
+            "persona_name": "biru101",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_adc56181cb798abe3c25",
+        "platform": "twitch",
+        "platform_id": "134533592",
+        "name": "Torakaze_13",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_6a19e9e7083901d1caad",
+            "persona_name": "Torakaze",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_adc56181cb798abe3c25",
+            "persona_name": "Torakaze_13",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_01f9201c7ed8db3083a5",
+        "platform": "tiktok",
+        "platform_id": "7151314791184352261",
+        "name": "Anya A. Marshall",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_6350f6d1dc0c1a707c73",
+            "persona_name": "Anya Marshall Ch. 【POLYGON】",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_c7016d23e2296fd3d92a",
+            "persona_name": "Minami Cera",
+            "review_status": "rejected"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_93673f0703f6f83b957f",
+        "platform": "tiktok",
+        "platform_id": "7371883107961947137",
+        "name": "เรียลเชอร์มี่",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_58c3adfdce584abd25c8",
+            "persona_name": "เรียลเชอร์มี่",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_6ff4fb8d848e2c6635ee",
+            "persona_name": "เอ็นริริริ",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_2967a2f829c56219a2ce",
+        "platform": "twitch",
+        "platform_id": "1255936801",
+        "name": "Amello_Channel",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_d67ff31a9b932e3da51e",
+            "persona_name": "Amello",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_c84688b6152899db158e",
+            "persona_name": "Daiji Inuyuki 《 OTL 》",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_a3afab6c2c661d361e2b",
+        "platform": "tiktok",
+        "platform_id": "6795155901398582273",
+        "name": "JamMyChan .ch🍑🐿",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_5f0214925589bbda8304",
+            "persona_name": "JamMyChan .ch🍑🐿",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_e20ce1c9c7e61679fc84",
+            "persona_name": "JamMyChan ch.",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_fbcf845adb4bc483e4b0",
+        "platform": "twitch",
+        "platform_id": "434595878",
+        "name": "apririru",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_fbcf845adb4bc483e4b0",
+            "persona_name": "apririru",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_443ad96dc5d8dc1862e1",
+            "persona_name": "ApriRiru",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_99c90f5d1111fd2a36c9",
+        "platform": "tiktok",
+        "platform_id": "7599329257227518983",
+        "name": "Akari Kanon",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_efd38c03f72e8e14405a",
+            "persona_name": "Akari Kanon",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_1736e32cde8dc656bc03",
+            "persona_name": "Akari Kanon",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_af43c8b1e5de25382c02",
+        "platform": "tiktok",
+        "platform_id": "7151308092138587141",
+        "name": "Rexa T-Rex Vtuber🦖",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_fe49e522f619699ac35e",
+            "persona_name": "Rexa T-Rex Vtuber🦖",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_c7016d23e2296fd3d92a",
+            "persona_name": "Minami Cera",
+            "review_status": "rejected"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_3df8711eae313693e338",
+        "platform": "tiktok",
+        "platform_id": "7274186509765313541",
+        "name": "Darchelle🌑✨ | VtuberTH",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_64edc3818a92f34e521e",
+            "persona_name": "Darchelle🌑✨ | VtuberTH",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_ee726256ded2e3cb6d8f",
+            "persona_name": "Darchelle ch.",
+            "review_status": "verified"
+          }
+        ]
+      },
+      {
+        "account_id": "acct_1422ac51974851f60cde",
+        "platform": "facebook",
+        "platform_id": "people",
+        "name": "Jisooman Ch.",
+        "classification": "shared_account_review_context",
+        "linked_personas": [
+          {
+            "persona_id": "persona_b35cc1a7b8aa9a3ae51b",
+            "persona_name": "Harumoon Ch.",
+            "review_status": "verified"
+          },
+          {
+            "persona_id": "persona_2752dff6a446c1a2694d",
+            "persona_name": "Jisooman Ch.",
+            "review_status": "verified"
+          }
+        ]
+      }
+    ],
+    "unlinked_accounts_by_platform": {
+      "x": 493,
+      "tiktok": 274,
+      "youtube": 723,
+      "twitch": 460,
+      "facebook": 74,
+      "instagram": 35,
+      "ganknow": 5
+    }
+  },
+  "candidates": {
+    "unresolved_by_platform": {
+      "x": 127,
+      "twitch": 49,
+      "youtube": 313,
+      "tiktok": 87,
+      "linktree": 14,
+      "website": 18,
+      "facebook": 8,
+      "ganknow": 3,
+      "instagram": 2
+    },
+    "missing_stable_id_count": 448,
+    "missing_stable_id_items": [
+      {
+        "candidate_id": "candidate_00c39d68d0b5fa8dc0c3",
+        "platform": "twitch",
+        "name": "altairalal",
+        "url": "https://www.twitch.tv/altairalal"
+      },
+      {
+        "candidate_id": "candidate_0184e75b36dac49c7103",
+        "platform": "youtube",
+        "name": "LonitaCH",
+        "url": "https://www.youtube.com/@LonitaCH"
+      },
+      {
+        "candidate_id": "candidate_035bc14f5d56e5fc1fb6",
+        "platform": "youtube",
+        "name": "MAYANuT",
+        "url": "https://www.youtube.com/@MAYANuT"
+      },
+      {
+        "candidate_id": "candidate_052376f5c345c9d8160d",
+        "platform": "tiktok",
+        "name": "lamuofficials",
+        "url": "https://www.tiktok.com/@lamuofficials"
+      },
+      {
+        "candidate_id": "candidate_05263e92b3c2b25190fd",
+        "platform": "tiktok",
+        "name": "Kiyomi Ch.",
+        "url": "https://www.tiktok.com/@kitsunechanizuma"
+      },
+      {
+        "candidate_id": "candidate_0531e6f052758271c560",
+        "platform": "youtube",
+        "name": "RionChitose_AS",
+        "url": "https://www.youtube.com/@RionChitose_AS"
+      },
+      {
+        "candidate_id": "candidate_05e9319fa904951ee256",
+        "platform": "twitch",
+        "name": "Rainbows Fukio",
+        "url": "https://www.twitch.tv/fukio_vt"
+      },
+      {
+        "candidate_id": "candidate_072242470b7c32a68699",
+        "platform": "tiktok",
+        "name": "Angela",
+        "url": "https://www.tiktok.com/@.angelaelfmaid"
+      },
+      {
+        "candidate_id": "candidate_09002d93e78c358f46f6",
+        "platform": "youtube",
+        "name": "AofEdits",
+        "url": "https://www.youtube.com/@AofEdits"
+      },
+      {
+        "candidate_id": "candidate_093c2d7f6288f90c77cb",
+        "platform": "youtube",
+        "name": "Zekai Ch.【ARP】",
+        "url": "https://www.youtube.com/zekaicharp"
+      },
+      {
+        "candidate_id": "candidate_09fe7fe170680e26254d",
+        "platform": "youtube",
+        "name": "QurseVibeENT",
+        "url": "https://www.youtube.com/@QurseVibeENT"
+      },
+      {
+        "candidate_id": "candidate_0c8bfd8ed0ffeb25e932",
+        "platform": "youtube",
+        "name": "Hatsuji ::H.T.J ",
+        "url": "https://www.youtube.com/c/HatsujiHTJ"
+      },
+      {
+        "candidate_id": "candidate_0cb8521a74f3a0823a44",
+        "platform": "youtube",
+        "name": "UnUnTheBat",
+        "url": "https://www.youtube.com/@UnUnTheBat"
+      },
+      {
+        "candidate_id": "candidate_0d814a44a8c1a0d38081",
+        "platform": "youtube",
+        "name": "NanahoshiNana",
+        "url": "https://www.youtube.com/@NanahoshiNana"
+      },
+      {
+        "candidate_id": "candidate_0e08188c665eb48a4e18",
+        "platform": "youtube",
+        "name": "alvina-ch",
+        "url": "https://youtube.com/@alvina-ch"
+      },
+      {
+        "candidate_id": "candidate_0e6a22c88e9f2ab7b82c",
+        "platform": "youtube",
+        "name": "Mira Pilula",
+        "url": "https://www.youtube.com/channel/UCbfARUSxU4X2o5_PwjRXezw"
+      },
+      {
+        "candidate_id": "candidate_0ef9290bbf6590926052",
+        "platform": "tiktok",
+        "name": "lanlongyingvtuberth",
+        "url": "https://www.tiktok.com/@lanlongyingvtuberth"
+      },
+      {
+        "candidate_id": "candidate_0ffdbc63320fb419fa8c",
+        "platform": "youtube",
+        "name": "RatoMatsudaラト松田 Ch.",
+        "url": "https://www.youtube.com/channel/UCLEOU6NgYYoVmPV8MwbwOkg"
+      },
+      {
+        "candidate_id": "candidate_10ddbd67d4faa9225087",
+        "platform": "youtube",
+        "name": "amamiyanora",
+        "url": "https://youtube.com/@amamiyanora"
+      },
+      {
+        "candidate_id": "candidate_111f8544c4d833ea8682",
+        "platform": "youtube",
+        "name": "Klinthong_RES",
+        "url": "https://www.youtube.com/@Klinthong_RES"
+      },
+      {
+        "candidate_id": "candidate_120ee5bd8aeb74297180",
+        "platform": "tiktok",
+        "name": "Oneiros Norr Ch.",
+        "url": "https://tiktok.com/@oneiros.norr"
+      },
+      {
+        "candidate_id": "candidate_128b9c11e98b2c588be7",
+        "platform": "twitch",
+        "name": "Seikou iMinato",
+        "url": "https://www.twitch.tv/seikou_iminato"
+      },
+      {
+        "candidate_id": "candidate_12e112df945a42bab7df",
+        "platform": "youtube",
+        "name": "Livietia | VTuberTH",
+        "url": "https://www.youtube.com/@Livietia"
+      },
+      {
+        "candidate_id": "candidate_12f7f8c016a71437aba9",
+        "platform": "youtube",
+        "name": "MAMORI Ch.",
+        "url": "https://www.youtube.com/c/MAMORICh"
+      },
+      {
+        "candidate_id": "candidate_13f71d7b5c724c337ad9",
+        "platform": "youtube",
+        "name": "Noir Vinterny",
+        "url": "https://www.youtube.com/@noirvinterny"
+      },
+      {
+        "candidate_id": "candidate_1510eb95f8d72de51748",
+        "platform": "youtube",
+        "name": "Mr. Jameson",
+        "url": "https://www.youtube.com/channel/UCsyvaOTDKdgG_iglzRnWzOQ"
+      },
+      {
+        "candidate_id": "candidate_154bd67dd9eb369efb0c",
+        "platform": "youtube",
+        "name": "Rubii Ch.",
+        "url": "https://www.youtube.com/c/RubiiCh"
+      },
+      {
+        "candidate_id": "candidate_1618c43a29ad0e3159d7",
+        "platform": "tiktok",
+        "name": "belleec19projekt",
+        "url": "https://www.tiktok.com/@belleec19projekt"
+      },
+      {
+        "candidate_id": "candidate_16f765453552db24a265",
+        "platform": "youtube",
+        "name": "NancyGimme2000",
+        "url": "https://www.youtube.com/@NancyGimme2000"
+      },
+      {
+        "candidate_id": "candidate_18542e643b9bac43760b",
+        "platform": "youtube",
+        "name": "PixiangMeiyin",
+        "url": "https://www.youtube.com/@PixiangMeiyin"
+      },
+      {
+        "candidate_id": "candidate_18f897437f4a360bef53",
+        "platform": "youtube",
+        "name": "AvisaLPZ",
+        "url": "https://www.youtube.com/@AvisaLPZ"
+      },
+      {
+        "candidate_id": "candidate_194557a0630913d34dbc",
+        "platform": "youtube",
+        "name": "Midnight_ARP",
+        "url": "https://www.youtube.com/@Midnight_ARP"
+      },
+      {
+        "candidate_id": "candidate_19465b5c9a83f5e7b49b",
+        "platform": "twitch",
+        "name": "hyshoa",
+        "url": "https://www.twitch.tv/hyshoa"
+      },
+      {
+        "candidate_id": "candidate_196f88647b3a864c6881",
+        "platform": "youtube",
+        "name": "MiguelNoxz",
+        "url": "https://www.youtube.com/@MiguelNoxz"
+      },
+      {
+        "candidate_id": "candidate_1a9023eb36128b4280b6",
+        "platform": "tiktok",
+        "name": "kayna_channel",
+        "url": "https://www.tiktok.com/@kayna_channel"
+      },
+      {
+        "candidate_id": "candidate_1addd632e1023cc07a39",
+        "platform": "youtube",
+        "name": "Loxifyr",
+        "url": "https://www.youtube.com/channel/UCGkGWo40A2iZKQl9ug1oXoA"
+      },
+      {
+        "candidate_id": "candidate_1d5137f5a2c93b1fad08",
+        "platform": "tiktok",
+        "name": "Kagemaru 404",
+        "url": "https://www.tiktok.com/@kagemaruakia"
+      },
+      {
+        "candidate_id": "candidate_1d8616413191643814cc",
+        "platform": "tiktok",
+        "name": "Mellovie",
+        "url": "https://www.tiktok.com/@mellovie.u"
+      },
+      {
+        "candidate_id": "candidate_1dffc4a8c392dc3441be",
+        "platform": "tiktok",
+        "name": "In0suke",
+        "url": "https://www.tiktok.com/@in0sukewislive"
+      },
+      {
+        "candidate_id": "candidate_1e6c433da511a6566533",
+        "platform": "youtube",
+        "name": "JumpMy Ch.【XIRCONIA】",
+        "url": "https://www.youtube.com/channel/UCFjBM9wvCqb5wBLpp_cHxfA"
+      },
+      {
+        "candidate_id": "candidate_1f03bf4090484aa9eee8",
+        "platform": "youtube",
+        "name": "Banpratou",
+        "url": "https://www.youtube.com/@Banpratou"
+      },
+      {
+        "candidate_id": "candidate_1f059cf85c4c0b325e1e",
+        "platform": "twitch",
+        "name": "fhagoglyte",
+        "url": "https://www.twitch.tv/fhagoglyte"
+      },
+      {
+        "candidate_id": "candidate_1f4908a0b30aef74f87c",
+        "platform": "youtube",
+        "name": "Howl",
+        "url": "https://www.youtube.com/@Howl_FVP"
+      },
+      {
+        "candidate_id": "candidate_1f8f6c3e48808546aeac",
+        "platform": "youtube",
+        "name": "Taka_Natsu23",
+        "url": "https://www.youtube.com/@Taka_Natsu23"
+      },
+      {
+        "candidate_id": "candidate_203807a650126df55630",
+        "platform": "youtube",
+        "name": "bingsujuseyo",
+        "url": "https://www.youtube.com/@bingsujuseyo"
+      },
+      {
+        "candidate_id": "candidate_20d5e13ce33c81186025",
+        "platform": "youtube",
+        "name": "CerseiLezlie",
+        "url": "https://www.youtube.com/@CerseiLezlie"
+      },
+      {
+        "candidate_id": "candidate_2191571826386363fd1f",
+        "platform": "youtube",
+        "name": "Pandora_official",
+        "url": "https://www.youtube.com/@Pandora_official"
+      },
+      {
+        "candidate_id": "candidate_21b6f5b327667c9d0047",
+        "platform": "tiktok",
+        "name": "lalalapiszzz",
+        "url": "https://www.tiktok.com/@lalalapiszzz"
+      },
+      {
+        "candidate_id": "candidate_21d479352a1526e91b3e",
+        "platform": "youtube",
+        "name": "AonGreyFox",
+        "url": "https://youtube.com/c/AonGreyFox"
+      },
+      {
+        "candidate_id": "candidate_224c63a50d3d46615914",
+        "platform": "tiktok",
+        "name": "Potia PBT",
+        "url": "https://www.tiktok.com/@potiapbt"
+      },
+      {
+        "candidate_id": "candidate_22e2954bd171cdbc547b",
+        "platform": "youtube",
+        "name": "CresentAnsel",
+        "url": "https://www.youtube.com/@CresentAnsel"
+      },
+      {
+        "candidate_id": "candidate_2403bdd6068bc050ab6e",
+        "platform": "youtube",
+        "name": "Bitscuits_La_Cielhare",
+        "url": "https://www.youtube.com/@Bitscuits_La_Cielhare"
+      },
+      {
+        "candidate_id": "candidate_248371a292e3c1ced8a5",
+        "platform": "youtube",
+        "name": "fukach.dobutsuproject",
+        "url": "https://youtube.com/@fukach.dobutsuproject"
+      },
+      {
+        "candidate_id": "candidate_24b1d1e14d36efc23a54",
+        "platform": "youtube",
+        "name": "Orca-Okaru CH",
+        "url": "https://www.youtube.com/channel/UC3it6w4G8eUA98J2w60gBDQ"
+      },
+      {
+        "candidate_id": "candidate_2561c6f49b648acf4b62",
+        "platform": "youtube",
+        "name": "Rawley Izzy G. Ch. | Graduated",
+        "url": "https://www.youtube.com/c/IzzyGCh"
+      },
+      {
+        "candidate_id": "candidate_25f056d74f71b3ba5059",
+        "platform": "youtube",
+        "name": "YumeMaTTy Ch.",
+        "url": "https://www.youtube.com/channel/UCrDlc3CYB6TXFoU01jw0XPg"
+      },
+      {
+        "candidate_id": "candidate_2646bee585e106d5af89",
+        "platform": "youtube",
+        "name": "KOHAKU Ch.",
+        "url": "https://www.youtube.com/c/KOHAKUCh"
+      },
+      {
+        "candidate_id": "candidate_26a4889cea8b0cf8b965",
+        "platform": "youtube",
+        "name": "MaewBaew",
+        "url": "https://youtube.com/@MaewBaew"
+      },
+      {
+        "candidate_id": "candidate_27233b21a4d7144a10e9",
+        "platform": "youtube",
+        "name": "summ3r_vz",
+        "url": "https://www.youtube.com/@summ3r_vz"
+      },
+      {
+        "candidate_id": "candidate_274c1a59f1565b65dc5c",
+        "platform": "youtube",
+        "name": "Kana Ibera Ch.",
+        "url": "https://www.youtube.com/c/KanaIberaChannel"
+      },
+      {
+        "candidate_id": "candidate_280fc745e700b1ccacac",
+        "platform": "youtube",
+        "name": "Verdelite PowerPay",
+        "url": "https://www.youtube.com/channel/UCUR0HEtdHk4nx2WddW0Qthg"
+      },
+      {
+        "candidate_id": "candidate_28534eb42f32556d84ba",
+        "platform": "twitch",
+        "name": "unclekanuntentacle",
+        "url": "https://www.twitch.tv/unclekanuntentacle"
+      },
+      {
+        "candidate_id": "candidate_28824a8802171492bb90",
+        "platform": "tiktok",
+        "name": "G Sol",
+        "url": "https://www.tiktok.com/@g_solretuajing"
+      },
+      {
+        "candidate_id": "candidate_28ba805f878186521ed4",
+        "platform": "youtube",
+        "name": "StampLMTY",
+        "url": "https://www.youtube.com/@StampLMTY"
+      },
+      {
+        "candidate_id": "candidate_293a7a412d5ba6c02390",
+        "platform": "tiktok",
+        "name": "Janine Eisenberg",
+        "url": "https://www.tiktok.com/@watashi_janine"
+      },
+      {
+        "candidate_id": "candidate_2a8898c4f43335603d6b",
+        "platform": "youtube",
+        "name": "Kamphee",
+        "url": "https://www.youtube.com/@Kamphee"
+      },
+      {
+        "candidate_id": "candidate_2b916f6a5e55311a4607",
+        "platform": "youtube",
+        "name": "Reiden_R Ch.",
+        "url": "https://www.youtube.com/c/ReidenR-LiberTales"
+      },
+      {
+        "candidate_id": "candidate_2bcc20f91c6cf66ffd15",
+        "platform": "youtube",
+        "name": "SiamNeko_ARP",
+        "url": "https://www.youtube.com/@SiamNeko_ARP"
+      },
+      {
+        "candidate_id": "candidate_2c2f17864dc7f6f458b0",
+        "platform": "youtube",
+        "name": "Mylah Ch.",
+        "url": "https://www.youtube.com/channel/UCtD7KwwGOSgFu4FEd46msMg"
+      },
+      {
+        "candidate_id": "candidate_2cf0fc37e7d271cdfc02",
+        "platform": "youtube",
+        "name": "RieLKurasaki",
+        "url": "https://www.youtube.com/@RieLKurasaki"
+      },
+      {
+        "candidate_id": "candidate_2dbfc7b56a2db67ee5ab",
+        "platform": "youtube",
+        "name": "keroriRaika",
+        "url": "https://youtube.com/@keroriRaika"
+      },
+      {
+        "candidate_id": "candidate_2e3653ad8cbcdc68f2dc",
+        "platform": "youtube",
+        "name": "Laibaht Ch. / หลายบาท",
+        "url": "https://www.youtube.com/c/laibaht"
+      },
+      {
+        "candidate_id": "candidate_2edf51f8e19c1c0b28e7",
+        "platform": "youtube",
+        "name": "Fondawl_RES",
+        "url": "https://www.youtube.com/@Fondawl_RES"
+      },
+      {
+        "candidate_id": "candidate_2f255aced5ce53ab03c6",
+        "platform": "youtube",
+        "name": "freyraine",
+        "url": "https://youtube.com/@freyraine"
+      },
+      {
+        "candidate_id": "candidate_2fe83a1cd0497ef76fe9",
+        "platform": "youtube",
+        "name": "Tora Mochizuki ",
+        "url": "https://www.youtube.com/channel/UCYWG9ZKz94VcpEqvvhBXk0A"
+      },
+      {
+        "candidate_id": "candidate_302df359899b761a895f",
+        "platform": "youtube",
+        "name": "Kurisumasu_tv",
+        "url": "https://www.youtube.com/@Kurisumasu_tv"
+      },
+      {
+        "candidate_id": "candidate_30648e5c319920e73cf5",
+        "platform": "tiktok",
+        "name": "banpratoubnj",
+        "url": "https://www.tiktok.com/@banpratoubnj"
+      },
+      {
+        "candidate_id": "candidate_306a936bd290db55b866",
+        "platform": "tiktok",
+        "name": "Scene",
+        "url": "https://www.tiktok.com/@scene..uqn"
+      },
+      {
+        "candidate_id": "candidate_31c706b3359040cfe69d",
+        "platform": "youtube",
+        "name": "shin_aikaze",
+        "url": "https://youtube.com/@shin_aikaze"
+      },
+      {
+        "candidate_id": "candidate_31e1a8b84bcd6b8fa0a5",
+        "platform": "youtube",
+        "name": "Yukino Taifu Ch. ",
+        "url": "https://www.youtube.com/channel/UChrGwUGm1puXFhoC0lC7LFQ"
+      },
+      {
+        "candidate_id": "candidate_32d9aa0679cbb57e01a7",
+        "platform": "twitch",
+        "name": "zinniszier",
+        "url": "https://www.twitch.tv/zinniszier"
+      },
+      {
+        "candidate_id": "candidate_33a6ac36f393cd7a797f",
+        "platform": "youtube",
+        "name": "greymvitale",
+        "url": "https://www.youtube.com/@greymvitale"
+      },
+      {
+        "candidate_id": "candidate_345579712ebff45eaa72",
+        "platform": "twitch",
+        "name": "Aoi Crescent",
+        "url": "https://twitch.tv/aoicrescentarp"
+      },
+      {
+        "candidate_id": "candidate_34c026d1b2df3500f0c2",
+        "platform": "youtube",
+        "name": "meidayv.5800",
+        "url": "https://youtube.com/@meidayv.5800"
+      },
+      {
+        "candidate_id": "candidate_3547389160797c6397c5",
+        "platform": "youtube",
+        "name": "KuraseTaoh",
+        "url": "https://www.youtube.com/@KuraseTaoh"
+      },
+      {
+        "candidate_id": "candidate_38af6a2fea3df394c3e5",
+        "platform": "tiktok",
+        "name": "Nostradamus Karasu",
+        "url": "https://www.tiktok.com/@nostradamus_karasu"
+      },
+      {
+        "candidate_id": "candidate_38d1007011d9f7baf9e5",
+        "platform": "youtube",
+        "name": "eikishiro",
+        "url": "https://youtube.com/@eikishiro"
+      },
+      {
+        "candidate_id": "candidate_3936c303b78ccf4a5a93",
+        "platform": "twitch",
+        "name": "kamikasa_mio",
+        "url": "https://www.twitch.tv/kamikasa_mio"
+      },
+      {
+        "candidate_id": "candidate_39e14674bba90c0f8e97",
+        "platform": "twitch",
+        "name": "whitekumatan",
+        "url": "https://www.twitch.tv/whitekumatan"
+      },
+      {
+        "candidate_id": "candidate_3d6c21e7c44d07c37bda",
+        "platform": "youtube",
+        "name": "mikadzuki_nammy",
+        "url": "https://youtube.com/@mikadzuki_nammy"
+      },
+      {
+        "candidate_id": "candidate_3d726b557170674eeb8a",
+        "platform": "tiktok",
+        "name": "Fortuna Leah",
+        "url": "https://tiktok.com/@fortunaleah"
+      },
+      {
+        "candidate_id": "candidate_3d9bed95ad49caeaf03d",
+        "platform": "youtube",
+        "name": "Shishiro Taiga Ch. (志白タイガ)",
+        "url": "https://www.youtube.com/channel/UCFr02a1OIuA1yrnJuB2dSpw"
+      },
+      {
+        "candidate_id": "candidate_3db6195a863bee07f0da",
+        "platform": "youtube",
+        "name": "Akakurai [明暗い]",
+        "url": "https://www.youtube.com/channel/UCDUFEQDrHUjO5vAVwPPiG3Q"
+      },
+      {
+        "candidate_id": "candidate_3dde1b101b9f6beb0ac4",
+        "platform": "youtube",
+        "name": "ShiO",
+        "url": "https://www.youtube.com/@shiomiau"
+      },
+      {
+        "candidate_id": "candidate_3df7b88e17ee3a598a74",
+        "platform": "youtube",
+        "name": "Sakamajimai",
+        "url": "https://youtube.com/@Sakamajimai"
+      },
+      {
+        "candidate_id": "candidate_3dfb7d525405d938b23a",
+        "platform": "tiktok",
+        "name": "Zeno Astray",
+        "url": "https://www.tiktok.com/@zeno_astray"
+      },
+      {
+        "candidate_id": "candidate_3e07cc624fd4e61f58f1",
+        "platform": "youtube",
+        "name": "ryoshi_artist",
+        "url": "https://www.youtube.com/@ryoshi_artist"
+      },
+      {
+        "candidate_id": "candidate_3e1bb83f50909f9ad914",
+        "platform": "youtube",
+        "name": "wadogardenw",
+        "url": "https://youtube.com/@wadogardenw"
+      },
+      {
+        "candidate_id": "candidate_3fa12dbaa7302ef0221a",
+        "platform": "tiktok",
+        "name": "Kylanz",
+        "url": "https://www.tiktok.com/@kylanz_KLZ"
+      },
+      {
+        "candidate_id": "candidate_409342241ef441215633",
+        "platform": "youtube",
+        "name": "SICXERZ : CORE Ch.",
+        "url": "https://www.youtube.com/channel/UCEZl6aWM_c93GHtB12UfxNA"
+      },
+      {
+        "candidate_id": "candidate_416e275936ea7ff7e3c8",
+        "platform": "youtube",
+        "name": "Hatsuji ::H.T.J ",
+        "url": "https://youtube.com/shorts/zxuWh0ffiuI"
+      },
+      {
+        "candidate_id": "candidate_41b361c2d6597310aaed",
+        "platform": "youtube",
+        "name": "Rarin Ch.",
+        "url": "https://youtube.com/shorts/5fweUpvBeBM"
+      },
+      {
+        "candidate_id": "candidate_422acecd64eeaf51f7f5",
+        "platform": "twitch",
+        "name": "LycosaQx | VStreamer",
+        "url": "https://www.twitch.tv/lycosaqx"
+      },
+      {
+        "candidate_id": "candidate_4231aba205e5f41593b3",
+        "platform": "youtube",
+        "name": "Melody Sparkle【PajamaJa】",
+        "url": "https://www.youtube.com/c/MelodyS"
+      },
+      {
+        "candidate_id": "candidate_42e0931a9c05144e2be0",
+        "platform": "youtube",
+        "name": "Mosant Ch.",
+        "url": "https://www.youtube.com/c/MosantCh"
+      },
+      {
+        "candidate_id": "candidate_42ea2ac6ecdf55febec1",
+        "platform": "youtube",
+        "name": "Nostradamus Karasu",
+        "url": "https://www.youtube.com/@NostradamusKarasu"
+      },
+      {
+        "candidate_id": "candidate_43029cfa6e838c36754e",
+        "platform": "youtube",
+        "name": "BishamonKuroneko_AS",
+        "url": "https://youtube.com/@BishamonKuroneko_AS"
+      },
+      {
+        "candidate_id": "candidate_432b89507e8a1b684089",
+        "platform": "youtube",
+        "name": "เจ้าหญิงวารินทร์",
+        "url": "https://www.youtube.com/c/VarinChannel"
+      },
+      {
+        "candidate_id": "candidate_438261f15df8494d23fb",
+        "platform": "youtube",
+        "name": "komurahuak",
+        "url": "https://www.youtube.com/@komurahuak"
+      },
+      {
+        "candidate_id": "candidate_46a18ed6b35430987e61",
+        "platform": "youtube",
+        "name": "AkakuMikoni",
+        "url": "https://www.youtube.com/@AkakuMikoni"
+      },
+      {
+        "candidate_id": "candidate_476028204595dee3c1e4",
+        "platform": "youtube",
+        "name": "ฟ้อนดาวมาเล่า | Fondawl【RE:S】",
+        "url": "https://youtube.com/shorts/E0xW6jOtkeQ"
+      },
+      {
+        "candidate_id": "candidate_47b1504b6ab1fb76fb4d",
+        "platform": "youtube",
+        "name": "AidaCh",
+        "url": "https://www.youtube.com/@AidaCh"
+      },
+      {
+        "candidate_id": "candidate_47d7f6065da7687e437e",
+        "platform": "youtube",
+        "name": "estxr_ch",
+        "url": "https://www.youtube.com/@estxr_ch"
+      },
+      {
+        "candidate_id": "candidate_47f206da8acb08672c3b",
+        "platform": "tiktok",
+        "name": "Hikari Haruki",
+        "url": "https://www.tiktok.com/@harukiz4ma"
+      },
+      {
+        "candidate_id": "candidate_49a10a511ef20904d01f",
+        "platform": "youtube",
+        "name": "FoodieFo ch ⌜VZ⌟",
+        "url": "https://www.youtube.com/channel/UC8F193K1kmD8_MB2F3wLVXQ"
+      },
+      {
+        "candidate_id": "candidate_49e6e965825055ef8d12",
+        "platform": "youtube",
+        "name": "RiyaVtuberTH",
+        "url": "https://www.youtube.com/@RiyaVtuberTH"
+      },
+      {
+        "candidate_id": "candidate_4a71e3ac09d583caf2cf",
+        "platform": "tiktok",
+        "name": "Mimiif0x",
+        "url": "https://www.tiktok.com/@mimiif0x"
+      },
+      {
+        "candidate_id": "candidate_4ad08d3510b0052de1c8",
+        "platform": "youtube",
+        "name": "Enryu Horus Ch. 炎竜ホルス",
+        "url": "https://youtube.com/shorts/4EUX04B-4As"
+      },
+      {
+        "candidate_id": "candidate_4b37adc06457565ebf9c",
+        "platform": "tiktok",
+        "name": "Azu",
+        "url": "https://www.tiktok.com/@azuriusseiryux"
+      },
+      {
+        "candidate_id": "candidate_4b9fb9448851b8560501",
+        "platform": "youtube",
+        "name": "Anya_Smith",
+        "url": "https://www.youtube.com/@Anya_Smith"
+      },
+      {
+        "candidate_id": "candidate_4c9b006374e9345657a8",
+        "platform": "youtube",
+        "name": "RuLaRaLan",
+        "url": "https://www.youtube.com/@RuLaRaLan"
+      },
+      {
+        "candidate_id": "candidate_4cedaf4405fd8c2f34e6",
+        "platform": "youtube",
+        "name": "Nanako_SLR",
+        "url": "https://www.youtube.com/@Nanako_SLR"
+      },
+      {
+        "candidate_id": "candidate_4d088a264aab7764994d",
+        "platform": "youtube",
+        "name": "GoMu no Ch.",
+        "url": "https://www.youtube.com/channel/UCFLR42m7vGHPi3wSROWaepA"
+      },
+      {
+        "candidate_id": "candidate_4dd67b1b557875e3df1c",
+        "platform": "youtube",
+        "name": "Zinnialy",
+        "url": "https://www.youtube.com/@Zinnialy"
+      },
+      {
+        "candidate_id": "candidate_4e487f9998e20b429d93",
+        "platform": "twitch",
+        "name": "ryoutakumi",
+        "url": "https://www.twitch.tv/ryoutakumi"
+      },
+      {
+        "candidate_id": "candidate_4ed0617d0ce102304948",
+        "platform": "youtube",
+        "name": "Chouya",
+        "url": "https://www.youtube.com/channel/UCaKlXG2ijXoovTEOlSBRTHA"
+      },
+      {
+        "candidate_id": "candidate_4f1cfd1ad5c0fcb3a5d6",
+        "platform": "twitch",
+        "name": "hoshikoeral",
+        "url": "https://www.twitch.tv/hoshikoeral"
+      },
+      {
+        "candidate_id": "candidate_4ff06640f2a95d15b686",
+        "platform": "youtube",
+        "name": "CoolRin CH",
+        "url": "https://www.youtube.com/coolrinch"
+      },
+      {
+        "candidate_id": "candidate_50bfe1e54520f7a663ba",
+        "platform": "youtube",
+        "name": "willowhz",
+        "url": "https://youtube.com/@willowhz"
+      },
+      {
+        "candidate_id": "candidate_5203bde17f1109b6e73a",
+        "platform": "youtube",
+        "name": "greymvitale",
+        "url": "https://youtube.com/@greymvitale"
+      },
+      {
+        "candidate_id": "candidate_5276f29acdcf02d2e0c8",
+        "platform": "twitch",
+        "name": "Peach",
+        "url": "https://www.twitch.tv/peachy_131"
+      },
+      {
+        "candidate_id": "candidate_52e7f0fc8f8f59f4b6f9",
+        "platform": "youtube",
+        "name": "SaySheath",
+        "url": "https://www.youtube.com/@SaySheath"
+      },
+      {
+        "candidate_id": "candidate_5340e77244c163e7015c",
+        "platform": "youtube",
+        "name": "EveshaiahMiraclover",
+        "url": "https://www.youtube.com/@EveshaiahMiraclover"
+      },
+      {
+        "candidate_id": "candidate_538513b5c2d99b06a03e",
+        "platform": "youtube",
+        "name": "orinnia_vtuber",
+        "url": "https://youtube.com/@orinnia_vtuber"
+      },
+      {
+        "candidate_id": "candidate_53ef3d9a88cd57a347d8",
+        "platform": "youtube",
+        "name": "GNTGxd",
+        "url": "https://www.youtube.com/@GNTGxd"
+      },
+      {
+        "candidate_id": "candidate_540522eb7cf27171219f",
+        "platform": "tiktok",
+        "name": "Locenne Ch.",
+        "url": "https://www.tiktok.com/@lucennech"
+      },
+      {
+        "candidate_id": "candidate_541899ce09a67c72dbbc",
+        "platform": "tiktok",
+        "name": "Choya Ch.",
+        "url": "https://www.tiktok.com/@choya_ch"
+      },
+      {
+        "candidate_id": "candidate_5459bb682e29583e31d5",
+        "platform": "youtube",
+        "name": "AStarsofficial",
+        "url": "https://www.youtube.com/@AStarsofficial"
+      },
+      {
+        "candidate_id": "candidate_54d9f30437be81053cfe",
+        "platform": "youtube",
+        "name": "ruby-ele",
+        "url": "https://www.youtube.com/@ruby-ele"
+      },
+      {
+        "candidate_id": "candidate_54ebd98ae12aa3b5719b",
+        "platform": "youtube",
+        "name": "keilerwang",
+        "url": "https://www.youtube.com/@keilerwang"
+      },
+      {
+        "candidate_id": "candidate_54f89e1d145e5cfef7a1",
+        "platform": "youtube",
+        "name": "PadzangChannel",
+        "url": "https://youtube.com/@PadzangChannel"
+      },
+      {
+        "candidate_id": "candidate_564a5c086af542e53cda",
+        "platform": "youtube",
+        "name": "Terios Ch.",
+        "url": "https://www.youtube.com/c/TeriosDemon"
+      },
+      {
+        "candidate_id": "candidate_570ae722c2ac415a5a8d",
+        "platform": "tiktok",
+        "name": "ฟ้อนดาวมาเล่า | Fondawl【RE:S】",
+        "url": "https://www.tiktok.com/@fondawl_RES"
+      },
+      {
+        "candidate_id": "candidate_584b406e8d6145a93070",
+        "platform": "youtube",
+        "name": "NatsubiMiyao",
+        "url": "https://www.youtube.com/@NatsubiMiyao"
+      },
+      {
+        "candidate_id": "candidate_5896797c3e568464df95",
+        "platform": "youtube",
+        "name": "zoespecter",
+        "url": "https://www.youtube.com/@zoespecter"
+      },
+      {
+        "candidate_id": "candidate_5952f47ffb3080650de9",
+        "platform": "youtube",
+        "name": "aidenshia",
+        "url": "https://www.youtube.com/@aidenshia"
+      },
+      {
+        "candidate_id": "candidate_5a27269b49216be8b9a9",
+        "platform": "youtube",
+        "name": "azuruvt",
+        "url": "https://www.youtube.com/@azuruvt"
+      },
+      {
+        "candidate_id": "candidate_5ac2831601d4666f8284",
+        "platform": "youtube",
+        "name": "Notaki Ch.",
+        "url": "https://www.youtube.com/c/NotakiCh"
+      },
+      {
+        "candidate_id": "candidate_5ae0f4af6bcce9792160",
+        "platform": "youtube",
+        "name": "MadhatterVZ",
+        "url": "https://www.youtube.com/@MadhatterVZ"
+      },
+      {
+        "candidate_id": "candidate_5ae205ce876f102891f4",
+        "platform": "youtube",
+        "name": "Rong_ferrettie",
+        "url": "https://www.youtube.com/@Rong_ferrettie"
+      },
+      {
+        "candidate_id": "candidate_5b2d3eaa09bf1cc5779f",
+        "platform": "youtube",
+        "name": "Rarin_Ch",
+        "url": "https://youtube.com/@Rarin_Ch"
+      },
+      {
+        "candidate_id": "candidate_5b67e77eeb8598e8d131",
+        "platform": "youtube",
+        "name": "pugko",
+        "url": "https://www.youtube.com/@pugko"
+      },
+      {
+        "candidate_id": "candidate_5bfe8b507d5c313c5d62",
+        "platform": "youtube",
+        "name": "HelenCandleby",
+        "url": "https://www.youtube.com/@HelenCandleby"
+      },
+      {
+        "candidate_id": "candidate_5cf4361def0cb41165be",
+        "platform": "youtube",
+        "name": "Freidya Einwaltz | Vartist Gamer Vtuber",
+        "url": "https://www.youtube.com/@freidya-ch"
+      },
+      {
+        "candidate_id": "candidate_5d28525d1e8b82594736",
+        "platform": "youtube",
+        "name": "RubelliteEuphora",
+        "url": "https://www.youtube.com/@RubelliteEuphora"
+      },
+      {
+        "candidate_id": "candidate_5d799760f27c329afc43",
+        "platform": "youtube",
+        "name": "Xanael-TH",
+        "url": "https://youtube.com/@Xanael-TH"
+      },
+      {
+        "candidate_id": "candidate_5d85ad1e31dc7fd520a9",
+        "platform": "tiktok",
+        "name": "Nyeeeon",
+        "url": "https://www.tiktok.com/@reiquasar0"
+      },
+      {
+        "candidate_id": "candidate_5dc706e580e12276b87d",
+        "platform": "tiktok",
+        "name": "Maiyara 【21PM】",
+        "url": "https://www.tiktok.com/@mainazvtuber"
+      },
+      {
+        "candidate_id": "candidate_5ec5b53c7d135172c6f5",
+        "platform": "twitch",
+        "name": "NoBoRu",
+        "url": "https://www.twitch.tv/noboru_oz"
+      },
+      {
+        "candidate_id": "candidate_5f907a5c5b08e505383c",
+        "platform": "youtube",
+        "name": "AitoLH",
+        "url": "https://youtube.com/@AitoLH"
+      },
+      {
+        "candidate_id": "candidate_605c431b090e8c151a11",
+        "platform": "youtube",
+        "name": "Kamiyu Reirin Ch. Lumina-First-Myth",
+        "url": "https://youtube.com/channel/UCLNBff3KDEUxdfH_lkvyOKQ"
+      },
+      {
+        "candidate_id": "candidate_60b3f3ff6ac87243312a",
+        "platform": "youtube",
+        "name": "CobaltHellHound",
+        "url": "https://www.youtube.com/@CobaltHellHound"
+      },
+      {
+        "candidate_id": "candidate_63771fe3134232a4fda3",
+        "platform": "twitch",
+        "name": "Nisa",
+        "url": "https://www.twitch.tv/nisapoyo"
+      },
+      {
+        "candidate_id": "candidate_63865de4d3ef8e06e268",
+        "platform": "youtube",
+        "name": "TheQuillmon ⌜VZ⌟",
+        "url": "https://www.youtube.com/TheQuillmon"
+      },
+      {
+        "candidate_id": "candidate_63989a00001e67aaf2b6",
+        "platform": "youtube",
+        "name": "Aiboh Canis (ไอโบ)",
+        "url": "https://www.youtube.com/c/AibohCanis"
+      },
+      {
+        "candidate_id": "candidate_64cfb0a5507f29526e6b",
+        "platform": "youtube",
+        "name": "Minato Hatsuki【JVP】",
+        "url": "https://www.youtube.com/channel/UCgmytgwJVDe74ewiHklGcBA"
+      },
+      {
+        "candidate_id": "candidate_64f4926d28ce72b08598",
+        "platform": "youtube",
+        "name": "ZAINvtuber",
+        "url": "https://www.youtube.com/@ZAINvtuber"
+      },
+      {
+        "candidate_id": "candidate_6597ed6bc4d13c0c6551",
+        "platform": "youtube",
+        "name": "Nerumis",
+        "url": "https://youtube.com/@Nerumis"
+      },
+      {
+        "candidate_id": "candidate_6673dbfd2a04800d7473",
+        "platform": "twitch",
+        "name": "Zeraphina Hana",
+        "url": "https://www.twitch.tv/videos/2852328659"
+      },
+      {
+        "candidate_id": "candidate_66b11e7a9459f194be88",
+        "platform": "youtube",
+        "name": "Oni Shinkim Ch.【PSM】",
+        "url": "https://www.youtube.com/channel/UCyPXMeC0RCQPGlImQXmN8xg"
+      },
+      {
+        "candidate_id": "candidate_6730cbe640305a454f2c",
+        "platform": "youtube",
+        "name": "valakch.1435",
+        "url": "https://www.youtube.com/@valakch.1435"
+      },
+      {
+        "candidate_id": "candidate_6742c8be343f8c644a46",
+        "platform": "tiktok",
+        "name": "Zandy",
+        "url": "https://www.tiktok.com/@zandy31a"
+      },
+      {
+        "candidate_id": "candidate_67e8ad76f80ef05d728d",
+        "platform": "youtube",
+        "name": "Nicca Ch.",
+        "url": "https://www.youtube.com/user/Niccakun"
+      },
+      {
+        "candidate_id": "candidate_68107c75d02c1c5b4aea",
+        "platform": "youtube",
+        "name": "IceShirakoi_AS",
+        "url": "https://www.youtube.com/@IceShirakoi_AS"
+      },
+      {
+        "candidate_id": "candidate_6852c55a85a240ce13bc",
+        "platform": "youtube",
+        "name": "Hanami Lay CH.",
+        "url": "https://www.youtube.com/c/HanamiLayCH"
+      },
+      {
+        "candidate_id": "candidate_690fad75662c729325b6",
+        "platform": "youtube",
+        "name": "akimotoyuna",
+        "url": "https://www.youtube.com/@akimotoyuna"
+      },
+      {
+        "candidate_id": "candidate_693c7f5b699e7e361693",
+        "platform": "youtube",
+        "name": "maprang_vtuber",
+        "url": "https://youtube.com/@maprang_vtuber"
+      },
+      {
+        "candidate_id": "candidate_69ddb9c8d9acb8d7c424",
+        "platform": "tiktok",
+        "name": "NatsuneBeLL ไม่มีสังกัด 1K",
+        "url": "https://www.tiktok.com/@natsunebellolwitch"
+      },
+      {
+        "candidate_id": "candidate_6aa573dfa3b22a301298",
+        "platform": "twitch",
+        "name": "MeiLi",
+        "url": "https://www.twitch.tv/mamimeili"
+      },
+      {
+        "candidate_id": "candidate_6afc09308493331b265c",
+        "platform": "youtube",
+        "name": "NocturnazNaar",
+        "url": "https://www.youtube.com/@NocturnazNaar"
+      },
+      {
+        "candidate_id": "candidate_6b7c2682fece3e9a8214",
+        "platform": "youtube",
+        "name": "hathamgang",
+        "url": "https://youtube.com/@hathamgang"
+      },
+      {
+        "candidate_id": "candidate_6bcf02e2a684cdbef549",
+        "platform": "youtube",
+        "name": "HalonHashi",
+        "url": "https://www.youtube.com/@HalonHashi"
+      },
+      {
+        "candidate_id": "candidate_6c71f4b5a8e2a93fca09",
+        "platform": "tiktok",
+        "name": "Pattivia",
+        "url": "https://www.tiktok.com/@pattivia_live"
+      },
+      {
+        "candidate_id": "candidate_6c8664c79dd282de58ce",
+        "platform": "tiktok",
+        "name": "Caelum Étoile",
+        "url": "https://www.tiktok.com/@caelum_drt"
+      },
+      {
+        "candidate_id": "candidate_6d58d6c59accc97cccb4",
+        "platform": "youtube",
+        "name": "Pleiades_Frontier",
+        "url": "https://www.youtube.com/@Pleiades_Frontier"
+      },
+      {
+        "candidate_id": "candidate_6d6408cd74938d34ab33",
+        "platform": "tiktok",
+        "name": "Nonghanging",
+        "url": "https://www.tiktok.com/@nonghanging_isreal"
+      },
+      {
+        "candidate_id": "candidate_6e65a1d5d0089c5967ca",
+        "platform": "youtube",
+        "name": "Keiko Kezoku",
+        "url": "https://www.youtube.com/@keikokezoku"
+      },
+      {
+        "candidate_id": "candidate_6f14967ec13a0e37c868",
+        "platform": "youtube",
+        "name": "ALThiMa-NigHT",
+        "url": "https://www.youtube.com/@ALThiMa-NigHT"
+      },
+      {
+        "candidate_id": "candidate_6ff38b78c4985011e8e7",
+        "platform": "twitch",
+        "name": "sshirowashi",
+        "url": "https://www.twitch.tv/sshirowashi"
+      },
+      {
+        "candidate_id": "candidate_7135bbcbb30c32cfa7ec",
+        "platform": "tiktok",
+        "name": "Neplilnaigh",
+        "url": "https://www.tiktok.com/@neplilnaigh"
+      },
+      {
+        "candidate_id": "candidate_71b93cca3be76ed066b0",
+        "platform": "youtube",
+        "name": "ShogoCh",
+        "url": "https://www.youtube.com/@ShogoCh"
+      },
+      {
+        "candidate_id": "candidate_722bf8ab92fc2d6e5d0b",
+        "platform": "youtube",
+        "name": "YenaHwangch",
+        "url": "https://www.youtube.com/@YenaHwangch"
+      },
+      {
+        "candidate_id": "candidate_7252fef074d9ebf1a0d1",
+        "platform": "youtube",
+        "name": "Ivy_ARP",
+        "url": "https://youtube.com/@Ivy_ARP"
+      },
+      {
+        "candidate_id": "candidate_72d64ff0608f3de991c9",
+        "platform": "youtube",
+        "name": "murkielch",
+        "url": "https://www.youtube.com/@murkielch"
+      },
+      {
+        "candidate_id": "candidate_7498049c2290ef93d335",
+        "platform": "youtube",
+        "name": "CyntiaVtuber",
+        "url": "https://www.youtube.com/@CyntiaVtuber"
+      },
+      {
+        "candidate_id": "candidate_761e6b6bf804c34f366e",
+        "platform": "youtube",
+        "name": "byte001_slr",
+        "url": "https://www.youtube.com/@byte001_slr"
+      },
+      {
+        "candidate_id": "candidate_766f8de78043f4c334c8",
+        "platform": "youtube",
+        "name": "Nuttiz",
+        "url": "https://www.youtube.com/@Nuttiz"
+      },
+      {
+        "candidate_id": "candidate_76a028202af5e351e72a",
+        "platform": "youtube",
+        "name": "BoomVtube Ch.",
+        "url": "https://www.youtube.com/c/BoomVtubeCh"
+      },
+      {
+        "candidate_id": "candidate_77309460007c58d90a89",
+        "platform": "youtube",
+        "name": "Yuklear",
+        "url": "https://www.youtube.com/@Yuklear"
+      },
+      {
+        "candidate_id": "candidate_773cab5bb6c5c1852202",
+        "platform": "youtube",
+        "name": "Faethon_Janta",
+        "url": "https://www.youtube.com/@Faethon_Janta"
+      },
+      {
+        "candidate_id": "candidate_774e41b4a1be1424b1ef",
+        "platform": "tiktok",
+        "name": "gingerbelle",
+        "url": "https://www.tiktok.com/@ggingerbelle"
+      },
+      {
+        "candidate_id": "candidate_7788ddb066dbeff379c1",
+        "platform": "youtube",
+        "name": "ZephyrEuthalia",
+        "url": "https://www.youtube.com/@ZephyrEuthalia"
+      },
+      {
+        "candidate_id": "candidate_7839fc1207a1021ede6e",
+        "platform": "youtube",
+        "name": "Rafinia Ch.",
+        "url": "https://www.youtube.com/channel/UCsvM-x2McjES-pJMGfq8PuA"
+      },
+      {
+        "candidate_id": "candidate_78c7bbe9975127d69ecc",
+        "platform": "tiktok",
+        "name": "Filyn Ch. | VtuberTH ไม่มีสังกัด 90",
+        "url": "https://www.tiktok.com/@filyn_freddy"
+      },
+      {
+        "candidate_id": "candidate_78ffd63457c08d24d630",
+        "platform": "youtube",
+        "name": "NUTTY-WIS",
+        "url": "https://youtube.com/@NUTTY-WIS"
+      },
+      {
+        "candidate_id": "candidate_7a6e6f8c45962e347097",
+        "platform": "youtube",
+        "name": "baruru channel",
+        "url": "https://www.youtube.com/channel/UCHONh9zedNOSdzUqUbSUQ-Q"
+      },
+      {
+        "candidate_id": "candidate_7ba12d8649d362152e2c",
+        "platform": "youtube",
+        "name": "SoDaChan | Vtuber",
+        "url": "https://youtube.com/channel/UCIJlMF7bynSgi0G8Hy6j94g"
+      },
+      {
+        "candidate_id": "candidate_7c1a2810614a367098e4",
+        "platform": "youtube",
+        "name": "chiiakijf",
+        "url": "https://www.youtube.com/@chiiakijf"
+      },
+      {
+        "candidate_id": "candidate_7c6b446e2a25b1a89efa",
+        "platform": "youtube",
+        "name": "YotChi",
+        "url": "https://www.youtube.com/c/YotChiCh"
+      },
+      {
+        "candidate_id": "candidate_7dc59f01ac3d6138f475",
+        "platform": "youtube",
+        "name": "vthAriel",
+        "url": "https://www.youtube.com/@vthAriel"
+      },
+      {
+        "candidate_id": "candidate_8206762a82b7bcc9b861",
+        "platform": "twitch",
+        "name": "jiminelz",
+        "url": "https://www.twitch.tv/jiminelz"
+      },
+      {
+        "candidate_id": "candidate_82070faaa621bf4f004e",
+        "platform": "youtube",
+        "name": "Mixzy21PM",
+        "url": "https://www.youtube.com/@Mixzy21PM"
+      },
+      {
+        "candidate_id": "candidate_823a5d3725dc332c8d3a",
+        "platform": "youtube",
+        "name": "MeteonaMarsCh",
+        "url": "https://www.youtube.com/@MeteonaMarsCh"
+      },
+      {
+        "candidate_id": "candidate_82cdded8e08d6f8d2577",
+        "platform": "twitch",
+        "name": "RLanz Ch.",
+        "url": "https://www.twitch.tv/rlanz_tarima"
+      },
+      {
+        "candidate_id": "candidate_830f3713a99ca168fc79",
+        "platform": "youtube",
+        "name": "Wahri_Wahri",
+        "url": "https://www.youtube.com/@Wahri_Wahri"
+      },
+      {
+        "candidate_id": "candidate_836837cde9fa4c5e1901",
+        "platform": "tiktok",
+        "name": "fusuiforry",
+        "url": "https://www.tiktok.com/@fusuiforry"
+      },
+      {
+        "candidate_id": "candidate_8403d30b255fb310a175",
+        "platform": "youtube",
+        "name": "Celestier.R",
+        "url": "https://www.youtube.com/@crrda_ch"
+      },
+      {
+        "candidate_id": "candidate_84296101d4c884047542",
+        "platform": "tiktok",
+        "name": "Tendouji Fuka",
+        "url": "https://www.tiktok.com/@fukatendouji"
+      },
+      {
+        "candidate_id": "candidate_858f6a8eb92a7e2481f6",
+        "platform": "youtube",
+        "name": "Usaku | VTuberTH",
+        "url": "https://www.youtube.com/@yuuroki_usaku"
+      },
+      {
+        "candidate_id": "candidate_872dcc18f9ba8c3ca0ee",
+        "platform": "youtube",
+        "name": "Bunnieskisses.vtuber",
+        "url": "https://youtube.com/@Bunnieskisses.vtuber"
+      },
+      {
+        "candidate_id": "candidate_8857aa549b76b9d90a7d",
+        "platform": "youtube",
+        "name": "Realiable Ch.",
+        "url": "https://youtube.com/c/RealiableCh"
+      },
+      {
+        "candidate_id": "candidate_88c465c3bc7c12c1bd68",
+        "platform": "youtube",
+        "name": "RaneeTani",
+        "url": "https://youtube.com/@RaneeTani"
+      },
+      {
+        "candidate_id": "candidate_88e3ae03624629d34fc8",
+        "platform": "twitch",
+        "name": "owenzwei",
+        "url": "https://www.twitch.tv/owenzwei"
+      },
+      {
+        "candidate_id": "candidate_899d6372486282cd63b4",
+        "platform": "youtube",
+        "name": "ChouxCreamii",
+        "url": "https://youtube.com/@ChouxCreamii"
+      },
+      {
+        "candidate_id": "candidate_8a2191b0cd4b7c6a37ca",
+        "platform": "tiktok",
+        "name": "kitadesus",
+        "url": "https://www.tiktok.com/@kitadesus"
+      },
+      {
+        "candidate_id": "candidate_8a6d486dc8fd612699d6",
+        "platform": "youtube",
+        "name": "Cazzia Bakeriana Ch. - Parabellum",
+        "url": "https://www.youtube.com/CazziaBakerianaChParabellum"
+      },
+      {
+        "candidate_id": "candidate_8abc0b548b5830950b8e",
+        "platform": "youtube",
+        "name": "moemiyabiv3",
+        "url": "https://youtube.com/@moemiyabiv3"
+      },
+      {
+        "candidate_id": "candidate_8acb95a27c72ae134b98",
+        "platform": "youtube",
+        "name": "zandy31a",
+        "url": "https://www.youtube.com/@zandy31a"
+      },
+      {
+        "candidate_id": "candidate_8ad0212d8b34755e97fd",
+        "platform": "youtube",
+        "name": "Navy Lucifer | V.W.Y",
+        "url": "https://www.youtube.com/channel/UC05R2CcQn2TqvrgZRp-RF6w"
+      },
+      {
+        "candidate_id": "candidate_8adf5ef527158c1fbd30",
+        "platform": "twitch",
+        "name": "Nisa",
+        "url": "https://twitch.tv/nisapoyo"
+      },
+      {
+        "candidate_id": "candidate_8b1ceaa9e3de0e4fd6da",
+        "platform": "youtube",
+        "name": "wadogardenwoofna",
+        "url": "https://youtube.com/@wadogardenwoofna"
+      },
+      {
+        "candidate_id": "candidate_8b85c44362aa4c0d563f",
+        "platform": "tiktok",
+        "name": "Rubellite ch. Euphora",
+        "url": "https://www.tiktok.com/@rubellitevtuber"
+      },
+      {
+        "candidate_id": "candidate_8bb1ad91905db02f81d2",
+        "platform": "youtube",
+        "name": "Pekorin_SSR",
+        "url": "https://www.youtube.com/@Pekorin_SSR"
+      },
+      {
+        "candidate_id": "candidate_8be440f049795d6ee203",
+        "platform": "youtube",
+        "name": "Mariabell Rain - 雨 ",
+        "url": "https://www.youtube.com/channel/UC4nsIGJlPXdVHJ61TQdEzfQ"
+      },
+      {
+        "candidate_id": "candidate_8c87704e290d4fba9487",
+        "platform": "twitch",
+        "name": "Shino Laila",
+        "url": "https://twitch.tv/lailashino_wactor"
+      },
+      {
+        "candidate_id": "candidate_8cce1ff2a4711a5ca482",
+        "platform": "tiktok",
+        "name": "Zilbi",
+        "url": "https://www.tiktok.com/@zilbi_acas"
+      },
+      {
+        "candidate_id": "candidate_8d3c0005f8409eba4ab5",
+        "platform": "youtube",
+        "name": "NonghongV",
+        "url": "https://www.youtube.com/@NonghongV"
+      },
+      {
+        "candidate_id": "candidate_8d867907562c92c2c972",
+        "platform": "youtube",
+        "name": "Choya.Vtuber",
+        "url": "https://www.youtube.com/@Choya.Vtuber"
+      },
+      {
+        "candidate_id": "candidate_8e74fc0c45bc4c1e4698",
+        "platform": "youtube",
+        "name": "ShishiouSeito_AS",
+        "url": "https://www.youtube.com/@ShishiouSeito_AS"
+      },
+      {
+        "candidate_id": "candidate_8e76f63a6d7096bf2e87",
+        "platform": "youtube",
+        "name": "Cliche_SSR",
+        "url": "https://www.youtube.com/@Cliche_SSR"
+      },
+      {
+        "candidate_id": "candidate_8f447736bcf7ef25dc7a",
+        "platform": "youtube",
+        "name": "ThearDreamWhale",
+        "url": "https://youtube.com/@ThearDreamWhale"
+      },
+      {
+        "candidate_id": "candidate_8f71984478e338ce6cec",
+        "platform": "youtube",
+        "name": "ShuunAruna",
+        "url": "https://www.youtube.com/@ShuunAruna"
+      },
+      {
+        "candidate_id": "candidate_8fc73a293f49db429fc5",
+        "platform": "youtube",
+        "name": "merryl_wayne",
+        "url": "https://www.youtube.com/@merryl_wayne"
+      },
+      {
+        "candidate_id": "candidate_901b7481d46a0161bba3",
+        "platform": "tiktok",
+        "name": "Rayne Ch. ไม่มีสังกัด 118",
+        "url": "https://www.tiktok.com/@imrayne"
+      },
+      {
+        "candidate_id": "candidate_9151b0dca9c7b5e08cec",
+        "platform": "tiktok",
+        "name": "Yuusa Ch. 優桜ヨルモ",
+        "url": "https://www.tiktok.com/@yuusa_yorumo"
+      },
+      {
+        "candidate_id": "candidate_9213508e35201d63f64b",
+        "platform": "youtube",
+        "name": "AosoraPopo",
+        "url": "https://www.youtube.com/@AosoraPopo"
+      },
+      {
+        "candidate_id": "candidate_921b8adf7673b690a2ad",
+        "platform": "twitch",
+        "name": "it’s hi",
+        "url": "https://www.twitch.tv/its_hi_arp"
+      },
+      {
+        "candidate_id": "candidate_923b3dd0a4885692420f",
+        "platform": "youtube",
+        "name": "AsherDawnbaker",
+        "url": "https://www.youtube.com/@AsherDawnbaker"
+      },
+      {
+        "candidate_id": "candidate_955197d8b1778f291406",
+        "platform": "youtube",
+        "name": "LIMESALTZ | Thai VTuber",
+        "url": "https://www.youtube.com/@limesaltz"
+      },
+      {
+        "candidate_id": "candidate_95b67acea158da13fc73",
+        "platform": "youtube",
+        "name": "SUIFONG CH〖DPX〗",
+        "url": "https://www.youtube.com/channel/UCJAI6tpsee_w0sMV7-NB_Tw"
+      },
+      {
+        "candidate_id": "candidate_95cfa329652c577ba45c",
+        "platform": "twitch",
+        "name": "Logan U Stryker",
+        "url": "https://www.twitch.tv/urstrykervtuber"
+      },
+      {
+        "candidate_id": "candidate_977c6eb56bc0991cbdd9",
+        "platform": "youtube",
+        "name": "MOHOMI",
+        "url": "https://youtube.com/channel/UCPf8rkZeeiHlQUC0CMgxPQw"
+      },
+      {
+        "candidate_id": "candidate_97b236d0566c320e6399",
+        "platform": "tiktok",
+        "name": "Dariela",
+        "url": "https://www.tiktok.com/@darielavtuberth"
+      },
+      {
+        "candidate_id": "candidate_97ddcd65ee93b1355eb2",
+        "platform": "twitch",
+        "name": "dxppx | Thai Vstreamer",
+        "url": "https://www.twitch.tv/dxppx"
+      },
+      {
+        "candidate_id": "candidate_97df4b96e10f28de1048",
+        "platform": "youtube",
+        "name": "TeddyBeL_Official",
+        "url": "https://youtube.com/@TeddyBeL_Official"
+      },
+      {
+        "candidate_id": "candidate_98aa40dbfe15b2f026d5",
+        "platform": "youtube",
+        "name": "AmySTL999",
+        "url": "https://youtube.com/@AmySTL999"
+      },
+      {
+        "candidate_id": "candidate_9963cd9005be4a929665",
+        "platform": "youtube",
+        "name": "PonPun",
+        "url": "https://www.youtube.com/@PonPun"
+      },
+      {
+        "candidate_id": "candidate_998c136375004781f3ff",
+        "platform": "youtube",
+        "name": "Tinsley | VtuberTH",
+        "url": "https://www.youtube.com/@TinsleyALPT"
+      },
+      {
+        "candidate_id": "candidate_9a6773931d7716139239",
+        "platform": "youtube",
+        "name": "EdellaEdward",
+        "url": "https://www.youtube.com/@EdellaEdward"
+      },
+      {
+        "candidate_id": "candidate_9aabc90b4aff0e3885e7",
+        "platform": "tiktok",
+        "name": "lyndel.epr",
+        "url": "https://www.tiktok.com/@lyndel.epr"
+      },
+      {
+        "candidate_id": "candidate_9b5ad34e74c5495f92bd",
+        "platform": "twitch",
+        "name": "Seikou iMinato",
+        "url": "https://twitch.tv/seikou_iminato"
+      },
+      {
+        "candidate_id": "candidate_9ba0bde719a1f4954152",
+        "platform": "youtube",
+        "name": "zaneVTG",
+        "url": "https://youtube.com/@zaneVTG"
+      },
+      {
+        "candidate_id": "candidate_9c20689f746af3f9d203",
+        "platform": "twitch",
+        "name": "kenthemagicianpanda",
+        "url": "https://www.twitch.tv/kenthemagicianpanda"
+      },
+      {
+        "candidate_id": "candidate_9c37388c3b9acdee936b",
+        "platform": "twitch",
+        "name": "Kayo Ch. 【かよCh.】◣PLO◥",
+        "url": "https://www.twitch.tv/kayonoorenji"
+      },
+      {
+        "candidate_id": "candidate_9cab426e026f4e8e3d47",
+        "platform": "youtube",
+        "name": "Momo_LH",
+        "url": "https://www.youtube.com/@Momo_LH"
+      },
+      {
+        "candidate_id": "candidate_9d9743210d2879759660",
+        "platform": "tiktok",
+        "name": "Nanako_SLR",
+        "url": "https://tiktok.com/@nanako_npt"
+      },
+      {
+        "candidate_id": "candidate_9db4b42675715cadcfa0",
+        "platform": "tiktok",
+        "name": "SHIRO K. Channel",
+        "url": "https://www.tiktok.com/@shil2okuma?_t=ZS-8tWu570HvDm&_r=1"
+      },
+      {
+        "candidate_id": "candidate_9e234c11a8e7341e23ee",
+        "platform": "youtube",
+        "name": "Ramirez Svensons",
+        "url": "https://www.youtube.com/channel/UChgltsIqf_o4bFSKd9dVE5A"
+      },
+      {
+        "candidate_id": "candidate_9f11db24c82380d3395d",
+        "platform": "tiktok",
+        "name": "Bunny Arha",
+        "url": "https://www.tiktok.com/@bunny_arha_"
+      },
+      {
+        "candidate_id": "candidate_9fbd0fdedbf108cf21e9",
+        "platform": "youtube",
+        "name": "chanavtuber",
+        "url": "https://www.youtube.com/@chanavtuber"
+      },
+      {
+        "candidate_id": "candidate_a06ce7d6928d2154ebb6",
+        "platform": "twitch",
+        "name": "CinCin Vtu",
+        "url": "https://www.twitch.tv/cincinvtu"
+      },
+      {
+        "candidate_id": "candidate_a085a8da02a9f21555ea",
+        "platform": "youtube",
+        "name": "devtodemon",
+        "url": "https://youtube.com/@devtodemon"
+      },
+      {
+        "candidate_id": "candidate_a0fc96aa2cf065612409",
+        "platform": "youtube",
+        "name": "Regene_RES",
+        "url": "https://www.youtube.com/@Regene_RES"
+      },
+      {
+        "candidate_id": "candidate_a1bd2fe3692698aa9aae",
+        "platform": "youtube",
+        "name": "Ryuji Ch.",
+        "url": "https://www.youtube.com/c/ryujich"
+      },
+      {
+        "candidate_id": "candidate_a21b29c6536c9e56e7f2",
+        "platform": "youtube",
+        "name": "JusiaASMR",
+        "url": "https://youtube.com/@JusiaASMR"
+      },
+      {
+        "candidate_id": "candidate_a2c69ed0b48587750750",
+        "platform": "youtube",
+        "name": "SistraLyrics_OTL",
+        "url": "https://www.youtube.com/@SistraLyrics_OTL"
+      },
+      {
+        "candidate_id": "candidate_a332922113d267f92f2b",
+        "platform": "twitch",
+        "name": "Zabrina",
+        "url": "https://www.twitch.tv/zabrinavtuberth"
+      },
+      {
+        "candidate_id": "candidate_a34b4018df52ca02dcab",
+        "platform": "tiktok",
+        "name": "Aelios Ch.",
+        "url": "https://www.tiktok.com/@aelios_astray"
+      },
+      {
+        "candidate_id": "candidate_a443393b79dd57723142",
+        "platform": "youtube",
+        "name": "callistosocool",
+        "url": "https://youtube.com/@callistosocool"
+      },
+      {
+        "candidate_id": "candidate_a468f2cb938c2673d58c",
+        "platform": "youtube",
+        "name": "Rayanch.FIXIXVT",
+        "url": "https://youtube.com/@Rayanch.FIXIXVT"
+      },
+      {
+        "candidate_id": "candidate_a514000d7bf62817236d",
+        "platform": "youtube",
+        "name": "Peko the Witch ★ แม่มด\"พีโกะ\"",
+        "url": "https://www.youtube.com/c/Peko-ChTH"
+      },
+      {
+        "candidate_id": "candidate_a522c9fa9a75225b7d67",
+        "platform": "youtube",
+        "name": "whitepgz",
+        "url": "https://www.youtube.com/@whitepgz"
+      },
+      {
+        "candidate_id": "candidate_a53fed80013c7810b92e",
+        "platform": "youtube",
+        "name": "UnUnTheBat",
+        "url": "https://youtube.com/@UnUnTheBat"
+      },
+      {
+        "candidate_id": "candidate_a607a2b977813c8d44bc",
+        "platform": "youtube",
+        "name": "Zenovaz Ch.",
+        "url": "https://www.youtube.com/c/ZenovazCh"
+      },
+      {
+        "candidate_id": "candidate_a69692ac74b4e8aad2c3",
+        "platform": "youtube",
+        "name": "sunfishch",
+        "url": "https://www.youtube.com/@sunfishch"
+      },
+      {
+        "candidate_id": "candidate_a753ca8610236707ee1c",
+        "platform": "youtube",
+        "name": "NEBUEL-V",
+        "url": "https://www.youtube.com/@NEBUEL-V"
+      },
+      {
+        "candidate_id": "candidate_a78262251b2c972d0ba8",
+        "platform": "twitch",
+        "name": "Poppy the Puppy",
+        "url": "https://www.twitch.tv/poppythepuppy1"
+      },
+      {
+        "candidate_id": "candidate_a7a7db940ae23b7fc138",
+        "platform": "tiktok",
+        "name": "Roxy",
+        "url": "https://www.tiktok.com/@Roxy_CVC"
+      },
+      {
+        "candidate_id": "candidate_a7db5e45452d90327f65",
+        "platform": "youtube",
+        "name": "TAeOH",
+        "url": "https://www.youtube.com/c/TAeOH"
+      },
+      {
+        "candidate_id": "candidate_a8a483218c2839d58e98",
+        "platform": "tiktok",
+        "name": "Sivla",
+        "url": "https://www.tiktok.com/@sivlaacas"
+      },
+      {
+        "candidate_id": "candidate_a997205e8545ebf3810c",
+        "platform": "twitch",
+        "name": "Aoi Crescent",
+        "url": "https://www.twitch.tv/AoiCrescentARP"
+      },
+      {
+        "candidate_id": "candidate_a9dee23288ba59f931dc",
+        "platform": "tiktok",
+        "name": "Killmonnks ไม่มีสังกัด 6.3K",
+        "url": "https://www.tiktok.com/@Killmonnks"
+      },
+      {
+        "candidate_id": "candidate_aa27dc7f7f5c27a3c2ab",
+        "platform": "tiktok",
+        "name": "Adams Maur 【 FMP 】 ไม่มีสังกัด 806",
+        "url": "https://www.tiktok.com/@adams_maur"
+      },
+      {
+        "candidate_id": "candidate_aac43a6de614ac0cb77d",
+        "platform": "youtube",
+        "name": "MikuRu0Project",
+        "url": "https://www.youtube.com/@MikuRu0Project"
+      },
+      {
+        "candidate_id": "candidate_ab575eee78b8c11314df",
+        "platform": "tiktok",
+        "name": "Saneko ch. Euphora",
+        "url": "https://www.tiktok.com/@Saneko_EPR"
+      },
+      {
+        "candidate_id": "candidate_ac4b938abc7e0265c6c4",
+        "platform": "youtube",
+        "name": "Camellia Ch.",
+        "url": "https://www.youtube.com/c/CamelliaCh-TL"
+      },
+      {
+        "candidate_id": "candidate_ad6fac9ff5f02296fe8f",
+        "platform": "tiktok",
+        "name": "SaiMaiZ さいまい ⌜VZ⌟",
+        "url": "https://www.tiktok.com/@saimaizvtuberth"
+      },
+      {
+        "candidate_id": "candidate_addd6ace148be8adda99",
+        "platform": "twitch",
+        "name": "yuiphil",
+        "url": "https://www.twitch.tv/yuiphil"
+      },
+      {
+        "candidate_id": "candidate_adedf366d7669aede96e",
+        "platform": "youtube",
+        "name": "GIN",
+        "url": "https://www.youtube.com/channel/UCArXPBCsEt2_rDC63tPLYmg"
+      },
+      {
+        "candidate_id": "candidate_ae0eeb21ee9a8e9109dd",
+        "platform": "youtube",
+        "name": "Enryu Horus Ch. 炎竜ホルス",
+        "url": "https://youtube.com/shorts/3lExZD4sjeY"
+      },
+      {
+        "candidate_id": "candidate_ae497393cf7637b92a01",
+        "platform": "twitch",
+        "name": "Ken Summer 夏宇賢",
+        "url": "https://twitch.tv/kenthemagicianpanda"
+      },
+      {
+        "candidate_id": "candidate_aec098775e8fec964d78",
+        "platform": "youtube",
+        "name": "PINTO",
+        "url": "https://www.youtube.com/@pinto__xx"
+      },
+      {
+        "candidate_id": "candidate_aee344766a7e5ca59849",
+        "platform": "twitch",
+        "name": "hisaki_eita",
+        "url": "https://www.twitch.tv/hisaki_eita"
+      },
+      {
+        "candidate_id": "candidate_af5d46a46785878b2924",
+        "platform": "youtube",
+        "name": "Wizteria Ch.",
+        "url": "https://www.youtube.com/c/FujinoWizteria"
+      },
+      {
+        "candidate_id": "candidate_b001eb14574e3df7a041",
+        "platform": "tiktok",
+        "name": "Zelune Noctarielle 🌙",
+        "url": "https://tiktok.com/@zelune.luneze"
+      },
+      {
+        "candidate_id": "candidate_b202365fe4b3b32ddbb1",
+        "platform": "youtube",
+        "name": "MyxNyxx",
+        "url": "https://www.youtube.com/@MyxNyxx"
+      },
+      {
+        "candidate_id": "candidate_b2323f9f941458326a81",
+        "platform": "youtube",
+        "name": "HØRI 07 ⌜VZ⌟",
+        "url": "https://www.youtube.com/c/HØRI07"
+      },
+      {
+        "candidate_id": "candidate_b241bf53fc0c40243806",
+        "platform": "youtube",
+        "name": "MikiVtuber",
+        "url": "https://www.youtube.com/channel/UC8iTIbRueIONUDDgHN74JHw"
+      },
+      {
+        "candidate_id": "candidate_b297c147542c164a05a3",
+        "platform": "youtube",
+        "name": "Edella Edward Ch.",
+        "url": "https://youtube.com/shorts/bJoM23njAaM"
+      },
+      {
+        "candidate_id": "candidate_b2aa238a99433ead9233",
+        "platform": "youtube",
+        "name": "Delphyron",
+        "url": "https://youtube.com/@Delphyron"
+      },
+      {
+        "candidate_id": "candidate_b3441c0a37f72385eddf",
+        "platform": "youtube",
+        "name": "KryspeiaCosmelis",
+        "url": "https://www.youtube.com/@KryspeiaCosmelis"
+      },
+      {
+        "candidate_id": "candidate_b80f7de711e44a705e13",
+        "platform": "youtube",
+        "name": "FAUST_SinbiosiS",
+        "url": "https://www.youtube.com/@FAUST_SinbiosiS"
+      },
+      {
+        "candidate_id": "candidate_b85b13ab5c94bdf0666d",
+        "platform": "youtube",
+        "name": "Veera Ch.",
+        "url": "https://www.youtube.com/channel/UCPzpIPohJ6axdgSWGyCNmHg"
+      },
+      {
+        "candidate_id": "candidate_b85ccf5a29dd1c05265d",
+        "platform": "tiktok",
+        "name": "raneetani",
+        "url": "https://tiktok.com/@raneetani"
+      },
+      {
+        "candidate_id": "candidate_b85d2299af6e235f9ae9",
+        "platform": "tiktok",
+        "name": "Rion Chitose Ch. / AStars Chrono prince",
+        "url": "https://www.tiktok.com/@rionchi_as"
+      },
+      {
+        "candidate_id": "candidate_b87686f60fe52c2657e9",
+        "platform": "youtube",
+        "name": "Ari Kate Ch.",
+        "url": "https://youtube.com/c/AriKateCh"
+      },
+      {
+        "candidate_id": "candidate_b8c7bd186f23080dec7e",
+        "platform": "tiktok",
+        "name": "kafube.ch",
+        "url": "https://www.tiktok.com/@kafube.ch"
+      },
+      {
+        "candidate_id": "candidate_b8fc88edb76cc48fdbe1",
+        "platform": "tiktok",
+        "name": "Atsuko Meron【SRV】",
+        "url": "https://www.tiktok.com/@atsuko.meronsrv"
+      },
+      {
+        "candidate_id": "candidate_b94c08ba4923cbe7bf74",
+        "platform": "youtube",
+        "name": "wint3r_vz",
+        "url": "https://www.youtube.com/@wint3r_vz"
+      },
+      {
+        "candidate_id": "candidate_b9e30ef87d75a2a9d03c",
+        "platform": "youtube",
+        "name": "Yoino Buten | VtuberTH",
+        "url": "https://www.youtube.com/@Yoinobuten"
+      },
+      {
+        "candidate_id": "candidate_b9f5eb58d5d76e36927f",
+        "platform": "youtube",
+        "name": "endoria_alf",
+        "url": "https://youtube.com/@endoria_alf"
+      },
+      {
+        "candidate_id": "candidate_ba31c1140db2932a76b1",
+        "platform": "youtube",
+        "name": "AMIWorldEnd",
+        "url": "https://www.youtube.com/@AMIWorldEnd"
+      },
+      {
+        "candidate_id": "candidate_ba41207914527b89e2ad",
+        "platform": "twitch",
+        "name": "nongkini",
+        "url": "https://www.twitch.tv/nongkini"
+      },
+      {
+        "candidate_id": "candidate_bb148800f5bd48c76036",
+        "platform": "youtube",
+        "name": "Carina Aquarius",
+        "url": "https://www.youtube.com/@CarinaAquarius_Ch"
+      },
+      {
+        "candidate_id": "candidate_bba96b75bd663cf9c4d3",
+        "platform": "twitch",
+        "name": "Asteroth",
+        "url": "https://twitch.tv/asteroth_arp"
+      },
+      {
+        "candidate_id": "candidate_bc302b37e4e77bba1377",
+        "platform": "youtube",
+        "name": "1KFuu Ch.",
+        "url": "https://www.youtube.com/c/ArashiFuuCh"
+      },
+      {
+        "candidate_id": "candidate_bc70df90e618f8501ca7",
+        "platform": "youtube",
+        "name": "noeluc_",
+        "url": "https://www.youtube.com/@noeluc_"
+      },
+      {
+        "candidate_id": "candidate_bccae4c1f27099da7de5",
+        "platform": "youtube",
+        "name": "SCSugarZ.",
+        "url": "https://www.youtube.com/channel/UCjRhcXQcLp0Zz08tE_-DX-w"
+      },
+      {
+        "candidate_id": "candidate_bd08af9c1b011f241e74",
+        "platform": "youtube",
+        "name": "Alparu Vtuber ch.",
+        "url": "https://www.youtube.com/c/AlparuVtuberch"
+      },
+      {
+        "candidate_id": "candidate_bdaf537c5ac0013daf08",
+        "platform": "youtube",
+        "name": "san1baebi1",
+        "url": "https://youtube.com/@san1baebi1"
+      },
+      {
+        "candidate_id": "candidate_be286223a4bf008e4fad",
+        "platform": "youtube",
+        "name": "eliciaa",
+        "url": "https://www.youtube.com/@eliciaa"
+      },
+      {
+        "candidate_id": "candidate_bec58bdf49a982cb4899",
+        "platform": "twitch",
+        "name": "Atsuko Meron【SRV】",
+        "url": "https://twitch.tv/atsukomeron"
+      },
+      {
+        "candidate_id": "candidate_bf292229925cfd152e52",
+        "platform": "twitch",
+        "name": "Supanoo",
+        "url": "https://www.twitch.tv/supanoovtuber"
+      },
+      {
+        "candidate_id": "candidate_bfb643785cad204b2179",
+        "platform": "youtube",
+        "name": "RuiKazu_EXia",
+        "url": "https://youtube.com/@RuiKazu_EXia"
+      },
+      {
+        "candidate_id": "candidate_bfe4497ca512d3937c39",
+        "platform": "tiktok",
+        "name": "Kamashi Ch.",
+        "url": "https://www.tiktok.com/@kamashi_akia"
+      },
+      {
+        "candidate_id": "candidate_c04ba4082cade31a3fcb",
+        "platform": "youtube",
+        "name": "Killa ch.",
+        "url": "https://www.youtube.com/c/Killach"
+      },
+      {
+        "candidate_id": "candidate_c0e6bb0f909b16e7f8b1",
+        "platform": "youtube",
+        "name": "Alzena_SLR",
+        "url": "https://www.youtube.com/@Alzena_SLR"
+      },
+      {
+        "candidate_id": "candidate_c19e17f71118a2ff5487",
+        "platform": "youtube",
+        "name": "ALThiMa-NigHT",
+        "url": "https://www.youtube.com/shorts/UZDwRCAWzhc"
+      },
+      {
+        "candidate_id": "candidate_c1abbbc04833cc8e210c",
+        "platform": "tiktok",
+        "name": "AirBlack24",
+        "url": "https://www.tiktok.com/@airblack24"
+      },
+      {
+        "candidate_id": "candidate_c20197c485ed59bfc6b3",
+        "platform": "youtube",
+        "name": "RaneeTani",
+        "url": "https://www.youtube.com/@RaneeTani"
+      },
+      {
+        "candidate_id": "candidate_c369f7cbcdbac15ae067",
+        "platform": "youtube",
+        "name": "kamaisanch",
+        "url": "https://youtube.com/@kamaisanch"
+      },
+      {
+        "candidate_id": "candidate_c36b8be3efc0e3b3941f",
+        "platform": "youtube",
+        "name": "Usami Bunny",
+        "url": "https://www.youtube.com/@USAMIBUNNY"
+      },
+      {
+        "candidate_id": "candidate_c44499654c2efd1189a2",
+        "platform": "youtube",
+        "name": "Laychlype_ALF",
+        "url": "https://youtube.com/@Laychlype_ALF"
+      },
+      {
+        "candidate_id": "candidate_c4a086983072edb69f30",
+        "platform": "youtube",
+        "name": "MixerMaze",
+        "url": "https://youtube.com/@MixerMaze"
+      },
+      {
+        "candidate_id": "candidate_c5026e8cf8fd67c94814",
+        "platform": "youtube",
+        "name": "ursa_vtuber",
+        "url": "https://www.youtube.com/@ursa_vtuber"
+      },
+      {
+        "candidate_id": "candidate_c543a84ac75ce8c88a23",
+        "platform": "youtube",
+        "name": "narellech.fixixvt",
+        "url": "https://youtube.com/@narellech.fixixvt"
+      },
+      {
+        "candidate_id": "candidate_c6e66ddcebbac6ef3968",
+        "platform": "youtube",
+        "name": "Asatsuyu Ch.",
+        "url": "https://www.youtube.com/c/AsatsuyuChannel"
+      },
+      {
+        "candidate_id": "candidate_c81c5ca6fcc74d43899f",
+        "platform": "twitch",
+        "name": "Zabrina",
+        "url": "https://twitch.tv/zabrinavtuberth"
+      },
+      {
+        "candidate_id": "candidate_c824d62bdf24b4dd2446",
+        "platform": "youtube",
+        "name": "BrrwynVibeENT",
+        "url": "https://www.youtube.com/@BrrwynVibeENT"
+      },
+      {
+        "candidate_id": "candidate_c8f842cd15f83d4a3130",
+        "platform": "youtube",
+        "name": "Supeacha ⌜VZ⌟",
+        "url": "https://www.youtube.com/c/Supeacha"
+      },
+      {
+        "candidate_id": "candidate_c90aeecbda73f1a17185",
+        "platform": "youtube",
+        "name": "trustlnwvtuber",
+        "url": "https://www.youtube.com/@trustlnwvtuber"
+      },
+      {
+        "candidate_id": "candidate_c9411f07a8448aea1d56",
+        "platform": "youtube",
+        "name": "Nyann Nyatsume",
+        "url": "https://www.youtube.com/channel/UCN9xSRO9lXdzO3mM3BCEt9w"
+      },
+      {
+        "candidate_id": "candidate_c97d25f6049155c8dce5",
+        "platform": "youtube",
+        "name": "SKYLER | VtuberTH",
+        "url": "https://www.youtube.com/@SKYLERcvc"
+      },
+      {
+        "candidate_id": "candidate_ca0182779761b7822e64",
+        "platform": "youtube",
+        "name": "ra1ny_vz",
+        "url": "https://www.youtube.com/@ra1ny_vz"
+      },
+      {
+        "candidate_id": "candidate_cb075048a0fc3e11de0c",
+        "platform": "youtube",
+        "name": "Lanka_LH",
+        "url": "https://www.youtube.com/@Lanka_LH"
+      },
+      {
+        "candidate_id": "candidate_cb1a274513e390ff96b2",
+        "platform": "youtube",
+        "name": "Akihira Ch.- あきひら -",
+        "url": "https://www.youtube.com/channel/UCQsrKHkR4lZpdKVL8QOgtgg"
+      },
+      {
+        "candidate_id": "candidate_cb348711ad8bda5f9e3c",
+        "platform": "youtube",
+        "name": "masumikyou",
+        "url": "https://www.youtube.com/@masumikyou"
+      },
+      {
+        "candidate_id": "candidate_cbc5662215f32c664097",
+        "platform": "youtube",
+        "name": "Aiboh Canis",
+        "url": "https://www.youtube.com/@AibohCanis"
+      },
+      {
+        "candidate_id": "candidate_ccde11beaaf193a7f23d",
+        "platform": "tiktok",
+        "name": "Beatrix Monroe",
+        "url": "https://www.tiktok.com/@beatrixmonroeatx"
+      },
+      {
+        "candidate_id": "candidate_cd7f87942161c3443037",
+        "platform": "tiktok",
+        "name": "kanakochth",
+        "url": "https://www.tiktok.com/@kanakochth"
+      },
+      {
+        "candidate_id": "candidate_ce0141061a155862db32",
+        "platform": "twitch",
+        "name": "Asteroth",
+        "url": "https://www.twitch.tv/asteroth_arp"
+      },
+      {
+        "candidate_id": "candidate_ce1cce3106793cad1f1e",
+        "platform": "youtube",
+        "name": "ShuaVibeENT",
+        "url": "https://www.youtube.com/@ShuaVibeENT"
+      },
+      {
+        "candidate_id": "candidate_ce3a7819e587b932058d",
+        "platform": "tiktok",
+        "name": "elfymaluky",
+        "url": "https://www.tiktok.com/@elfymaluky"
+      },
+      {
+        "candidate_id": "candidate_cecdb81d28656c999ce6",
+        "platform": "youtube",
+        "name": "Mikadzuki_Nammy",
+        "url": "https://www.youtube.com/@Mikadzuki_Nammy"
+      },
+      {
+        "candidate_id": "candidate_ceedcf6d5850cd79312a",
+        "platform": "twitch",
+        "name": "MillYBilL | Thai VTuber",
+        "url": "https://www.twitch.tv/millybill"
+      },
+      {
+        "candidate_id": "candidate_cf2e4525abb337bf1328",
+        "platform": "tiktok",
+        "name": "Kyoya Keiran",
+        "url": "https://www.tiktok.com/@kyoya.vtuber"
+      },
+      {
+        "candidate_id": "candidate_cf5269f455f0a05e72a1",
+        "platform": "youtube",
+        "name": "KeressaZoulfia",
+        "url": "https://www.youtube.com/@KeressaZoulfia"
+      },
+      {
+        "candidate_id": "candidate_cf93ef8f188a95f7d58f",
+        "platform": "tiktok",
+        "name": "Faethon Uni. Jantra",
+        "url": "https://www.tiktok.com/@faethonjantra"
+      },
+      {
+        "candidate_id": "candidate_cf9838b316a9a244051d",
+        "platform": "tiktok",
+        "name": "Haku",
+        "url": "https://www.tiktok.com/@haku_ch.kjp"
+      },
+      {
+        "candidate_id": "candidate_d04e4b10c95611c3c15d",
+        "platform": "tiktok",
+        "name": "Luzin Luciana ไม่มีสังกัด 85",
+        "url": "https://www.tiktok.com/@luz1nnn_"
+      },
+      {
+        "candidate_id": "candidate_d118434329fdd1d75c31",
+        "platform": "youtube",
+        "name": "Gibpuri Ch",
+        "url": "https://www.youtube.com/c/GibpuriCh"
+      },
+      {
+        "candidate_id": "candidate_d173a0b6463c296f80b0",
+        "platform": "youtube",
+        "name": "DEV_ARP",
+        "url": "https://www.youtube.com/@DEV_ARP"
+      },
+      {
+        "candidate_id": "candidate_d1a9c310aa7f728250e5",
+        "platform": "youtube",
+        "name": "JellMellO_J",
+        "url": "https://www.youtube.com/@JellMellO_J"
+      },
+      {
+        "candidate_id": "candidate_d1dd10d47fd0fc1eb149",
+        "platform": "youtube",
+        "name": "BishamonKuroneko_AS",
+        "url": "https://www.youtube.com/@BishamonKuroneko_AS"
+      },
+      {
+        "candidate_id": "candidate_d25d9dbaae6bd58a72f1",
+        "platform": "twitch",
+        "name": "Shino Laila",
+        "url": "https://www.twitch.tv/lailashino_wactor"
+      },
+      {
+        "candidate_id": "candidate_d2a3a84d6b9a7ef5d75f",
+        "platform": "youtube",
+        "name": "yentafobnj",
+        "url": "https://www.youtube.com/@yentafobnj"
+      },
+      {
+        "candidate_id": "candidate_d37c8be70febef6d7bbf",
+        "platform": "youtube",
+        "name": "nongmamuang_vtuber",
+        "url": "https://youtube.com/@nongmamuang_vtuber"
+      },
+      {
+        "candidate_id": "candidate_d3fd1b14ebb2faf8af74",
+        "platform": "youtube",
+        "name": "EliAharon",
+        "url": "https://www.youtube.com/@EliAharon"
+      },
+      {
+        "candidate_id": "candidate_d499edeb56a1f5244ebb",
+        "platform": "youtube",
+        "name": "zaneVTG",
+        "url": "https://www.youtube.com/@zaneVTG"
+      },
+      {
+        "candidate_id": "candidate_d49be09c48de2a3d63b6",
+        "platform": "tiktok",
+        "name": "luqkurumi",
+        "url": "https://www.tiktok.com/@luqkurumi"
+      },
+      {
+        "candidate_id": "candidate_d4ffc2fcb4bd1133ae5a",
+        "platform": "tiktok",
+        "name": "Nyeeeon",
+        "url": "https://www.tiktok.com/@scythringe?_t=ZT-8u6DsGlsyKc&_r=1"
+      },
+      {
+        "candidate_id": "candidate_d58961c34872be34602c",
+        "platform": "youtube",
+        "name": "Quentin_ARP",
+        "url": "https://www.youtube.com/@Quentin_ARP"
+      },
+      {
+        "candidate_id": "candidate_d6110768bbf26d2ac794",
+        "platform": "youtube",
+        "name": "Mortifer Bathory Ch.",
+        "url": "https://www.youtube.com/c/MortiferBathoryChParabellum"
+      },
+      {
+        "candidate_id": "candidate_d6b4505480a424a0ceee",
+        "platform": "tiktok",
+        "name": "Neora Foxxy",
+        "url": "https://www.tiktok.com/@yukisaki_hanabi"
+      },
+      {
+        "candidate_id": "candidate_d94c208e92e146d0daee",
+        "platform": "youtube",
+        "name": "Nezumi Elze Ch. Pixela Legends",
+        "url": "https://www.youtube.com/channel/UCIMFIkXOGA7dWA903WdRKKg"
+      },
+      {
+        "candidate_id": "candidate_d97bfc386bda3faa4a8e",
+        "platform": "youtube",
+        "name": "ReginaVtuber",
+        "url": "https://www.youtube.com/@ReginaVtuber"
+      },
+      {
+        "candidate_id": "candidate_d9de13754f30a5f61526",
+        "platform": "tiktok",
+        "name": "Byakko",
+        "url": "https://www.tiktok.com/@byakkovsinger"
+      },
+      {
+        "candidate_id": "candidate_da96cfd476dc3111c304",
+        "platform": "youtube",
+        "name": "umiuzagi_vth",
+        "url": "https://www.youtube.com/@umiuzagi_vth"
+      },
+      {
+        "candidate_id": "candidate_db9e3ac096ba847b8b74",
+        "platform": "youtube",
+        "name": "vivera_eylz",
+        "url": "https://youtube.com/@vivera_eylz"
+      },
+      {
+        "candidate_id": "candidate_dc1898574924dea0adb1",
+        "platform": "youtube",
+        "name": "Norik Garcia Ch.",
+        "url": "https://www.youtube.com/channel/UC68XQCQ4MOys5hfxi3jW34g"
+      },
+      {
+        "candidate_id": "candidate_dc4f114c747ebe74206f",
+        "platform": "youtube",
+        "name": "LonitaCH",
+        "url": "https://youtube.com/@LonitaCH"
+      },
+      {
+        "candidate_id": "candidate_dc719eee2f4f9b099e1f",
+        "platform": "youtube",
+        "name": "gingerbelle",
+        "url": "https://www.youtube.com/c/gingerbelle1208"
+      },
+      {
+        "candidate_id": "candidate_dcc44d661b5060245144",
+        "platform": "youtube",
+        "name": "MiledyZ_ch",
+        "url": "https://youtube.com/@MiledyZ_ch"
+      },
+      {
+        "candidate_id": "candidate_dd132eed8f7672b36ad1",
+        "platform": "youtube",
+        "name": "Logan U Stryker",
+        "url": "https://www.youtube.com/@urStrykerVtuber"
+      },
+      {
+        "candidate_id": "candidate_ddecf7366f043b97fac6",
+        "platform": "youtube",
+        "name": "RuLaRaLan",
+        "url": "https://www.youtube.com/shorts/fF5KPNZ0TJk"
+      },
+      {
+        "candidate_id": "candidate_de29d811dbec6896e5b0",
+        "platform": "tiktok",
+        "name": "XANNY",
+        "url": "https://www.tiktok.com/@xannyvtuber"
+      },
+      {
+        "candidate_id": "candidate_decdad215e16255615a8",
+        "platform": "twitch",
+        "name": "Seishiro Hikari",
+        "url": "https://www.twitch.tv/hikari_seishiro"
+      },
+      {
+        "candidate_id": "candidate_df816373fc1d5bc13530",
+        "platform": "youtube",
+        "name": "Effy_ARP",
+        "url": "https://youtube.com/@Effy_ARP"
+      },
+      {
+        "candidate_id": "candidate_e01122ecb884f8f928b1",
+        "platform": "youtube",
+        "name": "Kaamoria",
+        "url": "https://www.youtube.com/@Kaamoria"
+      },
+      {
+        "candidate_id": "candidate_e259134b6beddfb54513",
+        "platform": "youtube",
+        "name": "cliche_SSR",
+        "url": "https://youtube.com/@cliche_SSR"
+      },
+      {
+        "candidate_id": "candidate_e35c1f9cc5ba80130961",
+        "platform": "youtube",
+        "name": "P.AresSpacedog",
+        "url": "https://www.youtube.com/@P.AresSpacedog"
+      },
+      {
+        "candidate_id": "candidate_e3df698ee37767524d8c",
+        "platform": "youtube",
+        "name": "Leona Channel『VW』",
+        "url": "https://www.youtube.com/c/LeonaChannel"
+      },
+      {
+        "candidate_id": "candidate_e59d9f65980a7c30c768",
+        "platform": "youtube",
+        "name": "rlanz_tn",
+        "url": "https://www.youtube.com/@rlanz_tn"
+      },
+      {
+        "candidate_id": "candidate_e74cfdf341b4beca5023",
+        "platform": "tiktok",
+        "name": "knight_butler",
+        "url": "https://www.tiktok.com/@knight_butler"
+      },
+      {
+        "candidate_id": "candidate_e75fe4be2e942a6f1d0d",
+        "platform": "youtube",
+        "name": "Zin'fandel「ZTP」",
+        "url": "https://www.youtube.com/shorts/gpU4DR0SRsc"
+      },
+      {
+        "candidate_id": "candidate_e884e36a61c6ea2b930c",
+        "platform": "youtube",
+        "name": "ZiaSylph_AS",
+        "url": "https://www.youtube.com/@ZiaSylph_AS"
+      },
+      {
+        "candidate_id": "candidate_ea015f6639c1b1f52853",
+        "platform": "tiktok",
+        "name": "Daylaney Luck Turner",
+        "url": "https://www.tiktok.com/@daylaneyturner"
+      },
+      {
+        "candidate_id": "candidate_ea08e5ac9fa923532aa1",
+        "platform": "youtube",
+        "name": "Chaos Ch.",
+        "url": "https://www.youtube.com/channel/UCVEL1jAgCQNQcRN9Ble6lMw"
+      },
+      {
+        "candidate_id": "candidate_ea92c2605bf501db393f",
+        "platform": "youtube",
+        "name": "SenKoretane",
+        "url": "https://youtube.com/@SenKoretane"
+      },
+      {
+        "candidate_id": "candidate_eac88625437cd095dc3d",
+        "platform": "tiktok",
+        "name": "Gari",
+        "url": "https://www.tiktok.com/@gari_kunthawat"
+      },
+      {
+        "candidate_id": "candidate_ebf98465805011badb4f",
+        "platform": "youtube",
+        "name": "Gamerkaon",
+        "url": "https://www.youtube.com/@Gamerkaon"
+      },
+      {
+        "candidate_id": "candidate_ec2831edfd7ddd3186aa",
+        "platform": "youtube",
+        "name": "SirrisGoddess",
+        "url": "https://youtube.com/@SirrisGoddess"
+      },
+      {
+        "candidate_id": "candidate_ec537d58f78b49f680ed",
+        "platform": "youtube",
+        "name": "Mitsuki Vtuber",
+        "url": "https://www.youtube.com/channel/UCjiIfHN3nlU80_DgNz-5qlA"
+      },
+      {
+        "candidate_id": "candidate_eda561c9579b7adb0cb7",
+        "platform": "youtube",
+        "name": "Rendell Druid Ch.",
+        "url": "https://www.youtube.com/channel/UCMQwItTmnjFp1VK-v6aR15g"
+      },
+      {
+        "candidate_id": "candidate_ee409d7ed82e95f6d64b",
+        "platform": "youtube",
+        "name": "Seikou iMinato",
+        "url": "https://www.youtube.com/@i.Minato7"
+      },
+      {
+        "candidate_id": "candidate_ee5dd8877841ba252c0b",
+        "platform": "tiktok",
+        "name": "Puinoon プイヌン",
+        "url": "https://www.tiktok.com/@puinoondesu"
+      },
+      {
+        "candidate_id": "candidate_ef644fedc34b6fccb254",
+        "platform": "youtube",
+        "name": "Muendria_SLR",
+        "url": "https://www.youtube.com/@Muendria_SLR"
+      },
+      {
+        "candidate_id": "candidate_efc2b108b4acd04b8262",
+        "platform": "youtube",
+        "name": "LIVIANA",
+        "url": "https://www.youtube.com/@Liviana_VWitch"
+      },
+      {
+        "candidate_id": "candidate_efcc39dc2cd53ebced33",
+        "platform": "youtube",
+        "name": "ZiaSylph_AS",
+        "url": "https://youtube.com/@ZiaSylph_AS"
+      },
+      {
+        "candidate_id": "candidate_f02f60c63c6bf4b2883d",
+        "platform": "youtube",
+        "name": "Lapine Ch.",
+        "url": "https://www.youtube.com/channel/UCC5q6CpuDflPvO7pNn52RGQ"
+      },
+      {
+        "candidate_id": "candidate_f070ed46c04484736af0",
+        "platform": "twitch",
+        "name": "Lucky Raccoon VTuber | Thailand",
+        "url": "https://www.twitch.tv/luckyraccoonvt"
+      },
+      {
+        "candidate_id": "candidate_f0a308a32ac412644fb9",
+        "platform": "youtube",
+        "name": "Fo_Kuro「フォー黒」",
+        "url": "https://youtube.com/c/FoKuro25"
+      },
+      {
+        "candidate_id": "candidate_f195838b48f0246f0189",
+        "platform": "youtube",
+        "name": "MerryKomori",
+        "url": "https://www.youtube.com/@MerryKomori"
+      },
+      {
+        "candidate_id": "candidate_f1e631f2b3ad599a33e8",
+        "platform": "youtube",
+        "name": "karin-izumi",
+        "url": "https://youtube.com/@karin-izumi"
+      },
+      {
+        "candidate_id": "candidate_f230431fe6fcc4071682",
+        "platform": "youtube",
+        "name": "Heiman-hm",
+        "url": "https://www.youtube.com/@Heiman-hm"
+      },
+      {
+        "candidate_id": "candidate_f33b1eb6f55abfa70951",
+        "platform": "twitch",
+        "name": "Morika Rei",
+        "url": "https://www.twitch.tv/rei_morika"
+      },
+      {
+        "candidate_id": "candidate_f369807886a355c1a426",
+        "platform": "youtube",
+        "name": "MoeKaoriVZ",
+        "url": "https://youtube.com/@MoeKaoriVZ"
+      },
+      {
+        "candidate_id": "candidate_f3d433774377a4e439e5",
+        "platform": "tiktok",
+        "name": "3AM virtual ghost | ตีสาม ไม่มีสังกัด 750",
+        "url": "https://www.tiktok.com/@3AM_vtuber"
+      },
+      {
+        "candidate_id": "candidate_f4309d74ee1800bb2f1b",
+        "platform": "tiktok",
+        "name": "Grey Murasaki Vitale Ch.",
+        "url": "https://www.tiktok.com/@greymurasakivitale"
+      },
+      {
+        "candidate_id": "candidate_f4827cc8f1f9f0469434",
+        "platform": "youtube",
+        "name": "maeminippych",
+        "url": "https://youtube.com/@maeminippych"
+      },
+      {
+        "candidate_id": "candidate_f53ca0e7a6bc1470fdff",
+        "platform": "youtube",
+        "name": "KaNaSomSom",
+        "url": "https://www.youtube.com/@KaNaSomSom"
+      },
+      {
+        "candidate_id": "candidate_f556e27fdc41183b6aa2",
+        "platform": "tiktok",
+        "name": "Halon Hashi Ch.",
+        "url": "https://www.tiktok.com/@halon_vflora"
+      },
+      {
+        "candidate_id": "candidate_f56f97270efbd6cdddcd",
+        "platform": "twitch",
+        "name": "Rainbows Fukio",
+        "url": "https://twitch.tv/fukio_vt"
+      },
+      {
+        "candidate_id": "candidate_f5fdd5773628a090559c",
+        "platform": "youtube",
+        "name": "PadzangChannel",
+        "url": "https://www.youtube.com/@PadzangChannel"
+      },
+      {
+        "candidate_id": "candidate_f6b2844fffb83de3d605",
+        "platform": "tiktok",
+        "name": "ALhong 『VTG』",
+        "url": "https://www.tiktok.com/@alhongvtg"
+      },
+      {
+        "candidate_id": "candidate_f779af1741c2b1d8aaaa",
+        "platform": "youtube",
+        "name": "Bunnieskisses | VTuber",
+        "url": "https://www.youtube.com/channel/UCi201iDULX3c5VXIlh65zOA"
+      },
+      {
+        "candidate_id": "candidate_f88fbf53ebdd2d10e247",
+        "platform": "youtube",
+        "name": "DeaExDelta",
+        "url": "https://www.youtube.com/@DeaExDelta"
+      },
+      {
+        "candidate_id": "candidate_f8b9ed1ccd2fc6142e8c",
+        "platform": "tiktok",
+        "name": "irynemau",
+        "url": "https://www.tiktok.com/@irynemau"
+      },
+      {
+        "candidate_id": "candidate_f94ad6f96afa3f3d713c",
+        "platform": "youtube",
+        "name": "crazyghsot",
+        "url": "https://www.youtube.com/@crazyghsot"
+      },
+      {
+        "candidate_id": "candidate_f9b0d43fd68fe72115df",
+        "platform": "youtube",
+        "name": "zinfandel_ZTP",
+        "url": "https://youtube.com/@zinfandel_ZTP"
+      },
+      {
+        "candidate_id": "candidate_fa17e70a814e5d4ac827",
+        "platform": "tiktok",
+        "name": "Fuyu",
+        "url": "https://www.tiktok.com/@_fuyu1102"
+      },
+      {
+        "candidate_id": "candidate_faa2db93a360032dffef",
+        "platform": "youtube",
+        "name": "Bunnieskisses.vtuber",
+        "url": "https://www.youtube.com/@Bunnieskisses.vtuber"
+      },
+      {
+        "candidate_id": "candidate_fb138e20a74c50751a6f",
+        "platform": "youtube",
+        "name": "mii__belle",
+        "url": "https://www.youtube.com/@mii__belle"
+      },
+      {
+        "candidate_id": "candidate_fb565ece73f9bd2093e6",
+        "platform": "youtube",
+        "name": "sleepfii_zzz",
+        "url": "https://www.youtube.com/@sleepfii_zzz"
+      },
+      {
+        "candidate_id": "candidate_fba257bfc94976a72323",
+        "platform": "tiktok",
+        "name": "Hello Tawan - Tawan The Horizon ไม่มีสังกัด 95K",
+        "url": "https://www.tiktok.com/@hello_tawanV2"
+      },
+      {
+        "candidate_id": "candidate_fba87aa975cbac48b142",
+        "platform": "youtube",
+        "name": "X-JEVZ",
+        "url": "https://www.youtube.com/@X-JEVZ"
+      },
+      {
+        "candidate_id": "candidate_fd5fc8d7b94cea65a359",
+        "platform": "tiktok",
+        "name": "LVMP",
+        "url": "https://www.tiktok.com/@lvmp_Channel"
+      },
+      {
+        "candidate_id": "candidate_fdfb6159990b1dd3813e",
+        "platform": "tiktok",
+        "name": "Zenaida XETA-102 Channel",
+        "url": "https://www.tiktok.com/@zenaida_xeta102"
+      }
+    ],
+    "duplicate_urls": []
+  },
+  "lifecycle": {
+    "needs_evidence_events_count": 33,
+    "secondary_source_events_count": 27,
+    "unverified_graduations": [
+      {
+        "persona_id": "persona_0f387b725aa2421677ed",
+        "persona_name": "Usami Bunny",
+        "event_id": "life_523ee63ddc71e809a250",
+        "event_date": "2022-08-31",
+        "review_status": "needs_evidence",
+        "note": "Retirement/graduation date from discovery source https://hololist.net/usami-bunny/; not first-party verified."
+      },
+      {
+        "persona_id": "persona_66672eed824eb1a63e9c",
+        "persona_name": "Cynthia",
+        "event_id": "life_ab720855e665c68c44a8",
+        "event_date": "2023-04-16",
+        "review_status": "needs_evidence",
+        "note": "Retirement/graduation date from discovery source https://hololist.net/cynthia/; not first-party verified."
+      },
+      {
+        "persona_id": "persona_6939b57ea784abac9934",
+        "persona_name": "NoBoRu",
+        "event_id": "life_ad45794d77c50bf6e75c",
+        "event_date": "2025-06-30",
+        "review_status": "needs_evidence",
+        "note": "Retirement/graduation date from discovery source https://hololist.net/noboru/; not first-party verified."
+      },
+      {
+        "persona_id": "persona_1bc44543dda15931d9cf",
+        "persona_name": "Lenezmee Dollynx",
+        "event_id": "life_c9550122bcffe1f6fbd1",
+        "event_date": "2024-12-26",
+        "review_status": "needs_evidence",
+        "note": "Retirement/graduation date from discovery source https://hololist.net/lenezmee-dollynx/; not first-party verified."
+      },
+      {
+        "persona_id": "persona_75770df8891acb3b0504",
+        "persona_name": "Nihr Farfalla",
+        "event_id": "life_f1094696dfb512141205",
+        "event_date": "2025-08-15",
+        "review_status": "needs_evidence",
+        "note": "Retirement/graduation date from discovery source https://hololist.net/nihr-farfalla/; not first-party verified."
+      }
+    ]
+  },
+  "evidence_freshness": {
+    "buckets": {
+      "0_30_days": 8535,
+      "31_90_days": 0,
+      "91_180_days": 0,
+      "181_365_days": 0,
+      "over_365_days": 0,
+      "unknown": 0
+    },
+    "buckets_by_kind": {
+      "secondary_source": {
+        "0_30_days": 1610,
+        "31_90_days": 0,
+        "91_180_days": 0,
+        "181_365_days": 0,
+        "over_365_days": 0,
+        "unknown": 0
+      },
+      "official_profile": {
+        "0_30_days": 6465,
+        "31_90_days": 0,
+        "91_180_days": 0,
+        "181_365_days": 0,
+        "over_365_days": 0,
+        "unknown": 0
+      },
+      "self_statement": {
+        "0_30_days": 414,
+        "31_90_days": 0,
+        "91_180_days": 0,
+        "181_365_days": 0,
+        "over_365_days": 0,
+        "unknown": 0
+      },
+      "platform_observation": {
+        "0_30_days": 42,
+        "31_90_days": 0,
+        "91_180_days": 0,
+        "181_365_days": 0,
+        "over_365_days": 0,
+        "unknown": 0
+      },
+      "legacy_import": {
+        "0_30_days": 1,
+        "31_90_days": 0,
+        "91_180_days": 0,
+        "181_365_days": 0,
+        "over_365_days": 0,
+        "unknown": 0
+      },
+      "agency_statement": {
+        "0_30_days": 3,
+        "31_90_days": 0,
+        "91_180_days": 0,
+        "181_365_days": 0,
+        "over_365_days": 0,
+        "unknown": 0
+      }
+    }
+  }
+}

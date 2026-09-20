@@ -1,0 +1,26 @@
+{
+  "account_links": [
+    {
+      "id": "link_89f049fcb6d67cc03d74",
+      "account_id": "acct_68c63c445cbb336e64ae",
+      "persona_id": "persona_dd7c3e8c837cc0957f3d",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_b_simon_yt_owner",
+      "review_status": "verified",
+      "reviewer": "codex:re-evaluate-first-party-review",
+      "reviewed_at": "2026-09-17T14:15:00+00:00"
+    },
+    {
+      "id": "link_e58608a2140da256bd7b",
+      "account_id": "acct_3221cbe6577384d8d37d",
+      "persona_id": "persona_c8a2a3d5f9e915054fef",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_b_mit_yt_owner",
+      "review_status": "verified",
+      "reviewer": "codex:re-evaluate-first-party-review",
+      "reviewed_at": "2026-09-17T14:15:00+00:00"
+    }
+  ]
+}

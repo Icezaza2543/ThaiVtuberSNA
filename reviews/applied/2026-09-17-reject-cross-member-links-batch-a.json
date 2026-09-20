@@ -1,0 +1,37 @@
+{
+  "account_links": [
+    {
+      "id": "link_61ae40cebe5c3538825b",
+      "account_id": "acct_6e65ef1d90a600f75b82",
+      "persona_id": "persona_c7016d23e2296fd3d92a",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_98d279ce8aae10cb247f",
+      "review_status": "rejected",
+      "reviewer": "codex:cross-member-review",
+      "reviewed_at": "2026-09-17T14:10:00+00:00"
+    },
+    {
+      "id": "link_6a58cd7efbc1784ca495",
+      "account_id": "acct_5f2cdb62fa6ffb4b50c5",
+      "persona_id": "persona_c7016d23e2296fd3d92a",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_21dfab7b43ed2bf78532",
+      "review_status": "rejected",
+      "reviewer": "codex:cross-member-review",
+      "reviewed_at": "2026-09-17T14:10:00+00:00"
+    },
+    {
+      "id": "link_a19cbd4a323fe4082936",
+      "account_id": "acct_01f9201c7ed8db3083a5",
+      "persona_id": "persona_c7016d23e2296fd3d92a",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_8ebd1649308b437b4a2b",
+      "review_status": "rejected",
+      "reviewer": "codex:cross-member-review",
+      "reviewed_at": "2026-09-17T14:10:00+00:00"
+    }
+  ]
+}

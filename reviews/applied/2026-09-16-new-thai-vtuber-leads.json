@@ -1,0 +1,3716 @@
+{
+  "evidence": [
+    {
+      "id": "ev_eb1551301c46622ce0e2",
+      "url": "https://hololist.net/carina-aquarius/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Carina Aquarius. HoloList category Thailand (TH); listed as a Thai VTuber who streams in Thai and English Not in registry by name/handle/URL. HoloList is secondary; do not auto-link persona. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_3787ffe52d4b41cd39d0",
+      "url": "https://www.youtube.com/@CarinaAquarius_Ch",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Carina Aquarius via https://hololist.net/carina-aquarius/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_011f38c857a0d66a2aa7",
+      "url": "https://x.com/CarinaAquarius",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Carina Aquarius via https://hololist.net/carina-aquarius/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_67336c55bec1823a7d74",
+      "url": "https://hololist.net/liyin/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Liyin. HoloList category Thailand (TH); Thai VTuber affiliated with 4AM; speaks Thai and English YouTube listed as channel ID only. Not in registry. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_661f9ed8641aaf43ade7",
+      "url": "https://www.youtube.com/channel/UCWyO0Zn2Vx6U2VOIpeCjsJw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Liyin via https://hololist.net/liyin/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_117326c66be69fc10ef3",
+      "url": "https://x.com/Lyin_1",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Liyin via https://hololist.net/liyin/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_8919e88ac19392d8f34e",
+      "url": "https://www.instagram.com/liyin_lovely",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public instagram URL listed for Liyin via https://hololist.net/liyin/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_27f6cae680d9ad733a7f",
+      "url": "https://www.tiktok.com/@lilin_lilin0_0",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public tiktok URL listed for Liyin via https://hololist.net/liyin/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_7517bc7bf8376b5b69b3",
+      "url": "https://hololist.net/zabrina/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Zabrina. HoloList category Thailand (TH); Thai-language VTuber Has Twitch; Kick/GankNow not listed on HoloList. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_ed5fcbca61668b3715d2",
+      "url": "https://www.youtube.com/@Zabrina-VtuberTH",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Zabrina via https://hololist.net/zabrina/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_fd0d2f51af12aa08739a",
+      "url": "https://www.twitch.tv/zabrinavtuberth",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public twitch URL listed for Zabrina via https://hololist.net/zabrina/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_36d16cf581fa3f337ec5",
+      "url": "https://x.com/ZabrinaVTuberTH",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Zabrina via https://hololist.net/zabrina/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_144acb779528c7b68000",
+      "url": "https://www.tiktok.com/@zabrina_vtuber",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public tiktok URL listed for Zabrina via https://hololist.net/zabrina/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_71a233ffdd86abe01db7",
+      "url": "https://hololist.net/mit-pesisth/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Mit PESISTH. HoloList category Thailand (TH); Thai VTuber in 4AM; PNGTuber PNG model. Not in registry. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_fb9f860b6134a35d0942",
+      "url": "https://www.youtube.com/@mitpesisth",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Mit PESISTH via https://hololist.net/mit-pesisth/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_0629eedf325d515f79f4",
+      "url": "https://x.com/pesisthatcer",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Mit PESISTH via https://hololist.net/mit-pesisth/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_ff3076af32e25a22e9a4",
+      "url": "https://www.instagram.com/mitpesisth",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public instagram URL listed for Mit PESISTH via https://hololist.net/mit-pesisth/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_b75390d925276e55f46b",
+      "url": "https://hololist.net/ryuuga-the-crane/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Ryuuga The Crane. HoloList category Thailand (TH); Thai VTuber; speaks Thai and English Not in registry. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_42ae75a8a5a6d82fe8d8",
+      "url": "https://www.youtube.com/@RyuugaThecrane",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Ryuuga The Crane via https://hololist.net/ryuuga-the-crane/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_4bbf7db6746e274257e0",
+      "url": "https://x.com/Ryuuga_crane",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Ryuuga The Crane via https://hololist.net/ryuuga-the-crane/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_8f6c63c5fcf153c20a38",
+      "url": "https://hololist.net/simon-von-crucisburg/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Simon von Crucisburg. HoloList category Thailand (TH); listed as a Thai VTuber; speaks Thai, Portuguese, and English Not in registry. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_1a7de3cd2a1a844f3134",
+      "url": "https://www.youtube.com/@SimonVonCrucisburg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Simon von Crucisburg via https://hololist.net/simon-von-crucisburg/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_286adff6585de6745ee5",
+      "url": "https://x.com/SimonCrucisburg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Simon von Crucisburg via https://hololist.net/simon-von-crucisburg/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_4cb3068f1d4c52f57ab9",
+      "url": "https://hololist.net/joro-gumo/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Joro Gumo. HoloList category Thailand (TH); Thai VTuber in Ti19t Ti19t roster gap: XEN/Valery/Pengu already in registry; Joro Gumo/PINTO/EMIL/Hakka were missing. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_dbf180fc9f2acbff4122",
+      "url": "https://www.youtube.com/@Jorogumov",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Joro Gumo via https://hololist.net/joro-gumo/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_4aa4fcd0fb1fcf3bd25a",
+      "url": "https://x.com/Jorogumov",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Joro Gumo via https://hololist.net/joro-gumo/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_69e4ac114b413d2e684b",
+      "url": "https://www.instagram.com/jorogumo_v",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public instagram URL listed for Joro Gumo via https://hololist.net/joro-gumo/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_16632af33e994228d4fe",
+      "url": "https://www.tiktok.com/@jorogumov",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public tiktok URL listed for Joro Gumo via https://hololist.net/joro-gumo/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_a7d6654cf0d41e9d6d0b",
+      "url": "https://lit.link/en/jorogumoV",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public litlink URL listed for Joro Gumo via https://hololist.net/joro-gumo/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_8001a49e208f6939766b",
+      "url": "https://hololist.net/pinto/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona PINTO. HoloList category Thailand (TH); Thai VTuber in Ti19t; lives in Osaka per lore, still Thai-coded on HoloList Facebook Page listed on HoloList. Not in registry. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_87643970245c24990f3c",
+      "url": "https://www.youtube.com/@pinto__xx",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for PINTO via https://hololist.net/pinto/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_9d454498635949c6902e",
+      "url": "https://www.facebook.com/pnpnpinto",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public facebook URL listed for PINTO via https://hololist.net/pinto/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_556a3883b2a8be416679",
+      "url": "https://x.com/pinto__xx",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for PINTO via https://hololist.net/pinto/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_d25b56c061ce1cc2c670",
+      "url": "https://www.instagram.com/pinto__xx",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public instagram URL listed for PINTO via https://hololist.net/pinto/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_cae192d69b69cbdd143c",
+      "url": "https://lit.link/en/pintoxx",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public litlink URL listed for PINTO via https://hololist.net/pinto/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_eaedcb8abe93a7cc0826",
+      "url": "https://hololist.net/emil/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona EMIL. HoloList category Thailand (TH); Thai VTuber in Ti19t since 2022 Long-running Ti19t talent missing from registry. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_a67f21eae24f501f9d75",
+      "url": "https://www.youtube.com/@EmilTheSpaceSheep",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for EMIL via https://hololist.net/emil/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_777b7a0ad4befdee8b8e",
+      "url": "https://x.com/EmilVtuberth",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for EMIL via https://hololist.net/emil/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_4ed099453d75cf1dd644",
+      "url": "https://hololist.net/hakka/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Hakka. HoloList category Thailand (TH); Thai VTuber in Ti19t Not in registry. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_2d0a81fab74c09bfbc2d",
+      "url": "https://www.youtube.com/@HakkaV",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Hakka via https://hololist.net/hakka/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_d7f373af02a040f35128",
+      "url": "https://x.com/HakkaCHV",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Hakka via https://hololist.net/hakka/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_46288c3989d2daaa5077",
+      "url": "https://hololist.net/kylanz/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Kylanz. HoloList category Thailand (TH); Thai VTuber; fanbase Khai Lan (ไขลาน) Not in registry. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_1ddfa403ddee75931670",
+      "url": "https://www.youtube.com/@Kylanz_KLZ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Kylanz via https://hololist.net/kylanz/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_5405ae9b056f1812e84b",
+      "url": "https://x.com/Kylanz_KLZ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Kylanz via https://hololist.net/kylanz/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_d8253a9eb8f0ec20df05",
+      "url": "https://www.instagram.com/kylanz_klz",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public instagram URL listed for Kylanz via https://hololist.net/kylanz/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_bc9c00ea412236dc1947",
+      "url": "https://www.tiktok.com/@kylanz_KLZ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public tiktok URL listed for Kylanz via https://hololist.net/kylanz/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_7ffde5a647b8506ebe3b",
+      "url": "https://hololist.net/logan-u-stryker/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Logan U Stryker. HoloList category Thailand (TH); listed as a male Thai VTuber Twitch-first (905 Twitch / 555 YouTube on HoloList). Not in registry. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_c93800466f74da410eb2",
+      "url": "https://www.youtube.com/@urStrykerVtuber",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Logan U Stryker via https://hololist.net/logan-u-stryker/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_b4a810726c0fd5f1dbc8",
+      "url": "https://www.twitch.tv/urstrykervtuber",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public twitch URL listed for Logan U Stryker via https://hololist.net/logan-u-stryker/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_654ec8da76efb28152d0",
+      "url": "https://x.com/urStrykerVtuber",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Logan U Stryker via https://hololist.net/logan-u-stryker/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_bfbb67baec83a19111a2",
+      "url": "https://www.tiktok.com/@urstryker",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public tiktok URL listed for Logan U Stryker via https://hololist.net/logan-u-stryker/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_42050065e94e428e86a3",
+      "url": "https://hololist.net/seikou-iminato/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Seikou iMinato. HoloList category Thailand (TH); Thai VTuber; speaks Thai and English Not in registry. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_bd38026f37dffe10cd39",
+      "url": "https://www.youtube.com/@i.Minato7",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Seikou iMinato via https://hololist.net/seikou-iminato/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_0fc38c2a8d00b696b719",
+      "url": "https://www.twitch.tv/seikou_iminato",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public twitch URL listed for Seikou iMinato via https://hololist.net/seikou-iminato/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_14fc6ab69845e159e9c7",
+      "url": "https://x.com/IMin4to",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Seikou iMinato via https://hololist.net/seikou-iminato/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_3e6e368ae0901b4ad00f",
+      "url": "https://hololist.net/howl/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Howl. HoloList category Thailand (TH); Thai VTuber in FvP Project Not in registry. FvP roster incomplete vs HoloList. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_97b3945744855dfa3263",
+      "url": "https://www.youtube.com/@Howl_FVP",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Howl via https://hololist.net/howl/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_baae304e1aff0c0bc208",
+      "url": "https://x.com/HowlTheSandbag",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Howl via https://hololist.net/howl/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_25c983392c39dd51d971",
+      "url": "https://hololist.net/kyoya-keiran/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Kyoya Keiran. HoloList category Thailand (TH); Thai-language VTuber in Sky Rise Project Not in registry. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_4ca7bc076f660c1dbe19",
+      "url": "https://www.youtube.com/@kyoyavtuber",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Kyoya Keiran via https://hololist.net/kyoya-keiran/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_ed3a8c287160ea7c6f00",
+      "url": "https://x.com/kyoyavtuberth",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Kyoya Keiran via https://hololist.net/kyoya-keiran/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_f5f84bac9c016d30e25c",
+      "url": "https://www.tiktok.com/@kyoya.vtuber",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public tiktok URL listed for Kyoya Keiran via https://hololist.net/kyoya-keiran/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_f9291f7e474599a389d8",
+      "url": "https://linktr.ee/kyoyakeiran",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public linktree URL listed for Kyoya Keiran via https://hololist.net/kyoya-keiran/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_525b660fe3535cc61aca",
+      "url": "https://hololist.net/rainbows-fukio/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Rainbows Fukio. HoloList category Thailand (TH); listed as a Thai VTuber Twitch-heavier (2.6K Twitch / 379 YouTube on HoloList). Not in registry. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_4e8fc07f43be32dbc55f",
+      "url": "https://www.youtube.com/@Fukio_VT",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Rainbows Fukio via https://hololist.net/rainbows-fukio/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_2a21cbc1ef9e2cdab1e0",
+      "url": "https://www.twitch.tv/fukio_vt",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public twitch URL listed for Rainbows Fukio via https://hololist.net/rainbows-fukio/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_e0145198defc34c11655",
+      "url": "https://x.com/fukio425641",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Rainbows Fukio via https://hololist.net/rainbows-fukio/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_a73e96831f0d5d74536a",
+      "url": "https://www.tiktok.com/@rainbows_fukio42",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public tiktok URL listed for Rainbows Fukio via https://hololist.net/rainbows-fukio/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_c70f1c375b7aa918ed7c",
+      "url": "https://hololist.net/nostradamus-karasu/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Nostradamus Karasu. HoloList category Thailand (TH); listed as a male Thai VTuber Not in registry. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_ab38ed18a359aa4b1c51",
+      "url": "https://www.youtube.com/@NostradamusKarasu",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Nostradamus Karasu via https://hololist.net/nostradamus-karasu/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_99c8be7f61de649987ba",
+      "url": "https://x.com/NostradamusVT",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Nostradamus Karasu via https://hololist.net/nostradamus-karasu/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_e1069ba3905c89af6ab8",
+      "url": "https://www.tiktok.com/@nostradamus_karasu",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public tiktok URL listed for Nostradamus Karasu via https://hololist.net/nostradamus-karasu/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_3ab03f483d7990a85c4e",
+      "url": "https://hololist.net/nihr-farfalla/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Nihr Farfalla. HoloList category Thailand (TH); Thai VTuber in 4AM Retired 2025-08-15 per HoloList. Registry still catalogs graduated/retired personas; do not infer current activity. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_7a2e5a8418e9abd1c794",
+      "url": "https://www.youtube.com/@nihrfarfalla019",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Nihr Farfalla via https://hololist.net/nihr-farfalla/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_7bafe51a0b76de287e50",
+      "url": "https://x.com/NihrTH",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Nihr Farfalla via https://hololist.net/nihr-farfalla/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_55d8fe0838a72afd8935",
+      "url": "https://hololist.net/noboru/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona NoBoRu. HoloList category Thailand (TH); Thai VTuber Retired 2025-06-30 per HoloList. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_dd31f0f570cf929a98f9",
+      "url": "https://www.youtube.com/@NoBoRuCh",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for NoBoRu via https://hololist.net/noboru/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_9c5a61bdcb9302f6c65c",
+      "url": "https://www.twitch.tv/noboru_oz",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public twitch URL listed for NoBoRu via https://hololist.net/noboru/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_da902f2d78aea472d68a",
+      "url": "https://x.com/NoboruCh",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for NoBoRu via https://hololist.net/noboru/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_6feb8460e1807a31e2f6",
+      "url": "https://www.instagram.com/noboru_oz",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public instagram URL listed for NoBoRu via https://hololist.net/noboru/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_0b4400f7af8a5d713c2b",
+      "url": "https://hololist.net/cynthia/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Cynthia. HoloList category Thailand (TH); Thai VTuber in FvP Project Retired 2023-04-16. Distinct from Cynthia Sweetpie who is already in the registry. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_2493229167bb5835e90f",
+      "url": "https://www.youtube.com/@CynthiaFvPProject",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Cynthia via https://hololist.net/cynthia/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_29c13a8761b128accf60",
+      "url": "https://x.com/CynthiaFvP",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Cynthia via https://hololist.net/cynthia/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_b806f8ab36ac5f2ee084",
+      "url": "https://hololist.net/lenezmee-dollynx/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Lenezmee Dollynx. HoloList category Thailand (TH); Thai VTuber in AStars Production Retired 2024-12-26. Other AStars talents (Yasou Azrael, Amaris Sayo) already matched in registry. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_a0094cf999efda041d78",
+      "url": "https://www.youtube.com/@LenezmeeDollynx_AS",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Lenezmee Dollynx via https://hololist.net/lenezmee-dollynx/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_54e92d93b2ee3c6eb634",
+      "url": "https://x.com/Lenezmee_AS",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Lenezmee Dollynx via https://hololist.net/lenezmee-dollynx/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_afca96eb8fe98376300b",
+      "url": "https://hololist.net/usami-bunny/",
+      "kind": "secondary_source",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Usami Bunny. HoloList category Thailand (TH); former HAJITABI gen 2 alongside Samuel and Lawiz Retired 2022-08-31. Samuel/Lawiz already in registry; this gen-2 member was missing. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_5e8e6aeaf6db01b7f1ae",
+      "url": "https://www.youtube.com/@USAMIBUNNY",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public youtube URL listed for Usami Bunny via https://hololist.net/usami-bunny/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_1174eb63e459610ded1d",
+      "url": "https://www.facebook.com/UsamiBunny",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public facebook URL listed for Usami Bunny via https://hololist.net/usami-bunny/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_ddd566338ab578ddb819",
+      "url": "https://x.com/Usami_Bunny_",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Usami Bunny via https://hololist.net/usami-bunny/. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_a1cd472b917d07c50560",
+      "url": "https://x.com/KirariEsu_VT/status/2100204807583871028",
+      "kind": "self_statement",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Kirari Esu. Self-uses #VtuberTH; Thai-language posts; display name Debut October YouTube/Twitch not in sampled posts. Do not invent a channel from the name. Distinct from registry Kirari NeNe. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_c0b07922a504171cb7f1",
+      "url": "https://x.com/KirariEsu_VT",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Kirari Esu via https://x.com/KirariEsu_VT/status/2100204807583871028. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_1d036aef0ef9a80fa28d",
+      "url": "https://x.com/Kennedy_MeowVT/status/2100186693768995146",
+      "kind": "self_statement",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Kennedy Meow. X display name VTuberTH; bio TH, ENG; posts Far Cry 4 / Raft lives tagged #วีทูปเบอร์ไทย Owner posts YouTube live URLs but channel handle/ID not resolved from the watch page. Do not promote a guessed @handle. Claimed 374 YT subscribers as of 2026-08-19. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_3992e968e5255f558c45",
+      "url": "https://x.com/Kennedy_MeowVT",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Kennedy Meow via https://x.com/Kennedy_MeowVT/status/2100186693768995146. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_667e802470e34628473c",
+      "url": "https://x.com/NLattee59689/status/2100143904234316009",
+      "kind": "self_statement",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona NikkiLattE. X display name VtuberTH; Thai-language posts Debut 21 Oct 2026 per display name. No YouTube/Twitch URL in sampled posts. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_bc6ad0f56d3012a99bf3",
+      "url": "https://x.com/NLattee59689",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for NikkiLattE via https://x.com/NLattee59689/status/2100143904234316009. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_3e6922a6782e3c63d5cf",
+      "url": "https://x.com/Esme_Mew/status/2099841201944014850",
+      "kind": "self_statement",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Esme Mew. Thai-language posts; #VtuberTH; discusses Thai donation platforms (GankNow, Happy Donate, Twitch, YouTube) Owner posts YouTube VODs/covers; channel handle/ID not resolved. Mentioned GankNow as a donation option but no ganknow.com profile URL found. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_661fff7a31d2fec88c9a",
+      "url": "https://x.com/Esme_Mew",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Esme Mew via https://x.com/Esme_Mew/status/2099841201944014850. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_e507d9e69ee97a758eea",
+      "url": "https://x.com/ZTP_project",
+      "kind": "agency_statement",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Rhumora. Thai-language X bio; listed on Thai agency @ZTP_project alongside Zinfandel/Xyne/Krynaydin Siblings Zinfandel, Xyne Valdreth, Krynaydin already in registry. Agency account @ZTP_project is not a talent persona. No YouTube/Twitch URL found in sampled posts. Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_973b733dcb1ff78ce3fc",
+      "url": "https://x.com/Rhumora_ZTP",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Rhumora via https://x.com/ZTP_project. Stable ID not resolved unless a channel/user id is present. Needs review."
+    },
+    {
+      "id": "ev_d7480447b8a4af4db903",
+      "url": "https://x.com/Shion_VWY/status/2100162782562070658",
+      "kind": "self_statement",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Discovery lead for public persona Shion. Thai-language posts tagged #VtuberTH; manager @Ath_VWY_Manager Owner posts YouTube live URL; channel handle/ID not resolved. Distinct from Shino Laila (already in registry). Needs first-party review before verification or identity linking."
+    },
+    {
+      "id": "ev_e30d0d1a1b438854e99d",
+      "url": "https://x.com/Shion_VWY",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public x URL listed for Shion via https://x.com/Shion_VWY/status/2100162782562070658. Stable ID not resolved unless a channel/user id is present. Needs review."
+    }
+  ],
+  "personas": [
+    {
+      "id": "persona_9c8d12e5abd66935aa68",
+      "name": "Carina Aquarius",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "thai_language",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_eb1551301c46622ce0e2",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_6f5c7afe6e9085c3b05f",
+      "name": "Liyin",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_67336c55bec1823a7d74",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_ea6554693f3ab11ded5e",
+      "name": "Zabrina",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "thai_language",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_7517bc7bf8376b5b69b3",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_c8a2a3d5f9e915054fef",
+      "name": "Mit PESISTH",
+      "format": "png",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_71a233ffdd86abe01db7",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_e58298576a7526ad26bc",
+      "name": "Ryuuga The Crane",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "thai_language",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_b75390d925276e55f46b",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_dd7c3e8c837cc0957f3d",
+      "name": "Simon von Crucisburg",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "thai_language",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_8f6c63c5fcf153c20a38",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_4b950bae9521bdada92b",
+      "name": "Joro Gumo",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_4cb3068f1d4c52f57ab9",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_f3ac52ae514adc62f9f8",
+      "name": "PINTO",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_8001a49e208f6939766b",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_3707f0e93bfbba799463",
+      "name": "EMIL",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_eaedcb8abe93a7cc0826",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_0d59ce62c1b5c1174a3c",
+      "name": "Hakka",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_4ed099453d75cf1dd644",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_5efe72eab4e5d5231e0a",
+      "name": "Kylanz",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "thai_language",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_46288c3989d2daaa5077",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_8261000752396c56dec6",
+      "name": "Logan U Stryker",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "thai_language",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_7ffde5a647b8506ebe3b",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_dcbfc242c4c1198a1dbd",
+      "name": "Seikou iMinato",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "thai_language",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_42050065e94e428e86a3",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_c9ce72887adc6a9b9913",
+      "name": "Howl",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_3e6e368ae0901b4ad00f",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_0e69af0d96020bfa1c3b",
+      "name": "Kyoya Keiran",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_25c983392c39dd51d971",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_69145160a5bb56ba8265",
+      "name": "Rainbows Fukio",
+      "format": "mixed",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "thai_language",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_525b660fe3535cc61aca",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_f950c5c09fec76a5c3a4",
+      "name": "Nostradamus Karasu",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "thai_language",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_c70f1c375b7aa918ed7c",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_75770df8891acb3b0504",
+      "name": "Nihr Farfalla",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_3ab03f483d7990a85c4e",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_6939b57ea784abac9934",
+      "name": "NoBoRu",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "thai_language",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_55d8fe0838a72afd8935",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_66672eed824eb1a63e9c",
+      "name": "Cynthia",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_0b4400f7af8a5d713c2b",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_1bc44543dda15931d9cf",
+      "name": "Lenezmee Dollynx",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_b806f8ab36ac5f2ee084",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_0f387b725aa2421677ed",
+      "name": "Usami Bunny",
+      "format": "live2d",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_afca96eb8fe98376300b",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_79a3f0c028dca956ed91",
+      "name": "Kirari Esu",
+      "format": "unknown",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "thai_language",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_a1cd472b917d07c50560",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_b63eb3d7581a3b506d0c",
+      "name": "Kennedy Meow",
+      "format": "unknown",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "thai_language",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_1d036aef0ef9a80fa28d",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_fb165701bb8655c27dbf",
+      "name": "NikkiLattE",
+      "format": "unknown",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "thai_language",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_667e802470e34628473c",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_e214c634a4735e8cedd9",
+      "name": "Esme Mew",
+      "format": "unknown",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "thai_language",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_3e6922a6782e3c63d5cf",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_662d0fcab89be08f20e1",
+      "name": "Rhumora",
+      "format": "unknown",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_e507d9e69ee97a758eea",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "persona_e296d01fe0a6cd96471c",
+      "name": "Shion",
+      "format": "unknown",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "needs_evidence",
+      "evidence_id": "ev_d7480447b8a4af4db903",
+      "reviewer": null,
+      "reviewed_at": null
+    }
+  ],
+  "accounts": [
+    {
+      "id": "acct_30fef3465256bc6ff349",
+      "platform": "x",
+      "platform_id": "CarinaAquarius",
+      "id_namespace": "handle",
+      "handle": "CarinaAquarius",
+      "name": "Carina Aquarius",
+      "url": "https://x.com/CarinaAquarius",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_011f38c857a0d66a2aa7"
+    },
+    {
+      "id": "acct_9cc249ca3d71e1d4fcaa",
+      "platform": "youtube",
+      "platform_id": "UCWyO0Zn2Vx6U2VOIpeCjsJw",
+      "id_namespace": "channel_id",
+      "handle": null,
+      "name": "Liyin",
+      "url": "https://www.youtube.com/channel/UCWyO0Zn2Vx6U2VOIpeCjsJw",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_661f9ed8641aaf43ade7"
+    },
+    {
+      "id": "acct_0ebc6d6fe30a75e9bf14",
+      "platform": "x",
+      "platform_id": "Lyin_1",
+      "id_namespace": "handle",
+      "handle": "Lyin_1",
+      "name": "Liyin",
+      "url": "https://x.com/Lyin_1",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_117326c66be69fc10ef3"
+    },
+    {
+      "id": "acct_9153e0a4b3559280b7a6",
+      "platform": "instagram",
+      "platform_id": "liyin_lovely",
+      "id_namespace": "handle",
+      "handle": "liyin_lovely",
+      "name": "Liyin",
+      "url": "https://www.instagram.com/liyin_lovely",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_8919e88ac19392d8f34e"
+    },
+    {
+      "id": "acct_11d37ac3cc4af3e7130a",
+      "platform": "x",
+      "platform_id": "ZabrinaVTuberTH",
+      "id_namespace": "handle",
+      "handle": "ZabrinaVTuberTH",
+      "name": "Zabrina",
+      "url": "https://x.com/ZabrinaVTuberTH",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_36d16cf581fa3f337ec5"
+    },
+    {
+      "id": "acct_3221cbe6577384d8d37d",
+      "platform": "x",
+      "platform_id": "pesisthatcer",
+      "id_namespace": "handle",
+      "handle": "pesisthatcer",
+      "name": "Mit PESISTH",
+      "url": "https://x.com/pesisthatcer",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_0629eedf325d515f79f4"
+    },
+    {
+      "id": "acct_9149917e9ef481c4c3b7",
+      "platform": "instagram",
+      "platform_id": "mitpesisth",
+      "id_namespace": "handle",
+      "handle": "mitpesisth",
+      "name": "Mit PESISTH",
+      "url": "https://www.instagram.com/mitpesisth",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_ff3076af32e25a22e9a4"
+    },
+    {
+      "id": "acct_9646352af45d11ca54da",
+      "platform": "x",
+      "platform_id": "Ryuuga_crane",
+      "id_namespace": "handle",
+      "handle": "Ryuuga_crane",
+      "name": "Ryuuga The Crane",
+      "url": "https://x.com/Ryuuga_crane",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_4bbf7db6746e274257e0"
+    },
+    {
+      "id": "acct_68c63c445cbb336e64ae",
+      "platform": "x",
+      "platform_id": "SimonCrucisburg",
+      "id_namespace": "handle",
+      "handle": "SimonCrucisburg",
+      "name": "Simon von Crucisburg",
+      "url": "https://x.com/SimonCrucisburg",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_286adff6585de6745ee5"
+    },
+    {
+      "id": "acct_8e9e1d60eb6f9bd53acc",
+      "platform": "x",
+      "platform_id": "Jorogumov",
+      "id_namespace": "handle",
+      "handle": "Jorogumov",
+      "name": "Joro Gumo",
+      "url": "https://x.com/Jorogumov",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_4aa4fcd0fb1fcf3bd25a"
+    },
+    {
+      "id": "acct_b098e95f193cda0d227a",
+      "platform": "instagram",
+      "platform_id": "jorogumo_v",
+      "id_namespace": "handle",
+      "handle": "jorogumo_v",
+      "name": "Joro Gumo",
+      "url": "https://www.instagram.com/jorogumo_v",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_69e4ac114b413d2e684b"
+    },
+    {
+      "id": "acct_281173caa6714011bf33",
+      "platform": "litlink",
+      "platform_id": "jorogumoV",
+      "id_namespace": "handle",
+      "handle": "jorogumoV",
+      "name": "Joro Gumo",
+      "url": "https://lit.link/en/jorogumoV",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_a7d6654cf0d41e9d6d0b"
+    },
+    {
+      "id": "acct_2455c3d262a209860cfa",
+      "platform": "facebook",
+      "platform_id": "pnpnpinto",
+      "id_namespace": "handle",
+      "handle": "pnpnpinto",
+      "name": "PINTO",
+      "url": "https://www.facebook.com/pnpnpinto",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_9d454498635949c6902e"
+    },
+    {
+      "id": "acct_57c297e32f977db404a7",
+      "platform": "x",
+      "platform_id": "pinto__xx",
+      "id_namespace": "handle",
+      "handle": "pinto__xx",
+      "name": "PINTO",
+      "url": "https://x.com/pinto__xx",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_556a3883b2a8be416679"
+    },
+    {
+      "id": "acct_b433905f2a35b393bef2",
+      "platform": "instagram",
+      "platform_id": "pinto__xx",
+      "id_namespace": "handle",
+      "handle": "pinto__xx",
+      "name": "PINTO",
+      "url": "https://www.instagram.com/pinto__xx",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_d25b56c061ce1cc2c670"
+    },
+    {
+      "id": "acct_bcc6506323c5f81f25cd",
+      "platform": "litlink",
+      "platform_id": "pintoxx",
+      "id_namespace": "handle",
+      "handle": "pintoxx",
+      "name": "PINTO",
+      "url": "https://lit.link/en/pintoxx",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_cae192d69b69cbdd143c"
+    },
+    {
+      "id": "acct_29d00e552219dcd8d3f5",
+      "platform": "x",
+      "platform_id": "EmilVtuberth",
+      "id_namespace": "handle",
+      "handle": "EmilVtuberth",
+      "name": "EMIL",
+      "url": "https://x.com/EmilVtuberth",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_777b7a0ad4befdee8b8e"
+    },
+    {
+      "id": "acct_e23587ee21cc268da055",
+      "platform": "x",
+      "platform_id": "HakkaCHV",
+      "id_namespace": "handle",
+      "handle": "HakkaCHV",
+      "name": "Hakka",
+      "url": "https://x.com/HakkaCHV",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_d7f373af02a040f35128"
+    },
+    {
+      "id": "acct_c959e7ee1b6df86da2ec",
+      "platform": "x",
+      "platform_id": "Kylanz_KLZ",
+      "id_namespace": "handle",
+      "handle": "Kylanz_KLZ",
+      "name": "Kylanz",
+      "url": "https://x.com/Kylanz_KLZ",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_5405ae9b056f1812e84b"
+    },
+    {
+      "id": "acct_1c6d1ef3023019de2230",
+      "platform": "instagram",
+      "platform_id": "kylanz_klz",
+      "id_namespace": "handle",
+      "handle": "kylanz_klz",
+      "name": "Kylanz",
+      "url": "https://www.instagram.com/kylanz_klz",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_d8253a9eb8f0ec20df05"
+    },
+    {
+      "id": "acct_3bd21c198c9f4522d69b",
+      "platform": "x",
+      "platform_id": "urStrykerVtuber",
+      "id_namespace": "handle",
+      "handle": "urStrykerVtuber",
+      "name": "Logan U Stryker",
+      "url": "https://x.com/urStrykerVtuber",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_654ec8da76efb28152d0"
+    },
+    {
+      "id": "acct_3b69d31c90264a6aaca5",
+      "platform": "x",
+      "platform_id": "IMin4to",
+      "id_namespace": "handle",
+      "handle": "IMin4to",
+      "name": "Seikou iMinato",
+      "url": "https://x.com/IMin4to",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_14fc6ab69845e159e9c7"
+    },
+    {
+      "id": "acct_1a77df755dff21fb1229",
+      "platform": "x",
+      "platform_id": "HowlTheSandbag",
+      "id_namespace": "handle",
+      "handle": "HowlTheSandbag",
+      "name": "Howl",
+      "url": "https://x.com/HowlTheSandbag",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_baae304e1aff0c0bc208"
+    },
+    {
+      "id": "acct_00dab9b538b304b1134a",
+      "platform": "x",
+      "platform_id": "kyoyavtuberth",
+      "id_namespace": "handle",
+      "handle": "kyoyavtuberth",
+      "name": "Kyoya Keiran",
+      "url": "https://x.com/kyoyavtuberth",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_ed3a8c287160ea7c6f00"
+    },
+    {
+      "id": "acct_df2bd179895547df23d0",
+      "platform": "linktree",
+      "platform_id": "kyoyakeiran",
+      "id_namespace": "handle",
+      "handle": "kyoyakeiran",
+      "name": "Kyoya Keiran",
+      "url": "https://linktr.ee/kyoyakeiran",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_f9291f7e474599a389d8"
+    },
+    {
+      "id": "acct_9226a2c62283482c5c0c",
+      "platform": "x",
+      "platform_id": "fukio425641",
+      "id_namespace": "handle",
+      "handle": "fukio425641",
+      "name": "Rainbows Fukio",
+      "url": "https://x.com/fukio425641",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_e0145198defc34c11655"
+    },
+    {
+      "id": "acct_891683f65b83d07bb039",
+      "platform": "x",
+      "platform_id": "NostradamusVT",
+      "id_namespace": "handle",
+      "handle": "NostradamusVT",
+      "name": "Nostradamus Karasu",
+      "url": "https://x.com/NostradamusVT",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_99c8be7f61de649987ba"
+    },
+    {
+      "id": "acct_81c5a7176fb020410bdb",
+      "platform": "x",
+      "platform_id": "NihrTH",
+      "id_namespace": "handle",
+      "handle": "NihrTH",
+      "name": "Nihr Farfalla",
+      "url": "https://x.com/NihrTH",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_7bafe51a0b76de287e50"
+    },
+    {
+      "id": "acct_0e0182d96e43637d23e4",
+      "platform": "x",
+      "platform_id": "NoboruCh",
+      "id_namespace": "handle",
+      "handle": "NoboruCh",
+      "name": "NoBoRu",
+      "url": "https://x.com/NoboruCh",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_da902f2d78aea472d68a"
+    },
+    {
+      "id": "acct_cb337dfa33b6027b612a",
+      "platform": "instagram",
+      "platform_id": "noboru_oz",
+      "id_namespace": "handle",
+      "handle": "noboru_oz",
+      "name": "NoBoRu",
+      "url": "https://www.instagram.com/noboru_oz",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_6feb8460e1807a31e2f6"
+    },
+    {
+      "id": "acct_d6de3f920310c3018634",
+      "platform": "x",
+      "platform_id": "CynthiaFvP",
+      "id_namespace": "handle",
+      "handle": "CynthiaFvP",
+      "name": "Cynthia",
+      "url": "https://x.com/CynthiaFvP",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_29c13a8761b128accf60"
+    },
+    {
+      "id": "acct_c7d02bff6666645b7390",
+      "platform": "x",
+      "platform_id": "Lenezmee_AS",
+      "id_namespace": "handle",
+      "handle": "Lenezmee_AS",
+      "name": "Lenezmee Dollynx",
+      "url": "https://x.com/Lenezmee_AS",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_54e92d93b2ee3c6eb634"
+    },
+    {
+      "id": "acct_6ec69e3b5826d78a8c56",
+      "platform": "facebook",
+      "platform_id": "UsamiBunny",
+      "id_namespace": "handle",
+      "handle": "UsamiBunny",
+      "name": "Usami Bunny",
+      "url": "https://www.facebook.com/UsamiBunny",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_1174eb63e459610ded1d"
+    },
+    {
+      "id": "acct_879f931353d51be3f7a9",
+      "platform": "x",
+      "platform_id": "Usami_Bunny_",
+      "id_namespace": "handle",
+      "handle": "Usami_Bunny_",
+      "name": "Usami Bunny",
+      "url": "https://x.com/Usami_Bunny_",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_ddd566338ab578ddb819"
+    },
+    {
+      "id": "acct_7aeda83fe914972205ca",
+      "platform": "x",
+      "platform_id": "KirariEsu_VT",
+      "id_namespace": "handle",
+      "handle": "KirariEsu_VT",
+      "name": "Kirari Esu",
+      "url": "https://x.com/KirariEsu_VT",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_c0b07922a504171cb7f1"
+    },
+    {
+      "id": "acct_7c2355c4ef9c6b3dd2d6",
+      "platform": "x",
+      "platform_id": "Kennedy_MeowVT",
+      "id_namespace": "handle",
+      "handle": "Kennedy_MeowVT",
+      "name": "Kennedy Meow",
+      "url": "https://x.com/Kennedy_MeowVT",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_3992e968e5255f558c45"
+    },
+    {
+      "id": "acct_1775a83fadc82bba5b8e",
+      "platform": "x",
+      "platform_id": "NLattee59689",
+      "id_namespace": "handle",
+      "handle": "NLattee59689",
+      "name": "NikkiLattE",
+      "url": "https://x.com/NLattee59689",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_bc6ad0f56d3012a99bf3"
+    },
+    {
+      "id": "acct_df97f8b83ae677c37fd7",
+      "platform": "x",
+      "platform_id": "Esme_Mew",
+      "id_namespace": "handle",
+      "handle": "Esme_Mew",
+      "name": "Esme Mew",
+      "url": "https://x.com/Esme_Mew",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_661fff7a31d2fec88c9a"
+    },
+    {
+      "id": "acct_172153df619208c6fa4c",
+      "platform": "x",
+      "platform_id": "Rhumora_ZTP",
+      "id_namespace": "handle",
+      "handle": "Rhumora_ZTP",
+      "name": "Rhumora",
+      "url": "https://x.com/Rhumora_ZTP",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_973b733dcb1ff78ce3fc"
+    },
+    {
+      "id": "acct_5aa14587c4e1c597f273",
+      "platform": "x",
+      "platform_id": "Shion_VWY",
+      "id_namespace": "handle",
+      "handle": "Shion_VWY",
+      "name": "Shion",
+      "url": "https://x.com/Shion_VWY",
+      "first_discovered_at": "2026-09-16T16:00:00+00:00",
+      "evidence_id": "ev_e30d0d1a1b438854e99d"
+    }
+  ],
+  "account_links": [
+    {
+      "id": "link_942529c769383704e1d9",
+      "account_id": "acct_30fef3465256bc6ff349",
+      "persona_id": "persona_9c8d12e5abd66935aa68",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_eb1551301c46622ce0e2",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_2c4d636b25f4f62fb3c6",
+      "account_id": "acct_9cc249ca3d71e1d4fcaa",
+      "persona_id": "persona_6f5c7afe6e9085c3b05f",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_67336c55bec1823a7d74",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_ef496fdd8d47110ad3c5",
+      "account_id": "acct_0ebc6d6fe30a75e9bf14",
+      "persona_id": "persona_6f5c7afe6e9085c3b05f",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_67336c55bec1823a7d74",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_d15f3c1b16e351d37518",
+      "account_id": "acct_9153e0a4b3559280b7a6",
+      "persona_id": "persona_6f5c7afe6e9085c3b05f",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_67336c55bec1823a7d74",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_f5b6c80db594d9af4667",
+      "account_id": "acct_11d37ac3cc4af3e7130a",
+      "persona_id": "persona_ea6554693f3ab11ded5e",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_7517bc7bf8376b5b69b3",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_e58608a2140da256bd7b",
+      "account_id": "acct_3221cbe6577384d8d37d",
+      "persona_id": "persona_c8a2a3d5f9e915054fef",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_71a233ffdd86abe01db7",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_c25d50eabe9abcae633b",
+      "account_id": "acct_9149917e9ef481c4c3b7",
+      "persona_id": "persona_c8a2a3d5f9e915054fef",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_71a233ffdd86abe01db7",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_96bab38a192765b49b60",
+      "account_id": "acct_9646352af45d11ca54da",
+      "persona_id": "persona_e58298576a7526ad26bc",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_b75390d925276e55f46b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_89f049fcb6d67cc03d74",
+      "account_id": "acct_68c63c445cbb336e64ae",
+      "persona_id": "persona_dd7c3e8c837cc0957f3d",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_8f6c63c5fcf153c20a38",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_92817d5a3a097ab85921",
+      "account_id": "acct_8e9e1d60eb6f9bd53acc",
+      "persona_id": "persona_4b950bae9521bdada92b",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_4cb3068f1d4c52f57ab9",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_c9125671b7569c6b718a",
+      "account_id": "acct_b098e95f193cda0d227a",
+      "persona_id": "persona_4b950bae9521bdada92b",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_4cb3068f1d4c52f57ab9",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_7edda7953b43768399a7",
+      "account_id": "acct_281173caa6714011bf33",
+      "persona_id": "persona_4b950bae9521bdada92b",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_4cb3068f1d4c52f57ab9",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_2320751b1c36064bcf0b",
+      "account_id": "acct_2455c3d262a209860cfa",
+      "persona_id": "persona_f3ac52ae514adc62f9f8",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_8001a49e208f6939766b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_ff2ddbcb7d8ec38a86b5",
+      "account_id": "acct_57c297e32f977db404a7",
+      "persona_id": "persona_f3ac52ae514adc62f9f8",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_8001a49e208f6939766b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_d493233495a24c27f9df",
+      "account_id": "acct_b433905f2a35b393bef2",
+      "persona_id": "persona_f3ac52ae514adc62f9f8",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_8001a49e208f6939766b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_3a38d2ecdc91cd2ec0c3",
+      "account_id": "acct_bcc6506323c5f81f25cd",
+      "persona_id": "persona_f3ac52ae514adc62f9f8",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_8001a49e208f6939766b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_5a35a7777bc1b223ef06",
+      "account_id": "acct_29d00e552219dcd8d3f5",
+      "persona_id": "persona_3707f0e93bfbba799463",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_eaedcb8abe93a7cc0826",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_694754c48d74364bc36c",
+      "account_id": "acct_e23587ee21cc268da055",
+      "persona_id": "persona_0d59ce62c1b5c1174a3c",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_4ed099453d75cf1dd644",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_4d390d2bcc9c96a967ca",
+      "account_id": "acct_c959e7ee1b6df86da2ec",
+      "persona_id": "persona_5efe72eab4e5d5231e0a",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_46288c3989d2daaa5077",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_8d261011bc8ba701c1dc",
+      "account_id": "acct_1c6d1ef3023019de2230",
+      "persona_id": "persona_5efe72eab4e5d5231e0a",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_46288c3989d2daaa5077",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_befff51914df7878a6eb",
+      "account_id": "acct_3bd21c198c9f4522d69b",
+      "persona_id": "persona_8261000752396c56dec6",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_7ffde5a647b8506ebe3b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_7d055d774e7a6885d35c",
+      "account_id": "acct_3b69d31c90264a6aaca5",
+      "persona_id": "persona_dcbfc242c4c1198a1dbd",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_42050065e94e428e86a3",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_bdfda1856aed3ae3ecdb",
+      "account_id": "acct_1a77df755dff21fb1229",
+      "persona_id": "persona_c9ce72887adc6a9b9913",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_3e6e368ae0901b4ad00f",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_ab46b92970fbab3935d2",
+      "account_id": "acct_00dab9b538b304b1134a",
+      "persona_id": "persona_0e69af0d96020bfa1c3b",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_25c983392c39dd51d971",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_f693bd2a04a9f45badf8",
+      "account_id": "acct_df2bd179895547df23d0",
+      "persona_id": "persona_0e69af0d96020bfa1c3b",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_25c983392c39dd51d971",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_9d49b0f7b0bd09f67363",
+      "account_id": "acct_9226a2c62283482c5c0c",
+      "persona_id": "persona_69145160a5bb56ba8265",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_525b660fe3535cc61aca",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_e7c86e6d3b5844b9fadb",
+      "account_id": "acct_891683f65b83d07bb039",
+      "persona_id": "persona_f950c5c09fec76a5c3a4",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_c70f1c375b7aa918ed7c",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_b6ce9cb57dec2d6f4b4f",
+      "account_id": "acct_81c5a7176fb020410bdb",
+      "persona_id": "persona_75770df8891acb3b0504",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_3ab03f483d7990a85c4e",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_ce1a6687f9db5bdb7428",
+      "account_id": "acct_0e0182d96e43637d23e4",
+      "persona_id": "persona_6939b57ea784abac9934",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_55d8fe0838a72afd8935",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_d47ec8c96f90fe3d6969",
+      "account_id": "acct_cb337dfa33b6027b612a",
+      "persona_id": "persona_6939b57ea784abac9934",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_55d8fe0838a72afd8935",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_9c3762920384eb28a724",
+      "account_id": "acct_d6de3f920310c3018634",
+      "persona_id": "persona_66672eed824eb1a63e9c",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_0b4400f7af8a5d713c2b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_53b47b317a0abbbba5a3",
+      "account_id": "acct_c7d02bff6666645b7390",
+      "persona_id": "persona_1bc44543dda15931d9cf",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_b806f8ab36ac5f2ee084",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_d51748edb5611f75fda9",
+      "account_id": "acct_6ec69e3b5826d78a8c56",
+      "persona_id": "persona_0f387b725aa2421677ed",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_afca96eb8fe98376300b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_767ac24d7c462f4d1ba2",
+      "account_id": "acct_879f931353d51be3f7a9",
+      "persona_id": "persona_0f387b725aa2421677ed",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_afca96eb8fe98376300b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_06bb525037516f018c25",
+      "account_id": "acct_7aeda83fe914972205ca",
+      "persona_id": "persona_79a3f0c028dca956ed91",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_a1cd472b917d07c50560",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_aaff1ca73761fa875643",
+      "account_id": "acct_7c2355c4ef9c6b3dd2d6",
+      "persona_id": "persona_b63eb3d7581a3b506d0c",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_1d036aef0ef9a80fa28d",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_a358bf9ba4845982ff9b",
+      "account_id": "acct_1775a83fadc82bba5b8e",
+      "persona_id": "persona_fb165701bb8655c27dbf",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_667e802470e34628473c",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_485edb0c4e9f21fa6bb5",
+      "account_id": "acct_df97f8b83ae677c37fd7",
+      "persona_id": "persona_e214c634a4735e8cedd9",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_3e6922a6782e3c63d5cf",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_1c04b372314b30805606",
+      "account_id": "acct_172153df619208c6fa4c",
+      "persona_id": "persona_662d0fcab89be08f20e1",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_e507d9e69ee97a758eea",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "link_0677b69c4ad964c5bb02",
+      "account_id": "acct_5aa14587c4e1c597f273",
+      "persona_id": "persona_e296d01fe0a6cd96471c",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_d7480447b8a4af4db903",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    }
+  ],
+  "candidates": [
+    {
+      "id": "candidate_bb148800f5bd48c76036",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Carina Aquarius",
+      "url": "https://www.youtube.com/@CarinaAquarius_Ch",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_3787ffe52d4b41cd39d0",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_5b4bf1bef0fdf2c5252b",
+      "platform": "tiktok",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Liyin",
+      "url": "https://www.tiktok.com/@lilin_lilin0_0",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_27f6cae680d9ad733a7f",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_568c197127cfcb376461",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Zabrina",
+      "url": "https://www.youtube.com/@Zabrina-VtuberTH",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_ed5fcbca61668b3715d2",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_a332922113d267f92f2b",
+      "platform": "twitch",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Zabrina",
+      "url": "https://www.twitch.tv/zabrinavtuberth",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_fd0d2f51af12aa08739a",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_9cf6cfd6d10e0c449c97",
+      "platform": "tiktok",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Zabrina",
+      "url": "https://www.tiktok.com/@zabrina_vtuber",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_144acb779528c7b68000",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_3957467fc59b18cd9616",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Mit PESISTH",
+      "url": "https://www.youtube.com/@mitpesisth",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_fb9f860b6134a35d0942",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_0bd325052f265161a04d",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Ryuuga The Crane",
+      "url": "https://www.youtube.com/@RyuugaThecrane",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_42ae75a8a5a6d82fe8d8",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_2ee7673fa6301b276679",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Simon von Crucisburg",
+      "url": "https://www.youtube.com/@SimonVonCrucisburg",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_1a7de3cd2a1a844f3134",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_19c6a9933250c7873db4",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Joro Gumo",
+      "url": "https://www.youtube.com/@Jorogumov",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_dbf180fc9f2acbff4122",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_ee2b24c593d106da972a",
+      "platform": "tiktok",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Joro Gumo",
+      "url": "https://www.tiktok.com/@jorogumov",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_16632af33e994228d4fe",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_aec098775e8fec964d78",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "PINTO",
+      "url": "https://www.youtube.com/@pinto__xx",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_87643970245c24990f3c",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_19e7a4523e6a45985fd7",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "EMIL",
+      "url": "https://www.youtube.com/@EmilTheSpaceSheep",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_a67f21eae24f501f9d75",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_029df66e7f880e47c611",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Hakka",
+      "url": "https://www.youtube.com/@HakkaV",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_2d0a81fab74c09bfbc2d",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_6135fadfa587b1d1648a",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Kylanz",
+      "url": "https://www.youtube.com/@Kylanz_KLZ",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_1ddfa403ddee75931670",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_3fa12dbaa7302ef0221a",
+      "platform": "tiktok",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Kylanz",
+      "url": "https://www.tiktok.com/@kylanz_KLZ",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_bc9c00ea412236dc1947",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_dd132eed8f7672b36ad1",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Logan U Stryker",
+      "url": "https://www.youtube.com/@urStrykerVtuber",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_c93800466f74da410eb2",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_95cfa329652c577ba45c",
+      "platform": "twitch",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Logan U Stryker",
+      "url": "https://www.twitch.tv/urstrykervtuber",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_b4a810726c0fd5f1dbc8",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_27907feb50f553b4e115",
+      "platform": "tiktok",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Logan U Stryker",
+      "url": "https://www.tiktok.com/@urstryker",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_bfbb67baec83a19111a2",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_ee409d7ed82e95f6d64b",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Seikou iMinato",
+      "url": "https://www.youtube.com/@i.Minato7",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_bd38026f37dffe10cd39",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_128b9c11e98b2c588be7",
+      "platform": "twitch",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Seikou iMinato",
+      "url": "https://www.twitch.tv/seikou_iminato",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_0fc38c2a8d00b696b719",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_1f4908a0b30aef74f87c",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Howl",
+      "url": "https://www.youtube.com/@Howl_FVP",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_97b3945744855dfa3263",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_e8fd7e7b9f5420b27e49",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Kyoya Keiran",
+      "url": "https://www.youtube.com/@kyoyavtuber",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_4ca7bc076f660c1dbe19",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_cf2e4525abb337bf1328",
+      "platform": "tiktok",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Kyoya Keiran",
+      "url": "https://www.tiktok.com/@kyoya.vtuber",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_f5f84bac9c016d30e25c",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_6db79167b05740052bc6",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Rainbows Fukio",
+      "url": "https://www.youtube.com/@Fukio_VT",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_4e8fc07f43be32dbc55f",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_05e9319fa904951ee256",
+      "platform": "twitch",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Rainbows Fukio",
+      "url": "https://www.twitch.tv/fukio_vt",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_2a21cbc1ef9e2cdab1e0",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_d342f78aba23594e96ef",
+      "platform": "tiktok",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Rainbows Fukio",
+      "url": "https://www.tiktok.com/@rainbows_fukio42",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_a73e96831f0d5d74536a",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_42ea2ac6ecdf55febec1",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Nostradamus Karasu",
+      "url": "https://www.youtube.com/@NostradamusKarasu",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_ab38ed18a359aa4b1c51",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_38af6a2fea3df394c3e5",
+      "platform": "tiktok",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Nostradamus Karasu",
+      "url": "https://www.tiktok.com/@nostradamus_karasu",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_e1069ba3905c89af6ab8",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_86a801fc9b0a6fe048a2",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Nihr Farfalla",
+      "url": "https://www.youtube.com/@nihrfarfalla019",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_7a2e5a8418e9abd1c794",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_9b3e3969eedb4fb84e81",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "NoBoRu",
+      "url": "https://www.youtube.com/@NoBoRuCh",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_dd31f0f570cf929a98f9",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_5ec5b53c7d135172c6f5",
+      "platform": "twitch",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "NoBoRu",
+      "url": "https://www.twitch.tv/noboru_oz",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_9c5a61bdcb9302f6c65c",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_a5ad0d4188c370c55782",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Cynthia",
+      "url": "https://www.youtube.com/@CynthiaFvPProject",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_2493229167bb5835e90f",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_d97ae623ab8e77935155",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Lenezmee Dollynx",
+      "url": "https://www.youtube.com/@LenezmeeDollynx_AS",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_a0094cf999efda041d78",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "candidate_c36b8be3efc0e3b3941f",
+      "platform": "youtube",
+      "platform_id": null,
+      "id_namespace": null,
+      "name": "Usami Bunny",
+      "url": "https://www.youtube.com/@USAMIBUNNY",
+      "review_status": "needs_evidence",
+      "account_id": null,
+      "evidence_id": "ev_5e8e6aeaf6db01b7f1ae",
+      "reviewer": null,
+      "reviewed_at": null
+    }
+  ],
+  "discovery_runs": [
+    {
+      "id": "run_523ecc6242dd4cc367d5",
+      "platform": "facebook",
+      "method": "manual_search",
+      "query": "hololist.net/category/th + #VtuberTH 2026-09-16 gap fill",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "stop_reason": "manual_batch",
+      "pages": 0,
+      "records_seen": 2
+    },
+    {
+      "id": "run_4bd6d2dd011361714e1d",
+      "platform": "instagram",
+      "method": "manual_search",
+      "query": "hololist.net/category/th + #VtuberTH 2026-09-16 gap fill",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "stop_reason": "manual_batch",
+      "pages": 0,
+      "records_seen": 6
+    },
+    {
+      "id": "run_c169fb5d048ce8d33741",
+      "platform": "linktree",
+      "method": "manual_search",
+      "query": "hololist.net/category/th + #VtuberTH 2026-09-16 gap fill",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "stop_reason": "manual_batch",
+      "pages": 0,
+      "records_seen": 1
+    },
+    {
+      "id": "run_70cb7f2ea083f0c41a01",
+      "platform": "litlink",
+      "method": "manual_search",
+      "query": "hololist.net/category/th + #VtuberTH 2026-09-16 gap fill",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "stop_reason": "manual_batch",
+      "pages": 0,
+      "records_seen": 2
+    },
+    {
+      "id": "run_64895ca13a23e3fd53a6",
+      "platform": "tiktok",
+      "method": "manual_search",
+      "query": "hololist.net/category/th + #VtuberTH 2026-09-16 gap fill",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "stop_reason": "manual_batch",
+      "pages": 0,
+      "records_seen": 8
+    },
+    {
+      "id": "run_1243f99bd5e4415b0fc5",
+      "platform": "twitch",
+      "method": "manual_search",
+      "query": "hololist.net/category/th + #VtuberTH 2026-09-16 gap fill",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "stop_reason": "manual_batch",
+      "pages": 0,
+      "records_seen": 5
+    },
+    {
+      "id": "run_abd8910f91fa68335065",
+      "platform": "x",
+      "method": "manual_search",
+      "query": "hololist.net/category/th + #VtuberTH 2026-09-16 gap fill",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "stop_reason": "manual_batch",
+      "pages": 0,
+      "records_seen": 28
+    },
+    {
+      "id": "run_a9c12919851ee38b620d",
+      "platform": "youtube",
+      "method": "manual_search",
+      "query": "hololist.net/category/th + #VtuberTH 2026-09-16 gap fill",
+      "observed_at": "2026-09-16T16:00:00+00:00",
+      "stop_reason": "manual_batch",
+      "pages": 0,
+      "records_seen": 22
+    }
+  ],
+  "discovery_hits": [
+    {
+      "id": "hit_5433390e02fc62aa9330",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_bb148800f5bd48c76036",
+      "evidence_id": "ev_3787ffe52d4b41cd39d0"
+    },
+    {
+      "id": "hit_b4ace4d1aeccb7650597",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_30fef3465256bc6ff349",
+      "candidate_id": null,
+      "evidence_id": "ev_011f38c857a0d66a2aa7"
+    },
+    {
+      "id": "hit_5f5aa863b650bf77e9d8",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": "acct_9cc249ca3d71e1d4fcaa",
+      "candidate_id": null,
+      "evidence_id": "ev_661f9ed8641aaf43ade7"
+    },
+    {
+      "id": "hit_5e4e407e0b78c2b8cf17",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_0ebc6d6fe30a75e9bf14",
+      "candidate_id": null,
+      "evidence_id": "ev_117326c66be69fc10ef3"
+    },
+    {
+      "id": "hit_48d85013614f5ee660a4",
+      "run_id": "run_4bd6d2dd011361714e1d",
+      "account_id": "acct_9153e0a4b3559280b7a6",
+      "candidate_id": null,
+      "evidence_id": "ev_8919e88ac19392d8f34e"
+    },
+    {
+      "id": "hit_daf678e43bcc2c0e0927",
+      "run_id": "run_64895ca13a23e3fd53a6",
+      "account_id": null,
+      "candidate_id": "candidate_5b4bf1bef0fdf2c5252b",
+      "evidence_id": "ev_27f6cae680d9ad733a7f"
+    },
+    {
+      "id": "hit_11a2b77a26ab3bc28bfb",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_568c197127cfcb376461",
+      "evidence_id": "ev_ed5fcbca61668b3715d2"
+    },
+    {
+      "id": "hit_5ed63cae054714342df5",
+      "run_id": "run_1243f99bd5e4415b0fc5",
+      "account_id": null,
+      "candidate_id": "candidate_a332922113d267f92f2b",
+      "evidence_id": "ev_fd0d2f51af12aa08739a"
+    },
+    {
+      "id": "hit_5736c4ae6a72c2bde0a4",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_11d37ac3cc4af3e7130a",
+      "candidate_id": null,
+      "evidence_id": "ev_36d16cf581fa3f337ec5"
+    },
+    {
+      "id": "hit_fcb90a4fcbb32e1956a4",
+      "run_id": "run_64895ca13a23e3fd53a6",
+      "account_id": null,
+      "candidate_id": "candidate_9cf6cfd6d10e0c449c97",
+      "evidence_id": "ev_144acb779528c7b68000"
+    },
+    {
+      "id": "hit_38cd65b92f18244bc276",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_3957467fc59b18cd9616",
+      "evidence_id": "ev_fb9f860b6134a35d0942"
+    },
+    {
+      "id": "hit_e34c99f516ebbba701d6",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_3221cbe6577384d8d37d",
+      "candidate_id": null,
+      "evidence_id": "ev_0629eedf325d515f79f4"
+    },
+    {
+      "id": "hit_56ca2aff451e08426f1b",
+      "run_id": "run_4bd6d2dd011361714e1d",
+      "account_id": "acct_9149917e9ef481c4c3b7",
+      "candidate_id": null,
+      "evidence_id": "ev_ff3076af32e25a22e9a4"
+    },
+    {
+      "id": "hit_16bd5381ad7a73e99cef",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_0bd325052f265161a04d",
+      "evidence_id": "ev_42ae75a8a5a6d82fe8d8"
+    },
+    {
+      "id": "hit_cf43e8efb98a215c2a32",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_9646352af45d11ca54da",
+      "candidate_id": null,
+      "evidence_id": "ev_4bbf7db6746e274257e0"
+    },
+    {
+      "id": "hit_60bb02cc5a5f99fc85af",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_2ee7673fa6301b276679",
+      "evidence_id": "ev_1a7de3cd2a1a844f3134"
+    },
+    {
+      "id": "hit_fefd86ef280c6b71fc78",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_68c63c445cbb336e64ae",
+      "candidate_id": null,
+      "evidence_id": "ev_286adff6585de6745ee5"
+    },
+    {
+      "id": "hit_b3059032815aee9020e7",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_19c6a9933250c7873db4",
+      "evidence_id": "ev_dbf180fc9f2acbff4122"
+    },
+    {
+      "id": "hit_70d7a1c98e9fe5a3fe73",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_8e9e1d60eb6f9bd53acc",
+      "candidate_id": null,
+      "evidence_id": "ev_4aa4fcd0fb1fcf3bd25a"
+    },
+    {
+      "id": "hit_13567bcad7a9dcfcc800",
+      "run_id": "run_4bd6d2dd011361714e1d",
+      "account_id": "acct_b098e95f193cda0d227a",
+      "candidate_id": null,
+      "evidence_id": "ev_69e4ac114b413d2e684b"
+    },
+    {
+      "id": "hit_76a86435dde249ace591",
+      "run_id": "run_64895ca13a23e3fd53a6",
+      "account_id": null,
+      "candidate_id": "candidate_ee2b24c593d106da972a",
+      "evidence_id": "ev_16632af33e994228d4fe"
+    },
+    {
+      "id": "hit_299f2c470b4cf01ad900",
+      "run_id": "run_70cb7f2ea083f0c41a01",
+      "account_id": "acct_281173caa6714011bf33",
+      "candidate_id": null,
+      "evidence_id": "ev_a7d6654cf0d41e9d6d0b"
+    },
+    {
+      "id": "hit_395a71c07fe1b7283330",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_aec098775e8fec964d78",
+      "evidence_id": "ev_87643970245c24990f3c"
+    },
+    {
+      "id": "hit_127490f7f9ea0698b6a2",
+      "run_id": "run_523ecc6242dd4cc367d5",
+      "account_id": "acct_2455c3d262a209860cfa",
+      "candidate_id": null,
+      "evidence_id": "ev_9d454498635949c6902e"
+    },
+    {
+      "id": "hit_f28453f05c0eeec76e6e",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_57c297e32f977db404a7",
+      "candidate_id": null,
+      "evidence_id": "ev_556a3883b2a8be416679"
+    },
+    {
+      "id": "hit_61579ccbb4825861fa5e",
+      "run_id": "run_4bd6d2dd011361714e1d",
+      "account_id": "acct_b433905f2a35b393bef2",
+      "candidate_id": null,
+      "evidence_id": "ev_d25b56c061ce1cc2c670"
+    },
+    {
+      "id": "hit_413e9011e934fa61f7c2",
+      "run_id": "run_70cb7f2ea083f0c41a01",
+      "account_id": "acct_bcc6506323c5f81f25cd",
+      "candidate_id": null,
+      "evidence_id": "ev_cae192d69b69cbdd143c"
+    },
+    {
+      "id": "hit_65107a5c71ffa8928ba1",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_19e7a4523e6a45985fd7",
+      "evidence_id": "ev_a67f21eae24f501f9d75"
+    },
+    {
+      "id": "hit_0fad7ea730d130542ec1",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_29d00e552219dcd8d3f5",
+      "candidate_id": null,
+      "evidence_id": "ev_777b7a0ad4befdee8b8e"
+    },
+    {
+      "id": "hit_45cfa4d507edb3990d29",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_029df66e7f880e47c611",
+      "evidence_id": "ev_2d0a81fab74c09bfbc2d"
+    },
+    {
+      "id": "hit_ab3bb16dd5bc83d72f84",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_e23587ee21cc268da055",
+      "candidate_id": null,
+      "evidence_id": "ev_d7f373af02a040f35128"
+    },
+    {
+      "id": "hit_5cf0fc906f67c7693b38",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_6135fadfa587b1d1648a",
+      "evidence_id": "ev_1ddfa403ddee75931670"
+    },
+    {
+      "id": "hit_8c967aeaaa09e63bb9b8",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_c959e7ee1b6df86da2ec",
+      "candidate_id": null,
+      "evidence_id": "ev_5405ae9b056f1812e84b"
+    },
+    {
+      "id": "hit_c0532431397db76666dd",
+      "run_id": "run_4bd6d2dd011361714e1d",
+      "account_id": "acct_1c6d1ef3023019de2230",
+      "candidate_id": null,
+      "evidence_id": "ev_d8253a9eb8f0ec20df05"
+    },
+    {
+      "id": "hit_bd2b2b429e886ae57b05",
+      "run_id": "run_64895ca13a23e3fd53a6",
+      "account_id": null,
+      "candidate_id": "candidate_3fa12dbaa7302ef0221a",
+      "evidence_id": "ev_bc9c00ea412236dc1947"
+    },
+    {
+      "id": "hit_249316af6cd8261bb160",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_dd132eed8f7672b36ad1",
+      "evidence_id": "ev_c93800466f74da410eb2"
+    },
+    {
+      "id": "hit_b2c37541c858858ce9c7",
+      "run_id": "run_1243f99bd5e4415b0fc5",
+      "account_id": null,
+      "candidate_id": "candidate_95cfa329652c577ba45c",
+      "evidence_id": "ev_b4a810726c0fd5f1dbc8"
+    },
+    {
+      "id": "hit_b162827a8cee04edbfc7",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_3bd21c198c9f4522d69b",
+      "candidate_id": null,
+      "evidence_id": "ev_654ec8da76efb28152d0"
+    },
+    {
+      "id": "hit_ecb459ea243cf3a964ff",
+      "run_id": "run_64895ca13a23e3fd53a6",
+      "account_id": null,
+      "candidate_id": "candidate_27907feb50f553b4e115",
+      "evidence_id": "ev_bfbb67baec83a19111a2"
+    },
+    {
+      "id": "hit_2d104daf9c44e35a5d05",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_ee409d7ed82e95f6d64b",
+      "evidence_id": "ev_bd38026f37dffe10cd39"
+    },
+    {
+      "id": "hit_db34c924460a62b99e23",
+      "run_id": "run_1243f99bd5e4415b0fc5",
+      "account_id": null,
+      "candidate_id": "candidate_128b9c11e98b2c588be7",
+      "evidence_id": "ev_0fc38c2a8d00b696b719"
+    },
+    {
+      "id": "hit_16f626295c243ee9106d",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_3b69d31c90264a6aaca5",
+      "candidate_id": null,
+      "evidence_id": "ev_14fc6ab69845e159e9c7"
+    },
+    {
+      "id": "hit_2e8f69a65a0254d5843e",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_1f4908a0b30aef74f87c",
+      "evidence_id": "ev_97b3945744855dfa3263"
+    },
+    {
+      "id": "hit_68d06a291e5c4b7ba068",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_1a77df755dff21fb1229",
+      "candidate_id": null,
+      "evidence_id": "ev_baae304e1aff0c0bc208"
+    },
+    {
+      "id": "hit_5dbfe0e796d37894779e",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_e8fd7e7b9f5420b27e49",
+      "evidence_id": "ev_4ca7bc076f660c1dbe19"
+    },
+    {
+      "id": "hit_0dce50ab2f222c4d02c9",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_00dab9b538b304b1134a",
+      "candidate_id": null,
+      "evidence_id": "ev_ed3a8c287160ea7c6f00"
+    },
+    {
+      "id": "hit_afba8d4e817e74a29c4b",
+      "run_id": "run_64895ca13a23e3fd53a6",
+      "account_id": null,
+      "candidate_id": "candidate_cf2e4525abb337bf1328",
+      "evidence_id": "ev_f5f84bac9c016d30e25c"
+    },
+    {
+      "id": "hit_8b017a47578887dbbf10",
+      "run_id": "run_c169fb5d048ce8d33741",
+      "account_id": "acct_df2bd179895547df23d0",
+      "candidate_id": null,
+      "evidence_id": "ev_f9291f7e474599a389d8"
+    },
+    {
+      "id": "hit_bf74a709470c17937861",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_6db79167b05740052bc6",
+      "evidence_id": "ev_4e8fc07f43be32dbc55f"
+    },
+    {
+      "id": "hit_bb1696d7ed4e1636d74d",
+      "run_id": "run_1243f99bd5e4415b0fc5",
+      "account_id": null,
+      "candidate_id": "candidate_05e9319fa904951ee256",
+      "evidence_id": "ev_2a21cbc1ef9e2cdab1e0"
+    },
+    {
+      "id": "hit_ee9e2a399015872d18d8",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_9226a2c62283482c5c0c",
+      "candidate_id": null,
+      "evidence_id": "ev_e0145198defc34c11655"
+    },
+    {
+      "id": "hit_f9b5b22723e8ee492ab3",
+      "run_id": "run_64895ca13a23e3fd53a6",
+      "account_id": null,
+      "candidate_id": "candidate_d342f78aba23594e96ef",
+      "evidence_id": "ev_a73e96831f0d5d74536a"
+    },
+    {
+      "id": "hit_4f23ec81f0b4f225fb93",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_42ea2ac6ecdf55febec1",
+      "evidence_id": "ev_ab38ed18a359aa4b1c51"
+    },
+    {
+      "id": "hit_a1b0b73acd2810b086f3",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_891683f65b83d07bb039",
+      "candidate_id": null,
+      "evidence_id": "ev_99c8be7f61de649987ba"
+    },
+    {
+      "id": "hit_d69cd42e2f35228af235",
+      "run_id": "run_64895ca13a23e3fd53a6",
+      "account_id": null,
+      "candidate_id": "candidate_38af6a2fea3df394c3e5",
+      "evidence_id": "ev_e1069ba3905c89af6ab8"
+    },
+    {
+      "id": "hit_13a7c19d71de4142e4a4",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_86a801fc9b0a6fe048a2",
+      "evidence_id": "ev_7a2e5a8418e9abd1c794"
+    },
+    {
+      "id": "hit_db6b4eca1cc4f17cef48",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_81c5a7176fb020410bdb",
+      "candidate_id": null,
+      "evidence_id": "ev_7bafe51a0b76de287e50"
+    },
+    {
+      "id": "hit_c1d6dcf50a66bf604232",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_9b3e3969eedb4fb84e81",
+      "evidence_id": "ev_dd31f0f570cf929a98f9"
+    },
+    {
+      "id": "hit_7fd23e54fa0edfa0a91b",
+      "run_id": "run_1243f99bd5e4415b0fc5",
+      "account_id": null,
+      "candidate_id": "candidate_5ec5b53c7d135172c6f5",
+      "evidence_id": "ev_9c5a61bdcb9302f6c65c"
+    },
+    {
+      "id": "hit_0f31169a2e9d9adc0dc4",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_0e0182d96e43637d23e4",
+      "candidate_id": null,
+      "evidence_id": "ev_da902f2d78aea472d68a"
+    },
+    {
+      "id": "hit_e6ab98e287807deb6c34",
+      "run_id": "run_4bd6d2dd011361714e1d",
+      "account_id": "acct_cb337dfa33b6027b612a",
+      "candidate_id": null,
+      "evidence_id": "ev_6feb8460e1807a31e2f6"
+    },
+    {
+      "id": "hit_b93504a076a81015348a",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_a5ad0d4188c370c55782",
+      "evidence_id": "ev_2493229167bb5835e90f"
+    },
+    {
+      "id": "hit_07fc2b616c4626d9feb1",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_d6de3f920310c3018634",
+      "candidate_id": null,
+      "evidence_id": "ev_29c13a8761b128accf60"
+    },
+    {
+      "id": "hit_63563b533d4dbe500980",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_d97ae623ab8e77935155",
+      "evidence_id": "ev_a0094cf999efda041d78"
+    },
+    {
+      "id": "hit_e1729271d25c59c1f955",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_c7d02bff6666645b7390",
+      "candidate_id": null,
+      "evidence_id": "ev_54e92d93b2ee3c6eb634"
+    },
+    {
+      "id": "hit_2d509606b9ca7beceacb",
+      "run_id": "run_a9c12919851ee38b620d",
+      "account_id": null,
+      "candidate_id": "candidate_c36b8be3efc0e3b3941f",
+      "evidence_id": "ev_5e8e6aeaf6db01b7f1ae"
+    },
+    {
+      "id": "hit_82a2f91e549e5e9acd0c",
+      "run_id": "run_523ecc6242dd4cc367d5",
+      "account_id": "acct_6ec69e3b5826d78a8c56",
+      "candidate_id": null,
+      "evidence_id": "ev_1174eb63e459610ded1d"
+    },
+    {
+      "id": "hit_f213cac44b0b4927c13b",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_879f931353d51be3f7a9",
+      "candidate_id": null,
+      "evidence_id": "ev_ddd566338ab578ddb819"
+    },
+    {
+      "id": "hit_36631b3bbd1d7b7e1603",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_7aeda83fe914972205ca",
+      "candidate_id": null,
+      "evidence_id": "ev_c0b07922a504171cb7f1"
+    },
+    {
+      "id": "hit_c690d627a0270bae07c2",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_7c2355c4ef9c6b3dd2d6",
+      "candidate_id": null,
+      "evidence_id": "ev_3992e968e5255f558c45"
+    },
+    {
+      "id": "hit_8b4a1f0b33aef788a66d",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_1775a83fadc82bba5b8e",
+      "candidate_id": null,
+      "evidence_id": "ev_bc6ad0f56d3012a99bf3"
+    },
+    {
+      "id": "hit_ee60830f39c3ae2b6137",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_df97f8b83ae677c37fd7",
+      "candidate_id": null,
+      "evidence_id": "ev_661fff7a31d2fec88c9a"
+    },
+    {
+      "id": "hit_edb8b8e77c974169ad6a",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_172153df619208c6fa4c",
+      "candidate_id": null,
+      "evidence_id": "ev_973b733dcb1ff78ce3fc"
+    },
+    {
+      "id": "hit_cdde474a1517858611b5",
+      "run_id": "run_abd8910f91fa68335065",
+      "account_id": "acct_5aa14587c4e1c597f273",
+      "candidate_id": null,
+      "evidence_id": "ev_e30d0d1a1b438854e99d"
+    }
+  ],
+  "affiliations": [
+    {
+      "id": "aff_918ea12f037ab194f1f5",
+      "persona_id": "persona_6f5c7afe6e9085c3b05f",
+      "organization": "4AM",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_67336c55bec1823a7d74",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "aff_66113d81fb726c896a22",
+      "persona_id": "persona_c8a2a3d5f9e915054fef",
+      "organization": "4AM",
+      "valid_from": "2024-12-14",
+      "valid_to": null,
+      "evidence_id": "ev_71a233ffdd86abe01db7",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "aff_f773a3652f04e2c08dee",
+      "persona_id": "persona_4b950bae9521bdada92b",
+      "organization": "Ti19t",
+      "valid_from": "2024-04-13",
+      "valid_to": null,
+      "evidence_id": "ev_4cb3068f1d4c52f57ab9",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "aff_2c1f4775d7cd9ae60e48",
+      "persona_id": "persona_f3ac52ae514adc62f9f8",
+      "organization": "Ti19t",
+      "valid_from": "2024-04-07",
+      "valid_to": null,
+      "evidence_id": "ev_8001a49e208f6939766b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "aff_965402377301392d9c62",
+      "persona_id": "persona_3707f0e93bfbba799463",
+      "organization": "Ti19t",
+      "valid_from": "2022-02-05",
+      "valid_to": null,
+      "evidence_id": "ev_eaedcb8abe93a7cc0826",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "aff_ae6b1301b8cdb06098b8",
+      "persona_id": "persona_0d59ce62c1b5c1174a3c",
+      "organization": "Ti19t",
+      "valid_from": "2025-04-23",
+      "valid_to": null,
+      "evidence_id": "ev_4ed099453d75cf1dd644",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "aff_e0702a6ab3cd74fc2439",
+      "persona_id": "persona_c9ce72887adc6a9b9913",
+      "organization": "FvP Project",
+      "valid_from": "2024-10-25",
+      "valid_to": null,
+      "evidence_id": "ev_3e6e368ae0901b4ad00f",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "aff_93eaf562822e1a967c31",
+      "persona_id": "persona_0e69af0d96020bfa1c3b",
+      "organization": "Sky Rise Project",
+      "valid_from": "2024-10-25",
+      "valid_to": null,
+      "evidence_id": "ev_25c983392c39dd51d971",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "aff_0024c0a42a690124afba",
+      "persona_id": "persona_75770df8891acb3b0504",
+      "organization": "4AM",
+      "valid_from": "2022-10-09",
+      "valid_to": "2025-08-15",
+      "evidence_id": "ev_3ab03f483d7990a85c4e",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "aff_3652facc0b7d7db80099",
+      "persona_id": "persona_66672eed824eb1a63e9c",
+      "organization": "FvP Project",
+      "valid_from": "2022-10-29",
+      "valid_to": "2023-04-16",
+      "evidence_id": "ev_0b4400f7af8a5d713c2b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "aff_0ca74ebfa32529b25148",
+      "persona_id": "persona_1bc44543dda15931d9cf",
+      "organization": "AStars Production",
+      "valid_from": "2024-08-28",
+      "valid_to": "2024-12-26",
+      "evidence_id": "ev_b806f8ab36ac5f2ee084",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "aff_981fff5a2f10ec27e86d",
+      "persona_id": "persona_0f387b725aa2421677ed",
+      "organization": "HAJITABI",
+      "valid_from": null,
+      "valid_to": "2022-08-31",
+      "evidence_id": "ev_afca96eb8fe98376300b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "aff_e864da0569de7c4e619a",
+      "persona_id": "persona_662d0fcab89be08f20e1",
+      "organization": "Zanctuary Project",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_e507d9e69ee97a758eea",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "aff_fb5491b42355a3f2861d",
+      "persona_id": "persona_e296d01fe0a6cd96471c",
+      "organization": "V.W.Y",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_d7480447b8a4af4db903",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null
+    }
+  ],
+  "lifecycle_events": [
+    {
+      "id": "life_b48f00100d5f81493afa",
+      "persona_id": "persona_9c8d12e5abd66935aa68",
+      "event_type": "debut",
+      "event_date": "2025-11-05",
+      "date_precision": "day",
+      "evidence_id": "ev_eb1551301c46622ce0e2",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/carina-aquarius/; not first-party verified."
+    },
+    {
+      "id": "life_0da099e904591b513b5d",
+      "persona_id": "persona_6f5c7afe6e9085c3b05f",
+      "event_type": "debut",
+      "event_date": null,
+      "date_precision": "unknown",
+      "evidence_id": "ev_67336c55bec1823a7d74",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/liyin/; not first-party verified."
+    },
+    {
+      "id": "life_9fafd560b94c74f3969e",
+      "persona_id": "persona_ea6554693f3ab11ded5e",
+      "event_type": "debut",
+      "event_date": null,
+      "date_precision": "unknown",
+      "evidence_id": "ev_7517bc7bf8376b5b69b3",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/zabrina/; not first-party verified."
+    },
+    {
+      "id": "life_f3affa58c9a0aec1d51e",
+      "persona_id": "persona_c8a2a3d5f9e915054fef",
+      "event_type": "debut",
+      "event_date": "2024-12-14",
+      "date_precision": "day",
+      "evidence_id": "ev_71a233ffdd86abe01db7",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/mit-pesisth/; not first-party verified."
+    },
+    {
+      "id": "life_39ee8f829e173aed8c47",
+      "persona_id": "persona_e58298576a7526ad26bc",
+      "event_type": "debut",
+      "event_date": null,
+      "date_precision": "unknown",
+      "evidence_id": "ev_b75390d925276e55f46b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/ryuuga-the-crane/; not first-party verified."
+    },
+    {
+      "id": "life_1ed47c7c9e04d508c9c4",
+      "persona_id": "persona_dd7c3e8c837cc0957f3d",
+      "event_type": "debut",
+      "event_date": "2025-06-30",
+      "date_precision": "day",
+      "evidence_id": "ev_8f6c63c5fcf153c20a38",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/simon-von-crucisburg/; not first-party verified."
+    },
+    {
+      "id": "life_a22ac690c198685810e9",
+      "persona_id": "persona_4b950bae9521bdada92b",
+      "event_type": "debut",
+      "event_date": "2024-04-13",
+      "date_precision": "day",
+      "evidence_id": "ev_4cb3068f1d4c52f57ab9",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/joro-gumo/; not first-party verified."
+    },
+    {
+      "id": "life_e3c0d599d3f2eb989bcd",
+      "persona_id": "persona_f3ac52ae514adc62f9f8",
+      "event_type": "debut",
+      "event_date": "2024-04-07",
+      "date_precision": "day",
+      "evidence_id": "ev_8001a49e208f6939766b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/pinto/; not first-party verified."
+    },
+    {
+      "id": "life_808a0b39401ac68a91d1",
+      "persona_id": "persona_3707f0e93bfbba799463",
+      "event_type": "debut",
+      "event_date": "2022-02-05",
+      "date_precision": "day",
+      "evidence_id": "ev_eaedcb8abe93a7cc0826",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/emil/; not first-party verified."
+    },
+    {
+      "id": "life_396b59adb7eb094e9602",
+      "persona_id": "persona_0d59ce62c1b5c1174a3c",
+      "event_type": "debut",
+      "event_date": "2025-04-23",
+      "date_precision": "day",
+      "evidence_id": "ev_4ed099453d75cf1dd644",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/hakka/; not first-party verified."
+    },
+    {
+      "id": "life_ebbe29f30bfc78a87403",
+      "persona_id": "persona_5efe72eab4e5d5231e0a",
+      "event_type": "debut",
+      "event_date": "2024-05-22",
+      "date_precision": "day",
+      "evidence_id": "ev_46288c3989d2daaa5077",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/kylanz/; not first-party verified."
+    },
+    {
+      "id": "life_e7390b62229e5a0f0158",
+      "persona_id": "persona_8261000752396c56dec6",
+      "event_type": "debut",
+      "event_date": "2023-03-27",
+      "date_precision": "day",
+      "evidence_id": "ev_7ffde5a647b8506ebe3b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/logan-u-stryker/; not first-party verified."
+    },
+    {
+      "id": "life_8462001646f719072866",
+      "persona_id": "persona_dcbfc242c4c1198a1dbd",
+      "event_type": "debut",
+      "event_date": "2024-08-10",
+      "date_precision": "day",
+      "evidence_id": "ev_42050065e94e428e86a3",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/seikou-iminato/; not first-party verified."
+    },
+    {
+      "id": "life_fd0b093b53477cca5b68",
+      "persona_id": "persona_c9ce72887adc6a9b9913",
+      "event_type": "debut",
+      "event_date": "2024-10-25",
+      "date_precision": "day",
+      "evidence_id": "ev_3e6e368ae0901b4ad00f",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/howl/; not first-party verified."
+    },
+    {
+      "id": "life_3e0fb972524bdd34f3f8",
+      "persona_id": "persona_0e69af0d96020bfa1c3b",
+      "event_type": "debut",
+      "event_date": "2024-10-25",
+      "date_precision": "day",
+      "evidence_id": "ev_25c983392c39dd51d971",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/kyoya-keiran/; not first-party verified."
+    },
+    {
+      "id": "life_145e0667a0befd259c63",
+      "persona_id": "persona_69145160a5bb56ba8265",
+      "event_type": "debut",
+      "event_date": "2023-11-01",
+      "date_precision": "day",
+      "evidence_id": "ev_525b660fe3535cc61aca",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/rainbows-fukio/; not first-party verified."
+    },
+    {
+      "id": "life_95023f6a0cd3ee54943a",
+      "persona_id": "persona_f950c5c09fec76a5c3a4",
+      "event_type": "debut",
+      "event_date": "2023-08-13",
+      "date_precision": "day",
+      "evidence_id": "ev_c70f1c375b7aa918ed7c",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/nostradamus-karasu/; not first-party verified."
+    },
+    {
+      "id": "life_220b71f70902c58e531a",
+      "persona_id": "persona_75770df8891acb3b0504",
+      "event_type": "debut",
+      "event_date": "2022-10-09",
+      "date_precision": "day",
+      "evidence_id": "ev_3ab03f483d7990a85c4e",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/nihr-farfalla/; not first-party verified."
+    },
+    {
+      "id": "life_f1094696dfb512141205",
+      "persona_id": "persona_75770df8891acb3b0504",
+      "event_type": "graduation",
+      "event_date": "2025-08-15",
+      "date_precision": "day",
+      "evidence_id": "ev_3ab03f483d7990a85c4e",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Retirement/graduation date from discovery source https://hololist.net/nihr-farfalla/; not first-party verified."
+    },
+    {
+      "id": "life_e61c0974ee14e0cf77d0",
+      "persona_id": "persona_6939b57ea784abac9934",
+      "event_type": "debut",
+      "event_date": null,
+      "date_precision": "unknown",
+      "evidence_id": "ev_55d8fe0838a72afd8935",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/noboru/; not first-party verified."
+    },
+    {
+      "id": "life_ad45794d77c50bf6e75c",
+      "persona_id": "persona_6939b57ea784abac9934",
+      "event_type": "graduation",
+      "event_date": "2025-06-30",
+      "date_precision": "day",
+      "evidence_id": "ev_55d8fe0838a72afd8935",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Retirement/graduation date from discovery source https://hololist.net/noboru/; not first-party verified."
+    },
+    {
+      "id": "life_4f9282aa60c3f658ebf3",
+      "persona_id": "persona_66672eed824eb1a63e9c",
+      "event_type": "debut",
+      "event_date": "2022-10-29",
+      "date_precision": "day",
+      "evidence_id": "ev_0b4400f7af8a5d713c2b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/cynthia/; not first-party verified."
+    },
+    {
+      "id": "life_ab720855e665c68c44a8",
+      "persona_id": "persona_66672eed824eb1a63e9c",
+      "event_type": "graduation",
+      "event_date": "2023-04-16",
+      "date_precision": "day",
+      "evidence_id": "ev_0b4400f7af8a5d713c2b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Retirement/graduation date from discovery source https://hololist.net/cynthia/; not first-party verified."
+    },
+    {
+      "id": "life_0a50d0a1473676797542",
+      "persona_id": "persona_1bc44543dda15931d9cf",
+      "event_type": "debut",
+      "event_date": "2024-08-28",
+      "date_precision": "day",
+      "evidence_id": "ev_b806f8ab36ac5f2ee084",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/lenezmee-dollynx/; not first-party verified."
+    },
+    {
+      "id": "life_c9550122bcffe1f6fbd1",
+      "persona_id": "persona_1bc44543dda15931d9cf",
+      "event_type": "graduation",
+      "event_date": "2024-12-26",
+      "date_precision": "day",
+      "evidence_id": "ev_b806f8ab36ac5f2ee084",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Retirement/graduation date from discovery source https://hololist.net/lenezmee-dollynx/; not first-party verified."
+    },
+    {
+      "id": "life_c8479c6b6bc1e84e8bec",
+      "persona_id": "persona_0f387b725aa2421677ed",
+      "event_type": "debut",
+      "event_date": null,
+      "date_precision": "unknown",
+      "evidence_id": "ev_afca96eb8fe98376300b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://hololist.net/usami-bunny/; not first-party verified."
+    },
+    {
+      "id": "life_523ee63ddc71e809a250",
+      "persona_id": "persona_0f387b725aa2421677ed",
+      "event_type": "graduation",
+      "event_date": "2022-08-31",
+      "date_precision": "day",
+      "evidence_id": "ev_afca96eb8fe98376300b",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Retirement/graduation date from discovery source https://hololist.net/usami-bunny/; not first-party verified."
+    },
+    {
+      "id": "life_5fcb46928147ff77cfc3",
+      "persona_id": "persona_79a3f0c028dca956ed91",
+      "event_type": "debut",
+      "event_date": "2026-10",
+      "date_precision": "month",
+      "evidence_id": "ev_a1cd472b917d07c50560",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://x.com/KirariEsu_VT/status/2100204807583871028; not first-party verified."
+    },
+    {
+      "id": "life_37075dc08f70c297d373",
+      "persona_id": "persona_b63eb3d7581a3b506d0c",
+      "event_type": "debut",
+      "event_date": null,
+      "date_precision": "unknown",
+      "evidence_id": "ev_1d036aef0ef9a80fa28d",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://x.com/Kennedy_MeowVT/status/2100186693768995146; not first-party verified."
+    },
+    {
+      "id": "life_7f6251a037641255c12f",
+      "persona_id": "persona_fb165701bb8655c27dbf",
+      "event_type": "debut",
+      "event_date": "2026-10-21",
+      "date_precision": "day",
+      "evidence_id": "ev_667e802470e34628473c",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://x.com/NLattee59689/status/2100143904234316009; not first-party verified."
+    },
+    {
+      "id": "life_e3eaf758f8440de93f9f",
+      "persona_id": "persona_e214c634a4735e8cedd9",
+      "event_type": "debut",
+      "event_date": "2026-12",
+      "date_precision": "month",
+      "evidence_id": "ev_3e6922a6782e3c63d5cf",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://x.com/Esme_Mew/status/2099841201944014850; not first-party verified."
+    },
+    {
+      "id": "life_8933b68cce13b9624c60",
+      "persona_id": "persona_662d0fcab89be08f20e1",
+      "event_type": "debut",
+      "event_date": null,
+      "date_precision": "unknown",
+      "evidence_id": "ev_e507d9e69ee97a758eea",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://x.com/ZTP_project; not first-party verified."
+    },
+    {
+      "id": "life_d8061fb586dd02c5a2b9",
+      "persona_id": "persona_e296d01fe0a6cd96471c",
+      "event_type": "debut",
+      "event_date": null,
+      "date_precision": "unknown",
+      "evidence_id": "ev_d7480447b8a4af4db903",
+      "review_status": "needs_evidence",
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": "Debut date from discovery source https://x.com/Shion_VWY/status/2100162782562070658; not first-party verified."
+    }
+  ]
+}

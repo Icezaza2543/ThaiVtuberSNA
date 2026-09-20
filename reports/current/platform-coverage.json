@@ -1,0 +1,174 @@
+{
+  "created_at": "2026-09-17T17:31:57.020804+00:00",
+  "source_registry_sha256": "0c6a6ea4ed07b16876b956bd5163721c6efeaa03dbaa98b9d607960192c331a4",
+  "count_semantics": "Current reviewed platform presence, not dated activity. A missing platform is unknown, not absent. Coverage fields retain the registry coverage command semantics.",
+  "coverage": {
+    "youtube": {
+      "total_accounts": 1400,
+      "verified_accounts": 676,
+      "candidate_leads": 313,
+      "stable_id_available": 1417
+    },
+    "twitch": {
+      "total_accounts": 845,
+      "verified_accounts": 385,
+      "candidate_leads": 49,
+      "stable_id_available": 989
+    },
+    "tiktok": {
+      "total_accounts": 962,
+      "verified_accounts": 686,
+      "candidate_leads": 87,
+      "stable_id_available": 1059
+    },
+    "facebook": {
+      "total_accounts": 211,
+      "verified_accounts": 135,
+      "candidate_leads": 8,
+      "stable_id_available": 211
+    },
+    "instagram": {
+      "total_accounts": 120,
+      "verified_accounts": 80,
+      "candidate_leads": 2,
+      "stable_id_available": 120
+    },
+    "x": {
+      "total_accounts": 1150,
+      "verified_accounts": 651,
+      "candidate_leads": 127,
+      "stable_id_available": 1150
+    },
+    "kick": {
+      "total_accounts": 2,
+      "verified_accounts": 2,
+      "candidate_leads": 0,
+      "stable_id_available": 2
+    },
+    "ganknow": {
+      "total_accounts": 28,
+      "verified_accounts": 23,
+      "candidate_leads": 3,
+      "stable_id_available": 28
+    },
+    "bilibili": {
+      "total_accounts": 0,
+      "verified_accounts": 0,
+      "candidate_leads": 0,
+      "stable_id_available": 0
+    },
+    "niconico": {
+      "total_accounts": 0,
+      "verified_accounts": 0,
+      "candidate_leads": 0,
+      "stable_id_available": 0
+    },
+    "carrd": {
+      "total_accounts": 0,
+      "verified_accounts": 0,
+      "candidate_leads": 0,
+      "stable_id_available": 0
+    },
+    "linktree": {
+      "total_accounts": 1,
+      "verified_accounts": 1,
+      "candidate_leads": 14,
+      "stable_id_available": 1
+    },
+    "litlink": {
+      "total_accounts": 2,
+      "verified_accounts": 1,
+      "candidate_leads": 0,
+      "stable_id_available": 2
+    },
+    "kofi": {
+      "total_accounts": 0,
+      "verified_accounts": 0,
+      "candidate_leads": 0,
+      "stable_id_available": 0
+    },
+    "patreon": {
+      "total_accounts": 0,
+      "verified_accounts": 0,
+      "candidate_leads": 0,
+      "stable_id_available": 0
+    },
+    "vgen": {
+      "total_accounts": 0,
+      "verified_accounts": 0,
+      "candidate_leads": 0,
+      "stable_id_available": 0
+    },
+    "website": {
+      "total_accounts": 0,
+      "verified_accounts": 0,
+      "candidate_leads": 18,
+      "stable_id_available": 0
+    }
+  },
+  "sna": {
+    "created_at": "2026-09-17T17:31:57.020804+00:00",
+    "verified_personas": 873,
+    "verified_accounts": 2640,
+    "verified_links": 2671,
+    "platform_account_counts": {
+      "youtube": 676,
+      "tiktok": 686,
+      "twitch": 385,
+      "x": 651,
+      "instagram": 80,
+      "facebook": 135,
+      "ganknow": 23,
+      "linktree": 1,
+      "kick": 2,
+      "litlink": 1
+    },
+    "personas_with_1_platform": 198,
+    "personas_with_2_platforms": 30,
+    "personas_with_3plus_platforms": 644,
+    "multi_platform_personas": 674,
+    "platform_combinations": {
+      "tiktok + x + youtube": 279,
+      "tiktok + twitch + x + youtube": 124,
+      "tiktok": 112,
+      "twitch": 68,
+      "twitch + x + youtube": 64,
+      "facebook + tiktok + twitch + x + youtube": 33,
+      "facebook + instagram + tiktok + twitch + x + youtube": 25,
+      "facebook + tiktok + x + youtube": 23,
+      "tiktok + youtube": 21,
+      "facebook + instagram + tiktok + x + youtube": 16,
+      "x": 16,
+      "facebook + twitch + x + youtube": 15,
+      "tiktok + twitch + youtube": 10,
+      "instagram + tiktok + twitch + x + youtube": 9,
+      "instagram + tiktok + x + youtube": 9,
+      "ganknow + tiktok + twitch + x + youtube": 6,
+      "instagram + twitch + x + youtube": 5,
+      "ganknow + tiktok + x + youtube": 5,
+      "twitch + youtube": 5,
+      "facebook + ganknow + tiktok + twitch + x + youtube": 4,
+      "ganknow + instagram + tiktok + twitch + x + youtube": 4,
+      "x + youtube": 4,
+      "facebook + instagram + twitch + x + youtube": 3,
+      "facebook + ganknow + tiktok + x + youtube": 2,
+      "youtube": 2,
+      "facebook + ganknow + instagram + tiktok + twitch + x + youtube": 1,
+      "facebook + instagram + kick + tiktok + twitch + x + youtube": 1,
+      "facebook + instagram + kick + tiktok + x + youtube": 1,
+      "facebook + ganknow + instagram + tiktok + x + youtube": 1,
+      "instagram + litlink + tiktok + youtube": 1,
+      "linktree + tiktok + x + youtube": 1,
+      "facebook + tiktok + youtube": 1,
+      "facebook + twitch + youtube": 1,
+      "no_verified_account": 1
+    },
+    "tri_platform_yt_tw_tt": 217,
+    "missing_youtube": 197,
+    "missing_twitch": 495,
+    "missing_tiktok": 184,
+    "missing_x": 222,
+    "missing_facebook": 746,
+    "missing_instagram": 797
+  }
+}

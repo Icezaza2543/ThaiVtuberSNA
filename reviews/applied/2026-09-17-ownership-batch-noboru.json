@@ -1,0 +1,26 @@
+{
+  "evidence": [
+    {
+      "id": "ev_noboru_yt_owner",
+      "url": "https://www.youtube.com/channel/UCnbzFCOWYTBTIe9a3aUlKkg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T11:35:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "First-party public YouTube channel NoBoRu Ch. (stable ID UCnbzFCOWYTBTIe9a3aUlKkg) confirmed by owner review on 2026-09-17. Provides verified account ownership for persona NoBoRu."
+    }
+  ],
+  "account_links": [
+    {
+      "id": "link_noboru_yt",
+      "account_id": "acct_1c9ea1f212118f108ea5",
+      "persona_id": "persona_6939b57ea784abac9934",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_noboru_yt_owner",
+      "review_status": "verified",
+      "reviewer": "agent:first-party-review",
+      "reviewed_at": "2026-09-17T11:35:00+00:00"
+    }
+  ]
+}

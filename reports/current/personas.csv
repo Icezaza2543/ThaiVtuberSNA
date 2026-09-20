@@ -1,0 +1,896 @@
+id,name,format,roles,thai_relation,review_status,evidence_id,reviewer,reviewed_at
+persona_001be49453233f2be6b1,Athrun Tyto Alba🪺,unknown,"[""entertainer""]",thai_language,verified,ev_861b22eccaf458503e1d,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_002769ca92c54b73a0c1,ขนปุย,unknown,"[""entertainer""]",thai_language,verified,ev_82400f90adecd4dc31e3,grok:creator-link-pipeline,2026-09-16T12:02:58.803699+00:00
+persona_00d863942d9e8e1ad66a,Zoomdesu,unknown,"[""entertainer""]",thai_language,verified,ev_477df9ec2f7b7112d5e1,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_00f09527b1df7e80b99d,Akemi Arlin Ch. Pixela Legends,unknown,"[""entertainer""]",thai_language,verified,ev_2d046a50edf560f76382,grok:creator-link-pipeline,2026-09-16T11:35:15.131569+00:00
+persona_010e1f350f083e1d8e09,Wynn Carwin | OAL,unknown,"[""entertainer""]",thai_language,verified,ev_0acba6503485901b8aba,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_0128e935fdccf0bd93f6,Oatsukaresan「ECR」,unknown,"[""entertainer""]",thai_language,verified,ev_ee6880604a970e4c3300,grok:creator-link-pipeline,2026-09-16T11:35:15.121895+00:00
+persona_01927ca640eb730dfa99,Ricotta_ARP,unknown,"[""entertainer""]",thai_language,verified,ev_e524b7c5b0fd1f7997e7,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_023661b20e6860e5f7e3,RaneeTani『VTG』,unknown,"[""entertainer""]",thai_language,verified,ev_908215516002c6da94a3,grok:creator-link-pipeline,2026-09-16T11:35:15.140445+00:00
+persona_023b6115145bc5fba57c,Mumumoomoo,unknown,"[""entertainer""]",thai_language,verified,ev_ffdf3e5e69c308596876,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_02441cf0ee5c23638cd3,Hanacutebaby,unknown,"[""entertainer""]",thai_language,verified,ev_70566d0b519edb46bcb4,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_024d3fa94c600f25e89a,thicha vtuber,unknown,"[""artist"", ""streamer""]",thai_language,verified,ev_1297fa7ec074fac81f77,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_028cd95c3953fbebf348,NutsuruSama,unknown,"[""streamer""]",thai_language,verified,ev_e2f5dabbd906afd7c922,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_02c55ca0fdd54c733e82,Ginokami Aki Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_00662f7a5ac011e04e3a,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_03639081e9f40befa48f,Merryl Wayne,unknown,"[""entertainer""]",thai_language,verified,ev_dc9739ed97b39adf055d,grok:creator-link-pipeline,2026-09-16T11:35:15.120787+00:00
+persona_03abf28cfc1120e1aea5,yoinmori,unknown,"[""entertainer""]",thai_language,verified,ev_10dfb793b027ea5c5ced,grok:creator-link-pipeline,2026-09-16T11:35:15.143581+00:00
+persona_03cf6f083fd0fb418a60,Chiharu ch.「TRR」,unknown,"[""entertainer""]",thai_language,verified,ev_5617a6f90abb5ce9fba9,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_04257a1aae916876113c,Vellva Koray Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_dfc395817bc054cc3563,grok:creator-link-pipeline,2026-09-16T11:35:15.142851+00:00
+persona_045735efb6fc1dfbfb8e,Yuuta Natsuki,unknown,"[""entertainer""]",thai_language,verified,ev_1172504340cbc0e3bd9b,grok:creator-link-pipeline,2026-09-16T11:35:15.125181+00:00
+persona_04764d2eedc13c925a99,Rahhatem【PSM】,unknown,"[""entertainer""]",thai_language,verified,ev_c2c220e2eb99bf1594a8,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_04ccbdb1fca1d185e53f,StunKung,unknown,"[""entertainer""]",thai_language,verified,ev_296a7d8027c1cc27ae07,grok:creator-link-pipeline,2026-09-16T11:35:15.130354+00:00
+persona_04efbfcfbc0f65cd38b7,acintunz,unknown,"[""streamer""]",thai_language,verified,ev_aedaf0e093e99d6d0099,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_04f6a96f8a7470bdf7bf,Urara Momomi,unknown,"[""entertainer""]",thai_language,verified,ev_5ed7e792ffc61e80c787,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_0545b9328aa4cc05691a,kurogumaan,unknown,"[""entertainer""]",thai_language,verified,ev_7b00256cdbf8d4072d1b,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_055953cb5ac91aada9bb,Weirlos ch.,unknown,"[""entertainer""]",thai_language,verified,ev_f422a4656416d114f0b9,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_059bf65b58aa399d886a,Savi【21PM】,unknown,"[""educator""]",thai_language,verified,ev_cac1a209a053d8ce0a76,codex:public-persona-review,2026-09-13T06:36:47.795555+00:00
+persona_05fe4abf1db3fb06dfc7,Shirou Ch.,unknown,"[""entertainer""]",thai_community,verified,ev_339c14a2f6162542d219,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_0604d83514a4ac0751a0,Kay0Chi,unknown,"[""streamer""]",thai_language,verified,ev_2bdcde8d49064782c306,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_064a796a4cbbb6ccd0a8,Faye Ashefort,unknown,"[""entertainer""]",thai_language,verified,ev_c952d5d684650c2a25cf,grok:creator-link-pipeline,2026-09-16T11:35:15.134249+00:00
+persona_06b2fd07f10be3d62a4c,Housagi ch. Euphora,unknown,"[""entertainer""]",thai_language,verified,ev_219d982ed19cee6a36bf,grok:creator-link-pipeline,2026-09-16T12:02:58.810096+00:00
+persona_06f4f1b8114fac9e2c60,Ziika ⌜VZ⌟,unknown,"[""singer""]",thai_language,verified,ev_6fbcbf32cbb3a540fd9b,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_07351c0f864177c751a6,MyxNyxx,unknown,"[""streamer""]",thai_language,verified,ev_3ee39ddfada856248140,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_0739db951130007d9789,Chiiaki Jellyfishkun,unknown,"[""entertainer""]",thai_language,verified,ev_e33ab80aad65c0a5b43c,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_07b22fe181b309fbb2dd,Mor9an🐕🥗 『VFree』,unknown,"[""entertainer""]",thai_language,verified,ev_4eb7b742f4d426632b22,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_07b95607ea1e0bb4b722,TARIN,unknown,"[""entertainer""]",thai_language,verified,ev_6cfeb47bac62045fe687,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_07ddbf737aef76ddbc2f,PlatinumRankWrath | V-Storyteller,unknown,"[""entertainer""]",thai_language,verified,ev_c8cdbecffb3d76ec74cc,grok:creator-link-pipeline,2026-09-16T11:35:15.122121+00:00
+persona_0853564a0b2fc2cd07f0,LittleG ch. Euphora,unknown,"[""entertainer""]",thai_language,verified,ev_1a1562e92f5b466c77a7,grok:creator-link-pipeline,2026-09-16T12:02:58.799548+00:00
+persona_08ba3585524b664d28fa,Manami Neko Ch.,3d,"[""entertainer""]",thai_language,verified,ev_8455342f3a8d781f2a9a,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_08d77dc86b6dd5b74bab,Punquix,unknown,"[""entertainer""]",thai_language,verified,ev_eea6e4c88a80454b93ba,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_08f3e1af5a5933cf62a6,Genbu Ch.《ISP》,unknown,"[""entertainer""]",thai_language,verified,ev_5d461283abdcba29c13b,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_09182c99cc10f6bd4760,โป๊ะโกะ / PoKo ปลวกทูปเบ๋อ,unknown,"[""entertainer""]",thai_language,verified,ev_184d0bdac825fd75e547,grok:creator-link-pipeline,2026-09-16T11:35:15.139979+00:00
+persona_09b67bfdf1ed0e15df29,masumikyou,unknown,"[""entertainer""]",thai_language,verified,ev_0b0e8be8754ca43e8fa3,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_0a11c25945c2b2c6b451,Val 5332,unknown,"[""entertainer""]",thai_language,verified,ev_7dd05126e1d5b4aa3b41,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_0a1bc2ffb4f9ab04612c,MillYBilL,unknown,"[""entertainer""]",thai_language,verified,ev_ba60a5c631dd6c8dc77e,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_0a57e96e7bf343630f51,Maew Baew,unknown,"[""entertainer""]",thai_language,verified,ev_9b3dbb20f57e44e9640b,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_0aa6aa514f8693ed7ba7,Freyrina,unknown,"[""entertainer""]",thai_language,verified,ev_48e80918b8d8a5ac37c5,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_0ab402c3b72288d72f5f,Laibaht / หลายบาท,unknown,"[""entertainer""]",thai_language,verified,ev_be0f34df97d84bcb2a9a,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_0b327f4d4474fcdc8cbd,chizizfa666,unknown,"[""streamer""]",thai_language,verified,ev_42b56f0e7590d9f8abea,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_0b43c18d4c0e5c24c377,YuusaYorumo,unknown,"[""streamer""]",thai_language,verified,ev_1d14bdbe354737cc94ba,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_0b4b75705941ed357cc7,Zhenzhen Ch. 【SSR】,unknown,"[""entertainer""]",thai_language,verified,ev_2cbff5f6fb4ed4661437,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_0b55478885e7d2e2a53e,Lyneth Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_99b213b29fefec2ea1e3,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_0b554d003190bb97a883,CIEL『 𝗘𝗣𝗥 』.Vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_7bd1c34a6a23e7231fa0,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_0b5fe6d07a38ddefde3f,PondChan CH,unknown,"[""entertainer""]",thai_language,verified,ev_dbf1cd566faecb2879fd,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_0bd6ca4db99510d4587b,Roselia de Magentia Ch. Pixela S,unknown,"[""entertainer""]",thai_language,verified,ev_549e7a862816e6cdd925,grok:creator-link-pipeline,2026-09-16T11:35:15.141079+00:00
+persona_0be6cdb329ba76a6c537,ผีอีมาลัย (EC19 Project),unknown,"[""entertainer""]",thai_language,verified,ev_f5ff9b4999fc65d1496f,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_0bf11d0b03b31a5e4dc0,3AM virtual ghost | ตีสาม,unknown,"[""entertainer""]",thai_language,verified,ev_8a544f33fb3839f52a09,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_0c1cb2257c28346fe92b,Eranthia ch.,unknown,"[""entertainer""]",thai_language,verified,ev_e4c6fc7bfc8ed4d99cc8,grok:creator-link-pipeline,2026-09-16T11:35:15.133997+00:00
+persona_0cdf1c7236621e88b96a,Riel Tabiji-VtuberTH,unknown,"[""entertainer""]",thai_language,verified,ev_7ce882b85ebb8d3a06a9,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_0cf3d9bcd2c031ed6167,Biscuit Blythe Ch. Pixela Destiny,unknown,"[""entertainer""]",thai_language,verified,ev_5c2a82c7abf605d1c563,grok:creator-link-pipeline,2026-09-16T11:35:15.133243+00:00
+persona_0d1a3f4d7d446ecd2f6e,ZOECVC,unknown,"[""entertainer""]",thai_language,verified,ev_b245a85dede9fd012e44,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_0d596dbc69e6213fc181,nasarisekinei_,unknown,"[""streamer""]",thai_language,verified,ev_83d3be8777de25018324,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_0d59ce62c1b5c1174a3c,Hakka,unknown,"[""streamer""]",multiple,verified,ev_297bdf1197137ca26506,ChatGPT,2026-09-16T15:38:46.627996+00:00
+persona_0dab7eef82a8cf9926e0,navylucifervwy,unknown,"[""entertainer""]",thai_language,verified,ev_4f55a1545d8a12f2a51c,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_0e15b600d870523880a9,Salvia 💜,unknown,"[""entertainer""]",thai_language,verified,ev_46c8bb260a8af45ae5dd,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_0e69af0d96020bfa1c3b,Kyoya Keiran,unknown,"[""streamer""]",thai_language,verified,ev_e204e879aa3423eeff3a,ChatGPT,2026-09-16T15:38:46.627996+00:00
+persona_0e753cd246114f7ec35b,Puinoon プイヌン,unknown,"[""entertainer""]",thai_language,verified,ev_941e94f90071fd09b420,grok:creator-link-pipeline,2026-09-16T11:35:15.127084+00:00
+persona_0e7a9edd76247d22f6af,Lania Ch『VW』,unknown,"[""entertainer""]",thai_language,verified,ev_5b5776e5c5bbcf85d7e9,grok:creator-link-pipeline,2026-09-16T11:35:15.146717+00:00
+persona_0eaa17533abf48468f65,Alizabyleth,unknown,"[""streamer""]",thai_language,rejected,ev_3541d91a8dbb5f04fcb3,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_0ee3691a673efa36a3e5,CheezySteaks,unknown,"[""entertainer""]",thai_language,verified,ev_dea9c7d6c6475f85085d,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_0f2ab02f381bb1574074,ChaoPlaThong,unknown,"[""entertainer""]",thai_language,verified,ev_39d264805186214b29d0,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_0f387b725aa2421677ed,Usami Bunny,live2d,"[""streamer""]",multiple,verified,ev_67c1d5d2a8ade4969802,owner:manual-review,2026-09-17T10:05:00+00:00
+persona_0f3cbb37d42bcc9459f5,Caelith Hoshizora,unknown,"[""entertainer""]",thai_language,verified,ev_123f646ee5880edac9f4,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_0f56b3c423e11c111f97,chatacloveron,unknown,"[""streamer""]",thai_language,rejected,ev_87b1f70f13cecf7d4910,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_0f65c2b497b8a8d4e580,SapD,unknown,"[""entertainer""]",thai_language,verified,ev_6d914b1e0f92d148e17a,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_0f705de9d309b15f4bb5,Notaki Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_245c8d4ac49fceb0a176,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_0fa0007632b589fb81aa,sheathchannel,unknown,"[""streamer""]",thai_language,verified,ev_ce202d77c8e9d41af2af,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_10344a8990d8587db93e,PAres Spacedog『Berlina•ECR』,unknown,"[""entertainer""]",thai_language,verified,ev_a4a8375cd3c898d95917,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_107e69b228a2184d1ade,Shirowashi Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_3062f592305aa442c32a,grok:creator-link-pipeline,2026-09-16T11:41:53.636277+00:00
+persona_1118af06c081eea56b26,Mina_falala VtuberTH,unknown,"[""entertainer""]",thai_language,verified,ev_5b1b04738081a25a02b5,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_11312e8deb3cb00d4c80,Tsukiko かざん,unknown,"[""artist"", ""entertainer""]",thai_language,verified,ev_c5abb31472fe0ab38978,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_11fd2c28536db1e35bb8,soulyuuvtuber,unknown,"[""streamer""]",thai_language,verified,ev_fb8406ff2ec1828cdd43,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_12a06d7fb9d569cd6e02,Woofna ch. ,unknown,"[""entertainer""]",thai_language,verified,ev_7509a638120ce17dc86f,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_1368f40c341f7ad44a29,Remisde || Vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_cd296edd636471a55a0f,grok:creator-link-pipeline,2026-09-16T11:35:15.122463+00:00
+persona_13d8981299058a192c99,Laychlype「ALF」,unknown,"[""entertainer""]",thai_language,verified,ev_a3bc5fbc4c3acccc5c3a,grok:creator-link-pipeline,2026-09-16T11:35:15.119427+00:00
+persona_1468189aade73d3e7664,KamiReiv,unknown,"[""streamer""]",thai_language,verified,ev_5d52aa583e36a46884fa,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_14b8f42f445a9aedcf17,Maiyara_21pm,unknown,"[""streamer""]",thai_language,verified,ev_d78220f268a10d5fe99b,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_14cdb0d5581b875104e0,zinnia,unknown,"[""entertainer""]",thai_language,verified,ev_c4d78c475a54d732f45e,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_14de395d99900bfb3705,Lyon De Gladiolus,unknown,"[""entertainer""]",thai_language,verified,ev_076a491e2036805b4525,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_15e4e04e8d2a7bef5b5d,SEIREKI,unknown,"[""streamer""]",thai_language,verified,ev_337ba3ae4357deab59d0,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_16206163343e52842431,Jibara​ Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_bf73d5690b6029b44db2,grok:creator-link-pipeline,2026-09-16T12:02:58.815816+00:00
+persona_167fe504c60f9f0600b6,KissCross,unknown,"[""entertainer""]",thai_language,verified,ev_bf91b34c2927e6e62bea,grok:creator-link-pipeline,2026-09-16T11:35:15.118703+00:00
+persona_1736e32cde8dc656bc03,Akari Kanon,unknown,"[""entertainer""]",thai_language,verified,ev_59b9b2169329ca193484,grok:creator-link-pipeline,2026-09-16T11:35:15.127962+00:00
+persona_181ba750a4b9b9f2eea9,NoA Noaris,unknown,"[""entertainer""]",thai_language,verified,ev_ca3b3681974d7f1baaaa,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_1839c4580e59e5fc2e3d,MOLLY,unknown,"[""entertainer""]",thai_language,verified,ev_0e565de84cb51b24d81e,grok:creator-link-pipeline,2026-09-16T11:35:15.138381+00:00
+persona_18ba8067f27dceb85bdf,Keelin_Peryton,unknown,"[""streamer""]",thai_language,rejected,ev_f08dc43eadb54ba44594,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_193ed9b38deef2246a10,Fuka Vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_ced7a723cc753b579a09,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_199f95eb460dbc4fd2db,AelegosSunOfaeminch.,unknown,"[""entertainer""]",thai_language,verified,ev_3e338b735b2600fd036c,grok:creator-link-pipeline,2026-09-16T11:35:15.115097+00:00
+persona_1a517119f28e2737e04b,ponnanta1,unknown,"[""streamer""]",thai_language,verified,ev_55162f2d54034ae80cdf,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_1ae80a6cf3ef0d469000,Retsu_Red,unknown,"[""entertainer""]",thai_language,verified,ev_48028364d15c033a30ac,grok:creator-link-pipeline,2026-09-16T11:35:15.140794+00:00
+persona_1aeb08f64a8efa948881,Pugmaru_VTube,unknown,"[""entertainer""]",thai_language,verified,ev_c6a5c0b71e03030ed515,grok:creator-link-pipeline,2026-09-16T12:02:58.798912+00:00
+persona_1b63529b34846f01b588,Tsuruko Channel,unknown,"[""entertainer""]",thai_language,verified,ev_831e64bb9bd4398249aa,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_1b723ac6228f8225e797,Seabunnyi,unknown,"[""entertainer""]",thai_language,verified,ev_ab0a1a18625e87b3dba3,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_1b887bf1748bb299e121,M3R0 ch.,unknown,"[""entertainer""]",thai_language,verified,ev_06ea73a4c11dfae98a67,grok:creator-link-pipeline,2026-09-16T12:02:58.797439+00:00
+persona_1b93f15d837f61855e8d,FuMoon Dayooo,unknown,"[""entertainer""]",thai_language,verified,ev_a18b4e67caca0a1c7859,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_1bc44543dda15931d9cf,Lenezmee Dollynx,live2d,"[""streamer""]",multiple,verified,ev_fe174827a35a6e5f861e,owner:manual-review,2026-09-17T10:05:00+00:00
+persona_1bf7f80ef32db44bf487,LuA_Mikina🌙💤,unknown,"[""entertainer""]",thai_language,verified,ev_66773ebf894aa61ffe20,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_1bff81b6263a10743c43,Cliche Ch.〖SSR〗,unknown,"[""entertainer""]",thai_language,verified,ev_018cee6b807c26e1871d,grok:creator-link-pipeline,2026-09-16T12:02:58.808242+00:00
+persona_1c63f58a052570a572e6,Pimkishy,unknown,"[""entertainer""]",thai_language,verified,ev_112dd49bbd682363aa0b,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_1ca6fdc18136ed417ae2,"""คาเอ็น"" KAEN Official",unknown,"[""entertainer""]",thai_language,verified,ev_5d9d2ef100b2355c22b8,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_1cd549e7a63adfa349fe,Grimus Grimm Ch. Pixela Destiny,unknown,"[""entertainer""]",thai_language,verified,ev_b731bd860d6b28058a96,grok:creator-link-pipeline,2026-09-16T12:02:58.809596+00:00
+persona_1d49f85cbcd0f5c521aa,LIMESALTZ Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_b22cc216169cec9c6ec6,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_1e41c7e8458a63ec2dc2,Keelin Peryton🦌🕊💎,unknown,"[""entertainer""]",thai_language,verified,ev_bbc07af0d78c07bf8a70,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_1f1ccc018ff4d154b424,Quentin Ch.【ARP】,unknown,"[""entertainer""]",thai_language,verified,ev_b6f2b208c427e7616fbc,grok:creator-link-pipeline,2026-09-16T12:02:58.812785+00:00
+persona_1f4407dbce7f41dfbcef,TheQuillmon ⌜VZ⌟,unknown,"[""entertainer""]",thai_community,verified,ev_07bfcc91a98d05d60c53,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_1f7b4ea5a196e5836427,Milyni Tivona【BLP】,unknown,"[""entertainer""]",thai_language,verified,ev_6fd3203564933bbb09e0,grok:creator-link-pipeline,2026-09-16T11:35:15.121014+00:00
+persona_1fb24ca488c0428282ad,StellarParticle,unknown,"[""streamer""]",thai_language,rejected,ev_1407ae92e06c7d6aed03,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_1fc8a949c70e9e81437b,Kaylef Orion,unknown,"[""entertainer""]",thai_language,verified,ev_cefdf33ddf5c6e9be61f,grok:creator-link-pipeline,2026-09-16T11:35:15.118312+00:00
+persona_2001be38e8b2018982ea,VenusLapirus,unknown,"[""streamer""]",thai_language,verified,ev_5e1a34e9d54d1b18b9db,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_20f3ce9925873cf75604,Aki Masamune Ch. / AStars Chrono prince,unknown,"[""entertainer""]",thai_language,verified,ev_b3bd2632c9cdd944e424,grok:creator-link-pipeline,2026-09-16T12:02:58.806542+00:00
+persona_215d1b534338985f2a01,Scentharmony,unknown,"[""entertainer""]",thai_language,verified,ev_4aac3f37364c337261e6,grok:creator-link-pipeline,2026-09-16T11:35:15.123255+00:00
+persona_2170a10e867c0fc76788,Chloe J. Park Ch. | VTUBER,unknown,"[""entertainer""]",thai_language,verified,ev_fa2513301fee6a14c1d7,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_21bdb306d7d74156893f,In0suke,unknown,"[""entertainer""]",thai_language,verified,ev_c28ad91bca9a8748b0bf,grok:creator-link-pipeline,2026-09-16T11:35:15.126358+00:00
+persona_21c44b79ec809e9f52e7,Biru [ビール],unknown,"[""entertainer""]",thai_language,verified,ev_a1871b62830491e084bf,grok:creator-link-pipeline,2026-09-16T11:41:53.634428+00:00
+persona_222f17cef971c700fb9f,Nebluu,unknown,"[""streamer""]",thai_language,verified,ev_094d294f7501f8950717,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_229a2db80e669e369df5,MeltildaVT Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_f39326a19df1be145321,grok:creator-link-pipeline,2026-09-16T11:35:15.120575+00:00
+persona_236b15f696519e6d27bd,Samuel1571,3d,"[""streamer""]",thai_language,verified,ev_f6f90c493cf5573387bf,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_23a0914665f623fcf109,tinsleythefox,unknown,"[""entertainer""]",thai_language,verified,ev_dab1add1c2a1c66a1cb7,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_23b8f1f16079a1dc4706,Kashina CH.,unknown,"[""entertainer""]",thai_language,verified,ev_456025728cf9f3f31b76,grok:creator-link-pipeline,2026-09-16T12:02:58.803890+00:00
+persona_2421bc1e705dff7d7797,Vivian V. Wendell [ VtuberTH ],unknown,"[""entertainer""]",thai_language,verified,ev_02511d65ed75f0d49b39,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_24a048f7740cfc35f870,GraZiaSaMa,unknown,"[""streamer""]",thai_language,rejected,ev_4cfa40279ceaff6f3788,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_250e9d70e239d2ef2afb,PPoooonn Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_93a4fe58a7a51451024c,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_2511d92d8893b7949cd2,霧死 - Kirishi,unknown,"[""entertainer""]",thai_language,verified,ev_2b738950f69679a85050,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_253c44a006a88803075a,Donovan Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_74154d6db98640b5d1f1,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_2573f34b165be946e239,KiyomiChan943,unknown,"[""streamer""]",thai_language,verified,ev_7ce0170d32213684341e,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_258adc2ddfe1c1ffec55,Sen Koretane Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_f38a41409619d33d3df9,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_25ea43e0d090a6f7458c,LamuJung official  🐬,unknown,"[""entertainer""]",thai_language,verified,ev_f13fd18878e1a2bb5310,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_266e8598512a0c759a1f,Maikumira,unknown,"[""entertainer""]",thai_language,verified,ev_e8f6b0c0fa8403fd4d8b,grok:creator-link-pipeline,2026-09-16T11:35:15.126930+00:00
+persona_269e09b4b15565754695,khunCHANII,unknown,"[""entertainer""]",thai_language,verified,ev_65e07f81dd20ef7bc1f8,grok:creator-link-pipeline,2026-09-16T11:35:15.136202+00:00
+persona_26a33caa21a448048bab,JayVounter,unknown,"[""entertainer""]",thai_language,verified,ev_997648de06950b7faa41,grok:creator-link-pipeline,2026-09-16T11:35:15.117582+00:00
+persona_272e46e18a547361a5cb,MymelloOo,unknown,"[""entertainer""]",thai_language,verified,ev_e847594d3f99a1e478f2,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_2752dff6a446c1a2694d,Jisooman Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_83ac3713794bd4ace06c,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_278807f454b6ec99ff17,Arithmos Ch.,unknown,"[""educator""]",thai_language,verified,ev_e1f3448c4c0dc9bbdf39,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_278c47589dc964e94b53,Catta.,unknown,"[""entertainer""]",thai_language,verified,ev_62e8201ab9a5307c97de,grok:creator-link-pipeline,2026-09-16T11:35:15.133487+00:00
+persona_278c5444d5101dc1081c,miyu_385pj,unknown,"[""streamer""]",thai_language,verified,ev_27574542873763932138,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_279692a361f27777fd06,น้องมะม่วง TV,unknown,"[""entertainer""]",thai_language,verified,ev_817d9bdd217a1ffc6141,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_279e29a94f4bc9d7409a,Mikadzuki Nammy,unknown,"[""entertainer""]",thai_language,verified,ev_99835b6e4ea09fe2507b,grok:creator-link-pipeline,2026-09-16T11:35:15.139094+00:00
+persona_28433daa3e6baa13be0c,WitchyTheSlime,unknown,"[""entertainer""]",thai_language,verified,ev_86b50d49b5c267d00f0d,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_28b4429aa9a40a04c7d3,QueenSere.Physia Ch,unknown,"[""entertainer""]",thai_language,verified,ev_3931eabf6cae3d22e2e5,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_298f300261500fffee75,Viva Vtuber [TH],unknown,"[""entertainer""]",thai_language,verified,ev_0724221e9575ac472993,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_2a299b96142a11cd9c9a,SUMM3R ⌜VZ⌟,unknown,"[""entertainer""]",thai_community,verified,ev_18d2784f99dbcf12ad4a,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_2ac559478fc1d87143a6,Freyrainefr,unknown,"[""streamer""]",thai_language,rejected,ev_47fa9eccc0ff92295a46,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_2bcfe65df539c94bfa8b,ANT4ZIN,unknown,"[""entertainer""]",thai_language,verified,ev_0714e2355fc7b16a5a1f,grok:creator-link-pipeline,2026-09-16T11:35:15.115586+00:00
+persona_2c6939cf038b7a2770fe,inoriaijou,unknown,"[""entertainer""]",thai_language,verified,ev_3725f0986e9772897d93,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_2cf2699ba6fcabad816e,Adrelis Zinya「ALF」🔥👊🏻,unknown,"[""entertainer""]",thai_language,verified,ev_0419cf321792209f84dd,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_2dcfdc859b4f9100a651,vendetta_vlazy,unknown,"[""streamer""]",thai_language,verified,ev_2ed91c09a57e955dd1dc,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_2dff6f1eeefc1cf7b0c4,KingSlime_Ch_Vth,unknown,"[""streamer""]",thai_language,rejected,ev_a1acd79d3ce08348ed76,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_2e07dc5dc472f69b3429,Kurosawa Karwara〖Autumnia〗,unknown,"[""entertainer""]",thai_language,verified,ev_78f3ed2d81ca76a616f3,grok:creator-link-pipeline,2026-09-16T12:02:58.799201+00:00
+persona_2e1bb42e71dd3b8d983c,Raizuu,unknown,"[""entertainer""]",thai_language,verified,ev_b36b6063217f145695ac,grok:creator-link-pipeline,2026-09-16T11:35:15.140208+00:00
+persona_2e27db7136ed0f18e50c,S1R Ch.【ARP】,unknown,"[""entertainer""]",thai_language,verified,ev_b3bc15e9e315d67d35d7,grok:creator-link-pipeline,2026-09-16T12:02:58.805476+00:00
+persona_2edfd76ff25ee44a5db7,YamaTengu,unknown,"[""entertainer""]",thai_language,verified,ev_6c1012f7b5cc3126bbf3,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_2fa469681dd14663a77e,onishinkim03,unknown,"[""entertainer""]",thai_language,verified,ev_0600a4d20e8a1c0f7bfd,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_2fe023a84e93c44afe40,JaoKat \ ジャオカットくん,unknown,"[""entertainer""]",thai_language,verified,ev_10b305ff9646ca330c4c,grok:creator-link-pipeline,2026-09-16T11:41:53.636772+00:00
+persona_2ffa79b5b6500262de3c,Amane Rei,unknown,"[""singer""]",thai_language,verified,ev_d7aec21c58f6683cb760,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_3052f6c1c6b0937ae501,M a l l o w  Ch.,unknown,"[""entertainer""]",thai_community,verified,ev_9e00f0127076e0aa5e88,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_309f5bba617af36dce99,sapphire_melon,unknown,"[""streamer""]",thai_language,verified,ev_4c573b79f012d44526f1,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_3116bca19afd3ff7f741,Salvatore Ch.『 VNV 』,unknown,"[""entertainer""]",thai_language,verified,ev_d1f09136ab08c9c1f700,grok:creator-link-pipeline,2026-09-16T12:02:58.800912+00:00
+persona_31c680f3ef439e452c85,GNTGxd,unknown,"[""entertainer""]",thai_language,verified,ev_b78c475c6033a0705e7d,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_31f6a98baec0f9015d4f,Klangkhuen / กลางคืน,unknown,"[""entertainer""]",thai_language,verified,ev_8b2039ac6f4885af8000,grok:creator-link-pipeline,2026-09-16T11:35:15.136560+00:00
+persona_31fcf4c85f4a72ce29c4,The Black Wolf (PoLin),unknown,"[""entertainer""]",thai_language,verified,ev_3e2f2419ef4da665f889,grok:creator-link-pipeline,2026-09-16T11:35:15.130074+00:00
+persona_321191fa5765fe1cb7cf,Chloride Fow~♥,unknown,"[""entertainer""]",thai_language,verified,ev_4092d6bf9cb3b00513aa,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_3252846126f873f52690,TOMA Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_f965bce6f77e02b287ca,grok:creator-link-pipeline,2026-09-16T12:02:58.801381+00:00
+persona_32735dcbc7c50bf0d1ea,Kokori 《 OTL 》,unknown,"[""entertainer""]",thai_language,verified,ev_b3bc5a7162943e56f0f7,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_32e3051cb58b0d3e297f,N4NAMi,unknown,"[""entertainer""]",thai_language,verified,ev_3fa8e1b583b6497985e1,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_33116f500d8885a13981,shiorichanvt,unknown,"[""streamer""]",thai_language,verified,ev_dddb56fb58fdea194c5e,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_336c6bbcd9ec99cbf248,วายุ สวรรค์🌪️ลมร้อน| VTuberTH,unknown,"[""entertainer""]",thai_language,verified,ev_6d2a98ec5e56f0cadad3,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_3372e5d21a636b21df04,mayanut,unknown,"[""entertainer""]",thai_language,verified,ev_4144ad9ea8195b88a245,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_33911cdb021f918f1b99,SoujiRoy_CH,unknown,"[""entertainer""]",thai_language,verified,ev_49c501c4fc974cda9c8b,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_33bdbe1a529a56dbbe28,DragoCHAIN,unknown,"[""streamer""]",thai_language,verified,ev_88aac46f63aba1749fee,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_343c125d7dc1d47766bc,ShiroiKumaTan Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_8394630894f5c3acb9b3,grok:creator-link-pipeline,2026-09-16T11:35:15.127518+00:00
+persona_356363508c00fa13c070,Akito ⚔️💙 | VTuber【SOA】,unknown,"[""entertainer""]",thai_language,verified,ev_c7adc0e1558c7799fe80,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_3592af87a1b1f67380db,Noir A.,unknown,"[""entertainer""]",thai_language,verified,ev_a8d12357f8b24b8ca8ac,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_35f9ebfc3bded69316e5,Hanami Lay CH.,unknown,"[""entertainer""]",thai_language,verified,ev_ed6f590800b95fcaf25a,grok:creator-link-pipeline,2026-09-16T11:35:15.135212+00:00
+persona_362e298e30b8da84c5b1,KurishimaRun,unknown,"[""streamer""]",thai_language,verified,ev_e9d29e94c7406a8e3f6b,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_36accf4a459f7bf3f3ef,bambooniffy,unknown,"[""streamer""]",thai_language,verified,ev_4b4c861387aed6befcea,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_36f5a4a2d13a5279d9f9,fayuuchan,unknown,"[""streamer""]",thai_language,verified,ev_f512d27d36395a8f3467,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_3707f0e93bfbba799463,EMIL,unknown,"[""streamer""]",multiple,verified,ev_58c5f2f776b25c327003,ChatGPT,2026-09-16T15:38:46.627996+00:00
+persona_3722c7bdac5486a6818b,Little Lonita 🎀💕 VZ,unknown,"[""entertainer""]",thai_language,verified,ev_c72cef1b0e7f69bd0761,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_373ec7189645d9216730,SoDaChan | Vtuber😺🌰,unknown,"[""entertainer""]",thai_language,verified,ev_a13e61cb85b6c049c292,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_37548aadaf93c13f4397,MaddoxTheOrder,unknown,"[""entertainer""]",thai_language,verified,ev_f0184dffb28c679746cf,grok:creator-link-pipeline,2026-09-16T11:35:15.120001+00:00
+persona_3796ea7707c9ffd85188,Nao_Mukutsuki,unknown,"[""streamer""]",thai_language,verified,ev_cdecfa334f422c0eb7d7,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_37d10be0a6b62df101ae,Karin Ch. 躑躅かりん,unknown,"[""entertainer""]",thai_language,verified,ev_db263910ed718695c448,grok:creator-link-pipeline,2026-09-16T12:02:58.810553+00:00
+persona_39327eaf87c5c9eaffe4,Adama MiSE Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_fd529a5c8c46ed13d796,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_3932b558e67d0b51b7fd,Friskfitz,png,"[""artist"", ""entertainer""]",thai_language,verified,ev_b8476fd4b84d434aa12b,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_394e90e880a4200ca64e,Yor0,unknown,"[""entertainer""]",thai_language,verified,ev_ec99a37b9aa316869b0f,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_3982f70c4a030ac4ac85,fouruary_th,unknown,"[""streamer""]",thai_language,verified,ev_76cbf7987b011be252d9,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_39a33a743681d3a45856,ChiaraEsperanza,unknown,"[""streamer""]",thai_language,verified,ev_9fbec11d0d3a1db53f6b,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_3a5d7deddd8b14302b06,Myrrha Enchanté Ch. [Autumnia],unknown,"[""entertainer""]",thai_language,verified,ev_c6bfea2370e68c4ff4b3,grok:creator-link-pipeline,2026-09-16T12:02:58.804537+00:00
+persona_3b5213b7e3261b1a7afc,เจ้าเวทย์อันเดอร์สกอร์วีที,unknown,"[""entertainer""]",thai_language,verified,ev_617591783f3b46ea7488,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_3c04325f790d67e891ea,Aika,unknown,"[""entertainer""]",thai_language,verified,ev_0a43df67b8c808d493ef,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_3c16db225b77bd73f1f9,Feirong 飛荣《ATX》,unknown,"[""entertainer""]",thai_language,verified,ev_8c0fbafb7441564149e6,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_3c19cddd5a74c839e55f,BakurinS,unknown,"[""entertainer""]",thai_language,verified,ev_56a2fe8d51113f32e6e9,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_3ca06570697a60ae6c42,Shirin Ch.,unknown,"[""entertainer""]",thai_community,verified,ev_dd26b67cc0c8b605e55e,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_3cebd09e4f24ff7131bd,Navia Whale,unknown,"[""entertainer""]",thai_language,verified,ev_91b0381a13bc7e34b15c,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_3d2bfd776bf9bb69f192,Sataru【21PM】,unknown,"[""entertainer""]",thai_language,verified,ev_efdc4f5bed3bc6f5c0b3,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_3d391561c3f853091fbb,Murasako Reino,unknown,"[""entertainer""]",thai_language,verified,ev_1c8d5248a1275ef5a2cc,grok:creator-link-pipeline,2026-09-16T12:02:58.801549+00:00
+persona_3d5617e66f737282dcfa,Rainnimin,unknown,"[""artist"", ""entertainer""]",thai_language,verified,ev_b85effc85826773d8b21,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_3d83dedd213b7327dfcc,LunaLumIIna 「 PRD 」,unknown,"[""entertainer""]",thai_language,verified,ev_1d57142c560a01bd4abf,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_3de60cbdd96120599079,Linlin ❤️| VtuberTH,unknown,"[""entertainer""]",thai_language,verified,ev_65f82962b232ac3261de,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_3e1723c57373712abc48,yuu.hakugetsu,unknown,"[""entertainer""]",thai_language,verified,ev_d35ad0ad9b060b32f3aa,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_3e8f1343501e23ff43e2,MEILIN CH.,unknown,"[""entertainer""]",thai_language,verified,ev_96a65109454f04d9cb51,grok:creator-link-pipeline,2026-09-16T12:02:58.800141+00:00
+persona_3eb07e11b605a17bd93a,Clairederier,unknown,"[""entertainer""]",thai_language,verified,ev_19818e8d50abb62e3dbb,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_3f02781350f2b96b33e0,Kirine Vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_5767d83516457152b0dd,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_3f8ea7be1ce1637ecc6d,Moe Miyabi ⌜VZ⌟,unknown,"[""entertainer""]",thai_language,verified,ev_d01a39c688a623ca6b8a,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_3fa1684a16e5590f3dbf,Lukami Ch. ルカミ [Lukami Stellaz],unknown,"[""entertainer""]",thai_language,verified,ev_75886d1d0d6173219872,grok:creator-link-pipeline,2026-09-16T12:02:58.802738+00:00
+persona_3fa5b57c5c39cef48d11,Melriz,unknown,"[""entertainer""]",thai_language,verified,ev_385a4a6e3c6fa90d1573,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_3fe0f9303191d3861e87,yamisamadesu,unknown,"[""streamer""]",thai_language,verified,ev_51888169d6f90c56285f,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_40370a1d3f1ad5408183,castasia_vtuber,unknown,"[""streamer""]",thai_language,rejected,ev_5f2f91a0bd6c749427d2,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_404b0842f50d6eaf5b64,DarkPhoenix13Fr,unknown,"[""entertainer""]",thai_language,verified,ev_35a117425a3dc1839858,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_4060a11ec2290e7a6e23,Zekai_ARP,unknown,"[""entertainer""]",thai_language,verified,ev_e36910b6f20af54f58e0,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_40e404a97f7803b6ee50,Whanyen | ViberPro,unknown,"[""entertainer""]",thai_language,verified,ev_c611854b581ce702bf33,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_40f205dd0fc9082d637c,Shishiro Taiga Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_d5a763747b9798c631c2,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_411aa26eeb1d6304e5e0,Cerise Channel,unknown,"[""entertainer""]",thai_language,verified,ev_51a22abe531b98550d25,grok:creator-link-pipeline,2026-09-16T11:35:15.126238+00:00
+persona_428b19c161d8dceed181,Geno Ch.『TST』,unknown,"[""entertainer""]",thai_language,verified,ev_a7377c19055ee14654b6,grok:creator-link-pipeline,2026-09-16T12:02:58.798497+00:00
+persona_42a27b6bdd3bd54ba0ec,Taki Fugu Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_aeb1c4e4cfa044b50dbf,grok:creator-link-pipeline,2026-09-16T11:35:15.124237+00:00
+persona_442e8ab35e96aae8f685,Freyraine Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_a826e51af9eaf2285aa7,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_443ad96dc5d8dc1862e1,ApriRiru,unknown,"[""entertainer""]",thai_language,verified,ev_36dc7ea80f7b327dfe1f,grok:creator-link-pipeline,2026-09-16T11:35:15.132416+00:00
+persona_454aac704dd3ba4fc8d7,SaiMaiZvtuberTH,unknown,"[""streamer""]",thai_language,verified,ev_70ddc8660919d5ad756f,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_457f1f1eb5e35a13f8fb,Umino Ciala Ch. Pixela Legends,unknown,"[""entertainer""]",thai_language,verified,ev_87ee6da2f0f83e84840c,grok:creator-link-pipeline,2026-09-16T11:35:15.142459+00:00
+persona_458ca0c19ee816e88b09,Cresent Ansel Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_c33c0cb81511e60b35e2,grok:creator-link-pipeline,2026-09-16T11:35:15.116215+00:00
+persona_460637977b00600a24ec,Lady Magcro Ravencroft,unknown,"[""entertainer""]",thai_language,verified,ev_4719b454883231c8a691,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_463c8a3fc7b28728494b,RuLaRaLan,unknown,"[""entertainer""]",thai_language,verified,ev_fdba61676f90f160b4bf,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_4656710798c75e4bb5e2,Kuroyoru Yami,unknown,"[""entertainer""]",thai_language,verified,ev_1fa65becf3b4d35f8402,grok:creator-link-pipeline,2026-09-16T11:35:15.119204+00:00
+persona_46adb677c9756e69ace4,nano_pks,unknown,"[""streamer""]",thai_language,verified,ev_9353780ec71f74238973,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_471daafdc096af93bcf3,Banpratou,unknown,"[""entertainer""]",thai_language,verified,ev_390ae891493bc3dec995,grok:creator-link-pipeline,2026-09-16T11:35:15.144815+00:00
+persona_47528d35f54994742232,ChaAYM,unknown,"[""entertainer""]",thai_language,verified,ev_de65cceb0a7646c8c825,grok:creator-link-pipeline,2026-09-16T11:35:15.115980+00:00
+persona_478ee3abfe515d13e892,Honoru Ch. โฮโนรุ,unknown,"[""entertainer""]",thai_language,verified,ev_7442bdaa4b6d9168d0e3,grok:creator-link-pipeline,2026-09-16T12:02:58.815457+00:00
+persona_479467aaed77c0eff354,Lamppy,unknown,"[""entertainer""]",thai_language,verified,ev_859eec9f4f84ddb7b4d5,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_47c9bf37cce08aec2e3b,Dragooooon Vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_f32bd90142a9def2eaf9,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_47e55f6558bf471c3e14,Ponpun,unknown,"[""entertainer""]",thai_language,verified,ev_1ae2746e2e2f63cabe33,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_48c709edc02d5923cfc9,Yunes Ch ,unknown,"[""entertainer""]",thai_language,verified,ev_15ace9995ee2ef44e865,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_48e6c1fb4c0a24e12621,XenonPhanejohn,unknown,"[""streamer""]",thai_language,rejected,ev_d31f165afe53ee48f6e4,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_49669d2d41b04400e4fd,kingslime_vtuberth,unknown,"[""entertainer""]",thai_language,verified,ev_7bee68152248505d08ae,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_496a86367255a89ded12,MoRin Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_b1b3c9fb633dc513022b,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_49a28ca273a91d6cfac9,HyokiSan,unknown,"[""entertainer""]",thai_language,verified,ev_ca370af6cd8b0ceff23b,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_4a8df281a3399f622ca3,Dariela,unknown,"[""entertainer""]",thai_language,verified,ev_35744c757692d47defd2,grok:creator-link-pipeline,2026-09-16T11:35:15.116421+00:00
+persona_4ad92d18f451dac1f812,Saneko ch. Euphora,unknown,"[""entertainer""]",thai_language,verified,ev_3f06a9a85e33b5262c28,grok:creator-link-pipeline,2026-09-16T12:02:58.801040+00:00
+persona_4ae05b8aa23d95b7f0b1,Mei Vtuber✨,unknown,"[""entertainer""]",thai_language,verified,ev_e8037539c71bdbcbb8b1,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_4afae3fbf1791da30788,penelopepinkch,unknown,"[""streamer""]",thai_language,verified,ev_5b0e7ffc8d44d04b23d7,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_4b42eb866e7882b06e01,Keressa Zoulfia Ch. Pixela-Mystic,unknown,"[""entertainer""]",thai_language,verified,ev_4254f601b62f72e7b475,grok:creator-link-pipeline,2026-09-16T11:35:15.135844+00:00
+persona_4b437c36193f59b65c7c,XenonPhaneJohn,unknown,"[""entertainer""]",thai_language,verified,ev_342b599df921e39dae12,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_4b584129899606cb9338,Mitsuki Vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_2063c380035156ee2c8d,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_4b950bae9521bdada92b,Joro Gumo,unknown,"[""streamer""]",multiple,verified,ev_a55004c029cf3b7b720f,ChatGPT,2026-09-16T15:38:46.627996+00:00
+persona_4b9ecf9b41af2d90d5c9,rikusoyju,unknown,"[""streamer""]",thai_language,verified,ev_b70aee1913cd5c1e6255,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_4c0dc5a387c4a4a79666,Yumiiko CH.,unknown,"[""entertainer""]",thai_language,verified,ev_39c44700fa1fed864c79,grok:creator-link-pipeline,2026-09-16T11:35:15.147588+00:00
+persona_4c3fef7ea4e37688a0f7,Vesper Wing ,unknown,"[""entertainer""]",thai_community,verified,ev_b7310521a1680921801f,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_4cef3548fd55fa1396ff,Wilona Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_15167405ed4c8c6b60fc,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_4d440facee758f07b32a,Helson X404,unknown,"[""artist"", ""entertainer""]",thai_language,verified,ev_ad1d9f6b8a82b0cfe81b,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_4dd62a8078db3897e981,Meteona Mars Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_73c39ff83c7c4843a051,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_4dd6f3aa00c350f8eaa1,NameNemiCh,unknown,"[""streamer""]",thai_language,verified,ev_ca6e18d52f0b7c95fa78,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_4e47faf54d25ae4f67a1,Ray Ametier Yuan Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_afed6b199de051744130,grok:creator-link-pipeline,2026-09-16T11:41:53.635967+00:00
+persona_4ea700877c5c799a97b1,kurisumasu_,unknown,"[""streamer""]",thai_language,verified,ev_2acea946c758fe689f9d,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_4ed4ae23c0c73a1ceb2d,orinเมี๋ยว,unknown,"[""entertainer""]",thai_language,verified,ev_839a347723de5fd31c47,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_4ef0a92882628aebe2c8,ixcheloxo,unknown,"[""streamer""]",thai_language,verified,ev_fd8e1750c8ace73d9323,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_4f015defabf68ba60db2,TakumaRei「บ่นไปเรื่อย」,unknown,"[""entertainer""]",thai_language,verified,ev_273decf582f63a849ad8,grok:creator-link-pipeline,2026-09-16T11:41:53.636550+00:00
+persona_4f1b9318eb35d5f192f2,HoshinoKuroi Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_2658b3157620c76f4d92,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_4f3e86c44c8fb3ec01e9,MUNG MING VBer,unknown,"[""entertainer""]",thai_language,verified,ev_829de925391afd1aeecf,codex:public-persona-review,2026-09-13T06:36:47.795555+00:00
+persona_4f6be4762ccfce2da9bf,Sisira_Hydrangea,unknown,"[""entertainer""]",thai_language,verified,ev_fbd26a158686896d261e,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_4f77a784648df1a6855a,Jozetté Wrasset | OAL,unknown,"[""entertainer""]",thai_language,verified,ev_de34a14443fda94e1eba,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_4f898485adb4ea55163d,Amy Stella Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_77f7074d8fde0d007f40,grok:creator-link-pipeline,2026-09-16T12:02:58.807060+00:00
+persona_50647d65cc8563ec1bca,MamunzaaTV,unknown,"[""entertainer""]",thai_language,verified,ev_fbf77e9f62bc3d76137f,grok:creator-link-pipeline,2026-09-16T11:35:15.129154+00:00
+persona_507e27d2b141c665ff05,ToraSunday,unknown,"[""streamer""]",thai_language,verified,ev_288ed0c3358b41d6ec48,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_5088e5f00b4862996dfe,ลอเร็ตต้า (ลอตตี้) | VtuberTH,unknown,"[""entertainer""]",thai_language,verified,ev_ccd78abd01971590f563,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_5164d499237a9e7aad09,Kagemaru 404,unknown,"[""entertainer""]",thai_language,verified,ev_7d790206030a98116506,grok:creator-link-pipeline,2026-09-16T11:35:15.126533+00:00
+persona_51d2149dc1b4993aeca9,KitadesuS [MDZ],unknown,"[""entertainer""]",thai_language,verified,ev_e131fb4a983eb3048351,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_525f235da4a50a716c08,Midori_Suikaaa,unknown,"[""streamer""]",thai_language,verified,ev_b60bdf61085326b80a82,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_52d1289f2c9b511af424,HaruVtuber,unknown,"[""entertainer""]",thai_language,verified,ev_614c2c065735666bcfb1,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_530a36279257c84d5d80,Cerafine Mikael Ch. Lumina-First-Myth,unknown,"[""entertainer""]",thai_language,verified,ev_b3daf040d3f82fe47eaf,grok:creator-link-pipeline,2026-09-16T11:35:15.133672+00:00
+persona_541a563fa18745f68baf,y0tchi,unknown,"[""streamer""]",thai_language,verified,ev_73e83be542a40cbb4a6d,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_547e4af9f38b8f969869,victorrrrrhn,unknown,"[""streamer""]",thai_language,verified,ev_291ebf10c4436964bb64,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_54b4f77d0c448845c50b,Shirasagi Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_f9f2596483a836581b90,grok:creator-link-pipeline,2026-09-16T11:35:15.123349+00:00
+persona_54e0076f3722147d4a47,Sarnna Black Herbilrah |【SH】,unknown,"[""entertainer""]",thai_language,verified,ev_393f3d6a5cedcf872734,grok:creator-link-pipeline,2026-09-16T12:02:58.812977+00:00
+persona_55344c80444a0270f1a8,crazyghsot,unknown,"[""streamer""]",thai_language,verified,ev_a7cec0fbc921c590b045,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_55b51d718ecba5e16f86,AlexisWolf,unknown,"[""entertainer""]",thai_language,verified,ev_dd59150ec20b9c77acfc,grok:creator-link-pipeline,2026-09-16T11:35:15.125746+00:00
+persona_55dfa4b787971fa73d6e,JomJam_SLX,unknown,"[""entertainer""]",thai_language,verified,ev_9e0e30785b2bc9e4c889,grok:creator-link-pipeline,2026-09-16T11:35:15.135679+00:00
+persona_55f4761a25d35a3631c2,TAIYO BOUKEN Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_ddc4b55487bf10c2e788,grok:creator-link-pipeline,2026-09-16T11:35:15.130463+00:00
+persona_566484b23939e2d97ec4,Elphylia VtuberTH,unknown,"[""entertainer""]",thai_language,verified,ev_9da0d1e2b44cbf38c7da,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_5664e5283e51403bbcc1,Sharky404_Zen,unknown,"[""streamer""]",thai_language,verified,ev_2f6523e8e34d0f5dc14d,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_56b588b35cba34b2f721,SunLIE,unknown,"[""entertainer""]",thai_language,verified,ev_292c1ce1b3d7c7b13385,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_56c912c943462f5f4a5f,YUYA l VtuberTH,unknown,"[""entertainer""]",thai_language,verified,ev_2881a98e6a1719b30b98,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_57066443c6ccacbdd113,Penelope Pink,unknown,"[""entertainer""]",thai_language,verified,ev_9fb0c7a27ff019c6c697,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_5784e30be2e9c927da86,DrakoNyaMio,unknown,"[""streamer""]",thai_language,verified,ev_b608c12e4940a46fd86d,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_579b989d6ebf828f1c26,Uniinu ch. Euphora,unknown,"[""entertainer""]",thai_language,verified,ev_aa3e54ed48404e2623c0,grok:creator-link-pipeline,2026-09-16T12:02:58.814197+00:00
+persona_57bf95b93a1e63e98742,RIN_RINZ Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_ff0d732b5872413b2f0c,grok:creator-link-pipeline,2026-09-16T11:35:15.147335+00:00
+persona_5814dc685c3b07841fe7,Tamami เป็นVtuber🥚💗,unknown,"[""entertainer""]",thai_language,verified,ev_6252abe103d3b3781dbc,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_58c3adfdce584abd25c8,เรียลเชอร์มี่,unknown,"[""entertainer""]",thai_language,verified,ev_fe01babdc3a9437ed5b0,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_58d6acda9efd6d13c496,Baruru 🐧🥓 Vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_993a248a1de32600d6a7,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_593ebd2e97a099eecd25,Kumoku Tsururu Ch. Lumina-World-End,unknown,"[""entertainer""]",thai_language,verified,ev_991bae67b42d1cf98cc9,grok:creator-link-pipeline,2026-09-16T12:02:58.813503+00:00
+persona_598cb8c5829e5af683a0,Nebula Faragonda 【 V-DragQueen 】,unknown,"[""entertainer""]",thai_language,verified,ev_029bf2e15af15d1f04c3,grok:creator-link-pipeline,2026-09-16T11:35:15.121390+00:00
+persona_59959150d453666ad564,Meraki Keimii,unknown,"[""entertainer""]",thai_language,verified,ev_f3886f314c0ab335e9b5,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_5a136318d1ebcc9e62fe,Chana チャナ,unknown,"[""educator""]",thai_language,verified,ev_468f590233f68bcf76e1,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_5a71adf7947eaff3b076,Melinoir_Vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_af250679e5fa68aa89aa,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_5ad89687f1e9850d8d63,Akito Q Flame『VW』,unknown,"[""entertainer""]",thai_language,verified,ev_6837d796eb4c06fa6b97,grok:creator-link-pipeline,2026-09-16T11:35:15.115345+00:00
+persona_5afd9790a3bf4cf75b50,Khaojao,unknown,"[""entertainer""]",thai_language,verified,ev_664fd1d3feafb5cddc2f,grok:creator-link-pipeline,2026-09-16T11:35:15.136051+00:00
+persona_5b05647f5575c5473b57,GrisPanthera,unknown,"[""streamer""]",thai_language,verified,ev_984e223d0bd4708e9eb1,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_5b63f22d9ab601a0c7c1,Urai [NecroMezza],unknown,"[""entertainer""]",thai_language,verified,ev_4ab238161b04b5952493,grok:creator-link-pipeline,2026-09-16T12:02:58.806180+00:00
+persona_5c2740ad495ba0553f04,Serithia「LRV」,unknown,"[""entertainer""]",thai_language,verified,ev_ed7816eb0831998abc0f,codex:public-persona-review,2026-09-13T06:36:47.795555+00:00
+persona_5c6b94e226702805a36a,🏮YueMeili🪭| VtuberTH 🌺,unknown,"[""entertainer""]",thai_language,verified,ev_568a2167e357b01f33f6,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_5cba65e9dabd0d06eba0,Rosánn Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_1c3bc983eb7a80a279c4,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_5d0548dcad650d86510c,Kaneaki Arina Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_4f19e70345999334b47d,grok:creator-link-pipeline,2026-09-16T11:35:15.118146+00:00
+persona_5d1ee3ef5153d4b57ed4,Mild-R Ch. Lumina-World-End,unknown,"[""entertainer""]",thai_language,verified,ev_33ab25af13da8f2f6ffa,grok:creator-link-pipeline,2026-09-16T12:02:58.812011+00:00
+persona_5d50a7223816070a8bf6,NUTTY ROZE,unknown,"[""entertainer""]",thai_language,verified,ev_c11b8ef22ce8d4baf7d6,grok:creator-link-pipeline,2026-09-16T11:35:15.139694+00:00
+persona_5da1e67457eef56569b3,melinoir_th,unknown,"[""streamer""]",thai_language,rejected,ev_c6706cd87d37881cce74,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_5dd047976838ec3acf67,AzuruVT,unknown,"[""entertainer""]",thai_language,verified,ev_9645a929060c4de96b72,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_5deccaf7b6225f19e137,Cherry S.Kersche,unknown,"[""entertainer""]",thai_community,verified,ev_2840239875f38caf9adb,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_5e2f33eb3ce6076ff5e2,Nezumi Elze Ch. Pixela Legends,unknown,"[""entertainer""]",thai_language,verified,ev_b34204a56d229b4f46ff,grok:creator-link-pipeline,2026-09-16T11:35:15.139249+00:00
+persona_5e85518711c7bd329cd2,Rafinia Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_912430124800433e2b51,grok:creator-link-pipeline,2026-09-16T11:35:15.140045+00:00
+persona_5efe72eab4e5d5231e0a,Kylanz,live2d,"[""streamer""]",thai_language,verified,ev_c56365d7b3582ebc42a7,owner:manual-review,2026-09-17T10:05:00+00:00
+persona_5f0214925589bbda8304,JamMyChan .ch🍑🐿,unknown,"[""entertainer""]",thai_language,verified,ev_cc02fda9c1468896255d,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_5f373eeb8a87ebbc5921,Aster Kalimeris Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_ad4487835c4b60184bc2,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_5f812d35976e74d8eb2e,Ardalita Lilibelle Ch. Lumina-First-Myth,unknown,"[""entertainer""]",thai_language,verified,ev_15430647d5151f6ee37f,grok:creator-link-pipeline,2026-09-16T11:35:15.132786+00:00
+persona_5fb4e17e74f300171716,Serenno Koriel ,unknown,"[""entertainer""]",thai_language,verified,ev_2d7adeb5ba0167b445d0,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_601cb0ddd7c4e94b7d22,CallistoSoCool,unknown,"[""entertainer""]",thai_language,verified,ev_bb347cb13e6048da25ed,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_60570bce150b5aa09e29,Rosalyn Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_eed21e72f515a52f64a1,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_60c0b13cdd9a997a6472,เปโกะริน ลาบเป็ด,unknown,"[""entertainer""]",thai_language,verified,ev_fa78f449db8a07ca6ca3,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_60d4e9e60ad786831294,NaruFay,unknown,"[""entertainer""]",thai_language,verified,ev_c2b39e190b95e326c4dc,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_60db109ddf8be0fa1034,Rlanzshino,unknown,"[""entertainer""]",thai_language,verified,ev_e67a4f6c384e8ead6f3a,grok:creator-link-pipeline,2026-09-16T11:35:15.140996+00:00
+persona_61687ed04a0bd41ffb5c,KaylefOrion,unknown,"[""streamer""]",thai_language,verified,ev_9ab0ed9d7ace25413d5e,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_61c6e05a37eccb306be8,Willow.ch | HZ,unknown,"[""entertainer""]",thai_language,verified,ev_5e10ccac0fb3ff8bdbc7,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_6269a6c2eb59e7dadc99,Faminé Ch.【ARP】,unknown,"[""entertainer""]",thai_language,verified,ev_aee2547c57190447d600,grok:creator-link-pipeline,2026-09-16T12:02:58.809127+00:00
+persona_628e2cbefc07106fa4dd,bdy_baddie,unknown,"[""streamer""]",thai_language,verified,ev_b93355e6e95f686fd58e,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_6350f6d1dc0c1a707c73,Anya Marshall Ch. 【POLYGON】,unknown,"[""entertainer""]",thai_language,verified,ev_244c10c89bb710565f12,grok:creator-link-pipeline,2026-09-16T12:02:58.803014+00:00
+persona_63b4340c6614278eaaf2,kiku_himegu,unknown,"[""streamer""]",thai_language,verified,ev_db3c1e7eafbd0c159066,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_6401b8b554b2b14629c3,memeawwww,unknown,"[""streamer""]",thai_language,verified,ev_fcecb0dca13d50f526f2,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_6409b4727b035800e694,Frederick Ch.,unknown,"[""entertainer""]",thai_community,verified,ev_b6d22bf597787d2ba18c,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_640c3f0bf9655e69b8f6,Nagirin 【RE:S】,unknown,"[""entertainer""]",thai_language,verified,ev_41abef03c550b504df09,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_6468cdaa5d70699a8ea6,Thear DreamWhale° 10Hz,unknown,"[""entertainer""]",thai_language,verified,ev_06c2aad26ef38b5d8579,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_6484d47519956f089c6b,ZarizaOphius,unknown,"[""entertainer""]",thai_language,verified,ev_ad1be90a834175b74b74,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_64edc3818a92f34e521e,Darchelle🌑✨ | VtuberTH,unknown,"[""singer""]",thai_language,verified,ev_9f705b11be08db9afb31,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_6560db6436a004987346,MEWRCCLUB Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_0b423e800647817eaa65,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_65e1dddf007a138b36d3,Racyena,unknown,"[""streamer""]",thai_language,verified,ev_03112195cedceb2966e4,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_662d0fcab89be08f20e1,Rhumora,unknown,"[""streamer""]",multiple,verified,ev_e507d9e69ee97a758eea,ChatGPT,2026-09-17T08:15:44+00:00
+persona_66672eed824eb1a63e9c,Cynthia,unknown,"[""streamer""]",multiple,verified,ev_bebec4bc73cc0a7d1fa2,ChatGPT,2026-09-16T15:38:46.627996+00:00
+persona_66aebb7eaed59f148a86,Kulareew Ch.【Vtuber TH 】,unknown,"[""singer""]",thai_language,verified,ev_25ec835be210a3ba0b54,codex:public-persona-review,2026-09-13T06:36:47.795555+00:00
+persona_66b6ba044a25939c0e1a,Kamichi,unknown,"[""entertainer""]",thai_language,verified,ev_ebe3cdc05ce057cf92a5,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_677c8c3228fb3be40b54,Bingsujuseyo Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_15340dee59efb60c89b9,grok:creator-link-pipeline,2026-09-16T11:35:15.133196+00:00
+persona_67fc1e67e9894d854856,BiOM4NzZ,unknown,"[""streamer""]",thai_language,verified,ev_25b1732de7aed21bec7f,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_69145160a5bb56ba8265,Rainbows Fukio,mixed,"[""streamer""]",thai_language,verified,ev_b02_rainbows_fukio,owner:manual-review,2026-09-17T10:20:00+00:00
+persona_6939b57ea784abac9934,NoBoRu,live2d,"[""streamer""]",thai_language,verified,ev_b02_noboru,owner:manual-review,2026-09-17T10:20:00+00:00
+persona_693e0c1a4a66d78c38c2,bughaginhuamung,unknown,"[""streamer""]",thai_language,verified,ev_9eaf6be4caab840bdf9b,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_69703daf943d39931ebd,RiekaDaYo🐺🌠,unknown,"[""entertainer""]",thai_language,verified,ev_75b7d726bc6ce8fb5d90,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_69cac6392acafa8458ad,AnnissaTiana,unknown,"[""streamer""]",thai_language,verified,ev_a825db5eb0cc37bd7149,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_69d35cfb6c3dbca5e097,🦊_Shineru_🖤,unknown,"[""entertainer""]",thai_language,verified,ev_18c415fbc6a256e6009b,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_69d738ff4b281e31e54d,Kiran Regalia『AST』,unknown,"[""entertainer""]",thai_language,verified,ev_d70e5dcc33260a4d579c,grok:creator-link-pipeline,2026-09-16T11:41:53.635268+00:00
+persona_69f2d5b29b30904c35a5,ElbrynBoo,unknown,"[""streamer""]",thai_language,verified,ev_07110ea4d1be44e6a4c3,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_69f42b30c6f9766595a6,CooGa,unknown,"[""entertainer""]",thai_language,verified,ev_99faa97e28ea0cecf02a,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_69f4c796593e8ed9bc2a,Besicka「ALF」,unknown,"[""entertainer""]",thai_language,verified,ev_77ba2d847bf3e8922f34,grok:creator-link-pipeline,2026-09-16T11:35:15.128185+00:00
+persona_6a19e9e7083901d1caad,Torakaze,unknown,"[""entertainer""]",thai_language,verified,ev_f1945f67b7c26dd23d09,grok:creator-link-pipeline,2026-09-16T11:35:15.124651+00:00
+persona_6a24b2782dc918b384a3,Sebastos VTuber,unknown,"[""entertainer""]",thai_language,verified,ev_30aaa32487daadf7d715,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_6b1f1a6817bfc951b3d3,Anya Smith,unknown,"[""entertainer""]",thai_language,verified,ev_a643bf4d08761184932d,grok:creator-link-pipeline,2026-09-16T11:35:15.132276+00:00
+persona_6b71c4411dd0b1f888c2,Mamushi Ene Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_8abadfeb096581fe9882,grok:creator-link-pipeline,2026-09-16T11:35:15.137469+00:00
+persona_6b88d9c3ef45c19f6e9d,PingPingko【REC】,unknown,"[""entertainer""]",thai_language,verified,ev_66bcc351de6bd6674b93,grok:creator-link-pipeline,2026-09-16T11:35:15.129947+00:00
+persona_6bc488cc2e60007bac43,Latta Ch.【ARP】,unknown,"[""entertainer""]",thai_language,verified,ev_aa8cf5be854eed6aad29,grok:creator-link-pipeline,2026-09-16T12:02:58.811148+00:00
+persona_6c73681a6ae938b33c9a,Anemizz,unknown,"[""entertainer""]",thai_language,verified,ev_35822af08db325d8ad86,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_6ca8616c015764e1d486,Deliva Kaga ch.,unknown,"[""entertainer""]",thai_language,verified,ev_9912b2fb3e38bfb1d2c8,grok:creator-link-pipeline,2026-09-16T11:35:15.145750+00:00
+persona_6cc417aa643da73334b5,rinwest,unknown,"[""streamer""]",thai_language,verified,ev_c4a0a4fba237904169b1,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_6cd5716b67f5384b143c,maemuuru l VtuberTH,unknown,"[""entertainer""]",thai_language,verified,ev_79259fc671059b7aac1b,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_6d7252765ed7d6a1ad6f,KnowChan - โนว์จัง 💓💡,unknown,"[""entertainer""]",thai_language,verified,ev_a132822353f7674421a1,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_6daba8055ddc9948cc58,xCapuuccino_,unknown,"[""entertainer""]",thai_language,verified,ev_48e101c3880ed87e7645,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_6e8c89700074fd304fe5,Issa,unknown,"[""entertainer""]",thai_language,verified,ev_4083887a6f7cb54c1ba2,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_6e9e31346f7b9164ce4b,AmiLLy Archive,unknown,"[""singer""]",thai_language,verified,ev_b9bc51f82f2848d8b303,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_6ebc57b553406485a59d,Micaela Michelle Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_708b899f6aa91c631227,grok:creator-link-pipeline,2026-09-16T11:35:15.129317+00:00
+persona_6ebce00381c7906f4875,Saamazu Suwai,unknown,"[""entertainer""]",thai_language,verified,ev_c6a62114ff124c6bb01a,grok:creator-link-pipeline,2026-09-16T11:35:15.130132+00:00
+persona_6ecdd06fbb46fa7b0f82,Nagumo Vtuber ⛈️,unknown,"[""singer""]",thai_language,verified,ev_11d05930c83f04f9bbd7,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_6f43b00a1eb1daa9df12,Miguel Noxz,unknown,"[""entertainer""]",thai_language,verified,ev_ea5f73e6fc8970855ed9,grok:creator-link-pipeline,2026-09-16T11:35:15.137839+00:00
+persona_6f5c7afe6e9085c3b05f,Liyin,unknown,"[""streamer""]",multiple,verified,ev_2bcf7bf11a3d898b5ff3,ChatGPT,2026-09-16T15:38:46.627996+00:00
+persona_6faca74f530db5ed8510,IRISS Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_9abbd4031b6d99f5d97c,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_6fd3956b54025ce55a3f,gingerbelle,unknown,"[""entertainer""]",thai_language,verified,ev_20e9bd699be6821390a3,grok:creator-link-pipeline,2026-09-16T12:02:58.802589+00:00
+persona_6ff4fb8d848e2c6635ee,เอ็นริริริ,unknown,"[""entertainer""]",thai_language,verified,ev_ce273414f190d7356fb3,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_6ffcbb5a871b487bed3d,🐱Hibana 【V-YT】,unknown,"[""entertainer""]",thai_language,verified,ev_d8185ad2be2bb383b1da,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_7079820b0bb867bd1aad,Kazuha Ch. 『VW』,unknown,"[""entertainer""]",thai_language,verified,ev_ae7e36e2d11854deb587,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_70ab14ecd60ad7495751,Nirvana Ch.【ARP】,unknown,"[""entertainer""]",thai_language,verified,ev_d0b21165c79ad903d179,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_70c04eb1cc2ab18ab766,ONOMIL Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_0e50a81862db066c5dd2,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_70c12357afe1b83f3994,miyathemelf_vt,unknown,"[""streamer""]",thai_language,verified,ev_920e7044ec0bf28a5466,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_70e0d5724eb234d5389c,Seijo🦋✂️Vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_62c860622a6d778498d4,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_711e202b0044af4ed50b,SwordAce,unknown,"[""entertainer""]",thai_language,verified,ev_0fe0e3e9e5104f69381e,grok:creator-link-pipeline,2026-09-16T11:35:15.142109+00:00
+persona_717fa2a9b0a2bcfa8115,Eyez Vtuberz TH,unknown,"[""entertainer""]",thai_language,verified,ev_91a854f3ef5f3adc3b90,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_71dedce055a9e89de866,Miledy Z.Devlin ch.,unknown,"[""entertainer""]",thai_language,verified,ev_4333cb66d6591fdae14d,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_72096b8781fd1f694c09,Akaku Mikoni | V.W.Y,unknown,"[""entertainer""]",thai_language,verified,ev_a91a025ab856f25a5144,grok:creator-link-pipeline,2026-09-16T11:35:15.131507+00:00
+persona_721dfd58ad37ef2e71cb,Shikár Dawg,unknown,"[""entertainer""]",thai_language,verified,ev_c5d2c8f716b5e36709b7,grok:creator-link-pipeline,2026-09-16T12:02:58.805782+00:00
+persona_725ded0b575e9093a21f,Hoshimura Himawari,unknown,"[""entertainer""]",thai_language,verified,ev_64db92c59b4d3d705671,grok:creator-link-pipeline,2026-09-16T11:35:15.146382+00:00
+persona_725fbe2481d949178fc7,Amnuai CH,unknown,"[""entertainer""]",thai_language,verified,ev_037940f5611be71ee41d,grok:creator-link-pipeline,2026-09-16T11:35:15.132126+00:00
+persona_72792a850d9ee0492e8c,Kamilla_Lich,unknown,"[""streamer""]",thai_language,verified,ev_09d459e757513bca46d3,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_729720cd245cda7d9d80,tako_tk2126,unknown,"[""streamer""]",thai_language,verified,ev_def008670bd8c6367c39,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_72b105a2c7a38dc81bb6,Unnämed,unknown,"[""entertainer""]",thai_language,verified,ev_14f59b6db1776978176a,grok:creator-link-pipeline,2026-09-16T12:02:58.806063+00:00
+persona_72c21f6fdeb60ae07ddc,Qmulaz,unknown,"[""entertainer""]",thai_language,verified,ev_3448189cca1316f7ef5e,grok:creator-link-pipeline,2026-09-16T11:35:15.140021+00:00
+persona_72c9ea6f2969017decf5,LalinTheAlien,unknown,"[""streamer""]",thai_language,verified,ev_82b087dbc6442a89ab77,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_72d488c541d46e15c45e,Rubellus Remis | VArtist,unknown,"[""entertainer""]",thai_language,verified,ev_527aa7a63fa368fddd82,grok:creator-link-pipeline,2026-09-16T11:35:15.127330+00:00
+persona_72e8a9c5417199034c64,MerryKomori Lu.,unknown,"[""entertainer""]",thai_language,verified,ev_e78c92a8073403f53fc3,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_72fdbd63ba92aeb70cd4,Okami Hito CH【APD】,unknown,"[""entertainer""]",thai_language,verified,ev_75c2ab07f0d7cf3f38df,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_732f1a523e6d289e2cef,Eileennoir ⚖️,unknown,"[""entertainer""]",thai_language,verified,ev_04da144ba816090da379,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_734365780eff419dea12,primo_srv,unknown,"[""streamer""]",thai_language,verified,ev_489ca3fc22679c53d7c9,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_7377c2991a0602591fb0,Renkon Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_0215ee45161c212a4f3a,grok:creator-link-pipeline,2026-09-16T12:02:58.802882+00:00
+persona_74f79c446ebb75889f4c,DELLONS | Vtuber TH. 🐿️✨,unknown,"[""entertainer""]",thai_language,verified,ev_c29bb2dc2898cf2c171d,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_7509409b0ebbd9e87f96,akitoqch,unknown,"[""streamer""]",thai_language,verified,ev_081674f545de005db846,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_75107465bae554361a52,Elleusia 🥀◆,unknown,"[""entertainer""]",thai_community,verified,ev_855f26303cf1cfa3e3e9,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_75248b71bdcde588257e,TEDDYBEL 【Official】,unknown,"[""entertainer""]",thai_language,verified,ev_d67af39baa6c8bbb4e4e,grok:creator-link-pipeline,2026-09-16T11:41:53.637597+00:00
+persona_75770df8891acb3b0504,Nihr Farfalla,unknown,"[""streamer""]",multiple,verified,ev_5a667568a79b894a9c61,ChatGPT,2026-09-16T15:38:46.627996+00:00
+persona_760a1c868ecf10a4ed56,Timothy Weii Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_34a5327950a1c3729ae2,grok:creator-link-pipeline,2026-09-16T11:35:15.124542+00:00
+persona_76169a202aaff1dc3bf7,⚡️GS_GolfPraPlern⚡️,unknown,"[""entertainer""]",thai_language,verified,ev_09f1eac6d425455f788e,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_76678a43cb3633730f72,CatzeraN,unknown,"[""entertainer""]",thai_language,verified,ev_637326486f70e4df02c9,codex:public-persona-review,2026-09-13T06:36:47.795555+00:00
+persona_76a38818809cbb4ac9fb,zeneastarblaze,unknown,"[""entertainer""]",thai_language,verified,ev_8684b3b4c328bdafb9a0,codex:public-persona-review,2026-09-13T06:36:47.795555+00:00
+persona_76fd5f1d778ec8850ca8,Carys Cordelia,unknown,"[""entertainer""]",thai_language,verified,ev_fd965a203900a598d3da,grok:creator-link-pipeline,2026-09-16T12:02:58.808106+00:00
+persona_773baacd7fd5f6d76e0a,Ririka【SSR】,unknown,"[""entertainer""]",thai_language,verified,ev_681d8a58b29b5e3924d6,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_7747708d22d57aa44c7e,ToriThaiga,unknown,"[""streamer""]",thai_language,verified,ev_9566eb4c9c3ec1352240,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_77843d9e0184bf7b71e9,Miibelle ต่ะมุจะหลับ🪻🤍,unknown,"[""entertainer""]",thai_language,verified,ev_dd93fc3b1cd999fc7a02,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_77c82b97f9bda9b9be36,Astrea Ch. アストリア〖ECR〗,unknown,"[""entertainer""]",thai_language,verified,ev_9e9a6ac712694d890e5d,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_77fef00f00e1609a7eaa,Nx-Aji,unknown,"[""entertainer""]",thai_language,verified,ev_c59cbe244e309aa69b5c,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_780b9d8305fc3833e20e,Ngerntong-เงินทอง,unknown,"[""entertainer""]",thai_language,verified,ev_a823530f1fb1718ec69b,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_78a34bf924c81b13a191,SWITCHIZ,unknown,"[""entertainer""]",thai_language,verified,ev_e5bdf881065015c14801,grok:creator-link-pipeline,2026-09-16T11:35:15.123931+00:00
+persona_7986071356bb4e1c4312,Nuttizz_,unknown,"[""streamer""]",thai_language,verified,ev_275a3ef690ff5d2bc492,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_79a3f0c028dca956ed91,Kirari Esu,unknown,"[""streamer""]",thai_language,verified,ev_a1cd472b917d07c50560,ChatGPT,2026-09-17T08:15:44+00:00
+persona_79b9b86d655be238c1df,AmuVCh,unknown,"[""streamer""]",thai_language,verified,ev_0107054c4cad2fab3074,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_7a5d2454bc60835fb7f1,Uniwii_ARP,unknown,"[""entertainer""]",thai_language,verified,ev_6529c0121af9920184fb,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_7b10c945cd467020325e,Okami/bwt,unknown,"[""entertainer""]",thai_language,verified,ev_6ef3925ca3f44b4a0384,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_7b6f47f7e323a96457c2,Zeiji7ᵗʰ | เซย์จิ,unknown,"[""entertainer""]",thai_language,verified,ev_7df6419e3ce6a9093e70,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_7be206bd3e406edc7004,Rui Kazu《 EXia 》,unknown,"[""entertainer""]",thai_language,verified,ev_0aa887227d1d4acdbb7d,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_7c2079f9d3f45258e226,xLazyYui,unknown,"[""entertainer""]",thai_language,verified,ev_fbcfae86d4201798df92,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_7d1154357aca82b40378,MIoraTwilight_.,unknown,"[""entertainer""]",thai_language,verified,ev_e502daddbb9fba746548,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_7d375f10cbd13289ad9a,Kamiyu Reirin Ch. Lumina-First-Myth,unknown,"[""entertainer""]",thai_language,verified,ev_a7818ea5c230bb788235,grok:creator-link-pipeline,2026-09-16T11:35:15.135750+00:00
+persona_7d5d6b475098b2614afb,Frayr《WAV》,unknown,"[""entertainer""]",thai_language,verified,ev_3a0b7012911bbdd70560,grok:creator-link-pipeline,2026-09-16T11:35:15.134414+00:00
+persona_7d99fb0187b5e1df209d,ckayzekub,unknown,"[""streamer""]",thai_language,verified,ev_8fc1c305952c5bcc3628,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_7dab0ca32081d665d307,M4YA,unknown,"[""entertainer""]",thai_language,verified,ev_918135fbb1110b26b500,grok:creator-link-pipeline,2026-09-16T11:35:15.119889+00:00
+persona_7e81bbfbaab2b65ea3fb,Stormbullet,unknown,"[""entertainer""]",thai_language,verified,ev_00e22103ccfda5305e7e,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_7ed71dcff56f08c91373,Lanlongying Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_b71068e590e6ec7a1fb6,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_7ee18c7e86566eb39a26,Noeluc,unknown,"[""streamer""]",thai_language,verified,ev_c2612302f19ec2912f7d,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_7f2e7b22fafdc02c522d,KamiSaki Kuro Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_306a6f08062025674168,grok:creator-link-pipeline,2026-09-16T11:35:15.117991+00:00
+persona_7f4a7799ffbc0caeabdc,Kosaru,unknown,"[""entertainer""]",thai_language,verified,ev_752ac84a16df48442534,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_7f63bee15f5b77b528e8,Nanoca Ch. ㌨ｶ,unknown,"[""singer""]",thai_community,verified,ev_a354d7bd200f592b8178,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_7f9b7e8f679dd38a6458,Zeraphina Hana,unknown,"[""entertainer""]",thai_language,verified,ev_1ff25e88320e86097ec4,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_8033a04131f42a421287,Bettha Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_a7ef6a0ab8d86ced50f2,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_804154a405a289c5eb8b,AltairAlAl Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_740bcf983024eacd062b,grok:creator-link-pipeline,2026-09-16T11:35:15.131919+00:00
+persona_807a5cb86ab6053757a0,1KFuu Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_b26359695eb4d1365a72,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_808d1c1c11b41eecdb1a,fxoverpur,unknown,"[""entertainer""]",thai_language,verified,ev_f316788ff731453f73db,grok:creator-link-pipeline,2026-09-16T11:35:15.116916+00:00
+persona_80c13d6e661ec369e56d,Maemi Nippy ⨳ECR⨳,unknown,"[""entertainer""]",thai_language,verified,ev_95ce5376043c55e12a9b,grok:creator-link-pipeline,2026-09-16T11:35:15.137176+00:00
+persona_80fa1da53a72c4965955,ArikoJz,unknown,"[""streamer""]",thai_language,verified,ev_c70ac0f6227d20f02eb8,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_81055ef94a99d397e05f,AstiaVtuber,unknown,"[""singer""]",thai_language,verified,ev_1f6bfe22ef445d031336,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_8113f1b04f9ac4c3ffa9,ซอลลี่ฟีนิกซ์นะยะ,unknown,"[""entertainer""]",thai_language,verified,ev_763e86a4edf9233345c9,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_8130df6ff6e665d7a90c,Rarin Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_c252bb64ab2e3878e01c,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_8146ee157b75d11ec302,baabel_arp,unknown,"[""entertainer""]",thai_language,verified,ev_ff31f98527f9428ecbbf,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_81d7f9e8b4ac2cf27025,Zandy,unknown,"[""entertainer""]",thai_language,verified,ev_0beb4576949f4d3f7554,grok:creator-link-pipeline,2026-09-16T11:35:15.147714+00:00
+persona_82038ac5eb00cc9a387d,cynthia_rowena,unknown,"[""streamer""]",thai_language,verified,ev_e1b184e93415a16b3d76,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_8261000752396c56dec6,Logan U Stryker,live2d,"[""streamer""]",thai_language,verified,ev_b02_logan,owner:manual-review,2026-09-17T10:20:00+00:00
+persona_82823074aed041b94006,Kumi Chan「クミちゃん」,unknown,"[""entertainer""]",thai_language,verified,ev_c990e183ab567c9cbe0c,grok:creator-link-pipeline,2026-09-16T11:35:15.146510+00:00
+persona_829bb96eb706cfed6ec3,Pleiades Frontier【21PM】,unknown,"[""entertainer""]",thai_language,verified,ev_4953de2b827d7a521788,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_82de643beb7af5b3e361,Nagi.Idol.official,unknown,"[""entertainer""]",thai_language,verified,ev_2552d64f635f8d60ec96,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_82f94887689f4d74673f,Ayna Ch.【ARP】,unknown,"[""entertainer""]",thai_language,verified,ev_02ea0fda196a7902ea09,grok:creator-link-pipeline,2026-09-16T12:02:58.807183+00:00
+persona_83ea1a38039b27c54f42,Lawrenze l Blessing,unknown,"[""entertainer""]",thai_language,verified,ev_10833a51e1dea9cc9e90,grok:creator-link-pipeline,2026-09-16T12:02:58.804230+00:00
+persona_8487f604f4bca57c3633,MaewDam T. Mira,unknown,"[""entertainer""]",thai_language,verified,ev_0c50ce09503fb905acad,grok:creator-link-pipeline,2026-09-16T11:35:15.137221+00:00
+persona_84ae6a0807fc1f1a5ac7,AKAI CH [ECR],unknown,"[""entertainer""]",thai_language,verified,ev_fc2a0009645cf065b0ac,codex:public-persona-review,2026-09-13T06:36:47.795555+00:00
+persona_85006ea3d8cfb0ecdb09,Fumi Hausu🍞,unknown,"[""entertainer""]",thai_language,verified,ev_a580b8a8aab4892fe883,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_85655a915d5e96911854,RheaAtaraxia,unknown,"[""streamer""]",thai_language,verified,ev_051acc5f371f9dcdca6d,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_856b1dbd8a3f94ff65b5,Lotte Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_b1f1f35b563508666ea3,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_85884c39052f1aeacb3b,SE1SO_RARA,unknown,"[""streamer""]",thai_language,verified,ev_6c2eab8c81b193005e9f,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_85aac39d548bebb075dc,Callidora Ch.【VJN】,unknown,"[""entertainer""]",thai_language,verified,ev_d7174558df50f710a988,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_85ee914e603143a46806,ponpundayo,unknown,"[""streamer""]",thai_language,verified,ev_b5ede97bb000d48c17ca,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_85f83afef2dc688e65dd,Aythecard,unknown,"[""entertainer""]",thai_language,verified,ev_0da95126168be6dd4f35,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_8624c34c920fd6e1850e,Chouya,unknown,"[""singer""]",thai_language,verified,ev_c453e95a78483c553e55,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_867b9d4a8976613d354b,Puipui Memory,unknown,"[""entertainer""]",thai_language,verified,ev_6f5be42ea5f5f7359d87,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_86905d60e40eeceaba56,E_Ghost SoulKa👻,unknown,"[""entertainer""]",thai_language,verified,ev_b5b2437111704cb47e70,codex:public-persona-review,2026-09-13T06:36:47.795555+00:00
+persona_87938fb182fc79634a0a,Dalinju モラー,unknown,"[""entertainer""]",thai_language,verified,ev_3cd2a44af49b60e1cccf,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_87bcfb52615a67e684cd,Kochiki Gram Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_0fe3822b5424facfe00b,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_88a3b6fc77da0cb50348,SeaU Ch.【CRA】,unknown,"[""entertainer""]",thai_language,verified,ev_122a8a686bbbb3abef88,grok:creator-link-pipeline,2026-09-16T12:02:58.801732+00:00
+persona_88aafd65a6bdb4d834b9,Enryu Horus Ch. 炎竜ホルス,unknown,"[""entertainer""]",thai_language,verified,ev_f7c12bbb167516c84388,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_88d10697881de358a729,Sour,unknown,"[""entertainer""]",thai_language,verified,ev_a204331241e88488f272,grok:creator-link-pipeline,2026-09-16T11:35:15.141526+00:00
+persona_89346c37ebc9a2ede64f,Kitsuneko Mewten Ch. Pixela-Isekai,unknown,"[""entertainer""]",thai_language,verified,ev_58b7271422959e0fcacf,grok:creator-link-pipeline,2026-09-16T11:35:15.136352+00:00
+persona_8940bd24d3c569dad266,SORASAMA,unknown,"[""entertainer""]",thai_language,verified,ev_27bf7da6bc4cdd48ece6,grok:creator-link-pipeline,2026-09-16T11:35:15.123801+00:00
+persona_899fa79aafff270e5b19,Zentiera【VJN】,unknown,"[""entertainer""]",thai_language,verified,ev_f197894487a537728d05,grok:creator-link-pipeline,2026-09-16T11:35:15.143851+00:00
+persona_89e5dc130d5836e60cab,ดอยล์,unknown,"[""entertainer""]",thai_language,verified,ev_cb71796ee0700fde6af7,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_89eb93e7f7559e117289,JueBigHead,unknown,"[""entertainer""]",thai_language,verified,ev_0cfec7a61a0bb34b83ec,grok:creator-link-pipeline,2026-09-16T11:35:15.128713+00:00
+persona_8a356627062c04c45bbc,Nyamaru Yui,unknown,"[""entertainer""]",thai_language,verified,ev_017a50e05688f2ed0ad4,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_8a58ae274b51b23a78b9,nyaruyentafo,unknown,"[""streamer""]",thai_language,verified,ev_ecac27f0cfab46036032,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_8ab33247a1588f0ada91,MONARICA 《 Vtuber 》,unknown,"[""entertainer""]",thai_language,verified,ev_3fabeb2bb83f15ad970d,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_8ab9fbb92e2c7bcc6251,MaVista 「 マビッスタ 」,unknown,"[""entertainer""]",thai_language,verified,ev_a19b49d8711ce1368c49,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_8b2e8ba0b1d04dd82937,Lioren《HPP》,unknown,"[""entertainer""]",thai_language,verified,ev_c9d0c642db8d8563e905,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_8b5f48a129294e8809db,สมเหน่ง มิโอ 【FL】,unknown,"[""entertainer""]",thai_language,verified,ev_c2c5e94059ac523ae388,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_8b71fd9c9f2ad58d6cba,Leon Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_530a9250c5dc6e9f50aa,grok:creator-link-pipeline,2026-09-16T12:02:58.799408+00:00
+persona_8b7c53f75d02277c147f,Zalivia,unknown,"[""entertainer""]",thai_language,verified,ev_968091d9979f936fd93f,grok:creator-link-pipeline,2026-09-16T11:35:15.125370+00:00
+persona_8c13b4cd0e029de248d3,CheezySteaks,unknown,"[""streamer""]",thai_language,verified,ev_383e46a533c37f9a0554,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_8c509084d2ddabeca0df,Chika🍀🩷,unknown,"[""entertainer""]",thai_language,verified,ev_a0c2fd6bacefee9cca84,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_8c9b4bd057f095ed6422,Shishiou_Seito,unknown,"[""entertainer""]",thai_language,verified,ev_64c18f62fc8957fe3943,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_8cb8f572bbda29d56946,LIVIANA Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_527184d7a86ea67b56e7,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_8cc145ddc564b3192861,Niew Lock ,unknown,"[""entertainer""]",thai_language,verified,ev_dfa1189bebb386928d3f,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_8ccca34ef260aa43803f,NancyGimme2000,unknown,"[""entertainer""]",thai_language,verified,ev_c0c3b3648af856506e7d,grok:creator-link-pipeline,2026-09-16T11:35:15.126994+00:00
+persona_8cd1092c1ae0a3bf599a,chatacloveron,unknown,"[""entertainer""]",thai_language,verified,ev_3f72ffc746f294b1df52,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_8cf291510e2872a0568e,IKKI CHANNEL,unknown,"[""entertainer""]",thai_language,verified,ev_f18cf907ce32e9892bc4,grok:creator-link-pipeline,2026-09-16T11:35:15.146421+00:00
+persona_8d547d1b966349ae3c83,RaFa DXD,unknown,"[""entertainer""]",thai_language,verified,ev_fb47996be228ca167d71,grok:creator-link-pipeline,2026-09-16T11:35:15.122318+00:00
+persona_8d931fcb568378c4b197,X ZiLVA,unknown,"[""entertainer""]",thai_language,verified,ev_52cc0a2aa962fd543282,grok:creator-link-pipeline,2026-09-16T11:35:15.125482+00:00
+persona_8e4e1e07c583e0e65bef,ConNeSe Plai,unknown,"[""entertainer""]",thai_language,verified,ev_183a9614171489da0fc3,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_8e893dbc7e6da3179d72,Cylowless,unknown,"[""entertainer""]",thai_language,verified,ev_67a7e7014aa607d46957,grok:creator-link-pipeline,2026-09-16T11:35:15.145361+00:00
+persona_8ee077deee6f4d129135,XETSU,unknown,"[""singer""]",thai_language,verified,ev_5c6aa9464f376f355dd0,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_8ee5a6f3d91c341fb1b9,孤立タカ,unknown,"[""streamer""]",thai_language,verified,ev_e33e1610dd98cd4be94b,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_8f0d6d38cbc2825d2a3f,Yuka_Hizumi,unknown,"[""streamer""]",thai_language,verified,ev_83b9e23e2708caf6535f,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_8f323ccfaaf0f2a7ea05,PukaPukann,unknown,"[""streamer""]",thai_language,verified,ev_7a61f46f9c74a53af11d,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_8fd8d1fe92390b6eefe2,xSunLIEx,unknown,"[""streamer""]",thai_language,verified,ev_1b8ff928a4dc01526e36,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_8fe985976136aff73916,Maprang 【Vtuber】,unknown,"[""entertainer""]",thai_language,verified,ev_aacbaa5df56bf9160ae4,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_8ff2beed66e936d170a0,Mikia Terra ch. Euphora,unknown,"[""entertainer""]",thai_language,verified,ev_03b8224523a7f544f69a,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_90c4abcb63271f62cd70,Fujin ch.,unknown,"[""entertainer""]",thai_language,verified,ev_6d7c5f1cad65f445bccf,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_910c88467ddc67a81bf4,XINPIA03,unknown,"[""streamer""]",thai_language,verified,ev_7369b97f07f4b89c361b,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_928f392d04dc2623a743,HuntaPNG,png,"[""streamer""]",thai_language,verified,ev_49d2ac93ffecb14e418d,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_928ff0f7a88afa681a7c,Draki Kona Ch. Lumina-First-Myth,unknown,"[""entertainer""]",thai_language,verified,ev_ca6a06f167a791d80e06,grok:creator-link-pipeline,2026-09-16T11:35:15.133950+00:00
+persona_92ae44bca24da8331d48,mii__belle,unknown,"[""streamer""]",thai_language,rejected,ev_d9234f91e09cf1e48362,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_92bf88174f6e3d449c1d,Shogo ⌜VZ⌟,unknown,"[""entertainer""]",thai_language,verified,ev_b38964035eb33e3de477,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_92cf6c66ac6a24f4d900,🐼PandaSensiVT,unknown,"[""entertainer""]",thai_language,verified,ev_02bf784073e8eaab16c9,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_9342d36356af5ebcee41,Bunana Vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_9278f48c663baec07e39,grok:creator-link-pipeline,2026-09-16T11:35:15.125599+00:00
+persona_9363410344d701791c45,Den Trenton Ch. | OAL,unknown,"[""entertainer""]",thai_language,verified,ev_1039286d9f1b6b018090,grok:creator-link-pipeline,2026-09-16T12:02:58.798154+00:00
+persona_939da3639d1ba2538488,Serera_Uniflora,unknown,"[""entertainer""]",thai_language,verified,ev_45458d272fade47a698b,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_94520cba7614e6956a80,RiekaDaYo,unknown,"[""streamer""]",thai_language,rejected,ev_7fd6a032935071af4b40,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_948e1234633791476544,AidinVtuber,unknown,"[""entertainer""]",thai_language,verified,ev_a6f2e0a7e30076b6ae32,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_949258cc61c19fa7e837,DolcheB,unknown,"[""entertainer""]",thai_language,verified,ev_aec84f19871c6336a72b,grok:creator-link-pipeline,2026-09-16T11:35:15.116577+00:00
+persona_94a68ebef6f916d3f688,Layniazia Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_f512a5430652dc4a41df,grok:creator-link-pipeline,2026-09-16T11:35:15.119527+00:00
+persona_94ee596afbdeca071db5,KiSSeria_♡ vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_42d919aabed709135b6a,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_954e1db7b4360ee6576a,Mirae Solstice | วีทูปเปอร์,unknown,"[""entertainer""]",thai_language,verified,ev_ec75aa9364dc6c886405,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_9584c202dc5bfcb7ed84,Neoda Neviris,unknown,"[""entertainer""]",thai_language,verified,ev_d2df2039f8923d8f8844,grok:creator-link-pipeline,2026-09-16T12:02:58.802810+00:00
+persona_95d3c3a319baac0e0d34,HEXO,unknown,"[""singer""]",thai_language,verified,ev_522ed8053500fa4634e8,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_9619acc4f0012ef2bbe4,SeraPhyne Ch【ECR】,unknown,"[""entertainer""]",thai_language,verified,ev_43d47b502bb5482a1196,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_968438a71e5ebd7c787c,Viorises,unknown,"[""entertainer""]",thai_language,verified,ev_16a81652edc0d61926b3,grok:creator-link-pipeline,2026-09-16T11:35:15.142872+00:00
+persona_968c9227a1c7701699bd,LissainTH,unknown,"[""streamer""]",thai_language,verified,ev_facb6cef3cb52ca73e05,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_96b873783509afeca6b8,Famu Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_89758b711a6aeb91716a,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_96e77ac0d6e4de92f4f0,Wormtomato,unknown,"[""streamer""]",thai_language,verified,ev_ba46e3008ec5de7b8f7d,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_96e7842db1fe5290a65a,Dayeon,unknown,"[""entertainer""]",thai_language,verified,ev_d1dd4c5c4f44d9ba0ad2,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_96fb98a4f7178a748eba,jammychxn,unknown,"[""streamer""]",thai_language,verified,ev_122c39f66b6fe19ddf65,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_97cb8838bc46520635ec,Aru Hoshima Ch. | 星間アル,unknown,"[""singer""]",thai_language,verified,ev_562b8ea39b3ec983f4ac,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_9835148cfa2ea0271444,Jiru ch. Euphora,unknown,"[""entertainer""]",thai_language,verified,ev_3c35012f4537bdd691b0,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_983ee34f8705423b55b5,TAIYO BOUKEN!,unknown,"[""entertainer""]",thai_language,verified,ev_7c00c80f09a659a725a4,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_9846f3c25202176addd0,BRRWYN Ch. / QURSE,unknown,"[""entertainer""]",thai_language,verified,ev_ae33c6cacf973207b07f,grok:creator-link-pipeline,2026-09-16T12:02:58.807906+00:00
+persona_99312e9fd5d9a9f9c1d3,Milyni_Tivona,unknown,"[""artist"", ""entertainer""]",thai_language,verified,ev_55492bba60f7765625a5,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_9a110f5ac43d56a2a531,LuYao ch.,unknown,"[""entertainer""]",thai_language,verified,ev_cffdc7b383a816885207,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_9ac9cc16202b5ef97fd9,Ka4umich,unknown,"[""streamer""]",thai_language,verified,ev_b16e3c75dc5088edbe75,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_9ad3ee3da53ec535510d,G RED,unknown,"[""entertainer""]",thai_language,verified,ev_7c8ac7ee75c51a299b46,grok:creator-link-pipeline,2026-09-16T11:35:15.128657+00:00
+persona_9b3977bd3fd16d34949c,Monmon Thedoggo Ch.,unknown,"[""artist"", ""entertainer""]",thai_language,verified,ev_1340fde8cd94f2496841,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_9b5886c702534e6665d0,Blu-Chan GMOT ⌜VZ⌟,unknown,"[""entertainer""]",thai_language,verified,ev_967be1f5c2673a4a00a5,grok:creator-link-pipeline,2026-09-16T11:35:15.128441+00:00
+persona_9b9d8e519059faa23099,DaddyLemon,unknown,"[""entertainer""]",thai_language,verified,ev_43688ed21d7525a2dc74,codex:public-persona-review,2026-09-13T06:36:47.795555+00:00
+persona_9bc6f06d2acea1f9c7e7,Evelyn Treeswift💙,unknown,"[""artist"", ""entertainer""]",thai_language,verified,ev_d188fc4ba36bf5fd52ce,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_9bff4e2157630c966727,WineVy🐰 | VtuberTH,unknown,"[""singer""]",thai_language,verified,ev_62ef18a3773af6dc1fa3,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_9c0f0fb70241d6fb9de6,ArineUwU,unknown,"[""streamer""]",thai_language,verified,ev_9a5c535865787d1a6de1,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_9c8d12e5abd66935aa68,Carina Aquarius,live2d,"[""streamer""]",thai_language,verified,ev_b03_carina,owner:manual-review,2026-09-17T10:20:00+00:00
+persona_9c9672a2bef9376154c5,Julius Kosmolatria | VTuber,unknown,"[""entertainer""]",thai_language,verified,ev_9653030837010a45d5f0,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_9c985373620717b33063,Mixzy 21PM,unknown,"[""entertainer""]",thai_language,verified,ev_b02a70895d8b2ee4c4b0,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_9cad4f084b7aaa3a5ba0,MAJCHA 🎏 ที่แปลว่าปลา🍵✨,unknown,"[""entertainer""]",thai_language,verified,ev_785439ac599b2e64388b,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_9ce313fd20dc8b88d772,Gloria ch.【21PM】,unknown,"[""entertainer""]",thai_language,verified,ev_bbcdc0137ad26271286d,grok:creator-link-pipeline,2026-09-16T12:02:58.798727+00:00
+persona_9cfc06b1829668a4e761,Laurie Blisse Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_e06d3c735364451ff8ea,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_9e1fbba94bb549a037c1,kaamoria,unknown,"[""streamer""]",thai_language,verified,ev_47a98ff95e0038907265,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_9e32f1e52fa0bb270851,Blu-Chan GMOT ⌜VZ⌟,unknown,"[""entertainer""]",thai_community,verified,ev_6162e235e88731988fd0,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_9e41cdc1984af1d42926,CobaltHellHound,unknown,"[""streamer""]",thai_language,verified,ev_76a0fc05de894f6ac972,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_9e47c8b45fc4db8f7b09,yasouazrael_as,unknown,"[""entertainer""]",thai_language,verified,ev_1180079d850da3958182,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_9f68e209e36868d75f07,dtto.,unknown,"[""entertainer""]",thai_language,verified,ev_e8bf4fa8ace10842094b,grok:creator-link-pipeline,2026-09-16T11:35:15.145921+00:00
+persona_9f9e8cab19470794acba,Maluto ♾️ LDKTC,unknown,"[""artist"", ""entertainer""]",thai_language,verified,ev_8cce38d44f173faf76cb,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_9ff1b333005d34acb05a,Alfred Ford [VtuberTH],unknown,"[""entertainer""]",thai_language,verified,ev_303c93838c2a066bc2e0,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_a021c083d889eb4afe8b,ZhenLinxing ch. PowerPay,unknown,"[""entertainer""]",thai_language,verified,ev_6edcf6ac80b558f2d62b,grok:creator-link-pipeline,2026-09-16T11:35:15.147840+00:00
+persona_a0775cd20814e1c6b28b,WINT3R ⌜VZ⌟,unknown,"[""entertainer""]",thai_language,verified,ev_939b632e2be833440f1a,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_a0775e47ba13758c1935,JaowMhe3Gus,unknown,"[""streamer""]",thai_language,verified,ev_b526cc9dea6850a7e961,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_a0892b057d41ce165f2d,Kevara ch. Euphora,unknown,"[""entertainer""]",thai_language,verified,ev_1bb5d49c693b49ca886f,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_a121c3074907979952c2,Mycara Melony Ch. Pixela-Mystic,unknown,"[""entertainer""]",thai_language,verified,ev_7b49af7d76dd52283f38,grok:creator-link-pipeline,2026-09-16T11:35:15.138936+00:00
+persona_a1ad70999745094eb4a9,TrustLnw,unknown,"[""entertainer""]",thai_language,verified,ev_a726d60b4f9e550d363c,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_a1e0f30ec036b8c9fc55,ImsoGracechu,unknown,"[""streamer""]",thai_language,verified,ev_6a399fab4f780fcc037d,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_a225e732609b462ad17a,MURKIEL,unknown,"[""entertainer""]",thai_language,verified,ev_23004ecf8e803f16e014,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_a2ed8557ab591f976505,pr_pikoro,unknown,"[""streamer""]",thai_language,verified,ev_9fc40b13f4e02fb1874d,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_a31020495844eec9ee2e,yueqinvtuber88,unknown,"[""entertainer""]",thai_language,verified,ev_411ac4d6372d4ca13a85,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_a3e81b2910e52b563b7a,Thina Borboleta Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_712a8abcb4e1ec5a749c,grok:creator-link-pipeline,2026-09-16T11:35:15.147366+00:00
+persona_a3f1fa40809206b64050,sSolarly,unknown,"[""entertainer""]",thai_language,verified,ev_99592d0a408885433507,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_a40ed7a3081dc98ecd8e,HyougaAlpha,unknown,"[""streamer""]",thai_language,verified,ev_e1373dc25bd5ac41585b,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_a42e5af87d88453c6dcb,Latte Lamilla Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_4d6092eb343191349828,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_a45197ad4998a5dc4ce8,KoriMisu,unknown,"[""streamer""]",thai_language,verified,ev_b78bbed4ff7fd75bb47b,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_a4bf245c70c67bebbada,Artie ch. Euphora,unknown,"[""entertainer""]",thai_language,verified,ev_ddb6872343662ddbe461,grok:creator-link-pipeline,2026-09-16T12:02:58.797999+00:00
+persona_a55bd79c1e039e7f31db,kampheelnwza007,unknown,"[""streamer""]",thai_language,verified,ev_41c94bb5d778cfb90f97,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_a5c39c7f8ee76c8556db,Valkyrie Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_1d8ee92e56929b003037,grok:creator-link-pipeline,2026-09-16T12:02:58.798094+00:00
+persona_a600bbbfed714e829f4a,ZekaiARP,unknown,"[""streamer""]",thai_language,verified,ev_ab520a7dab63f64fe768,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_a636c07cb7905c413190,Kousei Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_39a19d935cd3603ee43d,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_a66b33d5ac4aca912136,Gaokai Bonthian【KP】,unknown,"[""entertainer""]",thai_language,verified,ev_2b574b8803be15104ec5,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_a66df1bc5dda506e8910,Zin'fandel「ZTP」,unknown,"[""entertainer""]",thai_language,verified,ev_dd7501cfd9a68b3224a0,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_a6921ec5dcaa8fa88593,Beta AMI Ch. Lumina-World-End,unknown,"[""entertainer""]",thai_language,verified,ev_c3179def8d2c80d9d8cc,grok:creator-link-pipeline,2026-09-16T12:02:58.806979+00:00
+persona_a6d1e44616ffd6af3f01,Asher Dawnbaker,unknown,"[""entertainer""]",thai_language,verified,ev_c34c09fbe73a4b0cb4d0,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_a6e4e602effab7112cca,Killian Mare,unknown,"[""entertainer""]",thai_language,verified,ev_f1ea5aee7ff798ddc82e,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_a95820b3f86b76b70be7,Nogi Sensei,unknown,"[""entertainer""]",thai_language,verified,ev_77e5d71960745b99275d,grok:creator-link-pipeline,2026-09-16T12:02:58.812211+00:00
+persona_a97f4fa7afb7ba5f50a3,hamikodesu,unknown,"[""streamer""]",thai_language,verified,ev_d258d4ef626aafcac376,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_a9d921bc8e45fe8ea161,เคอเรนเซียวีปกติɞ,unknown,"[""entertainer""]",thai_language,verified,ev_f4f90ca73120ae3a557f,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_aa059d27fb11e69c7be5,AoiCrescent_,unknown,"[""streamer""]",thai_language,verified,ev_3d9def0d3585d699d046,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_aa220c8d582cf9eb765c,Lucia Xavier,unknown,"[""entertainer""]",thai_language,verified,ev_5ae3e073e5febb06a6ae,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_aa9b9db368498ddafc65,Vampaow,unknown,"[""entertainer""]",thai_language,verified,ev_b3040b65a05e1ab090ac,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_ab3921f4181e7b0ddc67,NakiRiku Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_8724b165ed1db28e425c,grok:creator-link-pipeline,2026-09-16T11:35:15.139005+00:00
+persona_ab6a3bd95cd1ccf95d3c,Heiman / เหมันต์ ☃️👔 ‧*❆,unknown,"[""entertainer""]",thai_language,verified,ev_a13c6e68e629925da13d,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_abc0e241d5285f995f51,Tora Mochizuki ,unknown,"[""entertainer""]",thai_language,verified,ev_332d2c74461c7decc7fd,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_abf0cd8f9c1a375b8369,Baku Ch.【ARP】,unknown,"[""entertainer""]",thai_language,verified,ev_55a59c78826569a25fc3,grok:creator-link-pipeline,2026-09-16T12:02:58.803059+00:00
+persona_ac21b295018ff2640ca2,Windwiss_,unknown,"[""streamer""]",thai_language,verified,ev_99c1a5a73b66d4e62ad5,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_ac50362a1a25b6993a0c,Azuri「 PRD 」,unknown,"[""entertainer""]",thai_language,verified,ev_28c8fd45d78b47a967a1,grok:creator-link-pipeline,2026-09-16T11:35:15.115764+00:00
+persona_ac639c496445cfc94b8e,RiccotaValentiea,unknown,"[""streamer""]",thai_language,verified,ev_02efd52c7b26bd8620ed,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_aca45481c2fb8a07181f,Kaito Shark,unknown,"[""entertainer""]",thai_language,verified,ev_1ff45fcede6f31dee6bb,codex:public-persona-review,2026-09-13T06:36:47.795555+00:00
+persona_adb685527ff717bda9b1,Peace Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_ac6880b4a6f29655102d,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_adc56181cb798abe3c25,Torakaze_13,unknown,"[""streamer""]",thai_language,verified,ev_756105145c65caa10a7e,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_ade351fd77cc6385572c,MONGON.AF48DW.(V.2),unknown,"[""entertainer""]",thai_language,verified,ev_f1b634931f370539d21e,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_adf3e68a271d317b9997,ITsMeYao,unknown,"[""entertainer""]",thai_language,verified,ev_b5a274701e121b0a0323,grok:creator-link-pipeline,2026-09-16T11:35:15.126503+00:00
+persona_ae084106383e0139b74a,MosantXD,unknown,"[""educator"", ""entertainer""]",thai_language,verified,ev_b4eca9fbe49cfb8c149b,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_ae7de8a91b062f0ce5cc,RIPry - ริบหรี่,unknown,"[""entertainer""]",thai_language,verified,ev_5e3db78952afa063c90e,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_ae9d3c105209cb93bec1,Lonyanta,unknown,"[""streamer""]",thai_language,rejected,ev_2e72a4c87751b57a98ee,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_aeb5c97870b2ef4fe11a,Shunka INE [NEX],unknown,"[""entertainer""]",thai_language,verified,ev_58a006e08b5d2b9dca49,grok:creator-link-pipeline,2026-09-16T11:35:15.130230+00:00
+persona_aee53b04971af6a9ce76,KongkhaGirl,unknown,"[""entertainer""]",thai_language,verified,ev_40b142aff06446252cff,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_af4ba59e6bbfdb438e15,NICHA Ch. 【SSR】,unknown,"[""entertainer""]",thai_language,verified,ev_3dead3aa4b384d3cd993,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_af62959ec7f55a66176c,Kyubi Nine キュビ ナイン,unknown,"[""entertainer""]",thai_language,verified,ev_cb8b64ca0ae40a9089e1,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_af80c01e8b4c68250bd3,Kapz 🦆,unknown,"[""entertainer""]",thai_language,verified,ev_0e6e3354ca7b85bfff94,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_afb555402a156d01275c,Morika Rei【ARRI】[Graduated],unknown,"[""singer""]",thai_language,verified,ev_2f548a36045be1441479,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_b03129adf907f9f9b610,叶龙 | Yelong,unknown,"[""entertainer""]",thai_language,verified,ev_80dd4927057243918fd0,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_b0e0244cd57be3ffb704,Rewarin Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_8279c040831ad3424a78,grok:creator-link-pipeline,2026-09-16T12:02:58.804826+00:00
+persona_b1567cb24ed71341c9bf,Kumo Kuma ch.,unknown,"[""entertainer""]",thai_language,verified,ev_adaf880affd8cec90eb5,grok:creator-link-pipeline,2026-09-16T11:35:15.118929+00:00
+persona_b15ace55bad46c7492c4,Tiara Summerstone,unknown,"[""singer""]",thai_language,verified,ev_235eec6c5a1c9ff0e316,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_b17952f94ac0033cf854,Phelita ch. Euphora • [On Hold],unknown,"[""entertainer""]",thai_language,verified,ev_d68da2455bd73267bcfb,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_b21578ad4e87ce0be5bd,Esmer Hestia | Vtuber TH,unknown,"[""entertainer""]",thai_language,verified,ev_ea83e6776872eacb8c99,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_b2affe36d4610b6a34ed,CoolRin CH,unknown,"[""entertainer""]",thai_community,verified,ev_315d78f6ba9f442c6783,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_b35cc1a7b8aa9a3ae51b,Harumoon Ch.,unknown,"[""entertainer""]",thai_community,verified,ev_50a569ace1b64600cdbb,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_b393662cc392d0527569,Thear DreamWhale° 10Hz,unknown,"[""entertainer""]",thai_language,verified,ev_47d80b7117379402d8e6,grok:creator-link-pipeline,2026-09-16T11:35:15.130547+00:00
+persona_b3ab6771fd4b5eb8d55d,Alvina Ch,unknown,"[""entertainer""]",thai_language,verified,ev_f16391e4a37c27ee470e,grok:creator-link-pipeline,2026-09-16T11:35:15.132022+00:00
+persona_b3f04e5bed55d6a74736,Zelune Noctarielle 🌙,unknown,"[""entertainer""]",thai_language,verified,ev_a5335e62d712c70f301b,grok:creator-link-pipeline,2026-09-16T12:02:58.802359+00:00
+persona_b4ef4e0ae81340f523a3,Stamp LMTY  ⌜VZ⌟,unknown,"[""entertainer""]",thai_language,verified,ev_997971d0b77192669af1,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_b4fb757eed05a813fc29,Atsuki丨アツキ,unknown,"[""entertainer""]",thai_language,verified,ev_668a99e885d2e56a4608,grok:creator-link-pipeline,2026-09-16T11:41:53.634860+00:00
+persona_b500673376199a189128,SHUA,unknown,"[""singer""]",thai_language,verified,ev_f8408e5c728b79b05d0c,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_b507ddbc9c85ee5dd6ce,Phoebe ⌜VZ⌟,unknown,"[""entertainer""]",thai_community,verified,ev_2b78117c5f451215b8bb,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_b50c18643354a61f3cf0,MIKA'mu,unknown,"[""entertainer""]",thai_language,verified,ev_5789a0e6b98a78caed80,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_b5683711a685fbb19fb6,Fuyukawa Nao,unknown,"[""entertainer""]",thai_language,verified,ev_8f467e099335bb1860fe,codex:public-persona-review,2026-09-13T06:36:47.795555+00:00
+persona_b58b2573b27eacf34256,คีนเซล่า โกยะ❤️ VTuberTH,unknown,"[""entertainer""]",thai_language,verified,ev_21f73551b88ffbeb5f68,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_b62bec7e617945bd82a9,Neris Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_ba7412321adf8689401a,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_b63eb3d7581a3b506d0c,Kennedy Meow,unknown,"[""streamer""]",thai_language,verified,ev_1d036aef0ef9a80fa28d,ChatGPT,2026-09-17T08:15:44+00:00
+persona_b641ef37b23d2160d09b,Phuma Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_9580d3033b8aa93b6ddf,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_b64887979b23afc4364a,สุรกี้ | วีทูปเบอร์,unknown,"[""entertainer""]",thai_language,verified,ev_d315894872f3f9380671,grok:creator-link-pipeline,2026-09-16T12:02:58.814541+00:00
+persona_b66417fe58309bae5a79,VitaOvO💊,unknown,"[""entertainer""]",thai_language,verified,ev_69c0c3b5440f2888d15b,grok:creator-link-pipeline,2026-09-16T11:35:15.143111+00:00
+persona_b684e43e4e4635b2e619,Aozora Sukai Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_2cd4dcdc753cc9f8c2a4,grok:creator-link-pipeline,2026-09-16T11:35:15.125927+00:00
+persona_b6a5bdd09c3409afac53,althena Florent ch.〚 MQN 〛,unknown,"[""entertainer""]",thai_community,verified,ev_babfc3f594b54b58f359,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_b6a9a52ca427d8aefd29,ChouxCreamVtuber,unknown,"[""entertainer""]",thai_language,verified,ev_14cb4dd78aa95e5dcac7,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_b753d6593f75092f5258,NonGField,unknown,"[""entertainer""]",thai_language,verified,ev_da8dc251f8bbebfd9f84,grok:creator-link-pipeline,2026-09-16T11:35:15.121618+00:00
+persona_b79763354fd586cd6f43,SHiA_4a,unknown,"[""entertainer""]",thai_language,verified,ev_cd653794b7032a5495a2,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_b825bfa9f981347b7f3d,Rayfinix,unknown,"[""streamer""]",thai_language,verified,ev_93c83b8b73bdcb5607af,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_b83874e57056a127ef53,Lyrics 🌙,unknown,"[""entertainer""]",thai_language,verified,ev_448e00c4438917b59af7,grok:creator-link-pipeline,2026-09-16T11:35:15.138848+00:00
+persona_b8443a4a6a88fe67e3a4,Xyne Valdreth「ZTP」,unknown,"[""entertainer""]",thai_language,verified,ev_175b9955c8e2d0265a50,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_b84d58fe917850141bb4,Bloodyflora,unknown,"[""entertainer""]",thai_language,verified,ev_51148783cb342429413f,grok:creator-link-pipeline,2026-09-16T11:35:15.146046+00:00
+persona_b86a4025419f35bc9f7b,Atlanteia Sireen Ch. Lumina-First-Myth,unknown,"[""entertainer""]",thai_language,verified,ev_83d7c3ee3b76967302bb,grok:creator-link-pipeline,2026-09-16T11:35:15.133035+00:00
+persona_b88fd836ebd71a762b9d,TANTAN,unknown,"[""entertainer""]",thai_language,verified,ev_43714b4114b75108db81,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_b8bde8b9caae055769d2,Ociana Fala Ch,unknown,"[""entertainer""]",thai_language,verified,ev_c8686e822a6641c86a04,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_b91e3733bb939fb082d7,Supeacha_Vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_bad3f48bf63438739d43,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_b96433346c9e8bb5e71e,เซียน่า | Sienna 【RE:S】,unknown,"[""entertainer""]",thai_language,verified,ev_94c6ab33aa05ed391ec5,grok:creator-link-pipeline,2026-09-16T11:35:15.123656+00:00
+persona_b977b896710e77b73e28,æ𝕃a✦VTUBER,unknown,"[""entertainer""]",thai_language,verified,ev_08962a28d196d9135408,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_b99ccf88cd918649cbe2,Megzis Lurnyl,unknown,"[""entertainer""]",thai_language,verified,ev_6f34db49a37c556234a8,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_b9cd043f7ffdf705ec51,Azar《 OTL 》,unknown,"[""entertainer""]",thai_language,verified,ev_561cccf8056553625998,grok:creator-link-pipeline,2026-09-16T11:35:15.133152+00:00
+persona_b9eacb59e5aa43c7b868,HØRI 07 ⌜VZ⌟,unknown,"[""entertainer""]",thai_language,verified,ev_1a3a19473be5909ccf77,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_b9f5f7e894bc19329a52,์Nicole BLANK,unknown,"[""entertainer""]",thai_language,verified,ev_ad74fe71e990c0196096,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_ba0a93ea867b70846b7c,ลินน่าจะร้อง │ Lynna Vsinger,unknown,"[""singer""]",thai_language,verified,ev_5abc06d003d6fcfd43df,codex:public-persona-review,2026-09-13T06:36:47.795555+00:00
+persona_ba710116c54fd9843ce6,Xonebu X'thulhu Ch. Lumina-World-End,unknown,"[""entertainer""]",thai_language,verified,ev_954983e5dbea2e2edde9,grok:creator-link-pipeline,2026-09-16T12:02:58.814639+00:00
+persona_ba8d33b34861948bb6d6,PPrincess_Devil,unknown,"[""streamer""]",thai_language,verified,ev_c53d67a11faf20f092a3,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_ba9e2872421908ede6c2,Aosora Popo Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_33f3c0ca886bc4b85a9c,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_bac3210f3a658f017ce6,Hanabi Lafy Ch. Pixela-Isekai,unknown,"[""entertainer""]",thai_language,verified,ev_dccd5f020d9e7f798275,grok:creator-link-pipeline,2026-09-16T11:35:15.135086+00:00
+persona_bb630793647484d9397c,MomayAllegrala,unknown,"[""streamer""]",thai_language,verified,ev_3827f7f1e796db6b0fc6,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_bb63b004e62bd7f87f4a,nicole_blank,unknown,"[""streamer""]",thai_language,rejected,ev_25f6d6a2671f4c354348,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_bba526e34f1d46903829,MaaeTheGreatest,unknown,"[""entertainer""]",thai_language,verified,ev_3304837b973ece600c86,grok:creator-link-pipeline,2026-09-16T11:35:15.119911+00:00
+persona_bbb096d6af1dc2af7c82,Mi Kun Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_7769c20152d1505b2f20,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_bc1be2cfd084c14b483b,Mali 🐯🩵 | VTuberTH【SLR】,unknown,"[""entertainer""]",thai_language,verified,ev_5c39cb7127b9a0771af0,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_bc2f34abbf31ca599ced,estxrthemask,unknown,"[""entertainer""]",thai_language,verified,ev_2b4651188951568be6ef,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_bc5ce90f36fc683de913,Zenjigo Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_aa62bf86139ce90d1626,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_bcf23a0ef01655c0bbd2,Sira Samuel CH.,unknown,"[""entertainer""]",thai_language,verified,ev_97376f864dfc0aea4c7f,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_bd8414d013d95df8d9f1,Kirine21,unknown,"[""streamer""]",thai_language,rejected,ev_5fdd817ecf1134bfdcfa,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_bde66e9a1f35ef53fe74,JaoGuin Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_6ca623660e370513c917,grok:creator-link-pipeline,2026-09-16T11:35:15.135521+00:00
+persona_be3a00771932f271e934,123DPx,unknown,"[""streamer""]",thai_language,verified,ev_5986be2e4d5df03c4e45,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_be46fad9a30397542065,ฟ้อนดาวมาเล่า | Fondawl【RE:S】,unknown,"[""educator""]",thai_language,verified,ev_f345adbfabd132f20a26,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_bf184c206c0ef1ff8bf7,Reilim Channel,unknown,"[""entertainer""]",thai_language,verified,ev_596e6363e2bda6ed833f,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_bf8279f94f0da288f6d1,Midnightafter12AM,unknown,"[""streamer""]",thai_language,verified,ev_4331e75a894e2b73ec39,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_bfa02b2957f4aad7c1dc,estxr_CH,unknown,"[""entertainer""]",thai_language,rejected,ev_38f7e0641aab188999e1,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_c00aace101631708f8df,นกเหลืองเยื้องขวา,unknown,"[""entertainer""]",thai_language,verified,ev_fd13ac39c4dbafd9dffe,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_c0a6e01c8d39135a0cf4,N4iKI,unknown,"[""entertainer""]",thai_language,verified,ev_4a722b82b725b50955f1,grok:creator-link-pipeline,2026-09-16T11:35:15.129407+00:00
+persona_c0d789bf67e1dee4b87d,Saphilia《ATX》,unknown,"[""entertainer""]",thai_community,verified,ev_269d60df0f5c4f9adc01,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_c10dd231709fef7ea9c3,Anastasia Ch.「TRR」,unknown,"[""entertainer""]",thai_language,verified,ev_d4a6e681c21a1b17dd69,grok:creator-link-pipeline,2026-09-16T12:02:58.806261+00:00
+persona_c14b8cce9ac440685c07,jisooman18,unknown,"[""entertainer""]",thai_language,rejected,ev_241589a0fc8ba430e744,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_c1555bcff35d0442ae21,Minilorr,unknown,"[""entertainer""]",thai_language,verified,ev_405c046d7dcbf4d5d506,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_c17b5e8aab80600e61fa,Witchy Rochelle,unknown,"[""entertainer""]",thai_language,verified,ev_2c584dee1a28d7b6c018,grok:creator-link-pipeline,2026-09-16T11:35:15.143367+00:00
+persona_c1bf534e2e3eec919777,Zenaida XETA-102 Channel,unknown,"[""entertainer""]",thai_language,verified,ev_0a4cfb397a20cdbdde87,grok:creator-link-pipeline,2026-09-16T11:35:15.127732+00:00
+persona_c1c5b28b885f7eb2991b,JellMellO,unknown,"[""streamer""]",thai_language,verified,ev_dd5e0ef6c17137cfd14f,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_c1e717d8c8cab92309ff,MilyniTivona,unknown,"[""streamer""]",thai_language,verified,ev_2ecb17dc405dc18059dc,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_c1ebde4336b3950f42f0,C ⌜VZ⌟,unknown,"[""entertainer""]",thai_community,verified,ev_8c36d8ff65b20cae8d40,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_c20c168d6c92fbc77ca9,GIN,unknown,"[""entertainer""]",thai_language,verified,ev_180fe714fa4a752ae948,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_c27f1925f45ca2e32269,Vulgtmnahog,unknown,"[""entertainer""]",thai_language,verified,ev_717c9bc8c10c1f6f75c1,grok:creator-link-pipeline,2026-09-16T11:35:15.125011+00:00
+persona_c3bdac30d6bdb970b483,Hello Tawan - Tawan The Horizon,unknown,"[""entertainer""]",thai_language,verified,ev_be59d671313e6c82546f,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_c3ec9e4c886087405663,Xeres Artrophel Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_4c0204305974c50e7ddc,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_c43ef32563b789fc2b86,Shinya Natonsai,unknown,"[""entertainer""]",thai_language,verified,ev_a07440f98ffa02df0072,grok:creator-link-pipeline,2026-09-16T11:35:15.141320+00:00
+persona_c4c8d1cbae330ab574af,Moe Kaori  ⌜VZ⌟,unknown,"[""entertainer""]",thai_community,verified,ev_3ba422be49df9a48c699,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_c4d28d0be85d5bbd6cc1,Azato Stacia Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_ba75834f845d8f14c369,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_c4d2b27ced9cb4b492ab,OkiChinaToy,unknown,"[""entertainer""]",thai_language,verified,ev_6260e5b19842185ee383,grok:creator-link-pipeline,2026-09-16T12:02:58.812477+00:00
+persona_c5076a344fe0d04efe72,LIRIN,unknown,"[""entertainer""]",thai_language,verified,ev_a0b01ff3ef08fc8ac55d,grok:creator-link-pipeline,2026-09-16T11:35:15.136984+00:00
+persona_c51f6670597337fc5df6,Benny Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_73ab176287bedd567ed5,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_c523d3417e1714e72125,Nonghong,unknown,"[""entertainer""]",thai_language,verified,ev_e9b9b059d68ccf91a9a6,grok:creator-link-pipeline,2026-09-16T11:35:15.139494+00:00
+persona_c539cd0f4dd5ef89afe2,JubzLova,unknown,"[""streamer""]",thai_language,verified,ev_931b46373fe591af4a1b,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_c59f1e3018dfffc6dacd,zolrenx โซเร็น 🦇🍷,unknown,"[""entertainer""]",thai_language,verified,ev_c3876a70a5af334788e8,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_c5c1895c6d1df3df798d,Flur Furry Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_71a85d9ec48ac45b953c,grok:creator-link-pipeline,2026-09-16T11:35:15.146241+00:00
+persona_c5ed7b606744f7777fc0,takiya_vtuberth,unknown,"[""entertainer""]",thai_language,verified,ev_9b11b2e5f0b394214460,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_c61e6992068cc6f763b2,AsmodeuSia_BLB,unknown,"[""streamer""]",thai_language,verified,ev_13d12639a1a13995b710,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_c65b62178a9a4a95ef7d,Akinori Eiji Ch.「TRR」,unknown,"[""entertainer""]",thai_language,verified,ev_1f53e35012f713011078,grok:creator-link-pipeline,2026-09-16T12:02:58.806715+00:00
+persona_c6bb548838926fb98baa,Antia Ch. 【Mystery】,unknown,"[""entertainer""]",thai_language,verified,ev_a047a64546cb8611bab5,grok:creator-link-pipeline,2026-09-16T12:02:58.797601+00:00
+persona_c7016d23e2296fd3d92a,Minami Cera,unknown,"[""entertainer""]",thai_language,verified,ev_d5d21ed7fda447084f1c,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_c70ac1cf6acf38bbe079,xMylah.Chx,unknown,"[""entertainer""]",thai_language,verified,ev_79373974da8dc147feaa,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_c7451127902f262d84cb,Nora_Vanadiz,unknown,"[""streamer""]",thai_language,verified,ev_c2ad44b3b6e6da8309eb,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_c7d5a9ba61a7a4150a20,Breindel 🦆🔱 | VtuberTH,unknown,"[""entertainer""]",thai_language,verified,ev_0ab1b991ba73a51745a9,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_c7dc48cbdc2239573d74,CastesiaNX,unknown,"[""entertainer""]",thai_language,verified,ev_52b919460a3d153f41a0,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_c7f5d4d43c4389229069,Ryusei Starlight,unknown,"[""entertainer""]",thai_language,verified,ev_bb1db798553daa7d3d0e,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_c841e69126e38b816b51,RoxzyVtuber,unknown,"[""entertainer""]",thai_language,verified,ev_c0daf8781195357dee3b,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_c84688b6152899db158e,Daiji Inuyuki 《 OTL 》,unknown,"[""entertainer""]",thai_language,verified,ev_75d48de4b7048ad76047,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_c885a55074d20c316f3b,Red FarTear Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_fefb41675f0e44304f21,grok:creator-link-pipeline,2026-09-16T11:35:15.140631+00:00
+persona_c8a2a3d5f9e915054fef,Mit PESISTH,png,"[""streamer""]",multiple,verified,ev_b03_mit,owner:manual-review,2026-09-17T10:20:00+00:00
+persona_c8af951d2472aff8d47f,Trashythemeow,unknown,"[""entertainer""]",thai_language,verified,ev_485e9847ca4e8f41ef27,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_c8e8cd28b238d1715742,WalkyTalky404,unknown,"[""streamer""]",thai_language,verified,ev_5b9fe77dddaa3ac9e891,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_c9b57811aec59e5d7625,Realiable Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_68d783aee34ff78b345d,grok:creator-link-pipeline,2026-09-16T11:35:15.140584+00:00
+persona_c9b8129c00888b35a8d3,DeliCiae,unknown,"[""entertainer""]",thai_language,verified,ev_2a5a25c4d0f07d41e6fc,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_c9ce72887adc6a9b9913,Howl,live2d,"[""streamer""]",multiple,verified,ev_b03_howl,owner:manual-review,2026-09-17T10:20:00+00:00
+persona_c9d3c8ced979ede4b573,aimtraps,unknown,"[""entertainer""]",thai_language,verified,ev_7996f448249dcac58146,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_ca36eeb5d50155393424,Nora,unknown,"[""entertainer""]",thai_language,verified,ev_f90168461f80936372c8,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_cacd2e9c4957c2b41119,natach_th,unknown,"[""entertainer""]",thai_language,verified,ev_678ed8219c003b84c7f8,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_cb548b9c418411922d35,Darin V,unknown,"[""entertainer""]",thai_language,verified,ev_8497affd7f2ede445cd0,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_cbabeb7a0eb5c25c7ce7,kumorimaa,unknown,"[""streamer""]",thai_language,verified,ev_e8b497c86a64e79b3696,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_cc38bdc743cf3e12f59e,Seiryu《ISP》,unknown,"[""entertainer""]",thai_language,verified,ev_7cecd9ec6499c22c21e7,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_ccba42c5cf753d0e26d1,Bua Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_f70013fc9286007bdb96,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_cd3cf28b63faabde2538,Lynze 🌹,unknown,"[""entertainer""]",thai_language,verified,ev_bd121de9acefca7cdd1b,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_cdb264bf97862090c4fa,Yena_Hwang,unknown,"[""streamer""]",thai_language,verified,ev_9bf567633d23f7554d1e,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_ced50772bc244f221424,Lyvea•Eve,unknown,"[""entertainer""]",thai_language,verified,ev_6a094389be7e328a1780,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_cee0f00a3db31dfeadc3,Maewmon ch.,unknown,"[""entertainer""]",thai_language,verified,ev_e9502d2a9c71f5571376,grok:creator-link-pipeline,2026-09-16T11:35:15.126804+00:00
+persona_cee6dcf54e1da15b608d,Mellowlop「Paralist」,unknown,"[""entertainer""]",thai_language,verified,ev_8283b4f64bf30b32b600,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_cf0912fb480ed21ebb0f,Allure Tytonadia,unknown,"[""entertainer""]",thai_language,verified,ev_0c92cb6d3f87ecb417ad,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_cf1105b402b18a2c3af1,Puffy Fluffy Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_5188da7c712f5b0822c6,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_cf1979afee5783e610a7,ZaynGloucester,unknown,"[""entertainer""]",thai_language,verified,ev_7238b2222b8ffec4acac,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_cf4619ecbd54b4e12063,Freidya Ch,unknown,"[""entertainer""]",thai_language,verified,ev_72b845fcbfb22572bae1,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_cf7880ec3c1e6199a334,Ginnique Ch.【ARP】,unknown,"[""entertainer""]",thai_language,verified,ev_67a5235646e730d74c1e,grok:creator-link-pipeline,2026-09-16T12:02:58.809451+00:00
+persona_cf880d235db8f665c403,halonhashi,unknown,"[""streamer""]",thai_language,verified,ev_afeb08f10927ba4d6e99,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_cf8c2863806c97eb2905,alparuvtuber,unknown,"[""streamer""]",thai_language,verified,ev_75374b3f431a5c7cb4b4,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_d014583872f2942c5b24,RaksaVtuber,unknown,"[""entertainer""]",thai_language,verified,ev_5196e50fb1dd7df93e7b,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_d03a812a730f4176214d,❄️Sylvie Ch.【XIRCONIA】,unknown,"[""entertainer""]",thai_language,verified,ev_40f5e6b851885ac2d7a3,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_d04b9ef392b7a781e1af,Minarin Sárkányszél,unknown,"[""entertainer""]",thai_language,verified,ev_dc43a6ddf9e8ee4fee7b,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_d0e4528c2b4b6e4d7796,จอมหมาร,unknown,"[""entertainer""]",thai_language,verified,ev_928de47c59f81858f617,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_d158444fa71a87ef77fe,Kafune CH.,unknown,"[""entertainer""]",thai_language,verified,ev_11955eb0be027680bcd9,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_d18600993356475fdd01,Fuyu Kaida,unknown,"[""entertainer""]",thai_language,verified,ev_427b6541ed7f0461caad,grok:creator-link-pipeline,2026-09-16T11:35:15.134571+00:00
+persona_d194388cd400ffe6d234,Nokk_tt Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_36f652b02ebed83052c9,grok:creator-link-pipeline,2026-09-16T11:35:15.146931+00:00
+persona_d1d5b74fa83402f6cce6,SeJi,unknown,"[""entertainer""]",thai_language,verified,ev_80691fa61ae64b93e444,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_d2cfe48ebe4573778d3e,Moia | โมเอีย 🪶,unknown,"[""entertainer""]",thai_language,verified,ev_4f04be6fe0defd7c8a30,grok:creator-link-pipeline,2026-09-16T11:35:15.121174+00:00
+persona_d2ecd526d23dee4531e3,sunraindre,png,"[""entertainer""]",thai_language,verified,ev_873d843e3309e0e1839f,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_d3188abe033e604322f6,Mizu Gracia Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_27c21466fb65e9242df7,grok:creator-link-pipeline,2026-09-16T11:41:53.635506+00:00
+persona_d3315e59f6db25212938,SeaU✨️⚓️,unknown,"[""artist"", ""entertainer""]",thai_language,verified,ev_5d14f47f6fe6400107e4,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_d34b8b887c344b30b676,Odiare Ch,unknown,"[""entertainer""]",thai_language,verified,ev_5a91ef4440e4f3e001b2,grok:creator-link-pipeline,2026-09-16T11:35:15.139906+00:00
+persona_d35f651533208e242d33,XroSetsuna,unknown,"[""streamer""]",thai_language,verified,ev_51d394ef0f96fc5d3cba,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_d435a2fdc393b2187366,AquaMarinia 【BLP】,unknown,"[""entertainer""]",thai_language,verified,ev_5e582d8a80accfddef66,grok:creator-link-pipeline,2026-09-16T11:35:15.144451+00:00
+persona_d4b214338673f6ac2900,Sunfish Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_4d95de193b4124f5403a,grok:creator-link-pipeline,2026-09-16T11:35:15.141805+00:00
+persona_d5d0180061e8a48f5025,泠露 Líng Lù,unknown,"[""singer""]",thai_community,verified,ev_ff2d989b3f05ddf1d953,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_d66298d6bc044a4f40fd,Nongwan TV,unknown,"[""entertainer""]",thai_language,verified,ev_a34cd3eca47089baca8f,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_d67ff31a9b932e3da51e,Amello,unknown,"[""entertainer""]",thai_language,verified,ev_354bad4815273e0d2d62,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_d6a0e166f11239dba588,ลุงขนุน《 SSR 》,unknown,"[""entertainer""]",thai_language,verified,ev_4eac722a0e579b511904,grok:creator-link-pipeline,2026-09-16T12:02:58.813982+00:00
+persona_d735c9afcad02e399d2f,DeliCiae_v,unknown,"[""entertainer""]",thai_language,rejected,ev_9cf7b163c15cc6d725d2,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_d75b588f2bb1f293bcc9,RAITO-KUN,unknown,"[""entertainer""]",thai_language,verified,ev_738f61bc0c70b4691102,grok:creator-link-pipeline,2026-09-16T11:35:15.147102+00:00
+persona_d776a34d791d27d6b614,TaeZo_,unknown,"[""streamer""]",thai_language,verified,ev_228f2de62d8f8ea19b30,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_d77c1195276eeabd78ad,จู้จีนจุกจิก | Regene【RE:S】,unknown,"[""entertainer""]",thai_language,verified,ev_9db9520a5a5adceb0709,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_d7cd519f4b624ba29eec,叶龙 Yelong CH.,unknown,"[""entertainer""]",thai_language,verified,ev_43d35b3f0b7208c91e57,grok:creator-link-pipeline,2026-09-16T12:02:58.801969+00:00
+persona_d82e11d35ea963b01d7e,Maya Oboro Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_ca85b9c3ee6884609a4e,grok:creator-link-pipeline,2026-09-16T11:35:15.120237+00:00
+persona_d874ac70cc0863715351,Aiden Leonheart【SRV】,unknown,"[""singer""]",thai_language,verified,ev_7d4fa47b99ea3a10a482,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_d988361dc90531344f26,MonJi,unknown,"[""entertainer""]",thai_language,verified,ev_c9f744ae6be014719911,grok:creator-link-pipeline,2026-09-16T11:35:15.138461+00:00
+persona_d9899cec341a041d9a99,Big M 4U 『ECR』,unknown,"[""entertainer""]",thai_language,verified,ev_e8fc2623718e6179863d,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_da26ad183aa539f141f5,Astral Kami | Vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_8cdb66e80daf0586d156,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_da3b1e92fb379cbcfd41,ZoeSpecter_CH,unknown,"[""entertainer""]",thai_language,verified,ev_adfed064124ef27b850f,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_da7196343e1041058f4f,MiYuu43 ch.,unknown,"[""entertainer""]",thai_language,verified,ev_435c62749112f4ca2dc7,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_da8572359ca65b6837f6,Katsuki Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_e8f11b3841de6f91dae0,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_db056c3b09c9bc8b7c93,Hajikeru Haruno Ch,unknown,"[""entertainer""]",thai_language,verified,ev_9a530c947c86d6e89a8b,grok:creator-link-pipeline,2026-09-16T11:35:15.117041+00:00
+persona_db0fc52bf2eb910140b0,Cyntia Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_fe806b87ded0ae35f5e7,grok:creator-link-pipeline,2026-09-16T12:02:58.808435+00:00
+persona_db3c7a9b82e909a3814e,Beatrix CH. - ビアトリクス,unknown,"[""entertainer""]",thai_language,verified,ev_fb97b98d90cc87f9c445,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_db9bba1fa2405ca9bdce,Yuitoku Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_56a952f9bb4fee4e1cfd,grok:creator-link-pipeline,2026-09-16T12:02:58.802140+00:00
+persona_dbc0770401c5e5aeacd5,Umi Uzagi Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_d71a3661ec0118a70a35,grok:creator-link-pipeline,2026-09-16T12:02:58.813828+00:00
+persona_dbd91477edc2f193b360,RAILONEY,unknown,"[""entertainer""]",thai_language,verified,ev_d3c5d0c41392d77674dc,grok:creator-link-pipeline,2026-09-16T11:41:53.635633+00:00
+persona_dc15ebc5b493785ccbcc,กลิ่นทอง | Klinthong 【RE:S】,unknown,"[""entertainer""]",thai_language,verified,ev_0ab8ebf39683d857b94d,grok:creator-link-pipeline,2026-09-16T11:35:15.136787+00:00
+persona_dc8adc6540bedf78d220,Superpretty TAKOPERO Ch. Pixela Legends,unknown,"[""entertainer""]",thai_language,verified,ev_f96d9c9aa7e30bf610da,grok:creator-link-pipeline,2026-09-16T11:35:15.141922+00:00
+persona_dcbfc242c4c1198a1dbd,Seikou iMinato,live2d,"[""streamer""]",thai_language,verified,ev_b04_seikou,owner:manual-review,2026-09-17T10:20:00+00:00
+persona_dcc641b2dec63c26be54,Lu Yao Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_3e500d368bccd2d89e87,grok:creator-link-pipeline,2026-09-16T11:35:15.119642+00:00
+persona_dd7c3e8c837cc0957f3d,Simon von Crucisburg,live2d,"[""streamer""]",thai_language,verified,ev_b04_simon,owner:manual-review,2026-09-17T10:20:00+00:00
+persona_ddd5eebb3483a1a469c6,Effy Ch.【ARP】,unknown,"[""entertainer""]",thai_language,verified,ev_5aae80ec26f2263552b7,grok:creator-link-pipeline,2026-09-16T12:02:58.808936+00:00
+persona_ddf05a01ebf804402da4,Bluwey Ch,unknown,"[""entertainer""]",thai_language,verified,ev_79ba30bd8ce1d99292fa,grok:creator-link-pipeline,2026-09-16T11:35:15.145143+00:00
+persona_de2b5d2718b8a19e3737,Lunette CH.,unknown,"[""entertainer""]",thai_language,verified,ev_69c2b672ac59387471dc,grok:creator-link-pipeline,2026-09-16T12:02:58.811525+00:00
+persona_de694e640849f2f28b97,Kealan Hmm [ECR],unknown,"[""entertainer""]",thai_language,verified,ev_50338f3c84b44a9fbd13,grok:creator-link-pipeline,2026-09-16T11:35:15.118470+00:00
+persona_de7d0a3f412b0db47b7b,mumuthemoodiest,unknown,"[""streamer""]",thai_language,verified,ev_51b30ebbdedd9b615fd9,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_deb6a8fbf9e2df02eee9,RinREXGer,unknown,"[""entertainer""]",thai_language,verified,ev_422555b9d6c81aa2c089,grok:creator-link-pipeline,2026-09-16T11:35:15.122969+00:00
+persona_def4cb4b55a2177a9971,RIYAvtuberth,unknown,"[""streamer""]",thai_language,verified,ev_6b94f4e066e48aeaca09,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_df593499f16fc1ef27c8,ozayaol,unknown,"[""streamer""]",thai_language,verified,ev_b5da3c00a1c81925bee8,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_df6531ed6d81c85d2cec,Lune&Sol Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_f9e9e10a5cfe3afa0f58,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_df867e9941291ab760f0,Aina VTuber,unknown,"[""entertainer""]",thai_language,verified,ev_7e4b980fbeb49b011e8a,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_dfa02754bbd5992c8226,biru101,unknown,"[""streamer""]",thai_language,verified,ev_fe5d8c68ad00c5afa7dd,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_e01bd0edd4e2da9491d9,Faethon Uni. Jantra,unknown,"[""entertainer""]",thai_language,verified,ev_93701c734c262dfc681b,grok:creator-link-pipeline,2026-09-16T12:02:58.814936+00:00
+persona_e0788b177bcdf5763e20,Pamberry Ch,unknown,"[""entertainer""]",thai_language,verified,ev_f549052daec5c2d00615,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_e09d94d6ccc47403d26d,Estelle Wil Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_d9041698bacf70c2a721,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_e13a5791c8ca52439c58,AdisonEiya_DVP,unknown,"[""singer""]",thai_language,verified,ev_110f8f2319b22df2f925,codex:public-persona-review,2026-09-13T06:36:47.795555+00:00
+persona_e20ce1c9c7e61679fc84,JamMyChan ch.,unknown,"[""entertainer""]",thai_language,verified,ev_26cbe160ade9b4fb1059,grok:creator-link-pipeline,2026-09-16T11:35:15.117309+00:00
+persona_e214c634a4735e8cedd9,Esme Mew,unknown,"[""streamer""]",thai_language,verified,ev_3e6922a6782e3c63d5cf,ChatGPT,2026-09-17T08:15:44+00:00
+persona_e27ae97a6f60654a0415,pugko___,unknown,"[""streamer""]",thai_language,verified,ev_c1de709da850d8f3dc87,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_e296d01fe0a6cd96471c,Shion,unknown,"[""streamer""]",multiple,verified,ev_d7480447b8a4af4db903,ChatGPT,2026-09-17T08:15:44+00:00
+persona_e34bd7e20f2e1e0f29ca,BoonLan『VTG』,unknown,"[""entertainer""]",thai_language,verified,ev_fc85e62c4a63103f90ac,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_e36938896eaef6e8c736,กะละมัง วีทูปเบอร์,unknown,"[""entertainer""]",thai_language,verified,ev_5c817de41499152e989c,grok:creator-link-pipeline,2026-09-16T12:02:58.810243+00:00
+persona_e3da277da047b8a0b4d3,AmaneRei_Vth,unknown,"[""streamer""]",thai_language,rejected,ev_fc2b957f2b65286e3ef5,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_e41d811119d7f4338442,Aikaze,unknown,"[""entertainer""]",thai_language,verified,ev_097a2927c290080b5103,grok:creator-link-pipeline,2026-09-16T11:35:15.141233+00:00
+persona_e421713ad596a293afa0,StellarPaticle | TH/EN Vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_11e3c487a14bdcdfc67e,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_e4763073e98223551681,Baruruchannel,unknown,"[""streamer""]",thai_language,verified,ev_289fcfe752e9082c04ac,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_e48fd9134c29e7806817,Hoku Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_105514e5374efcbf22eb,grok:creator-link-pipeline,2026-09-16T12:02:58.809835+00:00
+persona_e4d939e5eebd76b39b22,Krynaydin 「ZTP」,unknown,"[""entertainer""]",thai_language,verified,ev_3f1922f39cf226588039,grok:creator-link-pipeline,2026-09-16T11:35:15.118863+00:00
+persona_e50f0adea8e6937976a4,Thara Ocean Fae ,unknown,"[""entertainer""]",thai_language,verified,ev_91174180298cadd4242f,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_e58298576a7526ad26bc,Ryuuga The Crane,live2d,"[""streamer""]",thai_language,verified,ev_b04_ryuuga,owner:manual-review,2026-09-17T10:20:00+00:00
+persona_e5d81482d0c66ce9304b,Aranis Elvene Ch. Pixela-Isekai,unknown,"[""entertainer""]",thai_language,verified,ev_f5deda0a5aadb4964ff7,grok:creator-link-pipeline,2026-09-16T11:35:15.132671+00:00
+persona_e5de911066b238922e05,Sata Channel,unknown,"[""entertainer""]",thai_language,verified,ev_fef4313c5999ed264244,grok:creator-link-pipeline,2026-09-16T11:35:15.127429+00:00
+persona_e60a55ca35e21120fc39,Mina Nekogaki / 猫垣ミナ【MSV】,unknown,"[""entertainer""]",thai_language,verified,ev_775755209425ca3e860b,grok:creator-link-pipeline,2026-09-16T11:35:15.138001+00:00
+persona_e60addcdb376e820bf59,Julius_Kosmolatria,unknown,"[""streamer""]",thai_language,rejected,ev_860e60bd69383f98474b,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_e63f3b8942472e875807,CcretRain [ FLAW Project ],unknown,"[""entertainer""]",thai_language,verified,ev_6e1e465e7ebcb5f8b13f,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_e6686da66a076eb9f5d9,G_round,unknown,"[""entertainer""]",thai_language,verified,ev_a4ec867d87d5aeeba39d,grok:creator-link-pipeline,2026-09-16T11:35:15.134635+00:00
+persona_e6abaa5ad56681ce3ebb,EVA THE RHINO Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_439aff5d27aa3d5d3ad4,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_e70eab86888acf1a7ff7,nearnergal,unknown,"[""streamer""]",thai_language,verified,ev_1ec44728563c3f615ed3,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_e734515beb96d2a726c8,erima🦊,unknown,"[""entertainer""]",thai_language,verified,ev_fcf357401893f743f53a,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_e750dfad33a432d5288b,NEMURI NEMU,unknown,"[""entertainer""]",thai_language,verified,ev_9ff41ec3a78dc41fd07a,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_e77952f01914a4ba9445,WhitePGZ,unknown,"[""streamer""]",thai_language,verified,ev_75744494d5111b321899,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_e7971e354a5a52f53dfe,Momo Vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_3c474241e68c3f276339,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_e7fb6a01000b2960f87b,Rinna Rin,unknown,"[""entertainer""]",thai_language,verified,ev_bd85d4a0ef0028283aca,grok:creator-link-pipeline,2026-09-16T11:35:15.144191+00:00
+persona_e81bd1d7f72754e90787,AYU VTuber,unknown,"[""entertainer""]",thai_language,verified,ev_117ae20c7ced113e75a0,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_e8230975430a7129b414,Nyann Nyatsume,unknown,"[""entertainer""]",thai_language,verified,ev_95898e41a58327cddaa5,grok:creator-link-pipeline,2026-09-16T11:35:15.146756+00:00
+persona_e848df19ec8591c54fdb,Samegi Navin Ch,unknown,"[""entertainer""]",thai_language,verified,ev_eb31effe903ca70e8dd2,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_e8a90b93ff62215ca9e1,Deilliah Goodknight ,unknown,"[""entertainer""]",thai_language,verified,ev_9dee453477bbbed6ec5f,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_e8f5efecd0195047b5d4,MikiVTB🐇,unknown,"[""entertainer""]",thai_language,verified,ev_6623abe1ef564ed8f53e,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_e923025616aa1187a08e,Janus ch.「TRR」,unknown,"[""entertainer""]",thai_language,verified,ev_84978ecc94be2e3d0f59,grok:creator-link-pipeline,2026-09-16T11:35:15.135276+00:00
+persona_e978c6a059151bae6f60,Jolly Estaa Ch. Pixela-Isekai,unknown,"[""entertainer""]",thai_language,verified,ev_8c4ad80079bd617e1c95,grok:creator-link-pipeline,2026-09-16T11:35:15.135613+00:00
+persona_ea1c8cbac385f4403ba3,Elizon_AST,unknown,"[""entertainer""]",thai_language,verified,ev_867963a299378223c02f,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_ea238e66bfcc2bd80ab0,ayazakiruririn,unknown,"[""streamer""]",thai_language,verified,ev_d9488c457a7f1196557a,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_ea6554693f3ab11ded5e,Zabrina,unknown,"[""streamer""]",thai_language,verified,ev_6b764ad15e37a74b39bd,ChatGPT,2026-09-16T15:38:46.627996+00:00
+persona_ea8dd88710358fe002b1,เพื่อนสนิทคิด(เงิน)เกินเพื่อน,unknown,"[""entertainer""]",thai_language,verified,ev_c636cdc72a22c73604fd,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_eaf9babb6429f24c55e9,MaewUVChan Channel,unknown,"[""entertainer""]",thai_language,verified,ev_f21b284c5da49212e199,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_eb65a2124844b4c8e24c,TOP 【ASTRAY】,unknown,"[""entertainer""]",thai_language,verified,ev_72ba3be32e227f60c5c1,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_eb74021a0d9f4091c70b,Aoi Nekomori,unknown,"[""entertainer""]",thai_language,verified,ev_7e71889c6d03a38f210b,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_ec2b9f3be2c55290572f,ก้อนเป็นวีทูปเบอร์,unknown,"[""entertainer""]",thai_language,verified,ev_a508f5e87533f7246388,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_ec69161eeeba1e3f2368,T หมาป่าบลูเบอร์รี่ Wolfficial,unknown,"[""entertainer""]",thai_language,verified,ev_625dde809be7d6d09d66,grok:creator-link-pipeline,2026-09-16T12:02:58.813229+00:00
+persona_ed41463d3a76fd4da49b,MeiLiLyn,unknown,"[""streamer""]",thai_language,verified,ev_ac2a21757fbeefff2fed,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_ed46b0b222ce9d3298c3,MATSURII Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_e37487261d8d990a3b80,grok:creator-link-pipeline,2026-09-16T12:02:58.799750+00:00
+persona_ed79e0b4aa1fe10e6e31,HallyYoruda | Vniverse,unknown,"[""entertainer""]",thai_language,verified,ev_96d013f4c4e79d7ad11b,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_edcc962e6b059a11dfe3,FuwaFuwaSeal,unknown,"[""entertainer""]",thai_language,verified,ev_bc565b609d0b1555780d,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_edd53e3c335615c4337d,SivlaACAS,unknown,"[""streamer""]",thai_language,verified,ev_60e8f698ac3779531f15,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_edf6b2ff3decec5980f5,Melanox Lunix「ALF」,unknown,"[""entertainer""]",thai_language,verified,ev_492a4f43e044edb23442,grok:creator-link-pipeline,2026-09-16T11:35:15.120480+00:00
+persona_edff388eb54fbfb99096,Ume しのはな,unknown,"[""entertainer""]",thai_language,verified,ev_d0e59500851a7c84e4de,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_ee02e00301e106a7ad85,Hydejung《21PM》Vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_aec75bc13587237166e9,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_ee2f792c63a9a0f5b161,Lunatrix💫,unknown,"[""entertainer""]",thai_language,verified,ev_356ee5f2246a46f6fcc8,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_ee4af82261b298783c0d,FafyFalentine,unknown,"[""streamer""]",thai_language,verified,ev_1b4a8f03f30569db2048,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_ee726256ded2e3cb6d8f,Darchelle ch.,unknown,"[""entertainer""]",thai_language,verified,ev_334d267d21009bdeb337,grok:creator-link-pipeline,2026-09-16T12:02:58.808743+00:00
+persona_ee94736e0c10d9a6b67a,Debirun Ch. Pixela-World-End,unknown,"[""entertainer""]",thai_language,verified,ev_61bca68b0bcd488d901d,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_eebcb5451df0ba0a7eda,Grazia Ch. VtuberTH,unknown,"[""entertainer""]",thai_language,verified,ev_3bcf21f491ec125df4be,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_eed0004c9696cd93b967,มาลัยเดวา,unknown,"[""entertainer""]",thai_language,verified,ev_3affa96762cf8cb53cf3,grok:creator-link-pipeline,2026-09-16T12:02:58.811731+00:00
+persona_ef20f1a80b56d5b8a431,Reva Regalia『AST』,unknown,"[""entertainer""]",thai_language,verified,ev_34eb2ee759099e2986a4,grok:creator-link-pipeline,2026-09-16T11:35:15.122743+00:00
+persona_efd38c03f72e8e14405a,Akari Kanon,unknown,"[""entertainer""]",thai_language,verified,ev_a389ad75975b1b41ddd3,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_f02d3525ebf1f63453f4,Sigmunda Riona Ch. 【POLYGON】,unknown,"[""entertainer""]",thai_language,verified,ev_0168caf8de496bcfc276,grok:creator-link-pipeline,2026-09-16T12:02:58.805314+00:00
+persona_f1ea91af3c5ddb59ddbf,Ané Monie Ch. | OAL,unknown,"[""entertainer""]",thai_language,verified,ev_c296566015ca0dcc4e05,grok:creator-link-pipeline,2026-09-16T12:02:58.800549+00:00
+persona_f28592162272b0ba6136,Eimiichan_,unknown,"[""streamer""]",thai_language,rejected,ev_92538e72035533c3be35,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_f2f3b205a8ca3ad81060,Ursa Scorpio,unknown,"[""entertainer""]",thai_language,verified,ev_117fc479958ae9eb9545,grok:creator-link-pipeline,2026-09-16T11:35:15.142716+00:00
+persona_f2f4637f79ff7fbf2539,KuraAlan,unknown,"[""entertainer""]",thai_language,verified,ev_718d4a5daad9c2c37cb3,grok:creator-link-pipeline,2026-09-16T11:35:15.136874+00:00
+persona_f3377bdb3324e7550801,vthAriel,unknown,"[""streamer""]",thai_language,verified,ev_462a433771946dfdb5c1,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_f339bc622f6d17c4f6d8,NoPHatner,unknown,"[""streamer""]",thai_language,verified,ev_6781a3bfbf2a720b60fa,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_f38e27f5224de0fe00bb,LucidReverdream,unknown,"[""streamer""]",thai_language,verified,ev_225e928acb3cedb9f10a,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_f3a9c3d87bcff16a97eb,Alparukeeper.vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_865f28d62242d47ef9ac,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_f3ac52ae514adc62f9f8,PINTO,live2d,"[""streamer""]",multiple,verified,ev_b05_pinto,owner:manual-review,2026-09-17T10:20:00+00:00
+persona_f47f2063e8fae7ba9b8c,ศาลเจ้ามังกรเนื้อทอง,unknown,"[""entertainer""]",thai_language,verified,ev_cc322d04b53687b41470,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_f587818fbe4666fd8f2a,blinkdraws_,unknown,"[""streamer""]",thai_language,verified,ev_488d47ca5fb5d99e9d7a,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_f59375cac024b8b8f888,CandyCatdy CH.,unknown,"[""entertainer""]",thai_language,verified,ev_b5e23913388f7828c472,grok:creator-link-pipeline,2026-09-16T11:35:15.126055+00:00
+persona_f5b26a3e6bcf691715ab,FL_FirstsLove ⌜VZ⌟,unknown,"[""entertainer""]",thai_language,verified,ev_4f0d1d65df45c5c66a4e,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_f6593c9dfb5af34d663f,LevyVPM,unknown,"[""streamer""]",thai_language,verified,ev_00445687e7734415009f,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_f69dd5792813c6c03458,Kyubi Nine キュビ ナイン,unknown,"[""entertainer""]",thai_language,verified,ev_7f56e23a48fe2a443356,grok:creator-link-pipeline,2026-09-16T11:35:15.128927+00:00
+persona_f829c41fbc50dbff048a,Lawiz Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_0c9f9d12b218ea14b0d9,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_f83d26c784f459e8caf2,Alizabyleth Vtuber,unknown,"[""entertainer""]",thai_language,verified,ev_041fa7e6e20d251ef8a1,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_f8c56088dd10763bccd5,Nyeeeon,unknown,"[""entertainer""]",thai_language,verified,ev_244515717372baaaceb7,grok:creator-link-pipeline,2026-09-16T11:35:15.121689+00:00
+persona_f8ebd2110b0699a595bb,OumKuMi,unknown,"[""streamer""]",thai_language,verified,ev_ff8376fa801d860a7d77,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_f950c5c09fec76a5c3a4,Nostradamus Karasu,live2d,"[""streamer""]",thai_language,verified,ev_b05_nostradamus,owner:manual-review,2026-09-17T10:20:00+00:00
+persona_f9bb33726ac7f1996980,Eimiichan_,unknown,"[""entertainer""]",thai_language,verified,ev_c0e693a15752f82827fd,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_fb165701bb8655c27dbf,NikkiLattE,unknown,"[""streamer""]",thai_language,verified,ev_667e802470e34628473c,ChatGPT,2026-09-17T08:15:44+00:00
+persona_fb873b8c3d97514f9b3b,【公式】HAJITABI ハジタビ,unknown,"[""entertainer""]",thai_language,verified,ev_3b31ce687304e7cb1457,grok:creator-link-pipeline,2026-09-16T11:35:15.134871+00:00
+persona_fbba0a8cda3242756b25,J U $ T - Virtual7『TH』,unknown,"[""entertainer""]",thai_language,verified,ev_711d916144ec36e4df7b,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_fbcf845adb4bc483e4b0,apririru,unknown,"[""streamer""]",thai_language,verified,ev_8d8a45c9e4e2f02f1551,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_fc1fe4b8823558d7e16e,Aisha Channel,unknown,"[""entertainer""]",thai_language,verified,ev_1e9de6bf47c5a6399239,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_fc7dfbd40a16179cad93,Jorirynn 【ASTRAY】,unknown,"[""entertainer""]",thai_language,verified,ev_2fa8e1f021f9c05be310,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_fca7fe24a2909edc536a,BOOKGAMER,unknown,"[""entertainer""]",thai_language,verified,ev_9df5539a95692c62b84e,grok:creator-link-pipeline,2026-09-16T12:02:58.807634+00:00
+persona_fcb45065e6c0949fa002,GINTHEYUK,unknown,"[""streamer""]",thai_language,rejected,ev_f326946d074c6018fe38,codex:persona-consolidation-review,2026-09-16T12:00:00+00:00
+persona_fce73bea9f7790303155,LTX022,unknown,"[""streamer""]",thai_language,verified,ev_3e9024b5b52286a3c346,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_fceb20120986ef411ce6,XAY | VTUBERTH,unknown,"[""entertainer""]",thai_language,verified,ev_55f59b6a2e2c1998718a,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_fd597e0979f62f6fab1d,MaewLham,unknown,"[""entertainer""]",thai_language,verified,ev_efb3c147debdc4cc73f0,codex:targeted-triplatform-completion,2026-09-16T07:29:00.279761+00:00
+persona_fe167f0f82e5fe8b1c15,Nanino Channel,unknown,"[""entertainer""]",thai_language,verified,ev_7d1463de2665cdbe22fe,grok:creator-link-pipeline,2026-09-16T11:35:15.129629+00:00
+persona_fe3a14ea28320923046b,ฟิอาเองก็อยากให้เทคโนโลยีรัก,unknown,"[""entertainer""]",thai_language,verified,ev_47a6e4b26b56ff907037,codex:public-persona-review,2026-09-13T06:30:40.435624+00:00
+persona_fe40252cf97b5d73f98a,Aelisse,unknown,"[""entertainer""]",thai_language,verified,ev_9357bfe213a858f063e6,grok:creator-link-pipeline,2026-09-16T11:35:15.130948+00:00
+persona_fe49e522f619699ac35e,Rexa T-Rex Vtuber🦖,unknown,"[""entertainer""]",thai_language,verified,ev_ecc7945b0a9a14f0be73,codex:public-persona-review,2026-09-13T06:23:05+00:00
+persona_fe4a65ebbdff4f70d6fc,Karu Ch.【ARP】,unknown,"[""entertainer""]",thai_language,verified,ev_6a600ae1d0e8f0f7acb9,grok:creator-link-pipeline,2026-09-16T12:02:58.810759+00:00
+persona_fe6a9253cc3c789883f6,jiah_epr,unknown,"[""streamer""]",thai_language,verified,ev_54d7bbba86ee381a75ec,codex:public-persona-review,2026-09-13T09:02:57.160162+00:00
+persona_fea2ea2e8045e370313a,Timetuba,unknown,"[""entertainer""]",thai_language,verified,ev_3df4c2a5765a0edddf6f,grok:creator-link-pipeline,2026-09-16T11:35:15.142236+00:00
+persona_fea3382528a4f954d987,Azazel the Wanderer Ch.,unknown,"[""entertainer""]",thai_language,verified,ev_54938055aae03920b6ed,grok:creator-link-pipeline,2026-09-16T11:35:15.122085+00:00
+persona_feca7b5d2bdb3ae651b5,Ayris Belle Melleri Ch.,unknown,"[""singer""]",thai_language,verified,ev_a9d8d59f56c19deac738,codex:public-persona-review,2026-09-13T06:35:20.782401+00:00
+persona_ff8ccf87b65d0ea80592,Aito LH,unknown,"[""entertainer""]",thai_language,verified,ev_ff7ba38422cd07369113,grok:creator-link-pipeline,2026-09-16T11:35:15.131168+00:00

@@ -1,0 +1,17 @@
+{
+  "candidates": [
+    {
+      "id": "candidate_c5e306a1b504909777da",
+      "platform": "tiktok",
+      "platform_id": "7072955121097376795",
+      "id_namespace": "web_user_id",
+      "name": "Fumi Hausu",
+      "url": "https://www.tiktok.com/@fumihausu",
+      "review_status": "verified",
+      "account_id": "acct_2e6367dbf67d5a5f6ccb",
+      "evidence_id": "ev_224b2d7a6db3465c85cd",
+      "reviewer": "codex:candidate-account-resolution",
+      "reviewed_at": "2026-09-17T13:30:00+00:00"
+    }
+  ]
+}

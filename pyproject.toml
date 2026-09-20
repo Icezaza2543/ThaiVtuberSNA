@@ -1,0 +1,15 @@
+[project]
+name = "thai-virtual-creator-registry"
+version = "0.1.0"
+description = "Evidence-backed registry of Thai-linked virtual personas and platform accounts"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+discovery = ["playwright>=1.55,<2"]
+
+[tool.setuptools.packages.find]
+include = ["registry*"]
+
+[tool.ruff]
+line-length = 110

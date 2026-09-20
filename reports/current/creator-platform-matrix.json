@@ -1,0 +1,8741 @@
+{
+  "created_at": "2026-09-17T17:31:57.020804+00:00",
+  "source_registry_sha256": "0c6a6ea4ed07b16876b956bd5163721c6efeaa03dbaa98b9d607960192c331a4",
+  "count_semantics": "Current reviewed platform presence, not dated activity. A missing platform is unknown, not absent. Coverage fields retain the registry coverage command semantics.",
+  "personas": [
+    {
+      "persona_id": "persona_5784e30be2e9c927da86",
+      "name": "DrakoNyaMio",
+      "platforms": [
+        "facebook",
+        "ganknow",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 7
+    },
+    {
+      "persona_id": "persona_9c9672a2bef9376154c5",
+      "name": "Julius Kosmolatria | VTuber",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "kick",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 7
+    },
+    {
+      "persona_id": "persona_2ffa79b5b6500262de3c",
+      "name": "Amane Rei",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_77c82b97f9bda9b9be36",
+      "name": "Astrea Ch. アストリア〖ECR〗",
+      "platforms": [
+        "facebook",
+        "ganknow",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_8c509084d2ddabeca0df",
+      "name": "Chika🍀🩷",
+      "platforms": [
+        "ganknow",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_404b0842f50d6eaf5b64",
+      "name": "DarkPhoenix13Fr",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_c9b8129c00888b35a8d3",
+      "name": "DeliCiae",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_732f1a523e6d289e2cef",
+      "name": "Eileennoir ⚖️",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_f9bb33726ac7f1996980",
+      "name": "Eimiichan_",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_88aafd65a6bdb4d834b9",
+      "name": "Enryu Horus Ch. 炎竜ホルス",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_f5b26a3e6bcf691715ab",
+      "name": "FL_FirstsLove ⌜VZ⌟",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_b35cc1a7b8aa9a3ae51b",
+      "name": "Harumoon Ch.",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_e20ce1c9c7e61679fc84",
+      "name": "JamMyChan ch.",
+      "platforms": [
+        "ganknow",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_2fe023a84e93c44afe40",
+      "name": "JaoKat \\ ジャオカットくん",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_2752dff6a446c1a2694d",
+      "name": "Jisooman Ch.",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_1e41c7e8458a63ec2dc2",
+      "name": "Keelin Peryton🦌🕊💎",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_3f02781350f2b96b33e0",
+      "name": "Kirine Vtuber",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_13d8981299058a192c99",
+      "name": "Laychlype「ALF」",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_94a68ebef6f916d3f688",
+      "name": "Layniazia Ch.",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_1b887bf1748bb299e121",
+      "name": "M3R0 ch.",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "kick",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_eaf9babb6429f24c55e9",
+      "name": "MaewUVChan Channel",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_4dd62a8078db3897e981",
+      "name": "Meteona Mars Ch.",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_525f235da4a50a716c08",
+      "name": "Midori_Suikaaa",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_8cc145ddc564b3192861",
+      "name": "Niew Lock ",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_7ee18c7e86566eb39a26",
+      "name": "Noeluc",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_c7451127902f262d84cb",
+      "name": "Nora_Vanadiz",
+      "platforms": [
+        "ganknow",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_7986071356bb4e1c4312",
+      "name": "Nuttizz_",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_8a356627062c04c45bbc",
+      "name": "Nyamaru Yui",
+      "platforms": [
+        "facebook",
+        "ganknow",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_f8c56088dd10763bccd5",
+      "name": "Nyeeeon",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_adb685527ff717bda9b1",
+      "name": "Peace Ch.",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_867b9d4a8976613d354b",
+      "name": "Puipui Memory",
+      "platforms": [
+        "facebook",
+        "ganknow",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_08d77dc86b6dd5b74bab",
+      "name": "Punquix",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_3d5617e66f737282dcfa",
+      "name": "Rainnimin",
+      "platforms": [
+        "ganknow",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_0b327f4d4474fcdc8cbd",
+      "name": "chizizfa666",
+      "platforms": [
+        "facebook",
+        "ganknow",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_4ea700877c5c799a97b1",
+      "name": "kurisumasu_",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_d2ecd526d23dee4531e3",
+      "name": "sunraindre",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_d0e4528c2b4b6e4d7796",
+      "name": "จอมหมาร",
+      "platforms": [
+        "facebook",
+        "ganknow",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 6
+    },
+    {
+      "persona_id": "persona_2cf2699ba6fcabad816e",
+      "name": "Adrelis Zinya「ALF」🔥👊🏻",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_5ad89687f1e9850d8d63",
+      "name": "Akito Q Flame『VW』",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_6e9e31346f7b9164ce4b",
+      "name": "AmiLLy Archive",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_6c73681a6ae938b33c9a",
+      "name": "Anemizz",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_aa059d27fb11e69c7be5",
+      "name": "AoiCrescent_",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_a4bf245c70c67bebbada",
+      "name": "Artie ch. Euphora",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_b4fb757eed05a813fc29",
+      "name": "Atsuki丨アツキ",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_c4d28d0be85d5bbd6cc1",
+      "name": "Azato Stacia Ch.",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_21c44b79ec809e9f52e7",
+      "name": "Biru [ビール]",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_321191fa5765fe1cb7cf",
+      "name": "Chloride Fow~♥",
+      "platforms": [
+        "facebook",
+        "ganknow",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_cb548b9c418411922d35",
+      "name": "Darin V",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_e6abaa5ad56681ce3ebb",
+      "name": "EVA THE RHINO Ch.",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_e09d94d6ccc47403d26d",
+      "name": "Estelle Wil Ch.",
+      "platforms": [
+        "ganknow",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_9bc6f06d2acea1f9c7e7",
+      "name": "Evelyn Treeswift💙",
+      "platforms": [
+        "facebook",
+        "ganknow",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_717fa2a9b0a2bcfa8115",
+      "name": "Eyez Vtuberz TH",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_6409b4727b035800e694",
+      "name": "Frederick Ch.",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_0aa6aa514f8693ed7ba7",
+      "name": "Freyrina",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_d18600993356475fdd01",
+      "name": "Fuyu Kaida",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_eebcb5451df0ba0a7eda",
+      "name": "Grazia Ch. VtuberTH",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_a40ed7a3081dc98ecd8e",
+      "name": "HyougaAlpha",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_26a33caa21a448048bab",
+      "name": "JayVounter",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_1fc8a949c70e9e81437b",
+      "name": "Kaylef Orion",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_5afd9790a3bf4cf75b50",
+      "name": "Khaojao",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_167fe504c60f9f0600b6",
+      "name": "KissCross",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_87bcfb52615a67e684cd",
+      "name": "Kochiki Gram Ch.",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_b1567cb24ed71341c9bf",
+      "name": "Kumo Kuma ch.",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_2e07dc5dc472f69b3429",
+      "name": "Kurosawa Karwara〖Autumnia〗",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_25ea43e0d090a6f7458c",
+      "name": "LamuJung official  🐬",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_9cfc06b1829668a4e761",
+      "name": "Laurie Blisse Ch.",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_dcc641b2dec63c26be54",
+      "name": "Lu Yao Ch.",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_37548aadaf93c13f4397",
+      "name": "MaddoxTheOrder",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_edf6b2ff3decec5980f5",
+      "name": "Melanox Lunix「ALF」",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_1f7b4ea5a196e5836427",
+      "name": "Milyni Tivona【BLP】",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_954e1db7b4360ee6576a",
+      "name": "Mirae Solstice | วีทูปเปอร์",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_496a86367255a89ded12",
+      "name": "MoRin Ch.",
+      "platforms": [
+        "ganknow",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_d2cfe48ebe4573778d3e",
+      "name": "Moia | โมเอีย 🪶",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_07b22fe181b309fbb2dd",
+      "name": "Mor9an🐕🥗 『VFree』",
+      "platforms": [
+        "ganknow",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_3d391561c3f853091fbb",
+      "name": "Murasako Reino",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_640c3f0bf9655e69b8f6",
+      "name": "Nagirin 【RE:S】",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_780b9d8305fc3833e20e",
+      "name": "Ngerntong-เงินทอง",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_d66298d6bc044a4f40fd",
+      "name": "Nongwan TV",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_72fdbd63ba92aeb70cd4",
+      "name": "Okami Hito CH【APD】",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_07ddbf737aef76ddbc2f",
+      "name": "PlatinumRankWrath | V-Storyteller",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_1368f40c341f7ad44a29",
+      "name": "Remisde || Vtuber",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_ef20f1a80b56d5b8a431",
+      "name": "Reva Regalia『AST』",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_69703daf943d39931ebd",
+      "name": "RiekaDaYo🐺🌠",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_0cdf1c7236621e88b96a",
+      "name": "Riel Tabiji-VtuberTH",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_b79763354fd586cd6f43",
+      "name": "SHiA_4a",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_4ad92d18f451dac1f812",
+      "name": "Saneko ch. Euphora",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_059bf65b58aa399d886a",
+      "name": "Savi【21PM】",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_215d1b534338985f2a01",
+      "name": "Scentharmony",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_107e69b228a2184d1ade",
+      "name": "Shirowashi Ch.",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_3252846126f873f52690",
+      "name": "TOMA Ch.",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_4f015defabf68ba60db2",
+      "name": "TakumaRei「บ่นไปเรื่อย」",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_aa9b9db368498ddafc65",
+      "name": "Vampaow",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_4cef3548fd55fa1396ff",
+      "name": "Wilona Ch.",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_48c709edc02d5923cfc9",
+      "name": "Yunes Ch ",
+      "platforms": [
+        "ganknow",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_045735efb6fc1dfbfb8e",
+      "name": "Yuuta Natsuki",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_81d7f9e8b4ac2cf27025",
+      "name": "Zandy",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_6484d47519956f089c6b",
+      "name": "ZarizaOphius",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_55344c80444a0270f1a8",
+      "name": "crazyghsot",
+      "platforms": [
+        "ganknow",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_269e09b4b15565754695",
+      "name": "khunCHANII",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_49669d2d41b04400e4fd",
+      "name": "kingslime_vtuberth",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_024d3fa94c600f25e89a",
+      "name": "thicha vtuber",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_03abf28cfc1120e1aea5",
+      "name": "yoinmori",
+      "platforms": [
+        "facebook",
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_ec2b9f3be2c55290572f",
+      "name": "ก้อนเป็นวีทูปเบอร์",
+      "platforms": [
+        "ganknow",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_c00aace101631708f8df",
+      "name": "นกเหลืองเยื้องขวา",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_3b5213b7e3261b1a7afc",
+      "name": "เจ้าเวทย์อันเดอร์สกอร์วีที",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_b9f5f7e894bc19329a52",
+      "name": "์Nicole BLANK",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 5
+    },
+    {
+      "persona_id": "persona_807a5cb86ab6053757a0",
+      "name": "1KFuu Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_2bcfe65df539c94bfa8b",
+      "name": "ANT4ZIN",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_3c04325f790d67e891ea",
+      "name": "Aika",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_df867e9941291ab760f0",
+      "name": "Aina VTuber",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_fc1fe4b8823558d7e16e",
+      "name": "Aisha Channel",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_356363508c00fa13c070",
+      "name": "Akito ⚔️💙 | VTuber【SOA】",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_55b51d718ecba5e16f86",
+      "name": "AlexisWolf",
+      "platforms": [
+        "facebook",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_f83d26c784f459e8caf2",
+      "name": "Alizabyleth Vtuber",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_d67ff31a9b932e3da51e",
+      "name": "Amello",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_725fbe2481d949178fc7",
+      "name": "Amnuai CH",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_79b9b86d655be238c1df",
+      "name": "AmuVCh",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_c6bb548838926fb98baa",
+      "name": "Antia Ch. 【Mystery】",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_eb74021a0d9f4091c70b",
+      "name": "Aoi Nekomori",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_ba9e2872421908ede6c2",
+      "name": "Aosora Popo Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_b684e43e4e4635b2e619",
+      "name": "Aozora Sukai Ch.",
+      "platforms": [
+        "facebook",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_443ad96dc5d8dc1862e1",
+      "name": "ApriRiru",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_c61e6992068cc6f763b2",
+      "name": "AsmodeuSia_BLB",
+      "platforms": [
+        "instagram",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_5f373eeb8a87ebbc5921",
+      "name": "Aster Kalimeris Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_82f94887689f4d74673f",
+      "name": "Ayna Ch.【ARP】",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_85f83afef2dc688e65dd",
+      "name": "Aythecard",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_fea3382528a4f954d987",
+      "name": "Azazel the Wanderer Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_ac50362a1a25b6993a0c",
+      "name": "Azuri「 PRD 」",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_69f4c796593e8ed9bc2a",
+      "name": "Besicka「ALF」",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_677c8c3228fb3be40b54",
+      "name": "Bingsujuseyo Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_c7d5a9ba61a7a4150a20",
+      "name": "Breindel 🦆🔱 | VtuberTH",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_f59375cac024b8b8f888",
+      "name": "CandyCatdy CH.",
+      "platforms": [
+        "facebook",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_278c47589dc964e94b53",
+      "name": "Catta.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_411aa26eeb1d6304e5e0",
+      "name": "Cerise Channel",
+      "platforms": [
+        "facebook",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_47528d35f54994742232",
+      "name": "ChaAYM",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_0f2ab02f381bb1574074",
+      "name": "ChaoPlaThong",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_8e4e1e07c583e0e65bef",
+      "name": "ConNeSe Plai",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_458ca0c19ee816e88b09",
+      "name": "Cresent Ansel Ch.",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_c84688b6152899db158e",
+      "name": "Daiji Inuyuki 《 OTL 》",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_87938fb182fc79634a0a",
+      "name": "Dalinju モラー",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_4a8df281a3399f622ca3",
+      "name": "Dariela",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_253c44a006a88803075a",
+      "name": "Donovan Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_75107465bae554361a52",
+      "name": "Elleusia 🥀◆",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_566484b23939e2d97ec4",
+      "name": "Elphylia VtuberTH",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_442e8ab35e96aae8f685",
+      "name": "Freyraine Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_edcc962e6b059a11dfe3",
+      "name": "FuwaFuwaSeal",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_c20c168d6c92fbc77ca9",
+      "name": "GIN",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_4f1b9318eb35d5f192f2",
+      "name": "HoshinoKuroi Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_b9eacb59e5aa43c7b868",
+      "name": "HØRI 07 ⌜VZ⌟",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_6faca74f530db5ed8510",
+      "name": "IRISS Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_adf3e68a271d317b9997",
+      "name": "ITsMeYao",
+      "platforms": [
+        "facebook",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_21bdb306d7d74156893f",
+      "name": "In0suke",
+      "platforms": [
+        "facebook",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_a0775e47ba13758c1935",
+      "name": "JaowMhe3Gus",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_4b950bae9521bdada92b",
+      "name": "Joro Gumo",
+      "platforms": [
+        "instagram",
+        "litlink",
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_5164d499237a9e7aad09",
+      "name": "Kagemaru 404",
+      "platforms": [
+        "facebook",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_1468189aade73d3e7664",
+      "name": "KamiReiv",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_7f2e7b22fafdc02c522d",
+      "name": "KamiSaki Kuro Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_5d0548dcad650d86510c",
+      "name": "Kaneaki Arina Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_de694e640849f2f28b97",
+      "name": "Kealan Hmm [ECR]",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_a0892b057d41ce165f2d",
+      "name": "Kevara ch. Euphora",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_69d738ff4b281e31e54d",
+      "name": "Kiran Regalia『AST』",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_51d2149dc1b4993aeca9",
+      "name": "KitadesuS [MDZ]",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_4656710798c75e4bb5e2",
+      "name": "Kuroyoru Yami",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_0e69af0d96020bfa1c3b",
+      "name": "Kyoya Keiran",
+      "platforms": [
+        "linktree",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_1d49f85cbcd0f5c521aa",
+      "name": "LIMESALTZ Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_c5076a344fe0d04efe72",
+      "name": "LIRIN",
+      "platforms": [
+        "ganknow",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_460637977b00600a24ec",
+      "name": "Lady Magcro Ravencroft",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_0ab402c3b72288d72f5f",
+      "name": "Laibaht / หลายบาท",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_479467aaed77c0eff354",
+      "name": "Lamppy",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_3de60cbdd96120599079",
+      "name": "Linlin ❤️| VtuberTH",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_3722c7bdac5486a6818b",
+      "name": "Little Lonita 🎀💕 VZ",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_0853564a0b2fc2cd07f0",
+      "name": "LittleG ch. Euphora",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_856b1dbd8a3f94ff65b5",
+      "name": "Lotte Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_f38e27f5224de0fe00bb",
+      "name": "LucidReverdream",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_3d83dedd213b7327dfcc",
+      "name": "LunaLumIIna 「 PRD 」",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_df6531ed6d81c85d2cec",
+      "name": "Lune&Sol Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_0b55478885e7d2e2a53e",
+      "name": "Lyneth Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_14de395d99900bfb3705",
+      "name": "Lyon De Gladiolus",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_ced50772bc244f221424",
+      "name": "Lyvea•Eve",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_3052f6c1c6b0937ae501",
+      "name": "M a l l o w  Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_3e8f1343501e23ff43e2",
+      "name": "MEILIN CH.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_b50c18643354a61f3cf0",
+      "name": "MIKA'mu",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_8ab33247a1588f0ada91",
+      "name": "MONARICA 《 Vtuber 》",
+      "platforms": [
+        "ganknow",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_bba526e34f1d46903829",
+      "name": "MaaeTheGreatest",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_d82e11d35ea963b01d7e",
+      "name": "Maya Oboro Ch.",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_5a71adf7947eaff3b076",
+      "name": "Melinoir_Vtuber",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_cee6dcf54e1da15b608d",
+      "name": "Mellowlop「Paralist」",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_229a2db80e669e369df5",
+      "name": "MeltildaVT Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_72e8a9c5417199034c64",
+      "name": "MerryKomori Lu.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_03639081e9f40befa48f",
+      "name": "Merryl Wayne",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_77843d9e0184bf7b71e9",
+      "name": "Miibelle ต่ะมุจะหลับ🪻🤍",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_71dedce055a9e89de866",
+      "name": "Miledy Z.Devlin ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_0a1bc2ffb4f9ab04612c",
+      "name": "MillYBilL",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_d3188abe033e604322f6",
+      "name": "Mizu Gracia Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_bb630793647484d9397c",
+      "name": "MomayAllegrala",
+      "platforms": [
+        "instagram",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_afb555402a156d01275c",
+      "name": "Morika Rei【ARRI】[Graduated]",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_07351c0f864177c751a6",
+      "name": "MyxNyxx",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_32e3051cb58b0d3e297f",
+      "name": "N4NAMi",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_8ccca34ef260aa43803f",
+      "name": "NancyGimme2000",
+      "platforms": [
+        "facebook",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_60d4e9e60ad786831294",
+      "name": "NaruFay",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_b62bec7e617945bd82a9",
+      "name": "Neris Ch.",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_ca36eeb5d50155393424",
+      "name": "Nora",
+      "platforms": [
+        "ganknow",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_77fef00f00e1609a7eaa",
+      "name": "Nx-Aji",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_70c04eb1cc2ab18ab766",
+      "name": "ONOMIL Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_0128e935fdccf0bd93f6",
+      "name": "Oatsukaresan「ECR」",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_7b10c945cd467020325e",
+      "name": "Okami/bwt",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_10344a8990d8587db93e",
+      "name": "PAres Spacedog『Berlina•ECR』",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_b17952f94ac0033cf854",
+      "name": "Phelita ch. Euphora • [On Hold]",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_28b4429aa9a40a04c7d3",
+      "name": "QueenSere.Physia Ch",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_dbd91477edc2f193b360",
+      "name": "RAILONEY",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_ae7de8a91b062f0ce5cc",
+      "name": "RIPry - ริบหรี่",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_8d547d1b966349ae3c83",
+      "name": "RaFa DXD",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_04764d2eedc13c925a99",
+      "name": "Rahhatem【PSM】",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_023661b20e6860e5f7e3",
+      "name": "RaneeTani『VTG』",
+      "platforms": [
+        "ganknow",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_4e47faf54d25ae4f67a1",
+      "name": "Ray Ametier Yuan Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_c9b57811aec59e5d7625",
+      "name": "Realiable Ch.",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_7377c2991a0602591fb0",
+      "name": "Renkon Ch.",
+      "platforms": [
+        "facebook",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_01927ca640eb730dfa99",
+      "name": "Ricotta_ARP",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_773baacd7fd5f6d76e0a",
+      "name": "Ririka【SSR】",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_463c8a3fc7b28728494b",
+      "name": "RuLaRaLan",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_72d488c541d46e15c45e",
+      "name": "Rubellus Remis | VArtist",
+      "platforms": [
+        "facebook",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_7be206bd3e406edc7004",
+      "name": "Rui Kazu《 EXia 》",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_c7f5d4d43c4389229069",
+      "name": "Ryusei Starlight",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_78a34bf924c81b13a191",
+      "name": "SWITCHIZ",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_454aac704dd3ba4fc8d7",
+      "name": "SaiMaiZvtuberTH",
+      "platforms": [
+        "facebook",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_e5de911066b238922e05",
+      "name": "Sata Channel",
+      "platforms": [
+        "facebook",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_d1d5b74fa83402f6cce6",
+      "name": "SeJi",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_6a24b2782dc918b384a3",
+      "name": "Sebastos VTuber",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_9619acc4f0012ef2bbe4",
+      "name": "SeraPhyne Ch【ECR】",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_721dfd58ad37ef2e71cb",
+      "name": "Shikár Dawg",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_54b4f77d0c448845c50b",
+      "name": "Shirasagi Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_88d10697881de358a729",
+      "name": "Sour",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_b88fd836ebd71a762b9d",
+      "name": "TANTAN",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_75248b71bdcde588257e",
+      "name": "TEDDYBEL 【Official】",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_e50f0adea8e6937976a4",
+      "name": "Thara Ocean Fae ",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_760a1c868ecf10a4ed56",
+      "name": "Timothy Weii Ch.",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_abc0e241d5285f995f51",
+      "name": "Tora Mochizuki ",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_6a19e9e7083901d1caad",
+      "name": "Torakaze",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_edff388eb54fbfb99096",
+      "name": "Ume しのはな",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_72b105a2c7a38dc81bb6",
+      "name": "Unnämed",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_5b63f22d9ab601a0c7c1",
+      "name": "Urai [NecroMezza]",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_04f6a96f8a7470bdf7bf",
+      "name": "Urara Momomi",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_a5c39c7f8ee76c8556db",
+      "name": "Valkyrie Ch.",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_c8e8cd28b238d1715742",
+      "name": "WalkyTalky404",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_40e404a97f7803b6ee50",
+      "name": "Whanyen | ViberPro",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_61c6e05a37eccb306be8",
+      "name": "Willow.ch | HZ",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_12a06d7fb9d569cd6e02",
+      "name": "Woofna ch. ",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_8d931fcb568378c4b197",
+      "name": "X ZiLVA",
+      "platforms": [
+        "facebook",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_910c88467ddc67a81bf4",
+      "name": "XINPIA03",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_4b437c36193f59b65c7c",
+      "name": "XenonPhaneJohn",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_c3ec9e4c886087405663",
+      "name": "Xeres Artrophel Ch.",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_b8443a4a6a88fe67e3a4",
+      "name": "Xyne Valdreth「ZTP」",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_db9bba1fa2405ca9bdce",
+      "name": "Yuitoku Ch.",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_8b7c53f75d02277c147f",
+      "name": "Zalivia",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_7b6f47f7e323a96457c2",
+      "name": "Zeiji7ᵗʰ | เซย์จิ",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_c1bf534e2e3eec919777",
+      "name": "Zenaida XETA-102 Channel",
+      "platforms": [
+        "facebook",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_7f9b7e8f679dd38a6458",
+      "name": "Zeraphina Hana",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_a66df1bc5dda506e8910",
+      "name": "Zin'fandel「ZTP」",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_00d863942d9e8e1ad66a",
+      "name": "Zoomdesu",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_b6a5bdd09c3409afac53",
+      "name": "althena Florent ch.〚 MQN 〛",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_f587818fbe4666fd8f2a",
+      "name": "blinkdraws_",
+      "platforms": [
+        "instagram",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_8cd1092c1ae0a3bf599a",
+      "name": "chatacloveron",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_e734515beb96d2a726c8",
+      "name": "erima🦊",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_bc2f34abbf31ca599ced",
+      "name": "estxrthemask",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_36f5a4a2d13a5279d9f9",
+      "name": "fayuuchan",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_808d1c1c11b41eecdb1a",
+      "name": "fxoverpur",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_6fd3956b54025ce55a3f",
+      "name": "gingerbelle",
+      "platforms": [
+        "facebook",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_fe6a9253cc3c789883f6",
+      "name": "jiah_epr",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_a55bd79c1e039e7f31db",
+      "name": "kampheelnwza007",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_63b4340c6614278eaaf2",
+      "name": "kiku_himegu",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_70c12357afe1b83f3994",
+      "name": "miyathemelf_vt",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_2fa469681dd14663a77e",
+      "name": "onishinkim03",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_a3f1fa40809206b64050",
+      "name": "sSolarly",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_33116f500d8885a13981",
+      "name": "shiorichanvt",
+      "platforms": [
+        "instagram",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_23a0914665f623fcf109",
+      "name": "tinsleythefox",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_7c2079f9d3f45258e226",
+      "name": "xLazyYui",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_c70ac1cf6acf38bbe079",
+      "name": "xMylah.Chx",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_89e5dc130d5836e60cab",
+      "name": "ดอยล์",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_279692a361f27777fd06",
+      "name": "น้องมะม่วง TV",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_5088e5f00b4862996dfe",
+      "name": "ลอเร็ตต้า (ลอตตี้) | VtuberTH",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_f47f2063e8fae7ba9b8c",
+      "name": "ศาลเจ้ามังกรเนื้อทอง",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_b96433346c9e8bb5e71e",
+      "name": "เซียน่า | Sienna 【RE:S】",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_ea8dd88710358fe002b1",
+      "name": "เพื่อนสนิทคิด(เงิน)เกินเพื่อน",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_58c3adfdce584abd25c8",
+      "name": "เรียลเชอร์มี่",
+      "platforms": [
+        "ganknow",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_6ff4fb8d848e2c6635ee",
+      "name": "เอ็นริริริ",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_76169a202aaff1dc3bf7",
+      "name": "⚡️GS_GolfPraPlern⚡️",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_d7cd519f4b624ba29eec",
+      "name": "叶龙 Yelong CH.",
+      "platforms": [
+        "instagram",
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_8ee5a6f3d91c341fb1b9",
+      "name": "孤立タカ",
+      "platforms": [
+        "instagram",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_92cf6c66ac6a24f4d900",
+      "name": "🐼PandaSensiVT",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 4
+    },
+    {
+      "persona_id": "persona_1ca6fdc18136ed417ae2",
+      "name": "\"คาเอ็น\" KAEN Official",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_be3a00771932f271e934",
+      "name": "123DPx",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_39327eaf87c5c9eaffe4",
+      "name": "Adama MiSE Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_199f95eb460dbc4fd2db",
+      "name": "AelegosSunOfaeminch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_fe40252cf97b5d73f98a",
+      "name": "Aelisse",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_d874ac70cc0863715351",
+      "name": "Aiden Leonheart【SRV】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_948e1234633791476544",
+      "name": "AidinVtuber",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e41d811119d7f4338442",
+      "name": "Aikaze",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_ff8ccf87b65d0ea80592",
+      "name": "Aito LH",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_72096b8781fd1f694c09",
+      "name": "Akaku Mikoni | V.W.Y",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_1736e32cde8dc656bc03",
+      "name": "Akari Kanon",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_00f09527b1df7e80b99d",
+      "name": "Akemi Arlin Ch. Pixela Legends",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_20f3ce9925873cf75604",
+      "name": "Aki Masamune Ch. / AStars Chrono prince",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c65b62178a9a4a95ef7d",
+      "name": "Akinori Eiji Ch.「TRR」",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_f3a9c3d87bcff16a97eb",
+      "name": "Alparukeeper.vtuber",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_804154a405a289c5eb8b",
+      "name": "AltairAlAl Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b3ab6771fd4b5eb8d55d",
+      "name": "Alvina Ch",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_4f898485adb4ea55163d",
+      "name": "Amy Stella Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c10dd231709fef7ea9c3",
+      "name": "Anastasia Ch.「TRR」",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_6b1f1a6817bfc951b3d3",
+      "name": "Anya Smith",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_f1ea91af3c5ddb59ddbf",
+      "name": "Ané Monie Ch. | OAL",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_d435a2fdc393b2187366",
+      "name": "AquaMarinia 【BLP】",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e5d81482d0c66ce9304b",
+      "name": "Aranis Elvene Ch. Pixela-Isekai",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_5f812d35976e74d8eb2e",
+      "name": "Ardalita Lilibelle Ch. Lumina-First-Myth",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9c0f0fb70241d6fb9de6",
+      "name": "ArineUwU",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_97cb8838bc46520635ec",
+      "name": "Aru Hoshima Ch. | 星間アル",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_a6d1e44616ffd6af3f01",
+      "name": "Asher Dawnbaker",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_da26ad183aa539f141f5",
+      "name": "Astral Kami | Vtuber",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b86a4025419f35bc9f7b",
+      "name": "Atlanteia Sireen Ch. Lumina-First-Myth",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_feca7b5d2bdb3ae651b5",
+      "name": "Ayris Belle Melleri Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b9cd043f7ffdf705ec51",
+      "name": "Azar《 OTL 》",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_5dd047976838ec3acf67",
+      "name": "AzuruVT",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_fca7fe24a2909edc536a",
+      "name": "BOOKGAMER",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9846f3c25202176addd0",
+      "name": "BRRWYN Ch. / QURSE",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_abf0cd8f9c1a375b8369",
+      "name": "Baku Ch.【ARP】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_471daafdc096af93bcf3",
+      "name": "Banpratou",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e4763073e98223551681",
+      "name": "Baruruchannel",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_db3c7a9b82e909a3814e",
+      "name": "Beatrix CH. - ビアトリクス",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c51f6670597337fc5df6",
+      "name": "Benny Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_a6921ec5dcaa8fa88593",
+      "name": "Beta AMI Ch. Lumina-World-End",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_8033a04131f42a421287",
+      "name": "Bettha Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0cf3d9bcd2c031ed6167",
+      "name": "Biscuit Blythe Ch. Pixela Destiny",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b84d58fe917850141bb4",
+      "name": "Bloodyflora",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9b5886c702534e6665d0",
+      "name": "Blu-Chan GMOT ⌜VZ⌟",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_ddf05a01ebf804402da4",
+      "name": "Bluwey Ch",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e34bd7e20f2e1e0f29ca",
+      "name": "BoonLan『VTG』",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9342d36356af5ebcee41",
+      "name": "Bunana Vtuber",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0b554d003190bb97a883",
+      "name": "CIEL『 𝗘𝗣𝗥 』.Vtuber",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0f3cbb37d42bcc9459f5",
+      "name": "Caelith Hoshizora",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_85aac39d548bebb075dc",
+      "name": "Callidora Ch.【VJN】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_601cb0ddd7c4e94b7d22",
+      "name": "CallistoSoCool",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_76fd5f1d778ec8850ca8",
+      "name": "Carys Cordelia",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c7dc48cbdc2239573d74",
+      "name": "CastesiaNX",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e63f3b8942472e875807",
+      "name": "CcretRain [ FLAW Project ]",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_530a36279257c84d5d80",
+      "name": "Cerafine Mikael Ch. Lumina-First-Myth",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_5a136318d1ebcc9e62fe",
+      "name": "Chana チャナ",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_03cf6f083fd0fb418a60",
+      "name": "Chiharu ch.「TRR」",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0739db951130007d9789",
+      "name": "Chiiaki Jellyfishkun",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_2170a10e867c0fc76788",
+      "name": "Chloe J. Park Ch. | VTUBER",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b6a9a52ca427d8aefd29",
+      "name": "ChouxCreamVtuber",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_8624c34c920fd6e1850e",
+      "name": "Chouya",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_3eb07e11b605a17bd93a",
+      "name": "Clairederier",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_1bff81b6263a10743c43",
+      "name": "Cliche Ch.〖SSR〗",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9e41cdc1984af1d42926",
+      "name": "CobaltHellHound",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_69f42b30c6f9766595a6",
+      "name": "CooGa",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b2affe36d4610b6a34ed",
+      "name": "CoolRin CH",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_8e893dbc7e6da3179d72",
+      "name": "Cylowless",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_db0fc52bf2eb910140b0",
+      "name": "Cyntia Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_96e7842db1fe5290a65a",
+      "name": "Dayeon",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_ee94736e0c10d9a6b67a",
+      "name": "Debirun Ch. Pixela-World-End",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e8a90b93ff62215ca9e1",
+      "name": "Deilliah Goodknight ",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_6ca8616c015764e1d486",
+      "name": "Deliva Kaga ch.",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9363410344d701791c45",
+      "name": "Den Trenton Ch. | OAL",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_949258cc61c19fa7e837",
+      "name": "DolcheB",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_47c9bf37cce08aec2e3b",
+      "name": "Dragooooon Vtuber",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_928ff0f7a88afa681a7c",
+      "name": "Draki Kona Ch. Lumina-First-Myth",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_ddd5eebb3483a1a469c6",
+      "name": "Effy Ch.【ARP】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0c1cb2257c28346fe92b",
+      "name": "Eranthia ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e01bd0edd4e2da9491d9",
+      "name": "Faethon Uni. Jantra",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_6269a6c2eb59e7dadc99",
+      "name": "Faminé Ch.【ARP】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_064a796a4cbbb6ccd0a8",
+      "name": "Faye Ashefort",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c5c1895c6d1df3df798d",
+      "name": "Flur Furry Ch.",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_7d5d6b475098b2614afb",
+      "name": "Frayr《WAV》",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_cf4619ecbd54b4e12063",
+      "name": "Freidya Ch",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_3932b558e67d0b51b7fd",
+      "name": "Friskfitz",
+      "platforms": [
+        "facebook",
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_1b93f15d837f61855e8d",
+      "name": "FuMoon Dayooo",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_193ed9b38deef2246a10",
+      "name": "Fuka Vtuber",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_85006ea3d8cfb0ecdb09",
+      "name": "Fumi Hausu🍞",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_31c680f3ef439e452c85",
+      "name": "GNTGxd",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e6686da66a076eb9f5d9",
+      "name": "G_round",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_428b19c161d8dceed181",
+      "name": "Geno Ch.『TST』",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_cf7880ec3c1e6199a334",
+      "name": "Ginnique Ch.【ARP】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9ce313fd20dc8b88d772",
+      "name": "Gloria ch.【21PM】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_1cd549e7a63adfa349fe",
+      "name": "Grimus Grimm Ch. Pixela Destiny",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_5b05647f5575c5473b57",
+      "name": "GrisPanthera",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_95d3c3a319baac0e0d34",
+      "name": "HEXO",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_db056c3b09c9bc8b7c93",
+      "name": "Hajikeru Haruno Ch",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0d59ce62c1b5c1174a3c",
+      "name": "Hakka",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_bac3210f3a658f017ce6",
+      "name": "Hanabi Lafy Ch. Pixela-Isekai",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_02441cf0ee5c23638cd3",
+      "name": "Hanacutebaby",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_35f9ebfc3bded69316e5",
+      "name": "Hanami Lay CH.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_52d1289f2c9b511af424",
+      "name": "HaruVtuber",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_ab6a3bd95cd1ccf95d3c",
+      "name": "Heiman / เหมันต์ ☃️👔 ‧*❆",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e48fd9134c29e7806817",
+      "name": "Hoku Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_725ded0b575e9093a21f",
+      "name": "Hoshimura Himawari",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_06b2fd07f10be3d62a4c",
+      "name": "Housagi ch. Euphora",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_ee02e00301e106a7ad85",
+      "name": "Hydejung《21PM》Vtuber",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_49a28ca273a91d6cfac9",
+      "name": "HyokiSan",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_8cf291510e2872a0568e",
+      "name": "IKKI CHANNEL",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_fbba0a8cda3242756b25",
+      "name": "J U $ T - Virtual7『TH』",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e923025616aa1187a08e",
+      "name": "Janus ch.「TRR」",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_bde66e9a1f35ef53fe74",
+      "name": "JaoGuin Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c1c5b28b885f7eb2991b",
+      "name": "JellMellO",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_16206163343e52842431",
+      "name": "Jibara​ Ch.",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9835148cfa2ea0271444",
+      "name": "Jiru ch. Euphora",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e978c6a059151bae6f60",
+      "name": "Jolly Estaa Ch. Pixela-Isekai",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_55dfa4b787971fa73d6e",
+      "name": "JomJam_SLX",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_fc7dfbd40a16179cad93",
+      "name": "Jorirynn 【ASTRAY】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_4f77a784648df1a6855a",
+      "name": "Jozetté Wrasset | OAL",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9ac9cc16202b5ef97fd9",
+      "name": "Ka4umich",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_d158444fa71a87ef77fe",
+      "name": "Kafune CH.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_72792a850d9ee0492e8c",
+      "name": "Kamilla_Lich",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_7d375f10cbd13289ad9a",
+      "name": "Kamiyu Reirin Ch. Lumina-First-Myth",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_af80c01e8b4c68250bd3",
+      "name": "Kapz 🦆",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_37d10be0a6b62df101ae",
+      "name": "Karin Ch. 躑躅かりん",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_fe4a65ebbdff4f70d6fc",
+      "name": "Karu Ch.【ARP】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_da8572359ca65b6837f6",
+      "name": "Katsuki Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_4b42eb866e7882b06e01",
+      "name": "Keressa Zoulfia Ch. Pixela-Mystic",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_a6e4e602effab7112cca",
+      "name": "Killian Mare",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_89346c37ebc9a2ede64f",
+      "name": "Kitsuneko Mewten Ch. Pixela-Isekai",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_2573f34b165be946e239",
+      "name": "KiyomiChan943",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_31f6a98baec0f9015d4f",
+      "name": "Klangkhuen / กลางคืน",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_32735dcbc7c50bf0d1ea",
+      "name": "Kokori 《 OTL 》",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_aee53b04971af6a9ce76",
+      "name": "KongkhaGirl",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_7f4a7799ffbc0caeabdc",
+      "name": "Kosaru",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_a636c07cb7905c413190",
+      "name": "Kousei Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e4d939e5eebd76b39b22",
+      "name": "Krynaydin 「ZTP」",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_82823074aed041b94006",
+      "name": "Kumi Chan「クミちゃん」",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_593ebd2e97a099eecd25",
+      "name": "Kumoku Tsururu Ch. Lumina-World-End",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_f2f4637f79ff7fbf2539",
+      "name": "KuraAlan",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_f69dd5792813c6c03458",
+      "name": "Kyubi Nine キュビ ナイン",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_8cb8f572bbda29d56946",
+      "name": "LIVIANA Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0e7a9edd76247d22f6af",
+      "name": "Lania Ch『VW』",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_7ed71dcff56f08c91373",
+      "name": "Lanlongying Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_6bc488cc2e60007bac43",
+      "name": "Latta Ch.【ARP】",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_f829c41fbc50dbff048a",
+      "name": "Lawiz Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_8b71fd9c9f2ad58d6cba",
+      "name": "Leon Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_aa220c8d582cf9eb765c",
+      "name": "Lucia Xavier",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_3fa1684a16e5590f3dbf",
+      "name": "Lukami Ch. ルカミ [Lukami Stellaz]",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_ee2f792c63a9a0f5b161",
+      "name": "Lunatrix💫",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_cd3cf28b63faabde2538",
+      "name": "Lynze 🌹",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b83874e57056a127ef53",
+      "name": "Lyrics 🌙",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_7dab0ca32081d665d307",
+      "name": "M4YA",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9cad4f084b7aaa3a5ba0",
+      "name": "MAJCHA 🎏 ที่แปลว่าปลา🍵✨",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_ed46b0b222ce9d3298c3",
+      "name": "MATSURII Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_6560db6436a004987346",
+      "name": "MEWRCCLUB Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_1839c4580e59e5fc2e3d",
+      "name": "MOLLY",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_ade351fd77cc6385572c",
+      "name": "MONGON.AF48DW.(V.2)",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_a225e732609b462ad17a",
+      "name": "MURKIEL",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_80c13d6e661ec369e56d",
+      "name": "Maemi Nippy ⨳ECR⨳",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0a57e96e7bf343630f51",
+      "name": "Maew Baew",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_8487f604f4bca57c3633",
+      "name": "MaewDam T. Mira",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_fd597e0979f62f6fab1d",
+      "name": "MaewLham",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_cee0f00a3db31dfeadc3",
+      "name": "Maewmon ch.",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_266e8598512a0c759a1f",
+      "name": "Maikumira",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_14b8f42f445a9aedcf17",
+      "name": "Maiyara_21pm",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_bc1be2cfd084c14b483b",
+      "name": "Mali 🐯🩵 | VTuberTH【SLR】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_50647d65cc8563ec1bca",
+      "name": "MamunzaaTV",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_6b71c4411dd0b1f888c2",
+      "name": "Mamushi Ene Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_8fe985976136aff73916",
+      "name": "Maprang 【Vtuber】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b99ccf88cd918649cbe2",
+      "name": "Megzis Lurnyl",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_4ae05b8aa23d95b7f0b1",
+      "name": "Mei Vtuber✨",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_59959150d453666ad564",
+      "name": "Meraki Keimii",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_6ebc57b553406485a59d",
+      "name": "Micaela Michelle Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_bf8279f94f0da288f6d1",
+      "name": "Midnightafter12AM",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_6f43b00a1eb1daa9df12",
+      "name": "Miguel Noxz",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_279e29a94f4bc9d7409a",
+      "name": "Mikadzuki Nammy",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e8f5efecd0195047b5d4",
+      "name": "MikiVTB🐇",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_5d1ee3ef5153d4b57ed4",
+      "name": "Mild-R Ch. Lumina-World-End",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e60a55ca35e21120fc39",
+      "name": "Mina Nekogaki / 猫垣ミナ【MSV】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c7016d23e2296fd3d92a",
+      "name": "Minami Cera",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_d04b9ef392b7a781e1af",
+      "name": "Minarin Sárkányszél",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_4b584129899606cb9338",
+      "name": "Mitsuki Vtuber",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9c985373620717b33063",
+      "name": "Mixzy 21PM",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c4c8d1cbae330ab574af",
+      "name": "Moe Kaori  ⌜VZ⌟",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_3f8ea7be1ce1637ecc6d",
+      "name": "Moe Miyabi ⌜VZ⌟",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e7971e354a5a52f53dfe",
+      "name": "Momo Vtuber",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_d988361dc90531344f26",
+      "name": "MonJi",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9b3977bd3fd16d34949c",
+      "name": "Monmon Thedoggo Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_ae084106383e0139b74a",
+      "name": "MosantXD",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_a121c3074907979952c2",
+      "name": "Mycara Melony Ch. Pixela-Mystic",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_3a5d7deddd8b14302b06",
+      "name": "Myrrha Enchanté Ch. [Autumnia]",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_af4ba59e6bbfdb438e15",
+      "name": "NICHA Ch. 【SSR】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_5d50a7223816070a8bf6",
+      "name": "NUTTY ROZE",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_6ecdd06fbb46fa7b0f82",
+      "name": "Nagumo Vtuber ⛈️",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_ab3921f4181e7b0ddc67",
+      "name": "NakiRiku Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_598cb8c5829e5af683a0",
+      "name": "Nebula Faragonda 【 V-DragQueen 】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9584c202dc5bfcb7ed84",
+      "name": "Neoda Neviris",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_5e2f33eb3ce6076ff5e2",
+      "name": "Nezumi Elze Ch. Pixela Legends",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_70ab14ecd60ad7495751",
+      "name": "Nirvana Ch.【ARP】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_181ba750a4b9b9f2eea9",
+      "name": "NoA Noaris",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_d194388cd400ffe6d234",
+      "name": "Nokk_tt Ch.",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b753d6593f75092f5258",
+      "name": "NonGField",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c523d3417e1714e72125",
+      "name": "Nonghong",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0f705de9d309b15f4bb5",
+      "name": "Notaki Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_028cd95c3953fbebf348",
+      "name": "NutsuruSama",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e8230975430a7129b414",
+      "name": "Nyann Nyatsume",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_d34b8b887c344b30b676",
+      "name": "Odiare Ch",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c4d2b27ced9cb4b492ab",
+      "name": "OkiChinaToy",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e0788b177bcdf5763e20",
+      "name": "Pamberry Ch",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_1c63f58a052570a572e6",
+      "name": "Pimkishy",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_6b88d9c3ef45c19f6e9d",
+      "name": "PingPingko【REC】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_829bb96eb706cfed6ec3",
+      "name": "Pleiades Frontier【21PM】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_47e55f6558bf471c3e14",
+      "name": "Ponpun",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_cf1105b402b18a2c3af1",
+      "name": "Puffy Fluffy Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_1aeb08f64a8efa948881",
+      "name": "Pugmaru_VTube",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0e753cd246114f7ec35b",
+      "name": "Puinoon プイヌン",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_72c21f6fdeb60ae07ddc",
+      "name": "Qmulaz",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_1f1ccc018ff4d154b424",
+      "name": "Quentin Ch.【ARP】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_d75b588f2bb1f293bcc9",
+      "name": "RAITO-KUN",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_57bf95b93a1e63e98742",
+      "name": "RIN_RINZ Ch.",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_def4cb4b55a2177a9971",
+      "name": "RIYAvtuberth",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_5e85518711c7bd329cd2",
+      "name": "Rafinia Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_2e1bb42e71dd3b8d983c",
+      "name": "Raizuu",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_8130df6ff6e665d7a90c",
+      "name": "Rarin Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c885a55074d20c316f3b",
+      "name": "Red FarTear Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_1ae80a6cf3ef0d469000",
+      "name": "Retsu_Red",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b0e0244cd57be3ffb704",
+      "name": "Rewarin Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_fe49e522f619699ac35e",
+      "name": "Rexa T-Rex Vtuber🦖",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_deb6a8fbf9e2df02eee9",
+      "name": "RinREXGer",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e7fb6a01000b2960f87b",
+      "name": "Rinna Rin",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_60570bce150b5aa09e29",
+      "name": "Rosalyn Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0bd6ca4db99510d4587b",
+      "name": "Roselia de Magentia Ch. Pixela S",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_5cba65e9dabd0d06eba0",
+      "name": "Rosánn Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c841e69126e38b816b51",
+      "name": "RoxzyVtuber",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_2e27db7136ed0f18e50c",
+      "name": "S1R Ch.【ARP】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_85884c39052f1aeacb3b",
+      "name": "SE1SO_RARA",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b500673376199a189128",
+      "name": "SHUA",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_8940bd24d3c569dad266",
+      "name": "SORASAMA",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_2a299b96142a11cd9c9a",
+      "name": "SUMM3R ⌜VZ⌟",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_3116bca19afd3ff7f741",
+      "name": "Salvatore Ch.『 VNV 』",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0e15b600d870523880a9",
+      "name": "Salvia 💜",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_54e0076f3722147d4a47",
+      "name": "Sarnna Black Herbilrah |【SH】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_3d2bfd776bf9bb69f192",
+      "name": "Sataru【21PM】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_88a3b6fc77da0cb50348",
+      "name": "SeaU Ch.【CRA】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_1b723ac6228f8225e797",
+      "name": "Seabunnyi",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_70e0d5724eb234d5389c",
+      "name": "Seijo🦋✂️Vtuber",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_258adc2ddfe1c1ffec55",
+      "name": "Sen Koretane Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_5fb4e17e74f300171716",
+      "name": "Serenno Koriel ",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_5664e5283e51403bbcc1",
+      "name": "Sharky404_Zen",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c43ef32563b789fc2b86",
+      "name": "Shinya Natonsai",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_343c125d7dc1d47766bc",
+      "name": "ShiroiKumaTan Ch.",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_8c9b4bd057f095ed6422",
+      "name": "Shishiou_Seito",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_40f205dd0fc9082d637c",
+      "name": "Shishiro Taiga Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_92bf88174f6e3d449c1d",
+      "name": "Shogo ⌜VZ⌟",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_aeb5c97870b2ef4fe11a",
+      "name": "Shunka INE [NEX]",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_f02d3525ebf1f63453f4",
+      "name": "Sigmunda Riona Ch. 【POLYGON】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_4f6be4762ccfce2da9bf",
+      "name": "Sisira_Hydrangea",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_373ec7189645d9216730",
+      "name": "SoDaChan | Vtuber😺🌰",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_33911cdb021f918f1b99",
+      "name": "SoujiRoy_CH",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b4ef4e0ae81340f523a3",
+      "name": "Stamp LMTY  ⌜VZ⌟",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e421713ad596a293afa0",
+      "name": "StellarPaticle | TH/EN Vtuber",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_7e81bbfbaab2b65ea3fb",
+      "name": "Stormbullet",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_d4b214338673f6ac2900",
+      "name": "Sunfish Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_dc8adc6540bedf78d220",
+      "name": "Superpretty TAKOPERO Ch. Pixela Legends",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_711e202b0044af4ed50b",
+      "name": "SwordAce",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_55f4761a25d35a3631c2",
+      "name": "TAIYO BOUKEN Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_07b95607ea1e0bb4b722",
+      "name": "TARIN",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_42a27b6bdd3bd54ba0ec",
+      "name": "Taki Fugu Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_5814dc685c3b07841fe7",
+      "name": "Tamami เป็นVtuber🥚💗",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_1f4407dbce7f41dfbcef",
+      "name": "TheQuillmon ⌜VZ⌟",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b393662cc392d0527569",
+      "name": "Thear DreamWhale° 10Hz",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_a3e81b2910e52b563b7a",
+      "name": "Thina Borboleta Ch.",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_fea2ea2e8045e370313a",
+      "name": "Timetuba",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_507e27d2b141c665ff05",
+      "name": "ToraSunday",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c8af951d2472aff8d47f",
+      "name": "Trashythemeow",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_a1ad70999745094eb4a9",
+      "name": "TrustLnw",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_11312e8deb3cb00d4c80",
+      "name": "Tsukiko かざん",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_dbc0770401c5e5aeacd5",
+      "name": "Umi Uzagi Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_457f1f1eb5e35a13f8fb",
+      "name": "Umino Ciala Ch. Pixela Legends",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_579b989d6ebf828f1c26",
+      "name": "Uniinu ch. Euphora",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_f2f3b205a8ca3ad81060",
+      "name": "Ursa Scorpio",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0a11c25945c2b2c6b451",
+      "name": "Val 5332",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_04257a1aae916876113c",
+      "name": "Vellva Koray Ch.",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_2001be38e8b2018982ea",
+      "name": "VenusLapirus",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b66417fe58309bae5a79",
+      "name": "VitaOvO💊",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c27f1925f45ca2e32269",
+      "name": "Vulgtmnahog",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_a0775cd20814e1c6b28b",
+      "name": "WINT3R ⌜VZ⌟",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e77952f01914a4ba9445",
+      "name": "WhitePGZ",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9bff4e2157630c966727",
+      "name": "WineVy🐰 | VtuberTH",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c17b5e8aab80600e61fa",
+      "name": "Witchy Rochelle",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_010e1f350f083e1d8e09",
+      "name": "Wynn Carwin | OAL",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_fceb20120986ef411ce6",
+      "name": "XAY | VTUBERTH",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_8ee077deee6f4d129135",
+      "name": "XETSU",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_ba710116c54fd9843ce6",
+      "name": "Xonebu X'thulhu Ch. Lumina-World-End",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_d35f651533208e242d33",
+      "name": "XroSetsuna",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_cdb264bf97862090c4fa",
+      "name": "Yena_Hwang",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_4c0dc5a387c4a4a79666",
+      "name": "Yumiiko CH.",
+      "platforms": [
+        "facebook",
+        "twitch",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0b43c18d4c0e5c24c377",
+      "name": "YuusaYorumo",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_ea6554693f3ab11ded5e",
+      "name": "Zabrina",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_cf1979afee5783e610a7",
+      "name": "ZaynGloucester",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b3f04e5bed55d6a74736",
+      "name": "Zelune Noctarielle 🌙",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_899fa79aafff270e5b19",
+      "name": "Zentiera【VJN】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_a021c083d889eb4afe8b",
+      "name": "ZhenLinxing ch. PowerPay",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0b4b75705941ed357cc7",
+      "name": "Zhenzhen Ch. 【SSR】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_06f4f1b8114fac9e2c60",
+      "name": "Ziika ⌜VZ⌟",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_da3b1e92fb379cbcfd41",
+      "name": "ZoeSpecter_CH",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_04efbfcfbc0f65cd38b7",
+      "name": "acintunz",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c9d3c8ced979ede4b573",
+      "name": "aimtraps",
+      "platforms": [
+        "tiktok",
+        "twitch",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_8146ee157b75d11ec302",
+      "name": "baabel_arp",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_36accf4a459f7bf3f3ef",
+      "name": "bambooniffy",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_693e0c1a4a66d78c38c2",
+      "name": "bughaginhuamung",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_82038ac5eb00cc9a387d",
+      "name": "cynthia_rowena",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9f68e209e36868d75f07",
+      "name": "dtto.",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_3982f70c4a030ac4ac85",
+      "name": "fouruary_th",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_a97f4fa7afb7ba5f50a3",
+      "name": "hamikodesu",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_2c6939cf038b7a2770fe",
+      "name": "inoriaijou",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9e1fbba94bb549a037c1",
+      "name": "kaamoria",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0545b9328aa4cc05691a",
+      "name": "kurogumaan",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_09b67bfdf1ed0e15df29",
+      "name": "masumikyou",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_3372e5d21a636b21df04",
+      "name": "mayanut",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0dab7eef82a8cf9926e0",
+      "name": "navylucifervwy",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_4ed4ae23c0c73a1ceb2d",
+      "name": "orinเมี๋ยว",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_4afae3fbf1791da30788",
+      "name": "penelopepinkch",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e27ae97a6f60654a0415",
+      "name": "pugko___",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0fa0007632b589fb81aa",
+      "name": "sheathchannel",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_11fd2c28536db1e35bb8",
+      "name": "soulyuuvtuber",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_c5ed7b606744f7777fc0",
+      "name": "takiya_vtuberth",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_729720cd245cda7d9d80",
+      "name": "tako_tk2126",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_547e4af9f38b8f969869",
+      "name": "victorrrrrhn",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_f3377bdb3324e7550801",
+      "name": "vthAriel",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_541a563fa18745f68baf",
+      "name": "y0tchi",
+      "platforms": [
+        "twitch",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_9e47c8b45fc4db8f7b09",
+      "name": "yasouazrael_as",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_a31020495844eec9ee2e",
+      "name": "yueqinvtuber88",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_3e1723c57373712abc48",
+      "name": "yuu.hakugetsu",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_14cdb0d5581b875104e0",
+      "name": "zinnia",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b977b896710e77b73e28",
+      "name": "æ𝕃a✦VTUBER",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_dc15ebc5b493785ccbcc",
+      "name": "กลิ่นทอง | Klinthong 【RE:S】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_e36938896eaef6e8c736",
+      "name": "กะละมัง วีทูปเบอร์",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_d77c1195276eeabd78ad",
+      "name": "จู้จีนจุกจิก | Regene【RE:S】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_8113f1b04f9ac4c3ffa9",
+      "name": "ซอลลี่ฟีนิกซ์นะยะ",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_0be6cdb329ba76a6c537",
+      "name": "ผีอีมาลัย (EC19 Project)",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_fe3a14ea28320923046b",
+      "name": "ฟิอาเองก็อยากให้เทคโนโลยีรัก",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_be46fad9a30397542065",
+      "name": "ฟ้อนดาวมาเล่า | Fondawl【RE:S】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_ba0a93ea867b70846b7c",
+      "name": "ลินน่าจะร้อง │ Lynna Vsinger",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_d6a0e166f11239dba588",
+      "name": "ลุงขนุน《 SSR 》",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_336c6bbcd9ec99cbf248",
+      "name": "วายุ สวรรค์🌪️ลมร้อน| VTuberTH",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_b64887979b23afc4364a",
+      "name": "สุรกี้ | วีทูปเบอร์",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_a9d921bc8e45fe8ea161",
+      "name": "เคอเรนเซียวีปกติɞ",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_60c0b13cdd9a997a6472",
+      "name": "เปโกะริน ลาบเป็ด",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_09182c99cc10f6bd4760",
+      "name": "โป๊ะโกะ / PoKo ปลวกทูปเบ๋อ",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_fb873b8c3d97514f9b3b",
+      "name": "【公式】HAJITABI ハジタビ",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_2511d92d8893b7949cd2",
+      "name": "霧死 - Kirishi",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_5c6b94e226702805a36a",
+      "name": "🏮YueMeili🪭| VtuberTH 🌺",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_6ffcbb5a871b487bed3d",
+      "name": "🐱Hibana 【V-YT】",
+      "platforms": [
+        "tiktok",
+        "x",
+        "youtube"
+      ],
+      "platform_count": 3
+    },
+    {
+      "persona_id": "persona_6350f6d1dc0c1a707c73",
+      "name": "Anya Marshall Ch. 【POLYGON】",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_d9899cec341a041d9a99",
+      "name": "Big M 4U 『ECR』",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_66672eed824eb1a63e9c",
+      "name": "Cynthia",
+      "platforms": [
+        "x",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_ee726256ded2e3cb6d8f",
+      "name": "Darchelle ch.",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_3707f0e93bfbba799463",
+      "name": "EMIL",
+      "platforms": [
+        "x",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_9ad3ee3da53ec535510d",
+      "name": "G RED",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_478ee3abfe515d13e892",
+      "name": "Honoru Ch. โฮโนรุ",
+      "platforms": [
+        "twitch",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_6e8c89700074fd304fe5",
+      "name": "Issa",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_89eb93e7f7559e117289",
+      "name": "JueBigHead",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_23b8f1f16079a1dc4706",
+      "name": "Kashina CH.",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_a45197ad4998a5dc4ce8",
+      "name": "KoriMisu",
+      "platforms": [
+        "twitch",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_83ea1a38039b27c54f42",
+      "name": "Lawrenze l Blessing",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_de2b5d2718b8a19e3737",
+      "name": "Lunette CH.",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_3fa5b57c5c39cef48d11",
+      "name": "Melriz",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_c1555bcff35d0442ae21",
+      "name": "Minilorr",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_c8a2a3d5f9e915054fef",
+      "name": "Mit PESISTH",
+      "platforms": [
+        "x",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_c0a6e01c8d39135a0cf4",
+      "name": "N4iKI",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_fe167f0f82e5fe8b1c15",
+      "name": "Nanino Channel",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_a95820b3f86b76b70be7",
+      "name": "Nogi Sensei",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_60db109ddf8be0fa1034",
+      "name": "Rlanzshino",
+      "platforms": [
+        "twitch",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_6ebce00381c7906f4875",
+      "name": "Saamazu Suwai",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_dd7c3e8c837cc0957f3d",
+      "name": "Simon von Crucisburg",
+      "platforms": [
+        "x",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_04ccbdb1fca1d185e53f",
+      "name": "StunKung",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_ec69161eeeba1e3f2368",
+      "name": "T หมาป่าบลูเบอร์รี่ Wolfficial",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_31fcf4c85f4a72ce29c4",
+      "name": "The Black Wolf (PoLin)",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_968438a71e5ebd7c787c",
+      "name": "Viorises",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_96e77ac0d6e4de92f4f0",
+      "name": "Wormtomato",
+      "platforms": [
+        "twitch",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_3fe0f9303191d3861e87",
+      "name": "yamisamadesu",
+      "platforms": [
+        "twitch",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_002769ca92c54b73a0c1",
+      "name": "ขนปุย",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_eed0004c9696cd93b967",
+      "name": "มาลัยเดวา",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "platform_count": 2
+    },
+    {
+      "persona_id": "persona_0bf11d0b03b31a5e4dc0",
+      "name": "3AM virtual ghost | ตีสาม",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_84ae6a0807fc1f1a5ac7",
+      "name": "AKAI CH [ECR]",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_e81bd1d7f72754e90787",
+      "name": "AYU VTuber",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_e13a5791c8ca52439c58",
+      "name": "AdisonEiya_DVP",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_efd38c03f72e8e14405a",
+      "name": "Akari Kanon",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_9ff1b333005d34acb05a",
+      "name": "Alfred Ford [VtuberTH]",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_cf0912fb480ed21ebb0f",
+      "name": "Allure Tytonadia",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_69cac6392acafa8458ad",
+      "name": "AnnissaTiana",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_80fa1da53a72c4965955",
+      "name": "ArikoJz",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_278807f454b6ec99ff17",
+      "name": "Arithmos Ch.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_81055ef94a99d397e05f",
+      "name": "AstiaVtuber",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_001be49453233f2be6b1",
+      "name": "Athrun Tyto Alba🪺",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_3c19cddd5a74c839e55f",
+      "name": "BakurinS",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_58d6acda9efd6d13c496",
+      "name": "Baruru 🐧🥓 Vtuber",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_67fc1e67e9894d854856",
+      "name": "BiOM4NzZ",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_9e32f1e52fa0bb270851",
+      "name": "Blu-Chan GMOT ⌜VZ⌟",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_ccba42c5cf753d0e26d1",
+      "name": "Bua Ch.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_c1ebde4336b3950f42f0",
+      "name": "C ⌜VZ⌟",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_9c8d12e5abd66935aa68",
+      "name": "Carina Aquarius",
+      "platforms": [
+        "x"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_76678a43cb3633730f72",
+      "name": "CatzeraN",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_0ee3691a673efa36a3e5",
+      "name": "CheezySteaks",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_8c13b4cd0e029de248d3",
+      "name": "CheezySteaks",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_5deccaf7b6225f19e137",
+      "name": "Cherry S.Kersche",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_39a33a743681d3a45856",
+      "name": "ChiaraEsperanza",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_74f79c446ebb75889f4c",
+      "name": "DELLONS | Vtuber TH. 🐿️✨",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_9b9d8e519059faa23099",
+      "name": "DaddyLemon",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_64edc3818a92f34e521e",
+      "name": "Darchelle🌑✨ | VtuberTH",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_33bdbe1a529a56dbbe28",
+      "name": "DragoCHAIN",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_86905d60e40eeceaba56",
+      "name": "E_Ghost SoulKa👻",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_69f2d5b29b30904c35a5",
+      "name": "ElbrynBoo",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_ea1c8cbac385f4403ba3",
+      "name": "Elizon_AST",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_e214c634a4735e8cedd9",
+      "name": "Esme Mew",
+      "platforms": [
+        "x"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_b21578ad4e87ce0be5bd",
+      "name": "Esmer Hestia | Vtuber TH",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_ee4af82261b298783c0d",
+      "name": "FafyFalentine",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_96b873783509afeca6b8",
+      "name": "Famu Ch.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_3c16db225b77bd73f1f9",
+      "name": "Feirong 飛荣《ATX》",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_90c4abcb63271f62cd70",
+      "name": "Fujin ch.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_b5683711a685fbb19fb6",
+      "name": "Fuyukawa Nao",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_a66b33d5ac4aca912136",
+      "name": "Gaokai Bonthian【KP】",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_08f3e1af5a5933cf62a6",
+      "name": "Genbu Ch.《ISP》",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_02c55ca0fdd54c733e82",
+      "name": "Ginokami Aki Ch.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_ed79e0b4aa1fe10e6e31",
+      "name": "HallyYoruda | Vniverse",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_c3bdac30d6bdb970b483",
+      "name": "Hello Tawan - Tawan The Horizon",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_4d440facee758f07b32a",
+      "name": "Helson X404",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_c9ce72887adc6a9b9913",
+      "name": "Howl",
+      "platforms": [
+        "x"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_928f392d04dc2623a743",
+      "name": "HuntaPNG",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_a1e0f30ec036b8c9fc55",
+      "name": "ImsoGracechu",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_5f0214925589bbda8304",
+      "name": "JamMyChan .ch🍑🐿",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_c539cd0f4dd5ef89afe2",
+      "name": "JubzLova",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_aca45481c2fb8a07181f",
+      "name": "Kaito Shark",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_66b6ba044a25939c0e1a",
+      "name": "Kamichi",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_0604d83514a4ac0751a0",
+      "name": "Kay0Chi",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_61687ed04a0bd41ffb5c",
+      "name": "KaylefOrion",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_7079820b0bb867bd1aad",
+      "name": "Kazuha Ch. 『VW』",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_b63eb3d7581a3b506d0c",
+      "name": "Kennedy Meow",
+      "platforms": [
+        "x"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_94ee596afbdeca071db5",
+      "name": "KiSSeria_♡ vtuber",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_79a3f0c028dca956ed91",
+      "name": "Kirari Esu",
+      "platforms": [
+        "x"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_6d7252765ed7d6a1ad6f",
+      "name": "KnowChan - โนว์จัง 💓💡",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_66aebb7eaed59f148a86",
+      "name": "Kulareew Ch.【Vtuber TH 】",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_362e298e30b8da84c5b1",
+      "name": "KurishimaRun",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_5efe72eab4e5d5231e0a",
+      "name": "Kylanz",
+      "platforms": [
+        "x"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_af62959ec7f55a66176c",
+      "name": "Kyubi Nine キュビ ナイン",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_fce73bea9f7790303155",
+      "name": "LTX022",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_72c9ea6f2969017decf5",
+      "name": "LalinTheAlien",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_a42e5af87d88453c6dcb",
+      "name": "Latte Lamilla Ch.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_1bc44543dda15931d9cf",
+      "name": "Lenezmee Dollynx",
+      "platforms": [
+        "x"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_f6593c9dfb5af34d663f",
+      "name": "LevyVPM",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_8b2e8ba0b1d04dd82937",
+      "name": "Lioren《HPP》",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_968c9227a1c7701699bd",
+      "name": "LissainTH",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_6f5c7afe6e9085c3b05f",
+      "name": "Liyin",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_8261000752396c56dec6",
+      "name": "Logan U Stryker",
+      "platforms": [
+        "x"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_1bf7f80ef32db44bf487",
+      "name": "LuA_Mikina🌙💤",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_9a110f5ac43d56a2a531",
+      "name": "LuYao ch.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_7d1154357aca82b40378",
+      "name": "MIoraTwilight_.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_4f3e86c44c8fb3ec01e9",
+      "name": "MUNG MING VBer",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_8ab9fbb92e2c7bcc6251",
+      "name": "MaVista 「 マビッスタ 」",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_9f9e8cab19470794acba",
+      "name": "Maluto ♾️ LDKTC",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_08ba3585524b664d28fa",
+      "name": "Manami Neko Ch.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_ed41463d3a76fd4da49b",
+      "name": "MeiLiLyn",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_bbb096d6af1dc2af7c82",
+      "name": "Mi Kun Ch.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_da7196343e1041058f4f",
+      "name": "MiYuu43 ch.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_8ff2beed66e936d170a0",
+      "name": "Mikia Terra ch. Euphora",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_c1e717d8c8cab92309ff",
+      "name": "MilyniTivona",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_99312e9fd5d9a9f9c1d3",
+      "name": "Milyni_Tivona",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_1118af06c081eea56b26",
+      "name": "Mina_falala VtuberTH",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_023b6115145bc5fba57c",
+      "name": "Mumumoomoo",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_272e46e18a547361a5cb",
+      "name": "MymelloOo",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_e750dfad33a432d5288b",
+      "name": "NEMURI NEMU",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_82de643beb7af5b3e361",
+      "name": "Nagi.Idol.official",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_4dd6f3aa00c350f8eaa1",
+      "name": "NameNemiCh",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_7f63bee15f5b77b528e8",
+      "name": "Nanoca Ch. ㌨ｶ",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_3796ea7707c9ffd85188",
+      "name": "Nao_Mukutsuki",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_3cebd09e4f24ff7131bd",
+      "name": "Navia Whale",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_222f17cef971c700fb9f",
+      "name": "Nebluu",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_75770df8891acb3b0504",
+      "name": "Nihr Farfalla",
+      "platforms": [
+        "youtube"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_fb165701bb8655c27dbf",
+      "name": "NikkiLattE",
+      "platforms": [
+        "x"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_6939b57ea784abac9934",
+      "name": "NoBoRu",
+      "platforms": [
+        "youtube"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_f339bc622f6d17c4f6d8",
+      "name": "NoPHatner",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_3592af87a1b1f67380db",
+      "name": "Noir A.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_f950c5c09fec76a5c3a4",
+      "name": "Nostradamus Karasu",
+      "platforms": [
+        "x"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_b8bde8b9caae055769d2",
+      "name": "Ociana Fala Ch",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_f8ebd2110b0699a595bb",
+      "name": "OumKuMi",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_250e9d70e239d2ef2afb",
+      "name": "PPoooonn Ch.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_ba8d33b34861948bb6d6",
+      "name": "PPrincess_Devil",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_57066443c6ccacbdd113",
+      "name": "Penelope Pink",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_b507ddbc9c85ee5dd6ce",
+      "name": "Phoebe ⌜VZ⌟",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_b641ef37b23d2160d09b",
+      "name": "Phuma Ch.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_0b5fe6d07a38ddefde3f",
+      "name": "PondChan CH",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_8f323ccfaaf0f2a7ea05",
+      "name": "PukaPukann",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_65e1dddf007a138b36d3",
+      "name": "Racyena",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_69145160a5bb56ba8265",
+      "name": "Rainbows Fukio",
+      "platforms": [
+        "x"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_d014583872f2942c5b24",
+      "name": "RaksaVtuber",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_b825bfa9f981347b7f3d",
+      "name": "Rayfinix",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_bf184c206c0ef1ff8bf7",
+      "name": "Reilim Channel",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_85655a915d5e96911854",
+      "name": "RheaAtaraxia",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_662d0fcab89be08f20e1",
+      "name": "Rhumora",
+      "platforms": [
+        "x"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_ac639c496445cfc94b8e",
+      "name": "RiccotaValentiea",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_e58298576a7526ad26bc",
+      "name": "Ryuuga The Crane",
+      "platforms": [
+        "x"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_15e4e04e8d2a7bef5b5d",
+      "name": "SEIREKI",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_e848df19ec8591c54fdb",
+      "name": "Samegi Navin Ch",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_236b15f696519e6d27bd",
+      "name": "Samuel1571",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_0f65c2b497b8a8d4e580",
+      "name": "SapD",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_c0d789bf67e1dee4b87d",
+      "name": "Saphilia《ATX》",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_d3315e59f6db25212938",
+      "name": "SeaU✨️⚓️",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_dcbfc242c4c1198a1dbd",
+      "name": "Seikou iMinato",
+      "platforms": [
+        "x"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_cc38bdc743cf3e12f59e",
+      "name": "Seiryu《ISP》",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_939da3639d1ba2538488",
+      "name": "Serera_Uniflora",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_5c2740ad495ba0553f04",
+      "name": "Serithia「LRV」",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_e296d01fe0a6cd96471c",
+      "name": "Shion",
+      "platforms": [
+        "x"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_3ca06570697a60ae6c42",
+      "name": "Shirin Ch.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_05fe4abf1db3fb06dfc7",
+      "name": "Shirou Ch.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_bcf23a0ef01655c0bbd2",
+      "name": "Sira Samuel CH.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_edd53e3c335615c4337d",
+      "name": "SivlaACAS",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_56b588b35cba34b2f721",
+      "name": "SunLIE",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_b91e3733bb939fb082d7",
+      "name": "Supeacha_Vtuber",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_983ee34f8705423b55b5",
+      "name": "TAIYO BOUKEN!",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_eb65a2124844b4c8e24c",
+      "name": "TOP 【ASTRAY】",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_d776a34d791d27d6b614",
+      "name": "TaeZo_",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_6468cdaa5d70699a8ea6",
+      "name": "Thear DreamWhale° 10Hz",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_b15ace55bad46c7492c4",
+      "name": "Tiara Summerstone",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_adc56181cb798abe3c25",
+      "name": "Torakaze_13",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_7747708d22d57aa44c7e",
+      "name": "ToriThaiga",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_1b63529b34846f01b588",
+      "name": "Tsuruko Channel",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_7a5d2454bc60835fb7f1",
+      "name": "Uniwii_ARP",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_0f387b725aa2421677ed",
+      "name": "Usami Bunny",
+      "platforms": [
+        "x"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_4c3fef7ea4e37688a0f7",
+      "name": "Vesper Wing ",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_298f300261500fffee75",
+      "name": "Viva Vtuber [TH]",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_2421bc1e705dff7d7797",
+      "name": "Vivian V. Wendell [ VtuberTH ]",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_055953cb5ac91aada9bb",
+      "name": "Weirlos ch.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_ac21b295018ff2640ca2",
+      "name": "Windwiss_",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_28433daa3e6baa13be0c",
+      "name": "WitchyTheSlime",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_56c912c943462f5f4a5f",
+      "name": "YUYA l VtuberTH",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_2edfd76ff25ee44a5db7",
+      "name": "YamaTengu",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_394e90e880a4200ca64e",
+      "name": "Yor0",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_8f0d6d38cbc2825d2a3f",
+      "name": "Yuka_Hizumi",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_0d1a3f4d7d446ecd2f6e",
+      "name": "ZOECVC",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_a600bbbfed714e829f4a",
+      "name": "ZekaiARP",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_4060a11ec2290e7a6e23",
+      "name": "Zekai_ARP",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_bc5ce90f36fc683de913",
+      "name": "Zenjigo Ch.",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_7509409b0ebbd9e87f96",
+      "name": "akitoqch",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_cf8c2863806c97eb2905",
+      "name": "alparuvtuber",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_fbcf845adb4bc483e4b0",
+      "name": "apririru",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_ea238e66bfcc2bd80ab0",
+      "name": "ayazakiruririn",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_628e2cbefc07106fa4dd",
+      "name": "bdy_baddie",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_dfa02754bbd5992c8226",
+      "name": "biru101",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_7d99fb0187b5e1df209d",
+      "name": "ckayzekub",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_cf880d235db8f665c403",
+      "name": "halonhashi",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_4ef0a92882628aebe2c8",
+      "name": "ixcheloxo",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_96fb98a4f7178a748eba",
+      "name": "jammychxn",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_cbabeb7a0eb5c25c7ce7",
+      "name": "kumorimaa",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_6cd5716b67f5384b143c",
+      "name": "maemuuru l VtuberTH",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_6401b8b554b2b14629c3",
+      "name": "memeawwww",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_278c5444d5101dc1081c",
+      "name": "miyu_385pj",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_de7d0a3f412b0db47b7b",
+      "name": "mumuthemoodiest",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_46adb677c9756e69ace4",
+      "name": "nano_pks",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_0d596dbc69e6213fc181",
+      "name": "nasarisekinei_",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_cacd2e9c4957c2b41119",
+      "name": "natach_th",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_e70eab86888acf1a7ff7",
+      "name": "nearnergal",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_8a58ae274b51b23a78b9",
+      "name": "nyaruyentafo",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_df593499f16fc1ef27c8",
+      "name": "ozayaol",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_1a517119f28e2737e04b",
+      "name": "ponnanta1",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_85ee914e603143a46806",
+      "name": "ponpundayo",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_a2ed8557ab591f976505",
+      "name": "pr_pikoro",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_734365780eff419dea12",
+      "name": "primo_srv",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_4b9ecf9b41af2d90d5c9",
+      "name": "rikusoyju",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_6cc417aa643da73334b5",
+      "name": "rinwest",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_309f5bba617af36dce99",
+      "name": "sapphire_melon",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_2dcfdc859b4f9100a651",
+      "name": "vendetta_vlazy",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_6daba8055ddc9948cc58",
+      "name": "xCapuuccino_",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_8fd8d1fe92390b6eefe2",
+      "name": "xSunLIEx",
+      "platforms": [
+        "twitch"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_76a38818809cbb4ac9fb",
+      "name": "zeneastarblaze",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_c59f1e3018dfffc6dacd",
+      "name": "zolrenx โซเร็น 🦇🍷",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_b58b2573b27eacf34256",
+      "name": "คีนเซล่า โกยะ❤️ VTuberTH",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_8b5f48a129294e8809db",
+      "name": "สมเหน่ง มิโอ 【FL】",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_d03a812a730f4176214d",
+      "name": "❄️Sylvie Ch.【XIRCONIA】",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_b03129adf907f9f9b610",
+      "name": "叶龙 | Yelong",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_d5d0180061e8a48f5025",
+      "name": "泠露 Líng Lù",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_69d35cfb6c3dbca5e097",
+      "name": "🦊_Shineru_🖤",
+      "platforms": [
+        "tiktok"
+      ],
+      "platform_count": 1
+    },
+    {
+      "persona_id": "persona_f3ac52ae514adc62f9f8",
+      "name": "PINTO",
+      "platforms": [],
+      "platform_count": 0
+    }
+  ]
+}

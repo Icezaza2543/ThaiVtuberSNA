@@ -1,0 +1,39 @@
+name: เสนอครีเอเตอร์
+description: เสนอบัญชีสาธารณะเข้าสู่คิวตรวจทะเบียน
+title: '[Candidate] '
+body:
+  - type: input
+    id: public-name
+    attributes:
+      label: ชื่อ persona ที่ใช้สาธารณะ
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: แพลตฟอร์ม
+      options:
+        - YouTube
+        - Twitch
+        - TikTok
+        - Facebook
+    validations:
+      required: true
+  - type: input
+    id: account-url
+    attributes:
+      label: URL บัญชี
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: หลักฐาน virtual presentation และความเกี่ยวข้องกับไทย
+      description: ใส่ URL โปรไฟล์หรือเนื้อหาที่เจ้าตัวเผยแพร่ พร้อมวันที่ตรวจ
+    validations:
+      required: true
+  - type: textarea
+    id: crosslinks
+    attributes:
+      label: บัญชีอื่นหรือประกาศสถานะที่เจ้าตัวเชื่อมไว้
+      description: ใส่เฉพาะ official cross-links และประกาศที่เปิดเผยต่อสาธารณะ

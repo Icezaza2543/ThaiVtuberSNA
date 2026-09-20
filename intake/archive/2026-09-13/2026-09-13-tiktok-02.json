@@ -1,0 +1,207 @@
+{
+  "batch_id": "2026-09-13-tiktok-02",
+  "observed_at": "2026-09-13T05:58:15+00:00",
+  "scope": "Public TikTok discovery leads only. No persona verification, stable-ID resolution, or activity review. Search-index results can be stale; source_access records how each source was read.",
+  "observations": [
+    {
+      "name": "Shirou Tsurugi",
+      "url": "https://www.tiktok.com/@shiroutsurugi",
+      "source_url": "https://linktr.ee/shiroutsurugi",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Creator link-in-bio follow-up from public VTuberTH search",
+      "summary": "Public creator link-in-bio contains this explicit TikTok destination; virtual/Thai scope is a discovery lead pending review."
+    },
+    {
+      "name": "Fuyu",
+      "url": "https://www.tiktok.com/@_fuyu1102",
+      "source_url": "https://linktr.ee/_fuyu1102",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Creator link-in-bio follow-up from public VTuberTH search",
+      "summary": "Public creator link-in-bio contains this explicit TikTok destination; virtual/Thai scope is a discovery lead pending review."
+    },
+    {
+      "name": "Mellovie",
+      "url": "https://www.tiktok.com/@mellovie.u",
+      "source_url": "https://linktr.ee/mellovie",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Creator link-in-bio follow-up from public VTuberTH search",
+      "summary": "Public creator link-in-bio contains this explicit TikTok destination; virtual/Thai scope is a discovery lead pending review."
+    },
+    {
+      "name": "Keiko Kezoku",
+      "url": "https://www.tiktok.com/@keikojang",
+      "source_url": "https://linktr.ee/keikokezoku",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Creator link-in-bio follow-up from public VTuberTH search",
+      "summary": "Public creator link-in-bio contains this explicit TikTok destination; virtual/Thai scope is a discovery lead pending review."
+    },
+    {
+      "name": "CcretRain",
+      "url": "https://www.tiktok.com/@ccretrain.flaw.pr",
+      "source_url": "https://linktr.ee/ccretrain_flaw",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Creator link-in-bio follow-up from public VTuberTH search",
+      "summary": "Public creator link-in-bio contains this explicit TikTok destination; virtual/Thai scope is a discovery lead pending review."
+    },
+    {
+      "name": "Tarin / TA121N",
+      "url": "https://www.tiktok.com/@ta121n",
+      "source_url": "https://linktr.ee/ta121n",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Creator link-in-bio follow-up from public VTuberTH search",
+      "summary": "Public creator link-in-bio contains this explicit TikTok destination; virtual/Thai scope is a discovery lead pending review."
+    },
+    {
+      "name": "Aina VTuber",
+      "url": "https://www.tiktok.com/@aina.vtuber",
+      "source_url": "https://solo.to/aina_vtuber",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "page_text",
+      "query": "Public TikTok cross-link expansion: Polygon, Thai VTuber profiles and announcements",
+      "summary": "Opened creator profile identifies VTuberTH and explicitly links TikTok."
+    },
+    {
+      "name": "Zeno Astray",
+      "url": "https://www.tiktok.com/@zeno_astray",
+      "source_url": "https://twstalker.com/PanCheewa46936",
+      "source_kind": "secondary_source",
+      "method": "manual_search",
+      "source_access": "search_index",
+      "query": "Public TikTok cross-link expansion: Polygon, Thai VTuber profiles and announcements",
+      "summary": "Indexed repost contains Zeno follow links including exact TikTok URL; account ownership needs review."
+    },
+    {
+      "name": "Taiyo Bouken",
+      "url": "https://www.tiktok.com/@taiyobouken",
+      "source_url": "https://www.foriio.com/MisterNoctiz/wk_AW0tcP4QZag9eYxLqgcDYaGEvMjVPERJ2Srpw-S3FwOHNJqLFQ",
+      "source_kind": "secondary_source",
+      "method": "manual_search",
+      "source_access": "search_index",
+      "query": "Public TikTok cross-link expansion: Polygon, Thai VTuber profiles and announcements",
+      "summary": "Portfolio entry for Taiyo cover contains exact performer TikTok URL and VTuberTH tag. Production-service links excluded."
+    },
+    {
+      "name": "Hoshino Tamami",
+      "url": "https://www.tiktok.com/@tamamiplg",
+      "source_url": "https://www.online-station.net/entertainment/624788/",
+      "source_kind": "secondary_source",
+      "method": "manual_search",
+      "source_access": "page_text",
+      "query": "Public TikTok cross-link expansion: Polygon, Thai VTuber profiles and announcements",
+      "summary": "2023 Polygon debut article lists this named talent with exact TikTok URL. Historical discovery; current account and activity need review."
+    },
+    {
+      "name": "Sigmunda Riona",
+      "url": "https://www.tiktok.com/@rionaplg",
+      "source_url": "https://www.online-station.net/entertainment/624788/",
+      "source_kind": "secondary_source",
+      "method": "manual_search",
+      "source_access": "page_text",
+      "query": "Public TikTok cross-link expansion: Polygon, Thai VTuber profiles and announcements",
+      "summary": "2023 Polygon debut article lists this named talent with exact TikTok URL. Historical discovery; current account and activity need review."
+    },
+    {
+      "name": "Minami Cera",
+      "url": "https://www.tiktok.com/@ceraplg",
+      "source_url": "https://www.online-station.net/entertainment/624788/",
+      "source_kind": "secondary_source",
+      "method": "manual_search",
+      "source_access": "page_text",
+      "query": "Public TikTok cross-link expansion: Polygon, Thai VTuber profiles and announcements",
+      "summary": "2023 Polygon debut article lists this named talent with exact TikTok URL. Historical discovery; current account and activity need review."
+    },
+    {
+      "name": "Tiara Rexa",
+      "url": "https://www.tiktok.com/@rexaplg",
+      "source_url": "https://www.online-station.net/entertainment/624788/",
+      "source_kind": "secondary_source",
+      "method": "manual_search",
+      "source_access": "page_text",
+      "query": "Public TikTok cross-link expansion: Polygon, Thai VTuber profiles and announcements",
+      "summary": "2023 Polygon debut article lists this named talent with exact TikTok URL. Historical discovery; current account and activity need review."
+    },
+    {
+      "name": "Anya A. Marshall",
+      "url": "https://www.tiktok.com/@anyaplg",
+      "source_url": "https://www.online-station.net/entertainment/624788/",
+      "source_kind": "secondary_source",
+      "method": "manual_search",
+      "source_access": "page_text",
+      "query": "Public TikTok cross-link expansion: Polygon, Thai VTuber profiles and announcements",
+      "summary": "2023 Polygon debut article lists this named talent with exact TikTok URL. Historical discovery; current account and activity need review."
+    },
+    {
+      "name": "Luxia",
+      "url": "https://www.tiktok.com/@luxiaplg",
+      "source_url": "https://vtuber.favorlist.com/video/vjcgv3oQqno",
+      "source_kind": "secondary_source",
+      "method": "manual_search",
+      "source_access": "search_index",
+      "query": "Public TikTok cross-link expansion: Polygon, Thai VTuber profiles and announcements",
+      "summary": "Indexed Luxia video-description mirror lists this named Polygon talent and exact TikTok URL."
+    },
+    {
+      "name": "Zona",
+      "url": "https://www.tiktok.com/@zonaplg",
+      "source_url": "https://vtuber.favorlist.com/video/vjcgv3oQqno",
+      "source_kind": "secondary_source",
+      "method": "manual_search",
+      "source_access": "search_index",
+      "query": "Public TikTok cross-link expansion: Polygon, Thai VTuber profiles and announcements",
+      "summary": "Indexed Luxia video-description mirror lists this named Polygon talent and exact TikTok URL."
+    },
+    {
+      "name": "Lapine",
+      "url": "https://www.tiktok.com/@lapineplg",
+      "source_url": "https://vtuber.favorlist.com/video/vjcgv3oQqno",
+      "source_kind": "secondary_source",
+      "method": "manual_search",
+      "source_access": "search_index",
+      "query": "Public TikTok cross-link expansion: Polygon, Thai VTuber profiles and announcements",
+      "summary": "Indexed Luxia video-description mirror lists this named Polygon talent and exact TikTok URL."
+    },
+    {
+      "name": "Hoku",
+      "url": "https://www.tiktok.com/@hokuplg",
+      "source_url": "https://vtuber.favorlist.com/video/vjcgv3oQqno",
+      "source_kind": "secondary_source",
+      "method": "manual_search",
+      "source_access": "search_index",
+      "query": "Public TikTok cross-link expansion: Polygon, Thai VTuber profiles and announcements",
+      "summary": "Indexed Luxia video-description mirror lists this named Polygon talent and exact TikTok URL."
+    },
+    {
+      "name": "Lucene",
+      "url": "https://www.tiktok.com/@luceneplg",
+      "source_url": "https://vtuber.favorlist.com/video/vjcgv3oQqno",
+      "source_kind": "secondary_source",
+      "method": "manual_search",
+      "source_access": "search_index",
+      "query": "Public TikTok cross-link expansion: Polygon, Thai VTuber profiles and announcements",
+      "summary": "Indexed Luxia video-description mirror lists this named Polygon talent and exact TikTok URL."
+    },
+    {
+      "name": "Fumi Hausu",
+      "url": "https://www.tiktok.com/@fumihausu",
+      "source_url": "https://bacharu.io/vtuber/fumi-hausu",
+      "source_kind": "secondary_source",
+      "method": "manual_search",
+      "source_access": "search_index",
+      "query": "Public TikTok cross-link expansion: Polygon, Thai VTuber profiles and announcements",
+      "summary": "VTuber directory lists Fumi Hausu TikTok handle. Virtual brand ambassador; current account requires review."
+    }
+  ]
+}

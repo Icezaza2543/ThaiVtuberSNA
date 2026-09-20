@@ -1,0 +1,78 @@
+{
+  "evidence": [
+    {
+      "id": "ev_67c1d5d2a8ade4969802",
+      "url": "https://x.com/Usami_Bunny_",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T10:05:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review supplied by the project owner on 2026-09-17 confirmed Usami Bunny as a Thai virtual creator and confirmed this public X profile as an owned account. This batch does not yet certify lifecycle dates."
+    },
+    {
+      "id": "ev_fe174827a35a6e5f861e",
+      "url": "https://x.com/Lenezmee_AS",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T10:05:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review supplied by the project owner on 2026-09-17 confirmed Lenezmee Dollynx as a Thai virtual creator and confirmed this public X profile as an owned account. This batch does not yet certify lifecycle dates."
+    },
+    {
+      "id": "ev_c56365d7b3582ebc42a7",
+      "url": "https://x.com/Kylanz_KLZ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T10:05:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review supplied by the project owner on 2026-09-17 confirmed Kylanz as a Thai virtual creator and confirmed this public X profile as an owned account."
+    }
+  ],
+  "personas": [
+    {
+      "id": "persona_0f387b725aa2421677ed",
+      "evidence_id": "ev_67c1d5d2a8ade4969802",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:05:00+00:00"
+    },
+    {
+      "id": "persona_1bc44543dda15931d9cf",
+      "evidence_id": "ev_fe174827a35a6e5f861e",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:05:00+00:00"
+    },
+    {
+      "id": "persona_5efe72eab4e5d5231e0a",
+      "evidence_id": "ev_c56365d7b3582ebc42a7",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:05:00+00:00"
+    }
+  ],
+  "account_links": [
+    {
+      "id": "link_767ac24d7c462f4d1ba2",
+      "evidence_id": "ev_67c1d5d2a8ade4969802",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:05:00+00:00"
+    },
+    {
+      "id": "link_53b47b317a0abbbba5a3",
+      "evidence_id": "ev_fe174827a35a6e5f861e",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:05:00+00:00"
+    },
+    {
+      "id": "link_4d390d2bcc9c96a967ca",
+      "evidence_id": "ev_c56365d7b3582ebc42a7",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:05:00+00:00"
+    }
+  ]
+}
+

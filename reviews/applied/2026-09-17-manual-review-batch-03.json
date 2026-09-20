@@ -1,0 +1,70 @@
+{
+  "evidence": [
+    {
+      "id": "ev_b03_carina",
+      "url": "https://x.com/CarinaAquarius",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T10:20:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review by project owner on 2026-09-17 confirmed Carina Aquarius as a Thai virtual creator and confirmed this public X profile as an owned account. Owner-supplied evidence_url in review file."
+    },
+    {
+      "id": "ev_b03_mit",
+      "url": "https://x.com/pesisthatcer",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T10:20:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review by project owner on 2026-09-17 confirmed Mit PESISTH as a Thai virtual creator (4AM, PNG virtual creator). Owner noted social details were sparse. The X profile URL was cited as the evidence_url in the review file for persona scope. Account ownership of this X account was not separately confirmed by the owner as an explicit account-link decision; X link remains needs_evidence."
+    },
+    {
+      "id": "ev_b03_howl",
+      "url": "https://x.com/HowlTheSandbag",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T10:20:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review by project owner on 2026-09-17 confirmed Howl as a Thai virtual creator (FvP Project) and confirmed this public X profile as an owned account. Owner-supplied evidence_url in review file."
+    }
+  ],
+  "personas": [
+    {
+      "id": "persona_9c8d12e5abd66935aa68",
+      "evidence_id": "ev_b03_carina",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    },
+    {
+      "id": "persona_c8a2a3d5f9e915054fef",
+      "evidence_id": "ev_b03_mit",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    },
+    {
+      "id": "persona_c9ce72887adc6a9b9913",
+      "evidence_id": "ev_b03_howl",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    }
+  ],
+  "account_links": [
+    {
+      "id": "link_942529c769383704e1d9",
+      "evidence_id": "ev_b03_carina",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    },
+    {
+      "id": "link_bdfda1856aed3ae3ecdb",
+      "evidence_id": "ev_b03_howl",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    }
+  ]
+}

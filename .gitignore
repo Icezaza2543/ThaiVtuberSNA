@@ -64,3 +64,23 @@ data/**/raw_comment*.csv
 .observatory_pending.json
 .observatory_generations/
 scratch/
+
+# Registry and discovery rules
+credentials*.json
+*.sqlite*
+.registry.lock
+data/*.tmp
+dist/
+.playwright/
+browser_profiles/
+profiles/
+playwright-data/
+*.egg-info/
+
+# Frontend build & generated data
+/web/node_modules/
+/web/dist/
+/web/.vite/
+/web/public/data/
+/playwright-report/
+/test-results/

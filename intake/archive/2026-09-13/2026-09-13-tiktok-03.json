@@ -1,0 +1,207 @@
+{
+  "batch_id": "2026-09-13-tiktok-03",
+  "observed_at": "2026-09-13T06:04:26+00:00",
+  "scope": "Public TikTok discovery leads only. No persona verification, stable-ID resolution, or activity review. Source access records how each source was read.",
+  "observations": [
+    {
+      "name": "Nagi.Idol.Official",
+      "url": "https://www.tiktok.com/@nagi.idol.official",
+      "source_url": "https://linktr.ee/nagi.idol.official",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Thai VTuber creator link-in-bio",
+      "summary": "Thai independent VTuber self-description and TikTok social link in creator profile."
+    },
+    {
+      "name": "NongMaMuang_VTUBER",
+      "url": "https://www.tiktok.com/@nongmamuang_vtuber",
+      "source_url": "https://linktr.ee/NongMaMuang_VTUBER",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Thai VTuber creator link-in-bio",
+      "summary": "Thai V-Tuber / V-Streamer self-description and TikTok link in creator profile."
+    },
+    {
+      "name": "Adrelis Zinya「ALF」",
+      "url": "https://www.tiktok.com/@adreliszinya_alf",
+      "source_url": "https://tipjai.com/adreliszinya",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Tipjai VTuber directory and creator social links",
+      "summary": "VTuber directory profile with Thai fox persona description; TikTok social URL embedded in profile data."
+    },
+    {
+      "name": "Roseline",
+      "url": "https://www.tiktok.com/@roseline_btf",
+      "source_url": "https://tipjai.com/roseline",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Tipjai VTuber directory and creator social links",
+      "summary": "Thai independent VTuber directory profile; TikTok social URL embedded in profile data."
+    },
+    {
+      "name": "Melanox Lunix「ALF」",
+      "url": "https://www.tiktok.com/@melanoxlunix_alf",
+      "source_url": "https://tipjai.com/melanoxlunix",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Tipjai VTuber directory and creator social links",
+      "summary": "VTuber directory creator profile contains this TikTok social URL."
+    },
+    {
+      "name": "laychlype.alf",
+      "url": "https://www.tiktok.com/@laychlype_alf",
+      "source_url": "https://tipjai.com/laylight",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Tipjai VTuber directory and creator social links",
+      "summary": "VTuber directory creator profile contains this TikTok social URL."
+    },
+    {
+      "name": "NyteInwZa",
+      "url": "https://www.tiktok.com/@midnigh0606",
+      "source_url": "https://tipjai.com/midnyte",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Tipjai VTuber directory and creator social links",
+      "summary": "VTuber directory creator profile contains this TikTok social URL."
+    },
+    {
+      "name": "Taro Taros Ch.",
+      "url": "https://www.tiktok.com/@tarostarossama",
+      "source_url": "https://tipjai.com/tarotaros",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Tipjai VTuber directory and creator social links",
+      "summary": "VTuber directory creator profile links to this TikTok account."
+    },
+    {
+      "name": "KatsukiCh",
+      "url": "https://www.tiktok.com/@katsuki_007x",
+      "source_url": "https://tipjai.com/katsukich",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Tipjai VTuber directory and creator social links",
+      "summary": "VTuber directory creator profile links to this TikTok account."
+    },
+    {
+      "name": "MaVista 「 マビッスタ 」",
+      "url": "https://www.tiktok.com/@ma_mavista",
+      "source_url": "https://tipjai.com/mavista_korynna",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Tipjai VTuber directory and creator social links",
+      "summary": "Creator profile listed in the VTuber directory contains this TikTok social URL; the platform-wide Tipjai footer link was excluded."
+    },
+    {
+      "name": "ริซเดสซู่!",
+      "url": "https://www.tiktok.com/@ririzzixbenthx",
+      "source_url": "https://tipjai.com/aliceririka",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Tipjai VTuber directory and creator social links",
+      "summary": "Creator profile listed in the VTuber directory contains this TikTok social URL; the platform-wide Tipjai footer link was excluded."
+    },
+    {
+      "name": "elfymaluky",
+      "url": "https://www.tiktok.com/@elfymaluky",
+      "source_url": "https://tipjai.com/elfyuxu",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Tipjai VTuber directory and creator social links",
+      "summary": "Creator profile listed in the VTuber directory contains this TikTok social URL; the platform-wide Tipjai footer link was excluded."
+    },
+    {
+      "name": "ZenoSang",
+      "url": "https://www.tiktok.com/@zenosang",
+      "source_url": "https://tipjai.com/zenosang",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Tipjai VTuber directory and creator social links",
+      "summary": "Creator profile listed in the VTuber directory contains this TikTok social URL; the platform-wide Tipjai footer link was excluded."
+    },
+    {
+      "name": "Vaelz",
+      "url": "https://www.tiktok.com/@vaelzch",
+      "source_url": "https://tipjai.com/vaelzch",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Tipjai VTuber directory and creator social links",
+      "summary": "Creator profile listed in the VTuber directory contains this TikTok social URL; the platform-wide Tipjai footer link was excluded."
+    },
+    {
+      "name": "Locenne Ch.",
+      "url": "https://www.tiktok.com/@lucennech",
+      "source_url": "https://tipjai.com/lucennech",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Tipjai VTuber directory and creator social links",
+      "summary": "Creator profile listed in the VTuber directory contains this TikTok social URL; the platform-wide Tipjai footer link was excluded."
+    },
+    {
+      "name": "KitadesuS",
+      "url": "https://www.tiktok.com/@kitadesusmdz",
+      "source_url": "https://tipjai.com/kitadesus",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Tipjai VTuber directory and creator social links",
+      "summary": "Creator profile listed in the VTuber directory contains this TikTok social URL; the platform-wide Tipjai footer link was excluded."
+    },
+    {
+      "name": "RaksaVtuber",
+      "url": "https://www.tiktok.com/@raksavtuber",
+      "source_url": "https://tipjai.com/raksavtuber",
+      "source_kind": "official_profile",
+      "method": "official_crosslink",
+      "source_access": "live_public_html",
+      "query": "Tipjai VTuber directory and creator social links",
+      "summary": "Creator profile listed in the VTuber directory contains this TikTok social URL; the platform-wide Tipjai footer link was excluded."
+    },
+    {
+      "name": "Akemi Arlin",
+      "url": "https://www.tiktok.com/@akemi_arlin",
+      "source_url": "https://bacharu.io/vtuber/akemi-arlin",
+      "source_kind": "secondary_source",
+      "method": "manual_search",
+      "source_access": "page_text",
+      "query": "Thai VTuber official TikTok social links",
+      "summary": "Secondary VTuber directory profile lists this TikTok social link for Akemi Arlin."
+    },
+    {
+      "name": "Mycara Melony",
+      "url": "https://www.tiktok.com/@mycara_melony",
+      "source_url": "https://www.foriio.com/MisterNoctiz/wk_AWNQdK97VoEykCO3dDw4SmImNdBLv8Buo6SiglaVv1bHnum5BQ",
+      "source_kind": "secondary_source",
+      "method": "manual_search",
+      "source_access": "search_index",
+      "query": "Thai VTuber official TikTok social links",
+      "summary": "Public production portfolio credits a Pixela / VTuber performer and lists this TikTok URL among performer channels; ownership pending review."
+    },
+    {
+      "name": "Nezumi Elze",
+      "url": "https://www.tiktok.com/@nezumi_elze",
+      "source_url": "https://socialcounts.org/youtube-video-live-view-count/8iRhLNswNBE",
+      "source_kind": "secondary_source",
+      "method": "manual_search",
+      "source_access": "search_index",
+      "query": "Thai VTuber official TikTok social links",
+      "summary": "Indexed music-video description mirror lists this TikTok URL among performer channels; original profile ownership pending review."
+    }
+  ]
+}

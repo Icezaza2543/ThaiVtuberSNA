@@ -1,0 +1,1206 @@
+{
+  "evidence": [
+    {
+      "id": "ev_b1416bc5ed9a5e6f7518",
+      "url": "https://www.tiktok.com/embed/@jorogumov?lang=en&embedFrom=webapp_preview",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves tiktok stable ID 7338010446932804615 for https://www.tiktok.com/@jorogumov; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_a3d38fbcf16c3c4aa521",
+      "url": "https://www.tiktok.com/embed/@lilin_lilin0_0?lang=en&embedFrom=webapp_preview",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves tiktok stable ID 7396664385580237825 for https://www.tiktok.com/@lilin_lilin0_0; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_cdb32fd759e54f9d05dd",
+      "url": "https://www.tiktok.com/embed/@rainbows_fukio42?lang=en&embedFrom=webapp_preview",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves tiktok stable ID 7325718263119627265 for https://www.tiktok.com/@rainbows_fukio42; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_b6bf6e516e687bee0770",
+      "url": "https://www.tiktok.com/embed/@urstryker?lang=en&embedFrom=webapp_preview",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves tiktok stable ID 7184468420006691845 for https://www.tiktok.com/@urstryker; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_95464dbb6d81897f6ca2",
+      "url": "https://www.tiktok.com/embed/@zabrina_vtuber?lang=en&embedFrom=webapp_preview",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves tiktok stable ID 7518712241110991888 for https://www.tiktok.com/@zabrina_vtuber; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_949d124b2f092788b895",
+      "url": "https://www.youtube.com/@CynthiaFvPProject/about",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves youtube stable ID UC2r8lotcMM1AF1BIJs9kMHA for https://www.youtube.com/channel/UC2r8lotcMM1AF1BIJs9kMHA; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_e24ea78cd7d4c22aacdc",
+      "url": "https://www.youtube.com/@EmilTheSpaceSheep/about",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves youtube stable ID UCSgcToKU-n_0b_v7FLltJuQ for https://www.youtube.com/channel/UCSgcToKU-n_0b_v7FLltJuQ; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_fca4e45e04beaa0133e5",
+      "url": "https://www.youtube.com/@Fukio_VT/about",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves youtube stable ID UCJGy7NCvnc-xcVPwdDzuxvQ for https://www.youtube.com/channel/UCJGy7NCvnc-xcVPwdDzuxvQ; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_7b7704e51c08ec6aacba",
+      "url": "https://www.youtube.com/@HakkaV/about",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves youtube stable ID UC9UHurp_G26BzYGxLvUzZTA for https://www.youtube.com/channel/UC9UHurp_G26BzYGxLvUzZTA; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_cac605c64f90d5ef7664",
+      "url": "https://www.youtube.com/@Jorogumov/about",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves youtube stable ID UCn7L1iwOGczRAc3DHgrRelQ for https://www.youtube.com/channel/UCn7L1iwOGczRAc3DHgrRelQ; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_18b94ff101ae6f6d5376",
+      "url": "https://www.youtube.com/@kyoyavtuber/about",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves youtube stable ID UCd6bx1YwqNRzfaMoMB5nOHg for https://www.youtube.com/channel/UCd6bx1YwqNRzfaMoMB5nOHg; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_1916d9735a18f9c101a2",
+      "url": "https://www.youtube.com/@LenezmeeDollynx_AS/about",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves youtube stable ID UCwHZUHipePFREEvP-5xT3MA for https://www.youtube.com/channel/UCwHZUHipePFREEvP-5xT3MA; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_beeae21f1b1a02f98b4b",
+      "url": "https://www.youtube.com/@mitpesisth/about",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves youtube stable ID UCB_l7aUEixTDZ0uItf4A2bw for https://www.youtube.com/channel/UCB_l7aUEixTDZ0uItf4A2bw; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_77a11db5fb634b9fd84d",
+      "url": "https://www.youtube.com/@nihrfarfalla019/about",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves youtube stable ID UC0uCH-bvebuZ7QeacMlMqsg for https://www.youtube.com/channel/UC0uCH-bvebuZ7QeacMlMqsg; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_2126ebc8c3272d656639",
+      "url": "https://www.youtube.com/@NoBoRuCh/about",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves youtube stable ID UCnbzFCOWYTBTIe9a3aUlKkg for https://www.youtube.com/channel/UCnbzFCOWYTBTIe9a3aUlKkg; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_2e8ee34e357f2b5047ac",
+      "url": "https://www.youtube.com/@RyuugaThecrane/about",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves youtube stable ID UCGzgTzdaT1_RJM2rZm4O-dg for https://www.youtube.com/channel/UCGzgTzdaT1_RJM2rZm4O-dg; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_be7b79f983fa559e2c74",
+      "url": "https://www.youtube.com/@SimonVonCrucisburg/about",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves youtube stable ID UCfS5hs5aCCN3rijKpXjuddg for https://www.youtube.com/channel/UCfS5hs5aCCN3rijKpXjuddg; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_376aa7ddb5e09e440af4",
+      "url": "https://www.youtube.com/@Zabrina-VtuberTH/about",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public platform observation resolves youtube stable ID UCJ_UF-kgawF3QedMVkllT4g for https://www.youtube.com/channel/UCJ_UF-kgawF3QedMVkllT4g; this proves account identity only, not persona ownership."
+    },
+    {
+      "id": "ev_2bcf7bf11a3d898b5ff3",
+      "url": "https://www.tiktok.com/embed/@lilin_lilin0_0?lang=en&embedFrom=webapp_preview",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "First-party TikTok identifies Liyin (4AM); public posts explicitly label the creator VTuberTH/VTuberThai, supporting virtual presentation and Thai relation."
+    },
+    {
+      "id": "ev_28b664973c7417965fea",
+      "url": "https://www.tiktok.com/embed/@lilin_lilin0_0?lang=en&embedFrom=webapp_preview",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "First-party TikTok profile and posts identify this account as Liyin/4AM and VTuberTH."
+    },
+    {
+      "id": "ev_6b764ad15e37a74b39bd",
+      "url": "https://www.tiktok.com/embed/@zabrina_vtuber?lang=en&embedFrom=webapp_preview",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "First-party TikTok self-description identifies Zabrina as an independent virtual creator in Thai; YouTube About independently names Zabrina and links her X account."
+    },
+    {
+      "id": "ev_613d9561440864bd94d4",
+      "url": "https://www.youtube.com/@Zabrina-VtuberTH/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written YouTube About identifies the Zabrina channel and its public persona."
+    },
+    {
+      "id": "ev_23cf79f8bfb2944a8ff0",
+      "url": "https://www.youtube.com/@Zabrina-VtuberTH/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written YouTube About directly links https://x.com/ZabrinaVTuberTH."
+    },
+    {
+      "id": "ev_f5a202f671daa14b88cc",
+      "url": "https://www.tiktok.com/embed/@zabrina_vtuber?lang=en&embedFrom=webapp_preview",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "First-party TikTok profile self-identifies Zabrina as a virtual creator."
+    },
+    {
+      "id": "ev_a55004c029cf3b7b720f",
+      "url": "https://www.tiktok.com/embed/@jorogumov?lang=en&embedFrom=webapp_preview",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "First-party TikTok identifies Gumo/Ti19t, links the Joro Gumo lit.link hub, and public posts explicitly identify the persona as VTuber/VtuberThai."
+    },
+    {
+      "id": "ev_2815e62eeb211a1164d5",
+      "url": "https://www.tiktok.com/embed/@jorogumov?lang=en&embedFrom=webapp_preview",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "First-party TikTok identifies the Gumo/Ti19t account and links the official hub."
+    },
+    {
+      "id": "ev_dc6dca0d7bfd615ecf40",
+      "url": "https://www.tiktok.com/embed/@jorogumov?lang=en&embedFrom=webapp_preview",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "First-party TikTok bio directly links https://lit.link/jorogumoV."
+    },
+    {
+      "id": "ev_34a2333a877684522f44",
+      "url": "https://lit.link/en/jorogumoV",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Official Joro Gumo lit.link hub directly links the youtube account https://www.youtube.com/@Jorogumov."
+    },
+    {
+      "id": "ev_0695a37957f464a555c5",
+      "url": "https://lit.link/en/jorogumoV",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Official Joro Gumo lit.link hub directly links the instagram account https://www.instagram.com/jorogumo_v."
+    },
+    {
+      "id": "ev_58c5f2f776b25c327003",
+      "url": "https://www.youtube.com/@EmilTheSpaceSheep/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written YouTube profile identifies Emil/Ti19t with Thai virtual-character lore and directly links the X account EmilVtuberth, supporting Thai virtual persona review."
+    },
+    {
+      "id": "ev_8493f03da369a5f3ca1d",
+      "url": "https://www.youtube.com/@EmilTheSpaceSheep/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written YouTube profile identifies Emil Ch.【Ti19t】 as the persona channel."
+    },
+    {
+      "id": "ev_34938620c9b4b4ae0a7f",
+      "url": "https://www.youtube.com/@EmilTheSpaceSheep/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written YouTube About directly links https://x.com/EmilVtuberth."
+    },
+    {
+      "id": "ev_297bdf1197137ca26506",
+      "url": "https://www.youtube.com/@HakkaV/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written YouTube About explicitly states Hakka is a “Virtual YouTuber TH” from Ti19t and therefore directly supports virtual presentation and Thai relation."
+    },
+    {
+      "id": "ev_084c2b37952a80839cd2",
+      "url": "https://www.youtube.com/@HakkaV/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written Hakka YouTube About explicitly identifies the Virtual YouTuber TH channel."
+    },
+    {
+      "id": "ev_965c47af760faade361c",
+      "url": "https://www.youtube.com/@HakkaV/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written YouTube About directly links https://x.com/HakkaCHV."
+    },
+    {
+      "id": "ev_156429804efcb1d42b9d",
+      "url": "https://www.tiktok.com/embed/@hakkati19t?lang=en&embedFrom=webapp_preview",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public TikTok observation resolves web user ID 7489426869817852936 for https://www.tiktok.com/@hakkati19t; ownership is established separately by https://www.youtube.com/@HakkaV/about."
+    },
+    {
+      "id": "ev_5d66cb1ca93c26b65cb7",
+      "url": "https://www.youtube.com/@HakkaV/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written YouTube About directly links https://www.tiktok.com/@hakkati19t."
+    },
+    {
+      "id": "ev_e204e879aa3423eeff3a",
+      "url": "https://www.youtube.com/@kyoyavtuber/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written YouTube About identifies KYOYA KIERAN in Thai and directly links the creator X handle KyoyaVtuberTH; the creator Linktree backlinks to the same YouTube account."
+    },
+    {
+      "id": "ev_4af61c2f108a78a41090",
+      "url": "https://www.youtube.com/@kyoyavtuber/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written YouTube About identifies the KYOYA KIERAN creator channel."
+    },
+    {
+      "id": "ev_be00e16ea9a86e8b7875",
+      "url": "https://www.youtube.com/@kyoyavtuber/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written YouTube About directly links the KyoyaVtuberTH X account."
+    },
+    {
+      "id": "ev_065ba88189f0b6a4da93",
+      "url": "https://linktr.ee/kyoyakeiran",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Creator Linktree directly links back to the verified Kyoya YouTube channel."
+    },
+    {
+      "id": "ev_0b0f399d48d9fc657af1",
+      "url": "https://www.tiktok.com/embed/@kyoya.kieran?lang=en&embedFrom=webapp_preview",
+      "kind": "platform_observation",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Public TikTok observation resolves web user ID 7523171268817060870 for https://www.tiktok.com/@kyoya.kieran; ownership is established separately by https://linktr.ee/kyoyakeiran."
+    },
+    {
+      "id": "ev_542ae0c55e3abac76c23",
+      "url": "https://linktr.ee/kyoyakeiran",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Creator Linktree directly links https://www.tiktok.com/@kyoya.kieran."
+    },
+    {
+      "id": "ev_5a667568a79b894a9c61",
+      "url": "https://www.youtube.com/@nihrfarfalla019/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written YouTube About says “I’m Nihr. I’m a VTuber” and includes Thai text, directly supporting the public virtual persona and Thai-language relation."
+    },
+    {
+      "id": "ev_e6c637c7101388424ae2",
+      "url": "https://www.youtube.com/@nihrfarfalla019/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written YouTube profile explicitly self-identifies as Nihr and a VTuber."
+    },
+    {
+      "id": "ev_bebec4bc73cc0a7d1fa2",
+      "url": "https://www.youtube.com/@CynthiaFvPProject/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written YouTube About identifies Cynthia of FvP Project, contains Thai self-description, explicitly labels the role Vtuber, and links the CynthiaFvP X account."
+    },
+    {
+      "id": "ev_c00291cd0b09c61239aa",
+      "url": "https://www.youtube.com/@CynthiaFvPProject/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written YouTube profile explicitly identifies Cynthia/FvP and the VTuber persona."
+    },
+    {
+      "id": "ev_f17766f0f821084a6087",
+      "url": "https://www.youtube.com/@CynthiaFvPProject/about",
+      "kind": "official_profile",
+      "observed_at": "2026-09-16T15:38:46.627996+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Owner-written YouTube About directly links https://x.com/CynthiaFvP."
+    }
+  ],
+  "personas": [
+    {
+      "id": "persona_6f5c7afe6e9085c3b05f",
+      "name": "Liyin",
+      "format": "unknown",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "verified",
+      "evidence_id": "ev_2bcf7bf11a3d898b5ff3",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "persona_ea6554693f3ab11ded5e",
+      "name": "Zabrina",
+      "format": "unknown",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "thai_language",
+      "review_status": "verified",
+      "evidence_id": "ev_6b764ad15e37a74b39bd",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "persona_4b950bae9521bdada92b",
+      "name": "Joro Gumo",
+      "format": "unknown",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "verified",
+      "evidence_id": "ev_a55004c029cf3b7b720f",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "persona_3707f0e93bfbba799463",
+      "name": "EMIL",
+      "format": "unknown",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "verified",
+      "evidence_id": "ev_58c5f2f776b25c327003",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "persona_0d59ce62c1b5c1174a3c",
+      "name": "Hakka",
+      "format": "unknown",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "verified",
+      "evidence_id": "ev_297bdf1197137ca26506",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "persona_0e69af0d96020bfa1c3b",
+      "name": "Kyoya Keiran",
+      "format": "unknown",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "thai_language",
+      "review_status": "verified",
+      "evidence_id": "ev_e204e879aa3423eeff3a",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "persona_75770df8891acb3b0504",
+      "name": "Nihr Farfalla",
+      "format": "unknown",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "verified",
+      "evidence_id": "ev_5a667568a79b894a9c61",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "persona_66672eed824eb1a63e9c",
+      "name": "Cynthia",
+      "format": "unknown",
+      "roles": "[\"streamer\"]",
+      "thai_relation": "multiple",
+      "review_status": "verified",
+      "evidence_id": "ev_bebec4bc73cc0a7d1fa2",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    }
+  ],
+  "accounts": [
+    {
+      "id": "acct_3aa092306dff579d5a06",
+      "platform": "tiktok",
+      "platform_id": "7338010446932804615",
+      "id_namespace": "web_user_id",
+      "handle": "jorogumov",
+      "name": "Gumo【Ti19t】",
+      "url": "https://www.tiktok.com/@jorogumov",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_b1416bc5ed9a5e6f7518"
+    },
+    {
+      "id": "acct_ea7389bcf2f1c4879ed6",
+      "platform": "tiktok",
+      "platform_id": "7396664385580237825",
+      "id_namespace": "web_user_id",
+      "handle": "lilin_lilin0_0",
+      "name": "ลี่อิน Lìyīn (丽音)〖4AM〗",
+      "url": "https://www.tiktok.com/@lilin_lilin0_0",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_a3d38fbcf16c3c4aa521"
+    },
+    {
+      "id": "acct_a89b92450a97e79d7744",
+      "platform": "tiktok",
+      "platform_id": "7325718263119627265",
+      "id_namespace": "web_user_id",
+      "handle": "rainbows_fukio42",
+      "name": "Fukio",
+      "url": "https://www.tiktok.com/@rainbows_fukio42",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_cdb32fd759e54f9d05dd"
+    },
+    {
+      "id": "acct_3f4562c127071f6458a8",
+      "platform": "tiktok",
+      "platform_id": "7184468420006691845",
+      "id_namespace": "web_user_id",
+      "handle": "urstryker",
+      "name": "uSTRYKER_Vtuber",
+      "url": "https://www.tiktok.com/@urstryker",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_b6bf6e516e687bee0770"
+    },
+    {
+      "id": "acct_a6fea8c6aea3a6ec3a71",
+      "platform": "tiktok",
+      "platform_id": "7518712241110991888",
+      "id_namespace": "web_user_id",
+      "handle": "zabrina_vtuber",
+      "name": "Zabrina",
+      "url": "https://www.tiktok.com/@zabrina_vtuber",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_95464dbb6d81897f6ca2"
+    },
+    {
+      "id": "acct_773f90c3c5da8eab9bfa",
+      "platform": "youtube",
+      "platform_id": "UC2r8lotcMM1AF1BIJs9kMHA",
+      "id_namespace": "channel_id",
+      "handle": "CynthiaFvPProject",
+      "name": "Cynthia | FvP Project",
+      "url": "https://www.youtube.com/channel/UC2r8lotcMM1AF1BIJs9kMHA",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_949d124b2f092788b895"
+    },
+    {
+      "id": "acct_50875b0fdc90fa437c54",
+      "platform": "youtube",
+      "platform_id": "UCSgcToKU-n_0b_v7FLltJuQ",
+      "id_namespace": "channel_id",
+      "handle": "EmilTheSpaceSheep",
+      "name": "Emil Ch.【Ti19t】",
+      "url": "https://www.youtube.com/channel/UCSgcToKU-n_0b_v7FLltJuQ",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_e24ea78cd7d4c22aacdc"
+    },
+    {
+      "id": "acct_28dd3b47849f83871dd7",
+      "platform": "youtube",
+      "platform_id": "UCJGy7NCvnc-xcVPwdDzuxvQ",
+      "id_namespace": "channel_id",
+      "handle": "Fukio_VT",
+      "name": "Fukio_VT",
+      "url": "https://www.youtube.com/channel/UCJGy7NCvnc-xcVPwdDzuxvQ",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_fca4e45e04beaa0133e5"
+    },
+    {
+      "id": "acct_cfa8638020a41d97f22a",
+      "platform": "youtube",
+      "platform_id": "UC9UHurp_G26BzYGxLvUzZTA",
+      "id_namespace": "channel_id",
+      "handle": "HakkaV",
+      "name": "Hakka Ch.【Ti19t】",
+      "url": "https://www.youtube.com/channel/UC9UHurp_G26BzYGxLvUzZTA",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_7b7704e51c08ec6aacba"
+    },
+    {
+      "id": "acct_4019e6e53b82731b61bb",
+      "platform": "youtube",
+      "platform_id": "UCn7L1iwOGczRAc3DHgrRelQ",
+      "id_namespace": "channel_id",
+      "handle": "Jorogumov",
+      "name": "JoroGumo【Ti19t】",
+      "url": "https://www.youtube.com/channel/UCn7L1iwOGczRAc3DHgrRelQ",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_cac605c64f90d5ef7664"
+    },
+    {
+      "id": "acct_c175adb8831c115bfd9b",
+      "platform": "youtube",
+      "platform_id": "UCd6bx1YwqNRzfaMoMB5nOHg",
+      "id_namespace": "channel_id",
+      "handle": "kyoyavtuber",
+      "name": "KYOYA KIERAN【SKR】",
+      "url": "https://www.youtube.com/channel/UCd6bx1YwqNRzfaMoMB5nOHg",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_18b94ff101ae6f6d5376"
+    },
+    {
+      "id": "acct_3416808c53fcb3fed7a3",
+      "platform": "youtube",
+      "platform_id": "UCwHZUHipePFREEvP-5xT3MA",
+      "id_namespace": "channel_id",
+      "handle": "LenezmeeDollynx_AS",
+      "name": "【graduated】Lenezmee Dollynx Ch. / AStars Amakara",
+      "url": "https://www.youtube.com/channel/UCwHZUHipePFREEvP-5xT3MA",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_1916d9735a18f9c101a2"
+    },
+    {
+      "id": "acct_887feb20ad2555350b6c",
+      "platform": "youtube",
+      "platform_id": "UCB_l7aUEixTDZ0uItf4A2bw",
+      "id_namespace": "channel_id",
+      "handle": "mitpesisth",
+      "name": "Mit Pesisth",
+      "url": "https://www.youtube.com/channel/UCB_l7aUEixTDZ0uItf4A2bw",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_beeae21f1b1a02f98b4b"
+    },
+    {
+      "id": "acct_c60efde4448ed975a9f4",
+      "platform": "youtube",
+      "platform_id": "UC0uCH-bvebuZ7QeacMlMqsg",
+      "id_namespace": "channel_id",
+      "handle": "nihrfarfalla019",
+      "name": "Nihr Farfalla",
+      "url": "https://www.youtube.com/channel/UC0uCH-bvebuZ7QeacMlMqsg",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_77a11db5fb634b9fd84d"
+    },
+    {
+      "id": "acct_1c9ea1f212118f108ea5",
+      "platform": "youtube",
+      "platform_id": "UCnbzFCOWYTBTIe9a3aUlKkg",
+      "id_namespace": "channel_id",
+      "handle": "NoBoRuCh",
+      "name": "NoBoRu Ch.",
+      "url": "https://www.youtube.com/channel/UCnbzFCOWYTBTIe9a3aUlKkg",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_2126ebc8c3272d656639"
+    },
+    {
+      "id": "acct_8e57ceeed4e764b7b55c",
+      "platform": "youtube",
+      "platform_id": "UCGzgTzdaT1_RJM2rZm4O-dg",
+      "id_namespace": "channel_id",
+      "handle": "RyuugaThecrane",
+      "name": "Ryuuga The crane",
+      "url": "https://www.youtube.com/channel/UCGzgTzdaT1_RJM2rZm4O-dg",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_2e8ee34e357f2b5047ac"
+    },
+    {
+      "id": "acct_fc7861e8445db9bd0295",
+      "platform": "youtube",
+      "platform_id": "UCfS5hs5aCCN3rijKpXjuddg",
+      "id_namespace": "channel_id",
+      "handle": "SimonVonCrucisburg",
+      "name": "Simon von Crucisburg",
+      "url": "https://www.youtube.com/channel/UCfS5hs5aCCN3rijKpXjuddg",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_be7b79f983fa559e2c74"
+    },
+    {
+      "id": "acct_35f5fd8b204e6c68f2cf",
+      "platform": "youtube",
+      "platform_id": "UCJ_UF-kgawF3QedMVkllT4g",
+      "id_namespace": "channel_id",
+      "handle": "Zabrina-VtuberTH",
+      "name": "Zabrina-VtuberTH",
+      "url": "https://www.youtube.com/channel/UCJ_UF-kgawF3QedMVkllT4g",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_376aa7ddb5e09e440af4"
+    },
+    {
+      "id": "acct_7841924476d59a4499b4",
+      "platform": "tiktok",
+      "platform_id": "7489426869817852936",
+      "id_namespace": "web_user_id",
+      "handle": "hakkati19t",
+      "name": "hakkachv",
+      "url": "https://www.tiktok.com/@hakkati19t",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_156429804efcb1d42b9d"
+    },
+    {
+      "id": "acct_b5bbc47d9cea4d41353a",
+      "platform": "tiktok",
+      "platform_id": "7523171268817060870",
+      "id_namespace": "web_user_id",
+      "handle": "kyoya.kieran",
+      "name": "KYOYA KIERAN",
+      "url": "https://www.tiktok.com/@kyoya.kieran",
+      "first_discovered_at": "2026-09-16T15:38:46.627996+00:00",
+      "evidence_id": "ev_0b0f399d48d9fc657af1"
+    }
+  ],
+  "account_links": [
+    {
+      "id": "link_b8e21b99ce136e8f1f65",
+      "account_id": "acct_ea7389bcf2f1c4879ed6",
+      "persona_id": "persona_6f5c7afe6e9085c3b05f",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_28b664973c7417965fea",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_eb4a5cfb663654e51304",
+      "account_id": "acct_35f5fd8b204e6c68f2cf",
+      "persona_id": "persona_ea6554693f3ab11ded5e",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_613d9561440864bd94d4",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_f5b6c80db594d9af4667",
+      "account_id": "acct_11d37ac3cc4af3e7130a",
+      "persona_id": "persona_ea6554693f3ab11ded5e",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_23cf79f8bfb2944a8ff0",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_e86bfdfc2bf770f73fc1",
+      "account_id": "acct_a6fea8c6aea3a6ec3a71",
+      "persona_id": "persona_ea6554693f3ab11ded5e",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_f5a202f671daa14b88cc",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_3044432e865c7eea34cd",
+      "account_id": "acct_3aa092306dff579d5a06",
+      "persona_id": "persona_4b950bae9521bdada92b",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_2815e62eeb211a1164d5",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_7edda7953b43768399a7",
+      "account_id": "acct_281173caa6714011bf33",
+      "persona_id": "persona_4b950bae9521bdada92b",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_dc6dca0d7bfd615ecf40",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_740bf6c9090a8670d3bc",
+      "account_id": "acct_4019e6e53b82731b61bb",
+      "persona_id": "persona_4b950bae9521bdada92b",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_34a2333a877684522f44",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_c9125671b7569c6b718a",
+      "account_id": "acct_b098e95f193cda0d227a",
+      "persona_id": "persona_4b950bae9521bdada92b",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_0695a37957f464a555c5",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_fe618b26b0b7f6a9127b",
+      "account_id": "acct_50875b0fdc90fa437c54",
+      "persona_id": "persona_3707f0e93bfbba799463",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_8493f03da369a5f3ca1d",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_5a35a7777bc1b223ef06",
+      "account_id": "acct_29d00e552219dcd8d3f5",
+      "persona_id": "persona_3707f0e93bfbba799463",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_34938620c9b4b4ae0a7f",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_00d367cd8ac2c6cc28b0",
+      "account_id": "acct_cfa8638020a41d97f22a",
+      "persona_id": "persona_0d59ce62c1b5c1174a3c",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_084c2b37952a80839cd2",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_694754c48d74364bc36c",
+      "account_id": "acct_e23587ee21cc268da055",
+      "persona_id": "persona_0d59ce62c1b5c1174a3c",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_965c47af760faade361c",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_dba5c9ded3619e4552fa",
+      "account_id": "acct_7841924476d59a4499b4",
+      "persona_id": "persona_0d59ce62c1b5c1174a3c",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_5d66cb1ca93c26b65cb7",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_fdf5aec8cef2fb23bd1c",
+      "account_id": "acct_c175adb8831c115bfd9b",
+      "persona_id": "persona_0e69af0d96020bfa1c3b",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_4af61c2f108a78a41090",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_ab46b92970fbab3935d2",
+      "account_id": "acct_00dab9b538b304b1134a",
+      "persona_id": "persona_0e69af0d96020bfa1c3b",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_be00e16ea9a86e8b7875",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_f693bd2a04a9f45badf8",
+      "account_id": "acct_df2bd179895547df23d0",
+      "persona_id": "persona_0e69af0d96020bfa1c3b",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_065ba88189f0b6a4da93",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_317eb970bfa7af7f0ecc",
+      "account_id": "acct_b5bbc47d9cea4d41353a",
+      "persona_id": "persona_0e69af0d96020bfa1c3b",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_542ae0c55e3abac76c23",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_d27a6d263223b01466c0",
+      "account_id": "acct_c60efde4448ed975a9f4",
+      "persona_id": "persona_75770df8891acb3b0504",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_e6c637c7101388424ae2",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_35e4476f09bc37455abf",
+      "account_id": "acct_773f90c3c5da8eab9bfa",
+      "persona_id": "persona_66672eed824eb1a63e9c",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_c00291cd0b09c61239aa",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "link_9c3762920384eb28a724",
+      "account_id": "acct_d6de3f920310c3018634",
+      "persona_id": "persona_66672eed824eb1a63e9c",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_f17766f0f821084a6087",
+      "review_status": "verified",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "candidate_ee2b24c593d106da972a",
+      "platform": "tiktok",
+      "platform_id": "7338010446932804615",
+      "id_namespace": "web_user_id",
+      "name": "Joro Gumo",
+      "url": "https://www.tiktok.com/@jorogumov",
+      "review_status": "verified",
+      "account_id": "acct_3aa092306dff579d5a06",
+      "evidence_id": "ev_b1416bc5ed9a5e6f7518",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_5b4bf1bef0fdf2c5252b",
+      "platform": "tiktok",
+      "platform_id": "7396664385580237825",
+      "id_namespace": "web_user_id",
+      "name": "Liyin",
+      "url": "https://www.tiktok.com/@lilin_lilin0_0",
+      "review_status": "verified",
+      "account_id": "acct_ea7389bcf2f1c4879ed6",
+      "evidence_id": "ev_a3d38fbcf16c3c4aa521",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_d342f78aba23594e96ef",
+      "platform": "tiktok",
+      "platform_id": "7325718263119627265",
+      "id_namespace": "web_user_id",
+      "name": "Rainbows Fukio",
+      "url": "https://www.tiktok.com/@rainbows_fukio42",
+      "review_status": "verified",
+      "account_id": "acct_a89b92450a97e79d7744",
+      "evidence_id": "ev_cdb32fd759e54f9d05dd",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_27907feb50f553b4e115",
+      "platform": "tiktok",
+      "platform_id": "7184468420006691845",
+      "id_namespace": "web_user_id",
+      "name": "Logan U Stryker",
+      "url": "https://www.tiktok.com/@urstryker",
+      "review_status": "verified",
+      "account_id": "acct_3f4562c127071f6458a8",
+      "evidence_id": "ev_b6bf6e516e687bee0770",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_9cf6cfd6d10e0c449c97",
+      "platform": "tiktok",
+      "platform_id": "7518712241110991888",
+      "id_namespace": "web_user_id",
+      "name": "Zabrina",
+      "url": "https://www.tiktok.com/@zabrina_vtuber",
+      "review_status": "verified",
+      "account_id": "acct_a6fea8c6aea3a6ec3a71",
+      "evidence_id": "ev_95464dbb6d81897f6ca2",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_a5ad0d4188c370c55782",
+      "platform": "youtube",
+      "platform_id": "UC2r8lotcMM1AF1BIJs9kMHA",
+      "id_namespace": "channel_id",
+      "name": "Cynthia",
+      "url": "https://www.youtube.com/@CynthiaFvPProject",
+      "review_status": "verified",
+      "account_id": "acct_773f90c3c5da8eab9bfa",
+      "evidence_id": "ev_949d124b2f092788b895",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_19e7a4523e6a45985fd7",
+      "platform": "youtube",
+      "platform_id": "UCSgcToKU-n_0b_v7FLltJuQ",
+      "id_namespace": "channel_id",
+      "name": "EMIL",
+      "url": "https://www.youtube.com/@EmilTheSpaceSheep",
+      "review_status": "verified",
+      "account_id": "acct_50875b0fdc90fa437c54",
+      "evidence_id": "ev_e24ea78cd7d4c22aacdc",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_6db79167b05740052bc6",
+      "platform": "youtube",
+      "platform_id": "UCJGy7NCvnc-xcVPwdDzuxvQ",
+      "id_namespace": "channel_id",
+      "name": "Rainbows Fukio",
+      "url": "https://www.youtube.com/@Fukio_VT",
+      "review_status": "verified",
+      "account_id": "acct_28dd3b47849f83871dd7",
+      "evidence_id": "ev_fca4e45e04beaa0133e5",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_029df66e7f880e47c611",
+      "platform": "youtube",
+      "platform_id": "UC9UHurp_G26BzYGxLvUzZTA",
+      "id_namespace": "channel_id",
+      "name": "Hakka",
+      "url": "https://www.youtube.com/@HakkaV",
+      "review_status": "verified",
+      "account_id": "acct_cfa8638020a41d97f22a",
+      "evidence_id": "ev_7b7704e51c08ec6aacba",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_19c6a9933250c7873db4",
+      "platform": "youtube",
+      "platform_id": "UCn7L1iwOGczRAc3DHgrRelQ",
+      "id_namespace": "channel_id",
+      "name": "Joro Gumo",
+      "url": "https://www.youtube.com/@Jorogumov",
+      "review_status": "verified",
+      "account_id": "acct_4019e6e53b82731b61bb",
+      "evidence_id": "ev_cac605c64f90d5ef7664",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_e8fd7e7b9f5420b27e49",
+      "platform": "youtube",
+      "platform_id": "UCd6bx1YwqNRzfaMoMB5nOHg",
+      "id_namespace": "channel_id",
+      "name": "Kyoya Keiran",
+      "url": "https://www.youtube.com/@kyoyavtuber",
+      "review_status": "verified",
+      "account_id": "acct_c175adb8831c115bfd9b",
+      "evidence_id": "ev_18b94ff101ae6f6d5376",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_d97ae623ab8e77935155",
+      "platform": "youtube",
+      "platform_id": "UCwHZUHipePFREEvP-5xT3MA",
+      "id_namespace": "channel_id",
+      "name": "Lenezmee Dollynx",
+      "url": "https://www.youtube.com/@LenezmeeDollynx_AS",
+      "review_status": "verified",
+      "account_id": "acct_3416808c53fcb3fed7a3",
+      "evidence_id": "ev_1916d9735a18f9c101a2",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_3957467fc59b18cd9616",
+      "platform": "youtube",
+      "platform_id": "UCB_l7aUEixTDZ0uItf4A2bw",
+      "id_namespace": "channel_id",
+      "name": "Mit PESISTH",
+      "url": "https://www.youtube.com/@mitpesisth",
+      "review_status": "verified",
+      "account_id": "acct_887feb20ad2555350b6c",
+      "evidence_id": "ev_beeae21f1b1a02f98b4b",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_86a801fc9b0a6fe048a2",
+      "platform": "youtube",
+      "platform_id": "UC0uCH-bvebuZ7QeacMlMqsg",
+      "id_namespace": "channel_id",
+      "name": "Nihr Farfalla",
+      "url": "https://www.youtube.com/@nihrfarfalla019",
+      "review_status": "verified",
+      "account_id": "acct_c60efde4448ed975a9f4",
+      "evidence_id": "ev_77a11db5fb634b9fd84d",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_9b3e3969eedb4fb84e81",
+      "platform": "youtube",
+      "platform_id": "UCnbzFCOWYTBTIe9a3aUlKkg",
+      "id_namespace": "channel_id",
+      "name": "NoBoRu",
+      "url": "https://www.youtube.com/@NoBoRuCh",
+      "review_status": "verified",
+      "account_id": "acct_1c9ea1f212118f108ea5",
+      "evidence_id": "ev_2126ebc8c3272d656639",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_0bd325052f265161a04d",
+      "platform": "youtube",
+      "platform_id": "UCGzgTzdaT1_RJM2rZm4O-dg",
+      "id_namespace": "channel_id",
+      "name": "Ryuuga The Crane",
+      "url": "https://www.youtube.com/@RyuugaThecrane",
+      "review_status": "verified",
+      "account_id": "acct_8e57ceeed4e764b7b55c",
+      "evidence_id": "ev_2e8ee34e357f2b5047ac",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_2ee7673fa6301b276679",
+      "platform": "youtube",
+      "platform_id": "UCfS5hs5aCCN3rijKpXjuddg",
+      "id_namespace": "channel_id",
+      "name": "Simon von Crucisburg",
+      "url": "https://www.youtube.com/@SimonVonCrucisburg",
+      "review_status": "verified",
+      "account_id": "acct_fc7861e8445db9bd0295",
+      "evidence_id": "ev_be7b79f983fa559e2c74",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    },
+    {
+      "id": "candidate_568c197127cfcb376461",
+      "platform": "youtube",
+      "platform_id": "UCJ_UF-kgawF3QedMVkllT4g",
+      "id_namespace": "channel_id",
+      "name": "Zabrina",
+      "url": "https://www.youtube.com/@Zabrina-VtuberTH",
+      "review_status": "verified",
+      "account_id": "acct_35f5fd8b204e6c68f2cf",
+      "evidence_id": "ev_376aa7ddb5e09e440af4",
+      "reviewer": "ChatGPT",
+      "reviewed_at": "2026-09-16T15:38:46.627996+00:00"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "evidence": [
+    {
+      "id": "ev_b04_seikou",
+      "url": "https://x.com/Seikou_MinatoVT",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T10:20:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review by project owner on 2026-09-17 confirmed Seikou iMinato as a Thai virtual creator and confirmed this public X profile (@Seikou_MinatoVT) as an owned account. Owner-supplied evidence_url in review file. Note: a separate X handle (@IMin4to) was previously collected from HoloList; that handle is not verified here."
+    },
+    {
+      "id": "ev_b04_simon",
+      "url": "https://bsky.app/profile/simondietrichrex.bsky.social",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T10:20:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review by project owner on 2026-09-17 confirmed Simon von Crucisburg as a Thai virtual creator. Bluesky profile cited as evidence_url. Owner confirmed YouTube presence but YouTube channel_id is not available so no YouTube account record is created. X account @SimonCrucisburg was not confirmed by owner in this review; X link remains needs_evidence."
+    },
+    {
+      "id": "ev_b04_ryuuga",
+      "url": "https://x.com/Ryuuga_crane",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T10:20:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review by project owner on 2026-09-17 confirmed Ryuuga The Crane as a Thai virtual creator and confirmed this public X profile as an owned account. Owner-supplied evidence_url in review file."
+    }
+  ],
+  "accounts": [
+    {
+      "id": "acct_b04_seikou_x",
+      "platform": "x",
+      "platform_id": "Seikou_MinatoVT",
+      "id_namespace": "handle",
+      "handle": "Seikou_MinatoVT",
+      "name": "Seikou iMinato",
+      "url": "https://x.com/Seikou_MinatoVT",
+      "first_discovered_at": "2026-09-17T10:20:00+00:00",
+      "evidence_id": "ev_b04_seikou"
+    }
+  ],
+  "account_links": [
+    {
+      "id": "link_b04_seikou_x",
+      "account_id": "acct_b04_seikou_x",
+      "persona_id": "persona_dcbfc242c4c1198a1dbd",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_b04_seikou",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    },
+    {
+      "id": "link_96bab38a192765b49b60",
+      "evidence_id": "ev_b04_ryuuga",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    }
+  ],
+  "personas": [
+    {
+      "id": "persona_dcbfc242c4c1198a1dbd",
+      "evidence_id": "ev_b04_seikou",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    },
+    {
+      "id": "persona_dd7c3e8c837cc0957f3d",
+      "evidence_id": "ev_b04_simon",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    },
+    {
+      "id": "persona_e58298576a7526ad26bc",
+      "evidence_id": "ev_b04_ryuuga",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    }
+  ]
+}

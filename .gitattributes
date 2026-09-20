@@ -4,6 +4,7 @@ data/temporal/research_integrity/t11_t19_final_integrity_report.md -text
 data/temporal/research_integrity/t11_t20_ecosystem_observatory_integrity_report.md -text
 data/registry/creators.json text eol=lf
 data/registry/identity_resolutions.json text eol=lf
+data/registry.json text eol=lf
 
 # These release artifacts were byte-sealed with CRLF in dataset_manifest.json.
 # Enforce CRLF on checkout across all platforms so their manifest checksums remain consistent.

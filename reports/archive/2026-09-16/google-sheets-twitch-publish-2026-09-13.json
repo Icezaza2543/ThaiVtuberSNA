@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "published_at_utc": "2026-09-13 09:09:07 UTC",
+  "spreadsheet_id": "1H876HyqxkOEYJGczctP5G-ZNAZv22jzViw787h441fE",
+  "source_as_of": "2026-09-13",
+  "source_of_truth": "data/registry.json",
+  "publication_mode": "snapshot",
+  "automatic_sync_configured": false,
+  "tabs": [
+    {
+      "sheet_id": 26091303,
+      "title": "TWITCH_ACCOUNTS",
+      "source": "reports/twitch_accounts.csv",
+      "data_rows": 646,
+      "columns": 11,
+      "url": "https://docs.google.com/spreadsheets/d/1H876HyqxkOEYJGczctP5G-ZNAZv22jzViw787h441fE/edit#gid=26091303"
+    },
+    {
+      "sheet_id": 26091304,
+      "title": "TWITCH_VERIFIED",
+      "source": "reports/verified_twitch.csv",
+      "data_rows": 217,
+      "columns": 16,
+      "url": "https://docs.google.com/spreadsheets/d/1H876HyqxkOEYJGczctP5G-ZNAZv22jzViw787h441fE/edit#gid=26091304"
+    }
+  ],
+  "verification": {
+    "all_exported_cells_match": true,
+    "user_ids_preserved_as_text": true,
+    "existing_tabs_targeted": false,
+    "tests_passed": 44
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "evidence": [
+    {
+      "id": "ev_b02_rainbows_fukio",
+      "url": "https://x.com/fukio425641",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T10:20:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review by project owner on 2026-09-17 confirmed Rainbows Fukio as a Thai virtual creator and confirmed this public X profile as an owned account. Owner-supplied evidence_url in review file."
+    },
+    {
+      "id": "ev_b02_noboru",
+      "url": "https://www.twitch.tv/noboru_oz",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T10:20:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review by project owner on 2026-09-17 confirmed NoBoRu as a Thai virtual creator. Owner cited Twitch @noboru_oz as the primary platform. Graduation 2025-06-30 noted by owner but requires first-party self/agency statement to verify lifecycle event. No X ownership confirmed in this review; existing X link remains needs_evidence."
+    },
+    {
+      "id": "ev_b02_logan",
+      "url": "https://x.com/urStrykerVtuber",
+      "kind": "official_profile",
+      "observed_at": "2026-09-17T10:20:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review by project owner on 2026-09-17 confirmed Logan U Stryker as a Thai virtual creator and confirmed this public X profile as an owned account. Owner-supplied evidence_url in review file."
+    }
+  ],
+  "personas": [
+    {
+      "id": "persona_69145160a5bb56ba8265",
+      "evidence_id": "ev_b02_rainbows_fukio",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    },
+    {
+      "id": "persona_6939b57ea784abac9934",
+      "evidence_id": "ev_b02_noboru",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    },
+    {
+      "id": "persona_8261000752396c56dec6",
+      "evidence_id": "ev_b02_logan",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    }
+  ],
+  "account_links": [
+    {
+      "id": "link_9d49b0f7b0bd09f67363",
+      "evidence_id": "ev_b02_rainbows_fukio",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    },
+    {
+      "id": "link_befff51914df7878a6eb",
+      "evidence_id": "ev_b02_logan",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-17T10:20:00+00:00"
+    }
+  ]
+}
