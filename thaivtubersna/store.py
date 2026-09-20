@@ -365,14 +365,18 @@ def record_interaction(
         observed_at = utc_now()
     elif isinstance(observed_at, datetime):
         observed_at = observed_at.isoformat()
-    con.execute(
+    if source_type not in {"live_chat", "comment"}:
+        raise ValueError(f"Unsupported interaction source_type: {source_type!r}")
+    inserted = con.execute(
         """
-        INSERT OR IGNORE INTO interactions (creator_id, video_id, viewer_hash, source_type, observed_at)
+        INSERT INTO interactions (creator_id, video_id, viewer_hash, source_type, observed_at)
         VALUES (?, ?, ?, ?, ?)
+        ON CONFLICT (creator_id, video_id, viewer_hash, source_type) DO NOTHING
+        RETURNING 1
         """,
         [creator_id, video_id, viewer_hash, source_type, observed_at],
-    )
-    return True
+    ).fetchone()
+    return inserted is not None
 
 
 # ── Worker state ────────────────────────────────────────────────────────────
