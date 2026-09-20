@@ -68,3 +68,21 @@ python -m thaivtubersna export --output dist/export/
 3. `TIKTOK_VERIFIED.csv`: Verified TikTok creators.
 4. `TWITCH_VERIFIED.csv`: Verified Twitch creators.
 5. `ANALYTICS_METRICS.csv`: Creator-level analytics metrics.
+
+
+## Audience Interaction Contract
+- YouTube audience collection requires `YOUTUBE_API_KEY`.
+- The worker rotates through trusted YouTube channels and collects recent top-level comments plus active live-chat participants.
+- Raw viewer account IDs are never persisted. They are HMAC-SHA256 hashed with `VIEWER_HMAC_KEY` or a generated local `runtime/viewer_hmac.key`.
+- `interactions` is idempotent on `(creator_id, video_id, viewer_hash, source_type)`.
+- `strong_shared_any`: same viewer appears in at least 2 distinct videos for both creators.
+- `strong_shared_live_chat`: same viewer appears in live chat of at least 2 distinct videos for both creators.
+- `strong_shared_comments`: same viewer comments on at least 2 distinct videos for both creators.
+- Freshly recomputed edges use `calculation_source = live_interactions`; migrated 913 historical edges remain `legacy_seed` until superseded.
+
+Optional worker tuning:
+```text
+YOUTUBE_CHANNELS_PER_CYCLE=25
+YOUTUBE_RECENT_VIDEOS=5
+VIEWER_HMAC_KEY=<persistent secret; optional if local runtime key is acceptable>
+```
