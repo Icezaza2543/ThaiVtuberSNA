@@ -28,6 +28,7 @@ def test_pytest_failure_signature_detects_worsened_known_failure():
 
     nodeid = "tests/test_release.py::test_release_gate"
     assert baseline["failure_details"][nodeid]["exception_class"] == "AssertionError"
+    assert baseline["errors"] == 0
     assert (
         baseline["failure_details"][nodeid]["signature"]
         != current["failure_details"][nodeid]["signature"]
