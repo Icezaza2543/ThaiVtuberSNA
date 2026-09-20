@@ -73,6 +73,11 @@ def _normalize_failure_text(text: str) -> str:
         normalized,
     )
     normalized = normalized.replace("WindowsPath(", "Path(").replace("PosixPath(", "Path(")
+    normalized = re.sub(
+        r'\{\s*"status":\s*"PASS"[\s\S]*?"canary_passed":\s*true[\s\S]*?\}',
+        '{"status": "PASS"}',
+        normalized,
+    )
     return " ".join(normalized.split())
 
 
