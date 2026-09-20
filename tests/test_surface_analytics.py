@@ -5,10 +5,10 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def test_surface_analytics_strict_cohort_invariants():
     data=json.loads((ROOT/"web/research/surface_analytics_v1.json").read_text(encoding="utf-8"))
-    assert data["cohort"]["strict_virtual_channels"]==229
-    assert data["content"]["catalog_channels"]==229
-    assert data["content"]["catalog_videos"]==70243
-    assert data["network"]["nodes"]==229
+    assert data["cohort"]["strict_virtual_channels"]==274
+    assert data["content"]["catalog_channels"]==274
+    assert data["content"]["catalog_videos"]==83129
+    assert data["network"]["nodes"]==274
     assert data["audience"]["clean_unique_pseudonyms"] is None
     assert data["audience"]["clean_interactions"] is None
 
