@@ -120,8 +120,9 @@ class TestExportVtubers(unittest.TestCase):
         self.assertEqual(n, 2)
         rows = list(csv.DictReader((self.out_dir / "VTUBERS.csv").open(encoding="utf-8-sig")))
         self.assertEqual(len(rows), 2)
-        self.assertEqual(rows[0]["channel_id"], "UCaaaaaaaaaaaaaaaaaaaaaaaa")
-        self.assertEqual(rows[0]["name"], "TestVtuber")
+        by_id = {row["channel_id"]: row for row in rows}
+        self.assertEqual(by_id["UCaaaaaaaaaaaaaaaaaaaaaaaa"]["name"], "TestVtuber")
+        self.assertEqual(by_id["UCcccccccccccccccccccccccc"]["name"], "LegacyVtuber")
 
     def test_export_network_produces_correct_rows(self):
         from thaivtubersna.store import connect
