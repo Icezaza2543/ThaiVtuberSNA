@@ -81,3 +81,41 @@ Classifier proposals ทุกตัวมี `needs_human_review=true` แม�
 `build_apply` ค่าเริ่มต้นสร้าง link เป็น `needs_evidence`; การเตรียม verified rows
 ต้องส่ง reviewer และ reviewed_at ที่ระบุชัด แล้ว dry-run/ตรวจ diff ก่อน apply
 ไม่มีการสร้าง verified persona หรือ apply เข้าฐานข้อมูลอัตโนมัติจากขั้นตอนนี้
+
+---
+
+## สถาปัตยกรรมระดับภาพรวม (Master-Worker Architecture)
+
+ระบบประกอบด้วย 2 คลังโค้ดหลักที่ทำงานร่วมกัน:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                 ThaiVtuberSNA (Worker Repo)                 │
+│  - Automated / Manual Discovery (24/7 harvest, web crawl)    │
+│  - Evidence-backed Registry (First-party reviews)           │
+│  - SNA Analytics Engine (Overlap calculation, community)    │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+            ┌──────────────────┴──────────────────┐
+            ▼                                     ▼
+┌───────────────────────────────┐     ┌───────────────────────┐
+│   Google Sheets Data Bridge   │     │   Direct CSV Export   │
+│   Workbook: ThaiVtuber_SNA    │     │   - VTUBERS.csv       │
+│   ID: 1H876HyqxkOEYJG...      │     │   - NETWORK_RESULT.csv│
+│   Tabs: VTUBERS, NETWORK, etc.│     │   - TIKTOK/TWITCH.csv │
+└───────────────┬───────────────┘     └───────────┬───────────┘
+                │                                 │
+                └──────────────────┬──────────────┘
+                                   ▼
+┌─────────────────────────────────────────────────────────────┐
+│              ThaiVtuberMaster (Master UI Repo)              │
+│  - Read-only sheets / CSV adapter                           │
+│  - Static 5-view Web App (Home, Record, SNA, Data, Finance) │
+│  - Vercel / GitHub Pages deployment                         │
+└─────────────────────────────────────────────────────────────┘
+```
+
+1. **Worker (`ThaiVtuberSNA`)**: คลานเก็บข้อมูล, ตรวจสอบความถูกต้อง, ประมวลผลเครือข่ายความสัมพันธ์ และเตรียมชุดข้อมูล
+2. **Data Bridge**: อัปเดตข้อมูลผ่าน Google Sheets API (`scripts/maintenance/prepare_analytics_sheets.py`) หรือส่งออกไฟล์ CSV ด้วย `scripts/maintenance/export_to_master.py`
+3. **Master (`ThaiVtuberMaster`)**: นำเข้าข้อมูลด้วย `python scripts/manage.py sync` เพื่อเปิดให้บริการหน้าเว็บสาธารณะ
+

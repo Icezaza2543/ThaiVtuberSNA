@@ -1,7 +1,7 @@
 [project]
 name = "thai-virtual-creator-registry"
 version = "0.1.0"
-description = "Evidence-backed registry of Thai-linked virtual personas and platform accounts"
+description = "Data collection worker, SNA computation engine, and registry pipeline for ThaiVtuberMaster"
 requires-python = ">=3.11"
 dependencies = []
 

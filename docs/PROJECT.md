@@ -1,14 +1,17 @@
-# Thai VTuber Social Network Analysis & Virtual Creator Registry
+# Thai VTuber Data Worker & Pipeline Engine (ThaiVtuberSNA)
 
-โครงการวิจัยและสารบบข้อมูลผู้ผลิตคอนเทนต์เสมือนจริง (VTuber / Virtual Creator) ของประเทศไทย ประกอบด้วย 2 เสาหลักที่ทำงานร่วมกันอย่างสมบูรณ์:
+> **Project Role:** Backend Data Engine & Collection Worker สำหรับ **[ThaiVtuberMaster](https://github.com/Icezaza2543/ThaiVtuberMaster)**
+
+โครงการสารบบข้อมูลและวิเคราะห์เครือข่ายผู้ผลิตคอนเทนต์เสมือนจริง (VTuber / Virtual Creator) ของประเทศไทย โดย `ThaiVtuberSNA` ทำหน้าที่เป็น Data Worker คอยรวบรวม, ตรวจสอบหลักฐาน และคำนวณเครือข่าย เพื่อส่งมอบข้อมูลให้กับคลังเว็บหลัก [ThaiVtuberMaster](https://github.com/Icezaza2543/ThaiVtuberMaster):
 1. **Audience Network Analysis & Observatory (SNA)**: สำรวจโครงสร้างเครือข่ายความสัมพันธ์และแนวโน้มการเติบโตเชิงสถิติ
 2. **Evidence-Backed Virtual Creator Registry**: สารบบตัวตนและบัญชีทางการข้ามแพลตฟอร์มที่ตรวจสอบด้วยหลักฐานปฐมภูมิ
+3. **Data Feeds & Sync Engine**: จัดเตรียมข้อมูลส่งมอบผ่าน Google Sheets (`ThaiVtuber_SNA`) และชุดไฟล์ CSV สู่ Master Web UI
 
 ---
 
 ## 1. ขอบเขตและสถาปัตยกรรมของโครงการ (Architecture)
 
-โครงการเป็น **Unified Static Web Application & Data Pipeline** ที่ประมวลผลข้อมูลจากชุดหลักฐานคงที่ (Sealed Datasets) และเผยแพร่ผ่านหน้าเว็บสาธารณะ 2 ส่วนควบคู่กัน:
+โครงการทำหน้าที่เป็น **Data Engine & Processing Pipeline Worker** ที่ประมวลผลข้อมูลจากชุดหลักฐานคงที่ (Sealed Datasets) และส่งมอบข้อมูลสู่ส่วนแสดงผล:
 
 ```
 ThaiVtuberSNA/
@@ -52,12 +55,13 @@ ThaiVtuberSNA/
 
 ---
 
-## 3. หน้าเว็บและการเผยแพร่ (Unified Web Distribution)
+## 3. หน้าเว็บหลักและการเผยแพร่ (Master Frontend vs Local Web)
 
-เว็บทั้งสองส่วนเชื่อมโยงกันอย่างไร้รอยต่อ:
-- **`web/index.html`**: สำรวจดวงดาวเครือข่าย (Constellation Graph), ชุมชน, Bridge score และ Surface Analytics พร้อมปุ่มสลับไปยัง "ทำเนียบครีเอเตอร์"
-- **`web/registry.html`**: ค้นหาทำเนียบครีเอเตอร์, ดูหลักฐานยืนยันตัวตน, เมทริกซ์แพลตฟอร์ม พร้อมปุ่มสลับกลับไปยัง "เครือข่าย SNA"
-- **การ Build เพื่อ Deploy**: เมื่อรัน `npm run build` ในโฟลเดอร์ `web/` ระบบจะ build Vite bundle และคัดลอกไฟล์ static ทั้งหมดของ SNA เข้าสู่ `web/dist/` โดยอัตโนมัติ ทำให้ได้ static distribution ที่สมบูรณ์พร้อมโฮสต์บน GitHub Pages หรือ static server ใดๆ
+- **Master Production Web ([ThaiVtuberMaster](https://github.com/Icezaza2543/ThaiVtuberMaster))**: หน้าเว็บสาธารณะหลักแบบ 5 มุมมอง (Home, VtuberRecord, SNA, Analytics, Finance) ทำงานผ่าน Google Sheets Adapter และ Vercel Deployment
+- **Local Worker Preview (`web/`)**: โฟลเดอร์ `web/` ภายใน repo นี้เก็บไว้สำหรับการทดสอบ Local Preview, จำลอง Constellation Graph และตรวจสอบอัลกอริทึมเครือข่ายในระดับการพัฒนา
+- **การส่งข้อมูลสู่ Master**:
+  - อัปเดต Google Sheets: `python scripts/maintenance/prepare_analytics_sheets.py`
+  - ส่งออก CSV ชุดสมบูรณ์: `python scripts/maintenance/export_to_master.py --output ../ThaiVtuberMaster/local/sheet-exports`
 
 ---
 

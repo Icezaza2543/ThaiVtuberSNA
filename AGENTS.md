@@ -1,11 +1,17 @@
-# Working in ThaiVirtualCreatorRegistry
+# Working in ThaiVirtualCreatorRegistry (ThaiVtuberSNA)
+
+> **Repository Status:** Backend Data Collection Worker & Pipeline Engine powering
+> **[ThaiVtuberMaster](https://github.com/Icezaza2543/ThaiVtuberMaster)**.
 
 This is a **public-persona registry**, not a census of private people. Source of
 truth: `data/registry.json` (13 SQL-backed tables). Python 3.11+ stdlib is enough.
+This repository acts as the **data engine**: responsible for crawlers, discovery,
+first-party evidence review, SNA network overlap computation, and syncing data to
+Google Sheets (`ThaiVtuber_SNA`) / CSV exports consumed by `ThaiVtuberMaster`.
 
-This file is the shared briefing for **every agent** (Grok, Codex, Claude, Gemini,
-GPT). Read it before editing data or claiming coverage. Full specs stay in `docs/`;
-do not duplicate them — follow the pointers below.
+This file is the shared briefing for **every agent** (Antigravity, Grok, Codex,
+Claude, Gemini, GPT). Read it before editing data or claiming coverage. Full specs
+stay in `docs/`; do not duplicate them — follow the pointers below.
 
 ## Read first
 
@@ -233,19 +239,17 @@ Inspect data applies when changing canonical records. Do not commit data lockfil
 Playwright profiles, or `dist/sna/`. Track `web/package-lock.json` for npm ci;
 it is not a temporary data lockfile.
 
-## Frontend and skills handoff
+## Master Frontend vs. Local Worker Web UI
 
-The owner requested a luxurious frontend hosted through GitHub Pages in this
-same repository. Read `docs/frontend-handoff.md`, `DESIGN.md` and `.agents/README.md`.
-Four focused skills live in `.agents/skills/`; do not install whole skill packs.
-Build from `python scripts/maintenance/export_frontend.py`, not raw registry/intake.
-Generated web JSON is untracked; public frontend source lives in `web/` with
-Vite + React 19 + TypeScript. Track `web/package-lock.json` for npm ci.
-Full directory search, filters, creator detail with verified proofs, platform presence,
-and methodology are implemented and tested at 390/768/1440px in a real browser.
-CI workflow is configured at `.github/workflows/pages.yml`. Note: repository is
-currently private on GitHub Free (`gh api ...` returns 422); deployment to Pages
-will trigger automatically as soon as Pages is enabled (via Public visibility or Pro/Team plan).
-Do not change private repository visibility, billing or the data license.
-Use build/browser checks for UI work; do not add tests/reports per small visual edit
-or rerun collection to design a page.
+The official public-facing master website has transitioned to **[ThaiVtuberMaster](https://github.com/Icezaza2543/ThaiVtuberMaster)**
+(a lightweight, sheet-backed web application with 5 views: Home, VtuberRecord, SNA, Data Analytics, and Financial Analytics).
+
+The local `web/` directory in this repository remains available as a local staging and
+verification environment for graph mathematics and registry debugging. To feed data to
+`ThaiVtuberMaster`:
+- Update the shared Google Sheet (`ThaiVtuber_SNA`: `1H876HyqxkOEYJGczctP5G-ZNAZv22jzViw787h441fE`) via `scripts/maintenance/prepare_analytics_sheets.py`.
+- Or generate direct CSV exports via `python scripts/maintenance/export_to_master.py --output <target_dir>` which can be ingested by `ThaiVtuberMaster` using `python scripts/manage.py sync --from-csv <target_dir>`.
+
+Do not duplicate website UI features in this worker repository. Focus here on crawler completeness,
+evidence rigor, graph accuracy, and reliable data exports for `ThaiVtuberMaster`.
+
