@@ -107,5 +107,79 @@ class TestDiscoverFromVtuberthai(unittest.TestCase):
         self.assertEqual(len(runs), 1)
 
 
+class TestYouTubeInteractions(unittest.TestCase):
+    def test_collects_comments_and_live_chat_into_duckdb_idempotently(self):
+        con = _test_db()
+
+        def fake_api(resource, params, api_key):
+            self.assertEqual(api_key, "test-key")
+            if resource == "playlistItems":
+                return {
+                    "items": [
+                        {"contentDetails": {"videoId": "video_a"}},
+                        {"contentDetails": {"videoId": "video_b"}},
+                    ]
+                }
+            if resource == "videos":
+                return {
+                    "items": [
+                        {
+                            "id": "video_a",
+                            "liveStreamingDetails": {"activeLiveChatId": "chat_a"},
+                        },
+                        {"id": "video_b", "liveStreamingDetails": {}},
+                    ]
+                }
+            if resource == "commentThreads":
+                return {
+                    "items": [
+                        {
+                            "snippet": {
+                                "topLevelComment": {
+                                    "snippet": {
+                                        "authorChannelId": {"value": "viewer_comment"},
+                                        "publishedAt": "2026-09-20T10:00:00Z",
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            if resource == "liveChat/messages":
+                return {
+                    "items": [
+                        {
+                            "authorDetails": {"channelId": "viewer_live"},
+                            "snippet": {"publishedAt": "2026-09-20T10:01:00Z"},
+                        }
+                    ]
+                }
+            raise AssertionError(resource)
+
+        with patch.object(collect, "_eligible_youtube_channels", return_value=["UC_test"]):
+            with patch.object(collect, "_youtube_api", side_effect=fake_api):
+                with patch.object(collect, "_viewer_hmac_key", return_value=b"test-secret"):
+                    first = collect.collect_youtube_interactions(
+                        con,
+                        api_key="test-key",
+                        channels_per_cycle=1,
+                        max_videos=2,
+                    )
+                    second = collect.collect_youtube_interactions(
+                        con,
+                        api_key="test-key",
+                        channels_per_cycle=1,
+                        max_videos=2,
+                    )
+
+        self.assertEqual(first["interactions_added"], 3)
+        self.assertEqual(second["interactions_added"], 0)
+        self.assertEqual(con.execute("SELECT COUNT(*) FROM interactions").fetchone()[0], 3)
+        raw_ids = {"viewer_comment", "viewer_live"}
+        stored = {row[0] for row in con.execute("SELECT viewer_hash FROM interactions").fetchall()}
+        self.assertTrue(stored.isdisjoint(raw_ids))
+
+
+
 if __name__ == "__main__":
     unittest.main()
