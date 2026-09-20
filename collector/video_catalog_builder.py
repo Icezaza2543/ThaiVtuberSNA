@@ -73,7 +73,7 @@ class VideoCatalogBuilder:
 
         catalog_records: List[Dict[str, Any]] = []
         existing_catalog_csv = self.data_dir / "video_catalog.csv"
-        
+
         # Load existing catalog records if resuming
         processed_vids = set()
         if existing_catalog_csv.exists():
@@ -293,8 +293,8 @@ class VideoCatalogBuilder:
 
         content = f"""# รายงานการสำรวจและจัดทำรายการวิดีโอ (ระยะที่ 2)
 
-**วันที่และเวลาสำรวจ:** {now_str}  
-**สถานะการผ่านเกณฑ์ระยะที่ 2 (Phase 2 Gate Criteria):** **PASSED**  
+**วันที่และเวลาสำรวจ:** {now_str}
+**สถานะการผ่านเกณฑ์ระยะที่ 2 (Phase 2 Gate Criteria):** **PASSED**
 **ขอบเขต:** สำรวจรายการวิดีโอทั้งหมดจากช่อง Thai VTuber ที่ผ่านการยืนยันในทะเบียนระยะที่ 1
 
 ---

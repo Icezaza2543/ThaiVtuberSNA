@@ -35,16 +35,16 @@ def audit_single_canonical_writer():
     print("Checking Single Canonical Writer Invariant...")
     ecosystem_script = ROOT / "scripts/build_creator_ecosystem_data.py"
     lifecycle_script = ROOT / "scripts/build_creator_lifecycle_evidence.py"
-    
+
     eco_code = ecosystem_script.read_text(encoding="utf-8")
     life_code = lifecycle_script.read_text(encoding="utf-8")
-    
+
     # build_creator_ecosystem_data.py must NOT write creator_status_events
     if "creator_status_events.parquet" in eco_code and ("to_parquet" in eco_code and "creator_status_events" in eco_code.split("to_parquet")[1][:100]):
         raise AssertionError("build_creator_ecosystem_data.py contains write logic for creator_status_events.parquet!")
     if "creator_status_events.csv" in eco_code and ("to_csv" in eco_code and "creator_status_events" in eco_code.split("to_csv")[1][:100]):
         raise AssertionError("build_creator_ecosystem_data.py contains write logic for creator_status_events.csv!")
-        
+
     # build_creator_lifecycle_evidence.py must be the canonical writer
     assert "creator_status_events.parquet" in life_code and "to_parquet" in life_code, (
         "build_creator_lifecycle_evidence.py is missing parquet writer logic!"
@@ -56,10 +56,10 @@ def audit_research_v2_json():
     print("Auditing web/research/data/research_v2.json...")
     json_path = ROOT / "web/research/data/research_v2.json"
     assert json_path.exists(), f"Missing {json_path}"
-    
+
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
-        
+
     # Load canonical source artifacts
     eco_df = pd.read_parquet(ROOT / "data/temporal/ecosystem/yearly_ecosystem_metrics.parquet")
     net_df = pd.read_parquet(ROOT / "data/temporal/analysis/yearly_network_metrics.parquet")
@@ -80,12 +80,12 @@ def audit_research_v2_json():
     # 2. Yearly coverage chart: videos vs interactions
     cov_chart = data["coverage"]["yearly_coverage_chart"]
     vid_years = vid_cat_df["video_published_at"].astype(str).str[:4]
-    
+
     for item in cov_chart:
         yr = item["year"]
         canonical_vids = int((vid_years == str(yr)).sum())
         canonical_inter = int(net_df[net_df["year"] == float(yr)].iloc[0]["total_observed_interactions"])
-        
+
         # Invariant: videos must equal canonical distinct video catalog count
         assert item["videos"] == canonical_vids, (
             f"Year {yr}: 'videos' {item['videos']} != canonical catalog videos {canonical_vids}"
@@ -113,7 +113,7 @@ def audit_research_v2_json():
         (evt_df["event_type"].str.contains("GRADUATION")) &
         (evt_df["evidence_tier"].isin(["INFERRED_PROXY", "PROXIMAL_COMMUNITY_PROXY"]))
     ])
-    
+
     assert ce["verified_graduations"] == primary_grads, (
         f"verified_graduations mismatch: {ce['verified_graduations']} vs {primary_grads}"
     )
@@ -134,31 +134,31 @@ def audit_outlook_model():
     md_path = ROOT / "docs/research_v2/OUTLOOK_MODEL.md"
     assert md_path.exists(), f"Missing {md_path}"
     content = md_path.read_text(encoding="utf-8")
-    
+
     # Load canonical source DataFrames
     eco_df = pd.read_parquet(ROOT / "data/temporal/ecosystem/yearly_ecosystem_metrics.parquet")
     aud_df = pd.read_parquet(ROOT / "data/industry/audience_behavior_yearly.parquet")
-    
+
     eco_2025 = eco_df[eco_df["year"] == 2025].iloc[0]
     aud_2021 = aud_df[aud_df["year"] == 2021].iloc[0]
     aud_2025 = aud_df[aud_df["year"] == 2025].iloc[0]
-    
+
     # 1. Check for absence of stale hardcoded prose percentages
     stale_patterns = ["58.7%", "15.3%", "41.3%", "84.7%"]
     for sp in stale_patterns:
         assert sp not in content, f"Stale percentage '{sp}' found in OUTLOOK_MODEL.md!"
-        
+
     # 2. Check presence of dynamically derived values
     re_obs_2025_str = f"{aud_2025['pct_re_observed']:.1f}%"
     re_obs_2021_str = f"{aud_2021['pct_re_observed']:.1f}%"
     assert re_obs_2025_str in content, f"Expected {re_obs_2025_str} in OUTLOOK_MODEL.md"
     assert re_obs_2021_str in content, f"Expected {re_obs_2021_str} in OUTLOOK_MODEL.md"
-    
+
     # 3. Test 2 Modality Sensitivity must be INSUFFICIENT_EVIDENCE
     assert "- **Test 2: Modality Sensitivity**: **INSUFFICIENT_EVIDENCE**" in content, (
         "Test 2 Modality Sensitivity in OUTLOOK_MODEL.md is not downgraded to INSUFFICIENT_EVIDENCE!"
     )
-    
+
     # 4. Exit pressure in scorecard must not include proxies (2024: 0.00, 2025: 6.00)
     events = pd.read_parquet(ROOT / "data/industry/creator_status_events.parquet")
     counts = [len(events[(events.event_year == year) & (events.evidence_tier == "PRIMARY_EVENT_SPECIFIC") & events.event_type.isin(["GRADUATION", "GRADUATION_OR_DEPARTURE"])]) for year in (2024, 2025)]
@@ -171,27 +171,27 @@ def audit_outlook_hypotheses():
     md_path = ROOT / "docs/research_v2/OUTLOOK_HYPOTHESES.md"
     assert md_path.exists(), f"Missing {md_path}"
     content = md_path.read_text(encoding="utf-8")
-    
+
     # 1. Check for stale active-channel sequences
     stale_sequences = ["107 to 164", "164 to 160", "9,218", "1,927 / 9,218", "874 accounts"]
     for seq in stale_sequences:
         assert seq not in content, f"Stale sequence '{seq}' found in OUTLOOK_HYPOTHESES.md!"
-        
+
     # 2. Check canonical active-channel sequence
     assert "92 to 129" in content, "Canonical active-channel growth 92 to 129 missing in Period 1"
     assert "129 to 157" in content, "Canonical active-channel growth 129 to 157 missing in Period 2"
     assert "157 to 166" in content, "Canonical active-channel growth 157 to 166 missing in Period 3"
     assert "160 (as of September 2026 YTD)" in content, "Canonical 2026 YTD active-channel count 160 missing"
-    
+
     # 3. Check canonical audience figures
     assert "13,259 accounts" in content, "Canonical 2026 YTD population 13,259 missing"
     assert "2,773 / 13,259" in content, "Canonical 2026 YTD returning accounts 2,773 missing"
     assert "826 reactivated accounts" in content, "Canonical 2026 YTD reactivated accounts 826 missing"
-    
+
     # 4. Check agency wording: must use 'agency-at-selection'
     bare_assort = re.findall(r"(?<!agency-at-selection\s)(?<!intra-)agency\s+assortativity", content, re.IGNORECASE)
     assert not bare_assort, f"Bare 'agency assortativity' without agency-at-selection qualifier found: {bare_assort}"
-    
+
     assert "within-agency" not in content.lower(), "Historical wording 'within-agency' found in OUTLOOK_HYPOTHESES.md!"
     assert "agency-at-selection assortativity" in content.lower(), "agency-at-selection assortativity not found"
     assert "agency-at-selection mixing" in content.lower(), "agency-at-selection mixing not found"
@@ -202,10 +202,10 @@ def audit_long_running_report_and_ledger():
     print("Auditing docs/research_v2/LONG_RUNNING_RESEARCH_REPORT.md and RUNTIME_LEDGER.md...")
     rep_path = ROOT / "docs/research_v2/LONG_RUNNING_RESEARCH_REPORT.md"
     led_path = ROOT / "docs/research_v2/RUNTIME_LEDGER.md"
-    
+
     rep_content = rep_path.read_text(encoding="utf-8")
     led_content = led_path.read_text(encoding="utf-8")
-    
+
     # Invariant: 43 minutes mechanically recorded through Batch 4; subsequent hotfix runtime not mechanically captured
     assert "43 minutes mechanically recorded through Batch 4; subsequent hotfix runtime was not mechanically captured" in rep_content, (
         "Exact runtime statement missing in LONG_RUNNING_RESEARCH_REPORT.md"
@@ -219,7 +219,7 @@ def audit_long_running_report_and_ledger():
 def audit_collab_regressions():
     print("Auditing Collab Verification Semantics & Negative Regressions...")
     from scripts.build_collab_registries import verify_collab_context
-    
+
     # Positive tests: strong collab context markers
     assert verify_collab_context("พูดคุยแลกเปลี่ยน w/@LucenePLG", "@LucenePLG")[0] is True
     assert verify_collab_context("Hack ใน Valorant? w/@mollyehe", "@mollyehe")[0] is True
@@ -232,7 +232,7 @@ def audit_collab_regressions():
     # Negative tests: bare @mention or generic keyword only
     ok, reason = verify_collab_context("Minecraft stream @KnownHandle", "@KnownHandle")
     assert ok is False, "Generic minecraft keyword with bare mention should not verify!"
-    
+
     ok, reason = verify_collab_context("Festival 2024 @KnownHandle", "@KnownHandle")
     assert ok is False, "Generic festival keyword with bare mention should not verify!"
 

@@ -105,7 +105,7 @@ def build_collab_registries():
 
     # Check if temporal catalog has titles
     temp_has_titles = "title" in temp_df.columns and temp_df["title"].notna().any()
-    
+
     # Detector input: exact set of records with inspectable titles from root catalog
     if temp_has_titles:
         detector_input_df = temp_df[temp_df["title"].notna()].copy()
@@ -138,12 +138,12 @@ def build_collab_registries():
         cid = r["channel_id"]
         cname = r.get("canonical_name") or r.get("name") or ""
         agency = r.get("agency", "Independent")
-        
+
         # Handle exact match (lowercase, no @)
         h = (r.get("handle") or "").lower().replace("@", "").strip()
         if h:
             exact_handle_map[h] = (cid, cname, agency)
-            
+
         # Canonical name exact match
         cn_clean = cname.lower().strip()
         if cn_clean and len(cn_clean) > 3:
@@ -173,7 +173,7 @@ def build_collab_registries():
 
         # Extract explicit @mentions
         mentions = re.findall(r"@([a-zA-Z0-9_\.\-]+)", title)
-        
+
         exact_verified_participants = []
         unresolved_mentions = []
         rejected_mentions = []

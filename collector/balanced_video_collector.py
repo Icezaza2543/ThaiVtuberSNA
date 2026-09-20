@@ -252,9 +252,9 @@ class BalancedVideoCollector:
 
         content = f"""# รายงานการเก็บข้อมูลรายวิดีโอและแยกแยะแหล่งข้อมูล (ระยะที่ 3)
 
-**วันที่และเวลาเก็บข้อมูล:** {now_str}  
-**สถานะการผ่านเกณฑ์ระยะที่ 3 (Phase 3 Gate Criteria):** **PASSED**  
-**สถานะการตรวจสอบความเป็นส่วนตัว (Cryptographic Privacy Audit):** **{'PASSED (ZERO PII LEAKS)' if privacy_passed else 'FAILED'}**  
+**วันที่และเวลาเก็บข้อมูล:** {now_str}
+**สถานะการผ่านเกณฑ์ระยะที่ 3 (Phase 3 Gate Criteria):** **PASSED**
+**สถานะการตรวจสอบความเป็นส่วนตัว (Cryptographic Privacy Audit):** **{'PASSED (ZERO PII LEAKS)' if privacy_passed else 'FAILED'}**
 **ลายนิ้วมือกุญแจลับ (Key Fingerprint):** `{self.key_fingerprint}`
 
 ---

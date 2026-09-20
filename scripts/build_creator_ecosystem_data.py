@@ -39,11 +39,11 @@ def build_creator_public_snapshot() -> pd.DataFrame:
     targets_df = pd.read_csv(TARGET_MANIFEST_CSV)
     coverage_df = pd.read_parquet(CHANNEL_COVERAGE_PARQUET)
     registry_data = list(CreatorCatalog.from_path(CREATOR_REGISTRY_PATH).youtube_rows())
-    
+
     # Load canonical lifecycle evidence
     canonical_cov_df = pd.read_parquet(CANONICAL_COVERAGE_PARQUET)
     canonical_events_df = pd.read_parquet(CANONICAL_EVENTS_PARQUET)
-    
+
     snapshot_df = build_snapshot_frame(targets_df, coverage_df, registry_data, canonical_cov_df, canonical_events_df)
     snapshot_df.to_parquet(OUT_SNAPSHOT_PARQUET, index=False)
     print(f"Saved {OUT_SNAPSHOT_PARQUET} ({len(snapshot_df)} rows) derived from canonical lifecycle evidence.")

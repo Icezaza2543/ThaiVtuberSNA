@@ -123,7 +123,7 @@ class ThaiVtuberRegistryBuilder:
         for f_item in fandom_list:
             cid = f_item.get("channel_id")
             handle = f_item.get("handle", "")
-            
+
             # If no direct channel ID, but handle exists, try quick resolution via API if available
             if not cid and handle and self.api_key:
                 cid = self._resolve_handle_via_api(handle)
@@ -208,7 +208,7 @@ class ThaiVtuberRegistryBuilder:
             views = meta.get("viewCount", raw.get("view_count", 0))
             video_count = meta.get("videoCount", 0)
             channel_status = meta.get("privacyStatus", "public")
-            
+
             # Use most accurate last published date
             last_pub = raw.get("last_published_video_at", "")
             is_graduated = raw.get("is_graduated_hint", False)
@@ -426,8 +426,8 @@ class ThaiVtuberRegistryBuilder:
 
         content = f"""# รายงานการตรวจสอบและจัดทำทะเบียน Thai VTuber (ระยะที่ 1)
 
-**วันที่และเวลาตรวจสอบ:** {now_str}  
-**สถานะการผ่านเกณฑ์ระยะที่ 1 (Phase 1 Gate Criteria):** **PASSED**  
+**วันที่และเวลาตรวจสอบ:** {now_str}
+**สถานะการผ่านเกณฑ์ระยะที่ 1 (Phase 1 Gate Criteria):** **PASSED**
 **ข้อห้ามการเก็บข้อมูล:** ไม่มีคอมเมนต์หรือ Live Chat ใด ๆ ถูกเก็บในระยะนี้ (ตรวจสอบเฉพาะ Metadata ช่อง)
 
 ---
