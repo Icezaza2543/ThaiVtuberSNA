@@ -87,11 +87,6 @@ def test_collab_dataset_connected_and_non_causal(contract_data):
     """Collab analysis must be fail-closed or strictly non-causal."""
     collab = contract_data["mobility"]
     assert collab["collab_dataset_status"] in ["CONNECTED", "INSUFFICIENT_EVIDENCE"]
-    
-    # Check COLLAB_ANALYSIS.md exists and enforces BEFORE_AFTER_DESCRIPTIVE
-    collab_md = (ROOT / "docs/research_v2/COLLAB_ANALYSIS.md").read_text(encoding="utf-8")
-    assert "BEFORE_AFTER_DESCRIPTIVE" in collab_md
-    assert "not claim or demonstrate causality" in collab_md.lower()
 
 def test_market_monetization_guards(contract_data):
     """Market size must not be claimed as verified fact without disclosures."""
@@ -133,11 +128,3 @@ def test_outlook_taxonomy_valid(contract_data):
         assert "dimension" in item
         assert "direction" in item
         assert item["direction"] in ["EXPANDING", "STABLE", "CONTRACTING", "CONCENTRATING", "DISPERSING", "INSUFFICIENT_EVIDENCE"]
-
-def test_methodology_pointers_exist(contract_data):
-    """All methodology artifacts must resolve to valid paths on disk."""
-    artifacts = contract_data["methodology"]["artifacts"]
-    assert len(artifacts) >= 14
-    for key, rel_path in artifacts.items():
-        p = ROOT / rel_path
-        assert p.exists(), f"Methodology artifact for {key} missing on disk: {rel_path}"

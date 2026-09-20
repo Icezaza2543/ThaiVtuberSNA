@@ -1,260 +1,91 @@
-# ThaiVtuberSNA — Project Guide
+# Thai VTuber Social Network Analysis (SNA)
 
-> เอกสารฉบับนี้คือ source of truth หลักของโปรเจกต์  
-> `docs/legal/` และ `docs/evidence/` เป็นเอกสารประกอบด้านนโยบาย/หลักฐาน ส่วน `docs/research_v2/` และเอกสาร historical/refactor ที่ยังคงอยู่ถือเป็น frozen provenance ไม่ใช่ active project documentation
+โครงการวิจัยและสำรวจโครงสร้างเครือข่ายความสัมพันธ์ของผู้ผลิตคอนเทนต์ VTuber ในประเทศไทย โดยใช้หลักฐานการมีปฏิสัมพันธ์ร่วมกันบนแพลตฟอร์มสาธารณะ (YouTube)
 
-## 1. เป้าหมายของโครงการ
+---
 
-ThaiVtuberSNA ศึกษาโครงสร้างของวงการ VTuber ไทยด้วย Social Network Analysis (SNA) จากหลักฐานการมีปฏิสัมพันธ์สาธารณะที่พบร่วมกันระหว่างช่อง
+## 1. ขอบเขตและสถาปัตยกรรมของโครงการ (Architecture)
 
-หน่วยหลักของกราฟคือ **ช่องครีเอเตอร์** และความสัมพันธ์หนึ่งเส้นเกิดจากการพบตัวตนแบบใช้นามแฝงเดียวกันมีปฏิสัมพันธ์กับทั้งสองช่องภายใต้ขอบเขตข้อมูลที่ระบุ
+โครงการถูกออกแบบเป็น **Static Web Application** ที่ประมวลผลข้อมูลจากชุดหลักฐานคงที่ (Sealed Datasets) เผยแพร่ผ่านหน้าเว็บสาธารณะ โดยไม่มีการเก็บข้อมูลส่วนบุคคลของผู้ชม
 
-โครงการไม่ได้พยายามทำ audience census และไม่ใช้กราฟเพื่อยืนยันความสนิท อิทธิพล การย้ายแฟนคลับ หรือเหตุและผล
+```
+ThaiVtuberSNA/
+├── web/                           # ส่วนแสดงผลเว็บสาธารณะ (Single-page app)
+│   ├── index.html                 # หน้าเว็บหลัก (รองรับ Network Graph, Surface, Research v2)
+│   ├── network-ui.js              # ตัวควบคุมและการแสดงผลกราฟความสัมพันธ์
+│   ├── research.js                # ตัวแสดงผล Dashboard: Surface Analytics + Research v2
+│   ├── data.json                  # ข้อมูลโครงสร้างเครือข่ายสำหรับ Graph UI
+│   └── research/
+│       ├── dashboard_data.json    # ตัวชี้วัดรายปีของระบบเครือข่าย
+│       ├── surface_analytics_v1.json # ข้อมูล Strict 229+ Virtual Cohort
+│       └── data/research_v2.json  # ข้อมูล Longitudinal Cohort Pulse & Outlook
+├── data/
+│   └── registry/                  # ทะเบียนครีเอเตอร์และสถานะตัวตนหลัก (Canonical Registry)
+│       ├── creators.json          # ทะเบียนทางการ (1,370 baseline + 392 accepted discovery)
+│       └── identity_resolutions.json # ประวัติการจับคู่บัญชีกับตัวตน
+├── scripts/                       # เครื่องมือสำหรับประมวลผลข้อมูลและตรวจสอบความปลอดภัย
+│   ├── build_creator_registry.py  # สร้าง canonical creators.json แบบ deterministic
+│   ├── build_surface_analytics.py # สรุปตัวชี้วัด Surface Analytics
+│   ├── build_web_data.py          # ประกอบไฟล์ข้อมูลสำหรับเว็บ
+│   ├── privacy_audit.py           # ตรวจสอบการไม่รั่วไหลของข้อมูลส่วนบุคคล (PII)
+│   └── audit_data_security.py     # ตรวจสอบความปลอดภัยของ Git Object
+└── tests/                         # ชุดทดสอบความถูกต้องและข้อกำหนดของระบบ
+```
 
-## 2. คำถามวิจัยหลัก
+---
 
-Research Dashboard ถูกออกแบบให้ตอบคำถามหลักสี่กลุ่ม:
+## 2. ข้อมูลและการจัดกลุ่ม (Data & Cohorts)
 
-1. **โครงสร้าง ecosystem เปลี่ยนอย่างไรตามเวลา**
-   - จำนวนช่องที่มีหลักฐาน
-   - จำนวนคู่ความสัมพันธ์
-   - community structure
-   - modularity, density และ cross-community edges
+### Canonical Creator Registry
+- **Baseline YouTube Channels**: 1,370 ช่อง
+- **Accepted Discovery Accounts**: 392 บัญชี (ผ่านการคัดกรองและตรวจสอบตัวตน)
+- **Total Registered Creators**: 1,645 คน (รวม 1,755 บัญชี)
+- **Deduplicated / Excluded**: 292 บัญชีซ้ำกับ baseline, 106 บัญชีถูกตัดออก (ไม่ใช่ VTuber / กลุ่ม Virtual), 94 บัญชีไม่สามารถเข้าถึงได้
 
-2. **กลุ่มที่คำนวณได้มีความต่อเนื่องอย่างไร**
-   - community lineage
-   - continuation / split / merge relationships
-   - สมาชิกที่พบร่วมกันระหว่างปี
+### Surface Analytics Cohort
+- นับเฉพาะช่องที่ผ่านเกณฑ์ `STRICT_VIRTUAL` จากหลักฐานที่ตรวจสอบแล้ว
+- ใช้เป็น denominator หลักของหน้าเว็บเพื่อความแม่นยำสูง
 
-3. **ยังพบผู้มีปฏิสัมพันธ์กลุ่มเดิมซ้ำหรือไม่**
-   - cohort retention
-   - same-channel / cross-channel re-observation
-   - reactivation หลังเว้นช่วง
+### Research v2 Longitudinal Cohort
+- ใช้ cohort คงที่ในการติดตามแนวโน้มข้ามปี
+- มุ่งเน้นการวิเคราะห์เชิงโครงสร้าง (Macro Trends) โดยไม่เปลี่ยนฐานตัวอย่างระหว่างทาง
 
-4. **ผลที่เห็นพึ่งพาความครอบคลุมของข้อมูลมากแค่ไหน**
-   - channel coverage
-   - video sampling ratio
-   - interaction volume
-   - evidence support tier
-   - sensitivity / robustness checks
+---
 
-## 3. นิยามที่ต้องอ่านให้ตรงกัน
+## 3. นโยบายความเป็นส่วนตัวและความปลอดภัย (Privacy Policy)
 
-| ตัวชี้วัด | ความหมาย |
-| --- | --- |
-| `shared_any` | ตัวตนแบบใช้นามแฝงที่พบกับทั้งสองช่องจาก source ที่รองรับ |
-| `shared_comments` | พบความคิดเห็นกับทั้งสองช่อง |
-| `shared_live_chat` | พบ live chat กับทั้งสองช่อง |
-| `strong_shared_*` | ตัวตนเดียวกันพบในอย่างน้อย 2 วิดีโอที่ไม่ซ้ำต่อช่องตาม source นั้น |
-| `videos_seen` | วิดีโอที่ไม่ซ้ำซึ่งมีหลักฐานจาก source ใด source หนึ่ง |
-| `live_streams_seen` | วิดีโอที่ไม่ซ้ำซึ่งมีหลักฐาน `live_chat` |
-| community | กลุ่มที่คำนวณจากโครงสร้างเครือข่าย ไม่ใช่ค่าย |
-| centrality | ตำแหน่งเชิงโครงสร้างในชุดข้อมูล ไม่ใช่อันดับความนิยม |
+1. **ไม่เผยแพร่ข้อมูลผู้ชมรายบุคคล (Zero Viewer PII)**:
+   - ไม่มีการเก็บหรือเผยแพร่ชื่อผู้ใช้, email, IP address, หรือ raw viewer hash ใดๆ บนหน้าเว็บสาธารณะ
+   - ทุกตัวชี้วัดบนเว็บเป็นข้อมูลรวมเชิงสถิติ (Aggregate Level) เท่านั้น
+2. **ขอบเขตการเก็บข้อมูล (Public Interactions Only)**:
+   - รวบรวมเฉพาะปฏิสัมพันธ์สาธารณะที่เปิดเผยบน YouTube
+   - เส้นเชื่อมระหว่างช่องสะท้อนการพบผู้มีปฏิสัมพันธ์ร่วมกันในตัวอย่างที่เก็บได้ ไม่ใช่การรับรองความสัมพันธ์ส่วนตัวหรือการเป็นผู้ชมทั้งหมด
 
-`shared_comments` และ `shared_live_chat` อาจทับซ้อนกัน จึงห้ามนำมาบวกเพื่ออนุมาน `shared_any`
+---
 
-การไม่พบตัวตนเดิมในปีถัดไปหมายถึง **ไม่พบในหลักฐานที่เก็บได้** ไม่ใช่การยืนยันว่าเลิกดูหรือออกจากชุมชน
+## 4. การทดสอบและดูแลรักษาระบบ (Maintenance & Testing)
 
-## 4. Creator registry, baseline และ cohort
-
-ระบบแยกหน้าที่ของข้อมูลครีเอเตอร์ออกเป็นสามชั้นอย่างชัดเจน:
-
-1. **Canonical creator registry** — `data/registry/creators.json` เป็น source of truth ของ creator/persona/account identity และอ่านผ่าน `CreatorCatalog` เท่านั้น
-2. **Trusted baseline** — YouTube Channel IDs เดิม **1,370 ช่อง** ต้องคงอยู่ครบเป็น subset ของ canonical catalog เพื่อรักษาความต่อเนื่องและตรวจ regression แต่ไม่ใช่ registry แยกอีกชุด
-3. **Frozen longitudinal cohort** — `data/temporal/catalog/target_manifest.csv` มี **193 ช่อง** สำหรับการวิเคราะห์ตามเวลา และห้ามเพิ่มสมาชิกอัตโนมัติจาก discovery ใหม่
-
-บัญชีที่ค้นพบใหม่ต้องผ่าน eligibility review และ identity resolution ที่มีหลักฐานบวกก่อนเข้าสู่ canonical catalog; ชื่อ, handle หรือสังกัดที่คล้ายกันเพียงอย่างเดียวไม่ใช้เป็นเหตุผล merge persona
-
-ThaiVirtualCreatorRegistry เป็นโครงการแยกที่ช่วยเรื่อง discovery / registry / identity evidence ส่วน ThaiVtuberSNA รับผิดชอบ interaction evidence และ network analysis
-
-ข้อมูลค่ายหรือสถานะที่ใช้ในกราฟต้องระบุช่วงเวลาและแหล่งที่มา ห้ามเปลี่ยน metadata ปัจจุบันให้กลายเป็นประวัติย้อนหลังโดยไม่มีหลักฐาน
-
-## 5. Privacy และ HMAC continuity
-
-ผู้มีปฏิสัมพันธ์ถูกใช้นามแฝงด้วย HMAC-SHA256 เพื่อให้เชื่อมหลักฐานข้ามช่องและข้ามเวลาได้อย่างสม่ำเสมอ
-
-กฎสำคัญ:
-
-- `config/secret.key` ไม่เข้า Git
-- ต้องใช้กุญแจเดิมสำหรับ longitudinal evidence เดิม
-- `config/secret.fingerprint` ใช้ตรวจ continuity ของกุญแจ
-- ห้ามสร้างกุญแจใหม่ทับ dataset เดิม
-- หน้าเว็บสาธารณะเผยแพร่เฉพาะ creator metadata และ aggregate outputs
-- HMAC คือ pseudonymization ไม่ใช่การรับรองว่าเป็นข้อมูลนิรนามตามกฎหมาย
-
-ตรวจ continuity ด้วย:
-
+### การรันชุดทดสอบ
 ```bash
-python -m core.hasher --verify-key
+python -m pytest tests/ -q
 ```
 
-## 6. Live collection contract ปัจจุบัน
-
-runtime state ของ campaign อยู่ใน `scratch/expanded-v1-campaign/` และถูกกันออกจาก Git โดยตั้งใจ
-
-interaction worker ปัจจุบันใช้ policy:
-
-`bulk-fair-channel-year-page15-v3`
-
-หลักการ:
-
-- เก็บ **หนึ่ง successful comment page ต่อ NEW video**
-- สูงสุด **15 top-level comments ต่อ video** ใน first pass
-- replies ถูก deferred
-- legacy deep jobs และ checkpoint เดิมต้องคงอยู่
-- catalog completion แยกจาก sampled interaction coverage
-- single writer เท่านั้น
-- quota ledger, acknowledged events, page offsets, provenance และ HMAC continuity ห้าม reset
-- shared general ceiling = 9,000 units ต่อ Pacific day โดยกัน 1,000 units เป็น reserve
-- `quotaExceeded` / `dailyLimitExceeded` ปิด window นั้น
-- worker รอ `QUOTA_WAIT` โดยไม่ยิง API
-- `WORKER_ERROR_STOP`, `PERSISTENCE_STOP`, `STORAGE_CAPACITY_STOP`, `OPERATOR_STOP` และ `interactions.stop` ต้องให้ operator ตรวจ ไม่ auto-retry ambiguous writes
-
-คำสั่ง worker canonical:
-
+### การตรวจสอบความเป็นส่วนตัว (Privacy Audit)
 ```bash
-python -m scripts.run_campaign_interactions
+python scripts/privacy_audit.py
 ```
 
-ห้ามใช้คำสั่งนี้เป็นการเริ่ม campaign ใหม่จากศูนย์ ต้อง resume จาก durable checkpoints เดิมเท่านั้น
-
-## 7. Storage และ provenance
-
-แยกข้อมูลเป็นสามชั้น:
-
-1. **Secret**
-   - HMAC key
-   - API keys
-   - credentials
-
-2. **Private analytical evidence**
-   - pseudonymous interaction records
-   - job/checkpoint state
-   - private workbook/archive
-   - local campaign SQLite ledgers
-
-3. **Public**
-   - creator metadata ที่อนุญาตให้เผยแพร่
-   - aggregate network outputs
-   - temporal snapshots
-   - Research Dashboard data
-
-หลักฐานหรือ source copies ไม่ถูกนับเป็น observation ซ้ำโดยอัตโนมัติ ทุก output ต้องรักษา provenance และ distinction ระหว่าง catalog coverage กับ interaction coverage
-
-## 8. Frontend
-
-เว็บไซต์เป็น static vanilla HTML/CSS/JavaScript ไม่มี build step
-
-canonical views มีเพียงสองหน้า:
-
-- `/?view=network` — network observatory
-- `/?view=research` — Research Dashboard
-
-โครงสร้าง frontend หลัก:
-
-```text
-web/
-├─ index.html             # markup ของทั้งสอง view
-├─ site.js                # query-route loader
-├─ site.css               # shell/navigation
-├─ network.css            # network view
-├─ network-state.js       # temporal snapshot adapter
-├─ app.js                 # graph renderer/core state
-├─ network-ui.js          # controls/inspector/accessibility
-├─ research.css           # Research Dashboard
-├─ research.js            # Research Dashboard rendering
-├─ data.json              # public network snapshot
-├─ data/                  # public aggregate temporal outputs
-└─ research/
-   └─ dashboard_data.json # aggregate Research Dashboard dataset
-```
-
-Report v2 prototype ถูกยกเลิกจาก canonical UI เพื่อไม่ให้ซ้ำกับ Research Dashboard และไม่ให้ placeholder ถูกเข้าใจว่าเป็นผลวิจัยจริง
-
-## 9. โครงสร้าง repository
-
-```text
-analytics/   นิยาม metric และ aggregate analysis
-collector/   collection logic
-core/        identity, HMAC, security/data rules
-storage/     private storage adapters
-scripts/     CLI, campaign, analysis และ maintenance
-web/         public network + research UI
-tests/       regression / synthetic fixtures
-docs/        PROJECT.md + legal/ + evidence/
-data/        public/frozen analytical artifacts ตามขอบเขตของแต่ละชุด
-scratch/     local runtime state; ไม่เข้า Git
-```
-
-หลีกเลี่ยงการเพิ่ม directory ใหม่หากหน้าที่ซ้ำกับพื้นที่ด้านบน
-
-## 10. Research Dashboard
-
-หน้า Research ต้องเริ่มจาก **scope ก่อน interpretation**
-
-ลำดับการอ่าน:
-
-1. เลือกปี
-2. ตรวจ channel/video coverage
-3. อ่าน ecosystem structure
-4. อ่าน lineage / cohort / bridge metrics
-5. ตรวจ sensitivity และข้อจำกัด
-6. จึงสรุปเชิงพรรณนา
-
-ปี 2026 เป็น partial year ใน dataset ปัจจุบัน ห้ามเทียบกับปีเต็มแล้วสรุป growth/decline โดยตรง
-
-Dashboard ไม่ควรมี leaderboard เชิงคุณค่าหรือคำตัดสินว่าช่องใด “ดีกว่า” อีกช่องหนึ่ง centrality ใช้เพื่อบรรยายตำแหน่งในกราฟเท่านั้น
-
-## 11. การรันเว็บในเครื่อง
-
+### การสร้าง Canonical Registry ใหม่
 ```bash
-python -m http.server 5500 --bind 127.0.0.1 --directory web
+python scripts/build_creator_registry.py \
+  --baseline docs/evidence/creator-registry-review-2026-09-19/trusted_baseline_1370.json \
+  --review-bundle docs/evidence/creator-registry-review-2026-09-19/review_bundle.json \
+  --resolutions data/registry/identity_resolutions.json \
+  --output data/registry/creators.json
 ```
 
-เปิด:
-
-- http://127.0.0.1:5500/?view=network
-- http://127.0.0.1:5500/?view=research
-
-อย่า serve repository root เพราะ local checkout อาจมี credentials และ private runtime state
-
-## 12. การแก้โค้ด
-
-หลักการสำหรับงานต่อจากนี้:
-
-- ไม่แก้ frozen evidence เพียงเพื่อให้ test ผ่าน
-- ไม่เพิ่ม test ซ้ำหากไม่ได้ป้องกัน regression ที่เกิดจากงานนั้นจริง
-- ไม่เปลี่ยน HMAC identity
-- ไม่ reset ledger/checkpoint
-- ไม่ตีความ missing data เป็น zero
-- ไม่อ้าง complete interaction coverage จาก catalog completion
-- ไม่สร้าง public artifact ที่มี viewer-level rows
-- ไม่ทำ framework migration โดยไม่มีเหตุผล
-- ชื่อไฟล์ควรบอกหน้าที่ตรง ๆ และหลีกเลี่ยง suffix เช่น `_v2`, `_final`, `_new` สำหรับ canonical code
-
-## 13. หลักฐานและนโยบาย
-
-เอกสารที่แยกออกจาก Project Guide เพราะเป็นคนละประเภท:
-
-- `docs/evidence/` — machine-readable QA / audit evidence
-- `docs/research_v2/` — frozen historical research/provenance; ไม่ใช่ canonical documentation
-- `docs/legal/TERMS.md`
-- `docs/legal/PRIVACY.md`
-- `docs/legal/RIGHTS_REQUESTS.md`
-- `docs/legal/OPERATOR_CHECKLIST.md`
-- `SECURITY.md`
-- `LICENSE`
-
-ไฟล์เหล่านี้ไม่ควรถูกนำกลับมารวมเป็น narrative docs หลายชุดอีก
-
-## 14. ข้อจำกัดที่ยังต้องถือไว้
-
-- interaction coverage เป็น sampled evidence ไม่ใช่ exhaustive archive
-- public interaction ไม่เท่ากับ consent สำหรับทุกการใช้
-- community detection ไม่ยืนยัน social group จริง
-- centrality ไม่ยืนยัน influence
-- HMAC pseudonyms ไม่เท่ากับจำนวนมนุษย์จริงแบบสมบูรณ์
-- historical identity / affiliation บางช่วงยังมี uncertainty
-- runtime collection state สดอยู่ local และไม่ควร publish ลง Git
-
-เป้าหมายของโครงการคือทำให้ข้อสรุปทุกอย่างย้อนกลับไปตรวจ **scope, evidence, method และ limitation** ได้ โดยไม่ทำให้ dashboard ดูมั่นใจกว่าหลักฐานที่มี
+### การเปิดหน้าเว็บบนเครื่อง
+```bash
+python -m http.server 8000 -d web
+```
+เข้าชมผ่านเบราว์เซอร์ที่: `http://localhost:8000`
