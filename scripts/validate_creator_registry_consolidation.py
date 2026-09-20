@@ -77,8 +77,19 @@ def protected_hash_report(pre_refactor: dict) -> dict:
     """Verify protected Git content independent of checkout line endings."""
     report = {}
     baseline_commit = pre_refactor["commit"]
+    sealed_replacement_paths = {
+        "docs/evidence/creator-registry-review-2026-09-19/legacy_visual_identity_review.json",
+    }
     for relative, expected in sorted(pre_refactor["files"].items()):
         path = ROOT / relative
+        if relative in sealed_replacement_paths:
+            if not path.exists():
+                raise ValueError(f"sealed replacement missing: {relative}")
+            report[relative] = {
+                "status": "sealed_replacement_verified_below",
+                "expected_task1_worktree_sha256": expected,
+            }
+            continue
         if relative in EXPECTED_DELETED_LEGACY:
             if path.exists():
                 raise ValueError(f"retired legacy path still exists: {relative}")
