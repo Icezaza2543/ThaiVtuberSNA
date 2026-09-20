@@ -10,6 +10,7 @@ on:
       - tests/test_registry_consumer_migration.py
       - tests/test_sampling_manifest.py
       - requirements.txt
+      - scripts/observatory_controller.py
       - .github/workflows/task13-registry-final.yml
 
 permissions:
