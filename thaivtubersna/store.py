@@ -591,11 +591,9 @@ def verify_parity(con: duckdb.DuckDBPyConnection) -> dict:
             ).fetchone()[0]
         else:
             actual = count(con, item)
-        # Active ingestion tables grow over time; baseline sets the minimum floor
-        if item in ("discovery_runs", "discovery_hits", "candidates", "evidence"):
-            ok = actual >= expected
-        else:
-            ok = actual == expected
+        # After migration the 24/7 worker may legitimately add creators, accounts,
+        # evidence, interactions and edges. Parity means the sealed baseline was not lost.
+        ok = actual >= expected
         if not ok:
             all_ok = False
         results[item] = {"expected": expected, "actual": actual, "ok": ok}
