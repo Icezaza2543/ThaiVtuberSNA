@@ -12,7 +12,7 @@ ____________________ test_02_controller_quality_gates_pass ____________________
         """2. All 5 automated quality gates pass cleanly on the repository."""
         ctrl = ObservatoryController(base_dir=REPO_ROOT)
         res = ctrl.validate_quality_gates()
-    
+
 >       assert res["all_passed"] is True, f"Gates failed: {res['gates']}"
 E       AssertionError: Gates failed: {'visualizer_coordinates': {'status': 'PASS', 'hash': 'sha256_47a63e3160c1b1282fe0ceb997f08ef6ae5beec584771c237bb11d50fab83adc', 'expected': 'sha256_47a63e3160c1b1282fe0ceb997f08ef6ae5beec584771c237bb11d50fab83adc'}, 'historical_baseline_isolation': {'status': 'PASS', 'hash': 'sha256_2588ce1ce8e48df69a449ebe3bb8de7266b1cf6bf18b08495ae4d4acc5c43805', 'expected': 'sha256_2588ce1ce8e48df69a449ebe3bb8de7266b1cf6bf18b08495ae4d4acc5c43805'}, 'hmac_key_continuity': {'status': 'PASS', 'fingerprint': 'sha256_9a664bf3123ad58b9c95410eebed13ce0b95e08c05c8f539b0f2d7f1f8011e1e', 'expected': 'sha256_9a664bf3123ad58b9c95410eebed13ce0b95e08c05c8f539b0f2d7f1f8011e1e'}, 'dataset_release_validation': {'status': 'FAIL', 'details': 'OK'}, 'privacy_audit': {'status': 'PASS'}}
 E       assert False is True
