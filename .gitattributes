@@ -4,3 +4,19 @@ data/temporal/research_integrity/t11_t19_final_integrity_report.md -text
 data/temporal/research_integrity/t11_t20_ecosystem_observatory_integrity_report.md -text
 data/registry/creators.json text eol=lf
 data/registry/identity_resolutions.json text eol=lf
+
+# These release artifacts were byte-sealed with CRLF in dataset_manifest.json.
+# Enforce CRLF on checkout across all platforms so their manifest checksums remain consistent.
+data/temporal/lifecycle/lifecycle_report.md text eol=crlf
+data/temporal/event_analysis/event_impact_report.md text eol=crlf
+data/temporal/robustness/robustness_report.md text eol=crlf
+data/temporal/analysis/community_lineage_v2_report.md text eol=crlf
+data/temporal/analysis/temporal_community_report.md text eol=crlf
+data/temporal/analysis/temporal_migration_report.md text eol=crlf
+data/temporal/cohorts/cohort_survival_report.md text eol=crlf
+data/temporal/centrality/bridge_dynamics_report.md text eol=crlf
+data/temporal/ecosystem/ecosystem_evolution_report.md text eol=crlf
+data/temporal/quality/evidence_quality_report.md text eol=crlf
+data/temporal/report/appendix_tables.md text eol=crlf
+data/temporal/report/technical_report.md text eol=crlf
+web/research/dashboard_data.json text eol=crlf
