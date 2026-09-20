@@ -68,7 +68,7 @@ Eligibility precedence is:
 1. The original 1,370 baseline is trusted as VTuber data and is not re-reviewed.
 2. The screening stage produced 363 automated `VTUBER` decisions and 30 human `vtuber` decisions (393 initial accepts). One human-accepted row, `candidate_e75fe4be2e942a6f1d0d`, was later reclassified to `exclude_virtual_group` from verified account-owner evidence, leaving 392 final accepted individual-persona accounts.
 3. The 292 `TRUSTED_BASELINE` discovery candidates resolve to existing baseline accounts and add no duplicate account.
-4. The 102 final exclusions do not enter the canonical registry.
+4. The 106 final exclusions do not enter the canonical registry.
 5. The 94 unavailable accounts remain outside the canonical registry and remain explicitly unresolved.
 6. Virtual-group, associated-account, organization, media, clip, and service accounts remain outside the individual creator catalog.
 
@@ -239,7 +239,7 @@ Contract validation requires:
 - exactly 1,370 unique baseline YouTube Channel IDs are preserved;
 - exactly 392 final accepted discovery accounts are represented once;
 - all 292 trusted-baseline candidates resolve without adding duplicate accounts;
-- none of the 102 exclusions appear;
+- none of the 106 exclusions appear;
 - none of the 94 unavailable accounts appear;
 - group, associated, organization, media, clip, and service accounts do not appear as individual creators;
 - every account references one creator;
