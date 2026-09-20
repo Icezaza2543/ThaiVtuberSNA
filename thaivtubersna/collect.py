@@ -264,6 +264,10 @@ def _viewer_hmac_key() -> bytes:
     key_path.parent.mkdir(parents=True, exist_ok=True)
     if not key_path.exists():
         key_path.write_text(secrets.token_hex(32), encoding="ascii")
+        try:
+            os.chmod(key_path, 0o600)
+        except OSError:
+            pass
     return key_path.read_text(encoding="ascii").strip().encode("ascii")
 
 
