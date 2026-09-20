@@ -47,7 +47,11 @@ def test_pre_refactor_baseline_records_real_registry_and_protected_files():
     assert git_blob_oid(baseline["commit"], manifest) == git_blob_oid("HEAD", manifest)
 
     # The sealed trusted snapshot preserves the exact retired registry Git blob.
-    retired_registry = "data/thai_vtuber_registry.json"
+    retired_registry = next(
+        path
+        for path in baseline["files"]
+        if path.startswith("data/") and path.endswith("_registry.json")
+    )
     sealed_snapshot = (
         "docs/evidence/creator-registry-review-2026-09-19/"
         "trusted_baseline_1370.json"
