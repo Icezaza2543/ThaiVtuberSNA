@@ -61,3 +61,43 @@ All-Time: 271 โหนด / 663 เส้นก่อนกรอง ในห�
 YouTube Data API requests: 0 ไม่อ่าน/เขียน workbook ไม่แตะ campaign ledger/cursor/HMAC และไม่เปลี่ยน frontend หรือ frozen artifacts ไม่รัน broad tests เพราะไม่ได้แก้ production code
 
 Batch commits: 8fded3a, 06d4490, a1c9112, 1bebd68, e889b0b, 93fac94, d8be95a
+
+
+## Channel eligibility cleaning for Surface Analytics
+
+การตรวจ 408 กลุ่มก่อนหน้านี้เป็นการตรวจ **candidate event** เป็นหลัก จึงห้ามตีความว่า `REJECTED_AS_IDENTITY_EVENT` = “ไม่ใช่ VTuber” รอบนี้เพิ่มชั้น **channel eligibility** แยกต่างหากโดยไม่แก้ raw registry, frozen releases, workbook หรือ live campaign
+
+| สถานะ | ช่อง | ใช้ใน Surface Analytics เริ่มต้น |
+|---|---:|---|
+| **STRICT_VIRTUAL** | **229** | ใช้ |
+| **PROVISIONAL_VIRTUAL** | **45** | ปิดไว้โดยปริยาย / เปิดได้พร้อม caveat |
+| **EXCLUDE_NON_PERSONA_ACCOUNT** | **2** | ไม่ให้นับเป็น VTuber |
+| **HOLD_NEEDS_CHANNEL_REVIEW** | **132** | ยังไม่ใช้ |
+
+สองช่องที่หลักฐานในชุด review ระบุชัดว่าเป็น account ระดับโครงการ ไม่ใช่ persona endpoint คือ **Destinesia Project** (`UCYu6pahmFwIki35ru8s62pQ`) และ **Flora Vtuber Project** (`UC8DTBPbQq0NZNo2RtCtTXuw`) จึงถูกตัดออกจาก VTuber counts แต่ยังเก็บเป็น ecosystem/source entities ได้
+
+`STRICT_VIRTUAL` ต้องมี reviewed role ว่าเป็น virtual creator/both หรือมี VERIFIED/SUPPORTED identity event ร่วมกับหลักฐาน virtual medium/persona ที่ชัด หรือเป็น individual channel ใน reviewed virtual roster context. `PROVISIONAL_VIRTUAL` มี event ที่รองรับ แต่หลักฐานชุดปัจจุบันยังไม่ยืนยัน virtual medium แยกชัดพอสำหรับ strict surface cohort. `HOLD` หมายถึง “หลักฐานยังไม่พอ” ไม่ใช่ “ไม่ใช่ VTuber”
+
+Artifacts: `channel_eligibility_v1.json`, `channel_eligibility_v1.csv`, `surface_virtual_cohort_v1.json`
+
+**ค่า default สำหรับ Surface Analytics คือ 229 ช่องใน STRICT_VIRTUAL เท่านั้น** จนกว่าจะ review เพิ่ม ส่วน reference frame 1,370 ช่องและข้อมูลที่เก็บมาแล้วไม่ถูกลบ เพื่อไม่ให้เสีย provenance หรือทำให้ collection checkpoint เปลี่ยน
+
+
+## Surface Analytics v1 — strict cohort rebuild
+
+สร้าง Surface Analytics จาก **229 STRICT_VIRTUAL channels เท่านั้น** โดยไม่แตะ live worker, private workbook หรือ raw reference frame 1,370 ช่อง
+
+- Catalog: **70,243 videos** จาก 229 ช่อง, ช่วง publication **2013-05-01 ถึง 2026-09-10**
+- Catalog state: **222 playlist exhausted / 7 pending**
+- ช่องที่ catalog มีวิดีโอถึงปี 2020 หรือต่ำกว่า: **18**
+- Network snapshot ที่กรองจาก public threshold>=5 graph ณ 2026-09-07: **229 nodes / 29 edges / 21 strong edges**
+- Network มี **212 isolated nodes** ใน thresholded snapshot; จึงห้ามอ่านว่า 212 ช่องไม่มี audience overlap โดยทั่วไป
+- Clean audience pseudonym/interaction totals: **ยังไม่คำนวณ** ระหว่าง private live archive กำลังเปลี่ยน เพื่อไม่ให้ปน cohort หรืออ่าน workbook หนักโดยไม่จำเป็น
+- Identity event points ใน strict cohort: identity_start **224**, redebut **2**, model_change **2** (ตาม reviewed event rows ที่มีวันที่)
+- Lexical contamination audit flag 27 ช่องสำหรับ spot-check เพิ่ม แต่ **ไม่มี auto-exclusion เพิ่ม** เพราะหลักฐาน review ปัจจุบันยังผูก event กับ persona/uploader โดยตรง
+- 45 PROVISIONAL ถูกแยกเป็น review queue ใหม่ ไม่ปน default Surface cohort
+
+Artifacts:
+- `web/research/surface_analytics_v1.json`
+- `strict_surface_audit_v1.csv`
+- `provisional_virtual_review_queue.csv`
