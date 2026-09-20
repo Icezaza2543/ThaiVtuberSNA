@@ -4,21 +4,17 @@ on:
   push:
     branches:
       - codex/creator-registry-consolidation
-    paths:
-      - scripts/validate_creator_registry_consolidation.py
-      - tests/test_creator_registry_baseline.py
-      - tests/test_registry_consumer_migration.py
-      - tests/test_sampling_manifest.py
-      - requirements.txt
-      - scripts/observatory_controller.py
-      - .github/workflows/task13-registry-final.yml
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: creator-registry-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   final-validation:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 35
 
@@ -80,6 +76,7 @@ jobs:
             tests/test_creator_identity_resolution.py \
             tests/test_creator_identity_resolution_task8.py \
             tests/test_creator_registry_build.py \
+            tests/test_creator_registry_final_validation.py \
             tests/test_registry_consumer_migration.py \
             tests/test_frontend_public_boundary.py \
             tests/test_refactor_equivalence.py \
@@ -89,18 +86,50 @@ jobs:
             --basetemp /tmp/registry-final/focused-temp \
             | tee /tmp/registry-final/focused.txt
 
+      - name: Checkpoint release state before full suite
+        shell: bash
+        run: |
+          git status --short
+          test -z "$(git status --porcelain)"
+          set +e
+          python scripts/validate_dataset_release.py > /tmp/registry-final/release-before.txt 2>&1
+          release_status=$?
+          set -e
+          echo "$release_status" > /tmp/registry-final/release-before-exit.txt
+
       - name: Run complete pytest suite for baseline comparison
         shell: bash
         run: |
           set +e
           set -o pipefail
           python -m pytest -q \
+            --junitxml=/tmp/registry-final/full-junit.xml \
             --basetemp /tmp/registry-final/full-temp \
             | tee /tmp/registry-final/full.txt
           status=${PIPESTATUS[0]}
           set -e
           echo "$status" > /tmp/registry-final/full-exit-code.txt
           echo "Full-suite pytest exit code: $status (final validator compares failures to Task 1 baseline)"
+
+      - name: Verify full suite did not mutate tracked release state
+        shell: bash
+        run: |
+          git status --short
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Full suite modified the checkout:"
+            git diff --name-status
+            git diff --check
+            exit 1
+          fi
+
+          set +e
+          python scripts/validate_dataset_release.py > /tmp/registry-final/release-after.txt 2>&1
+          release_status=$?
+          set -e
+          echo "$release_status" > /tmp/registry-final/release-after-exit.txt
+
+          cmp /tmp/registry-final/release-before-exit.txt /tmp/registry-final/release-after-exit.txt
+          cmp /tmp/registry-final/release-before.txt /tmp/registry-final/release-after.txt
 
       - name: Write final machine-readable validation evidence
         shell: bash
@@ -113,20 +142,26 @@ jobs:
             --full-log /tmp/registry-final/full.txt \
             --data-security-json /tmp/registry-final/data-security.json \
             --validated-commit "$validated_commit" \
-            --output docs/evidence/creator-registry-review-2026-09-19/post_refactor_validation.json
+            --output /tmp/registry-final/post_refactor_validation.json
 
       - name: Final branch diff gate
         shell: bash
         run: |
           merge_base="$(git merge-base HEAD origin/main)"
           git diff "$merge_base...HEAD" --check
-          git status --short
+          test -z "$(git status --porcelain)"
 
-      - name: Commit final validation evidence
-        shell: bash
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/evidence/creator-registry-review-2026-09-19/post_refactor_validation.json
-          git commit -m "test(registry): verify canonical consolidation"
-          git push origin HEAD:codex/creator-registry-consolidation
+      - name: Upload final validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: creator-registry-final-validation
+          path: |
+            /tmp/registry-final/post_refactor_validation.json
+            /tmp/registry-final/focused.txt
+            /tmp/registry-final/full.txt
+            /tmp/registry-final/full-junit.xml
+            /tmp/registry-final/release-before.txt
+            /tmp/registry-final/release-after.txt
+          if-no-files-found: warn
+          retention-days: 14
