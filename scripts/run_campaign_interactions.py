@@ -94,7 +94,7 @@ the index and stops this worker, so stale state is never used to retry publicati
             self.payloads[key] = encode(event)
             if job_id in self.tracked_jobs:
                 self.totals[event.get('interaction_kind')] += 1
-                self.pseudonyms.add(event['viewer_id'])
+                self.pseudonyms.add(event.get('viewer_id') or event.get('viewer_hash'))
 
     def track(self, job_ids):
         added = set(job_ids) - self.tracked_jobs
@@ -103,7 +103,7 @@ the index and stops this worker, so stale state is never used to retry publicati
             if path.split('/')[1] in added:
                 for event in batch['events']:
                     self.totals[event.get('interaction_kind')] += 1
-                    self.pseudonyms.add(event['viewer_id'])
+                    self.pseudonyms.add(event.get('viewer_id') or event.get('viewer_hash'))
 
     def load(self, job_id):
         if not self.valid:

@@ -42,14 +42,20 @@ class DuckDBAnalyticsEngine:
         glob_pattern = str(self.events_dir / "**" / "*.parquet").replace("\\", "/").replace("'", "''")
         source = f"read_parquet('{glob_pattern}', union_by_name=True)"
         columns = {row[0] for row in self.con.execute(f"DESCRIBE SELECT * FROM {source}").fetchall()}
-        required = {"viewer_id", "vtuber_channel_id", "video_id", "source_type"}
-        if not required <= columns:
+        required = {"vtuber_channel_id", "video_id", "source_type"}
+        if not required <= columns or ("viewer_id" not in columns and "viewer_hash" not in columns):
             raise ValueError("Presence schema missing identity or source columns")
         def expr(name, fallback):
             return f"COALESCE({name}, {fallback})" if name in columns else fallback
         timestamp = "timestamp" if "timestamp" in columns else "NULL::VARCHAR"
+        if "viewer_id" not in columns and "viewer_hash" in columns:
+            viewer_expr = "viewer_hash AS viewer_id"
+        elif "viewer_id" in columns and "viewer_hash" in columns:
+            viewer_expr = "COALESCE(viewer_id, viewer_hash) AS viewer_id"
+        else:
+            viewer_expr = "viewer_id"
         self.con.execute(f"""CREATE OR REPLACE VIEW raw_events AS SELECT
-            viewer_id, vtuber_channel_id, video_id, source_type,
+            {viewer_expr}, vtuber_channel_id, video_id, source_type,
             {expr('first_seen', timestamp)} AS first_seen,
             {expr('last_seen', timestamp)} AS last_seen,
             {expr('appearances', '1::BIGINT')} AS appearances

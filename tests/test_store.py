@@ -124,3 +124,40 @@ def test_record_interactions_batch(mem_db):
     assert inserted_2 == 1
     assert count(mem_db, "interactions") == 3
 
+
+def test_validated_expanded_batches_backwards_compatible():
+    import hashlib
+    import json
+    from storage.expanded_sheet_batches import validated_expanded_batches
+    from collector.expanded_backfill import encode
+
+    job_hex = "a" * 64
+    path = f"expanded-v1/{job_hex}/1"
+    event_legacy = {
+        "record_id": "rec_1",
+        "viewer_hash": "legacy_hash_abc",
+        "vtuber_channel_id": "UC_creator_1",
+        "video_id": "vid_1",
+        "source_type": "comment",
+        "interaction_kind": "comment",
+        "interaction_time": "2026-09-20T10:00:00Z",
+        "provenance": "prov_1",
+    }
+    state = {"sequence": 1}
+    rows = [
+        [path, "event", "0", encode(event_legacy)],
+        [path, "state", "1", encode(state)],
+    ]
+    digest = hashlib.sha256(encode(rows).encode()).hexdigest()
+    rows.append([path, "batch_manifest", "2", encode({"sha256": digest, "rows": 2})])
+
+    records = [
+        {"source_path": r[0], "source_table": r[1], "row_number": r[2], "record_json": r[3]}
+        for r in rows
+    ]
+    accepted, rejected = validated_expanded_batches(records)
+    assert not rejected
+    assert path in accepted
+    assert accepted[path]["events"][0]["viewer_id"] == "legacy_hash_abc"
+
+

@@ -42,8 +42,10 @@ def _normalize(events):
                 raise ValueError('Invalid presence identity')
         if event.get('source_type') not in {'comment', 'live_chat'}:
             raise ValueError('Explicit source_type live_chat or comment required')
-        if not isinstance(event.get('viewer_id'), str) or not event['viewer_id']:
+        viewer_id = event.get('viewer_id') or event.get('viewer_hash')
+        if not isinstance(viewer_id, str) or not viewer_id:
             raise ValueError('Missing viewer pseudonym')
+        event['viewer_id'] = viewer_id
         first = _timestamp(event.get('first_seen', event.get('timestamp')))
         last = _timestamp(event.get('last_seen', event.get('timestamp')))
         count = event.get('appearances', 1)

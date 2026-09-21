@@ -23,7 +23,8 @@ def archive_event(record):
     source = json.loads(record['record_json'])
     result = {k:None for k in RAW_COLUMNS}
     result['partial_capture'] = str(source.get('partial_capture', False)).lower()
-    result.update({k:source.get(k) for k in ('viewer_id','vtuber_channel_id','video_id')})
+    viewer_id = source.get('viewer_id') or source.get('viewer_hash')
+    result.update(viewer_id=viewer_id, vtuber_channel_id=source.get('vtuber_channel_id'), video_id=source.get('video_id'))
     result.update(source_type=source.get('source_type') or 'comment',provenance=tier,priority=priority,source_path=path)
     if tier == 'legacy':
         result.update(first_seen=source.get('first_seen'),timestamp=source.get('timestamp'))
