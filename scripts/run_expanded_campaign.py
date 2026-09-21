@@ -100,6 +100,51 @@ def save_json(path, value):
     temporary.replace(path)
 
 
+def refresh_approved_manifest(root, manifest):
+    """Grow the campaign cohort from the current reviewed SNA registry.
+
+    Existing manifest rows are preserved. Newly eligible YouTube channels are
+    appended as approved collection targets; channels are never removed here.
+    """
+    channels = manifest.get('channels')
+    if not isinstance(channels, list):
+        raise ValueError('approved_manifest.json must contain a channels list')
+
+    from thaivtubersna.collect import _eligible_youtube_channels
+    from thaivtubersna.store import connect
+
+    with connect() as con:
+        registry_channels = _eligible_youtube_channels(con)
+
+    by_id = {
+        row.get('channel_id'): dict(row)
+        for row in channels
+        if isinstance(row, dict) and row.get('channel_id')
+    }
+    added = []
+    for channel_id in registry_channels:
+        if channel_id in by_id:
+            continue
+        by_id[channel_id] = {
+            'channel_id': channel_id,
+            'review_status': 'approved',
+            'source': 'thaivtubersna_registry',
+        }
+        added.append(channel_id)
+
+    merged = dict(manifest)
+    merged['channels'] = [by_id[channel_id] for channel_id in sorted(by_id)]
+    if added:
+        save_json(root/'approved_manifest.json', merged)
+
+    return merged, {
+        'registry_eligible_channels': len(registry_channels),
+        'manifest_channels_before': len(channels),
+        'manifest_channels_added': len(added),
+        'manifest_channels_after': len(merged['channels']),
+    }
+
+
 def report(root, catalog, ledger, started, initial_count, status, extra=None):
     states = catalog.states()
     counts = Counter(s['catalog_status'] for s in states.values())
@@ -129,6 +174,7 @@ def run(root=ROOT):
     if not YOUTUBE_API_KEY:
         raise RuntimeError('Configured YouTube key missing')
     manifest = json.loads((root/'approved_manifest.json').read_text(encoding='utf-8'))
+    manifest, manifest_sync = refresh_approved_manifest(root, manifest)
     ledger = CampaignLedger(root/'quota.sqlite3')
     session = MeteredSession(ledger)
     catalog = ExpandedCatalog(root/'catalog.sqlite3', manifest, session=session, api_key=YOUTUBE_API_KEY, ledger=ledger)
@@ -161,9 +207,9 @@ def run(root=ROOT):
             else:
                 con.execute('DELETE FROM campaign_errors WHERE channel=?', (cid,))
         if time.monotonic()-last_report >= 30:
-            report(root, catalog, ledger, started, initial_count, status)
+            report(root, catalog, ledger, started, initial_count, status, {'manifest_sync': manifest_sync})
             last_report = time.monotonic()
-    report(root, catalog, ledger, started, initial_count, status)
+    report(root, catalog, ledger, started, initial_count, status, {'manifest_sync': manifest_sync})
 
 
 if __name__ == '__main__':

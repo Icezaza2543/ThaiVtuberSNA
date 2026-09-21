@@ -1,5 +1,9 @@
 """Tests for thaivtubersna.collect"""
 import json
+import importlib
+import sys
+import types
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import MagicMock, patch
@@ -210,6 +214,68 @@ class TestYouTubeInteractions(unittest.TestCase):
 
         self.assertEqual(len(comment_calls), 0)
         self.assertEqual(result["comments_seen"], 0)
+
+
+class TestExpandedCatalogManifestGrowth(unittest.TestCase):
+    def test_existing_catalog_accepts_new_approved_channels(self):
+        # The legacy campaign's optional backfill modules use PyArrow, which is
+        # intentionally not a dependency of the lean 4-step worker test suite.
+        # Stub only the imported symbols needed to exercise catalog identity/state.
+        historical_catalog = types.ModuleType("collector.historical_catalog_builder")
+        historical_catalog.HistoricalCatalogBuilder = type("HistoricalCatalogBuilder", (), {})
+        deep_comments = types.ModuleType("collector.deep_comment_backfill")
+        deep_comments.DeepCommentBackfiller = type("DeepCommentBackfiller", (), {})
+        historical_comments = types.ModuleType("collector.historical_comment_backfill")
+        historical_comments.BudgetExhaustedException = type(
+            "BudgetExhaustedException", (RuntimeError,), {}
+        )
+
+        sys.modules.pop("collector.expanded_backfill", None)
+        with patch.dict(
+            sys.modules,
+            {
+                "collector.historical_catalog_builder": historical_catalog,
+                "collector.deep_comment_backfill": deep_comments,
+                "collector.historical_comment_backfill": historical_comments,
+            },
+        ):
+            ExpandedCatalog = importlib.import_module(
+                "collector.expanded_backfill"
+            ).ExpandedCatalog
+        from core.expanded_contracts import DATASET_VERSION
+
+        class Ledger:
+            def debit(self, stage, units=1):
+                return None
+
+        class Session:
+            pass
+
+        base = {
+            "dataset_version": DATASET_VERSION,
+            "cohort_version": "sync-test",
+            "channels": [
+                {"channel_id": "UCaaaaaaaaaaaaaaaaaaaaaa", "review_status": "approved"}
+            ],
+        }
+        grown = {
+            "dataset_version": DATASET_VERSION,
+            "cohort_version": "sync-test",
+            "channels": [
+                {"channel_id": "UCaaaaaaaaaaaaaaaaaaaaaa", "review_status": "approved"},
+                {"channel_id": "UCbbbbbbbbbbbbbbbbbbbbbb", "review_status": "approved"},
+            ],
+        }
+
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "catalog.sqlite3"
+            ExpandedCatalog(path, base, session=Session(), api_key="test", ledger=Ledger())
+            catalog = ExpandedCatalog(path, grown, session=Session(), api_key="test", ledger=Ledger())
+            self.assertEqual(
+                set(catalog.states()),
+                {"UCaaaaaaaaaaaaaaaaaaaaaa", "UCbbbbbbbbbbbbbbbbbbbbbb"},
+            )
+
 
 
 if __name__ == "__main__":
