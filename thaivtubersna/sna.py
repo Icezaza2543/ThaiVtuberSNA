@@ -20,16 +20,23 @@ STRONG_VIDEO_THRESHOLD = 2
 
 _OVERLAP_SQL = """
 WITH
-any_presence AS (
-    SELECT
-        creator_id,
-        viewer_hash,
-        COUNT(DISTINCT video_id) AS video_count
+shared_viewers AS (
+    SELECT viewer_hash
     FROM interactions
     WHERE viewer_hash IS NOT NULL
       AND trim(viewer_hash) <> ''
       AND creator_id IS NOT NULL
-    GROUP BY creator_id, viewer_hash
+    GROUP BY viewer_hash
+    HAVING COUNT(DISTINCT creator_id) >= 2
+),
+any_presence AS (
+    SELECT
+        i.creator_id,
+        i.viewer_hash,
+        COUNT(DISTINCT i.video_id) AS video_count
+    FROM interactions i
+    JOIN shared_viewers s ON i.viewer_hash = s.viewer_hash
+    GROUP BY i.creator_id, i.viewer_hash
 ),
 any_pairs AS (
     SELECT
@@ -50,16 +57,14 @@ any_pairs AS (
 ),
 source_presence AS (
     SELECT
-        creator_id,
-        viewer_hash,
-        source_type,
-        COUNT(DISTINCT video_id) AS video_count
-    FROM interactions
-    WHERE viewer_hash IS NOT NULL
-      AND trim(viewer_hash) <> ''
-      AND creator_id IS NOT NULL
-      AND source_type IN ('live_chat', 'comment')
-    GROUP BY creator_id, viewer_hash, source_type
+        i.creator_id,
+        i.viewer_hash,
+        i.source_type,
+        COUNT(DISTINCT i.video_id) AS video_count
+    FROM interactions i
+    JOIN shared_viewers s ON i.viewer_hash = s.viewer_hash
+    WHERE i.source_type IN ('live_chat', 'comment')
+    GROUP BY i.creator_id, i.viewer_hash, i.source_type
 ),
 source_pairs AS (
     SELECT

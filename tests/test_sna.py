@@ -113,3 +113,27 @@ def test_recalculate_preserves_legacy_seed_without_interactions():
         assert result["edges"] == 1
     finally:
         path.unlink(missing_ok=True)
+
+
+def test_sna_ignores_single_channel_viewers():
+    path = _fresh_tmp_db()
+    try:
+        con = open_db(path)
+        # 10 viewers that only watch channel A (noise / degree=1)
+        for i in range(10):
+            record_interaction(con, "A", f"a_vid_{i}", f"viewer_solo_{i}", "comment")
+        # 1 shared viewer between A and B
+        record_interaction(con, "A", "shared_vid_a", "viewer_shared", "comment")
+        record_interaction(con, "B", "shared_vid_b", "viewer_shared", "comment")
+        con.close()
+
+        written = sna.compute_pairwise_overlap(path)
+        assert written == 1
+
+        con = open_db(path)
+        row = con.execute("SELECT shared_any FROM network_edges WHERE creator_a = 'A' AND creator_b = 'B'").fetchone()
+        con.close()
+        assert row == (1,)
+    finally:
+        path.unlink(missing_ok=True)
+
