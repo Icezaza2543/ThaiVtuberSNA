@@ -87,15 +87,42 @@ class ExpandedCatalog:
             raise ValueError('Every channel must be explicitly approved with a stable ID')
         if len({c['channel_id'] for c in channels}) != len(channels):
             raise ValueError('Deduplicate approved channel IDs before collection')
-        self.identity = encode({'version': DATASET_VERSION, 'cohort': manifest['cohort_version'],
-                                'channels': sorted(c['channel_id'] for c in channels), 'cap': cap})
+        identity_payload = {
+            'version': DATASET_VERSION,
+            'cohort': manifest['cohort_version'],
+            'channels': sorted(c['channel_id'] for c in channels),
+            'cap': cap,
+        }
+        self.identity = encode(identity_payload)
         with self.connection() as con:
             con.execute('BEGIN IMMEDIATE')
             con.execute('CREATE TABLE IF NOT EXISTS identity(value TEXT PRIMARY KEY)')
             old = con.execute('SELECT value FROM identity').fetchone()
-            if old and old[0] != self.identity:
-                raise ValueError('Catalog version/cohort/policy mismatch')
-            con.execute('INSERT OR IGNORE INTO identity VALUES (?)', (self.identity,))
+            if old:
+                try:
+                    previous_identity = json.loads(old[0])
+                except (TypeError, json.JSONDecodeError) as exc:
+                    raise ValueError('Catalog identity checkpoint is unreadable') from exc
+                same_policy = (
+                    previous_identity.get('version') == identity_payload['version']
+                    and previous_identity.get('cohort') == identity_payload['cohort']
+                    and previous_identity.get('cap') == identity_payload['cap']
+                )
+                if not same_policy:
+                    raise ValueError('Catalog version/cohort/policy mismatch')
+                previous_channels = set(previous_identity.get('channels', []))
+                current_channels = set(identity_payload['channels'])
+                if not previous_channels.issubset(current_channels):
+                    removed = sorted(previous_channels - current_channels)
+                    raise ValueError(
+                        'Catalog manifest cannot remove previously approved channels: '
+                        + ', '.join(removed[:5])
+                    )
+                if old[0] != self.identity:
+                    con.execute('DELETE FROM identity')
+                    con.execute('INSERT INTO identity VALUES (?)', (self.identity,))
+            else:
+                con.execute('INSERT INTO identity VALUES (?)', (self.identity,))
             con.execute('CREATE TABLE IF NOT EXISTS channels(id TEXT PRIMARY KEY, state TEXT)')
             con.execute('CREATE TABLE IF NOT EXISTS videos(channel TEXT, video TEXT, metadata TEXT, PRIMARY KEY(channel,video))')
             con.execute('CREATE TABLE IF NOT EXISTS unavailable(channel TEXT, item TEXT, metadata TEXT, PRIMARY KEY(channel,item))')
