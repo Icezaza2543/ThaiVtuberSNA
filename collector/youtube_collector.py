@@ -8,16 +8,15 @@ Dual-backend support:
 2. YouTube Data API v3 (when YOUTUBE_API_KEY is configured)
 
 STRICT PRIVACY ENFORCEMENT:
-- Author channel IDs are hashed immediately via HMAC-SHA256.
+- Author channel IDs are stored directly as per new policy.
 - Raw channel IDs, display names, avatars, emoji, comment/chat text,
-  and sentiment are NEVER stored or persisted.
+  and sentiment are NEVER stored or persisted, except for the raw channel ID itself.
 """
 import logging
 import re
 from datetime import datetime, timezone
 from typing import List, Dict, Any, Optional
 from collector.base_collector import BaseCollector
-from core.hasher import PrivacyHasher
 from config.settings import YOUTUBE_API_KEY
 from collector.outcomes import ExtractionFailure, classify_error, QuietExtractorLogger
 
@@ -25,8 +24,7 @@ logger = logging.getLogger(__name__)
 
 
 class YouTubeCollector(BaseCollector):
-    def __init__(self, api_key: Optional[str] = None, hasher=None):
-        self.hasher = hasher or PrivacyHasher()
+    def __init__(self, api_key: Optional[str] = None):
         self.api_key = api_key if api_key is not None else YOUTUBE_API_KEY
         self._youtube = None
         self.last_capture_partial = False
@@ -60,7 +58,7 @@ class YouTubeCollector(BaseCollector):
         """
         Collects viewer presence from a real YouTube video or stream.
         Outputs ONLY:
-        - viewer_hash
+        - viewer_id
         - vtuber_channel_id
         - video_id
         - timestamp
@@ -93,7 +91,7 @@ class YouTubeCollector(BaseCollector):
     def collect_aggregated_events(self, job_dict: Dict[str, Any], max_comments: int = 150) -> List[Dict[str, Any]]:
         """
         Outputs aggregated session schema (Requirement 2 & 7):
-        - viewer_hash
+        - viewer_id
         - vtuber_channel_id
         - video_id
         - first_seen
@@ -105,11 +103,11 @@ class YouTubeCollector(BaseCollector):
         agg_map: Dict[str, Dict[str, Any]] = {}
 
         for ev in raw_events:
-            vh = (ev["viewer_hash"], ev["vtuber_channel_id"], ev["video_id"], ev["source_type"])
+            vh = (ev["viewer_id"], ev["vtuber_channel_id"], ev["video_id"], ev["source_type"])
             t = ev["timestamp"]
             if vh not in agg_map:
                 agg_map[vh] = {
-                    "viewer_hash": ev["viewer_hash"],
+                    "viewer_id": ev["viewer_id"],
                     "vtuber_channel_id": ev["vtuber_channel_id"],
                     "video_id": ev["video_id"],
                     "first_seen": t,
@@ -129,7 +127,7 @@ class YouTubeCollector(BaseCollector):
     def _collect_via_ytdlp(self, video_id: str, vtuber_id: str, max_comments: int = 150) -> List[Dict[str, Any]]:
         """
         Extracts public comments using yt-dlp without API key.
-        Applies immediate HMAC-SHA256 hashing on author_id.
+        Uses raw author_id.
         Discards all text, avatars, emojis, and names.
         """
         import yt_dlp
@@ -159,8 +157,7 @@ class YouTubeCollector(BaseCollector):
                     if not raw_author_id or not str(raw_author_id).startswith("UC"):
                         continue
 
-                    # PRIVACY RULE: Immediate one-way salted hashing
-                    viewer_hash = self.hasher.hash_viewer_id(str(raw_author_id))
+                    viewer_id = str(raw_author_id)
                     
                     # Convert timestamp to ISO format
                     ts_raw = c.get("timestamp")
@@ -172,7 +169,7 @@ class YouTubeCollector(BaseCollector):
 
                     # Strictly store only the allowed fields
                     events.append({
-                        "viewer_hash": viewer_hash,
+                        "viewer_id": viewer_id,
                         "vtuber_channel_id": vtuber_id,
                         "video_id": video_id,
                         "timestamp": ts_iso,
@@ -186,7 +183,7 @@ class YouTubeCollector(BaseCollector):
         return events
 
     def _collect_via_api(self, video_id: str, vtuber_id: str) -> List[Dict[str, Any]]:
-        """YouTube Data API v3 collection with immediate hashing."""
+        """YouTube Data API v3 collection with raw ID."""
         try:
             comment_req = self._youtube.commentThreads().list(
                 part="snippet",
@@ -205,11 +202,11 @@ class YouTubeCollector(BaseCollector):
                 if not raw_id:
                     continue
 
-                v_hash = self.hasher.hash_viewer_id(raw_id)
+                v_id = raw_id
                 ts = top.get("publishedAt") or datetime.now(timezone.utc).isoformat()
 
                 events.append({
-                    "viewer_hash": v_hash,
+                    "viewer_id": v_id,
                     "vtuber_channel_id": vtuber_id,
                     "video_id": video_id,
                     "timestamp": ts,

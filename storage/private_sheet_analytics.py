@@ -7,7 +7,7 @@ import pyarrow as pa
 from storage.private_sheet_store import PrivateSheetStore
 
 ARCHIVE_HEADERS = ['source_path', 'source_table', 'row_number', 'record_json']
-RAW_COLUMNS = ['viewer_hash','vtuber_channel_id','video_id','source_type',
+RAW_COLUMNS = ['viewer_id','vtuber_channel_id','video_id','source_type',
                'interaction_at','first_seen','timestamp','video_published_at','provenance','priority','source_path','partial_capture']
 
 
@@ -23,7 +23,7 @@ def archive_event(record):
     source = json.loads(record['record_json'])
     result = {k:None for k in RAW_COLUMNS}
     result['partial_capture'] = str(source.get('partial_capture', False)).lower()
-    result.update({k:source.get(k) for k in ('viewer_hash','vtuber_channel_id','video_id')})
+    result.update({k:source.get(k) for k in ('viewer_id','vtuber_channel_id','video_id')})
     result.update(source_type=source.get('source_type') or 'comment',provenance=tier,priority=priority,source_path=path)
     if tier == 'legacy':
         result.update(first_seen=source.get('first_seen'),timestamp=source.get('timestamp'))
@@ -52,7 +52,7 @@ def build_sheet_unified_raw(con, store=None, *, include_expanded=False):
         for path, batch in batches.items():
             for event in batch['events']:
                 row = {k: None for k in RAW_COLUMNS}
-                row.update({k: event[k] for k in ('viewer_hash','vtuber_channel_id','video_id','source_type','provenance')})
+                row.update({k: event[k] for k in ('viewer_id','vtuber_channel_id','video_id','source_type','provenance')})
                 row.update(interaction_at=event.get('interaction_time'),
                            video_published_at=event.get('video_published_at'), source_path=path,
                            priority=0, partial_capture='true', append_only=True)

@@ -31,11 +31,7 @@ CACHE_DIR = DATA_DIR / "cache"
 CREATOR_REGISTRY_PATH = DATA_DIR / "registry" / "creators.json"
 CREATOR_IDENTITY_CACHE_DIR = BASE_DIR / ".tmp" / "creator_identity"
 
-# Privacy & Hashing
-# Persistent HMAC Secret Key location
-SECRET_KEY_PATH = BASE_DIR / "config" / "secret.key"
-SECRET_FINGERPRINT_PATH = BASE_DIR / "config" / "secret.fingerprint"
-SALT_SECRET = os.getenv("VTUBER_SNA_SALT", "")
+
 
 # Priority System - Subscriber Tiers
 SUBSCRIBER_TIERS = {

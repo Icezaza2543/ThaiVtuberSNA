@@ -31,7 +31,7 @@ def test_record_interaction_idempotent(mem_db):
         mem_db,
         creator_id="UC_creator_1",
         video_id="vid_123",
-        viewer_hash="hash_viewer_abc",
+        viewer_id="raw_viewer_abc",
         source_type="live_chat",
         observed_at="2026-09-20T10:00:00Z",
     ) is True
@@ -42,7 +42,7 @@ def test_record_interaction_idempotent(mem_db):
         mem_db,
         creator_id="UC_creator_1",
         video_id="vid_123",
-        viewer_hash="hash_viewer_abc",
+        viewer_id="raw_viewer_abc",
         source_type="live_chat",
         observed_at="2026-09-20T10:05:00Z",
     ) is False
@@ -53,7 +53,7 @@ def test_record_interaction_idempotent(mem_db):
         mem_db,
         creator_id="UC_creator_1",
         video_id="vid_123",
-        viewer_hash="hash_viewer_abc",
+        viewer_id="raw_viewer_abc",
         source_type="comment",
         observed_at="2026-09-20T10:00:00Z",
     )
@@ -97,7 +97,7 @@ def test_record_interaction_rejects_unknown_source(mem_db):
             mem_db,
             creator_id="UC_creator_1",
             video_id="vid_999",
-            viewer_hash="hash_viewer_xyz",
+            viewer_id="raw_viewer_xyz",
             source_type="unknown",
         )
 

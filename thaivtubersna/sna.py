@@ -21,22 +21,22 @@ STRONG_VIDEO_THRESHOLD = 2
 _OVERLAP_SQL = """
 WITH
 shared_viewers AS (
-    SELECT viewer_hash
+    SELECT viewer_id
     FROM interactions
-    WHERE viewer_hash IS NOT NULL
-      AND trim(viewer_hash) <> ''
+    WHERE viewer_id IS NOT NULL
+      AND trim(viewer_id) <> ''
       AND creator_id IS NOT NULL
-    GROUP BY viewer_hash
+    GROUP BY viewer_id
     HAVING COUNT(DISTINCT creator_id) >= 2
 ),
 any_presence AS (
     SELECT
         i.creator_id,
-        i.viewer_hash,
+        i.viewer_id,
         COUNT(DISTINCT i.video_id) AS video_count
     FROM interactions i
-    JOIN shared_viewers s ON i.viewer_hash = s.viewer_hash
-    GROUP BY i.creator_id, i.viewer_hash
+    JOIN shared_viewers s ON i.viewer_id = s.viewer_id
+    GROUP BY i.creator_id, i.viewer_id
 ),
 any_pairs AS (
     SELECT
@@ -51,20 +51,20 @@ any_pairs AS (
         ) AS strong_shared_any
     FROM any_presence a
     JOIN any_presence b
-      ON a.viewer_hash = b.viewer_hash
+      ON a.viewer_id = b.viewer_id
      AND a.creator_id < b.creator_id
     GROUP BY a.creator_id, b.creator_id
 ),
 source_presence AS (
     SELECT
         i.creator_id,
-        i.viewer_hash,
+        i.viewer_id,
         i.source_type,
         COUNT(DISTINCT i.video_id) AS video_count
     FROM interactions i
-    JOIN shared_viewers s ON i.viewer_hash = s.viewer_hash
+    JOIN shared_viewers s ON i.viewer_id = s.viewer_id
     WHERE i.source_type IN ('live_chat', 'comment')
-    GROUP BY i.creator_id, i.viewer_hash, i.source_type
+    GROUP BY i.creator_id, i.viewer_id, i.source_type
 ),
 source_pairs AS (
     SELECT
@@ -80,7 +80,7 @@ source_pairs AS (
         ) AS strong_shared_source
     FROM source_presence a
     JOIN source_presence b
-      ON a.viewer_hash = b.viewer_hash
+      ON a.viewer_id = b.viewer_id
      AND a.source_type = b.source_type
      AND a.creator_id < b.creator_id
     GROUP BY a.creator_id, b.creator_id, a.source_type
@@ -112,9 +112,9 @@ ORDER BY p.shared_any DESC, p.creator_a, p.creator_b
 """
 
 _AUDIENCE_SQL = """
-SELECT creator_id, COUNT(DISTINCT viewer_hash) AS unique_viewers
+SELECT creator_id, COUNT(DISTINCT viewer_id) AS unique_viewers
 FROM interactions
-WHERE viewer_hash IS NOT NULL AND trim(viewer_hash) <> ''
+WHERE viewer_id IS NOT NULL AND trim(viewer_id) <> ''
 GROUP BY creator_id
 """
 

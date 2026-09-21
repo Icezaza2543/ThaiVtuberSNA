@@ -5,7 +5,6 @@ import time
 import uuid
 from multiprocessing.connection import wait
 from pathlib import Path
-from core.hasher import PrivacyHasher
 from core.dataset_identity import bind_dataset, validate_dataset_identity
 from core.file_lock import file_lock
 from core.job_journal import JobJournal, OUTCOMES, utcnow
@@ -19,12 +18,11 @@ from config.settings import DATA_DIR
 
 class ContinuousCollector:
     def __init__(self, storage_dir=None, journal_path=None, max_workers=3,
-                 scheduler_type='greedy', hasher=None, poll_interval_seconds=300,
+                 scheduler_type='greedy', poll_interval_seconds=300,
                  clock=utcnow, comment_collector=None, live_chat_adapter=None):
         if max_workers < 1 or scheduler_type not in {'greedy', 'pso'}:
             raise ValueError('Invalid worker or scheduler policy')
-        self.hasher = hasher or PrivacyHasher()
-        self.storage_dir = Path(storage_dir or DATA_DIR / 'real' / 'events')
+                self.storage_dir = Path(storage_dir or DATA_DIR / 'real' / 'events')
         self.key_fingerprint = bind_dataset(self.storage_dir, self.hasher)
         self.storage_mgr = ParquetStorageManager(self.storage_dir)
         self.journal = JobJournal(journal_path or self.storage_dir.parent / 'job_journal.sqlite3',

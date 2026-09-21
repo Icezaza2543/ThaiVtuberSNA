@@ -14,7 +14,6 @@ import time
 
 from collector.expanded_backfill import ExpandedInteractions, InteractionTransport, interaction_job, encode
 from core.file_lock import file_lock
-from core.hasher import PrivacyHasher
 from core.job_journal import JobJournal
 from storage.expanded_sheet_batches import ExpandedSheetBatches, TAB, validated_expanded_batches
 from storage.private_sheet_analytics import ARCHIVE_HEADERS
@@ -95,7 +94,7 @@ the index and stops this worker, so stale state is never used to retry publicati
             self.payloads[key] = encode(event)
             if job_id in self.tracked_jobs:
                 self.totals[event.get('interaction_kind')] += 1
-                self.pseudonyms.add(event['viewer_hash'])
+                self.pseudonyms.add(event['viewer_id'])
 
     def track(self, job_ids):
         added = set(job_ids) - self.tracked_jobs
@@ -104,7 +103,7 @@ the index and stops this worker, so stale state is never used to retry publicati
             if path.split('/')[1] in added:
                 for event in batch['events']:
                     self.totals[event.get('interaction_kind')] += 1
-                    self.pseudonyms.add(event['viewer_hash'])
+                    self.pseudonyms.add(event['viewer_id'])
 
     def load(self, job_id):
         if not self.valid:
@@ -203,7 +202,6 @@ def run(root=ROOT):
     from config.settings import YOUTUBE_API_KEY
     from storage.private_sheet_store import PrivateSheetStore
     manifest = json.loads((root/'approved_manifest.json').read_text(encoding='utf-8'))
-    hasher = PrivacyHasher()
     ledger = CampaignLedger(root/'quota.sqlite3')
     store = PrivateSheetStore()
     allocated = sum(w.row_count*w.col_count for w in store._write(store.spreadsheet.worksheets))
@@ -217,7 +215,7 @@ def run(root=ROOT):
         return
     batches = CampaignBatches(store, measured_allocated_cells=allocated)
     transport = InteractionTransport(session=MeteredSession(ledger), api_key=YOUTUBE_API_KEY, ledger=ledger)
-    engine = ExpandedInteractions(transport=transport,batches=batches,hasher=hasher,
+    engine = ExpandedInteractions(transport=transport,batches=batches,
                                   record_cap=FIRST_PASS_CAP)
     journal = JobJournal(root/'interaction_journal.sqlite3',poll_interval_seconds=.01)
     # The exclusive writer lock proves no previous publisher is still active;

@@ -14,7 +14,7 @@ class BaseCollector(ABC):
         Returns list of event records:
         [
             {
-                "viewer_hash": str,
+                "viewer_id": str,
                 "vtuber_channel_id": str,
                 "video_id": str,
                 "timestamp": str,

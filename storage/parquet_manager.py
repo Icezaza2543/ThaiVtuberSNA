@@ -15,9 +15,9 @@ from config.settings import EVENTS_DIR
 from core.file_lock import file_lock
 
 EVENT_SCHEMA = pa.schema([(k, pa.string()) for k in
-    ('viewer_hash', 'vtuber_channel_id', 'video_id', 'timestamp', 'source_type')])
+    ('viewer_id', 'vtuber_channel_id', 'video_id', 'timestamp', 'source_type')])
 AGGREGATED_SCHEMA = pa.schema([
-    ('viewer_hash', pa.string()), ('vtuber_channel_id', pa.string()),
+    ('viewer_id', pa.string()), ('vtuber_channel_id', pa.string()),
     ('video_id', pa.string()), ('first_seen', pa.string()), ('last_seen', pa.string()),
     ('appearances', pa.int64()), ('source_type', pa.string())])
 
@@ -42,19 +42,19 @@ def _normalize(events):
                 raise ValueError('Invalid presence identity')
         if event.get('source_type') not in {'comment', 'live_chat'}:
             raise ValueError('Explicit source_type live_chat or comment required')
-        if not isinstance(event.get('viewer_hash'), str) or not event['viewer_hash']:
+        if not isinstance(event.get('viewer_id'), str) or not event['viewer_id']:
             raise ValueError('Missing viewer pseudonym')
         first = _timestamp(event.get('first_seen', event.get('timestamp')))
         last = _timestamp(event.get('last_seen', event.get('timestamp')))
         count = event.get('appearances', 1)
         if type(count) is not int or count < 1 or first > last:
             raise ValueError('Invalid presence count or interval')
-        key = tuple(event[k] for k in ('vtuber_channel_id', 'video_id', 'source_type', 'viewer_hash'))
+        key = tuple(event[k] for k in ('vtuber_channel_id', 'video_id', 'source_type', 'viewer_id'))
         if 'timestamp' in event and 'first_seen' not in event:
             raw_counts[key] += count
         else:
             snapshot_counts[key] = max(snapshot_counts[key], count)
-        row = dict(zip(('vtuber_channel_id', 'video_id', 'source_type', 'viewer_hash'), key))
+        row = dict(zip(('vtuber_channel_id', 'video_id', 'source_type', 'viewer_id'), key))
         row.update(first_seen=first, last_seen=last, appearances=count)
         if key in rows:
             current = rows[key]
