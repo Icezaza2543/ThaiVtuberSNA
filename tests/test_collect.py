@@ -1,5 +1,6 @@
 """Tests for thaivtubersna.collect"""
 import json
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import MagicMock, patch
@@ -210,6 +211,45 @@ class TestYouTubeInteractions(unittest.TestCase):
 
         self.assertEqual(len(comment_calls), 0)
         self.assertEqual(result["comments_seen"], 0)
+
+
+class TestExpandedCatalogManifestGrowth(unittest.TestCase):
+    def test_existing_catalog_accepts_new_approved_channels(self):
+        from collector.expanded_backfill import ExpandedCatalog
+        from core.expanded_contracts import DATASET_VERSION
+
+        class Ledger:
+            def debit(self, stage, units=1):
+                return None
+
+        class Session:
+            pass
+
+        base = {
+            "dataset_version": DATASET_VERSION,
+            "cohort_version": "sync-test",
+            "channels": [
+                {"channel_id": "UCaaaaaaaaaaaaaaaaaaaaaa", "review_status": "approved"}
+            ],
+        }
+        grown = {
+            "dataset_version": DATASET_VERSION,
+            "cohort_version": "sync-test",
+            "channels": [
+                {"channel_id": "UCaaaaaaaaaaaaaaaaaaaaaa", "review_status": "approved"},
+                {"channel_id": "UCbbbbbbbbbbbbbbbbbbbbbb", "review_status": "approved"},
+            ],
+        }
+
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "catalog.sqlite3"
+            ExpandedCatalog(path, base, session=Session(), api_key="test", ledger=Ledger())
+            catalog = ExpandedCatalog(path, grown, session=Session(), api_key="test", ledger=Ledger())
+            self.assertEqual(
+                set(catalog.states()),
+                {"UCaaaaaaaaaaaaaaaaaaaaaa", "UCbbbbbbbbbbbbbbbbbbbbbb"},
+            )
+
 
 
 if __name__ == "__main__":
