@@ -1,5 +1,8 @@
 """Tests for thaivtubersna.collect"""
 import json
+import importlib
+import sys
+import types
 import tempfile
 import unittest
 from pathlib import Path
@@ -215,7 +218,30 @@ class TestYouTubeInteractions(unittest.TestCase):
 
 class TestExpandedCatalogManifestGrowth(unittest.TestCase):
     def test_existing_catalog_accepts_new_approved_channels(self):
-        from collector.expanded_backfill import ExpandedCatalog
+        # The legacy campaign's optional backfill modules use PyArrow, which is
+        # intentionally not a dependency of the lean 4-step worker test suite.
+        # Stub only the imported symbols needed to exercise catalog identity/state.
+        historical_catalog = types.ModuleType("collector.historical_catalog_builder")
+        historical_catalog.HistoricalCatalogBuilder = type("HistoricalCatalogBuilder", (), {})
+        deep_comments = types.ModuleType("collector.deep_comment_backfill")
+        deep_comments.DeepCommentBackfiller = type("DeepCommentBackfiller", (), {})
+        historical_comments = types.ModuleType("collector.historical_comment_backfill")
+        historical_comments.BudgetExhaustedException = type(
+            "BudgetExhaustedException", (RuntimeError,), {}
+        )
+
+        sys.modules.pop("collector.expanded_backfill", None)
+        with patch.dict(
+            sys.modules,
+            {
+                "collector.historical_catalog_builder": historical_catalog,
+                "collector.deep_comment_backfill": deep_comments,
+                "collector.historical_comment_backfill": historical_comments,
+            },
+        ):
+            ExpandedCatalog = importlib.import_module(
+                "collector.expanded_backfill"
+            ).ExpandedCatalog
         from core.expanded_contracts import DATASET_VERSION
 
         class Ledger:
