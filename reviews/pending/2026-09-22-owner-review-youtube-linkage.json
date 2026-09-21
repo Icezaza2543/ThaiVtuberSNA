@@ -1,0 +1,146 @@
+{
+  "evidence": [
+    {
+      "id": "ev_owner_20260922_fukio_yt",
+      "url": "https://www.youtube.com/channel/UCJGy7NCvnc-xcVPwdDzuxvQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-21T18:14:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review by project owner on 2026-09-22 confirmed Fukio_VT / Rainbows Fukio as a Thai VTuber and confirmed this public YouTube channel as an owned persona account."
+    },
+    {
+      "id": "ev_owner_20260922_lenezmee_yt",
+      "url": "https://www.youtube.com/channel/UCwHZUHipePFREEvP-5xT3MA",
+      "kind": "official_profile",
+      "observed_at": "2026-09-21T18:14:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review by project owner on 2026-09-22 confirmed Lenezmee Dollynx as a Thai VTuber and confirmed this public YouTube channel as an owned persona account."
+    },
+    {
+      "id": "ev_owner_20260922_kylanz_yt",
+      "url": "https://www.youtube.com/channel/UCQ-6qbMhvGGmyGq6eZZE8gQ",
+      "kind": "official_profile",
+      "observed_at": "2026-09-21T18:14:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review by project owner on 2026-09-22 confirmed Kylanz Ch. 【KLZ】 as a Thai VTuber, confirmed this public YouTube channel as an owned persona account, and confirmed affiliation with KLZ."
+    },
+    {
+      "id": "ev_owner_20260922_liyin_yt",
+      "url": "https://www.youtube.com/channel/UCWyO0Zn2Vx6U2VOIpeCjsJw",
+      "kind": "official_profile",
+      "observed_at": "2026-09-21T18:14:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review by project owner on 2026-09-22 confirmed Liyin as an independent Thai VTuber and confirmed this public YouTube channel as an owned persona account. The prior secondary-source 4AM affiliation claim is rejected."
+    },
+    {
+      "id": "ev_owner_20260922_ryuuga_yt",
+      "url": "https://www.youtube.com/channel/UCGzgTzdaT1_RJM2rZm4O-dg",
+      "kind": "official_profile",
+      "observed_at": "2026-09-21T18:14:00+00:00",
+      "published_on": null,
+      "sha256": null,
+      "summary": "Human review by project owner on 2026-09-22 confirmed Ryuuga The Crane as a Thai VTuber and confirmed this public YouTube channel as an owned persona account."
+    }
+  ],
+  "account_links": [
+    {
+      "id": "link_959c182f118b2f9efbb3",
+      "account_id": "acct_28dd3b47849f83871dd7",
+      "persona_id": "persona_69145160a5bb56ba8265",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_owner_20260922_fukio_yt",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-21T18:14:00+00:00"
+    },
+    {
+      "id": "link_77c35de168fd6a600032",
+      "account_id": "acct_3416808c53fcb3fed7a3",
+      "persona_id": "persona_1bc44543dda15931d9cf",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_owner_20260922_lenezmee_yt",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-21T18:14:00+00:00"
+    },
+    {
+      "id": "link_45601289311899886767",
+      "account_id": "acct_41ac5fb65f9bc3be0fc5",
+      "persona_id": "persona_5efe72eab4e5d5231e0a",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_owner_20260922_kylanz_yt",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-21T18:14:00+00:00"
+    },
+    {
+      "id": "link_2c4d636b25f4f62fb3c6",
+      "account_id": "acct_9cc249ca3d71e1d4fcaa",
+      "persona_id": "persona_6f5c7afe6e9085c3b05f",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_owner_20260922_liyin_yt",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-21T18:14:00+00:00"
+    },
+    {
+      "id": "link_e603f0c3d6abfd03a50b",
+      "account_id": "acct_8e57ceeed4e764b7b55c",
+      "persona_id": "persona_e58298576a7526ad26bc",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_owner_20260922_ryuuga_yt",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-21T18:14:00+00:00"
+    }
+  ],
+  "affiliations": [
+    {
+      "id": "aff_a9a62e32dd362c21512f",
+      "persona_id": "persona_5efe72eab4e5d5231e0a",
+      "organization": "KLZ",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_owner_20260922_kylanz_yt",
+      "review_status": "verified",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-21T18:14:00+00:00"
+    },
+    {
+      "id": "aff_918ea12f037ab194f1f5",
+      "persona_id": "persona_6f5c7afe6e9085c3b05f",
+      "organization": "4AM",
+      "valid_from": null,
+      "valid_to": null,
+      "evidence_id": "ev_owner_20260922_liyin_yt",
+      "review_status": "rejected",
+      "reviewer": "owner:manual-review",
+      "reviewed_at": "2026-09-21T18:14:00+00:00"
+    }
+  ],
+  "review_queue": [
+    {
+      "id": "queue_owner_20260922_algorhythm_org_channel",
+      "account_id": "acct_1063e0c3e6b377e91193",
+      "reason": "organization_channel",
+      "status": "closed",
+      "note": "Owner review 2026-09-22: Algorhythm Project is an agency/project channel, not an individual persona channel. Keep the account in registry but do not create a persona link; exclude from persona-level SNA eligibility."
+    },
+    {
+      "id": "queue_owner_20260922_qurse_org_channel",
+      "account_id": "acct_18e9bd4b6e94b3f3d96c",
+      "reason": "organization_channel",
+      "status": "closed",
+      "note": "Owner review 2026-09-22: QURSE is a group/agency channel, not an individual persona channel. Keep the account in registry but do not create a persona link; exclude from persona-level SNA eligibility."
+    }
+  ]
+}
