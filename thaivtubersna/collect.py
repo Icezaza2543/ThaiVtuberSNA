@@ -30,7 +30,7 @@ from uuid import uuid4
 
 from .store import (
     PLATFORMS, connect, count, fetch_all, get_state, record_interaction,
-    set_state, uid, upsert, utc_now,
+    record_interactions_batch, set_state, uid, upsert, utc_now,
 )
 
 logger = logging.getLogger(__name__)
@@ -379,7 +379,7 @@ def _collect_video_comments(
         raise
 
     seen = 0
-    inserted = 0
+    batch = []
     for item in page.get("items", []):
         snippet = (
             item.get("snippet", {})
@@ -390,15 +390,14 @@ def _collect_video_comments(
         if not author:
             continue
         seen += 1
-        if record_interaction(
-            con,
-            creator_id=channel_id,
-            video_id=video_id,
-            viewer_hash=_hash_viewer(author, viewer_key),
-            source_type="comment",
-            observed_at=snippet.get("publishedAt") or utc_now(),
-        ):
-            inserted += 1
+        batch.append((
+            channel_id,
+            video_id,
+            _hash_viewer(author, viewer_key),
+            "comment",
+            snippet.get("publishedAt") or utc_now(),
+        ))
+    inserted = record_interactions_batch(con, batch)
     return seen, inserted
 
 
@@ -427,21 +426,20 @@ def _collect_live_chat(
         raise
 
     seen = 0
-    inserted = 0
+    batch = []
     for item in page.get("items", []):
         author = item.get("authorDetails", {}).get("channelId")
         if not author:
             continue
         seen += 1
-        if record_interaction(
-            con,
-            creator_id=channel_id,
-            video_id=video_id,
-            viewer_hash=_hash_viewer(author, viewer_key),
-            source_type="live_chat",
-            observed_at=item.get("snippet", {}).get("publishedAt") or utc_now(),
-        ):
-            inserted += 1
+        batch.append((
+            channel_id,
+            video_id,
+            _hash_viewer(author, viewer_key),
+            "live_chat",
+            item.get("snippet", {}).get("publishedAt") or utc_now(),
+        ))
+    inserted = record_interactions_batch(con, batch)
     return seen, inserted
 
 

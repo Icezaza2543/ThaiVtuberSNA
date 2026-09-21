@@ -100,3 +100,27 @@ def test_record_interaction_rejects_unknown_source(mem_db):
             viewer_hash="hash_viewer_xyz",
             source_type="unknown",
         )
+
+
+def test_record_interactions_batch(mem_db):
+    from thaivtubersna.store import record_interactions_batch
+
+    assert count(mem_db, "interactions") == 0
+    batch = [
+        ("UC_creator_1", "vid_1", "hash_1", "comment", "2026-09-20T10:00:00Z"),
+        ("UC_creator_1", "vid_1", "hash_2", "comment", "2026-09-20T10:00:00Z"),
+        ("UC_creator_1", "vid_1", "hash_1", "comment", "2026-09-20T10:00:00Z"),  # duplicate
+    ]
+    inserted = record_interactions_batch(mem_db, batch)
+    assert inserted == 2
+    assert count(mem_db, "interactions") == 2
+
+    # Second batch with 1 existing and 1 new
+    batch_2 = [
+        ("UC_creator_1", "vid_1", "hash_2", "comment", "2026-09-20T10:00:00Z"),  # existing
+        ("UC_creator_1", "vid_2", "hash_3", "live_chat", "2026-09-20T10:00:00Z"),  # new
+    ]
+    inserted_2 = record_interactions_batch(mem_db, batch_2)
+    assert inserted_2 == 1
+    assert count(mem_db, "interactions") == 3
+

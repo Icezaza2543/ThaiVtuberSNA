@@ -238,6 +238,8 @@ CREATE TABLE IF NOT EXISTS interactions (
     observed_at TIMESTAMP,
     UNIQUE (creator_id, video_id, viewer_hash, source_type)
 );
+CREATE INDEX IF NOT EXISTS idx_interactions_viewer ON interactions(viewer_hash);
+CREATE INDEX IF NOT EXISTS idx_interactions_creator ON interactions(creator_id);
 
 -- Worker checkpoint table
 CREATE TABLE IF NOT EXISTS worker_state (
@@ -377,6 +379,33 @@ def record_interaction(
         [creator_id, video_id, viewer_hash, source_type, observed_at],
     ).fetchone()
     return inserted is not None
+
+
+def record_interactions_batch(
+    con: duckdb.DuckDBPyConnection,
+    interactions: list[tuple[str, str, str, str, str]],
+) -> int:
+    """
+    Record multiple audience interaction events in a single batch.
+    Idempotent: UNIQUE(creator_id, video_id, viewer_hash, source_type).
+    Returns count of newly inserted records.
+    """
+    if not interactions:
+        return 0
+    for row in interactions:
+        if row[3] not in {"live_chat", "comment"}:
+            raise ValueError(f"Unsupported interaction source_type: {row[3]!r}")
+    before = con.execute("SELECT COUNT(*) FROM interactions").fetchone()[0]
+    con.executemany(
+        """
+        INSERT INTO interactions (creator_id, video_id, viewer_hash, source_type, observed_at)
+        VALUES (?, ?, ?, ?, ?)
+        ON CONFLICT (creator_id, video_id, viewer_hash, source_type) DO NOTHING
+        """,
+        interactions,
+    )
+    after = con.execute("SELECT COUNT(*) FROM interactions").fetchone()[0]
+    return after - before
 
 
 # ── Worker state ────────────────────────────────────────────────────────────
