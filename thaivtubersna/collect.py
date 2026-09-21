@@ -332,24 +332,36 @@ def _recent_video_ids(channel_id: str, api_key: str, max_videos: int) -> list[st
     ]
 
 
-def _active_live_chat_ids(video_ids: list[str], api_key: str) -> dict[str, str]:
+def _active_live_chats_and_stats(
+    video_ids: list[str], api_key: str
+) -> tuple[dict[str, str], dict[str, int]]:
     if not video_ids:
-        return {}
+        return {}, {}
     page = _youtube_api(
         "videos",
         {
-            "part": "liveStreamingDetails",
+            "part": "liveStreamingDetails,statistics",
             "id": ",".join(video_ids[:50]),
             "maxResults": min(len(video_ids), 50),
         },
         api_key,
     )
-    result: dict[str, str] = {}
+    live_chats: dict[str, str] = {}
+    comment_counts: dict[str, int] = {}
     for item in page.get("items", []):
+        vid = item.get("id")
+        if not vid:
+            continue
         chat_id = item.get("liveStreamingDetails", {}).get("activeLiveChatId")
         if chat_id:
-            result[item["id"]] = chat_id
-    return result
+            live_chats[vid] = chat_id
+        stats = item.get("statistics")
+        if stats and "commentCount" in stats:
+            try:
+                comment_counts[vid] = int(stats["commentCount"])
+            except (ValueError, TypeError):
+                pass
+    return live_chats, comment_counts
 
 
 def _collect_video_comments(
@@ -484,16 +496,17 @@ def collect_youtube_interactions(
     for channel_id in selected:
         try:
             video_ids = _recent_video_ids(channel_id, api_key, max_videos)
-            live_chats = _active_live_chat_ids(video_ids, api_key)
+            live_chats, comment_counts = _active_live_chats_and_stats(video_ids, api_key)
             totals["channels_checked"] += 1
             totals["videos_checked"] += len(video_ids)
 
             for video_id in video_ids:
-                seen, inserted = _collect_video_comments(
-                    con, channel_id, video_id, api_key, viewer_key
-                )
-                totals["comments_seen"] += seen
-                totals["interactions_added"] += inserted
+                if comment_counts.get(video_id, 1) > 0:
+                    seen, inserted = _collect_video_comments(
+                        con, channel_id, video_id, api_key, viewer_key
+                    )
+                    totals["comments_seen"] += seen
+                    totals["interactions_added"] += inserted
 
                 live_chat_id = live_chats.get(video_id)
                 if live_chat_id:

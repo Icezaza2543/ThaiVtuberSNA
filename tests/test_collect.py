@@ -179,6 +179,37 @@ class TestYouTubeInteractions(unittest.TestCase):
         stored = {row[0] for row in con.execute("SELECT viewer_hash FROM interactions").fetchall()}
         self.assertTrue(stored.isdisjoint(raw_ids))
 
+    def test_skips_videos_with_zero_comments(self):
+        con = _test_db()
+        comment_calls = []
+
+        def fake_api(resource, params, api_key):
+            if resource == "playlistItems":
+                return {"items": [{"contentDetails": {"videoId": "vid_zero"}}]}
+            if resource == "videos":
+                return {
+                    "items": [
+                        {
+                            "id": "vid_zero",
+                            "statistics": {"commentCount": "0"},
+                            "liveStreamingDetails": {},
+                        }
+                    ]
+                }
+            if resource == "commentThreads":
+                comment_calls.append(params.get("videoId"))
+                return {"items": []}
+            raise AssertionError(resource)
+
+        with patch.object(collect, "_eligible_youtube_channels", return_value=["UC_test"]):
+            with patch.object(collect, "_youtube_api", side_effect=fake_api):
+                with patch.object(collect, "_viewer_hmac_key", return_value=b"test-secret"):
+                    result = collect.collect_youtube_interactions(
+                        con, api_key="test-key", channels_per_cycle=1, max_videos=1
+                    )
+
+        self.assertEqual(len(comment_calls), 0)
+        self.assertEqual(result["comments_seen"], 0)
 
 
 if __name__ == "__main__":
