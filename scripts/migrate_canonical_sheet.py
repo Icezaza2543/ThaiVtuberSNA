@@ -170,7 +170,12 @@ def upsert(sheet: Sheet, tab: str, desired: list[list[str]], existing_body: list
 
 
 def load():
-    payload = json.loads(BOOTSTRAP.read_text(encoding="utf-8"))
+    import subprocess
+    raw = subprocess.check_output(
+        ["git", "show", f"{COMMIT}:data/bootstrap.json"],
+        cwd=ROOT,
+    )
+    payload = json.loads(raw.decode("utf-8"))
     tables = payload["tables"]
     evidence = {e["id"]: e for e in tables["evidence"]}
     return payload, tables, evidence
