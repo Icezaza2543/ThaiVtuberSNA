@@ -128,6 +128,7 @@ class Index:
             r = pad(raw, 20)
             if r[0]:
                 self.inbox[r[0]] = (i, r)
+                self.inbox[inbox_key(r)] = (i, r)
         self.reviews = {r[0] for r in sheet.get("'REVIEW_QUEUE'!A2:A") if r and r[0]}
 
     def match_account(self, row: dict, parsed: dict | None) -> list[str]:
@@ -269,7 +270,7 @@ def build_writes(buckets, idx: Index):
     accounts = [r for r in accounts if r[0] not in idx.accounts]
     existing_links = {pad(r, 1)[0] for r in idx.links}
     links = [r for r in links if r[0] not in existing_links]
-    inbox = [r for r in inbox if r[0] not in idx.inbox]
+    inbox = [r for r in inbox if r[0] not in idx.inbox and inbox_key(r) not in idx.inbox]
     reviews = [r for r in reviews if r[0] not in idx.reviews]
     return personas, accounts, links, inbox, reviews
 
@@ -281,6 +282,12 @@ def review_row(row, reason, priority, status, now, note):
         now, now if status in {"rejected", "closed"} else "", row.get("url") or "",
         f"{MARKER}; name={row.get('name') or ''}; screening={row.get('decision')}; {note}",
     ]
+
+
+def inbox_key(r) -> str:
+    """Account identity across Finder/SNA candidate_id schemes: stable ID, else case-folded handle."""
+    ident = r[2] or r[3].lstrip("@").lower()
+    return f"{r[1]}:{ident}"
 
 
 def inbox_row(row, parsed, classification, now):
@@ -361,7 +368,8 @@ def main():
             r = pad(raw, 20)
             if r[0]:
                 have[r[0]] = (i, r)
-        appends = [r for r in inbox if r[0] not in have]
+                have[inbox_key(r)] = (i, r)
+        appends = [r for r in inbox if r[0] not in have and inbox_key(r) not in have]
         if appends:
             start = max((i for i, _ in have.values()), default=1) + 1
             data = []
