@@ -7,7 +7,7 @@ Deepens partial-capture historical videos from Phase T5:
 - Enforces strict privacy extraction boundary: raw authorChannelId is immediately
   HMAC-hashed via PrivacyHasher inside the item iteration loop.
 - No raw commenter names, handles, URLs, or comment texts are ever persisted or kept in memory.
-- Deduplicates per (viewer_hash, channel_id, video_id, source_type).
+- Deduplicates per (viewer_id, channel_id, video_id, source_type).
 - Preserves earliest interaction timestamp, latest interaction timestamp, and appearance count.
 - Dedicated T6 SQLite checkpoint tracking with staging table for crash-safe mid-video resumption.
 - Respects global API quota budget and cleanly checkpoints upon exhaustion.
@@ -33,7 +33,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
 from config.settings import DATA_DIR, YOUTUBE_API_KEY
-from core.hasher import PrivacyHasher
 from collector.historical_catalog_builder import _atomic_replace_with_retry
 
 logger = logging.getLogger("DeepCommentBackfill")
@@ -42,7 +41,7 @@ DEFAULT_DEEP_CHECKPOINT_DB = DATA_DIR / "temporal" / "deep_backfill" / "deep_bac
 DEFAULT_DEEP_OBSERVATIONS_DIR = DATA_DIR / "temporal" / "deep_observations"
 
 DEEP_OBSERVATION_SCHEMA = pa.schema([
-    ("viewer_hash", pa.string()),
+    ("viewer_id", pa.string()),
     ("vtuber_channel_id", pa.string()),
     ("video_id", pa.string()),
     ("source_type", pa.string()),              # 'comment'
@@ -87,7 +86,7 @@ class DeepCommentBackfiller:
         observations_dir: Path = DEFAULT_DEEP_OBSERVATIONS_DIR,
         quota_budget: int = 2500,
         api_key: Optional[str] = None,
-        hasher: Optional[PrivacyHasher] = None,
+        
         session: Optional[requests.Session] = None
     ):
         from core.storage_boundary import require_synthetic_local_path
@@ -97,7 +96,6 @@ class DeepCommentBackfiller:
         self.observations_dir = Path(observations_dir)
         self.quota_budget = int(quota_budget)
         self.api_key = api_key or YOUTUBE_API_KEY
-        self.hasher = hasher or PrivacyHasher()
         self.session = session or requests.Session()
 
         self.api_requests_used = 0
@@ -136,7 +134,7 @@ class DeepCommentBackfiller:
             con.execute("""
                 CREATE TABLE IF NOT EXISTS deep_staging_viewers (
                     sample_id TEXT NOT NULL,
-                    viewer_hash TEXT NOT NULL,
+                    viewer_id TEXT NOT NULL,
                     channel_id TEXT NOT NULL,
                     video_id TEXT NOT NULL,
                     video_published_at TEXT,
@@ -144,7 +142,7 @@ class DeepCommentBackfiller:
                     latest_interaction TEXT,
                     appearances INTEGER DEFAULT 1,
                     timestamp_quality TEXT,
-                    PRIMARY KEY (sample_id, viewer_hash)
+                    PRIMARY KEY (sample_id, viewer_id)
                 )
             """)
             con.execute("CREATE INDEX IF NOT EXISTS idx_deep_status ON deep_backfill_jobs(status)")
@@ -234,12 +232,12 @@ class DeepCommentBackfiller:
         viewer_map: Dict[str, Dict[str, Any]] = {}
         with sqlite3.connect(str(self.db_path)) as con:
             staged = con.execute(
-                "SELECT viewer_hash, channel_id, video_id, video_published_at, earliest_interaction, latest_interaction, appearances, timestamp_quality FROM deep_staging_viewers WHERE sample_id = ?",
+                "SELECT viewer_id, channel_id, video_id, video_published_at, earliest_interaction, latest_interaction, appearances, timestamp_quality FROM deep_staging_viewers WHERE sample_id = ?",
                 (sample_id,)
             ).fetchall()
             for r in staged:
                 viewer_map[r[0]] = {
-                    "viewer_hash": r[0],
+                    "viewer_id": r[0],
                     "channel_id": r[1],
                     "video_id": r[2],
                     "video_published_at": r[3],
@@ -293,13 +291,13 @@ class DeepCommentBackfiller:
 
                 if cid and str(cid).startswith("UC"):
                     # IMMEDIATE HMAC pseudonymization - raw ID dropped immediately
-                    v_hash = self.hasher.hash_viewer_id(str(cid))
+                    v_hash = str(cid)
                     inter_iso = parse_iso_dt(pub_raw)
                     ts_quality = "exact" if inter_iso is not None else "missing"
 
                     if v_hash not in viewer_map:
                         viewer_map[v_hash] = {
-                            "viewer_hash": v_hash,
+                            "viewer_id": v_hash,
                             "channel_id": channel_id,
                             "video_id": video_id,
                             "video_published_at": pub_at,
@@ -323,7 +321,7 @@ class DeepCommentBackfiller:
                 staged_rows = [
                     (
                         sample_id,
-                        r["viewer_hash"],
+                        r["viewer_id"],
                         channel_id,
                         video_id,
                         pub_at,
@@ -336,10 +334,10 @@ class DeepCommentBackfiller:
                 ]
                 con.executemany("""
                     INSERT INTO deep_staging_viewers (
-                        sample_id, viewer_hash, channel_id, video_id, video_published_at,
+                        sample_id, viewer_id, channel_id, video_id, video_published_at,
                         earliest_interaction, latest_interaction, appearances, timestamp_quality
                     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                    ON CONFLICT(sample_id, viewer_hash) DO UPDATE SET
+                    ON CONFLICT(sample_id, viewer_id) DO UPDATE SET
                         earliest_interaction = excluded.earliest_interaction,
                         latest_interaction = excluded.latest_interaction,
                         appearances = excluded.appearances,
@@ -385,7 +383,7 @@ class DeepCommentBackfiller:
                     newest_ts = l_ts
 
             out_rows.append({
-                "viewer_hash": rec["viewer_hash"],
+                "viewer_id": rec["viewer_id"],
                 "vtuber_channel_id": channel_id,
                 "video_id": video_id,
                 "source_type": "comment",

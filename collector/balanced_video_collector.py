@@ -6,7 +6,7 @@ Implements Phase 3 requirements:
 1. Fair API Budgeting: Builds balanced collection queues across all tiers (S, A, B, C, D) and agencies.
 2. Cryptographic Identity Check: Enforces secret key & fingerprint continuity matching identity manifest.
 3. Strict Source Separation: Separates comment vs live_chat; never substitutes comment for chat.
-4. Deduplication & Idempotency: Privacy-preserving event keys (viewer_hash, channel_id, video_id, source_type).
+4. Deduplication & Idempotency: Privacy-preserving event keys (viewer_id, channel_id, video_id, source_type).
 5. Durable Job Journal: Recovers and tracks jobs with SQLite journal.
 6. Transparent Reporting: Logs disabled comments, unavailable chats, and quota bounds.
 7. Privacy Audit: Verifies zero raw PII in output Parquet files.
@@ -21,7 +21,6 @@ from typing import Dict, Any, List, Optional, Set
 
 from config.settings import BASE_DIR, DATA_DIR, YOUTUBE_API_KEY, CREATOR_REGISTRY_PATH
 import core.hasher as identity
-from core.hasher import PrivacyHasher
 from core.dataset_identity import validate_dataset_identity
 from core.creator_catalog import CreatorCatalog
 from collector.continuous_collector import ContinuousCollector
@@ -175,8 +174,8 @@ class BalancedVideoCollector:
                 logger.warning(f"Error reading {p}: {e}")
 
         # Deduplication check
-        unique_keys = {(r["viewer_hash"], r["vtuber_channel_id"], r["video_id"], r["source_type"]) for r in total_rows}
-        unique_viewers = {r["viewer_hash"] for r in total_rows}
+        unique_keys = {(r["viewer_id"], r["vtuber_channel_id"], r["video_id"], r["source_type"]) for r in total_rows}
+        unique_viewers = {r["viewer_id"] for r in total_rows}
 
         # Source breakdown
         comment_events = [r for r in total_rows if r.get("source_type") == "comment"]
@@ -264,7 +263,7 @@ class BalancedVideoCollector:
 | ตัวชี้วัด | ค่าที่บันทึกได้ | คำอธิบาย |
 |---|---|---|
 | **จำนวนแถว Presence ทั้งหมด (Total Rows)** | **{total_rows:,}** | ข้อมูลการปรากฏตัวที่บันทึกลงใน Parquet |
-| **จำนวนคู่ Presence ไม่ซ้ำ (Unique Keys)** | **{unique_keys:,}** | คีย์ `(viewer_hash, channel_id, video_id, source_type)` |
+| **จำนวนคู่ Presence ไม่ซ้ำ (Unique Keys)** | **{unique_keys:,}** | คีย์ `(viewer_id, channel_id, video_id, source_type)` |
 | **จำนวนผู้ชมไม่ซ้ำ (Unique Viewers)** | **{unique_viewers:,}** | คำนวณผ่าน HMAC-SHA256 โดยไม่มีข้อมูลตัวตนเดิม |
 | **จำนวนไฟล์ Parquet ที่จัดเก็บ** | {parquet_count:,} ไฟล์ | จัดเก็บแบบพาร์ติชันแยกวันและ Atomic Commit |
 

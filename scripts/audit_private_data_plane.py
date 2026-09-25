@@ -11,9 +11,8 @@ from storage.private_sheet_store import PrivateSheetStore, column_name
 
 def local_secret_values():
     """Values stay in memory and are never included in findings."""
-    from config.settings import SECRET_KEY_PATH, YOUTUBE_API_KEY, GOOGLE_SHEETS_CONFIG
+    from config.settings import YOUTUBE_API_KEY, GOOGLE_SHEETS_CONFIG
     values = []
-    if SECRET_KEY_PATH.exists(): values.append(SECRET_KEY_PATH.read_text().strip())
     if YOUTUBE_API_KEY: values.append(YOUTUBE_API_KEY)
     path = Path(GOOGLE_SHEETS_CONFIG['credentials_path'])
     if path.exists():
@@ -40,8 +39,8 @@ def audit_private_sheet(spreadsheet, known_secrets=(), target_tab=None):
         for start in range(2, ws.row_count+1, size):
             rows = store._write(ws.get_values, f'A{start}:{end}{min(ws.row_count,start+size-1)}')
             count += sum(any(cell for cell in row) for row in rows)
-            if 'viewer_hash' in headers:
-                index=headers.index('viewer_hash')
+            if 'viewer_id' in headers:
+                index=headers.index('viewer_id')
                 hashes.update(row[index] for row in rows if len(row)>index and row[index])
             try: assert_sheet_rows(headers, rows, known_secrets)
             except ValueError as error:

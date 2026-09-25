@@ -16,16 +16,14 @@ from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional
 import requests
 
-from core.hasher import PrivacyHasher
 from config.settings import YOUTUBE_API_KEY
 
 logger = logging.getLogger(__name__)
 
 
 class LiveChatAdapter:
-    def __init__(self, hasher: Optional[PrivacyHasher] = None, api_key: Optional[str] = None):
-        self.hasher = hasher or PrivacyHasher()
-        self.api_key = api_key if api_key is not None else YOUTUBE_API_KEY
+    def __init__(self,  api_key: Optional[str] = None):
+                self.api_key = api_key if api_key is not None else YOUTUBE_API_KEY
 
     def is_available(self) -> bool:
         """Returns True if live chat extraction backend is configured."""
@@ -117,12 +115,12 @@ class LiveChatAdapter:
                 if not raw_author_id or not str(raw_author_id).startswith("UC"):
                     continue
 
-                viewer_hash = self.hasher.hash_viewer_id(str(raw_author_id))
+                viewer_id = str(raw_author_id)
                 ts = item.get("snippet", {}).get("publishedAt") or datetime.now(timezone.utc).isoformat()
 
                 # ONLY approved pseudonymous presence fields are recorded
                 events.append({
-                    "viewer_hash": viewer_hash,
+                    "viewer_id": viewer_id,
                     "vtuber_channel_id": vtuber_id,
                     "video_id": video_id,
                     "timestamp": ts,

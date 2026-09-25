@@ -12,13 +12,10 @@ No private data (viewer hashes, login tokens, etc.) is stored here.
 """
 from __future__ import annotations
 
-import hashlib
-import hmac
 import json
 import logging
 import os
 import re
-import secrets
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -254,25 +251,7 @@ def discover_from_twitch(con, *, max_pages: int = 5, language: str = "th") -> di
 _YOUTUBE_API = "https://www.googleapis.com/youtube/v3"
 
 
-def _viewer_hmac_key() -> bytes:
-    """Return a persistent local HMAC key without committing viewer identifiers."""
-    env_key = os.getenv("VIEWER_HMAC_KEY")
-    if env_key:
-        return env_key.encode("utf-8")
 
-    key_path = ROOT / "runtime" / "viewer_hmac.key"
-    key_path.parent.mkdir(parents=True, exist_ok=True)
-    if not key_path.exists():
-        key_path.write_text(secrets.token_hex(32), encoding="ascii")
-        try:
-            os.chmod(key_path, 0o600)
-        except OSError:
-            pass
-    return key_path.read_text(encoding="ascii").strip().encode("ascii")
-
-
-def _hash_viewer(viewer_id: str, key: bytes) -> str:
-    return hmac.new(key, viewer_id.encode("utf-8"), hashlib.sha256).hexdigest()
 
 
 def _youtube_api(resource: str, params: dict[str, Any], api_key: str) -> dict[str, Any]:
@@ -369,7 +348,6 @@ def _collect_video_comments(
     channel_id: str,
     video_id: str,
     api_key: str,
-    viewer_key: bytes,
 ) -> tuple[int, int]:
     """Collect the newest public top-level comments for one video."""
     try:
@@ -405,7 +383,7 @@ def _collect_video_comments(
         batch.append((
             channel_id,
             video_id,
-            _hash_viewer(author, viewer_key),
+            author,
             "comment",
             snippet.get("publishedAt") or utc_now(),
         ))
@@ -419,7 +397,6 @@ def _collect_live_chat(
     video_id: str,
     live_chat_id: str,
     api_key: str,
-    viewer_key: bytes,
 ) -> tuple[int, int]:
     """Collect the newest public messages from an active YouTube live chat."""
     try:
@@ -447,7 +424,7 @@ def _collect_live_chat(
         batch.append((
             channel_id,
             video_id,
-            _hash_viewer(author, viewer_key),
+            author,
             "live_chat",
             item.get("snippet", {}).get("publishedAt") or utc_now(),
         ))
@@ -464,7 +441,7 @@ def collect_youtube_interactions(
 ) -> dict[str, Any]:
     """
     Collect recent YouTube comments and active live-chat participants directly
-    into DuckDB interactions. Raw viewer channel IDs are HMACed before storage.
+    into DuckDB interactions. Raw viewer channel IDs are stored directly.
     """
     api_key = api_key or os.getenv("YOUTUBE_API_KEY")
     if not api_key:
@@ -483,7 +460,6 @@ def collect_youtube_interactions(
     selected = [channels[(cursor + i) % len(channels)] for i in range(batch_size)]
     set_state(con, "youtube_collect_cursor", (cursor + batch_size) % len(channels))
 
-    viewer_key = _viewer_hmac_key()
     totals = {
         "channels_checked": 0,
         "videos_checked": 0,
@@ -503,7 +479,7 @@ def collect_youtube_interactions(
             for video_id in video_ids:
                 if comment_counts.get(video_id, 1) > 0:
                     seen, inserted = _collect_video_comments(
-                        con, channel_id, video_id, api_key, viewer_key
+                        con, channel_id, video_id, api_key
                     )
                     totals["comments_seen"] += seen
                     totals["interactions_added"] += inserted
@@ -516,7 +492,6 @@ def collect_youtube_interactions(
                         video_id,
                         live_chat_id,
                         api_key,
-                        viewer_key,
                     )
                     totals["live_chat_seen"] += seen
                     totals["interactions_added"] += inserted

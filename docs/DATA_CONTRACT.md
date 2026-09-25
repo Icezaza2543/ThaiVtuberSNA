@@ -28,7 +28,7 @@ ThaiVtuberMaster
 - **Cold-Start Snapshot**: `data/bootstrap.json` (tracked in git). Fresh clones automatically initialize DuckDB from this snapshot on first run.
 - **Tables**:
   - Original 13 registry tables: `evidence`, `personas`, `accounts`, `account_links`, `lifecycle_events`, `activity_observations`, `affiliations`, `continuity_links`, `discovery_runs`, `candidates`, `discovery_hits`, `legacy_claims`, `review_queue`.
-  - `interactions`: Deduped audience presence (`creator_id`, `video_id`, `viewer_hash`, `source_type`, `observed_at`).
+  - `interactions`: Deduped audience presence (`creator_id`, `video_id`, `viewer_id`, `source_type`, `observed_at`).
   - `network_edges`: Pairwise overlap metrics (`creator_a`, `creator_b`, `shared_any`, `strong_shared_any`, `jaccard`, `simpson`, `calculation_source`).
   - `worker_state`: Key-value checkpoints and schedules (`last_*_at`, `next_*_at`, `last_success`, `last_error`, `consecutive_failures`).
 
@@ -73,8 +73,8 @@ python -m thaivtubersna export --output dist/export/
 ## Audience Interaction Contract
 - YouTube audience collection requires `YOUTUBE_API_KEY`.
 - The worker rotates through trusted YouTube channels and collects recent top-level comments plus active live-chat participants.
-- Raw viewer account IDs are never persisted. They are HMAC-SHA256 hashed with `VIEWER_HMAC_KEY` or a generated local `runtime/viewer_hmac.key`.
-- `interactions` is idempotent on `(creator_id, video_id, viewer_hash, source_type)`.
+- Raw viewer account IDs are stored directly per new privacy policy.
+- `interactions` is idempotent on `(creator_id, video_id, viewer_id, source_type)`.
 - `strong_shared_any`: same viewer appears in at least 2 distinct videos for both creators.
 - `strong_shared_live_chat`: same viewer appears in live chat of at least 2 distinct videos for both creators.
 - `strong_shared_comments`: same viewer comments on at least 2 distinct videos for both creators.
@@ -84,5 +84,5 @@ Optional worker tuning:
 ```text
 YOUTUBE_CHANNELS_PER_CYCLE=25
 YOUTUBE_RECENT_VIDEOS=5
-VIEWER_HMAC_KEY=<persistent secret; optional if local runtime key is acceptable>
+
 ```

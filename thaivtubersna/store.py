@@ -233,12 +233,12 @@ CREATE TABLE IF NOT EXISTS network_edges (
 CREATE TABLE IF NOT EXISTS interactions (
     creator_id TEXT,
     video_id TEXT,
-    viewer_hash TEXT,
+    viewer_id TEXT,
     source_type TEXT,   -- live_chat | comment
     observed_at TIMESTAMP,
-    UNIQUE (creator_id, video_id, viewer_hash, source_type)
+    UNIQUE (creator_id, video_id, viewer_id, source_type)
 );
-CREATE INDEX IF NOT EXISTS idx_interactions_viewer ON interactions(viewer_hash);
+CREATE INDEX IF NOT EXISTS idx_interactions_viewer ON interactions(viewer_id);
 CREATE INDEX IF NOT EXISTS idx_interactions_creator ON interactions(creator_id);
 
 -- Worker checkpoint table
@@ -355,13 +355,13 @@ def record_interaction(
     con: duckdb.DuckDBPyConnection,
     creator_id: str,
     video_id: str,
-    viewer_hash: str,
+    viewer_id: str,
     source_type: str,
     observed_at: datetime | str | None = None,
 ) -> bool:
     """
     Record an audience interaction event.
-    Idempotent: UNIQUE(creator_id, video_id, viewer_hash, source_type).
+    Idempotent: UNIQUE(creator_id, video_id, viewer_id, source_type).
     """
     if observed_at is None:
         observed_at = utc_now()
@@ -371,12 +371,12 @@ def record_interaction(
         raise ValueError(f"Unsupported interaction source_type: {source_type!r}")
     inserted = con.execute(
         """
-        INSERT INTO interactions (creator_id, video_id, viewer_hash, source_type, observed_at)
+        INSERT INTO interactions (creator_id, video_id, viewer_id, source_type, observed_at)
         VALUES (?, ?, ?, ?, ?)
-        ON CONFLICT (creator_id, video_id, viewer_hash, source_type) DO NOTHING
+        ON CONFLICT (creator_id, video_id, viewer_id, source_type) DO NOTHING
         RETURNING 1
         """,
-        [creator_id, video_id, viewer_hash, source_type, observed_at],
+        [creator_id, video_id, viewer_id, source_type, observed_at],
     ).fetchone()
     return inserted is not None
 
@@ -387,7 +387,7 @@ def record_interactions_batch(
 ) -> int:
     """
     Record multiple audience interaction events in a single batch.
-    Idempotent: UNIQUE(creator_id, video_id, viewer_hash, source_type).
+    Idempotent: UNIQUE(creator_id, video_id, viewer_id, source_type).
     Returns count of newly inserted records.
     """
     if not interactions:
@@ -398,9 +398,9 @@ def record_interactions_batch(
     before = con.execute("SELECT COUNT(*) FROM interactions").fetchone()[0]
     con.executemany(
         """
-        INSERT INTO interactions (creator_id, video_id, viewer_hash, source_type, observed_at)
+        INSERT INTO interactions (creator_id, video_id, viewer_id, source_type, observed_at)
         VALUES (?, ?, ?, ?, ?)
-        ON CONFLICT (creator_id, video_id, viewer_hash, source_type) DO NOTHING
+        ON CONFLICT (creator_id, video_id, viewer_id, source_type) DO NOTHING
         """,
         interactions,
     )

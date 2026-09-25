@@ -283,8 +283,6 @@ class ExpandedInteractions:
         one_page = job.get('collection_mode') == 'one_comment_page'
         if job.get('collection_mode') not in (None, 'one_comment_page'):
             raise ValueError('Unsupported collection mode')
-        from core.hasher import compute_key_fingerprint
-        journal.bind_identity(DATASET_VERSION, compute_key_fingerprint(self.hasher.secret_salt))
         owner = journal.get_job(claim['job_id'])
         if not owner or owner['state'] != 'CLAIMED' or owner['claim_token'] != claim['claim_token']:
             return 'STALE_CLAIM'
@@ -351,7 +349,7 @@ class ExpandedInteractions:
                     if not raw_id:
                         # Never silently discard a record or claim exhausted completeness.
                         return stop('IDENTITY_UNAVAILABLE')
-                    rows.append(dict(record_id=record_id, viewer_hash=self.hasher.hash_viewer_id(raw_id),
+                    rows.append(dict(record_id=record_id, viewer_id=raw_id,
                                      vtuber_channel_id=job['channel_id'], video_id=job['video_id'],
                                      source_type='comment', interaction_kind=source,
                                      interaction_time=snippet.get('publishedAt'), provenance=job['provenance']))

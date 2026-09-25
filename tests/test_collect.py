@@ -162,26 +162,25 @@ class TestYouTubeInteractions(unittest.TestCase):
 
         with patch.object(collect, "_eligible_youtube_channels", return_value=["UC_test"]):
             with patch.object(collect, "_youtube_api", side_effect=fake_api):
-                with patch.object(collect, "_viewer_hmac_key", return_value=b"test-secret"):
-                    first = collect.collect_youtube_interactions(
-                        con,
-                        api_key="test-key",
-                        channels_per_cycle=1,
-                        max_videos=2,
-                    )
-                    second = collect.collect_youtube_interactions(
-                        con,
-                        api_key="test-key",
-                        channels_per_cycle=1,
-                        max_videos=2,
-                    )
+                first = collect.collect_youtube_interactions(
+                    con,
+                    api_key="test-key",
+                    channels_per_cycle=1,
+                    max_videos=2,
+                )
+                second = collect.collect_youtube_interactions(
+                    con,
+                    api_key="test-key",
+                    channels_per_cycle=1,
+                    max_videos=2,
+                )
 
         self.assertEqual(first["interactions_added"], 3)
         self.assertEqual(second["interactions_added"], 0)
         self.assertEqual(con.execute("SELECT COUNT(*) FROM interactions").fetchone()[0], 3)
         raw_ids = {"viewer_comment", "viewer_live"}
-        stored = {row[0] for row in con.execute("SELECT viewer_hash FROM interactions").fetchall()}
-        self.assertTrue(stored.isdisjoint(raw_ids))
+        stored = {row[0] for row in con.execute("SELECT viewer_id FROM interactions").fetchall()}
+        self.assertEqual(stored, raw_ids)
 
     def test_skips_videos_with_zero_comments(self):
         con = _test_db()
@@ -207,10 +206,9 @@ class TestYouTubeInteractions(unittest.TestCase):
 
         with patch.object(collect, "_eligible_youtube_channels", return_value=["UC_test"]):
             with patch.object(collect, "_youtube_api", side_effect=fake_api):
-                with patch.object(collect, "_viewer_hmac_key", return_value=b"test-secret"):
-                    result = collect.collect_youtube_interactions(
-                        con, api_key="test-key", channels_per_cycle=1, max_videos=1
-                    )
+                result = collect.collect_youtube_interactions(
+                    con, api_key="test-key", channels_per_cycle=1, max_videos=1
+                )
 
         self.assertEqual(len(comment_calls), 0)
         self.assertEqual(result["comments_seen"], 0)

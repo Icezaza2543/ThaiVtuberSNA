@@ -31,7 +31,7 @@ def test_record_interaction_idempotent(mem_db):
         mem_db,
         creator_id="UC_creator_1",
         video_id="vid_123",
-        viewer_hash="hash_viewer_abc",
+        viewer_id="raw_viewer_abc",
         source_type="live_chat",
         observed_at="2026-09-20T10:00:00Z",
     ) is True
@@ -42,7 +42,7 @@ def test_record_interaction_idempotent(mem_db):
         mem_db,
         creator_id="UC_creator_1",
         video_id="vid_123",
-        viewer_hash="hash_viewer_abc",
+        viewer_id="raw_viewer_abc",
         source_type="live_chat",
         observed_at="2026-09-20T10:05:00Z",
     ) is False
@@ -53,7 +53,7 @@ def test_record_interaction_idempotent(mem_db):
         mem_db,
         creator_id="UC_creator_1",
         video_id="vid_123",
-        viewer_hash="hash_viewer_abc",
+        viewer_id="raw_viewer_abc",
         source_type="comment",
         observed_at="2026-09-20T10:00:00Z",
     )
@@ -97,7 +97,7 @@ def test_record_interaction_rejects_unknown_source(mem_db):
             mem_db,
             creator_id="UC_creator_1",
             video_id="vid_999",
-            viewer_hash="hash_viewer_xyz",
+            viewer_id="raw_viewer_xyz",
             source_type="unknown",
         )
 
@@ -123,4 +123,41 @@ def test_record_interactions_batch(mem_db):
     inserted_2 = record_interactions_batch(mem_db, batch_2)
     assert inserted_2 == 1
     assert count(mem_db, "interactions") == 3
+
+
+def test_validated_expanded_batches_backwards_compatible():
+    import hashlib
+    import json
+    from storage.expanded_sheet_batches import validated_expanded_batches
+    from collector.expanded_backfill import encode
+
+    job_hex = "a" * 64
+    path = f"expanded-v1/{job_hex}/1"
+    event_legacy = {
+        "record_id": "rec_1",
+        "viewer_hash": "legacy_hash_abc",
+        "vtuber_channel_id": "UC_creator_1",
+        "video_id": "vid_1",
+        "source_type": "comment",
+        "interaction_kind": "comment",
+        "interaction_time": "2026-09-20T10:00:00Z",
+        "provenance": "prov_1",
+    }
+    state = {"sequence": 1}
+    rows = [
+        [path, "event", "0", encode(event_legacy)],
+        [path, "state", "1", encode(state)],
+    ]
+    digest = hashlib.sha256(encode(rows).encode()).hexdigest()
+    rows.append([path, "batch_manifest", "2", encode({"sha256": digest, "rows": 2})])
+
+    records = [
+        {"source_path": r[0], "source_table": r[1], "row_number": r[2], "record_json": r[3]}
+        for r in rows
+    ]
+    accepted, rejected = validated_expanded_batches(records)
+    assert not rejected
+    assert path in accepted
+    assert accepted[path]["events"][0]["viewer_id"] == "legacy_hash_abc"
+
 

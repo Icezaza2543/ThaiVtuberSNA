@@ -30,7 +30,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR))
 
 from config.settings import DATA_DIR, YOUTUBE_API_KEY
-from core.hasher import PrivacyHasher
 from collector.historical_catalog_builder import _atomic_replace_with_retry
 
 logger = logging.getLogger("HistoricalCommentBackfill")
@@ -39,7 +38,7 @@ DEFAULT_CHECKPOINT_DB = DATA_DIR / "temporal" / "backfill" / "backfill_checkpoin
 DEFAULT_OBSERVATIONS_DIR = DATA_DIR / "temporal" / "observations"
 
 OBSERVATION_SCHEMA = pa.schema([
-    ("viewer_hash", pa.string()),
+    ("viewer_id", pa.string()),
     ("vtuber_channel_id", pa.string()),
     ("video_id", pa.string()),
     ("source_type", pa.string()),              # 'comment'
@@ -82,7 +81,7 @@ class HistoricalCommentBackfiller:
         quota_budget: int = 7000,
         max_comments_per_video: int = 100,
         api_key: Optional[str] = None,
-        hasher: Optional[PrivacyHasher] = None,
+        
         session: Optional[requests.Session] = None,
         use_ytdlp_fallback: bool = False
     ):
@@ -93,7 +92,6 @@ class HistoricalCommentBackfiller:
         self.quota_budget = int(quota_budget)
         self.max_comments_per_video = int(max_comments_per_video)
         self.api_key = api_key or YOUTUBE_API_KEY
-        self.hasher = hasher or PrivacyHasher()
         self.session = session or requests.Session()
         self.use_ytdlp_fallback = use_ytdlp_fallback
 
@@ -217,7 +215,7 @@ class HistoricalCommentBackfiller:
             if total_items == 0:
                 return [], "NO_COMMENTS", False, None
 
-            # Deduplicate by viewer_hash within this video
+            # Deduplicate by viewer_id within this video
             # Keep earliest interaction timestamp for each distinct viewer
             viewer_map: Dict[str, Dict[str, Any]] = {}
             for it in items:
@@ -227,13 +225,13 @@ class HistoricalCommentBackfiller:
 
                 if cid and str(cid).startswith("UC"):
                     # IMMEDIATE HMAC pseudonymization
-                    v_hash = self.hasher.hash_viewer_id(str(cid))
+                    v_hash = str(cid)
                     inter_iso = parse_iso_dt(pub_raw)
                     ts_quality = "exact" if inter_iso is not None else "missing"
 
                     if v_hash not in viewer_map:
                         viewer_map[v_hash] = {
-                            "viewer_hash": v_hash,
+                            "viewer_id": v_hash,
                             "vtuber_channel_id": channel_id,
                             "video_id": video_id,
                             "source_type": "comment",

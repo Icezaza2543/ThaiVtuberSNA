@@ -10,13 +10,11 @@ import random
 from datetime import datetime, timezone, timedelta
 from typing import List, Dict, Any
 from collector.base_collector import BaseCollector
-from core.hasher import PrivacyHasher
 
 
 class MockCollector(BaseCollector):
     def __init__(self, seed: int = 42):
-        self.hasher = PrivacyHasher("demo-only-not-for-real-data")
-        self.random = random.Random(seed)
+                self.random = random.Random(seed)
         # Predefined pools of simulated viewer raw IDs
         # Agency core pools
         self.arp_core_viewers = [f"viewer_arp_{i:04d}" for i in range(1, 300)]
@@ -65,12 +63,12 @@ class MockCollector(BaseCollector):
         events = []
         for raw_id in raw_viewers:
             # Privacy: Hasher transforms raw_id to HMAC-SHA256
-            v_hash = self.hasher.hash_viewer_id(raw_id)
+            v_hash = raw_id
             source = "live_chat" if self.random.random() > 0.15 else "comment"
             event_time = base_time + timedelta(minutes=self.random.randint(1, 120))
 
             events.append({
-                "viewer_hash": v_hash,
+                "viewer_id": v_hash,
                 "vtuber_channel_id": vtuber_id,
                 "video_id": video_id,
                 "timestamp": event_time.isoformat(),
@@ -82,7 +80,7 @@ class MockCollector(BaseCollector):
     def collect_aggregated_events(self, job_dict: Dict[str, Any]) -> List[Dict[str, Any]]:
         """
         Aggregated session schema alternative (Requirement 7):
-        viewer_hash, vtuber_channel_id, video_id, first_seen, last_seen, appearances
+        viewer_id, vtuber_channel_id, video_id, first_seen, last_seen, appearances
         """
         from collector.youtube_collector import YouTubeCollector
         return YouTubeCollector.collect_aggregated_events(self, job_dict)

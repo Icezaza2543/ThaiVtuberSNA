@@ -34,7 +34,7 @@ class DuckDBAnalyticsEngine:
             raise RuntimeError('Incomplete partition migration; resume migration before analytics')
         if not files:
             self.con.execute("""CREATE OR REPLACE VIEW raw_events AS SELECT
-                ''::VARCHAR AS viewer_hash, ''::VARCHAR AS vtuber_channel_id,
+                ''::VARCHAR AS viewer_id, ''::VARCHAR AS vtuber_channel_id,
                 ''::VARCHAR AS video_id, ''::VARCHAR AS source_type,
                 ''::VARCHAR AS first_seen, ''::VARCHAR AS last_seen,
                 0::BIGINT AS appearances WHERE FALSE""")
@@ -42,14 +42,20 @@ class DuckDBAnalyticsEngine:
         glob_pattern = str(self.events_dir / "**" / "*.parquet").replace("\\", "/").replace("'", "''")
         source = f"read_parquet('{glob_pattern}', union_by_name=True)"
         columns = {row[0] for row in self.con.execute(f"DESCRIBE SELECT * FROM {source}").fetchall()}
-        required = {"viewer_hash", "vtuber_channel_id", "video_id", "source_type"}
-        if not required <= columns:
+        required = {"vtuber_channel_id", "video_id", "source_type"}
+        if not required <= columns or ("viewer_id" not in columns and "viewer_hash" not in columns):
             raise ValueError("Presence schema missing identity or source columns")
         def expr(name, fallback):
             return f"COALESCE({name}, {fallback})" if name in columns else fallback
         timestamp = "timestamp" if "timestamp" in columns else "NULL::VARCHAR"
+        if "viewer_id" not in columns and "viewer_hash" in columns:
+            viewer_expr = "viewer_hash AS viewer_id"
+        elif "viewer_id" in columns and "viewer_hash" in columns:
+            viewer_expr = "COALESCE(viewer_id, viewer_hash) AS viewer_id"
+        else:
+            viewer_expr = "viewer_id"
         self.con.execute(f"""CREATE OR REPLACE VIEW raw_events AS SELECT
-            viewer_hash, vtuber_channel_id, video_id, source_type,
+            {viewer_expr}, vtuber_channel_id, video_id, source_type,
             {expr('first_seen', timestamp)} AS first_seen,
             {expr('last_seen', timestamp)} AS last_seen,
             {expr('appearances', '1::BIGINT')} AS appearances
@@ -74,7 +80,7 @@ class DuckDBAnalyticsEngine:
         """
         query = """
             SELECT 
-                viewer_hash,
+                viewer_id,
                 vtuber_channel_id,
                 COUNT(DISTINCT video_id) AS videos_seen,
                 COUNT(DISTINCT CASE WHEN source_type = 'live_chat' THEN video_id END) AS live_streams_seen,
@@ -83,8 +89,8 @@ class DuckDBAnalyticsEngine:
                 MIN(first_seen) AS first_seen,
                 MAX(last_seen) AS last_seen
             FROM raw_events
-            WHERE viewer_hash != ''
-            GROUP BY viewer_hash, vtuber_channel_id
+            WHERE viewer_id != ''
+            GROUP BY viewer_id, vtuber_channel_id
         """
         df = self.con.execute(query).df()
         return df.to_dict(orient="records")
@@ -94,9 +100,9 @@ class DuckDBAnalyticsEngine:
         query = """
             SELECT 
                 vtuber_channel_id,
-                COUNT(DISTINCT viewer_hash) AS unique_viewers
+                COUNT(DISTINCT viewer_id) AS unique_viewers
             FROM raw_events
-            WHERE viewer_hash != ''
+            WHERE viewer_id != ''
             GROUP BY vtuber_channel_id
         """
         results = self.con.execute(query).fetchall()
@@ -133,7 +139,7 @@ class DuckDBAnalyticsEngine:
             WITH viewer_channel_stats AS (
                 SELECT 
                     vtuber_channel_id,
-                    viewer_hash,
+                    viewer_id,
                     COUNT(DISTINCT video_id) AS videos_seen,
                     COUNT(DISTINCT CASE WHEN source_type = 'live_chat' THEN video_id END) AS live_streams_seen,
                     COUNT(DISTINCT CASE WHEN source_type = 'comment' THEN video_id END) AS comment_videos_seen,
@@ -143,15 +149,15 @@ class DuckDBAnalyticsEngine:
                     MIN(first_seen) AS first_seen,
                     MAX(last_seen) AS last_seen
                 FROM raw_events
-                WHERE viewer_hash != ''
-                GROUP BY vtuber_channel_id, viewer_hash
+                WHERE viewer_id != ''
+                GROUP BY vtuber_channel_id, viewer_id
             ),
             channel_totals AS (
                 SELECT 
                     vtuber_channel_id, 
-                    COUNT(DISTINCT viewer_hash) AS total_viewers,
-                    COUNT(DISTINCT CASE WHEN in_live_chat THEN viewer_hash END) AS live_chat_viewers,
-                    COUNT(DISTINCT CASE WHEN in_comment THEN viewer_hash END) AS comment_viewers
+                    COUNT(DISTINCT viewer_id) AS total_viewers,
+                    COUNT(DISTINCT CASE WHEN in_live_chat THEN viewer_id END) AS live_chat_viewers,
+                    COUNT(DISTINCT CASE WHEN in_comment THEN viewer_id END) AS comment_viewers
                 FROM viewer_channel_stats
                 GROUP BY vtuber_channel_id
             ),
@@ -160,14 +166,14 @@ class DuckDBAnalyticsEngine:
                     a.vtuber_channel_id AS vtuber_a,
                     b.vtuber_channel_id AS vtuber_b,
                     -- Standard overlap by source
-                    COUNT(DISTINCT a.viewer_hash) AS shared_any,
-                    COUNT(DISTINCT CASE WHEN a.in_live_chat AND b.in_live_chat THEN a.viewer_hash END) AS shared_live_chat,
-                    COUNT(DISTINCT CASE WHEN a.in_comment AND b.in_comment THEN a.viewer_hash END) AS shared_comments,
+                    COUNT(DISTINCT a.viewer_id) AS shared_any,
+                    COUNT(DISTINCT CASE WHEN a.in_live_chat AND b.in_live_chat THEN a.viewer_id END) AS shared_live_chat,
+                    COUNT(DISTINCT CASE WHEN a.in_comment AND b.in_comment THEN a.viewer_id END) AS shared_comments,
                     
                     -- Strong evidence by source (distinct videos/streams >= threshold on both A and B)
-                    COUNT(DISTINCT CASE WHEN a.videos_seen >= {threshold} AND b.videos_seen >= {threshold} THEN a.viewer_hash END) AS strong_shared_any,
-                    COUNT(DISTINCT CASE WHEN a.live_streams_seen >= {threshold} AND b.live_streams_seen >= {threshold} THEN a.viewer_hash END) AS strong_shared_live_chat,
-                    COUNT(DISTINCT CASE WHEN a.comment_videos_seen >= {threshold} AND b.comment_videos_seen >= {threshold} THEN a.viewer_hash END) AS strong_shared_comments,
+                    COUNT(DISTINCT CASE WHEN a.videos_seen >= {threshold} AND b.videos_seen >= {threshold} THEN a.viewer_id END) AS strong_shared_any,
+                    COUNT(DISTINCT CASE WHEN a.live_streams_seen >= {threshold} AND b.live_streams_seen >= {threshold} THEN a.viewer_id END) AS strong_shared_live_chat,
+                    COUNT(DISTINCT CASE WHEN a.comment_videos_seen >= {threshold} AND b.comment_videos_seen >= {threshold} THEN a.viewer_id END) AS strong_shared_comments,
                     
                     ROUND(AVG(a.videos_seen), 2) AS avg_videos_a,
                     ROUND(AVG(b.videos_seen), 2) AS avg_videos_b,
@@ -177,10 +183,10 @@ class DuckDBAnalyticsEngine:
                     ROUND(AVG(b.total_appearances), 2) AS avg_appearances_b
                 FROM viewer_channel_stats a
                 JOIN viewer_channel_stats b 
-                    ON a.viewer_hash = b.viewer_hash 
+                    ON a.viewer_id = b.viewer_id 
                     AND a.vtuber_channel_id < b.vtuber_channel_id
                 GROUP BY a.vtuber_channel_id, b.vtuber_channel_id
-                HAVING COUNT(DISTINCT a.viewer_hash) >= {min_shared_viewers}
+                HAVING COUNT(DISTINCT a.viewer_id) >= {min_shared_viewers}
             )
             SELECT 
                 s.vtuber_a,

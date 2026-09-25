@@ -55,12 +55,16 @@ def validated_expanded_batches(records, *, max_batch_records=502):
             if type(state.get('sequence')) is not int or state['sequence'] != int(match[2]):
                 raise ValueError()
             events = [json.loads(r[3]) for r in rows[:-2]]
-            allowed = {'record_id', 'viewer_hash', 'vtuber_channel_id', 'video_id', 'source_type',
+            allowed = {'record_id', 'viewer_id', 'vtuber_channel_id', 'video_id', 'source_type',
                        'interaction_kind', 'interaction_time', 'provenance', 'video_published_at'}
             for event in events:
+                if 'viewer_hash' in event and 'viewer_id' not in event:
+                    event['viewer_id'] = event.pop('viewer_hash')
+                elif 'viewer_hash' in event:
+                    event.pop('viewer_hash')
                 if (not isinstance(event, dict) or set(event)-allowed
                         or any(not isinstance(event.get(k), str) or not event[k]
-                               for k in ('record_id','viewer_hash','vtuber_channel_id','video_id','provenance'))
+                               for k in ('record_id','viewer_id','vtuber_channel_id','video_id','provenance'))
                         or event.get('source_type') not in {'comment', 'live_chat'}):
                     raise ValueError()
             accepted[path] = {'events': events, 'state': state, 'digest': digest}
