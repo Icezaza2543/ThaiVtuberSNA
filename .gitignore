@@ -86,3 +86,4 @@ dist/
 # Local migration/reconcile run results
 outputs/migration_*/
 outputs/reconcile_*/
+outputs/vtuberthaiinfo_base/

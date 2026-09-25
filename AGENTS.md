@@ -27,9 +27,21 @@ stay in `docs/`; do not duplicate them — follow the pointers below.
 
 - Keep **platform accounts, personas, activity, and discovery counts distinct**.
 - Do **not** infer private persons or auto-link personas from similar names/handles.
-- **Account links and continuity** need first-party public evidence (owner bio,
-  official profile cross-link, agency statement). HoloList / wikis / search
-  indexes are `secondary_source` only.
+- **Trusted base directory (owner decision 2026-09-26):** each talent in the
+  VtuberThaiInfo archive (`https://vtuberthaiinfo-archive.pages.dev/talent`) is a
+  distinct, verified Thai virtual-creator persona, and its listed YouTube/Twitch
+  main channels are that persona's official accounts. Import with
+  `python scripts/import_vtuberthaiinfo_base.py` (dry-run unless `--write`).
+  Match to existing personas by stable account ID only; talents that hit 2+
+  personas or share a channel go to owner review, not auto-merge.
+- Our own discovery (Finder, crawls) adds creators beyond that base. Other
+  accounts we find are attached to an existing persona via owner cross-link
+  evidence; create a new persona only for a genuinely new creator.
+- **Account links and continuity** outside the base still need first-party public
+  evidence (owner bio, official profile cross-link, agency statement). HoloList /
+  wikis / search indexes other than the trusted base are `secondary_source` only.
+- Inactive or retired creators still count; activity is lifecycle, not scope.
+  Thai-language video content is valid `thai_language` evidence.
 - Preserve event history and exact/coarse/unknown date precision. Do not invent
   a calendar day from a month/year.
 - Use **candidate intake + reviewed change files**. Validate before commit.
