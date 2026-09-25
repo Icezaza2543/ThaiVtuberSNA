@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git push:*)",
+      "Bash(gh pr create:*)",
+      "Bash(gh pr merge:*)",
+      "Bash(railway up:*)",
+      "Bash(railway variables:*)",
+      "Bash(python scripts/reconcile_884.py:*)"
+    ]
+  }
+}
