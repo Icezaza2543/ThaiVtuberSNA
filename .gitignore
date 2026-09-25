@@ -82,3 +82,7 @@ runtime/
 dist/
 /playwright-report/
 /test-results/
+
+# Local migration/reconcile run results
+outputs/migration_*/
+outputs/reconcile_*/
