@@ -4,7 +4,9 @@
 > **[ThaiVtuberMaster](https://github.com/Icezaza2543/ThaiVtuberMaster)**.
 
 This is a **public-persona registry**, not a census of private people. Source of
-truth: `data/registry.json` (13 SQL-backed tables). Python 3.11+ stdlib is enough.
+truth: the **ThaiVtuber_DATA** Google Sheet (`1mScOlcwCt8Ewh2f53_idCv-SYsFwcC9YfdoFeHs17E8`;
+tabs PERSONAS, ACCOUNTS, ACCOUNT_LINKS, ORGANIZATIONS, AFFILIATIONS, ...).
+`data/registry.json` no longer exists; the local DuckDB is a derived working copy.
 This repository acts as the **data engine**: responsible for crawlers, discovery,
 first-party evidence review, SNA network overlap computation, and syncing data to
 Google Sheets (`ThaiVtuber_SNA`) / CSV exports consumed by `ThaiVtuberMaster`.
@@ -138,91 +140,38 @@ The legacy Grok `batch_resolve` API path requires `XAI_API_KEY`. The owner now
 uses Grok directly; do not provision a key or make API usage a prerequisite for
 frontend work. Existing reviewed data is enough to build the site.
 
-## Handoff — 2026-09-16 late evening
+## Handoff — 2026-09-27
 
-The 28-lead first-party review is **complete and applied**. Do not treat all 28
-as unreviewed anymore.
+Canonical writes go to ThaiVtuber_DATA through scripts in `scripts/` (all dry-run
+unless `--write`, append/update only, idempotent — re-running writes 0 rows):
 
-Applied review:
-`reviews/applied/2026-09-16-new-thai-vtuber-leads-first-party-review.json`
+| Script | Purpose |
+|---|---|
+| `import_vtuberthaiinfo_base.py` | VtuberThaiInfo talents → personas/accounts/links (trusted base) |
+| `resolve_vtuberthaiinfo_review.py` | Owner decisions on the base conflicts (merges, shared channels) |
+| `import_vtuberthaiinfo_affiliations.py` | VtuberThaiInfo memberships → ORGANIZATIONS/AFFILIATIONS |
+| `import_easydonate_links.py <file>` | Codex EasyDonate research files → accounts/links/personas |
+| `fix_slug_persona_names.py` | Replace slug display names with the linked YouTube title |
+| `reconcile_884.py` | 884-account screening → FINDER_INBOX (dedupes by platform+ID/handle) |
+| `sync_canonical_to_sna_sheet.py` | Append new verified accounts to ThaiVtuber_SNA (VTUBERS/TWITCH_VERIFIED/TIKTOK_VERIFIED) for Master |
 
-Source leads:
-`intake/consolidated/new-thai-vtuber-leads-2026-09-16.jsonl`
+State on 2026-09-27: 2,457 personas (2,425 verified); 6,261 accounts; 5,043 account links;
+EasyDonate VTuber category fully reviewed (rounds 1–6, files
+`intake/consolidated/easydonate-links-2026-09-2*.jsonl` / `-10-01.jsonl`);
+175 organizations, 661 affiliations. New VTUBERS rows were appended with
+`enabled=False` so SNA collection quota is not consumed until the owner enables them.
 
-### Current registry status after the 28-lead review
+EasyDonate: store slug/URL only, never payment data. The official API
+(`api.easydonate.app`, `read:creator`) only resolves creators with creator
+profiles; most donation pages 404 there. easydonate.app pages must be browsed
+normally — no Cloudflare bypass.
 
-- Total personas remain 895; **853 verified**.
-- Total accounts: **4,719**.
-- Accounts by platform: YouTube 1,399; Twitch 845; TikTok 962; X 1,149;
-  Facebook 211; Instagram 120; GankNow 28; Kick 2; Linktree 1; lit.link 2.
-- Verified accounts: YouTube 673; Twitch 384; TikTok 685; X 633;
-  Facebook 135; Instagram 80; GankNow 23; Kick 2; Linktree 1; lit.link 1.
-- Candidates: 301 total; 255 verified/promoted state, 46 still `needs_evidence`.
+Master refresh: `python scripts/sync_canonical_to_sna_sheet.py --write`, then in
+ThaiVtuberMaster `python scripts/manage.py sync` and deploy `web/`.
 
-### What changed in the 28-lead review
-
-- 34 candidate resolution attempts.
-- **18 candidates promoted** to stable-ID accounts:
-  - YouTube 13
-  - TikTok 5
-  - Twitch 0
-- **20 accounts added** total (includes 2 extra first-party TikTok accounts from
-  official links/hubs).
-- **20 persona↔account links verified**.
-- **8 personas newly verified**:
-  - Liyin
-  - Zabrina
-  - Joro Gumo
-  - EMIL
-  - Hakka
-  - Kyoya Keiran
-  - Nihr Farfalla
-  - Cynthia
-
-Strong examples used first-party evidence only: Hakka YouTube About explicitly
-states `Virtual YouTuber TH`; Zabrina/Cynthia/Nihr self-identify as virtual/VTuber
-on owner profiles; Joro Gumo and Kyoya use first-party TikTok/Linktree/lit.link
-chains; EMIL has owner-written YouTube lore plus direct X cross-link.
-
-### Still unresolved from this 28-lead batch
-
-16 candidate URLs did not resolve to stable IDs and remain unpromoted:
-
-- YouTube: 8
-- Twitch: 5
-- TikTok: 3
-
-Do not force these via name/handle similarity. Retry only when the public
-platform profile yields the platform stable ID.
-
-The remaining 20 personas from the 28-lead set are **not automatically
-verified**. They need first-party evidence for Thai relation + virtual
-presentation and explicit account ownership.
-
-### Pipeline status carried forward
-
-- Stage 2 canonical: `intake/consolidated/x-profile-links-2026-09-16.jsonl`.
-- Stage 3 canonical: `intake/consolidated/creator-platform-links-2026-09-16.jsonl`.
-- Stage 4 classify: `reviews/pending/creator-link-map-2026-09-16.json`.
-- First-party Stage 4 apply:
-  `reviews/applied/creator-link-map-2026-09-16-apply-first-party.json`.
-- About 944 first-party X/other accounts remain unlinked where the YouTube seed
-  has no verified persona; do not auto-link by handle similarity.
-- Destinesia `@DestinesiaP` was hijacked; not an official X.
-- FloraVtuberTH had name-only match — leave unresolved.
-
-### Next useful work
-
-1. Review first-party evidence for the remaining 20 personas from the 28-lead set.
-2. Retry the 16 unresolved stable-ID candidate URLs without guessing replacements.
-3. Link verified personas to already-collected first-party X/hub accounts only
-   where explicit cross-link evidence exists.
-4. Kick/GankNow now have first-party URLs in-registry; still no census. Do not
-   scrape extra creators unless asked.
-5. `vtuberthai.com` previously returned Cloudflare 502; retry only if useful.
-
-The two one-off GitHub Actions workflows used for this review were deleted after
-successful apply. `.github/workflows/validate.yml` is the persistent workflow.
+Verify production Finder after sheet writes:
+`MSYS_NO_PATHCONV=1 railway ssh -- finder verify -config /app/config/finder.json`
+(expects `canonical_invariant_ok: true`, `duplicate_inbox_rows: 0`).
 
 ## File map
 
@@ -257,8 +206,8 @@ The official public-facing master website has transitioned to **[ThaiVtuberMaste
 The local `web/` directory in this repository remains available as a local staging and
 verification environment for graph mathematics and registry debugging. To feed data to
 `ThaiVtuberMaster`:
-- Update the shared Google Sheet (`ThaiVtuber_SNA`: `1H876HyqxkOEYJGczctP5G-ZNAZv22jzViw787h441fE`) via `scripts/maintenance/prepare_analytics_sheets.py`.
-- Or generate direct CSV exports via `python scripts/maintenance/export_to_master.py --output <target_dir>` which can be ingested by `ThaiVtuberMaster` using `python scripts/manage.py sync --from-csv <target_dir>`.
+- Append newly verified canonical accounts to the shared Google Sheet (`ThaiVtuber_SNA`: `1H876HyqxkOEYJGczctP5G-ZNAZv22jzViw787h441fE`) with `python scripts/sync_canonical_to_sna_sheet.py --write`, then run `python scripts/manage.py sync` in `ThaiVtuberMaster`.
+- Or export CSVs with `python -m thaivtubersna export --output <new_dir>` (reads the local DuckDB, which may lag the canonical sheet) and ingest with `python scripts/manage.py sync --from-csv <new_dir>`.
 
 Do not duplicate website UI features in this worker repository. Focus here on crawler completeness,
 evidence rigor, graph accuracy, and reliable data exports for `ThaiVtuberMaster`.
