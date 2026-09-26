@@ -8,7 +8,7 @@ by stable ID. New VTUBERS rows start with enabled=False so SNA collection
 quota is not consumed until the owner enables them.
 
 --update-names also rewrites the name cell of rows still showing a slug that
-fix_slug_persona_names.py replaced (persona notes `renamed_from_slug=<slug>`).
+an earlier persona name recorded in notes (`renamed_from_slug=` / `renamed_from=`).
 No other existing cell is changed.
 
 Dry-run unless --write.
@@ -82,11 +82,12 @@ def main():
         if r[7] == "verified" and personas.get(r[1], [""] * 12)[8] == "verified":
             persona_of[r[2]].append((r[1], r[6], r[9]))
 
-    renamed = {}  # persona_id -> (old slug, new name)
+    renamed = {}  # persona_id -> (set of earlier names, current name)
     for pid, p in personas.items():
-        m = re.search(r"renamed_from_slug=([^;\s]+)", p[11])
-        if m:
-            renamed[pid] = (m.group(1), p[1])
+        olds = set(re.findall(r"renamed_from_slug=([^;\s]+)", p[11]))
+        olds |= set(re.findall(r"renamed_from=(.*?) \(", p[11]))
+        if olds - {p[1]}:
+            renamed[pid] = (olds - {p[1]}, p[1])
     cells = []
     if args.update_names:
         pid_by_channel = {a[2]: persona_of[aid][0][0] for aid, a in accounts.items()
@@ -94,13 +95,13 @@ def main():
         for i, r in enumerate(sna.get("'VTUBERS'!A2:C"), start=2):
             r = pad(r, 3)
             old_new = renamed.get(pid_by_channel.get(r[0], ""))
-            if old_new and r[2] == old_new[0]:
+            if old_new and r[2] in old_new[0]:
                 cells.append((f"'VTUBERS'!C{i}", old_new[1]))
         for tab in ("TWITCH_VERIFIED", "TIKTOK_VERIFIED"):
             for i, r in enumerate(sna.get(f"'{tab}'!A2:J"), start=2):
                 r = pad(r, 10)
                 old_new = renamed.get(r[9])
-                if old_new and r[4] == old_new[0]:
+                if old_new and r[4] in old_new[0]:
                     cells.append((f"'{tab}'!E{i}", old_new[1]))
 
     plan = {}
