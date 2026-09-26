@@ -92,7 +92,7 @@ def test_full_run_scope_and_no_text():
 
 
 def test_newest_year_first_and_budget_resume():
-    con, c = make(budget=4)  # channels + playlist + durations + 1 comment page
+    con, c = make(budget=5)  # channels + metrics + playlist + durations + 1 comment page
     c.run(once=True)
     first_vid = [p.get("videoId") for r, p in c.http.calls if r == "commentThreads"][0]
     assert first_vid == "v2026"
