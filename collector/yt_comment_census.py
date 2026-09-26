@@ -316,6 +316,13 @@ class Census:
     # ---- driver ------------------------------------------------------------
     def step(self) -> bool:
         """Do one unit of work. Returns False when everything is finished."""
+        # Once per day pick up channels newly verified in ThaiVtuber_DATA (sheet reads, no API quota).
+        if self.publish_metrics and getattr(self, "_channels_day", None) != self.today():
+            self._channels_day = self.today()
+            try:
+                refresh_channels(self.con)
+            except Exception:
+                log.exception("channel refresh failed; keeping current list")
         # Daily channel metrics first (~45 units), then publish once per day.
         if yt_metrics.collect(self):
             return True
