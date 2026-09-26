@@ -4,7 +4,7 @@ No Parquet/CSV export and no DuckDB spill directory are created.
 """
 import json
 import pyarrow as pa
-from storage.private_sheet_store import PrivateSheetStore
+from storage.local_archive_store import default_private_store
 
 ARCHIVE_HEADERS = ['source_path', 'source_table', 'row_number', 'record_json']
 RAW_COLUMNS = ['viewer_id','vtuber_channel_id','video_id','source_type',
@@ -40,7 +40,7 @@ def build_sheet_unified_raw(con, store=None, *, include_expanded=False):
     if any(row[2] for row in con.execute('PRAGMA database_list').fetchall()):
         raise ValueError('Private analytics requires an in-memory DuckDB connection')
     con.execute("SET temp_directory = ''")
-    store = store or PrivateSheetStore()
+    store = store or default_private_store('PRIVATE_DATA_ARCHIVE')
     records = store.read_records('PRIVATE_DATA_ARCHIVE', ARCHIVE_HEADERS)
     if include_expanded:
         records = list(records)  # authorized private RAM, DuckDB spill already disabled
