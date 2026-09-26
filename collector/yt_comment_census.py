@@ -37,6 +37,8 @@ from zoneinfo import ZoneInfo
 import duckdb
 import requests
 
+from collector import yt_metrics
+
 ROOT = Path(__file__).resolve().parents[1]
 API = "https://www.googleapis.com/youtube/v3"
 PT = ZoneInfo("America/Los_Angeles")
@@ -104,11 +106,15 @@ def api_key() -> str:
 
 class Census:
     def __init__(self, con: duckdb.DuckDBPyConnection, key: str, budget: int = DEFAULT_BUDGET,
-                 session: requests.Session | None = None, web: requests.Session | None = None):
+                 session: requests.Session | None = None, web: requests.Session | None = None,
+                 publish_metrics: bool = False):
         self.con, self.key, self.budget = con, key, budget
         self.http = session or requests.Session()
         self.web = web or requests.Session()
+        self.publish_metrics = publish_metrics
+        self._next_publish_try = 0.0
         con.execute(SCHEMA)
+        yt_metrics.ensure(con)
 
     # ---- quota -------------------------------------------------------------
     def today(self) -> str:
@@ -310,6 +316,12 @@ class Census:
     # ---- driver ------------------------------------------------------------
     def step(self) -> bool:
         """Do one unit of work. Returns False when everything is finished."""
+        # Daily channel metrics first (~45 units), then publish once per day.
+        if yt_metrics.collect(self):
+            return True
+        if self.publish_metrics and time.monotonic() >= self._next_publish_try:
+            self._next_publish_try = time.monotonic() + 1800
+            yt_metrics.publish_if_due(self)
         if self.con.execute("SELECT 1 FROM channels WHERE uploads_playlist IS NULL LIMIT 1").fetchone():
             self.resolve_uploads()
             return True
@@ -428,7 +440,11 @@ def main(argv=None):
     if args.command == "channels":
         refresh_channels(con)
     else:
-        Census(con, api_key(), args.budget).run(once=args.once, status_file=status_path())
+        yt_metrics.ensure(con)
+        seeded = yt_metrics.seed_from_archive(con, path.with_name("sna_archive.duckdb"))
+        if seeded:
+            log.info("seeded %s legacy YouTube metric points", seeded)
+        Census(con, api_key(), args.budget, publish_metrics=True).run(once=args.once, status_file=status_path())
     con.close()
 
 
