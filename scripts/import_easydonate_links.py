@@ -28,13 +28,15 @@ REVIEWER = "owner:easydonate-2026-09-26"
 MARKER = "easydonate_links"
 SKIP = {"hoshisaki_lyn"}  # current page conflicts with earlier owner cross-link; possible recycled slug
 URLS = {"youtube": "https://www.youtube.com/channel/{}", "x": "https://x.com/{}",
-        "twitch": "https://www.twitch.tv/{}", "easydonate": "https://easydonate.app/{}"}
+        "twitch": "https://www.twitch.tv/{}", "easydonate": "https://easydonate.app/{}",
+        "facebook": "https://www.facebook.com/profile.php?id={}", "instagram": "https://www.instagram.com/{}"}
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("file", nargs="?", default=str(ROOT / "intake/consolidated/easydonate-links-2026-09-26.jsonl"))
     ap.add_argument("--write", action="store_true")
+    ap.add_argument("--include-need-review", action="store_true")
     args = ap.parse_args()
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     rows = [json.loads(l) for l in open(args.file, encoding="utf-8") if l.strip()]
@@ -44,13 +46,15 @@ def main():
 
     def account(platform, pid, name):
         # Handle-only platforms follow the sheet convention: empty platform_id, handle in its own column.
-        by_handle = platform in ("x", "easydonate")
+        # Facebook: numeric profile id -> platform_id; page name -> handle.
+        by_handle = platform in ("x", "easydonate", "instagram") or (platform == "facebook" and not pid.isdigit())
+        url = "https://www.facebook.com/" + pid if platform == "facebook" and by_handle else URLS[platform].format(pid)
         a = {"platform": platform, "platform_id": "" if by_handle else pid, "handle": pid.lower() if by_handle else ""}
         aid = idx.account(a)
         if not aid:
             aid = "acct_" + sha(f"ezdn-account:{platform}:{a['handle'] or pid}")
             accounts[aid] = [aid, platform, a["platform_id"], pid if by_handle else "", name,
-                             URLS[platform].format(pid), "persona", "", "unknown", now, now, "verified", now, now]
+                             url, "persona", "", "unknown", now, now, "verified", now, now]
         return aid
 
     def link(pid, aid, src, note):
@@ -62,6 +66,9 @@ def main():
     for r in rows:
         slug, cls = r["slug"], r["match"]
         stable = [a for a in r["official_accounts"] if a.get("platform_id") and a["platform"] in URLS]
+        if cls == "NEED_REVIEW" and not args.include_need_review:
+            log.append(f"SKIP {slug}: NEED_REVIEW (pass --include-need-review after owner decision)")
+            continue
         if slug in SKIP or cls == "NO_EVIDENCE" or not stable:
             continue
         ed_url = URLS["easydonate"].format(slug)
