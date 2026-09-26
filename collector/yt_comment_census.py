@@ -444,7 +444,9 @@ def main(argv=None):
         seeded = yt_metrics.seed_from_archive(con, path.with_name("sna_archive.duckdb"))
         if seeded:
             log.info("seeded %s legacy YouTube metric points", seeded)
-        Census(con, api_key(), args.budget, publish_metrics=True).run(once=args.once, status_file=status_path())
+        census = Census(con, api_key(), args.budget, publish_metrics=True)
+        census.links_export_path = path.with_name("yt_channel_links.jsonl")
+        census.run(once=args.once, status_file=status_path())
     con.close()
 
 

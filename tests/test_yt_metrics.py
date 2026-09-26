@@ -56,3 +56,21 @@ def test_growth_leaves_delta_blank_when_no_point_near_the_window():
                     [day, subs])
     row = dict(zip(yt_metrics.GROWTH_COLUMNS, yt_metrics.growth_rows(con)["UCa"]))
     assert row["subscribers_delta_7d"] == "" and row["baseline_7d"] == ""  # 14 days is not a 7-day delta
+
+
+def test_description_links_are_captured_and_exported(tmp_path):
+    class Desc:
+        def get(self, url, params, headers, timeout):
+            return Resp(200, {"items": [{"id": "UCa", "snippet": {
+                "title": "A", "description": "โดเนท https://easydonate.app/foo。 X: https://x.com/a_vt)"},
+                "statistics": {"subscriberCount": "1"}}]})
+
+    con = duckdb.connect(":memory:")
+    c = Census(con, "k", 100, session=Desc())
+    con.execute("INSERT INTO channels (channel_id) VALUES ('UCa')")
+    yt_metrics.collect(c)
+    assert sorted(con.execute("SELECT url, domain FROM channel_links").fetchall()) == [
+        ("https://easydonate.app/foo", "easydonate.app"), ("https://x.com/a_vt", "x.com")]
+    out = tmp_path / "links.jsonl"
+    assert yt_metrics.export_links(con, out) == 2
+    assert "easydonate.app/foo" in out.read_text(encoding="utf-8")
