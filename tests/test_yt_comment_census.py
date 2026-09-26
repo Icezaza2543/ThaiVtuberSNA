@@ -25,12 +25,21 @@ class FakeYT:
                                          "contentDetails": {"relatedPlaylists": {"uploads": "UUa"}}}]})
         if res == "playlistItems":
             items = [{"contentDetails": {"videoId": "v2026", "videoPublishedAt": "2026-03-01T00:00:00Z"}},
+                     {"contentDetails": {"videoId": "vshort", "videoPublishedAt": "2026-02-01T00:00:00Z"}},
+                     {"contentDetails": {"videoId": "vclip", "videoPublishedAt": "2026-01-01T00:00:00Z"}},
                      {"contentDetails": {"videoId": "v2021", "videoPublishedAt": "2021-05-01T00:00:00Z"}},
                      {"contentDetails": {"videoId": "vold", "videoPublishedAt": "2019-01-01T00:00:00Z"}},
                      {"contentDetails": {"videoId": "vprivate"}}]
             return Resp(200, {"items": items, "nextPageToken": "never-followed"})
+        if res == "videos":
+            dur = {"v2026": "PT10M", "vshort": "PT45S", "vclip": "PT2M", "v2021": "PT5M"}
+            return Resp(200, {"items": [{"id": v, "contentDetails": {"duration": dur[v]}}
+                                        for v in params["id"].split(",") if v in dur]})
         if res == "commentThreads":
             vid = params["videoId"]
+            assert vid != "vshort", "Shorts must never be fetched"
+            if vid == "vclip":
+                return Resp(200, {"items": []})
             if vid == "v2021":
                 return Resp(403, {"error": {"errors": [{"reason": "commentsDisabled"}]}})
             if "pageToken" not in params:
@@ -49,9 +58,19 @@ class FakeYT:
         raise AssertionError(res)
 
 
+class FakeWeb:
+    def __init__(self):
+        self.heads = []
+
+    def head(self, url, **kw):
+        vid = url.rsplit("/", 1)[1]
+        self.heads.append(vid)
+        return Resp(200 if vid == "vshort" else 303, {})
+
+
 def make(budget=100):
     con = duckdb.connect(":memory:")
-    c = Census(con, "k", budget, session=FakeYT())
+    c = Census(con, "k", budget, session=FakeYT(), web=FakeWeb())
     con.execute("INSERT INTO channels (channel_id) VALUES ('UCa')")
     return con, c
 
@@ -60,7 +79,9 @@ def test_full_run_scope_and_no_text():
     con, c = make()
     c.run(once=True)
     vids = dict(con.execute("SELECT video_id, status FROM videos").fetchall())
-    assert vids == {"v2026": "done", "v2021": "disabled"}  # 2019 and private uploads excluded
+    # 2019 and private uploads excluded; Short skipped; a short regular clip is kept
+    assert vids == {"v2026": "done", "vshort": "skipped_short", "vclip": "done", "v2021": "disabled"}
+    assert sorted(c.web.heads) == ["vclip", "vshort"]  # only <=3 min videos are URL-checked
     rows = con.execute("SELECT comment_id, author_channel_id, author_display_name, parent_id FROM comments "
                        "ORDER BY comment_id").fetchall()
     assert rows == [("c1", "UCviewer1", "Viewer One", None), ("c1.r1", "UCviewer2", "Viewer Two", "c1"),
@@ -71,7 +92,7 @@ def test_full_run_scope_and_no_text():
 
 
 def test_newest_year_first_and_budget_resume():
-    con, c = make(budget=3)  # channels + playlist + 1 comment page
+    con, c = make(budget=4)  # channels + playlist + durations + 1 comment page
     c.run(once=True)
     first_vid = [p.get("videoId") for r, p in c.http.calls if r == "commentThreads"][0]
     assert first_vid == "v2026"

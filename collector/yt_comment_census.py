@@ -63,7 +63,20 @@ CREATE TABLE IF NOT EXISTS reply_jobs (
     parent_id VARCHAR PRIMARY KEY, video_id VARCHAR, channel_id VARCHAR,
     status VARCHAR DEFAULT 'pending', page_token VARCHAR);
 CREATE TABLE IF NOT EXISTS quota (day_pt VARCHAR PRIMARY KEY, units INTEGER);
+ALTER TABLE videos ADD COLUMN IF NOT EXISTS duration_s INTEGER;
+ALTER TABLE videos ADD COLUMN IF NOT EXISTS is_short BOOLEAN;
 """
+SHORTS_MAX_S = 180  # YouTube Shorts can be up to 3 minutes
+
+
+def iso_seconds(d: str) -> int:
+    """PT1H2M3S -> 3723. Unknown/empty -> -1."""
+    import re
+    m = re.fullmatch(r"P(?:(\d+)D)?T?(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?", d or "")
+    if not m:
+        return -1
+    dd, h, mi, se = (int(x or 0) for x in m.groups())
+    return ((dd * 24 + h) * 60 + mi) * 60 + se
 
 
 class QuotaExhausted(Exception):
@@ -91,9 +104,10 @@ def api_key() -> str:
 
 class Census:
     def __init__(self, con: duckdb.DuckDBPyConnection, key: str, budget: int = DEFAULT_BUDGET,
-                 session: requests.Session | None = None):
+                 session: requests.Session | None = None, web: requests.Session | None = None):
         self.con, self.key, self.budget = con, key, budget
         self.http = session or requests.Session()
+        self.web = web or requests.Session()
         con.execute(SCHEMA)
 
     # ---- quota -------------------------------------------------------------
@@ -248,6 +262,51 @@ class Census:
             if not token:
                 return
 
+    # ---- phase 2b: skip Shorts (owner decision: loyal viewers only) ----------
+    def classify_durations(self, year: int) -> bool:
+        ids = [r[0] for r in self.con.execute("SELECT video_id FROM videos WHERE year = ? AND duration_s IS NULL "
+                                              "AND status = 'pending' LIMIT 50", [year]).fetchall()]
+        if not ids:
+            return False
+        code, body = self.get("videos", {"part": "contentDetails", "id": ",".join(ids), "maxResults": 50})
+        if code != 200:
+            return False
+        seen = set()
+        for it in body.get("items", []):
+            seen.add(it["id"])
+            secs = iso_seconds(it["contentDetails"].get("duration"))
+            self.con.execute("UPDATE videos SET duration_s = ?, is_short = CASE WHEN ? > ? OR ? <= 0 THEN false END "
+                             "WHERE video_id = ?", [secs, secs, SHORTS_MAX_S, secs, it["id"]])
+        for vid in set(ids) - seen:  # removed/private since the playlist scan
+            self.con.execute("UPDATE videos SET duration_s = -1, is_short = false, status = 'gone' WHERE video_id = ?", [vid])
+        return True
+
+    def is_short_url(self, vid: str) -> bool | None:
+        """No API quota: /shorts/<id> answers 200 for a Short, redirects otherwise."""
+        try:
+            r = self.web.head(f"https://www.youtube.com/shorts/{vid}", allow_redirects=False, timeout=15,
+                              headers={"User-Agent": "Mozilla/5.0"}, cookies={"CONSENT": "YES+1"})
+        except requests.RequestException:
+            return None
+        if r.status_code == 200:
+            return True
+        if r.status_code in (301, 302, 303, 307, 308):
+            return False
+        return None
+
+    def classify_shorts(self, year: int) -> bool:
+        rows = self.con.execute("SELECT video_id FROM videos WHERE year = ? AND status = 'pending' AND duration_s "
+                                "BETWEEN 1 AND ? AND is_short IS NULL LIMIT 20", [year, SHORTS_MAX_S]).fetchall()
+        if not rows:
+            return False
+        for (vid,) in rows:
+            short = self.is_short_url(vid)
+            short = False if short is None else short  # unknown -> keep the video
+            self.con.execute("UPDATE videos SET is_short = ?, status = CASE WHEN ? THEN 'skipped_short' ELSE status END "
+                             "WHERE video_id = ?", [short, short, vid])
+            time.sleep(0.3)
+        return True
+
     # ---- driver ------------------------------------------------------------
     def step(self) -> bool:
         """Do one unit of work. Returns False when everything is finished."""
@@ -260,8 +319,11 @@ class Census:
             self.scan_channel(*ch)
             return True
         for year in YEARS:
+            if self.classify_durations(year) or self.classify_shorts(year):
+                return True
             v = self.con.execute("SELECT video_id, channel_id, page_token FROM videos WHERE year = ? "
-                                 "AND status IN ('pending', 'partial') ORDER BY published_at DESC LIMIT 1", [year]).fetchone()
+                                 "AND status IN ('pending', 'partial') AND is_short = false "
+                                 "ORDER BY published_at DESC LIMIT 1", [year]).fetchone()
             if v:
                 self.video_comments(*v)
                 return True
@@ -310,7 +372,8 @@ def status_line(con) -> str:
 
 
 def status_report(con, used: int, budget: int, state: str) -> str:
-    lines = [f"state: {state}", f"updated: {datetime.now().isoformat(timespec='seconds')}",
+    shorts = con.execute("SELECT count(*) FROM videos WHERE status = 'skipped_short'").fetchone()[0]
+    lines = [f"state: {state}", f"shorts skipped: {shorts}", f"updated: {datetime.now().isoformat(timespec='seconds')}",
              f"quota today (Pacific day): {used}/{budget}", status_line(con)]
     for y, n, d in con.execute("SELECT year, count(*), count(*) FILTER (WHERE status NOT IN ('pending','partial')) "
                                "FROM videos GROUP BY year ORDER BY year DESC").fetchall():
