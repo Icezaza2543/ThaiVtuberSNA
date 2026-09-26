@@ -1,0 +1,53 @@
+{
+  "source": "Tipjai public creator directory and VTuber category",
+  "review_date": "2026-09-26",
+  "category_url": "https://tipjai.com/discover/vtuber",
+  "category_pages": 2,
+  "category_cards": 81,
+  "directory_url": "https://tipjai.com/discover",
+  "directory_pages": 39,
+  "directory_unique_cards": 692,
+  "category_cards_also_in_directory": 78,
+  "category_only_slugs": [
+    "slendyharu",
+    "ichanch",
+    "kurovtube"
+  ],
+  "outside_category_virtual_signal_candidates": 9,
+  "candidate_profiles_opened": 90,
+  "all_unique_cards_in_category_and_directory": 695,
+  "additional_directory_profiles_reviewed": 604,
+  "total_creator_profiles_opened": 694,
+  "profiles_not_opened": [
+    {
+      "slug": "discord",
+      "reason": "Chrome auto-review blocked a redirect to discord.com as outside the authorized Tipjai research scope"
+    }
+  ],
+  "additional_virtual_signal_candidates_after_profile_review": 0,
+  "linked_destination_pages_opened": {
+    "youtube": 35,
+    "x": 21,
+    "tiktok": 17,
+    "twitch": 16,
+    "facebook_instagram_bluesky": 13
+  },
+  "proposal_file": "intake/consolidated/tipjai-candidates-2026-09-26.jsonl",
+  "proposal_rows": 90,
+  "official_accounts_recorded": 101,
+  "match_counts": {
+    "MATCH_EXISTING": 6,
+    "NEW": 17,
+    "NEED_REVIEW": 2,
+    "NO_EVIDENCE": 65
+  },
+  "scope_counts": {
+    "CATEGORY_TAG_AND_THAI": 59,
+    "SELF_DESCRIPTION_AND_THAI": 6,
+    "THAI_UNRESOLVED": 23,
+    "VIRTUAL_UNRESOLVED": 2
+  },
+  "sitemap_status": "Chrome blocked https://tipjai.com/sitemap.xml with ERR_BLOCKED_BY_CLIENT; directory and category pages were used",
+  "cloudflare_challenge_seen": false,
+  "notes": "All visible category and directory cards were reviewed. Every listed creator profile except the blocked discord redirect was opened and screened for virtual presentation and Thai relation; only candidate virtual creators are written. YouTube @handles, Twitch logins, and TikTok handles are retained with null platform_id unless a stable ID was visible. No registry or sheet writes."
+}
