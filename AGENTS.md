@@ -166,8 +166,19 @@ EasyDonate: store slug/URL only, never payment data. The official API
 profiles; most donation pages 404 there. easydonate.app pages must be browsed
 normally — no Cloudflare bypass.
 
-Master refresh: `python scripts/sync_canonical_to_sna_sheet.py --write`, then in
-ThaiVtuberMaster `python scripts/manage.py sync` and deploy `web/`.
+Master refresh: `python scripts/sync_canonical_to_sna_sheet.py --write --update-names`,
+then in ThaiVtuberMaster `python scripts/manage.py sync`. Master is not deployed yet
+(owner decision); do not deploy without asking.
+
+YouTube comment census + daily metrics (`collector/yt_comment_census.py`, README
+"YouTube comment census"): runs 24/7 on the owner's PC as a scheduled task, free quota
+only, Shorts skipped, comment text never stored, data in `%LOCALAPPDATA%\ThaiVtuberSNA`.
+Do not start a second writer on `yt_comments.duckdb`; use `... status`.
+Loyal-viewer SNA computation is intentionally **not** built yet: the owner will first
+review the current SNA output for thin coverage or odd behaviour.
+
+ThaiVtuber_SNA sheet was cleaned on 2026-09-26 (9 tabs remain; private/raw tabs are in
+the local `sna_archive.duckdb`, the only copy of legacy viewer data).
 
 Verify production Finder after sheet writes:
 `MSYS_NO_PATHCONV=1 railway ssh -- finder verify -config /app/config/finder.json`

@@ -75,7 +75,7 @@ but they are not the authoritative path for new canonical identities.
 - No automatic persona merging from name, voice, artwork, handle similarity, or presumed operator.
 - New persona/model/re-debut records remain separate until a reviewed canonical decision says otherwise.
 - Organization/group accounts remain separate from individual personas.
-- Audience identities remain privacy-preserving.
+- Audience data (commenter IDs and display names) stays in local private storage — never in shared sheets or the repo. Comment text is not collected.
 - Analytical observations do not silently rewrite canonical persona/account ownership.
 - Processing is reproducible and idempotent where possible.
 
@@ -102,6 +102,67 @@ Tests:
 ```bash
 python -m pytest tests/ -v
 ```
+
+---
+
+## 💬 YouTube comment census + daily channel metrics
+
+One free-tier worker (`collector/yt_comment_census.py`) collects, for every verified
+YouTube channel in ThaiVtuber_DATA:
+
+- **Comments 2021–2026**, newest year first. Stored per comment/reply: comment id, video,
+  channel, commenter channel id, commenter display name, time, likes, parent id.
+  **Comment text is never requested or stored.**
+- **Shorts are skipped** (owner decision: the SNA models loyal viewers, not drive-by
+  Shorts traffic). Durations come from `videos.list`; videos ≤3 min are confirmed via
+  the `/shorts/<id>` URL.
+- **Daily metrics** (title, subscribers, views, video count) for every channel,
+  ~45 units/day. Full history stays local; the sheet gets the latest value per channel
+  (`ANALYTICS_METRICS`) and 7/30/90-day deltas (`ANALYTICS_GROWTH`).
+
+It uses one `YOUTUBE_API_KEY` (from `.env`), stays under the free 10,000-unit daily
+quota, checkpoints every page, and sleeps over the Pacific-midnight reset.
+
+```bash
+python -m collector.yt_comment_census channels   # refresh channel list from ThaiVtuber_DATA
+python -m collector.yt_comment_census run        # run continuously
+python -m collector.yt_comment_census status     # progress (works while the worker runs)
+```
+
+On the owner's PC it runs as the Windows scheduled task **"ThaiVtuberSNA YT Comment
+Census"** (starts at logon). Pause with `Disable-ScheduledTask "ThaiVtuberSNA YT Comment Census"`.
+
+### Local private data (outside the repo)
+
+| File (`%LOCALAPPDATA%\ThaiVtuberSNA\`) | Contents |
+|---|---|
+| `yt_comments.duckdb` | census: channels, videos, comments, reply jobs, quota, channel_metrics |
+| `yt_comments_status.txt` / `yt_comments.log` | worker status snapshot and log |
+| `sna_archive.duckdb` | verified snapshot of all 19 former ThaiVtuber_SNA tabs, incl. the old viewer tables (`PRIVATE_DATA_ARCHIVE`, `VIEWER_*`, `ALL_COMMENTERS`) |
+
+`sna_archive.duckdb` is the only copy of the legacy viewer data — keep a private backup.
+`storage/local_archive_store.py` reads it with the same interface as the old sheet store.
+
+---
+
+## 🗂️ Canonical-data scripts (ThaiVtuber_DATA)
+
+All are dry-run unless `--write`, append/update only, and idempotent.
+
+| Script | Purpose |
+|---|---|
+| `scripts/import_vtuberthaiinfo_base.py` | VtuberThaiInfo talents → personas/accounts/links (trusted base) |
+| `scripts/import_vtuberthaiinfo_affiliations.py` | VtuberThaiInfo memberships → organizations/affiliations |
+| `scripts/import_easydonate_links.py <file>` | reviewed EasyDonate research files → accounts/links/personas |
+| `scripts/apply_persona_renames.py <file>` / `fix_slug_persona_names.py` | guarded display-name fixes |
+| `scripts/sync_canonical_to_sna_sheet.py [--update-names]` | append newly verified accounts to ThaiVtuber_SNA for Master |
+| `scripts/archive_sna_sheet.py [--verify]` / `clean_sna_sheet.py` | snapshot and clean the ThaiVtuber_SNA sheet |
+
+## 📑 ThaiVtuber_SNA sheet (read by ThaiVtuberMaster)
+
+`VTUBERS` (verified channels only), `VTUBERS_RETIRED`, `NETWORK_RESULT`, `TIKTOK_VERIFIED`,
+`TWITCH_VERIFIED`, `ANALYTICS_METRICS`, `ANALYTICS_GROWTH`, `DATA_DICTIONARY`, `SYSTEM`.
+Private/raw tabs were moved to the local archive on 2026-09-26.
 
 ---
 
