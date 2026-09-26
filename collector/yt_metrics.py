@@ -13,10 +13,14 @@ Runs inside the comment-census process (DuckDB allows one writer):
 """
 from __future__ import annotations
 
+import json
 import logging
+import os
+import re
 import sys
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import requests
 
@@ -31,6 +35,9 @@ CREATE TABLE IF NOT EXISTS channel_metrics (
     PRIMARY KEY (channel_id, day));
 CREATE TABLE IF NOT EXISTS metrics_published (day VARCHAR PRIMARY KEY, published_at VARCHAR);
 CREATE TABLE IF NOT EXISTS metrics_missing (channel_id VARCHAR, day VARCHAR, PRIMARY KEY (channel_id, day));
+CREATE TABLE IF NOT EXISTS channel_links (
+    channel_id VARCHAR, url VARCHAR, domain VARCHAR, first_seen VARCHAR, last_seen VARCHAR,
+    PRIMARY KEY (channel_id, url));
 """
 METRIC_COLUMNS = ["platform", "platform_id", "name", "scope", "followers_or_subscribers", "views", "likes_received",
                   "metric_time", "time_basis", "observed_at", "source", "source_url", "account_url"]
@@ -38,6 +45,33 @@ GROWTH_COLUMNS = ["channel_id", "name", "scope", "source", "first_date", "last_d
                   "subscribers_delta_7d", "baseline_7d", "subscribers_delta_30d", "baseline_30d",
                   "subscribers_delta_90d", "baseline_90d", "views_delta_30d", "views_baseline_30d",
                   "source_url", "account_url"]
+
+
+URL_RE = re.compile(r"https?://[^\s<>()\[\]\"'，、。]+", re.I)
+
+
+def description_links(text: str) -> list[tuple[str, str]]:
+    """Outbound links written by the channel owner in the About description."""
+    out = {}
+    for raw in URL_RE.findall(text or ""):
+        url = raw.rstrip(".,;:!?)」』】。")
+        host = (urlsplit(url).hostname or "").lower().removeprefix("www.").removeprefix("m.")
+        if host:
+            out[url] = host
+    return list(out.items())
+
+
+def export_links(con, path: Path) -> int:
+    """JSONL snapshot for importers (the worker holds the DB lock)."""
+    rows = con.execute("SELECT channel_id, url, domain, first_seen, last_seen FROM channel_links "
+                       "ORDER BY channel_id, url").fetchall()
+    tmp = path.with_suffix(".tmp")
+    with open(tmp, "w", encoding="utf-8") as f:
+        for cid, url, domain, first, last in rows:
+            f.write(json.dumps({"channel_id": cid, "url": url, "domain": domain,
+                                "first_seen": first, "last_seen": last}, ensure_ascii=False) + "\n")
+    os.replace(tmp, path)
+    return len(rows)
 
 
 def ensure(con):
@@ -97,6 +131,9 @@ def collect(census) -> bool:
         con.execute("INSERT INTO channel_metrics VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'youtube_api') ON CONFLICT DO NOTHING",
                     [it["id"], day, sn.get("title"), sn.get("customUrl"), subs, _int(st.get("viewCount")),
                      _int(st.get("videoCount")), now])
+        for url, host in description_links(sn.get("description")):
+            con.execute("INSERT INTO channel_links VALUES (?, ?, ?, ?, ?) ON CONFLICT (channel_id, url) "
+                        "DO UPDATE SET last_seen = excluded.last_seen", [it["id"], url, host, day, day])
     # Channels not returned today (terminated/private): don't retry until tomorrow.
     missing = [[i, day] for i in set(ids) - seen]
     if missing:
@@ -202,4 +239,7 @@ def publish_if_due(census) -> None:
         log.exception("metrics publish failed; will retry later today")
         return
     con.execute("INSERT INTO metrics_published VALUES (?, ?)", [day, datetime.now(timezone.utc).isoformat()])
+    links_path = getattr(census, "links_export_path", None)
+    if links_path:
+        result["links_exported"] = export_links(con, links_path)
     log.info("metrics published %s", result)
