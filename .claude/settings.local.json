@@ -1,12 +1,33 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git push:*)",
-      "Bash(gh pr create:*)",
-      "Bash(gh pr merge:*)",
-      "Bash(railway up:*)",
-      "Bash(railway variables:*)",
-      "Bash(python scripts/reconcile_884.py:*)"
+      "Bash(python:*)",
+      "Bash(git:*)",
+      "Bash(gh:*)",
+      "Bash(railway:*)",
+      "Bash(vercel:*)",
+      "Bash(go:*)",
+      "Bash(curl:*)",
+      "PowerShell",
+      "mcp__claude_ai_Railway",
+      "mcp__claude_ai_Vercel",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "deny": [
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean:*)",
+      "Bash(rm -rf:*)",
+      "Bash(gh repo delete:*)",
+      "Bash(railway delete:*)",
+      "Bash(railway down:*)",
+      "mcp__claude_ai_Railway__delete-service",
+      "mcp__claude_ai_Railway__delete-volume",
+      "mcp__claude_ai_Vercel__buy_domain",
+      "mcp__claude_ai_Vercel__buy_pro",
+      "mcp__claude_ai_Vercel__buy_credits"
     ]
   }
 }
