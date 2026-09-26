@@ -101,7 +101,11 @@ class Census:
         return datetime.now(PT).strftime("%Y-%m-%d")
 
     def used(self) -> int:
-        r = self.con.execute("SELECT units FROM quota WHERE day_pt = ?", [self.today()]).fetchone()
+        return self.used_on(self.con)
+
+    @staticmethod
+    def used_on(con) -> int:
+        r = con.execute("SELECT units FROM quota WHERE day_pt = ?", [datetime.now(PT).strftime("%Y-%m-%d")]).fetchone()
         return r[0] if r else 0
 
     def spend(self):
@@ -269,14 +273,27 @@ class Census:
                 return True
         return False
 
-    def run(self, once: bool = False):
+    def write_status(self, path: Path | None, state: str):
+        if path is None:
+            return
+        tmp = path.with_suffix(".tmp")
+        tmp.write_text(status_report(self.con, self.used(), self.budget, state), encoding="utf-8")
+        os.replace(tmp, path)
+
+    def run(self, once: bool = False, status_file: Path | None = None):
+        last = 0.0
         while True:
             try:
+                if time.monotonic() - last > 60:
+                    self.write_status(status_file, "running")
+                    last = time.monotonic()
                 if not self.step():
                     log.info("census complete")
+                    self.write_status(status_file, "complete")
                     return
             except QuotaExhausted:
                 log.info("daily budget reached (%s units); %s", self.used(), status_line(self.con))
+                self.write_status(status_file, "waiting for quota reset (00:00 Pacific = 14:00/15:00 Thailand)")
                 if once:
                     return
                 now = datetime.now(PT)
@@ -290,6 +307,19 @@ def status_line(con) -> str:
                              "FROM videos").fetchone()
     comments = con.execute("SELECT count(*) FROM comments").fetchone()[0]
     return f"channels {ch} (scanned {scanned}), videos {vids} (done {done}), comments {comments}"
+
+
+def status_report(con, used: int, budget: int, state: str) -> str:
+    lines = [f"state: {state}", f"updated: {datetime.now().isoformat(timespec='seconds')}",
+             f"quota today (Pacific day): {used}/{budget}", status_line(con)]
+    for y, n, d in con.execute("SELECT year, count(*), count(*) FILTER (WHERE status NOT IN ('pending','partial')) "
+                               "FROM videos GROUP BY year ORDER BY year DESC").fetchall():
+        lines.append(f"  {y}: {d}/{n} videos done")
+    return "\n".join(lines) + "\n"
+
+
+def status_path() -> Path:
+    return db_path().with_name("yt_comments_status.txt")
 
 
 def refresh_channels(con):
@@ -318,18 +348,24 @@ def main(argv=None):
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
     path = db_path()
     path.parent.mkdir(parents=True, exist_ok=True)
+    if args.command == "status":
+        try:
+            con = duckdb.connect(str(path), read_only=True)
+        except duckdb.IOException:
+            # The running worker holds the DB lock; show its last snapshot instead.
+            sp = status_path()
+            print(sp.read_text(encoding="utf-8") if sp.exists() else "worker running; no status snapshot yet")
+            return
+        print(f"db {path}")
+        print(status_report(con, Census.used_on(con), args.budget, "not running"), end="")
+        con.close()
+        return
     con = duckdb.connect(str(path))
     con.execute(SCHEMA)
     if args.command == "channels":
         refresh_channels(con)
-    elif args.command == "status":
-        c = Census(con, "x", args.budget)
-        print(f"db {path}\nquota today {c.used()}/{args.budget}\n{status_line(con)}")
-        for y, n, d in con.execute("SELECT year, count(*), count(*) FILTER (WHERE status NOT IN ('pending','partial')) "
-                                   "FROM videos GROUP BY year ORDER BY year DESC").fetchall():
-            print(f"  {y}: {d}/{n} videos done")
     else:
-        Census(con, api_key(), args.budget).run(once=args.once)
+        Census(con, api_key(), args.budget).run(once=args.once, status_file=status_path())
     con.close()
 
 
